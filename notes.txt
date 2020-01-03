@@ -5,7 +5,7 @@
     - Order class
         - add status (sent, working, finished) field
 # 0.0.3.1
-    - HomeService with initial Data Base fill in
+    + HomeService with initial Data Base fill in
 # 0.0.3
     + classRepo
     + classService

@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="container">
-        <a href="#">INIT. DB</a>
+        <a href="/initDB">INIT.DB</a>
         <a href="/">HOME</a>
     </div>
 </body>
