@@ -1,0 +1,13 @@
+# 0.0.5
+    - HomeService with initial Data Base fill in
+# 0.0.4
+    - relations between classes
+# 0.0.3
+    - classRepo
+    - classService
+    - classController
+# 0.0.2
+    + bootstrap implement.
+    + header, footer and menu.jsp
+# 0.0.1-SNAPSHOT
+    + main classes
