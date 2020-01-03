@@ -98,8 +98,8 @@ public class AppConfig implements WebMvcConfigurer {
     }
     
 //    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry handlerRegistry) {
-        handlerRegistry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-    }
+//    public void addResourceHandlers(ResourceHandlerRegistry handlerRegistry) {
+//        handlerRegistry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+//    }
     
 }
