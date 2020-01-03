@@ -1,9 +1,11 @@
-package pl.krzysztofskul.order;
+package pl.krzysztofskul.order.guideline;
+
+import pl.krzysztofskul.order.Order;
 
 import javax.persistence.Entity;
 
 @Entity
-public class Guidelines extends Order {
+public class Guideline extends Order {
 
     /**
      * params.

@@ -1,11 +1,17 @@
-# 0.0.5
+# 0.1.0 (done in # 0.0.3.1)
     - HomeService with initial Data Base fill in
 # 0.0.4
     - relations between classes
+    - Order class
+        - add status (sent, working, finished) field
+# 0.0.3.1
+    - HomeService with initial Data Base fill in
 # 0.0.3
-    - classRepo
-    - classService
-    - classController
+    + classRepo
+    + classService
+        + create and read classes
+            - add delete method // todo
+    + classController
 # 0.0.2
     + bootstrap implement.
     + header, footer and menu.jsp

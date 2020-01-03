@@ -1,4 +1,6 @@
-package pl.krzysztofskul.order;
+package pl.krzysztofskul.order.concept;
+
+import pl.krzysztofskul.order.Order;
 
 import javax.persistence.Entity;
 
