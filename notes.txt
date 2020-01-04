@@ -16,12 +16,12 @@
         - add status (sent, working, finished) field
 # 0.0.5.3 (*** NEW BRANCH? ***)
     - create jsp views for all classes?
-# 0.0.5.2
-     - create relations for Devices (with Concept)
 
 
 *** DONE ***
-
+# 0.0.5.2
+     + create relations for Devices (with Concept)
+        + HomePageService: add Device to the Concept
 # 0.0.5.1
      + create relation between Orders (Concept - Guideline)
 # 0.0.5

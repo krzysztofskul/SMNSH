@@ -1,9 +1,11 @@
 package pl.krzysztofskul.order.concept;
 
+import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.order.Order;
 import pl.krzysztofskul.order.guideline.Guideline;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -21,6 +23,9 @@ public class Concept extends Order {
 
     @OneToOne(mappedBy = "concept")
     private Guideline guideline;
+
+    @ManyToOne
+    private Device device;
 
     /**
      * constr.
@@ -60,5 +65,13 @@ public class Concept extends Order {
 
     public void setGuideline(Guideline guideline) {
         this.guideline = guideline;
+    }
+
+    public Device getDevice() {
+        return device;
+    }
+
+    public void setDevice(Device device) {
+        this.device = device;
     }
 }

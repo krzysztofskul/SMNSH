@@ -88,6 +88,7 @@ public class HomePageService {
             concept.setAuthor(userService.loadById(Long.parseLong(String.valueOf(i))));
             concept.setDescription("Lorem ipsum dolor sit amet mi eget sapien. Aliquam quis tortor. Cras volutpat ligula enim.");
             concept.setRemarks("Phasellus vitae ante. Duis non.");
+            concept.setDevice(deviceService.loadById(Long.parseLong("1")));
             conceptService.save(concept);
         }
         /** create additional concepts to first two users */
@@ -97,6 +98,7 @@ public class HomePageService {
             concept.setAuthor(userService.loadById(Long.parseLong(String.valueOf(1))));
             concept.setDescription("Drogi Marszałku, Wysoka Izbo. PKB rośnie. Różnorakie i rozwijanie struktur umożliwia w restrukturyzacji przedsiębiorstwa. Jednakże.");
             concept.setRemarks("Izbo, inwestowanie w większym stopniu.");
+            concept.setDevice(deviceService.loadById(Long.parseLong("4")));
             conceptService.save(concept);
         }
         for (int i = 9; i <= 9; i++) {
@@ -105,6 +107,7 @@ public class HomePageService {
             concept.setAuthor(userService.loadById(Long.parseLong(String.valueOf(2))));
             concept.setDescription("Początek traktatu czasu panowania Fryderyka Wielkiego, Króla Pruskiego żył w.");
             concept.setRemarks("Na przykład w kolei przypadków.");
+            concept.setDevice(deviceService.loadById(Long.parseLong("7")));
             conceptService.save(concept);
         }
     }

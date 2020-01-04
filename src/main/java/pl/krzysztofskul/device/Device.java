@@ -1,6 +1,11 @@
 package pl.krzysztofskul.device;
 
+import pl.krzysztofskul.order.Order;
+import pl.krzysztofskul.order.concept.Concept;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Device {
@@ -13,6 +18,9 @@ public class Device {
     private Long id;
 
     private String model;
+
+    @OneToMany(mappedBy = "device")
+    private List<Concept> conceptList = new ArrayList<>();
 
     /**
      * constr.
@@ -37,6 +45,14 @@ public class Device {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    public List<Concept> getConceptList() {
+        return conceptList;
+    }
+
+    public void setConceptList(List<Concept> conceptList) {
+        this.conceptList = conceptList;
     }
 
     /**
