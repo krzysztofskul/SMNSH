@@ -115,6 +115,7 @@ public class HomePageService {
             Guideline guideline = new Guideline();
             guideline.setAuthor(userService.loadById(Long.parseLong(String.valueOf(i))));
             guideline.setTitle("Guidelines order");
+            guideline.setConcept(conceptService.loadById(Long.parseLong(String.valueOf(i))));
             guidelineService.save(guideline);
         }
     }

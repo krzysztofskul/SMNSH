@@ -4,6 +4,7 @@
     - relations between classes
         - User - Order (Guideline)
         - Order (Concept) - Order (Guideline)
+    - add delete methods for classes/repo/service
 # 0.1.0 (done in # 0.0.3.1)
     + HomeService with initial Data Base fill in
 # 0.0.7
@@ -13,18 +14,21 @@
     - add @Table(name) to classes
     - Order class mod.
         - add status (sent, working, finished) field
-# 0.0.5.1
-     - create relation between Orders (Concept - Guideline)
-     - create relations for Devices (Concept)
+# 0.0.5.3 (*** NEW BRANCH? ***)
+    - create jsp views for all classes?
+# 0.0.5.2
+     - create relations for Devices (with Concept)
+
 
 *** DONE ***
 
+# 0.0.5.1
+     + create relation between Orders (Concept - Guideline)
 # 0.0.5
     + add class Device
     + HomePageService mod.
         + initial DB with Devices
         + initial DB with Guidelines
-
 # 0.0.4
     + relations between classes
         + User - Order
@@ -36,7 +40,6 @@
     + classRepo
     + classService
         + create and read classes
-            - add delete method // todo
     + classController
 # 0.0.2
     + bootstrap implement.

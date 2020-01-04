@@ -1,8 +1,10 @@
 package pl.krzysztofskul.order.concept;
 
 import pl.krzysztofskul.order.Order;
+import pl.krzysztofskul.order.guideline.Guideline;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Concept extends Order {
@@ -16,6 +18,9 @@ public class Concept extends Order {
     private boolean isOnSiteVisited;
 
     private String remarks;
+
+    @OneToOne(mappedBy = "concept")
+    private Guideline guideline;
 
     /**
      * constr.
@@ -47,5 +52,13 @@ public class Concept extends Order {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public Guideline getGuideline() {
+        return guideline;
+    }
+
+    public void setGuideline(Guideline guideline) {
+        this.guideline = guideline;
     }
 }
