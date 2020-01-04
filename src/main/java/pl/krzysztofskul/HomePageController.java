@@ -26,8 +26,9 @@ public class HomePageController {
 	@GetMapping("/initDB")
 	public String initDB() {
 		homePageService.createUsers();
+		homePageService.createDevices();
 		homePageService.createConcepts();
-//		homePageService.createGuidelines();
+		homePageService.createGuidelines();
 		homePageService.createInvestors();
 		homePageService.createRecipients();
 		return "redirect:/home";
