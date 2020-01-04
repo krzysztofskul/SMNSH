@@ -1,9 +1,19 @@
 # 0.1.0 (done in # 0.0.3.1)
-    - HomeService with initial Data Base fill in
-# 0.0.4
-    - relations between classes
-    - Order class
+    + HomeService with initial Data Base fill in
+# 0.0.5
+    - rename Concept -> OrderConcept and Guideline -> OrderGuideline
+    - create classes Concept ang Guideline (as finished order/drawing)
+# 0.0.4.2
+    - add class Device ordered
+# 0.0.4.1
+    - add @Table(name) to classes
+    - Order class mod.
         - add status (sent, working, finished) field
+# 0.0.4
+    + relations between classes
+        + User - Order (Concept/Guideline)
+    + HomePageService mod. (classRepo -> classService)
+    + add Orders (Concepts and Guidelines) to HomeService/initDB
 # 0.0.3.1
     + HomeService with initial Data Base fill in
 # 0.0.3

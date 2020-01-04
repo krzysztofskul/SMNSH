@@ -1,9 +1,11 @@
 package pl.krzysztofskul.user;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import pl.krzysztofskul.order.concept.Concept;
+import pl.krzysztofskul.order.guideline.Guideline;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -21,6 +23,12 @@ public class User {
     private String nameLast;
 
     private String position;
+
+    @OneToMany(mappedBy = "author")
+    private List<Concept> conceptList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "author")
+    private List<Guideline> guidelineList = new ArrayList<>();
 
     /** constr.
      *
@@ -60,5 +68,21 @@ public class User {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public List<Concept> getConceptList() {
+        return conceptList;
+    }
+
+    public void setConceptList(List<Concept> conceptList) {
+        this.conceptList = conceptList;
+    }
+
+    public List<Guideline> getGuidelineList() {
+        return guidelineList;
+    }
+
+    public void setGuidelineList(List<Guideline> guidelineList) {
+        this.guidelineList = guidelineList;
     }
 }

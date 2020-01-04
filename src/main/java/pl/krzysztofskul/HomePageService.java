@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.investor.Investor;
-import pl.krzysztofskul.investor.InvestorRepo;
+import pl.krzysztofskul.investor.InvestorService;
+import pl.krzysztofskul.order.concept.Concept;
+import pl.krzysztofskul.order.concept.ConceptService;
 import pl.krzysztofskul.recipient.Recipient;
-import pl.krzysztofskul.recipient.RecipientRepo;
+import pl.krzysztofskul.recipient.RecipientService;
 import pl.krzysztofskul.user.User;
-import pl.krzysztofskul.user.UserRepo;
+import pl.krzysztofskul.user.UserService;
 
 @Service
 @Transactional
@@ -17,22 +19,25 @@ public class HomePageService {
     /**
      * params.
      */
-    private UserRepo userRepo;
-    private InvestorRepo investorRepo;
-    private RecipientRepo recipientRepo;
+    private UserService userService;
+    private ConceptService conceptService;
+    private InvestorService investorService;
+    private RecipientService recipientService;
 
     /** constr.
      *
      */
     @Autowired
     public HomePageService(
-            UserRepo userRepo,
-            InvestorRepo investorRepo,
-            RecipientRepo recipientRepo
+            UserService userService,
+            ConceptService conceptService,
+            InvestorService investorService,
+            RecipientService recipientService
     ) {
-        this.userRepo = userRepo;
-        this.investorRepo = investorRepo;
-        this.recipientRepo = recipientRepo;
+        this.userService = userService;
+        this.conceptService = conceptService;
+        this.investorService = investorService;
+        this.recipientService = recipientService;
     }
 
     /** methods
@@ -45,7 +50,7 @@ public class HomePageService {
             user.setNameFirst("Name"+i);
             user.setNameLast("Surname"+i);
             user.setPosition("Some business position");
-            userRepo.save(user);
+            userService.save(user);
         }
     }
 
@@ -53,7 +58,7 @@ public class HomePageService {
         for (int i = 1; i <= 9; i++) {
             Investor investor = new Investor();
             investor.setName("Investor no. "+i);
-            investorRepo.save(investor);
+            investorService.save(investor);
         }
     }
 
@@ -61,7 +66,36 @@ public class HomePageService {
         for (int i = 1; i <= 9; i++) {
             Recipient recipient = new Recipient();
             recipient.setDepartment("Department "+i);
-            recipientRepo.save(recipient);
+            recipientService.save(recipient);
+        }
+    }
+
+    public void createConcepts() {
+        /** create one concept for first six users */
+        for (int i = 1; i <= 6; i++) {
+            Concept concept = new Concept();
+            concept.setTitle("Concept title no. " + i);
+            concept.setAuthor(userService.loadById(Long.parseLong(String.valueOf(i))));
+            concept.setDescription("Lorem ipsum dolor sit amet mi eget sapien. Aliquam quis tortor. Cras volutpat ligula enim.");
+            concept.setRemarks("Phasellus vitae ante. Duis non.");
+            conceptService.save(concept);
+        }
+        /** create additional concepts to first two users */
+        for (int i = 7; i <= 8; i++) {
+            Concept concept = new Concept();
+            concept.setTitle("Concept title no. " + i);
+            concept.setAuthor(userService.loadById(Long.parseLong(String.valueOf(1))));
+            concept.setDescription("Drogi Marszałku, Wysoka Izbo. PKB rośnie. Różnorakie i rozwijanie struktur umożliwia w restrukturyzacji przedsiębiorstwa. Jednakże.");
+            concept.setRemarks("Izbo, inwestowanie w większym stopniu.");
+            conceptService.save(concept);
+        }
+        for (int i = 9; i <= 9; i++) {
+            Concept concept = new Concept();
+            concept.setTitle("Concept title no. " + i);
+            concept.setAuthor(userService.loadById(Long.parseLong(String.valueOf(2))));
+            concept.setDescription("Początek traktatu czasu panowania Fryderyka Wielkiego, Króla Pruskiego żył w.");
+            concept.setRemarks("Na przykład w kolei przypadków.");
+            conceptService.save(concept);
         }
     }
 }
