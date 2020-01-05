@@ -37,8 +37,17 @@
                         ${concept.device.model}
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        DESCRIPTION:
+                    </div>
+                    <div class="col">
+                        ${concept.description}
+                    </div>
+                </div>
             </div>
-            <div class="card-footer">
+            <div class="card-footer text-right">
+                <a href="/concepts/edit/${concept.id}" class="btn btn-primary">EDIT</a>
             </div>
         </div>
     </div>

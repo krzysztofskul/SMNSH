@@ -91,6 +91,26 @@ public class ConceptController {
         return "redirect:/concepts/all";
     }
 
+    /** CRUD methods: UPDATE */
+    @GetMapping("/edit/{id}")
+    public String conceptsEditById(
+            @PathVariable("id") Long id,
+            Model model
+    ) {
+        Concept concept = conceptService.loadById(id);
+        Hibernate.initialize(concept);
+        model.addAttribute("concept", concept);
+        return "orders/concepts/edit";
+    }
+    @PostMapping("/edit/{id}")
+    public String conceptsEditById(
+            @PathVariable("id") Long id,
+            @ModelAttribute("concept") Concept concept
+    ) {
+        conceptService.save(concept);
+        return "redirect:/concepts/details/"+id;
+    }
+
     /** CRUD methods: DELETE */
 
     @GetMapping("/delete/{id}")
