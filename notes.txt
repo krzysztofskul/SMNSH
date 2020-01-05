@@ -16,7 +16,8 @@
         - add status (sent, working, finished) field
 # 0.0.5.3 (*** NEW BRANCH? ***)
     - create jsp views for all classes?
-
+# jspViewsUsers BRANCH
+    + jsp view for usersAll
 
 *** DONE ***
 # 0.0.5.2
