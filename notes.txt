@@ -1,4 +1,10 @@
 *** TODO ***
+# 2.0.0
+    - user roles and permissions
+
+# 1.0.0
+    - verify fields/params in classes and app. business logic
+    - actualize jsp views with business logic
 
 # 0.2.0
     - relations between classes
@@ -25,7 +31,7 @@
             + new...,
             + details...,
             - edit..., todo
-            - delete... todo
+            + delete...
         - users (in jspViewsUsers BRANCH) todo
 # 0.0.5.2
      + create relations for Devices (with Concept)

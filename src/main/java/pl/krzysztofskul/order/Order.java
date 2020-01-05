@@ -1,6 +1,5 @@
 package pl.krzysztofskul.order;
 
-import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.user.User;
 
 import javax.persistence.*;
@@ -26,9 +25,6 @@ public class Order {
     private String title;
 
     private String description;
-
-    @ManyToOne
-    private Device device;
 
     /**
      * constr.
@@ -90,11 +86,4 @@ public class Order {
         this.description = description;
     }
 
-    public Device getDevice() {
-        return device;
-    }
-
-    public void setDevice(Device device) {
-        this.device = device;
-    }
 }

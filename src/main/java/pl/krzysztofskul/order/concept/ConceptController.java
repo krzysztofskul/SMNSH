@@ -90,4 +90,14 @@ public class ConceptController {
         conceptService.save(conceptNew);
         return "redirect:/concepts/all";
     }
+
+    /** CRUD methods: DELETE */
+
+    @GetMapping("/delete/{id}")
+    public String conceptsDeleteById(
+            @PathVariable("id") Long id
+    ) {
+        conceptService.deleteById(id);
+        return "redirect:/concepts/all";
+    }
 }

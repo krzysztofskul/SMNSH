@@ -35,7 +35,7 @@
                         <td>${concept.title}</td>
                         <td>
                             <a href="/concepts/details/${concept.id}" class="btn btn-primary">DETAILS</a>
-                            <a href="#" class="btn btn-danger disabled">DEL</a>
+                            <a href="/concepts/delete/${concept.id}" class="btn btn-danger">DEL</a>
                         </td>
                     </tr>
                 </c:forEach>

@@ -4,6 +4,7 @@ import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.order.Order;
 import pl.krzysztofskul.order.guideline.Guideline;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -21,7 +22,7 @@ public class Concept extends Order {
 
     private String remarks;
 
-    @OneToOne(mappedBy = "concept")
+    @OneToOne(mappedBy = "concept", cascade = CascadeType.ALL)
     private Guideline guideline;
 
     @ManyToOne
