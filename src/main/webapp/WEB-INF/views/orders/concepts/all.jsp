@@ -34,7 +34,7 @@
                         <td>${concept.device.model}</td>
                         <td>${concept.title}</td>
                         <td>
-                            <a href="#" class="btn btn-primary disabled">DETAILS</a>
+                            <a href="/concepts/details/${concept.id}" class="btn btn-primary">DETAILS</a>
                             <a href="#" class="btn btn-danger disabled">DEL</a>
                         </td>
                     </tr>

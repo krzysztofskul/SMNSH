@@ -14,18 +14,19 @@
     - add @Table(name) to classes
     - Order class mod.
         - add status (sent, working, finished) field
-# 0.0.6 (*** NEW BRANCH? ***)
-    + JSTL in JSP views error (<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>)
-    - create jsp views for all classes?
-        - concepts...
-            - all...,
-            - new...,
-            - edit...,
-            - delete...
-        - users (in jspViewsUsers BRANCH)
 
 
 *** DONE ***
+# 0.0.6 (*** NEW BRANCH? ***)
+    + JSTL in JSP views error (<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>)
+    - create jsp views for all classes? todo
+        - concepts... todo
+            + all...,
+            + new...,
+            + details...,
+            - edit..., todo
+            - delete... todo
+        - users (in jspViewsUsers BRANCH) todo
 # 0.0.5.2
      + create relations for Devices (with Concept)
         + HomePageService: add Device to the Concept

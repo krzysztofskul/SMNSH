@@ -1,12 +1,15 @@
 package pl.krzysztofskul.order.concept;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.device.DeviceService;
+import pl.krzysztofskul.user.User;
+import pl.krzysztofskul.user.UserService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/concepts")
@@ -18,6 +21,7 @@ public class ConceptController {
 
     private ConceptService conceptService;
     private DeviceService deviceService;
+    private UserService userService;
 
     /**
      * c.
@@ -25,10 +29,12 @@ public class ConceptController {
     @Autowired
     public ConceptController(
             ConceptService conceptService,
-            DeviceService deviceService
+            DeviceService deviceService,
+            UserService userService
     ) {
         this.conceptService = conceptService;
         this.deviceService = deviceService;
+        this.userService = userService;
     }
 
     /**
@@ -39,6 +45,14 @@ public class ConceptController {
      * m.
      */
 
+    /** @ModelAttributes */
+    @ModelAttribute("usersAll")
+    public List<User> getUsersAll() {
+        return userService.loadAll();
+    }
+
+    /** CRUD methods: READ */
+
     @GetMapping("/all")
     public String conceptsAll(
             Model model
@@ -46,6 +60,19 @@ public class ConceptController {
         model.addAttribute("conceptsAll", conceptService.loadAll());
         return "orders/concepts/all";
     }
+
+    @GetMapping("/details/{id}")
+    public String conceptsDetailsById(
+            Model model,
+            @PathVariable("id") Long id
+    ) {
+        Concept concept = conceptService.loadById(id);
+        Hibernate.initialize(concept);  // todo?: move to ConceptService
+        model.addAttribute("concept", concept);
+        return "orders/concepts/details";
+    }
+
+    /** CRUD methods: CREATE */
 
     @GetMapping("/new")
     public String conceptsNew(
@@ -57,7 +84,10 @@ public class ConceptController {
         return "orders/concepts/new";
     }
     @PostMapping("/new")
-    public String conceptNew() {
+    public String conceptNew(
+            @ModelAttribute("conceptNew") Concept conceptNew
+    ) {
+        conceptService.save(conceptNew);
         return "redirect:/concepts/all";
     }
 }
