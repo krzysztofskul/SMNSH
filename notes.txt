@@ -7,15 +7,22 @@
     - add delete methods for classes/repo/service
 # 0.1.0 (done in # 0.0.3.1)
     + HomeService with initial Data Base fill in
-# 0.0.7
+# 0.0.8
     - rename Concept -> OrderConcept and Guideline -> OrderGuideline
     - create classes Concept ang Guideline (as finished order/drawing)
-# 0.0.6
+# 0.0.7
     - add @Table(name) to classes
     - Order class mod.
         - add status (sent, working, finished) field
-# 0.0.5.3 (*** NEW BRANCH? ***)
+# 0.0.6 (*** NEW BRANCH? ***)
+    + JSTL in JSP views error (<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>)
     - create jsp views for all classes?
+        - concepts...
+            - all...,
+            - new...,
+            - edit...,
+            - delete...
+        - users (in jspViewsUsers BRANCH)
 
 
 *** DONE ***

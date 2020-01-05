@@ -15,6 +15,7 @@
     <div class="container">
         <a href="/initDB">INIT.DB</a>
         <a href="/">HOME</a>
+        <a href="/concepts/all">CONCEPTS ALL</a>
     </div>
 </body>
 </html>
