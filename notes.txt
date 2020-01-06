@@ -30,7 +30,7 @@
             + all...,
             + new...,
             + details...,
-            + edit...,
+            + edit mod.,
             + delete...
         - users (in jspViewsUsers BRANCH) todo
 # 0.0.5.2

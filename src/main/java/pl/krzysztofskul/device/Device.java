@@ -18,7 +18,7 @@ public class Device {
 
     private String model;
 
-    @OneToMany(mappedBy = "device", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "device", cascade = CascadeType.REMOVE)
     private List<Concept> conceptList = new ArrayList<>();
 
     /**

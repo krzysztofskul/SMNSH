@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
@@ -50,6 +51,10 @@ public class ConceptController {
     public List<User> getUsersAll() {
         return userService.loadAll();
     }
+    @ModelAttribute("devicesAll")
+    public List<Device> getDevicesAll() {
+        return deviceService.loadAll();
+    }
 
     /** CRUD methods: READ */
 
@@ -80,7 +85,6 @@ public class ConceptController {
     ) {
         Concept conceptNew = new Concept();
         model.addAttribute("conceptNew", conceptNew);
-        model.addAttribute("devicesAll", deviceService.loadAll());
         return "orders/concepts/new";
     }
     @PostMapping("/new")
