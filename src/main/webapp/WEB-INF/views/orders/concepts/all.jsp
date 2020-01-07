@@ -20,6 +20,7 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">DATE OF CREATION</th>
                     <th scope="col">AUTHOR</th>
                     <th scope="col">DEVICE</th>
                     <th scope="col">TITLE</th>
@@ -30,6 +31,35 @@
                 <c:forEach items="${conceptsAll}" var="concept">
                     <tr>
                         <th scope="row">${concept.id}</th>
+                        <th scope="row">
+                                ${concept.dateTimeCreated.year} -
+                                        ${concept.dateTimeCreated.month.name().substring(0,3)} -
+                                    <c:choose>
+                                        <c:when test="${concept.dateTimeCreated.dayOfMonth < 10}">
+                                            0${concept.dateTimeCreated.dayOfMonth}
+                                        </c:when>
+                                        <c:otherwise>
+                                            ${concept.dateTimeCreated.dayOfMonth}
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <br>
+                                    <c:choose>
+                                        <c:when test="${concept.dateTimeCreated.hour < 10}">
+                                            0${concept.dateTimeCreated.hour} :
+                                        </c:when>
+                                        <c:otherwise>
+                                            ${concept.dateTimeCreated.hour} :
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <c:choose>
+                                        <c:when test="${concept.dateTimeCreated.minute < 10}">
+                                            0${concept.dateTimeCreated.minute}
+                                        </c:when>
+                                        <c:otherwise>
+                                            ${concept.dateTimeCreated.minute}
+                                        </c:otherwise>
+                                    </c:choose>
+                        </th>
                         <td>${concept.author.nameFirst} ${concept.author.nameLast}</td>
                         <td>${concept.device.model}</td>
                         <td>${concept.title}</td>
@@ -42,7 +72,7 @@
             </tbody>
             <tfoot>
                 <tr class="text-right">
-                    <td colspan="5">
+                    <td colspan="6">
                         <a href="/concepts/new" class="btn btn-success">NEW</a>
                     </td>
                 </tr>

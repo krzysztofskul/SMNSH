@@ -19,7 +19,8 @@
         <form:form modelAttribute="concept" method="post">
             <div class="card">
                 <div class="card-header">
-                    <%--${concept.id}--%> <form:hidden path="id"/> | <%--${concept.title}--%> <form:input path="title"/>
+                    <%--${concept.id}--%> <form:input path="id" disabled="true" cssStyle="max-width: 50px"/> | <%--${concept.title}--%> <form:input path="title"/>
+                    <form:hidden path="dateTimeCreated"/>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -49,7 +50,8 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <input type="submit" class="btn btn-success" value="SAVE/UPDATE"/>
+                    <a href="/concepts/details/${concept.id}" class="btn btn-warning float-left">CANCEL/BACK</a>
+                    <input type="submit" class="btn btn-success float-right" value="SAVE/UPDATE"/>
                 </div>
             </div>
         </form:form>

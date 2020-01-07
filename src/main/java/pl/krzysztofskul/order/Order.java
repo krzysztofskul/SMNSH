@@ -3,6 +3,7 @@ package pl.krzysztofskul.order;
 import pl.krzysztofskul.user.User;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 public class Order {
@@ -22,9 +23,13 @@ public class Order {
 
     private String priority;
 
-    private String title;
+    private String title = "New order...";
 
     private String description;
+
+    private LocalDateTime dateTimeCreated;
+
+    private LocalDateTime dateTimeDeadline;
 
     /**
      * constr.
@@ -84,6 +89,30 @@ public class Order {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public LocalDateTime getDateTimeCreated() {
+        return dateTimeCreated;
+    }
+
+    public void setDateTimeCreated(LocalDateTime dateTimeCreated) {
+        this.dateTimeCreated = dateTimeCreated;
+    }
+
+    public LocalDateTime getDateTimeDeadline() {
+        return dateTimeDeadline;
+    }
+
+    public void setDateTimeDeadline(LocalDateTime dateTimeDeadline) {
+        this.dateTimeDeadline = dateTimeDeadline;
+    }
+
+    /**
+     * methods
+     */
+    @PrePersist
+    public void prePersist() {
+        this.setDateTimeCreated(LocalDateTime.now());
     }
 
 }

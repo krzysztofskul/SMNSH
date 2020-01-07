@@ -16,6 +16,8 @@ import pl.krzysztofskul.recipient.RecipientService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
+import java.time.LocalDateTime;
+
 @Service
 @Transactional
 public class HomePageService {
@@ -89,6 +91,10 @@ public class HomePageService {
             concept.setDescription("Lorem ipsum dolor sit amet mi eget sapien. Aliquam quis tortor. Cras volutpat ligula enim.");
             concept.setRemarks("Phasellus vitae ante. Duis non.");
             concept.setDevice(deviceService.loadById(Long.parseLong("1")));
+            conceptService.save(concept);
+            /** change dates of creation */
+            concept = conceptService.loadById(Long.parseLong(String.valueOf(i)));
+            concept.setDateTimeCreated(LocalDateTime.now().minusDays(31-i));
             conceptService.save(concept);
         }
         /** create additional concepts to first two users */

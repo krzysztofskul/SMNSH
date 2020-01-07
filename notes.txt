@@ -23,6 +23,10 @@
 
 
 *** DONE ***
+#
+    + Order class modifications
+        + Date
+        + new instance auto Title
 # 0.0.6 (*** NEW BRANCH? ***)
     + JSTL in JSP views error (<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>)
     - create jsp views for all classes? todo
