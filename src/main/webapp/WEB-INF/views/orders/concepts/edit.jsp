@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofskul
@@ -28,7 +29,13 @@
                             AUTHOR:
                         </div>
                         <div class="col">
-                            <%--${concept.author.nameFirst} ${concept.author.nameLast}--%> <form:select path="author.id" items="${usersAll}" itemLabel="id" itemValue="id"/>
+                            <%--${concept.author.nameFirst} ${concept.author.nameLast}--%>
+                            <%--<form:select path="author.id" items="${usersAll}" itemLabel="id" itemValue="id"/>--%>
+                            <form:select path="author.id">
+                                <c:forEach items="${usersAll}" var="user">
+                                    <form:option value="${user.id}" label="${user.nameFirst} ${user.nameLast}"/>
+                                </c:forEach>
+                            </form:select>
                         </div>
                     </div>
                     <hr>
@@ -37,7 +44,7 @@
                             DEVICE:
                         </div>
                         <div class="col">
-                            ${concept.device.model}
+                            <%--${concept.device.model}--%> <form:select path="device.id" items="${devicesAll}" itemLabel="model" itemValue="id"/>
                         </div>
                     </div>
                     <div class="row">

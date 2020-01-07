@@ -22,7 +22,7 @@ public class Concept extends Order {
 
     private String remarks;
 
-    @OneToOne(mappedBy = "concept", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "concept", cascade = CascadeType.REMOVE)
     private Guideline guideline;
 
     @ManyToOne

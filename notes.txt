@@ -27,14 +27,18 @@
     + Order class modifications
         + Date
         + new instance auto Title
-# 0.0.6 (*** NEW BRANCH? ***)
+# menuAndHeaderFooter...
+    + menuMain frontend actual.
+        - dropdown menuMain todo
+    + header frontend actual.
+# 0.0.6 (*** NEW BRANCH: jspViews ***)
     + JSTL in JSP views error (<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>)
     - create jsp views for all classes? todo
         + concepts...
             + all...,
             + new...,
             + details...,
-            + edit...,
+            + edit mod.,
             + delete...
         - users (in jspViewsUsers BRANCH) todo
 # 0.0.5.2
