@@ -45,7 +45,12 @@ public class ConceptService {
         return conceptRepo.findById(id).get();
     }
 
+
     /*** Update*/
 
     /*** Delete */
+
+    public void deleteById(Long id) {
+        conceptRepo.deleteById(id);
+    }
 }

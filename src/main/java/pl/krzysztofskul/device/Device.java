@@ -1,6 +1,5 @@
 package pl.krzysztofskul.device;
 
-import pl.krzysztofskul.order.Order;
 import pl.krzysztofskul.order.concept.Concept;
 
 import javax.persistence.*;
@@ -19,7 +18,7 @@ public class Device {
 
     private String model;
 
-    @OneToMany(mappedBy = "device")
+    @OneToMany(mappedBy = "device", cascade = CascadeType.REMOVE)
     private List<Concept> conceptList = new ArrayList<>();
 
     /**

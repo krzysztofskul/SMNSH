@@ -24,10 +24,10 @@ public class User {
 
     private String position;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
     private List<Concept> conceptList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
     private List<Guideline> guidelineList = new ArrayList<>();
 
     /** constr.

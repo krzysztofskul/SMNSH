@@ -13,9 +13,23 @@
 </head>
 <body>
     <div class="container">
-        <a href="/initDB">INIT.DB</a>
-        <a href="/home">HOME</a>
-        <a href="/users/all">USERS</a>
+<%--        <a href="/initDB">INIT.DB</a>--%>
+<%--        <a href="/">HOME</a>--%>
+<%--        <a href="/concepts/all">CONCEPTS ALL</a>--%>
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link btn-warning ml-1 mr-1 font-weight-bold" href="/initDB">INIT.DB</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn-light ml-1 mr-1 font-weight-bold" href="/home">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn-light ml-1 mr-1" href="/concepts/all">CONCEPTS ALL</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn-light ml-1 mr-1 disabled" href="#" tabindex="-1" aria-disabled="true">USERS ALL</a>
+            </li>
+        </ul>
     </div>
 </body>
 </html>

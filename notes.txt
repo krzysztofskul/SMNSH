@@ -1,4 +1,10 @@
 *** TODO ***
+# 2.0.0
+    - user roles and permissions
+
+# 1.0.0
+    - verify fields/params in classes and app. business logic
+    - actualize jsp views with business logic
 
 # 0.2.0
     - relations between classes
@@ -7,19 +13,34 @@
     - add delete methods for classes/repo/service
 # 0.1.0 (done in # 0.0.3.1)
     + HomeService with initial Data Base fill in
-# 0.0.7
+# 0.0.8
     - rename Concept -> OrderConcept and Guideline -> OrderGuideline
     - create classes Concept ang Guideline (as finished order/drawing)
-# 0.0.6
+# 0.0.7
     - add @Table(name) to classes
     - Order class mod.
         - add status (sent, working, finished) field
-# 0.0.5.3 (*** NEW BRANCH? ***)
-    - create jsp views for all classes?
-# jspViewsUsers BRANCH
-    + jsp view for usersAll
+
 
 *** DONE ***
+#
+    + Order class modifications
+        + Date
+        + new instance auto Title
+# menuAndHeaderFooter...
+    + menuMain frontend actual.
+        - dropdown menuMain todo
+    + header frontend actual.
+# 0.0.6 (*** NEW BRANCH: jspViews ***)
+    + JSTL in JSP views error (<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>)
+    - create jsp views for all classes? todo
+        + concepts...
+            + all...,
+            + new...,
+            + details...,
+            + edit mod.,
+            + delete...
+        - users (in jspViewsUsers BRANCH) todo
 # 0.0.5.2
      + create relations for Devices (with Concept)
         + HomePageService: add Device to the Concept
