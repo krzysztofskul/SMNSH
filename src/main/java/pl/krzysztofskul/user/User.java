@@ -4,6 +4,7 @@ import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.guideline.Guideline;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,10 @@ public class User {
 
     private String nameLast;
 
-    private String position;
+    private UserBusinessPosition businessPosition;
+
+    @Email
+    private String email;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
     private List<Concept> conceptList = new ArrayList<>();
@@ -62,12 +66,20 @@ public class User {
         this.nameLast = nameLast;
     }
 
-    public String getPosition() {
-        return position;
+    public UserBusinessPosition getBusinessPosition() {
+        return businessPosition;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setBusinessPosition(UserBusinessPosition businessPosition) {
+        this.businessPosition = businessPosition;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public List<Concept> getConceptList() {

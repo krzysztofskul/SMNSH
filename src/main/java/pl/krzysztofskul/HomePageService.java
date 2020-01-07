@@ -14,9 +14,11 @@ import pl.krzysztofskul.order.guideline.GuidelineService;
 import pl.krzysztofskul.recipient.Recipient;
 import pl.krzysztofskul.recipient.RecipientService;
 import pl.krzysztofskul.user.User;
+import pl.krzysztofskul.user.UserBusinessPosition;
 import pl.krzysztofskul.user.UserService;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 
 @Service
 @Transactional
@@ -57,11 +59,18 @@ public class HomePageService {
      */
 
     public void createUsers() {
-        for (int i = 1; i <= 9; i++) {
+        for (int i = 1; i <= 2; i++) {
             User user = new User();
             user.setNameFirst("Name"+i);
             user.setNameLast("Surname"+i);
-            user.setPosition("Some business position");
+            user.setBusinessPosition(UserBusinessPosition.PLANNER);
+            userService.save(user);
+        }
+        for (int i = 3; i <= 9; i++) {
+            User user = new User();
+            user.setNameFirst("Name"+i);
+            user.setNameLast("Surname"+i);
+            user.setBusinessPosition(UserBusinessPosition.PROJECT_MANAGER);
             userService.save(user);
         }
     }
