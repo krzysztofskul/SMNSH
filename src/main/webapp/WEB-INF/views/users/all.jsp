@@ -42,9 +42,18 @@
                         </div>
                     </div>
                         <div class="card-body" style="min-height: 100px; max-height: 100px">
+                            <c:choose>
+                                <c:when test="${user.avatar eq null}">
+                                    <img src="/resources/img/avatars/avatar-00_640x640px.png" width="75px" height="75px"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <%--<img src="/resources/img/avatars/usersAll/${user.avatar.id}.png" width="75px" height="75px"/>--%> <!-- todo?: when img from DB is save in project resources dir -->
+                                    <img src="/avatars/${user.avatar.id}.png" width="75px" height="75px" alt="AVATAR"/> <!-- todo: users's avatar -->
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     <div class="card-footer text-right">
-                        <a href="#" class="btn btn-primary disabled">DETAILS/EDIT</a>
+                        <a href="/users/${user.id}/details" class="btn btn-primary">DETAILS/EDIT</a>
                         <a href="#" class="btn btn-danger disabled">DEL</a>
                     </div>
                 </div>

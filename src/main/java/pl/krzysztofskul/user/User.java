@@ -2,6 +2,7 @@ package pl.krzysztofskul.user;
 
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.guideline.Guideline;
+import pl.krzysztofskul.user.avatar.Avatar;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -33,6 +34,9 @@ public class User {
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
     private List<Guideline> guidelineList = new ArrayList<>();
+
+    @OneToOne
+    private Avatar avatar;
 
     /** constr.
      *
@@ -96,5 +100,13 @@ public class User {
 
     public void setGuidelineList(List<Guideline> guidelineList) {
         this.guidelineList = guidelineList;
+    }
+
+    public Avatar getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
     }
 }

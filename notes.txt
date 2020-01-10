@@ -23,6 +23,11 @@
 
 
 *** DONE ***
+# jspViewsUsers BRANCH
+    + Avatar class
+        - Avatar upload to DB and download to JSP todo
+    + user details/edit with concepts
+    - new user form todo
 #
     + Order class modifications
         + Date
@@ -42,7 +47,7 @@
             + delete...
         - users (in jspViewsUsers BRANCH) todo...
             + add business positions (Enum) to User class
-            - add avatar/Blob todo...
+            + add avatar/Blob
 # 0.0.5.2
      + create relations for Devices (with Concept)
         + HomePageService: add Device to the Concept
