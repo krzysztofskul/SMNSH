@@ -80,9 +80,13 @@ public class ConceptController {
 
     @GetMapping("/new")
     public String conceptsNew(
+            @RequestParam(name = "userId", required = false) Long userId,
             Model model
     ) {
         Concept conceptNew = new Concept();
+        if (userId != null) {
+            conceptNew.setAuthor(userService.loadById(userId));
+        }
         model.addAttribute("conceptNew", conceptNew);
         return "orders/concepts/new";
     }
@@ -91,7 +95,8 @@ public class ConceptController {
             @ModelAttribute("conceptNew") Concept conceptNew
     ) {
         conceptService.save(conceptNew);
-        return "redirect:/concepts/all";
+//        return "redirect:/concepts/all";
+        return "redirect:/users/"+conceptNew.getAuthor().getId()+"/details";
     }
 
     /** CRUD methods: UPDATE */

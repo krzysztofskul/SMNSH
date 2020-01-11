@@ -1,6 +1,7 @@
 package pl.krzysztofskul.device;
 
 import pl.krzysztofskul.order.concept.Concept;
+import pl.krzysztofskul.order.guideline.Guideline;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,6 +21,9 @@ public class Device {
 
     @OneToMany(mappedBy = "device", cascade = CascadeType.REMOVE)
     private List<Concept> conceptList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "device", cascade = CascadeType.REMOVE)
+    private List<Guideline> guidelineList = new ArrayList<>();
 
     /**
      * constr.
@@ -52,6 +56,14 @@ public class Device {
 
     public void setConceptList(List<Concept> conceptList) {
         this.conceptList = conceptList;
+    }
+
+    public List<Guideline> getGuidelineList() {
+        return guidelineList;
+    }
+
+    public void setGuidelineList(List<Guideline> guidelineList) {
+        this.guidelineList = guidelineList;
     }
 
     /**

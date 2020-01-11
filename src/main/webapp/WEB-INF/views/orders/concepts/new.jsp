@@ -37,11 +37,24 @@
                             AUTHOR:
                         </div>
                         <div class="col">
-                            <form:select path="author.id">
-                                <c:forEach items="${usersAll}" var="user">
-                                    <form:option value="${user.id}" label="${user.nameFirst} ${user.nameLast}"/>
-                                </c:forEach>
-                            </form:select>
+                            <c:choose>
+                                <c:when test="${conceptNew.author.id eq null}">
+                                    <form:select path="author.id">
+                                        <c:forEach items="${usersAll}" var="user">
+                                            <form:option value="${user.id}" label="${user.nameFirst} ${user.nameLast}"/>
+                                        </c:forEach>
+                                    </form:select>
+                                </c:when>
+                                <c:otherwise>
+<%--                                    <form:select path="author.id">--%>
+<%--                                        <c:forEach items="${usersAll}" var="user">--%>
+<%--                                            <form:option value="${user.id}" label="${user.nameFirst} ${user.nameLast}" disabled="true"/>--%>
+<%--                                        </c:forEach>--%>
+<%--                                    </form:select>--%>
+                                    <form:hidden path="author.id"/>
+                                    <input type="text" readonly value="${conceptNew.author.nameFirst} ${conceptNew.author.nameLast}"/>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                     <hr>

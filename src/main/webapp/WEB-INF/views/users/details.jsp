@@ -85,11 +85,20 @@
                                         <a href="#" class="btn btn-danger disabled float-right ml-1 mr-1">DEL</a>
                                         <a href="#" class="btn btn-primary disabled float-right ml-1 mr-1">DETAILS/EDIT</a>
                                         <br>
-                                        <a href="#"
-                                           class="btn btn-success disabled mt-1 mb-1 float-right"
+                                        <c:if test="${concept.guideline eq null}">
+                                        <a href="/guidelines/new?conceptId=${concept.id}"
+                                           class="btn btn-success mt-1 mb-1 float-right"
                                            style="display: block; max-width: 200px; font-size: small">
                                             NEW GUIDELINE FOR THIS CONCEPT
                                         </a>
+                                        </c:if>
+                                        <c:if test="${concept.guideline ne null}">
+                                            <a href="/guidelines/new?conceptId=${concept.id}"
+                                               class="btn btn-success mt-1 mb-1 float-right disabled"
+                                               style="display: block; max-width: 200px; font-size: small">
+                                                NEW GUIDELINE FOR THIS CONCEPT
+                                            </a>
+                                        </c:if>
                                     </td>
                                 </tr>
                                 <tr class="font-italic">    <!-- guidelineList -->
@@ -113,7 +122,7 @@
                     </table>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-success float-right disabled">NEW CONCEPT ORDER</a>
+                    <a href="/concepts/new?userId=${user.id}" class="btn btn-success float-right">NEW CONCEPT ORDER</a>
                 </div>
             </div>
         </form:form>
