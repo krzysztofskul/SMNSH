@@ -71,8 +71,7 @@ public class ConceptController {
             Model model,
             @PathVariable("id") Long id
     ) {
-        Concept concept = conceptService.loadById(id);
-        Hibernate.initialize(concept);  // todo?: move to ConceptService
+        Concept concept = conceptService.loadByIdWithAll(id);
         model.addAttribute("concept", concept);
         return "orders/concepts/details";
     }

@@ -27,7 +27,7 @@
                 <a class="nav-link btn-light ml-1 mr-1" href="/concepts/all">CONCEPTS ALL</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link btn-light ml-1 mr-1 disabled" href="#" tabindex="-1" aria-disabled="true">USERS ALL</a>
+                <a class="nav-link btn-light ml-1 mr-1" href="/users/all" tabindex="-1" aria-disabled="true">USERS ALL</a>
             </li>
         </ul>
     </div>

@@ -1,5 +1,6 @@
 package pl.krzysztofskul.user;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,6 +44,12 @@ public class UserService {
 
     public User loadById(Long id) {
         return userRepo.findById(id).get();
+    }
+
+    public User loadByIdWithConceptList(Long id) {
+        User user = userRepo.findById(id).get();
+        Hibernate.initialize(user.getConceptList());
+        return user;
     }
 
     /*** Update*/

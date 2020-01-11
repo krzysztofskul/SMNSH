@@ -1,8 +1,10 @@
 package pl.krzysztofskul;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.investor.Investor;
@@ -14,8 +16,14 @@ import pl.krzysztofskul.order.guideline.GuidelineService;
 import pl.krzysztofskul.recipient.Recipient;
 import pl.krzysztofskul.recipient.RecipientService;
 import pl.krzysztofskul.user.User;
+import pl.krzysztofskul.user.UserBusinessPosition;
 import pl.krzysztofskul.user.UserService;
+import pl.krzysztofskul.user.avatar.Avatar;
+import pl.krzysztofskul.user.avatar.AvatarService;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 
 @Service
@@ -31,6 +39,7 @@ public class HomePageService {
     private GuidelineService guidelineService;
     private InvestorService investorService;
     private RecipientService recipientService;
+    private AvatarService avatarService;
 
     /** constr.
      *
@@ -42,7 +51,8 @@ public class HomePageService {
             ConceptService conceptService,
             GuidelineService guidelineService,
             InvestorService investorService,
-            RecipientService recipientService
+            RecipientService recipientService,
+            AvatarService avatarService
     ) {
         this.userService = userService;
         this.deviceService = deviceService;
@@ -50,6 +60,7 @@ public class HomePageService {
         this.guidelineService = guidelineService;
         this.investorService = investorService;
         this.recipientService = recipientService;
+        this.avatarService = avatarService;
     }
 
     /** methods
@@ -57,13 +68,49 @@ public class HomePageService {
      */
 
     public void createUsers() {
-        for (int i = 1; i <= 9; i++) {
+        /** create 2 users at planner business posiotion */
+        for (int i = 1; i <= 2; i++) {
             User user = new User();
             user.setNameFirst("Name"+i);
             user.setNameLast("Surname"+i);
-            user.setPosition("Some business position");
+            user.setBusinessPosition(UserBusinessPosition.PLANNER);
             userService.save(user);
         }
+        /** create 6 users at project manager business position */
+        for (int i = 3; i <= 9; i++) {
+            User user = new User();
+            user.setNameFirst("Name"+i);
+            user.setNameLast("Surname"+i);
+            user.setBusinessPosition(UserBusinessPosition.PROJECT_MANAGER);
+            userService.save(user);
+        }
+
+        //todo: user's avatar
+        /** save avatar for 1st user */
+        /* load File */
+        //todo?: del / convert File to MultiPartFile
+        //File file = new File("/resources/img/avatars/avatar-01_128x128px.png");
+        /* convert File to MultipartFile */
+
+        /* save MultipartFile to DB*/
+        //avatarService.save(multipartFile);
+
+        //byte[] byteFile = new byte[(int) file.length()];
+        //try {
+        //    FileInputStream fileInputStream = new FileInputStream(file);
+        //    /* convert file into array of bytes */
+        //    fileInputStream.read(byteFile);
+        //    fileInputStream.close();
+        //} catch (Exception e) {
+        //    e.printStackTrace();
+        //}
+        /* create Avatar from loaded file */
+        //Avatar avatar = new Avatar();
+        //avatar.setData(byteFile);
+        /* save avatar to DB */
+        //avatarService.save(avatar);
+        /* connect avatar to user */
+        //userService.loadById(Long.parseLong("1")).setAvatar(avatar);
     }
 
     public void createInvestors() {

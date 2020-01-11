@@ -23,6 +23,15 @@
 
 
 *** DONE ***
+# jspViewsUsers BRANCH
+    + new concept button on user's page
+    + new guideline for concept button on user's page
+    + "under-row" guideline for concpet row on user's page
+# jspViewsUsers BRANCH
+    + Avatar class
+        - Avatar upload to DB and download to JSP todo
+    + user details/edit with concepts
+    - new user form todo
 #
     + Order class modifications
         + Date
@@ -31,16 +40,18 @@
     + menuMain frontend actual.
         - dropdown menuMain todo
     + header frontend actual.
-# 0.0.6 (*** NEW BRANCH: jspViews ***)
+# 0.0.6
     + JSTL in JSP views error (<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>)
-    - create jsp views for all classes? todo
+    - create jsp views for Concept and User classes? todo
         + concepts...
             + all...,
             + new...,
             + details...,
             + edit mod.,
             + delete...
-        - users (in jspViewsUsers BRANCH) todo
+        - users (in jspViewsUsers BRANCH) todo...
+            + add business positions (Enum) to User class
+            + add avatar/Blob
 # 0.0.5.2
      + create relations for Devices (with Concept)
         + HomePageService: add Device to the Concept

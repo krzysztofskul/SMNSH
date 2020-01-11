@@ -1,5 +1,6 @@
 package pl.krzysztofskul.order.concept;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,6 +46,13 @@ public class ConceptService {
         return conceptRepo.findById(id).get();
     }
 
+    public Concept loadByIdWithAll(Long id) {
+        Concept concept = conceptRepo.findById(id).get();
+        Hibernate.initialize(concept.getDevice());
+        Hibernate.initialize(concept.getAuthor());
+        Hibernate.initialize(concept.getGuideline());
+        return concept;
+    }
 
     /*** Update*/
 
@@ -53,4 +61,5 @@ public class ConceptService {
     public void deleteById(Long id) {
         conceptRepo.deleteById(id);
     }
+
 }

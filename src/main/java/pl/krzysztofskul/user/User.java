@@ -2,8 +2,10 @@ package pl.krzysztofskul.user;
 
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.guideline.Guideline;
+import pl.krzysztofskul.user.avatar.Avatar;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,13 +24,19 @@ public class User {
 
     private String nameLast;
 
-    private String position;
+    private UserBusinessPosition businessPosition;
+
+    @Email
+    private String email;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
     private List<Concept> conceptList = new ArrayList<>();
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
     private List<Guideline> guidelineList = new ArrayList<>();
+
+    @OneToOne
+    private Avatar avatar;
 
     /** constr.
      *
@@ -62,12 +70,20 @@ public class User {
         this.nameLast = nameLast;
     }
 
-    public String getPosition() {
-        return position;
+    public UserBusinessPosition getBusinessPosition() {
+        return businessPosition;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setBusinessPosition(UserBusinessPosition businessPosition) {
+        this.businessPosition = businessPosition;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public List<Concept> getConceptList() {
@@ -84,5 +100,13 @@ public class User {
 
     public void setGuidelineList(List<Guideline> guidelineList) {
         this.guidelineList = guidelineList;
+    }
+
+    public Avatar getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
     }
 }
