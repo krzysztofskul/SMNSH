@@ -24,6 +24,10 @@
 
 *** DONE ***
 # jspViewsUsers BRANCH
+    + new concept button on user's page
+    + new guideline for concept button on user's page
+    + "under-row" guideline for concpet row on user's page
+# jspViewsUsers BRANCH
     + Avatar class
         - Avatar upload to DB and download to JSP todo
     + user details/edit with concepts

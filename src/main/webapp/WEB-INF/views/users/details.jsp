@@ -31,7 +31,6 @@
                     </div>
                     <div class="row">
                         <div class="col">Business position:</div>
-<%--                        <div class="col"><form:input path="businessPosition"/></div>--%>
                         <div class="col">
                             <form:select path="businessPosition" items="${businessPositions}"/>
                         </div>
@@ -63,33 +62,58 @@
                         </div>
                      </c:forEach>--%>
                     <table class="table table-sm">
-                        <thead>
-                        <tr>
-                            <th scope="col" colspan="5" class="text-center bg-light"><h4>ORDERS CREATED BY USER</h4></th>
-                        </tr>
-                        <tr>
-                            <th scope="col">DATE OF CREATION</th>
-                            <th scope="col">DEVICE</th>
-                            <th scope="col">TITLE</th>
-                            <th scope="col">STATUS</th>
-                            <th scope="col" class="text-right text-info">ACTIONS</th>
-                        </tr>
+                        <thead class="text-center bg-light">
+                            <tr>
+                                <td colspan="5"><h4>ORDERS CREATED BY USER</h4></td>
+                            </tr>
+                            <tr class="font-weight-bold">
+                                <td>DATE OF CREATION</td>
+                                <td>DEVICE</td>
+                                <td>TITLE</td>
+                                <td>STATUS</td>
+                                <td class="text-info">ACTIONS</td>
+                            </tr>
                         </thead>
                         <c:forEach items="${user.conceptList}" var="concept">
                             <tbody>
-                                <tr>
-                                    <th scope="row">${concept.dateTimeCreated.toString()}</th>
+                                <tr class="bg-light">    <!-- conceptList -->
+                                    <td>${concept.dateTimeCreated.toString()}</td>
                                     <td>${concept.device.model}</td>
                                     <td>${concept.title}</td>
-                                    <td>...</td>
-                                    <td class="float-right">
-                                        <a href="#" class="btn btn-primary disabled">DETAILS/EDIT</a>
-                                        <a href="#" class="btn btn-danger disabled">DEL</a>
+                                    <td></td>
+                                    <td>
+                                        <a href="#" class="btn btn-danger disabled float-right ml-1 mr-1">DEL</a>
+                                        <a href="#" class="btn btn-primary disabled float-right ml-1 mr-1">DETAILS/EDIT</a>
+                                        <br>
+                                        <a href="#"
+                                           class="btn btn-success disabled mt-1 mb-1 float-right"
+                                           style="display: block; max-width: 200px; font-size: small">
+                                            NEW GUIDELINE FOR THIS CONCEPT
+                                        </a>
                                     </td>
+                                </tr>
+                                <tr class="font-italic">    <!-- guidelineList -->
+                                    <c:choose>
+                                        <c:when test="${concept.guideline eq null}">
+                                            <td colspan="5">NOT SENT ANY ORDER OF GUIDELINE FOR THIS CONCEPT ORDER</td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td colspan="2"></td>
+                                            <td>${concept.guideline.title}</td>
+                                            <td></td>
+                                            <td class="float-right">
+                                                <a href="#" class="btn btn-primary disabled">DETAILS/EDIT</a>
+                                                <a href="#" class="btn btn-danger disabled">DEL</a>
+                                            </td>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </tr>
                             </tbody>
                         </c:forEach>
                     </table>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-success float-right disabled">NEW CONCEPT ORDER</a>
                 </div>
             </div>
         </form:form>
