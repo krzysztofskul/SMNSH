@@ -31,12 +31,31 @@
                 <hr>
                 <div class="row">
                     <div class="col">
+                        PLANNER:
+                    </div>
+                    <div class="col">
+                        ${concept.planner.nameFirst} ${concept.planner.nameLast}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        STATUS:
+                    </div>
+                    <div class="col">
+                        ${concept.status.toString()}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
                         DEVICE:
                     </div>
                     <div class="col">
                         ${concept.device.model}
                     </div>
                 </div>
+                <hr>
                 <div class="row">
                     <div class="col">
                         DESCRIPTION:

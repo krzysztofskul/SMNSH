@@ -64,12 +64,14 @@
                     <table class="table table-sm">
                         <thead class="text-center bg-light">
                             <tr>
-                                <td colspan="5"><h4>ORDERS CREATED BY USER</h4></td>
+                                <td colspan="7"><h4>ORDERS CREATED BY USER</h4></td>
                             </tr>
                             <tr class="font-weight-bold">
                                 <td>DATE OF CREATION</td>
                                 <td>DEVICE</td>
                                 <td>TITLE</td>
+                                <td>PRIORITY</td>
+                                <td>DEADLINE</td>
                                 <td>STATUS</td>
                                 <td class="text-info">ACTIONS</td>
                             </tr>
@@ -80,7 +82,9 @@
                                     <td>${concept.dateTimeCreated.toString()}</td>
                                     <td>${concept.device.model}</td>
                                     <td>${concept.title}</td>
-                                    <td></td>
+                                    <td>${concept.priority}</td>
+                                    <td>${concept.dateTimeDeadline}</td>
+                                    <td>${concept.status.toString()}</td>
                                     <td>
                                         <a href="#" class="btn btn-danger disabled float-right ml-1 mr-1">DEL</a>
                                         <a href="#" class="btn btn-primary disabled float-right ml-1 mr-1">DETAILS/EDIT</a>
@@ -104,10 +108,10 @@
                                 <tr class="font-italic">    <!-- guidelineList -->
                                     <c:choose>
                                         <c:when test="${concept.guideline eq null}">
-                                            <td colspan="5">NOT SENT ANY ORDER OF GUIDELINE FOR THIS CONCEPT ORDER</td>
+                                            <td colspan="7">NOT SENT ANY ORDER OF GUIDELINE FOR THIS CONCEPT ORDER</td>
                                         </c:when>
                                         <c:otherwise>
-                                            <td colspan="2"></td>
+                                            <td colspan="4"></td>
                                             <td>${concept.guideline.title}</td>
                                             <td></td>
                                             <td class="float-right">

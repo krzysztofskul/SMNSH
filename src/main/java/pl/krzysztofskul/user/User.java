@@ -35,6 +35,9 @@ public class User {
     @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
     private List<Guideline> guidelineList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "planner")
+    private List<Concept> conceptListToDo = new ArrayList<>();
+
     @OneToOne
     private Avatar avatar;
 
@@ -102,6 +105,14 @@ public class User {
         this.guidelineList = guidelineList;
     }
 
+    public List<Concept> getConceptListToDo() {
+        return conceptListToDo;
+    }
+
+    public void setConceptListToDo(List<Concept> conceptListToDo) {
+        this.conceptListToDo = conceptListToDo;
+    }
+
     public Avatar getAvatar() {
         return avatar;
     }
@@ -109,4 +120,15 @@ public class User {
     public void setAvatar(Avatar avatar) {
         this.avatar = avatar;
     }
+
+    /**
+     * methods
+     */
+    public void addConceptToDo(Concept concept) {
+        this.conceptListToDo.add(concept);
+    }
+    public void removeConceptToDo(Concept concept) {
+        this.conceptListToDo.remove(concept);
+    }
+
 }

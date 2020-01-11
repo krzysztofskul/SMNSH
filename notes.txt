@@ -16,13 +16,16 @@
 # 0.0.9
     - rename Concept -> OrderConcept and Guideline -> OrderGuideline
     - create classes Concept ang Guideline (as finished order/drawing)
-# 0.0.8
-    - add @Table(name) to classes
     - Order class mod.
-        - add status (sent, working, finished) field
+        - add deadline to JSPs
 
 
 *** DONE ***
+# 0.0.8
+    + Order class mod.
+        + add status to Concept and Guideline (sent, working, finished) field
+        + add planner to Concept
+            + concept edit form corrections (add planner and status change fields)
 # 0.0.7
     + new concept form from user view
     + new guideline form for order from user view

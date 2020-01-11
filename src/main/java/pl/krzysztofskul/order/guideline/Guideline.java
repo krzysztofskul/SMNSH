@@ -2,6 +2,7 @@ package pl.krzysztofskul.order.guideline;
 
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.order.Order;
+import pl.krzysztofskul.order.Status;
 import pl.krzysztofskul.order.concept.Concept;
 
 import javax.persistence.Entity;
@@ -14,6 +15,8 @@ public class Guideline extends Order {
     /**
      * params.
      */
+
+    private Status status;
 
     private String remarks;
 
@@ -30,6 +33,14 @@ public class Guideline extends Order {
     /**
      * getters and setters
      */
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 
     public String getRemarks() {
         return remarks;

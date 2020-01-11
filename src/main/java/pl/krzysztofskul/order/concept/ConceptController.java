@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
+import pl.krzysztofskul.order.Status;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
@@ -54,6 +55,11 @@ public class ConceptController {
     @ModelAttribute("devicesAll")
     public List<Device> getDevicesAll() {
         return deviceService.loadAll();
+    }
+
+    @ModelAttribute("orderStatuses")
+    public Status[] getOrderStatuses() {
+        return Status.values();
     }
 
     /** CRUD methods: READ */

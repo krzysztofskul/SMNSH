@@ -21,9 +21,11 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">DATE OF CREATION</th>
-                    <th scope="col">AUTHOR</th>
-                    <th scope="col">DEVICE</th>
+                    <th scope="col">AUTHOR / DEVICE</th>
                     <th scope="col">TITLE</th>
+                    <th scope="col">PRIORITY</th>
+                    <th scope="col">DEADLINE</th>
+                    <th scope="col">STATUS</th>
                     <th scope="col">OPTIONS</th>
                 </tr>
             </thead>
@@ -60,9 +62,15 @@
                                         </c:otherwise>
                                     </c:choose>
                         </th>
-                        <td>${concept.author.nameFirst} ${concept.author.nameLast}</td>
-                        <td>${concept.device.model}</td>
+                        <td>
+                            ${concept.author.nameFirst} ${concept.author.nameLast}
+                            <hr>
+                            ${concept.device.model}
+                        </td>
                         <td>${concept.title}</td>
+                        <td>${concept.priority}</td>
+                        <td>${concept.dateTimeDeadline}</td>
+                        <td>${concept.status.toString()}</td>
                         <td>
                             <a href="/concepts/details/${concept.id}" class="btn btn-primary">DETAILS</a>
                             <a href="/concepts/delete/${concept.id}" class="btn btn-danger">DEL</a>
@@ -72,7 +80,7 @@
             </tbody>
             <tfoot>
                 <tr class="text-right">
-                    <td colspan="6">
+                    <td colspan="7">
                         <a href="/concepts/new" class="btn btn-success">NEW</a>
                     </td>
                 </tr>

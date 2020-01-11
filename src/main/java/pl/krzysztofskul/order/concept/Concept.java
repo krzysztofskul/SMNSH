@@ -2,12 +2,11 @@ package pl.krzysztofskul.order.concept;
 
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.order.Order;
+import pl.krzysztofskul.order.Status;
 import pl.krzysztofskul.order.guideline.Guideline;
+import pl.krzysztofskul.user.User;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Concept extends Order {
@@ -15,6 +14,8 @@ public class Concept extends Order {
     /**
      * params.
      */
+
+    private Status status;
 
     private boolean isLayout;
 
@@ -28,6 +29,9 @@ public class Concept extends Order {
     @ManyToOne
     private Device device;
 
+    @ManyToOne
+    private User planner;
+
     /**
      * constr.
      */
@@ -35,6 +39,14 @@ public class Concept extends Order {
     /**
      *  getters and setters
      */
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 
     public boolean isLayout() {
         return isLayout;
@@ -75,4 +87,22 @@ public class Concept extends Order {
     public void setDevice(Device device) {
         this.device = device;
     }
+
+    public User getPlanner() {
+        return planner;
+    }
+
+    public void setPlanner(User planner) {
+        this.planner = planner;
+    }
+
+    /**
+     * methods
+     */
+
+    @PrePersist
+    public void prePersist() {
+        setStatus(Status.ORDERED_WAITING);
+    }
+
 }

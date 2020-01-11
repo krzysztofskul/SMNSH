@@ -24,13 +24,12 @@
                     <form:hidden path="dateTimeCreated"/>
                 </div>
                 <div class="card-body">
+                    <!-- AUTHOR EDIT-->
                     <div class="row">
                         <div class="col">
                             AUTHOR:
                         </div>
                         <div class="col">
-                            <%--${concept.author.nameFirst} ${concept.author.nameLast}--%>
-                            <%--<form:select path="author.id" items="${usersAll}" itemLabel="id" itemValue="id"/>--%>
                             <form:select path="author.id">
                                 <c:forEach items="${usersAll}" var="user">
                                     <form:option value="${user.id}" label="${user.nameFirst} ${user.nameLast}"/>
@@ -39,6 +38,35 @@
                         </div>
                     </div>
                     <hr>
+                    <!-- PLANNER EDIT -->
+                    <div class="row">
+                        <div class="col">
+                            PLANNER:
+                        </div>
+                        <div class="col">
+                            <form:select path="planner.id">
+                                <c:forEach items="${usersAll}" var="user">
+                                    <form:option value="${user.id}" label="${user.nameFirst} ${user.nameLast}"/>
+                                </c:forEach>
+                            </form:select>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- STATUS EDIT -->
+                    <div class="row">
+                        <div class="col">
+                            STATUS:
+                        </div>
+                        <div class="col">
+                            <form:select path="status">
+                                <c:forEach items="${orderStatuses}" var="orderStatus">
+                                    <form:option value="${orderStatus}" label="${orderStatus.toString()}"/>
+                                </c:forEach>
+                            </form:select>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- DEVICE EDIT -->
                     <div class="row">
                         <div class="col">
                             DEVICE:
@@ -47,6 +75,7 @@
                             <%--${concept.device.model}--%> <form:select path="device.id" items="${devicesAll}" itemLabel="model" itemValue="id"/>
                         </div>
                     </div>
+                    <hr>
                     <div class="row">
                         <div class="col">
                             DESCRIPTION:
