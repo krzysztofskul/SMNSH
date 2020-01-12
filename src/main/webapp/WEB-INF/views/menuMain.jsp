@@ -10,6 +10,7 @@
 <head>
     <title>SMNSH</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/resources/css/smnshStyles.css"/>
 </head>
 <body>
     <div class="container">
@@ -18,16 +19,28 @@
 <%--        <a href="/concepts/all">CONCEPTS ALL</a>--%>
         <ul class="nav nav-pills">
             <li class="nav-item">
-                <a class="nav-link btn-warning ml-1 mr-1 font-weight-bold" href="/initDB">INIT.DB</a>
+                <a class="nav-link btn-warning ml-1 mr-1" href="/initDB">
+                    <p class="langPL">INICJALIZACJA BAZY DANYCH</p>
+                    <p class="langEN">INIT.DB</p>
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link btn-light ml-1 mr-1 font-weight-bold" href="/home">HOME</a>
+                <a class="nav-link btn-light ml-1 mr-1" href="/home">
+                    <p class="langPL">STRONA STARTOWA</p>
+                    <p class="langEN">HOME</p>
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link btn-light ml-1 mr-1" href="/concepts/all">CONCEPTS ALL</a>
+                <a class="nav-link btn-light ml-1 mr-1" href="/concepts/all">
+                    <p class="langPL">ZAMÓWIENIA KONCEPCJI</p>
+                    <p class="langEN">ALL CONCEPT ORDERS</p>
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link btn-light ml-1 mr-1" href="/users/all" tabindex="-1" aria-disabled="true">USERS ALL</a>
+                <a class="nav-link btn-light ml-1 mr-1" href="/users/all">
+                    <p class="langPL">UŻYTKOWNICY</p>
+                    <p class="langEN">ALL USERS</p>
+                </a>
             </li>
         </ul>
     </div>

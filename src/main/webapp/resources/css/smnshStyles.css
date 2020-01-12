@@ -1,0 +1,16 @@
+.langPL {
+    font-style: normal;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    color: black;
+}
+
+.langEN {
+    font-style: italic;
+    font-weight: normal;
+    font-size: smaller;
+    color: grey;
+    margin: 0;
+    padding: 0;
+}

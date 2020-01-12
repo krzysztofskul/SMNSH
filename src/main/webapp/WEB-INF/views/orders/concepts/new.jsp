@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
-
+    <link rel="stylesheet" href="/resources/css/smnshStyles.css"/>
 </head>
 <body>
 
@@ -20,14 +20,16 @@
         <form:form modelAttribute="conceptNew" method="post" action="/concepts/new">
             <div class="card">
                 <div class="card-header text-center">
-                    <h4>NEW CONCEPT ORDER FORM</h4>
+                    <h4 class="langPL">KREATOR ZAMÓWIENIA NOWEJ KONCEPCJI</h4>
+                    <h4 class="langEN">NEW CONCEPT ORDER FORM</h4>
                     <form:hidden path="id" disabled="true"/>
                 </div>
                 <!-- *** AUTHOR/CUSTOMER/ SECTION *** -->
                 <div class="card-body">
                     <div class="row">
                         <div class="col-6">
-                            AUTHOR:
+                            <p class="langPL">AUTOR/ZAMAWIAJĄCY:</p>
+                            <p class="langEN">AUTHOR:</p>
                         </div>
                         <div class="col">
                             <c:choose>
@@ -52,7 +54,8 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
-                            DEVICE:
+                            <p class="langPL">SPRZĘT:</p>
+                            <p class="langEN">DEVICE:</p>
                         </div>
                         <div class="col">
                             <form:select cssClass="w-100" path="device.id" items="${devicesAll}" itemLabel="model" itemValue="id"/>
@@ -60,7 +63,8 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
-                            RECIPIENT/CUSTOMER:
+                            <p class="langPL">KLIENT:</p>
+                            <p class="langEN">RECIPIENT/CUSTOMER:</p>
                         </div>
                         <div class="col">
                             <form:input cssClass="w-100" path="client" disabled="true"/>
@@ -70,7 +74,8 @@
                     <!-- *** DATES/PRIORITY SECTION *** -->
                     <div class="row">
                         <div class="col-6">
-                            PRIORITY:
+                            <p class="langPL">PRIORYTET:</p>
+                            <p class="langEN">PRIORITY:</p>
                         </div>
                         <div class="col">
                             <form:input cssClass="w-100" path="priority"/>
@@ -78,7 +83,8 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
-                            DEADLINE:
+                            <p class="langPL">TERMIN REALIZACJI:</p>
+                            <p class="langEN">DEADLINE:</p>
                         </div>
                         <div class="col">
                             <input class="w-100" type="date" disabled/>
@@ -88,7 +94,8 @@
                     <!-- *** TITLE/DESCRIPTION SECTION *** -->
                     <div class="row mt-2">
                         <div class="col-6">
-                            TITLE:
+                            <p class="langPL">TYTUŁ:</p>
+                            <p class="langEL">TITLE:</p>
                         </div>
                         <div class="col">
                             <form:input cssClass="w-100" path="title"/>
@@ -96,7 +103,8 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
-                            DESCRIPTION:
+                            <p class="langPL">OPIS:</p>
+                            <p class="langEN">DESCRIPTION:</p>
                         </div>
                         <div class="col">
                             <form:textarea cssClass="w-100" path="description"/>
@@ -106,7 +114,8 @@
                     <hr>
                     <div class="row mt-2">
                         <div class="col-6">
-                            LAYOUT DWG IN ATTACHEMENT:
+                            <p class="langPL">ZAŁ. RZUT POMIESZCZANIA W DWG:</p>
+                            <p class="langEN">LAYOUT DWG IN ATTACHEMENT:</p>
                         </div>
                         <div class="col">
                             <form:checkbox path="layout"/>
@@ -114,7 +123,8 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
-                            ON-SITE VISITED / LAYOUT VERIFIED:
+                            <p class="langPL">WYZJA LOKALNA / WERYFIKACJA WYMIARÓW POMIESZCZENIA:</p>
+                            <p class="langEN">ON-SITE VISITED / LAYOUT VERIFIED:</p>
                         </div>
                         <div class="col">
                             <form:checkbox path="onSiteVisited"/>
@@ -122,7 +132,8 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
-                            POSSIBILITY TO DEMOLISH/MOVE/BUILD WALLS:
+                            <p class="langPL">MOŻLIWOŚĆ INGERENCJI W UKŁAD ŚCIAN:</p>
+                            <p class="langEN">POSSIBILITY TO DEMOLISH/MOVE/BUILD WALLS:</p>
                         </div>
                         <div class="col">
                             <form:checkbox path="wallInterferencePossible"/>
@@ -130,7 +141,8 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
-                            CUSTOMER SUGGESTIONS:
+                            <p class="langPL">SUGESTIE KLIENTA:</p>
+                            <p class="langEN">CUSTOMER SUGGESTIONS:</p>
                         </div>
                         <div class="col">
                             <form:textarea cssClass="w-100" path="customerSuggestions"/>
@@ -138,7 +150,8 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
-                            TRANSPORT ROUT TO DESIGN:
+                            <p class="langPL">WYMAGANE ZAPLANOWANIE DROGI TRANSPORTOWEJ:</p>
+                            <p class="langEN">TRANSPORT ROUT TO DESIGN:</p>
                         </div>
                         <div class="col">
                             <form:checkbox path="transportRouteDesignNeeded"/>
@@ -146,7 +159,8 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
-                            POWER BOX PLACE SPECIFIED:
+                            <p class="langPL">OKREŚLONE POŁOŻENIE TABLICY ROZDZIELCZEJ:</p>
+                            <p class="langEN">POWER BOX PLACE SPECIFIED:</p>
                         </div>
                         <div class="col">
                             <form:checkbox path="electricBoxSpecified"/>
@@ -154,7 +168,8 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
-                            ADDITIONAL ROOMS TO DESIGN:
+                            <p class="langPL">DODATKOWE POMIESZCZENIA DO ZAPLANOWANIA:</p>
+                            <p class="langEN">ADDITIONAL ROOMS TO DESIGN:</p>
                         </div>
                         <div class="col">
                             <form:input cssClass="w-100" path="additionalRoomsToDesign"/>

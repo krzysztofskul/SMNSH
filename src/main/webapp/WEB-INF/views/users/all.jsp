@@ -20,12 +20,13 @@
     <div class="card">
 
         <div class="card-header text-center">
-            <h3>ALL USERS LIST</h3>
+            <p class="langPL">UŻYTKOWNICY</p>
+            <p class="langEN">ALL USERS LIST</p>
         </div>
 
-        <div class="card-body">
+        <div class="card-body text-center">
             <c:forEach items="${usersAll}" var="user">
-                <div class="card bg-light mb-3" style="max-width: 18rem; display: inline-block">
+                <div class="card bg-light mb-3" style="display: inline-block;">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-1 border-right">
@@ -53,16 +54,30 @@
                             </c:choose>
                         </div>
                     <div class="card-footer text-right">
-                        <a href="/users/${user.id}/details" class="btn btn-primary">DETAILS/EDIT</a>
-                        <a href="#" class="btn btn-danger disabled">DEL</a>
+                        <a href="/users/${user.id}/details" class="btn btn-primary">
+                            <p class="langPL">SZCZEGÓŁY / EDYCJA</p>
+                            <p class="langEN">DETAILS/EDIT</p>
+                        </a>
+                        <a href="#" class="btn btn-danger disabled">
+                            <p class="langPL">USUŃ</p>
+                            <p class="langEN">DEL</p>
+                        </a>
                     </div>
                 </div>
             </c:forEach>
         </div>
 
         <div class="card-footer text-right">
-            <a href="/home" class="btn btn-warning float-left">BACK TO HOME</a>
-            <a href="#" class="btn btn-success float-right disabled">NEW</a>
+            <a href="/home" class="btn btn-warning float-left">
+                <span><<</span>
+                <p class="langPL">WSTECZ</p>
+                <p class="langEN">BACK</p>
+            </a>
+            <a href="#" class="btn btn-success float-right disabled">
+                <span>+</span>
+                <p class="langPL">NOWY</p>
+                <p class="langEN">NEW</p>
+            </a>
         </div>
 
     </div>

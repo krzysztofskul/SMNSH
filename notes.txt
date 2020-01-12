@@ -19,14 +19,13 @@
     - Order class mod.
         - add deadline to JSPs
 
-# 0.0.8.3 (front-end update)
-    - css resource / PL ver for views
-
-# 0.0.8.2
+# 0.0.8.3
     - details/edit JSP for concept update
 
 
 *** DONE ***
+# 0.0.8.2 (front-end update)
+    + css resource / PL ver for main menu, users page and user profile page
 # 0.0.8.1
     + additional questions connected to devices when new concept order is creating
     + some general code corrections
