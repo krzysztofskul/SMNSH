@@ -19,14 +19,20 @@
     <div class="container">
         <form:form method="post" modelAttribute="user">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header text-center" style="font-size: larger">
                     <p class="langPL">PROFIL UŻYTKOWNIKA</p>
                     <p class="langEN">USER'S PROFILE</p>
-                    <form:input path="id" disabled="true" cssStyle="max-width: 50px"/> |
-                    <form:input path="nameFirst"/>
-                    <form:input path="nameLast"/>
                 </div>
                 <div class="card-body">
+                    <div class="row border-bottom pb-2 mb-2">
+                        <div class="col text-right">
+                            <span class="font-weight-bold">ID:</span> <form:input path="id" disabled="true" cssStyle="max-width: 50px"/>
+                        </div>
+                        <div class="col text-left">
+                            <form:input path="nameFirst" cssClass="w-40"/>
+                            <form:input path="nameLast" cssClass="w-50"/>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col text-right" style="margin: auto">
                             <p class="langPL">Zdjęcie profilowe:</p>
@@ -69,11 +75,13 @@
                     </form:button>
                 </div>
                 <div class="card-body">
+                    <!-- OLD VER. WITH TABLE -->
+                    <!--
                     <table class="table table-sm">
                         <thead class="text-center bg-light">
                             <tr>
                                 <td colspan="7">
-                                    <p class="langPL">ZAMÓWENIA KONCPECJI/WYTYCZNYCH UŻYTKOWNIKA</p>
+                                    <p class="langPL">ZAMÓWENIA KONCPECJI / WYTYCZNYCH UŻYTKOWNIKA</p>
                                     <p class="langEN">ORDERS CREATED BY USER</p>
                                 </td>
                             </tr>
@@ -110,19 +118,25 @@
                         </thead>
                         <c:forEach items="${user.conceptList}" var="concept">
                             <tbody>
-                                <tr class="bg-light">    <!-- conceptList -->
-                                    <td>${concept.dateTimeCreated.toString()}</td>
+                                <tr class="bg-light">
+                                    <td>
+                                        ${concept.dateTimeCreated.toLocalDate()}
+                                        <br>
+                                        ${concept.dateTimeCreated.toLocalTime()}
+                                    </td>
                                     <td>${concept.device.model}</td>
                                     <td>${concept.title}</td>
                                     <td>${concept.priority}</td>
                                     <td>${concept.dateTimeDeadline}</td>
                                     <td>${concept.status.toString()}</td>
                                     <td colspan="7">
-                                        <a href="#" class="btn btn-danger disabled float-right ml-1 mr-1">
+                                        <a href="#"
+                                           class="btn btn-danger disabled float-right ml-1 mr-1">
                                             <p class="langPL">USUŃ</p>
                                             <p class="langEN">DEL</p>
                                         </a>
-                                        <a href="/concepts/details/${concept.id}" class="btn btn-primary float-right ml-1 mr-1">
+                                        <a href="/concepts/details/${concept.id}"
+                                           class="btn btn-primary float-right ml-1 mr-1">
                                             <p class="langPL">SZCZEGÓŁY / EDYCJA</p>
                                             <p class="langEN">DETAILS / EDIT</p>
                                         </a>
@@ -138,7 +152,6 @@
                                         <c:if test="${concept.guideline ne null}">
                                             <a href="/guidelines/new?conceptId=${concept.id}"
                                                class="btn btn-success float-right disabled ml-1 mr-1"
-<%--                                               style="display: block; max-width: 200px; font-size: small"--%>
                                             >
                                                 <p class="langPL">ZAMÓWENIE WYTYCZNYCH DLA TEJ KONCEPCJI</p>
                                                 <p class="langEN">NEW GUIDELINE ORDER FOR THIS CONCEPT</p>
@@ -146,7 +159,7 @@
                                         </c:if>
                                     </td>
                                 </tr>
-                                <tr class="font-italic">    <!-- guidelineList -->
+                                <tr class="font-italic">
                                     <c:choose>
                                         <c:when test="${concept.guideline eq null}">
                                             <td colspan="7">
@@ -177,6 +190,154 @@
                             </tbody>
                         </c:forEach>
                     </table>
+                    -->
+                    <!-- CARD FOR CONCEPTS / GUIDELINES -->
+                    <div class="row border-top border-bottom text-center bg-light mt-3 mb-3 pt-2 pb-2"
+                         style="font-size: larger">
+                        <div class="col-12">
+                            <p class="langPL">ZAMÓWIENIA KONCPECJI / WYTYCZNYCH UŻYTKOWNIKA</p>
+                            <p class="langEN">ORDERS CREATED BY USER</p>
+                        </div>
+                    </div>
+                    <!-- CONCEPT CARD VER. -->
+                    <c:forEach items="${user.conceptList}" var="concept">
+                        <div class="card mt-2 mb-3">
+                            <div class="card-header text-left">
+                                <div class="row border-bottom pb-2">
+                                    <div class="col-3">
+                                        <p class="langPL">ZAMÓWIENIE KONCEPCJI</p>
+                                        <p class="langEN">CONCEPT ORDER</p>
+                                    </div>
+                                    <div class="col-2">
+                                        ID: ${concept.id}
+                                    </div>
+                                    <div class="col-7">
+                                        <a href="#"
+                                           class="btn btn-danger disabled float-right ml-1 mr-1">
+                                            <p class="langPL">USUŃ</p>
+                                            <p class="langEN">DEL</p>
+                                        </a>
+                                        <a href="/concepts/details/${concept.id}"
+                                           class="btn btn-primary float-right ml-1 mr-1">
+                                            <p class="langPL">SZCZEGÓŁY / EDYCJA</p>
+                                            <p class="langEN">DETAILS / EDIT</p>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4 border">
+                                        <span class="d-inline-block align-top mr-5">
+                                            <p class="langPL">DATA UTWORZENIA</p>
+                                            <p class="langEN">CREATED</p>
+                                        </span>
+                                        <span class="d-inline-block align-top">
+                                            ${concept.dateTimeCreated.toLocalDate()}<br>
+                                            ${concept.dateTimeCreated.toLocalTime()}
+                                        </span>
+                                    </div>
+                                    <div class="col-4 border">
+                                        <span class="d-inline-block align-top mr-5">
+                                            <p class="langPL">SPRZĘT</p>
+                                            <p class="langEN">DEVICE</p>
+                                        </span>
+                                        <span class="d-inline-block align-top">
+                                            ${concept.device.model}
+                                        </span>
+                                    </div>
+                                    <div class="col-4 border">
+                                        <span class="d-inline-block align-top mr-5">
+                                            <p class="langPL">KLIENT</p>
+                                            <p class="langEN">CUSTOMER</p>
+                                        </span>
+                                        <span class="d-inline-block align-top">
+                                            ${concept.client}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4 border">
+                                        <span class="d-inline-block align-top mr-5">
+                                            <p class="langPL">PRIORYTET</p>
+                                            <p class="langEN">PRIORITY</p>
+                                        </span>
+                                        <span class="d-inline-block align-top">
+                                            ${concept.priority.toString()}
+                                        </span>
+                                    </div>
+                                    <div class="col-4 border">
+                                        <span class="d-inline-block align-top mr-5">
+                                            <p class="langPL">STATUS</p>
+                                            <p class="langEN">STATUS</p>
+                                        </span>
+                                        <span class="d-inline-block align-top">
+                                            ${concept.status.toString()}
+                                        </span>
+                                    </div>
+                                    <div class="col-4 border">
+                                        <span class="d-inline-block align-top mr-5">
+                                            <p class="langPL">TERMIN REALIZACJI</p>
+                                            <p class="langEN">DEADLINE</p>
+                                        </span>
+                                        <span class="d-inline-block align-top">
+                                            ${concept.dateTimeDeadline.toLocalDate()}<br>
+                                            ${concept.dateTimeDeadline.toLocalTime()}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <c:choose>
+                                    <c:when test="${concept.guideline eq null}">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <p class="langPL">BRAK PROCEDOWANYCH WYTYCZNYCH DLA TEJ KONCEPCJI</p>
+                                                <p class="langEN">NO GUIDELINE ORDER SENT FOR THIS CONCEPT</p>
+                                            </div>
+                                            <div class="col-5">
+                                                <c:if test="${concept.guideline eq null}">
+                                                    <a href="/guidelines/new?conceptId=${concept.id} "
+                                                       class="btn btn-success float-right ml-1 mr-1"
+                                                    >
+                                                        <p class="langPL">ZAMÓWENIE WYTYCZNYCH</p>
+                                                        <p class="langEN">NEW GUIDELINE ORDER</p>
+                                                    </a>
+                                                </c:if>
+                                                <c:if test="${concept.guideline ne null}">
+                                                    <a href="/guidelines/new?conceptId=${concept.id}"
+                                                       class="btn btn-success float-right disabled ml-1 mr-1"
+                                                        <%--                                               style="display: block; max-width: 200px; font-size: small"--%>
+                                                    >
+                                                        <p class="langPL">ZAMÓWENIE WYTYCZNYCH</p>
+                                                        <p class="langEN">NEW GUIDELINE ORDER </p>
+                                                    </a>
+                                                </c:if>
+                                            </div>
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        ${concept.guideline.dateTimeCreated}
+                                        ${concept.guideline.device}
+                                        ${concept.guideline.title}
+                                        ${concept.guideline.priority.toString()}
+                                        ${concept.guideline.dateTimeDeadline}
+                                        ${concept.guideline.status}
+                                        <a href="#" class="btn btn-danger disabled float-right ml-1 mr-1">
+                                            <p class="langPL">USUŃ</p>
+                                            <p class="langEN">DEL</p>
+                                        </a>
+                                        <a href="#" class="btn btn-primary disabled float-right ml-1 mr-1">
+                                            <p class="langPL">SZCZEGÓŁY / EDYCJA</p>
+                                            <p class="langEN">DETAILS / EDIT</p>
+                                        </a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                        </div>
+                    </c:forEach>
+                    <!-- END CARD FOR CONCEPTS / GUIDELINES -->
+
                 </div>
                 <div class="card-footer">
                     <a href="/concepts/new?userId=${user.id}" class="btn btn-success float-right">

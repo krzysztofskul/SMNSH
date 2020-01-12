@@ -178,8 +178,17 @@
                 </div>
                 <!-- *** FOOTER SECTION *** -->
                 <div class="card-footer">
-                    <a href="/concepts/all" class="btn btn-warning float-left">CANCEL/BACK</a>
-                    <input type="submit" class="btn btn-success float-right" value="SAVE"/>
+                    <a href="/concepts/all" class="btn btn-warning float-left">
+                        <span><<</span>
+                        <p class="langPL">ANULUJ / WSTECZ</p>
+                        <p class="langEN">CANCEL / BACK</p>
+                    </a>
+<%--                    <input type="submit" class="btn btn-success float-right" value="SAVE"/>--%>
+                    <form:button class="btn btn-success float-right">
+                        <span>.</span>
+                        <p class="langPL">ZAPISZ ZMIANY</p>
+                        <p class="langEN">SAVE CHANGES</p>
+                    </form:button>
                 </div>
             </div>
         </form:form>

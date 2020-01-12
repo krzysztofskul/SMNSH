@@ -80,7 +80,7 @@
             </tbody>
             <tfoot>
                 <tr class="text-right">
-                    <td colspan="7">
+                    <td colspan="8">
                         <a href="/concepts/new" class="btn btn-success">NEW</a>
                     </td>
                 </tr>
