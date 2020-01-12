@@ -21,6 +21,8 @@
 
 
 *** DONE ***
+# front-end mod.
+    + add resources/images/avatars
 # 0.0.8
     + Order class mod.
         + add status to Concept and Guideline (sent, working, finished) field

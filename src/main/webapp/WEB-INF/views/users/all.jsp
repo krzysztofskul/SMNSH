@@ -44,7 +44,7 @@
                         <div class="card-body" style="min-height: 100px; max-height: 100px">
                             <c:choose>
                                 <c:when test="${user.avatar eq null}">
-                                    <img src="/resources/img/avatars/avatar-00_640x640px.png" width="75px" height="75px"/>
+                                    <img src="/resources/img/avatars/img_avatar_someone.png" width="75px" height="75px"/>
                                 </c:when>
                                 <c:otherwise>
                                     <%--<img src="/resources/img/avatars/usersAll/${user.avatar.id}.png" width="75px" height="75px"/>--%> <!-- todo?: when img from DB is save in project resources dir -->

@@ -15,8 +15,8 @@
 
 	<jsp:include page="header.jsp"/>
 
-	<div class="container h-50 pt-3 pb-3">
-		<h1>SMNSH HOME PAGE</h1>
+	<div class="container h-50 pt-3 pb-3" style='background-image: url("/resources/img/img_bg_001-2.jpg"); background-size: 100%; background-repeat: no-repeat; opacity: 0.4;'>
+		<h1 class="m-5 p-1 pl-5 pr-5 d-inline-block" style="background-color: rgba(128, 128, 128, 0.8)">SMNSH APP. HOME PAGE</h1>
 	</div>
 
 	<jsp:include page="footer.jsp"/>

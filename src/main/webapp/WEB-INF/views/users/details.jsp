@@ -20,26 +20,30 @@
         <form:form method="post" modelAttribute="user">
             <div class="card">
                 <div class="card-header">
+                    <h4>USER'S PROFILE</h4>
                     <form:input path="id" disabled="true" cssStyle="max-width: 50px"/> |
                     <form:input path="nameFirst"/>
                     <form:input path="nameLast"/>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col">E-mail:</div>
-                        <div class="col"><form:input path="email"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col">Business position:</div>
+                        <div class="col text-right" style="margin: auto">
+                            Avatar:
+                        </div>
                         <div class="col">
-                            <form:select path="businessPosition" items="${businessPositions}"/>
+                                <%--<form:hidden path="avatar"/>--%>
+                            <img class="img-thumbnail" src="/resources/img/avatars/img_avatar_someone.png" width="75" height="75" alt="AVATAR ICO">
+                            <input type="file" name="file" id="file" disabled>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">Avatar:</div>
+                        <div class="col-6 text-right" style="margin: auto">E-mail:</div>
+                        <div class="col-6"><form:input path="email" cssClass="w-100"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-right" style="margin: auto">Business position:</div>
                         <div class="col">
-                                <%--<form:hidden path="avatar"/>--%>
-                            <input type="file" name="file" id="file" disabled>
+                            <form:select path="businessPosition" items="${businessPositions}" cssClass="w-100"/>
                         </div>
                     </div>
                 </div>
