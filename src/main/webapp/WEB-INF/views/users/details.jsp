@@ -91,7 +91,7 @@
                                     <td>${concept.status.toString()}</td>
                                     <td>
                                         <a href="#" class="btn btn-danger disabled float-right ml-1 mr-1">DEL</a>
-                                        <a href="#" class="btn btn-primary disabled float-right ml-1 mr-1">DETAILS/EDIT</a>
+                                        <a href="/concepts/details/${concept.id}" class="btn btn-primary float-right ml-1 mr-1">DETAILS/EDIT</a>
                                         <br>
                                         <c:if test="${concept.guideline eq null}">
                                         <a href="/guidelines/new?conceptId=${concept.id}"
@@ -112,7 +112,7 @@
                                 <tr class="font-italic">    <!-- guidelineList -->
                                     <c:choose>
                                         <c:when test="${concept.guideline eq null}">
-                                            <td colspan="7">NOT SENT ANY ORDER OF GUIDELINE FOR THIS CONCEPT ORDER</td>
+                                            <td colspan="7">NO GUIDELINE ORDER SENT FOR THIS CONCEPT</td>
                                         </c:when>
                                         <c:otherwise>
                                             <td colspan="4"></td>

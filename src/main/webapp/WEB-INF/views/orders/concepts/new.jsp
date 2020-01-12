@@ -19,27 +19,20 @@
     <div class="container">
         <form:form modelAttribute="conceptNew" method="post" action="/concepts/new">
             <div class="card">
-                <div class="card-header">
-                    <p>NEW CONCEPT ORDER FORM</p>
+                <div class="card-header text-center">
+                    <h4>NEW CONCEPT ORDER FORM</h4>
+                    <form:hidden path="id" disabled="true"/>
                 </div>
+                <!-- *** AUTHOR/CUSTOMER/ SECTION *** -->
                 <div class="card-body">
                     <div class="row">
-                        <div class="col">
-                            ID:
-                        </div>
-                        <div class="col">
-                            <form:input path="id" disabled="true"/>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
+                        <div class="col-6">
                             AUTHOR:
                         </div>
                         <div class="col">
                             <c:choose>
                                 <c:when test="${conceptNew.author.id eq null}">
-                                    <form:select path="author.id">
+                                    <form:select cssClass="w-100" path="author.id">
                                         <c:forEach items="${usersAll}" var="user">
                                             <form:option value="${user.id}" label="${user.nameFirst} ${user.nameLast}"/>
                                         </c:forEach>
@@ -57,65 +50,118 @@
                             </c:choose>
                         </div>
                     </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col">
-                            TITLE:
-                        </div>
-                        <div class="col">
-                            <form:input path="title"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            DESCRIPTION:
-                        </div>
-                        <div class="col">
-                            <form:textarea path="description"/>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col">
+                    <div class="row mt-2">
+                        <div class="col-6">
                             DEVICE:
                         </div>
                         <div class="col">
-                            <form:select path="device.id" items="${devicesAll}" itemLabel="model" itemValue="id"/>
+                            <form:select cssClass="w-100" path="device.id" items="${devicesAll}" itemLabel="model" itemValue="id"/>
                         </div>
                     </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col">
+                    <div class="row mt-2">
+                        <div class="col-6">
                             RECIPIENT/CUSTOMER:
                         </div>
                         <div class="col">
-                            <form:input path="client" disabled="true"/>
+                            <form:input cssClass="w-100" path="client" disabled="true"/>
                         </div>
                     </div>
                     <hr>
+                    <!-- *** DATES/PRIORITY SECTION *** -->
                     <div class="row">
+                        <div class="col-6">
+                            PRIORITY:
+                        </div>
                         <div class="col">
+                            <form:input cssClass="w-100" path="priority"/>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            DEADLINE:
+                        </div>
+                        <div class="col">
+                            <input class="w-100" type="date" disabled/>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- *** TITLE/DESCRIPTION SECTION *** -->
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            TITLE:
+                        </div>
+                        <div class="col">
+                            <form:input cssClass="w-100" path="title"/>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            DESCRIPTION:
+                        </div>
+                        <div class="col">
+                            <form:textarea cssClass="w-100" path="description"/>
+                        </div>
+                    </div>
+                    <!-- *** QUESTIONS SECTION *** -->
+                    <hr>
+                    <div class="row mt-2">
+                        <div class="col-6">
                             LAYOUT DWG IN ATTACHEMENT:
                         </div>
                         <div class="col">
                             <form:checkbox path="layout"/>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            ON-SITE VISITED:
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            ON-SITE VISITED / LAYOUT VERIFIED:
                         </div>
                         <div class="col">
                             <form:checkbox path="onSiteVisited"/>
                         </div>
                     </div>
-<%--                    <div class="row">--%>
-<%--                        <div class="col">--%>
-<%--                        </div>--%>
-<%--                        <div class="col">--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            POSSIBILITY TO DEMOLISH/MOVE/BUILD WALLS:
+                        </div>
+                        <div class="col">
+                            <form:checkbox path="wallInterferencePossible"/>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            CUSTOMER SUGGESTIONS:
+                        </div>
+                        <div class="col">
+                            <form:textarea cssClass="w-100" path="customerSuggestions"/>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            TRANSPORT ROUT TO DESIGN:
+                        </div>
+                        <div class="col">
+                            <form:checkbox path="transportRouteDesignNeeded"/>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            POWER BOX PLACE SPECIFIED:
+                        </div>
+                        <div class="col">
+                            <form:checkbox path="electricBoxSpecified"/>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            ADDITIONAL ROOMS TO DESIGN:
+                        </div>
+                        <div class="col">
+                            <form:input cssClass="w-100" path="additionalRoomsToDesign"/>
+                        </div>
+                    </div>
                 </div>
+                <!-- *** FOOTER SECTION *** -->
                 <div class="card-footer">
                     <a href="/concepts/all" class="btn btn-warning float-left">CANCEL/BACK</a>
                     <input type="submit" class="btn btn-success float-right" value="SAVE"/>

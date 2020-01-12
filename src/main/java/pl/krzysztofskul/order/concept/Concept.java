@@ -7,6 +7,7 @@ import pl.krzysztofskul.order.guideline.Guideline;
 import pl.krzysztofskul.user.User;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Concept extends Order {
@@ -20,6 +21,16 @@ public class Concept extends Order {
     private boolean isLayout;
 
     private boolean isOnSiteVisited;
+
+    private boolean isWallInterferencePossible;
+
+    private String customerSuggestions;
+
+    private boolean isTransportRouteDesignNeeded;
+
+    private boolean isElectricBoxSpecified;
+
+    private String additionalRoomsToDesign;
 
     private String remarks;
 
@@ -64,6 +75,46 @@ public class Concept extends Order {
         isOnSiteVisited = onSiteVisited;
     }
 
+    public boolean isWallInterferencePossible() {
+        return isWallInterferencePossible;
+    }
+
+    public void setWallInterferencePossible(boolean wallInterferencePossible) {
+        isWallInterferencePossible = wallInterferencePossible;
+    }
+
+    public String getCustomerSuggestions() {
+        return customerSuggestions;
+    }
+
+    public void setCustomerSuggestions(String customerSuggestions) {
+        this.customerSuggestions = customerSuggestions;
+    }
+
+    public boolean isTransportRouteDesignNeeded() {
+        return isTransportRouteDesignNeeded;
+    }
+
+    public void setTransportRouteDesignNeeded(boolean transportRouteDesignNeeded) {
+        isTransportRouteDesignNeeded = transportRouteDesignNeeded;
+    }
+
+    public boolean isElectricBoxSpecified() {
+        return isElectricBoxSpecified;
+    }
+
+    public void setElectricBoxSpecified(boolean electricBoxSpecified) {
+        isElectricBoxSpecified = electricBoxSpecified;
+    }
+
+    public String getAdditionalRoomsToDesign() {
+        return additionalRoomsToDesign;
+    }
+
+    public void setAdditionalRoomsToDesign(String additionalRoomsToDesign) {
+        this.additionalRoomsToDesign = additionalRoomsToDesign;
+    }
+
     public String getRemarks() {
         return remarks;
     }
@@ -102,6 +153,7 @@ public class Concept extends Order {
 
     @PrePersist
     public void prePersist() {
+        this.setDateTimeCreated(LocalDateTime.now());
         setStatus(Status.ORDERED_WAITING);
     }
 

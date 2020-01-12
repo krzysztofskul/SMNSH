@@ -68,7 +68,7 @@ public class HomePageService {
      */
 
     public void createUsers() {
-        /** create 2 users at planner business posiotion */
+        /** create 2 users at planner business position */
         for (int i = 1; i <= 2; i++) {
             User user = new User();
             user.setNameFirst("Name"+i);

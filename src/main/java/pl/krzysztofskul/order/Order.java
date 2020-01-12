@@ -23,7 +23,7 @@ public class Order {
 
     private String priority;
 
-    private String title = "New order...";
+    private String title = "New order for ... to ...";
 
     private String description;
 
@@ -110,9 +110,5 @@ public class Order {
     /**
      * methods
      */
-    @PrePersist
-    public void prePersist() {
-        this.setDateTimeCreated(LocalDateTime.now());
-    }
 
 }
