@@ -9,6 +9,7 @@ import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.investor.InvestorService;
+import pl.krzysztofskul.order.Status;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.concept.ConceptService;
 import pl.krzysztofskul.order.guideline.Guideline;
@@ -138,10 +139,12 @@ public class HomePageService {
             concept.setDescription("Lorem ipsum dolor sit amet mi eget sapien. Aliquam quis tortor. Cras volutpat ligula enim.");
             concept.setRemarks("Phasellus vitae ante. Duis non.");
             concept.setDevice(deviceService.loadById(Long.parseLong("1")));
+            concept.setPriority("!");
             conceptService.save(concept);
             /** change dates of creation */
             concept = conceptService.loadById(Long.parseLong(String.valueOf(i)));
             concept.setDateTimeCreated(LocalDateTime.now().minusDays(31-i));
+            concept.setDateTimeDeadline(LocalDateTime.now().plusDays(7+i));
             conceptService.save(concept);
         }
         /** create additional concepts to first two users */
@@ -152,6 +155,8 @@ public class HomePageService {
             concept.setDescription("Drogi Marszałku, Wysoka Izbo. PKB rośnie. Różnorakie i rozwijanie struktur umożliwia w restrukturyzacji przedsiębiorstwa. Jednakże.");
             concept.setRemarks("Izbo, inwestowanie w większym stopniu.");
             concept.setDevice(deviceService.loadById(Long.parseLong("4")));
+            concept.setPriority("!");
+            concept.setDateTimeDeadline(LocalDateTime.now().plusDays(7+i));
             conceptService.save(concept);
         }
         for (int i = 9; i <= 9; i++) {
@@ -161,6 +166,8 @@ public class HomePageService {
             concept.setDescription("Początek traktatu czasu panowania Fryderyka Wielkiego, Króla Pruskiego żył w.");
             concept.setRemarks("Na przykład w kolei przypadków.");
             concept.setDevice(deviceService.loadById(Long.parseLong("7")));
+            concept.setPriority("!");
+            concept.setDateTimeDeadline(LocalDateTime.now().plusDays(7+i));
             conceptService.save(concept);
         }
     }
@@ -172,6 +179,9 @@ public class HomePageService {
             guideline.setAuthor(userService.loadById(Long.parseLong(String.valueOf(i))));
             guideline.setTitle("Guidelines order");
             guideline.setConcept(conceptService.loadById(Long.parseLong(String.valueOf(i))));
+            guideline.setStatus(Status.ORDERED_WAITING);
+            guideline.setPriority("!!!");
+            guideline.setDateTimeDeadline(LocalDateTime.now().plusDays(14+2*i));
             guidelineService.save(guideline);
         }
     }

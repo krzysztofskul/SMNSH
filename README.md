@@ -42,4 +42,4 @@ technology in hospitals*
 
 **Project Manager**
 
-- Dla wykonanych projektów koncepcji, utwórz zamówienie wykonania wytycznych instalacyjnych | *For fisnished ceoncept designs, create new order for installation guidelines design*
+- Dla wykonanych projektów koncepcji, utwórz zamówienie wykonania wytycznych instalacyjnych | *For fisnished concept designs, create new order for installation guidelines design*

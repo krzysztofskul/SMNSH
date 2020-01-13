@@ -305,7 +305,6 @@
                                                 <c:if test="${concept.guideline ne null}">
                                                     <a href="/guidelines/new?conceptId=${concept.id}"
                                                        class="btn btn-success float-right disabled ml-1 mr-1"
-                                                        <%--                                               style="display: block; max-width: 200px; font-size: small"--%>
                                                     >
                                                         <p class="langPL">ZAMÓWENIE WYTYCZNYCH</p>
                                                         <p class="langEN">NEW GUIDELINE ORDER </p>
@@ -315,20 +314,65 @@
                                         </div>
                                     </c:when>
                                     <c:otherwise>
-                                        ${concept.guideline.dateTimeCreated}
-                                        ${concept.guideline.device}
-                                        ${concept.guideline.title}
-                                        ${concept.guideline.priority.toString()}
-                                        ${concept.guideline.dateTimeDeadline}
-                                        ${concept.guideline.status}
-                                        <a href="#" class="btn btn-danger disabled float-right ml-1 mr-1">
-                                            <p class="langPL">USUŃ</p>
-                                            <p class="langEN">DEL</p>
-                                        </a>
-                                        <a href="#" class="btn btn-primary disabled float-right ml-1 mr-1">
-                                            <p class="langPL">SZCZEGÓŁY / EDYCJA</p>
-                                            <p class="langEN">DETAILS / EDIT</p>
-                                        </a>
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <span class="d-inline-block align-top mr-5">
+                                                    <p class="langPL">ZAMÓWIENIE WYTYCZNYCH</p>
+                                                    <p class="langEN">GUIDELINES ORDER</p>
+                                                </span>
+                                                <span class="d-inline-block align-top">
+                                                    ID: ${concept.guideline.id}
+                                                </span>
+                                            </div>
+                                            <div class="col-5">
+                                                <a href="#" class="btn btn-danger disabled float-right ml-1 mr-1">
+                                                    <p class="langPL">USUŃ</p>
+                                                    <p class="langEN">DEL</p>
+                                                </a>
+                                                <a href="#" class="btn btn-primary disabled float-right ml-1 mr-1">
+                                                    <p class="langPL">SZCZEGÓŁY / EDYCJA</p>
+                                                    <p class="langEN">DETAILS / EDIT</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-3 border">
+                                                <span class="d-inline-block align-top mr-5">
+                                                    <p class="langPL">DATA UTWORZENIA</p>
+                                                    <p class="langEN">DATE OF CREATION</p>
+                                                </span>
+                                                <span class="d-inline-block align-top">
+                                                    ${concept.guideline.dateTimeCreated.toLocalDate()} ${concept.guideline.dateTimeCreated.toLocalTime()}
+                                                </span>
+                                            </div>
+                                            <div class="col-3 border">
+                                                <span class="d-inline-block align-top mr-5">
+                                                    <p class="langPL">PRIORYTET</p>
+                                                    <p class="langEN">PRIORITY</p>
+                                                </span>
+                                                <span class="d-inline-block align-top">
+                                                        ${concept.guideline.priority}
+                                                </span>
+                                            </div>
+                                            <div class="col-3 border">
+                                                <span class="d-inline-block align-top mr-5">
+                                                    <p class="langPL">STATUS</p>
+                                                    <p class="langEN">STATUS</p>
+                                                </span>
+                                                <span class="d-inline-block align-top">
+                                                    ${concept.guideline.status}
+                                                </span>
+                                            </div>
+                                            <div class="col-3 border">
+                                                <span class="d-inline-block align-top mr-5">
+                                                    <p class="langPL">TERMIN REALIZACJI</p>
+                                                    <p class="langEN">DEADLINE</p>
+                                                </span>
+                                                <span class="d-inline-block align-top">
+                                                    ${concept.guideline.dateTimeDeadline.toLocalDate()} ${concept.guideline.dateTimeDeadline.toLocalTime()}
+                                                </span>
+                                            </div>
+                                        </div>
                                     </c:otherwise>
                                 </c:choose>
                             </div>

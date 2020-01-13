@@ -8,6 +8,8 @@ import pl.krzysztofskul.order.concept.Concept;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import java.time.LocalDateTime;
 
 @Entity
 public class Guideline extends Order {
@@ -64,5 +66,15 @@ public class Guideline extends Order {
 
     public void setDevice(Device device) {
         this.device = device;
+    }
+
+    /**
+     * methods
+     */
+
+    @PrePersist
+    public void prePersist() {
+        this.setDateTimeCreated(LocalDateTime.now());
+        setStatus(Status.ORDERED_WAITING);
     }
 }

@@ -18,12 +18,16 @@
     - create classes Concept ang Guideline (as finished order/drawing)
     - Order class mod.
         - add deadline to JSPs
-
-# 0.0.8.4
+# 0.0.8.5
     - details/edit JSP for concept update
+    - all concepts page update
 
 
 *** DONE ***
+# 0.0.8.4
+    + user profile page update
+    + guidelines in init. DB updates
+    + readme.md update
 # 0.0.8.3 (front-end updates)
 # 0.0.8.2 (front-end update)
     + css resource / PL ver for main menu, users page and user profile page
