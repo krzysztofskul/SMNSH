@@ -1,4 +1,4 @@
-# SMNSH
+# SMNSH (in progress..)
 
 <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_homepage_001.png" width="auto"/>
 
