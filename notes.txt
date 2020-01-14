@@ -22,10 +22,10 @@
 # 0.0.8.6
     - setStatus back-end func.
     - details/edit JSP for concept update
-    - update readme.md and IMGs forReadme
 
 
 *** DONE ***
+# update readme.md and IMGs forReadme
 # 0.0.8.5
     + all concepts page mod.
     + menuMain mod.

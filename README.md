@@ -4,18 +4,16 @@
 
 ## IDEA / *IDEA*
 
-Aplikacja wspierająca zarządzanie przepływem informacji dot. współpracy Project Manager'ów i Planistów/Projektantów technologii 
-sprzętu medycznego w szpitalach.
-
-*Application helps to manage the information and workflow between Project Managers and Planners/Designers of medical devices 
-technology in hospitals*
+Aplikacja wspiera zarządzanie dokumentacją techniczną oraz komunikację pomiędzy Project Manager'ami, a Projektantami/Planistami w zakresie przygotowania dokumentacji projektowej, potrzebnej do instalacji sprzętu medycznego w pomieszczeniach szpitalnych.
+*The application supports technical documentation management and communication between Project Managers and Designers/Planners connected, with preparation of the project documentation, needed to medical devices installation in hospital rooms.*
+ 
 
 ## SCHEMAT DZIAŁANIA / *WORKFLOW*
 
-**Projet Manager**
+**Project Manager**
 
 - Zarejestruj/zaloguj się jako Project Manager
-| *Register/log in as Project Manager*
+| *Register/log in as a Project Manager*
   ###
   <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_alluserspage_001.png" width="400"/>
 
@@ -25,7 +23,7 @@ technology in hospitals*
   <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_userpage_001.png" width="400"/>
   
 - Utwórz nowe zamówienie projektu koncpecyjnego
-| *Create new order for a concept drawing* 
+| *Create a new order for a conceptual project* 
   ###
   <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_formfornewconcept_001.png" width="400"/>
 
@@ -34,12 +32,19 @@ technology in hospitals*
 - Zarejestruj/zaloguj się jako Projektant/Planista
 | *Register/log in as a Designer/Planner*
 
-- Wejdź na stronę koncepcji do wykonania | *Go to all concept designs page*
+- Wejdź na stronę z listą koncepcji "oczekujących do wykonania" | *Go to conceptual projects page with "waiting for prepare" status*
 
-- Oznacz się jako wykonującego Projekt/Plan | *Mark you as a Designer/Planner*
+ ###
+  <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_allconcepts_001.png)-->
+  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_allconcepts_001.png" width="400"/>
 
-- Po zakończonym projekcie oznacz status jako wykonane | *When you finnish, mark the status as finished*
+- Oznacz się jako Projektant/Planista wykonujący koncepcję | *Set up yourself as a Designer/Planner with this conceptual project*
+
+  <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_setdesignerpage_001.png)-->
+  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_setdesignerpage_001.png" width="400"/>
+
+- Po zakończonym projekcie oznacz status koncepcji jako "wykonane" | *When you finnish, mark the status of the concept as "finished"*
 
 **Project Manager**
 
-- Dla wykonanych projektów koncepcji, utwórz zamówienie wykonania wytycznych instalacyjnych | *For fisnished concept designs, create new order for installation guidelines design*
+- Dla wykonanych projektów koncepcji, utwórz zamówienie wykonania wytycznych instalacyjnych | *For finished concept designs, create new order for installation guidelines design*
