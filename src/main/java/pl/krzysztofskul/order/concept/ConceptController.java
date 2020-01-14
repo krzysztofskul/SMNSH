@@ -106,6 +106,7 @@ public class ConceptController {
     }
 
     /** CRUD methods: UPDATE */
+
     @GetMapping("/edit/{id}")
     public String conceptsEditById(
             @PathVariable("id") Long id,
@@ -123,6 +124,28 @@ public class ConceptController {
     ) {
         conceptService.save(concept);
         return "redirect:/concepts/details/"+id;
+    }
+
+    @GetMapping("/{id}/setDesigner")
+    public String setDesigner(
+            @PathVariable("id") Long id,
+            Model model
+    ) {
+        model.addAttribute("concept", conceptService.loadById(id));
+        model.addAttribute("usersDesigners", userService.loadAllDesigners());
+        return "orders/concepts/setDesigner";
+    }
+    @PostMapping("/{id}/setDesigner")
+    public String setDesigner (
+            @ModelAttribute("concept") Concept concept
+    ) {
+        conceptService.save(concept);
+        return "redirect:/concepts/all";
+    }
+
+    @GetMapping("/{id}/setStatus")
+    public String setStatus() {
+        return "orders/concepts/setStatus";
     }
 
     /** CRUD methods: DELETE */

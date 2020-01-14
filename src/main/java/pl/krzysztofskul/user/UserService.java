@@ -42,6 +42,11 @@ public class UserService {
         return userRepo.findAll();
     }
 
+    public List<User> loadAllDesigners() {
+
+        return userRepo.findAllByBusinessPosition(UserBusinessPosition.PLANNER);
+    }
+
     public User loadById(Long id) {
         return userRepo.findById(id).get();
     }

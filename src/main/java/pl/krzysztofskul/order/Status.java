@@ -4,19 +4,19 @@ public enum Status {
     ORDERED_WAITING {
         @Override
         public String toString() {
-            return "ORDERED/WAITING";
+            return "OCZEKUJE / WAITING";
         }
     },
     IN_PROGRESS {
         @Override
         public String toString() {
-            return "IN PROGRESS";
+            return "W TOKU / IN PROGRESS";
         }
     },
     FINISHED {
         @Override
         public String toString() {
-            return "FINISHED";
+            return "ZAKOŃCZONY / FINISHED";
         }
     };
 }

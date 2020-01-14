@@ -18,12 +18,25 @@
     - create classes Concept ang Guideline (as finished order/drawing)
     - Order class mod.
         - add deadline to JSPs
-# 0.0.8.5
+
+# 0.0.8.6
+    - setStatus back-end func.
     - details/edit JSP for concept update
-    - all concepts page update
+    - update readme.md and IMGs forReadme
 
 
 *** DONE ***
+# 0.0.8.5
+    + all concepts page mod.
+    + menuMain mod.
+    + menuConcepts jsp add.
+    + setDesigner to the concept order functionality
+        + UserService mod.
+        + UserRepo mod.
+        + ConceptController mod.
+        + jsp concepts all mod.
+        + jsp concepts setDesigner add.
+    + Status Enum mod.
 # 0.0.8.4
     + user profile page update
     + guidelines in init. DB updates
