@@ -19,12 +19,16 @@
     - Order class mod.
         - add deadline to JSPs
 
-# 0.0.8.6
-    - setStatus back-end func.
+# 0.0.8.7
     - details/edit JSP for concept update
+    - repair realtion Order/Concept/User - error when change designer/status of the concept todo!!!
 
 
 *** DONE ***
+# 0.0.8.6
+    + setStatus of the concept order func.
+    + setDesigner mod.
+    + readme.md update
 # update readme.md and IMGs forReadme
 # 0.0.8.5
     + all concepts page mod.

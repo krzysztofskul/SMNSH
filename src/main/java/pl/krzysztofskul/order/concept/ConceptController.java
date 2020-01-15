@@ -144,8 +144,19 @@ public class ConceptController {
     }
 
     @GetMapping("/{id}/setStatus")
-    public String setStatus() {
+    public String setStatus(
+            @PathVariable("id") Long id,
+            Model model
+    ) {
+        model.addAttribute("concept", conceptService.loadByIdWithAll(id));
         return "orders/concepts/setStatus";
+    }
+    @PostMapping("/{id}/setStatus")
+    public String setStatus(
+            @ModelAttribute("concept") Concept concept
+    ) {
+        conceptService.save(concept);
+        return "redirect:/concepts/all";
     }
 
     /** CRUD methods: DELETE */

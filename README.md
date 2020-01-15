@@ -47,4 +47,8 @@ Aplikacja wspiera zarządzanie dokumentacją techniczną oraz komunikację pomi�
 
 **Project Manager**
 
+  <!-- ![](src/main/webapp/resources/img/forReadme/img_prntscrn_setorderstatuspage_001.png)-->
+  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_setorderstatuspage_001.png" width="400"/>
+
+
 - Dla wykonanych projektów koncepcji, utwórz zamówienie wykonania wytycznych instalacyjnych | *For finished concept designs, create new order for installation guidelines design*
