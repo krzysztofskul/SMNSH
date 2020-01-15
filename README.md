@@ -45,10 +45,12 @@ Aplikacja wspiera zarządzanie dokumentacją techniczną oraz komunikację pomi�
 
 - Po zakończonym projekcie oznacz status koncepcji jako "wykonane" | *When you finnish, mark the status of the concept as "finished"*
 
-**Project Manager**
-
   <!-- ![](src/main/webapp/resources/img/forReadme/img_prntscrn_setorderstatuspage_001.png)-->
   <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_setorderstatuspage_001.png" width="400"/>
 
+**Project Manager**
 
 - Dla wykonanych projektów koncepcji, utwórz zamówienie wykonania wytycznych instalacyjnych | *For finished concept designs, create new order for installation guidelines design*
+
+  <!-- ![](src/main/webapp/resources/img/forReadme/img_prntscrn_guidelinesorder_001.png)-->
+  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_guidelinesorder_001.png" width="400"/>
