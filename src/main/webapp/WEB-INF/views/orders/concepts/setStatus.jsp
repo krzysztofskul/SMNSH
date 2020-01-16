@@ -18,13 +18,13 @@
     <form:form modelAttribute="concept" method="post">
         <form:hidden path="id"/>
         <form:hidden path="dateTimeDeadline"/>
-<%--        <form:hidden path="planner.id"/>--%>
+        <form:hidden path="planner.id"/>
         <form:hidden path="priority"/>
         <form:hidden path="author.id"/>
         <form:hidden path="client"/>
         <form:hidden path="device.id"/>
         <form:hidden path="dateTimeCreated"/>
-        <%--        <form:hidden path="guideline.id"/>--%>
+        <form:hidden path="guideline.id"/>
         <form:hidden path="electricBoxSpecified"/>
         <form:hidden path="additionalRoomsToDesign"/>
         <form:hidden path="transportRouteDesignNeeded"/>

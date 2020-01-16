@@ -29,13 +29,13 @@ public class User {
     @Email
     private String email;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Concept> conceptList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Guideline> guidelineList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "planner")
+    @OneToMany(mappedBy = "planner", cascade = CascadeType.ALL)
     private List<Concept> conceptListToDo = new ArrayList<>();
 
     @OneToOne

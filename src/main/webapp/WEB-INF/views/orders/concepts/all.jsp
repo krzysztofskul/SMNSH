@@ -70,7 +70,7 @@
             </div>
             <div class="row text-right border-bottom">
                 <div class="col-12">
-                    <a href="#" class="d-block">SZCZEGÓŁY / DETAILS</a>
+                    <a href="/concepts/details/${concept.id}" class="d-block">SZCZEGÓŁY / DETAILS</a>
                     <a href="/concepts/${concept.id}/setDesigner" class="d-block">PRZYPISZ PROJEKTANTA/PLANISTĘ / ASSIGN DESIGNER/PLANNER</a>
                     <a href="/concepts/${concept.id}/setStatus" class="d-block">ZMIEŃ STATUS / CHANGE STATUS</a>
                     <a href="#" class="d-block">USUŃ / DEL</a>

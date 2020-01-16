@@ -24,7 +24,7 @@
         <form:hidden path="client"/>
         <form:hidden path="device.id"/>
         <form:hidden path="dateTimeCreated"/>
-<%--        <form:hidden path="guideline.id"/>--%>
+        <form:hidden path="guideline.id"/>
         <form:hidden path="electricBoxSpecified"/>
         <form:hidden path="additionalRoomsToDesign"/>
         <form:hidden path="transportRouteDesignNeeded"/>

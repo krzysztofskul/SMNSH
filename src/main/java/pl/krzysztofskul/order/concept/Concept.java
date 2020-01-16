@@ -34,7 +34,7 @@ public class Concept extends Order {
 
     private String remarks;
 
-    @OneToOne(mappedBy = "concept", cascade = CascadeType.REMOVE)
+    @OneToOne(mappedBy = "concept", cascade = CascadeType.ALL)
     private Guideline guideline;
 
     @ManyToOne

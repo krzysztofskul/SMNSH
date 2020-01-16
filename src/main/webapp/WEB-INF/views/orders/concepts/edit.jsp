@@ -24,7 +24,6 @@
                     <form:hidden path="dateTimeCreated"/>
                 </div>
                 <div class="card-body">
-                    <!-- AUTHOR EDIT-->
                     <div class="row">
                         <div class="col">
                             AUTHOR:
@@ -38,7 +37,33 @@
                         </div>
                     </div>
                     <hr>
-                    <!-- PLANNER EDIT -->
+                    <div class="row">
+                        <div class="col">
+                            CUSTOMER:
+                        </div>
+                        <div class="col">
+                            <form:input path="client"/>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            DEADLINE:
+                        </div>
+                        <div class="col">
+                            <input type="date" name="inputDateDeadline" value="${concept.dateTimeDeadline.toLocalDate()}">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            PRIORITY:
+                        </div>
+                        <div class="col">
+                            <form:input path="priority"/>
+                        </div>
+                    </div>
+                    <hr>
                     <div class="row">
                         <div class="col">
                             PLANNER:
@@ -52,7 +77,6 @@
                         </div>
                     </div>
                     <hr>
-                    <!-- STATUS EDIT -->
                     <div class="row">
                         <div class="col">
                             STATUS:
@@ -66,7 +90,6 @@
                         </div>
                     </div>
                     <hr>
-                    <!-- DEVICE EDIT -->
                     <div class="row">
                         <div class="col">
                             DEVICE:
@@ -82,6 +105,89 @@
                         </div>
                         <div class="col">
                                 <%--${concept.description}--%> <form:textarea path="description"/>
+                        </div>
+                    </div>
+                    <hr>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            LAYOUT:
+                        </div>
+                        <div class="col">
+                            <form:checkbox path="layout"/>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            ON SITE VISITED:
+                        </div>
+                        <div class="col">
+                            <form:checkbox path="onSiteVisited"/>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            WALL INTERFERENCE POSSIBILITY:
+                        </div>
+                        <div class="col">
+                            <form:checkbox path="wallInterferencePossible"/>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            CUSTOMER SUGGESTIONS:
+                        </div>
+                        <div class="col">
+                            <form:textarea path="customerSuggestions"/>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            TRANSPORT ROUTE TO DESIGN:
+                        </div>
+                        <div class="col">
+                            <form:checkbox path="transportRouteDesignNeeded"/>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            ELECTRICAL BOX PLACE SPECIFIED:
+                        </div>
+                        <div class="col">
+                            <form:checkbox path="electricBoxSpecified"/>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            ADDITIONAL ROOMS TO DESIGN:
+                        </div>
+                        <div class="col">
+                            <form:input path="additionalRoomsToDesign"/>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            PROJECT MANAGER OTHER REMARKS:
+                        </div>
+                        <div class="col">
+                            <form:textarea path="remarks"/>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            GUIDELINE:
+                        </div>
+                        <div class="col float-right">
+                            <a href="#" class="btn btn-primary disabled">DETAILS</a>
+                            <a href="#" class="btn btn-danger disabled">DEl</a>
                         </div>
                     </div>
                 </div>

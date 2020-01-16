@@ -140,11 +140,13 @@ public class HomePageService {
             concept.setRemarks("Phasellus vitae ante. Duis non.");
             concept.setDevice(deviceService.loadById(Long.parseLong("1")));
             concept.setPriority("!");
+            concept.setPlanner(userService.loadById(Long.parseLong(String.valueOf(1))));
             conceptService.save(concept);
             /** change dates of creation */
             concept = conceptService.loadById(Long.parseLong(String.valueOf(i)));
             concept.setDateTimeCreated(LocalDateTime.now().minusDays(31-i));
             concept.setDateTimeDeadline(LocalDateTime.now().plusDays(7+i));
+            concept.setStatus(Status.IN_PROGRESS);
             conceptService.save(concept);
         }
         /** create additional concepts to first two users */

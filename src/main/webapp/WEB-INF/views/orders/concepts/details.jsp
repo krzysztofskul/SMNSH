@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofskul
@@ -26,6 +27,33 @@
                     </div>
                     <div class="col">
                         ${concept.author.nameFirst} ${concept.author.nameLast}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        CUSTOMER:
+                    </div>
+                    <div class="col">
+                        ${concept.client}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        DEADLINE:
+                    </div>
+                    <div class="col">
+                        ${concept.dateTimeDeadline.toLocalDate()} ${concept.dateTimeDeadline.toLocalTime()}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        PRIORITY:
+                    </div>
+                    <div class="col">
+                        ${concept.priority}
                     </div>
                 </div>
                 <hr>
@@ -64,6 +92,98 @@
                         ${concept.description}
                     </div>
                 </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        LAYOUT:
+                    </div>
+                    <div class="col">
+                        ${concept.layout}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        ON SITE VISITED:
+                    </div>
+                    <div class="col">
+                        ${concept.onSiteVisited}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        WALL INTERFERENCE POSSIBILITY:
+                    </div>
+                    <div class="col">
+                        ${concept.wallInterferencePossible}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        CUSTOMER SUGGESTIONS:
+                    </div>
+                    <div class="col">
+                        <c:if test="${concept.customerSuggestions eq null}">
+                            NO SUGESTIONS FROM CUSTOMER
+                        </c:if>
+                        <c:if test="${concept.customerSuggestions ne null}">
+                            ${concept.customerSuggestions}
+                        </c:if>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        TRANSPORT ROUTE TO DESIGN:
+                    </div>
+                    <div class="col">
+                        ${concept.transportRouteDesignNeeded}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        ELECTRICAL BOX PLACE SPECIFIED:
+                    </div>
+                    <div class="col">
+                        ${concept.electricBoxSpecified}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        ADDITIONAL ROOMS TO DESIGN:
+                    </div>
+                    <div class="col">
+                        <c:if test="${concept.additionalRoomsToDesign eq null}">
+                            NO ADDITIONAL ROOM NEEDED
+                        </c:if>
+                        <c:if test="${concept.additionalRoomsToDesign ne null}">
+                            ${concept.additionalRoomsToDesign}
+                        </c:if>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        PROJECT MANAGER OTHER REMARKS:
+                    </div>
+                    <div class="col">
+                        ${concept.remarks}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        GUDELINE:
+                    </div>
+                    <div class="col">
+                        ${concept.guideline.id}
+                    </div>
+                </div>
+
             </div>
             <div class="card-footer text-right">
                 <a href="/concepts/edit/${concept.id}" class="btn btn-primary">EDIT</a>

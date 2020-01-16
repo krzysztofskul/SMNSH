@@ -11,6 +11,9 @@ import pl.krzysztofskul.order.Status;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -120,8 +123,18 @@ public class ConceptController {
     @PostMapping("/edit/{id}")
     public String conceptsEditById(
             @PathVariable("id") Long id,
-            @ModelAttribute("concept") Concept concept
+            @ModelAttribute("concept") Concept concept,
+            @RequestParam("inputDateDeadline") Date date
     ) {
+        LocalDate localDate = date.toLocalDate();
+        LocalDateTime localDateTime = localDate.atTime(0,0,0);
+        concept.setDateTimeDeadline(localDateTime);
+        if (concept.getAdditionalRoomsToDesign().length() == 0) {
+            concept.setAdditionalRoomsToDesign(null);
+        }
+        if (concept.getCustomerSuggestions().length() == 0) {
+            concept.setCustomerSuggestions(null);
+        }
         conceptService.save(concept);
         return "redirect:/concepts/details/"+id;
     }
