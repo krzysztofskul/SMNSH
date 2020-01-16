@@ -70,6 +70,7 @@
                         </div>
                         <div class="col">
                             <form:select path="planner.id">
+                                <form:option value="0" label="-"/>
                                 <c:forEach items="${usersAll}" var="user">
                                     <form:option value="${user.id}" label="${user.nameFirst} ${user.nameLast}"/>
                                 </c:forEach>

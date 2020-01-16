@@ -135,6 +135,12 @@ public class ConceptController {
         if (concept.getCustomerSuggestions().length() == 0) {
             concept.setCustomerSuggestions(null);
         }
+        if (concept.getStatus() == Status.FINISHED) {
+            concept.setPlanner(null);
+        }
+        if (concept.getPlanner().getId() == 0) {
+            concept.setPlanner(null);
+        }
         conceptService.save(concept);
         return "redirect:/concepts/details/"+id;
     }
@@ -152,6 +158,7 @@ public class ConceptController {
     public String setDesigner (
             @ModelAttribute("concept") Concept concept
     ) {
+        concept.setStatus(Status.IN_PROGRESS);
         conceptService.save(concept);
         return "redirect:/concepts/all";
     }
@@ -168,6 +175,9 @@ public class ConceptController {
     public String setStatus(
             @ModelAttribute("concept") Concept concept
     ) {
+        if (concept.getStatus() == Status.FINISHED) {
+            concept.setPlanner(null);
+        }
         conceptService.save(concept);
         return "redirect:/concepts/all";
     }

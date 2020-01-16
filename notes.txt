@@ -13,18 +13,18 @@
     - add delete methods for classes/repo/service
 # 0.1.0 (done in # 0.0.3.1)
     + HomeService with initial Data Base fill in
+    - validation
 # 0.0.9
     - rename Concept -> OrderConcept and Guideline -> OrderGuideline
     - create classes Concept ang Guideline (as finished order/drawing)
     - Order class mod.
         - add deadline to JSPs
 
-# 0.0.8.8
-    - auto change (with question?) planner for null when status for concept order is changed for finished
-    - auto change (with question?) status of the concept order for "in progress" when planner assigns himself to the project
-
 
 *** DONE ***
+# 0.0.8.8
+    + auto change planner for null when status for concept order is changed for finished (setStatus.jsp and concept/edit.jsp)
+    + auto change status of the concept order (for "in progress") when planner assigns himself to the project (setDesigner.jsp)
 # 0.0.8.7
     + details/edit JSP for concept update
     + repair relations Order/Concept/User - error when change designer/status of the concept
