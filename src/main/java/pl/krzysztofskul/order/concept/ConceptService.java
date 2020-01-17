@@ -4,6 +4,7 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.krzysztofskul.order.Status;
 
 import java.util.List;
 
@@ -40,6 +41,14 @@ public class ConceptService {
 
     public List<Concept> loadAll() {
         return conceptRepo.findAll();
+    }
+
+    public List<Concept> loadAllByStatus (Status status) {
+        return conceptRepo.findAllByStatus(status);
+    }
+
+    public List<Concept> findAllByStatusOrderByDateTimeDeadlineAsc (Status status) {
+        return conceptRepo.findAllByStatusOrderByDateTimeDeadlineAsc(status);
     }
 
     public Concept loadById(Long id) {

@@ -15,19 +15,25 @@
     <div class="container text-center">
         <ul class="nav nav-pills border-top bg-light p-1 border-bottom mb-2 d-inline-block w-100">
             <li class="nav-item d-inline-block">
-                <a class="nav-link btn-light border ml-1 mr-1" href="#">
+                <a class="nav-link btn-light border ml-1 mr-1" href="/concepts/all?filter=all">
                     <p class="langPL">WSZYSTKIE</p>
                     <p class="langEN">ALL</p>
                 </a>
             </li>
             <li class="nav-item d-inline-block">
-                <a class="nav-link btn-light border ml-1 mr-1" href="#">
+                <a class="nav-link btn-light border ml-1 mr-1" href="/concepts/all?filter=waiting">
                     <p class="langPL">OCZEKUJĄCE DO WYKONANIA</p>
                     <p class="langEN">WAITING TO DO</p>
                 </a>
             </li>
             <li class="nav-item d-inline-block">
-                <a class="nav-link btn-light border ml-1 mr-1" href="#">
+                <a class="nav-link btn-light border ml-1 mr-1" href="/concepts/all?filter=inProgress">
+                    <p class="langPL">W TOKU</p>
+                    <p class="langEN">IN PROGRESS</p>
+                </a>
+            </li>
+            <li class="nav-item d-inline-block">
+                <a class="nav-link btn-light border ml-1 mr-1" href="/concepts/all?filter=finished">
                     <p class="langPL">ZAKOŃCZONE</p>
                     <p class="langEN">FINISHED</p>
                 </a>

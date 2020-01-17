@@ -69,12 +69,20 @@ public class ConceptController {
 
     @GetMapping("/all")
     public String conceptsAll(
+            @RequestParam(value = "filter", required = false, defaultValue = "all") String filter,
             Model model
     ) {
-        model.addAttribute("conceptsAll", conceptService.loadAll());
+        if (filter.equals("all")) {
+            model.addAttribute("conceptsAll", conceptService.loadAll());
+        } else if (filter.equals("waiting")) {
+            model.addAttribute("conceptsAll", conceptService.findAllByStatusOrderByDateTimeDeadlineAsc(Status.ORDERED_WAITING));
+        } else if (filter.equals("inProgress")) {
+            model.addAttribute("conceptsAll", conceptService.findAllByStatusOrderByDateTimeDeadlineAsc(Status.IN_PROGRESS));
+        } else if (filter.equals("finished")) {
+            model.addAttribute("conceptsAll", conceptService.loadAllByStatus(Status.FINISHED));
+        }
         return "orders/concepts/all";
     }
-
     @GetMapping("/details/{id}")
     public String conceptsDetailsById(
             Model model,
@@ -160,7 +168,7 @@ public class ConceptController {
     ) {
         concept.setStatus(Status.IN_PROGRESS);
         conceptService.save(concept);
-        return "redirect:/concepts/all";
+        return "redirect:/concepts/all?filter=all";
     }
 
     @GetMapping("/{id}/setStatus")
@@ -179,7 +187,7 @@ public class ConceptController {
             concept.setPlanner(null);
         }
         conceptService.save(concept);
-        return "redirect:/concepts/all";
+        return "redirect:/concepts/all?filter=all";
     }
 
     /** CRUD methods: DELETE */

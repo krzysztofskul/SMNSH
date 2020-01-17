@@ -22,6 +22,11 @@
 
 
 *** DONE ***
+# 0.0.8.9
+    + sub menu in concepts/all page
+    + conceptRepo update
+        + findAllByStatus
+        + findAllByStatusOrderByDateTimeDeadlineAsc
 # 0.0.8.8
     + auto change planner for null when status for concept order is changed for finished (setStatus.jsp and concept/edit.jsp)
     + auto change status of the concept order (for "in progress") when planner assigns himself to the project (setDesigner.jsp)

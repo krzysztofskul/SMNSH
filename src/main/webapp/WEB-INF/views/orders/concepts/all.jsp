@@ -58,7 +58,7 @@
                 <div class="col-2"></div>
                 <div class="col-10">
                     <span class="font-weight-bold">TERMIN REALIZACJI / DEADLINE:</span>
-                        ${concept.dateTimeDeadline.toLocalDate()} ${concept.dateTimeDeadline.toLocalDate()}
+                        ${concept.dateTimeDeadline.toLocalDate()} ${concept.dateTimeDeadline.toLocalTime()}
                 </div>
             </div>
             <div class="row text-right">
