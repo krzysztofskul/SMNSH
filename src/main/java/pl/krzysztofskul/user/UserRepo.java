@@ -8,4 +8,6 @@ public interface UserRepo extends JpaRepository<User, Long> {
 
     List<User> findAllByBusinessPosition(UserBusinessPosition userBusinessPosition);
 
+    User findByEmail(String email);
+
 }

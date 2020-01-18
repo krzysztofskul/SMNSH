@@ -57,6 +57,10 @@ public class UserService {
         return user;
     }
 
+    public User loadByEmail(String email) {
+        return userRepo.findByEmail(email);
+    }
+
     public boolean isExistent(String value) {
         List<User> userList = userRepo.findAll();
 
