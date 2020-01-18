@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
-    <link rel="stylesheet" href="/resources/css/smnshStyles.css"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/smnshStyles.css"/>"/>
 </head>
 <body>
 
@@ -87,7 +87,11 @@
                             <p class="langEN">DEADLINE:</p>
                         </div>
                         <div class="col">
-                            <input class="w-100" type="date" disabled/>
+                            <%--<input class="w-100" type="date" disabled/>--%>
+                            <form:input cssClass="w-100" path="dateTimeDeadline"/>
+                            <div>
+                                <form:errors cssClass="error" path="dateTimeDeadline"/>
+                            </div>
                         </div>
                     </div>
                     <hr>
@@ -95,7 +99,7 @@
                     <div class="row mt-2">
                         <div class="col-6">
                             <p class="langPL">TYTUŁ:</p>
-                            <p class="langEL">TITLE:</p>
+                            <p class="langEN">TITLE:</p>
                         </div>
                         <div class="col">
                             <form:input cssClass="w-100" path="title"/>

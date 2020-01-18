@@ -4,6 +4,7 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
@@ -11,6 +12,7 @@ import pl.krzysztofskul.order.Status;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
+import javax.validation.Valid;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -109,8 +111,12 @@ public class ConceptController {
     }
     @PostMapping("/new")
     public String conceptNew(
-            @ModelAttribute("conceptNew") Concept conceptNew
+            @ModelAttribute("conceptNew") @Valid Concept conceptNew,
+            BindingResult result
     ) {
+        if (result.hasErrors()) {
+            return "orders/concepts/new";
+        }
         conceptService.save(conceptNew);
 //        return "redirect:/concepts/all";
         return "redirect:/users/"+conceptNew.getAuthor().getId()+"/details";
@@ -131,12 +137,15 @@ public class ConceptController {
     @PostMapping("/edit/{id}")
     public String conceptsEditById(
             @PathVariable("id") Long id,
-            @ModelAttribute("concept") Concept concept,
-            @RequestParam("inputDateDeadline") Date date
+            @ModelAttribute("concept") @Valid Concept concept, BindingResult result
+//            @RequestParam(value = "inputDateDeadline", required = false) Date date
     ) {
-        LocalDate localDate = date.toLocalDate();
-        LocalDateTime localDateTime = localDate.atTime(0,0,0);
-        concept.setDateTimeDeadline(localDateTime);
+        if (result.hasErrors()) {
+            return "redirect:/concepts/edit/"+id;
+        }
+//        LocalDate localDate = date.toLocalDate();
+//        LocalDateTime localDateTime = localDate.atTime(0,0,0);
+//        concept.setDateTimeDeadline(localDateTime);
         if (concept.getAdditionalRoomsToDesign().length() == 0) {
             concept.setAdditionalRoomsToDesign(null);
         }

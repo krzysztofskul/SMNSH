@@ -51,7 +51,11 @@
                             DEADLINE:
                         </div>
                         <div class="col">
-                            <input type="date" name="inputDateDeadline" value="${concept.dateTimeDeadline.toLocalDate()}">
+                            <%--<input type="date" name="inputDateDeadline" value="${concept.dateTimeDeadline.toLocalDate()}">--%>
+                            <form:input path="dateTimeDeadline"/>
+                            <div>
+                                <form:errors path="dateTimeDeadline" cssClass="error"/>
+                            </div>
                         </div>
                     </div>
                     <hr>

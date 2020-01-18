@@ -46,6 +46,8 @@ public class Concept extends Order {
     /**
      * constr.
      */
+    public Concept() {
+    }
 
     /**
      *  getters and setters

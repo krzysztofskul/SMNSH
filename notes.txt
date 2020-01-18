@@ -13,15 +13,21 @@
     - add delete methods for classes/repo/service
 # 0.1.0 (done in # 0.0.3.1)
     + HomeService with initial Data Base fill in
-    - validation
-# 0.0.9
-    - rename Concept -> OrderConcept and Guideline -> OrderGuideline
-    - create classes Concept ang Guideline (as finished order/drawing)
-    - Order class mod.
-        - add deadline to JSPs
+    - user registration/login
 
+# 0.0.9.2
+    - user
+        - new user form
+        - validation
+            + email unique
+            - password
+    - validation planner/status
 
 *** DONE ***
+# 0.0.9.1
+    + validation for order deadline date/time
+        + new.jsp
+        + edit.jsp
 # 0.0.8.9
     + sub menu in concepts/all page
     + conceptRepo update

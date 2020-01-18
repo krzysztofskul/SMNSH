@@ -3,6 +3,7 @@ package pl.krzysztofskul.order;
 import pl.krzysztofskul.user.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
@@ -23,13 +24,16 @@ public class Order {
 
     private String priority;
 
-    private String title = "New order for ... to ...";
+    private String title = "Zamówienie projektu na sprzęt: ..., dla klienta: ... / New concept order for device: ..., to the customer: ...";
 
     private String description;
 
     private LocalDateTime dateTimeCreated;
 
-    private LocalDateTime dateTimeDeadline;
+    @Future
+    private LocalDateTime dateTimeDeadline = LocalDateTime.now().plusDays(7);
+
+
 
     /**
      * constr.
