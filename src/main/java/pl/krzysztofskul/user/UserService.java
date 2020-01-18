@@ -57,6 +57,19 @@ public class UserService {
         return user;
     }
 
+    public boolean isExistent(String value) {
+        List<User> userList = userRepo.findAll();
+
+        if (userList.size() != 0) {
+            for (User user : userList) {
+                if (user.getEmail().equals(value)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     /*** Update*/
 
     /*** Delete */

@@ -4,13 +4,13 @@ public enum UserBusinessPosition {
     PLANNER {
         @Override
         public String toString() {
-            return "Planner";
+            return "Projektant/Planista / Designer/Planner";
         }
     },
     PROJECT_MANAGER {
         @Override
         public String toString() {
-            return "Project Manager";
+            return "Kierownik projektu / Project Manager";
         }
     };
 }

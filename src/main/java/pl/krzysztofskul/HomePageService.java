@@ -74,6 +74,8 @@ public class HomePageService {
             User user = new User();
             user.setNameFirst("Name"+i);
             user.setNameLast("Surname"+i);
+            user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
+            user.setPassword("test");
             user.setBusinessPosition(UserBusinessPosition.PLANNER);
             userService.save(user);
         }
@@ -82,6 +84,8 @@ public class HomePageService {
             User user = new User();
             user.setNameFirst("Name"+i);
             user.setNameLast("Surname"+i);
+            user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
+            user.setPassword("test");
             user.setBusinessPosition(UserBusinessPosition.PROJECT_MANAGER);
             userService.save(user);
         }

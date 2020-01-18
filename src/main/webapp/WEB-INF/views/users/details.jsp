@@ -50,6 +50,9 @@
                             <p class="langEN">E-mail:</p>
                         </div>
                         <div class="col-6"><form:input path="email" cssClass="w-100"/></div>
+                        <div>
+                            <form:errors cssClass="error" path="email"/>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col text-right" style="margin: auto">

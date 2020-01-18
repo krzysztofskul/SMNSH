@@ -29,7 +29,7 @@
                 <div class="card bg-light mb-3" style="display: inline-block;">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-1 border-right">
+                            <div class="col-2 border-right">
                                     ${user.id}
                             </div>
                             <div class="col font-weight-bold">
@@ -73,7 +73,7 @@
                 <p class="langPL">WSTECZ</p>
                 <p class="langEN">BACK</p>
             </a>
-            <a href="#" class="btn btn-success float-right disabled">
+            <a href="/users/new" class="btn btn-success float-right">
                 <span>+</span>
                 <p class="langPL">NOWY</p>
                 <p class="langEN">NEW</p>

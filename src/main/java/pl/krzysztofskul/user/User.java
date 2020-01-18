@@ -1,11 +1,14 @@
 package pl.krzysztofskul.user;
 
+import org.mindrot.jbcrypt.BCrypt;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.guideline.Guideline;
 import pl.krzysztofskul.user.avatar.Avatar;
+import pl.krzysztofskul.validator.UniqueEmail;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +30,14 @@ public class User {
     private UserBusinessPosition businessPosition;
 
     @Email
+    @Column(unique = true)
+    @UniqueEmail
     private String email;
+
+    @NotBlank(message = "Hasło nie może być puste / The password cannot be empty!")
+    private String password;
+
+    private String passwordConfirmation;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Concept> conceptList = new ArrayList<>();
@@ -89,6 +99,22 @@ public class User {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+    public String getPasswordConfirmation() {
+        return passwordConfirmation;
+    }
+
+    public void setPasswordConfirmation(String passwordConfirmation) {
+        this.passwordConfirmation = passwordConfirmation;
+    }
+
     public List<Concept> getConceptList() {
         return conceptList;
     }
@@ -129,6 +155,10 @@ public class User {
     }
     public void removeConceptToDo(Concept concept) {
         this.conceptListToDo.remove(concept);
+    }
+
+    public boolean checkPassword(String password) {
+        return BCrypt.checkpw(password, this.getPassword());
     }
 
 }

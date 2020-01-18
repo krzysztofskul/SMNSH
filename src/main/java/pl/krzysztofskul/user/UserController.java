@@ -1,11 +1,12 @@
 package pl.krzysztofskul.user;
 
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.user.avatar.AvatarService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -36,8 +37,33 @@ public class UserController {
     /**
      * m.
      */
+    /** @ModelAttributes
+     *
+     * @return
+     */
+    @ModelAttribute("userBusinessPositionList")
+    public UserBusinessPosition[] getUserBusinessPositionList() {
+        return UserBusinessPosition.values();
+    }
 
     /** crud CREATE */
+    @GetMapping("/new")
+    public String newUser(
+            Model model
+    ) {
+        model.addAttribute("user", new User());
+        return "/users/new";
+    }
+    @PostMapping("/new")
+    public String newUser(
+            @ModelAttribute("user") @Valid User user, BindingResult result
+    ) {
+        if (result.hasErrors()) {
+            return "redirect:/users/new";
+        }
+        userService.save(user);
+        return "redirect:/users/all";
+    }
 
     /** crud READ */
     @GetMapping("/all")
@@ -84,9 +110,12 @@ public class UserController {
     @PostMapping("/{id}/details")
     public String details(
             @PathVariable("id") Long id,
-            @ModelAttribute("user") User user
+            @ModelAttribute("user") @Valid User user, BindingResult result
             //todo: user's avatar //@RequestParam("file") MultipartFile multipartFile
     ) {
+        if (result.hasErrors()) {
+            return "redirect:/users/"+id+"/details";
+        }
         userService.save(user);
         /* //todo: user's avatar
         User userEdited = userService.loadById(id);
