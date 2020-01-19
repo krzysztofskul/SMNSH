@@ -89,6 +89,13 @@ public class HomePageService {
             user.setBusinessPosition(UserBusinessPosition.PROJECT_MANAGER);
             userService.save(user);
         }
+        /** create guest/admin */
+        User user = new User();
+        user.setNameFirst("Nameguest");
+        user.setNameLast("Surname-Admin");
+        user.setEmail("Nameguest.Surname-Admin@test.test");
+        user.setPassword("test");
+        userService.save(user);
 
         //todo: user's avatar
         /** save avatar for 1st user */

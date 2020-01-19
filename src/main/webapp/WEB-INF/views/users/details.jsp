@@ -60,7 +60,15 @@
                             <p class="langEN">Business position:</p>
                         </div>
                         <div class="col">
-                            <form:select path="businessPosition" items="${businessPositions}" cssClass="w-100"/>
+                            <c:if test='${sessionScope.userLoggedIn.getEmail() == "Nameguest.Surname-Admin@test.test"}'>
+                                <div>
+                                    <p class="langPL">ADMIN</p>
+                                    <p class="langEN">ADMIN</p>
+                                </div>
+                            </c:if>
+                            <c:if test='${sessionScope.userLoggedIn.getEmail() != "Nameguest.Surname-Admin@test.test"}'>
+                                <form:select path="businessPosition" items="${businessPositions}" cssClass="w-100"/>
+                            </c:if>
                         </div>
                     </div>
                 </div>

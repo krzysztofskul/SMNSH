@@ -27,12 +27,36 @@
                                     +"<a href='/logout' class='btn btn-danger'>LOG OUT</a>"
                     );
                 } else {
-                    out.print("<a href='/register' class='btn btn-dark mr-1'>REGISTER</a>");
-                    out.print("<a href='/login' class='btn btn-dark ml-1'>LOGIN</a>");
+                    out.print("<div>"+
+                            "<a href='/register' class='btn btn-dark ml-1'>" +
+                            "ZAREJESTRUJ" +
+                            "<p class='langEN'>REGISTER</p>"+
+                            "</a>"+
+                            "<a href='/login' class='btn btn-dark ml-1'>" +
+                            "ZALOGUJ" +
+                            "<p class='langEN'>LOG IN</p>"+
+                            "</a>"+
+                            "</div>"+
+                            "<div class='mt-2'>"+
+                            "<a href='/login?guest=admin'>"+
+                            "LUB ZALOGUJ JAKO GOŚĆ/ADMIN"+
+                            "<p class='langEN'>OR LOGIN AS A GUEST/ADMIN</p>"+
+                            "</a>"+
+                            "<a href='/login?guest=designer'>"+
+                            "LUB ZALOGUJ JAKO GOŚĆ/PROJEKTANT"+
+                            "<p class='langEN'>OR LOGIN AS A GUEST/DESIGNER</p>"+
+                            "</a>"+
+                            "<a href='/login?guest=projectManager'>"+
+                            "LUB ZALOGUJ JAKO GOŚĆ/KIEROWNIK PROJEKTU"+
+                            "<p class='langEN'>OR LOGIN AS A GUEST/PROJECT MANAGER</p>"+
+                            "</a>"+
+                            "</div>"
+                    );
+
                 }
             %>
         </div>
-        <div>
+        <div class="mt-3 pt-1 border-top">
             <jsp:include page="menuMain.jsp"/>
         </div>
     </div>
