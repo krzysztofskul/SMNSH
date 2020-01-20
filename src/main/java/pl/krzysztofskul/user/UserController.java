@@ -59,7 +59,7 @@ public class UserController {
             @ModelAttribute("user") @Valid User user, BindingResult result
     ) {
         if (result.hasErrors()) {
-            return "redirect:/users/new";
+            return "users/new";
         }
         userService.save(user);
         return "redirect:/users/all";

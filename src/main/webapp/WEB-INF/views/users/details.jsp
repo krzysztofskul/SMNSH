@@ -32,6 +32,9 @@
                             <form:input path="nameFirst" cssClass="w-40"/>
                             <form:input path="nameLast" cssClass="w-50"/>
                         </div>
+                        <div>
+                            <form:errors path="nameFirst" cssClass="error"/> <form:errors path="nameLast" cssClass="error"/>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col text-right" style="margin: auto">

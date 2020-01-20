@@ -4,13 +4,22 @@ import org.mindrot.jbcrypt.BCrypt;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.guideline.Guideline;
 import pl.krzysztofskul.user.avatar.Avatar;
+import pl.krzysztofskul.validator.PasswordMatch;
 import pl.krzysztofskul.validator.UniqueEmail;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+
+@PasswordMatch.List({
+        @PasswordMatch(
+                password = "password",
+                passwordConfirmation = "passwordConfirmation"
+        )
+})
 
 @Entity
 public class User {
@@ -23,8 +32,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Size(min = 2, max = 32)
     private String nameFirst;
 
+    @Size(min = 2, max = 32)
     private String nameLast;
 
     private UserBusinessPosition businessPosition;
@@ -32,9 +43,9 @@ public class User {
     @Email
     @Column(unique = true)
     @UniqueEmail
+    @NotBlank(message = "E-mail nie może być pusty / The email cannot be blank!")
     private String email;
 
-    @NotBlank(message = "Hasło nie może być puste / The password cannot be empty!")
     private String password;
 
     private String passwordConfirmation;
@@ -104,7 +115,8 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+        this.password = password;
+//        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     public String getPasswordConfirmation() {
@@ -113,6 +125,7 @@ public class User {
 
     public void setPasswordConfirmation(String passwordConfirmation) {
         this.passwordConfirmation = passwordConfirmation;
+//        this.passwordConfirmation = BCrypt.hashpw(passwordConfirmation, BCrypt.gensalt());
     }
 
     public List<Concept> getConceptList() {
@@ -159,6 +172,9 @@ public class User {
 
     public boolean checkPassword(String password) {
         return BCrypt.checkpw(password, this.getPassword());
+    }
+    public boolean checkPasswordConfirmation(String passwordConfirmation) {
+        return BCrypt.checkpw(passwordConfirmation, this.getPasswordConfirmation());
     }
 
 }

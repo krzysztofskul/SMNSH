@@ -76,6 +76,7 @@ public class HomePageService {
             user.setNameLast("Surname"+i);
             user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
             user.setPassword("test");
+            user.setPasswordConfirmation("test");
             user.setBusinessPosition(UserBusinessPosition.PLANNER);
             userService.save(user);
         }
@@ -86,6 +87,7 @@ public class HomePageService {
             user.setNameLast("Surname"+i);
             user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
             user.setPassword("test");
+            user.setPasswordConfirmation("test");
             user.setBusinessPosition(UserBusinessPosition.PROJECT_MANAGER);
             userService.save(user);
         }
@@ -95,6 +97,7 @@ public class HomePageService {
         user.setNameLast("Surname-Admin");
         user.setEmail("Nameguest.Surname-Admin@test.test");
         user.setPassword("test");
+        user.setPasswordConfirmation("test");
         userService.save(user);
 
         //todo: user's avatar

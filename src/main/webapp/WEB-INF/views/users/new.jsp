@@ -41,6 +41,9 @@
                         </div>
                         <div class="col-6">
                             <form:input cssClass="w-100" path="nameFirst"/>
+                            <div class="error">
+                                <form:errors path="nameFirst" cssClass="error"/>
+                            </div>
                         </div>
                     </div>
                     <!-- INPUT ROW -->
@@ -51,6 +54,9 @@
                         </div>
                         <div class="col-6">
                             <form:input cssClass="w-100" path="nameLast"/>
+                            <div>
+                                <form:errors path="nameLast" cssClass="error"/>
+                            </div>
                         </div>
                     </div>
                     <!-- INPUT ROW -->
@@ -100,7 +106,11 @@
                             <p class="langEN">CONFIRM PASSWORD:</p>
                         </div>
                         <div class="col-6">
-                            <form:password cssClass="w-100" path="passwordConfirmation" disabled="true"/>
+                            <form:password cssClass="w-100" path="passwordConfirmation"/>
+                            <div>
+                                <form:errors path="passwordConfirmation" cssClass="error"/>
+                            </div>
+
                         </div>
                     </div>
                     <!-- INPUT ROW -->
