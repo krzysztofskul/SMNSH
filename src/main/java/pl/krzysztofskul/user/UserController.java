@@ -1,11 +1,15 @@
 package pl.krzysztofskul.user;
 
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.user.avatar.AvatarService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -56,12 +60,21 @@ public class UserController {
     }
     @PostMapping("/new")
     public String newUser(
-            @ModelAttribute("user") @Valid User user, BindingResult result
+            @ModelAttribute("user") @Valid User user, BindingResult result,
+            Model model //, HttpSession session
     ) {
         if (result.hasErrors()) {
+            List<ObjectError> errors = result.getAllErrors();
+            for (ObjectError error : errors) {
+                if (error.getDefaultMessage().equals("Potwierdź hasło / Confirm the password!")) {
+                    model.addAttribute("errorPasswordConfirm", "true");
+                    //session.setAttribute("errorPasswordConfirm", "true");
+                }
+            }
             return "users/new";
         }
         userService.save(user);
+        model.addAttribute("errorPasswordConfirm", "false");
         return "redirect:/users/all";
     }
 
@@ -72,6 +85,7 @@ public class UserController {
     ) {
         List<User> usersAll = userService.loadAll();
         model.addAttribute("usersAll", usersAll);
+        model.addAttribute("errorPasswordConfirm", "false");
 
         /* laod avatars from DB */
         //todo?: move to UserService
@@ -110,18 +124,33 @@ public class UserController {
     @PostMapping("/{id}/details")
     public String details(
             @PathVariable("id") Long id,
-            @ModelAttribute("user") @Valid User user, BindingResult result
+            @ModelAttribute("user") @Valid User user, BindingResult result,
+            HttpSession session, Model model
             //todo: user's avatar //@RequestParam("file") MultipartFile multipartFile
     ) {
         if (result.hasErrors()) {
-            return "redirect:/users/"+id+"/details";
+            List<ObjectError> errors = result.getAllErrors();
+            for (ObjectError error : errors) {
+                if (error.getDefaultMessage().equals("{pl.krzysztofskul.validator.UniqueEmail.message}") && errors.size() == 1) {
+                    User userLoggedIn = (User) session.getAttribute("userLoggedIn");
+                    if (user.getEmail().equals(userLoggedIn.getEmail())) {
+                        userService.save(user);
+                        return "redirect:/users/"+id+"/details";
+                    }
+                }
+            }
+            model.addAttribute("user", user);
+            model.addAttribute("businessPositions", UserBusinessPosition.values());
+//            return "redirect:/users/"+id+"/details";
+            return "users/details";
         }
         userService.save(user);
         /* //todo: user's avatar
         User userEdited = userService.loadById(id);
         userEdited.setAvatar(avatarService.save(multipartFile));
         userService.save(userEdited);*/
-        return "redirect:/users/all";
+//        return "redirect:/users/all";
+        return "redirect:/users/"+id+"/details";
     }
 
     /** crud DELETE */

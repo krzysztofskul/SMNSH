@@ -170,11 +170,15 @@ public class User {
         this.conceptListToDo.remove(concept);
     }
 
+    @PrePersist
+    public void prePersist() {
+        this.password = BCrypt.hashpw(this.getPassword(), BCrypt.gensalt());
+        this.passwordConfirmation = password;
+    }
+
     public boolean checkPassword(String password) {
         return BCrypt.checkpw(password, this.getPassword());
     }
-    public boolean checkPasswordConfirmation(String passwordConfirmation) {
-        return BCrypt.checkpw(passwordConfirmation, this.getPasswordConfirmation());
-    }
+
 
 }

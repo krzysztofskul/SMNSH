@@ -18,13 +18,15 @@
 
     <div class="container">
         <form:form method="post" modelAttribute="user">
+            <form:hidden path="password"/>
+            <form:hidden path="passwordConfirmation"/>
             <div class="card">
                 <div class="card-header text-center" style="font-size: larger">
                     <p class="langPL">PROFIL UŻYTKOWNIKA</p>
                     <p class="langEN">USER'S PROFILE</p>
                 </div>
                 <div class="card-body">
-                    <div class="row border-bottom pb-2 mb-2">
+                    <div class="row">
                         <div class="col text-right">
                             <span class="font-weight-bold">ID:</span> <form:input path="id" disabled="true" cssStyle="max-width: 50px"/>
                         </div>
@@ -32,11 +34,17 @@
                             <form:input path="nameFirst" cssClass="w-40"/>
                             <form:input path="nameLast" cssClass="w-50"/>
                         </div>
-                        <div>
-                            <form:errors path="nameFirst" cssClass="error"/> <form:errors path="nameLast" cssClass="error"/>
-                        </div>
                     </div>
                     <div class="row">
+                        <div class="col-6"></div>
+                        <div class="col-3">
+                            <form:errors path="nameFirst" cssClass="error"/>
+                        </div>
+                        <div class="col-3">
+                            <form:errors path="nameLast" cssClass="error"/>
+                        </div>
+                    </div>
+                    <div class="row border-bottom pb-2 mb-2">
                         <div class="col text-right" style="margin: auto">
                             <p class="langPL">Zdjęcie profilowe:</p>
                             <p class="langEN">Avatar:</p>
@@ -53,7 +61,10 @@
                             <p class="langEN">E-mail:</p>
                         </div>
                         <div class="col-6"><form:input path="email" cssClass="w-100"/></div>
-                        <div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6"></div>
+                        <div class="col-6">
                             <form:errors cssClass="error" path="email"/>
                         </div>
                     </div>

@@ -14,25 +14,26 @@
 # 0.1.0 (done in # 0.0.3.1)
     + HomeService with initial Data Base fill in
 
-# 0.0.9.6
-    + validation user class for new form
-        + email unique
-            - problem when edit email user (email already exist) todo
-        + password
-            - problem with <form:error> in jsp todo
-        + nameFirst, nameLast
+# 0.0.9.7
     - validation planner/status
     - out.print in scriptlet error?
     - create new business position - admin (only for admin) or hide business position field in user's details view
 
 
 *** DONE ***
+# 0.0.9.6
+    + validation user class for new form
+        + email unique
+            + problem when edit email user (email already exist)
+            - conceptList not display when errors todo ...
+        + password
+            + problem with <form:error> in jsp
 # 0.0.9.5
     + validation user class for new form
         + email unique
-            - problem when edit email user (email already exist) todo
+            - problem when edit email user (email already exist)
         + password
-            - problem with <form:error> in jsp todo
+            - problem with <form:error> in jsp
         + nameFirst, nameLast
 # 0.0.9.4
     + register func.

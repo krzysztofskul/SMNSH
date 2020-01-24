@@ -94,9 +94,9 @@
                         </div>
                         <div class="col-6">
                             <form:password cssClass="w-100" path="password"/>
-                            <div>
+                            <%--<div>
                                 <form:errors cssClass="error" path="password"/>
-                            </div>
+                            </div>--%>
                         </div>
                     </div>
                     <!-- INPUT ROW -->
@@ -108,7 +108,10 @@
                         <div class="col-6">
                             <form:password cssClass="w-100" path="passwordConfirmation"/>
                             <div>
-                                <form:errors path="passwordConfirmation" cssClass="error"/>
+                                <%--<form:errors path="passwordConfirmation" cssClass="error"/>--%>
+                                <c:if test="${errorPasswordConfirm eq true}">
+                                    <p class="error">(m) Wpisz ponownie hasło poprawnie / Re-type your password correctly!</p>
+                                </c:if>
                             </div>
 
                         </div>
