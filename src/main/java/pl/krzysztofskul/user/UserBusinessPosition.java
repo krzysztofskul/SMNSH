@@ -1,6 +1,12 @@
 package pl.krzysztofskul.user;
 
 public enum UserBusinessPosition {
+    ADMIN {
+        @Override
+        public String toString() {
+            return "ADMINI / ADMIN";
+        }
+    },
     PLANNER {
         @Override
         public String toString() {

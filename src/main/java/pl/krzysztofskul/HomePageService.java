@@ -98,6 +98,7 @@ public class HomePageService {
         user.setEmail("Nameguest.Surname-Admin@test.test");
         user.setPassword("test");
         user.setPasswordConfirmation(user.getPassword());
+        user.setBusinessPosition(UserBusinessPosition.ADMIN);
         userService.save(user);
 
         //todo: user's avatar

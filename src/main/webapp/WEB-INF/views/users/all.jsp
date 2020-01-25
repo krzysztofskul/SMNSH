@@ -54,7 +54,7 @@
                             </c:choose>
                         </div>
                     <div class="card-footer text-right">
-                        <a href="/users/${user.id}/details" class="btn btn-primary">
+                        <a href="/users/details/${user.id}" class="btn btn-primary">
                             <p class="langPL">SZCZEGÓŁY / EDYCJA</p>
                             <p class="langEN">DETAILS/EDIT</p>
                         </a>

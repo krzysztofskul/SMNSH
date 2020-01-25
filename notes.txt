@@ -14,18 +14,21 @@
 # 0.1.0 (done in # 0.0.3.1)
     + HomeService with initial Data Base fill in
 
-# 0.0.9.7
+# 0.0.9.8
     - validation planner/status
     - out.print in scriptlet error?
-    - create new business position - admin (only for admin) or hide business position field in user's details view
+    - name surname info at header change when edit user
 
 
 *** DONE ***
+# 0.0.9.7
+    + create new business position - admin
+        + users edit page authorization (only for admin or loggedIn user)
 # 0.0.9.6
     + validation user class for new form
         + email unique
             + problem when edit email user (email already exist)
-            - conceptList not display when errors todo ...
+            - conceptList not display when errors todo
         + password
             + problem with <form:error> in jsp
 # 0.0.9.5

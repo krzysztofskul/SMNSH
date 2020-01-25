@@ -109,7 +109,8 @@ public class UserController {
         return "users/all";
     }
 
-    @GetMapping("/{id}/details")
+//    @GetMapping("/{id}/details")
+    @GetMapping("/details/{id}")
     public String details(
             @PathVariable("id") Long id,
             Model model
@@ -121,7 +122,7 @@ public class UserController {
 
     /** crud UPDATE */
 
-    @PostMapping("/{id}/details")
+    @PostMapping("/details/{id}")
     public String details(
             @PathVariable("id") Long id,
             @ModelAttribute("user") @Valid User user, BindingResult result,
@@ -135,7 +136,7 @@ public class UserController {
                     User userLoggedIn = (User) session.getAttribute("userLoggedIn");
                     if (user.getEmail().equals(userLoggedIn.getEmail())) {
                         userService.save(user);
-                        return "redirect:/users/"+id+"/details";
+                        return "redirect:/users/details/"+id;
                     }
                 }
             }
@@ -150,7 +151,7 @@ public class UserController {
         userEdited.setAvatar(avatarService.save(multipartFile));
         userService.save(userEdited);*/
 //        return "redirect:/users/all";
-        return "redirect:/users/"+id+"/details";
+        return "redirect:/users/details/"+id;
     }
 
     /** crud DELETE */
