@@ -112,5 +112,9 @@ public class LoginController {
         return "redirect:/";
     }
 
+    @GetMapping("/permissionDenied")
+    public String permissionDenied() {
+        return "permissionDenied";
+    }
 
 }

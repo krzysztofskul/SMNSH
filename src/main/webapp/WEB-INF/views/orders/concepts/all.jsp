@@ -27,7 +27,7 @@
         </div>
         <jsp:include page="menuConcepts.jsp"/>
         <c:forEach items="${conceptsAll}" var="concept">
-            <c:if test="${sessionScope.userLoggedIn.getId() eq concept.author.id || sessionScope.userLoggedIn.businessPosition eq 'ADMIN'}">
+            <c:if test="${sessionScope.userLoggedIn.getId() eq concept.author.id || sessionScope.userLoggedIn.businessPosition ne 'PROJECT_MANAGER'}">
             <div id="concept">
                 <div class="row border-top border-bottom bg-light font-weight-bold mb-2">
                     <div class="col-2">${concept.id}</div>
@@ -73,8 +73,17 @@
                 <div class="row text-right border-bottom">
                     <div class="col-12">
                         <a href="/concepts/details/${concept.id}" class="d-block">SZCZEGÓŁY / DETAILS</a>
-                        <a href="/concepts/${concept.id}/setDesigner" class="d-block">PRZYPISZ PROJEKTANTA/PLANISTĘ / ASSIGN DESIGNER/PLANNER</a>
-                        <a href="/concepts/${concept.id}/setStatus" class="d-block">ZMIEŃ STATUS / CHANGE STATUS</a>
+                        <c:choose>
+                            <c:when test="${sessionScope.userLoggedIn.businessPosition eq 'PROJECT_MANAGER'}">
+                                <a href="/concepts/setDesigner/${concept.id}" class="d-block btn disabled text-right m-0 p-0">PRZYPISZ PROJEKTANTA/PLANISTĘ / ASSIGN DESIGNER/PLANNER</a>
+                                <a href="/concepts/setStatus/${concept.id}" class="d-block btn disabled text-right m-0 p-0">ZMIEŃ STATUS / CHANGE STATUS</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="/concepts/setDesigner/${concept.id}" class="d-block">PRZYPISZ PROJEKTANTA/PLANISTĘ / ASSIGN DESIGNER/PLANNER</a>
+                                <a href="/concepts/setStatus/${concept.id}" class="d-block">ZMIEŃ STATUS / CHANGE STATUS</a>
+                            </c:otherwise>
+                        </c:choose>
+
                         <a href="#" class="d-block">USUŃ / DEL</a>
                     </div>
                 </div>

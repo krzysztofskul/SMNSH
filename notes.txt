@@ -9,14 +9,27 @@
     - verify fields/params in classes and app. business logic
     - actualize jsp views with business logic
 
-# 0.1.0
+# 0.2.0
     - relations between classes
         - User - Order (Guideline)
         - Order (Concept) - Order (Guideline)
     - add delete methods for classes/repo/service
 
+# 0.1.0
+    - readme.md, pom.xml updates
+
+#
+    - setStatus to wating -> change user for noone
+    - setStatus for finished -> change user for noone
+
 
 *** DONE ***
+# 0.0.9.9
+    + all concepts page filtered depends on which user is logged in
+    + updates for permissions:
+        + only planner/admin can change order status
+        + only planner/admin can set designer to concept
+        + permission denied page
 # 0.0.9.8
     + all concepts page filtering depends on which user is logged in
 # 0.0.9.7

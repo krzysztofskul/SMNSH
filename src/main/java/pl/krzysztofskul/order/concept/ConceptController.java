@@ -162,7 +162,7 @@ public class ConceptController {
         return "redirect:/concepts/details/"+id;
     }
 
-    @GetMapping("/{id}/setDesigner")
+    @GetMapping("/setDesigner/{id}")
     public String setDesigner(
             @PathVariable("id") Long id,
             Model model
@@ -171,7 +171,7 @@ public class ConceptController {
         model.addAttribute("usersDesigners", userService.loadAllDesigners());
         return "orders/concepts/setDesigner";
     }
-    @PostMapping("/{id}/setDesigner")
+    @PostMapping("/setDesigner/{id}")
     public String setDesigner (
             @ModelAttribute("concept") Concept concept
     ) {
@@ -180,7 +180,7 @@ public class ConceptController {
         return "redirect:/concepts/all?filter=all";
     }
 
-    @GetMapping("/{id}/setStatus")
+    @GetMapping("/setStatus/{id}")
     public String setStatus(
             @PathVariable("id") Long id,
             Model model
@@ -188,7 +188,7 @@ public class ConceptController {
         model.addAttribute("concept", conceptService.loadByIdWithAll(id));
         return "orders/concepts/setStatus";
     }
-    @PostMapping("/{id}/setStatus")
+    @PostMapping("/setStatus/{id}")
     public String setStatus(
             @ModelAttribute("concept") Concept concept
     ) {
