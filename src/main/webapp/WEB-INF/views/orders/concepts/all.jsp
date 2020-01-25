@@ -27,55 +27,59 @@
         </div>
         <jsp:include page="menuConcepts.jsp"/>
         <c:forEach items="${conceptsAll}" var="concept">
-            <div class="row border-top border-bottom bg-light font-weight-bold mb-2">
-                <div class="col-2">${concept.id}</div>
-                <div class="col-3">${concept.author.nameFirst} ${concept.author.nameLast}</div>
-                <div class="col-3">${concept.device.model}</div>
-                <div class="col-3">${concept.client}</div>
-            </div>
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-10">
-                    <span class="font-weight-bold">UTWORZONO / DATE OF CREATION:</span>
-                        ${concept.dateTimeCreated.toLocalDate()} ${concept.dateTimeCreated.toLocalTime()}
+            <c:if test="${sessionScope.userLoggedIn.getId() eq concept.author.id || sessionScope.userLoggedIn.businessPosition eq 'ADMIN'}">
+            <div id="concept">
+                <div class="row border-top border-bottom bg-light font-weight-bold mb-2">
+                    <div class="col-2">${concept.id}</div>
+                    <div class="col-3">${concept.author.nameFirst} ${concept.author.nameLast}</div>
+                    <div class="col-3">${concept.device.model}</div>
+                    <div class="col-3">${concept.client}</div>
+                </div>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-10">
+                        <span class="font-weight-bold">UTWORZONO / DATE OF CREATION:</span>
+                            ${concept.dateTimeCreated.toLocalDate()} ${concept.dateTimeCreated.toLocalTime()}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-10">
+                        <span class="font-weight-bold">PRIORITY / PRIORYTET:</span>
+                            ${concept.priority}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-10">
+                        <span class="font-weight-bold">PROJEKTANT/PLANISTA / DESIGNER/PLANNER:</span>
+                            ${concept.planner.nameFirst} ${concept.planner.nameLast}
+                    </div>
+                </div>
+                <div class="row text-right">
+                    <div class="col-2"></div>
+                    <div class="col-10">
+                        <span class="font-weight-bold">TERMIN REALIZACJI / DEADLINE:</span>
+                            ${concept.dateTimeDeadline.toLocalDate()} ${concept.dateTimeDeadline.toLocalTime()}
+                    </div>
+                </div>
+                <div class="row text-right">
+                    <div class="col-2"></div>
+                    <div class="col-10">
+                        <span class="font-weight-bold">STATUS / STATUS:</span>
+                            ${concept.status.toString()}
+                    </div>
+                </div>
+                <div class="row text-right border-bottom">
+                    <div class="col-12">
+                        <a href="/concepts/details/${concept.id}" class="d-block">SZCZEGÓŁY / DETAILS</a>
+                        <a href="/concepts/${concept.id}/setDesigner" class="d-block">PRZYPISZ PROJEKTANTA/PLANISTĘ / ASSIGN DESIGNER/PLANNER</a>
+                        <a href="/concepts/${concept.id}/setStatus" class="d-block">ZMIEŃ STATUS / CHANGE STATUS</a>
+                        <a href="#" class="d-block">USUŃ / DEL</a>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-10">
-                    <span class="font-weight-bold">PRIORITY / PRIORYTET:</span>
-                        ${concept.priority}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-10">
-                    <span class="font-weight-bold">PROJEKTANT/PLANISTA / DESIGNER/PLANNER:</span>
-                        ${concept.planner.nameFirst} ${concept.planner.nameLast}
-                </div>
-            </div>
-            <div class="row text-right">
-                <div class="col-2"></div>
-                <div class="col-10">
-                    <span class="font-weight-bold">TERMIN REALIZACJI / DEADLINE:</span>
-                        ${concept.dateTimeDeadline.toLocalDate()} ${concept.dateTimeDeadline.toLocalTime()}
-                </div>
-            </div>
-            <div class="row text-right">
-                <div class="col-2"></div>
-                <div class="col-10">
-                    <span class="font-weight-bold">STATUS / STATUS:</span>
-                        ${concept.status.toString()}
-                </div>
-            </div>
-            <div class="row text-right border-bottom">
-                <div class="col-12">
-                    <a href="/concepts/details/${concept.id}" class="d-block">SZCZEGÓŁY / DETAILS</a>
-                    <a href="/concepts/${concept.id}/setDesigner" class="d-block">PRZYPISZ PROJEKTANTA/PLANISTĘ / ASSIGN DESIGNER/PLANNER</a>
-                    <a href="/concepts/${concept.id}/setStatus" class="d-block">ZMIEŃ STATUS / CHANGE STATUS</a>
-                    <a href="#" class="d-block">USUŃ / DEL</a>
-                </div>
-            </div>
+            </c:if>
         </c:forEach>
 
         <!-- *** OLD FRONT END *** -->

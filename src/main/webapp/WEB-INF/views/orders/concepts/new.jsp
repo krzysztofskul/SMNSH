@@ -190,8 +190,8 @@
 <%--                    <input type="submit" class="btn btn-success float-right" value="SAVE"/>--%>
                     <form:button class="btn btn-success float-right">
                         <span>.</span>
-                        <p class="langPL">ZAPISZ ZMIANY</p>
-                        <p class="langEN">SAVE CHANGES</p>
+                        <p class="langPL">ZAMÓW</p>
+                        <p class="langEN">ORDER</p>
                     </form:button>
                 </div>
             </div>

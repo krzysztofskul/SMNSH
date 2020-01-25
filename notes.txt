@@ -1,26 +1,24 @@
 *** TODO ***
-# 2.0.0
+#
     - user roles and permissions
+    - validation planner/status when editing concept
+    - out.print in scriptlet error?
+    - name surname info at header change when edit user
 
 # 1.0.0
     - verify fields/params in classes and app. business logic
     - actualize jsp views with business logic
 
-# 0.2.0
+# 0.1.0
     - relations between classes
         - User - Order (Guideline)
         - Order (Concept) - Order (Guideline)
     - add delete methods for classes/repo/service
-# 0.1.0 (done in # 0.0.3.1)
-    + HomeService with initial Data Base fill in
-
-# 0.0.9.8
-    - validation planner/status
-    - out.print in scriptlet error?
-    - name surname info at header change when edit user
 
 
 *** DONE ***
+# 0.0.9.8
+    + all concepts page filtering depends on which user is logged in
 # 0.0.9.7
     + create new business position - admin
         + users edit page authorization (only for admin or loggedIn user)

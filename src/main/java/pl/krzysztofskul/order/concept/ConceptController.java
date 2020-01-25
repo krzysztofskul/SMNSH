@@ -119,7 +119,7 @@ public class ConceptController {
         }
         conceptService.save(conceptNew);
 //        return "redirect:/concepts/all";
-        return "redirect:/users/"+conceptNew.getAuthor().getId()+"/details";
+        return "redirect:/users/details/"+conceptNew.getAuthor().getId();
     }
 
     /** CRUD methods: UPDATE */
