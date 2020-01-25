@@ -12,6 +12,8 @@ import pl.krzysztofskul.order.Status;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -192,7 +194,7 @@ public class ConceptController {
     public String setStatus(
             @ModelAttribute("concept") Concept concept
     ) {
-        if (concept.getStatus() == Status.FINISHED) {
+        if (concept.getStatus() == Status.ORDERED_WAITING || concept.getStatus() == Status.FINISHED) {
             concept.setPlanner(null);
         }
         conceptService.save(concept);

@@ -14,16 +14,18 @@
         - User - Order (Guideline)
         - Order (Concept) - Order (Guideline)
     - add delete methods for classes/repo/service
+    - concepts/all/inProgress for planner - to see only loggedIn planner concepts
 
 # 0.1.0
     - readme.md, pom.xml updates
 
-#
-    - setStatus to wating -> change user for noone
-    - setStatus for finished -> change user for noone
-
 
 *** DONE ***
+# 0.0.9.10
+    + setStatus for waiting -> change user for no one
+    + setStatus for inProgress -> change user for loggedIn
+    + setStatus for finished -> change user for no one
+    + concept status colors in jsp updates
 # 0.0.9.9
     + all concepts page filtered depends on which user is logged in
     + updates for permissions:

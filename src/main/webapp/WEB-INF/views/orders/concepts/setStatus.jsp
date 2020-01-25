@@ -18,7 +18,7 @@
     <form:form modelAttribute="concept" method="post">
         <form:hidden path="id"/>
         <form:hidden path="dateTimeDeadline"/>
-        <form:hidden path="planner.id"/>
+        <form:hidden path="planner.id" value="${sessionScope.userLoggedIn.getId()}"/>
         <form:hidden path="priority"/>
         <form:hidden path="author.id"/>
         <form:hidden path="client"/>

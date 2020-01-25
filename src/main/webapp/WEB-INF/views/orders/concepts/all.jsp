@@ -31,14 +31,15 @@
             <div id="concept">
                 <div class="row border-top border-bottom bg-light font-weight-bold mb-2">
                     <div class="col-2">${concept.id}</div>
-                    <div class="col-3">${concept.author.nameFirst} ${concept.author.nameLast}</div>
                     <div class="col-3">${concept.device.model}</div>
+                    <div class="col-3">DLA / FOR : </div>
                     <div class="col-3">${concept.client}</div>
                 </div>
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <span class="font-weight-bold">UTWORZONO / DATE OF CREATION:</span>
+                        <span class="font-weight-bold">UTWORZONO / CREATED:</span>
+                            ${concept.author.nameFirst} ${concept.author.nameLast}
                             ${concept.dateTimeCreated.toLocalDate()} ${concept.dateTimeCreated.toLocalTime()}
                     </div>
                 </div>
@@ -47,13 +48,6 @@
                     <div class="col-10">
                         <span class="font-weight-bold">PRIORITY / PRIORYTET:</span>
                             ${concept.priority}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col-10">
-                        <span class="font-weight-bold">PROJEKTANT/PLANISTA / DESIGNER/PLANNER:</span>
-                            ${concept.planner.nameFirst} ${concept.planner.nameLast}
                     </div>
                 </div>
                 <div class="row text-right">
@@ -66,11 +60,26 @@
                 <div class="row text-right">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <span class="font-weight-bold">STATUS / STATUS:</span>
-                            ${concept.status.toString()}
+                        <span class="font-weight-bold">PROJEKTANT/PLANISTA / DESIGNER/PLANNER:</span>
+                            ${concept.planner.nameFirst} ${concept.planner.nameLast}
                     </div>
                 </div>
-                <div class="row text-right border-bottom">
+                <div class="row text-right">
+                    <div class="col-2"></div>
+                    <div class="col-10">
+                        <span class="font-weight-bold">STATUS / STATUS:</span>
+                        <c:if test="${concept.status.toString() eq 'OCZEKUJE / WAITING'}">
+                            <div class="d-inline text-danger">${concept.status.toString()}</div>
+                        </c:if>
+                        <c:if test="${concept.status.toString() eq 'W TOKU / IN PROGRESS'}">
+                            <div class="d-inline text-warning">${concept.status.toString()}</div>
+                        </c:if>
+                        <c:if test="${concept.status.toString() eq 'ZAKOŃCZONY / FINISHED'}">
+                            <div class="d-inline text-success">${concept.status.toString()}</div>
+                        </c:if>
+                    </div>
+                </div>
+                <div class="row text-right border-top mb-5 mt-3 pt-2">
                     <div class="col-12">
                         <a href="/concepts/details/${concept.id}" class="d-block">SZCZEGÓŁY / DETAILS</a>
                         <c:choose>
