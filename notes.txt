@@ -15,12 +15,12 @@
         - Order (Concept) - Order (Guideline)
     - add delete methods for classes/repo/service
     - concepts/all/inProgress for planner - to see only loggedIn planner concepts
-
-# 0.1.0
-    - readme.md, pom.xml updates
+    - logout (previous page error) todo!
 
 
 *** DONE ***
+# 0.1.0-SNAPSHOT
+    + readme.md, pom.xml updates
 # 0.0.9.10
     + setStatus for waiting -> change user for no one
     + setStatus for inProgress -> change user for loggedIn
