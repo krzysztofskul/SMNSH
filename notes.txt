@@ -4,6 +4,7 @@
     - validation planner/status when editing concept
     - out.print in scriptlet error?
     - name surname info at header change when edit user
+    - logout (previous page error)
 
 # 1.0.0
     - verify fields/params in classes and app. business logic
@@ -15,10 +16,18 @@
         - Order (Concept) - Order (Guideline)
     - add delete methods for classes/repo/service
     - concepts/all/inProgress for planner - to see only loggedIn planner concepts
-    - logout (previous page error) todo!
+
+#
+    - concept details/edit page updates
+        - status/planner validation (waiting -> no planner; in_progress -> setDesigner; finished -> no planner)
 
 
 *** DONE ***
+# 0.1.1
+    + concept details/edit page updates
+        + details fornt-end update
+        + edit fornt-end update
+    + users/all - null pointer exception error fixed
 # 0.1.0-SNAPSHOT
     + readme.md, pom.xml updates
 # 0.0.9.10

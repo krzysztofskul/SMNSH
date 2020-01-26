@@ -17,116 +17,129 @@
 
     <div class="container">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header font-weight-bold">
                 ${concept.id} | ${concept.title}
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col">
-                        AUTHOR:
+                    <div class="col-6 text-right">
+                        <p class="langPL">AUTOR:</p>
+                        <p class="langEN">AUTHOR:</p>
                     </div>
-                    <div class="col">
+                    <div class="col-6">
                         ${concept.author.nameFirst} ${concept.author.nameLast}
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col">
-                        CUSTOMER:
+                    <div class="col-6 text-right">
+                        <p class="langPL">KLIENT</p>
+                        <p class="langEN">CUSTOMER:</p>
                     </div>
-                    <div class="col">
+                    <div class="col-6">
                         ${concept.client}
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col">
-                        DEADLINE:
+                    <div class="col-6 text-right">
+                        <p class="langPL">TERMIN REALIZAZJI:</p>
+                        <p class="langEN">DEADLINE:</p>
                     </div>
-                    <div class="col">
+                    <div class="col-6">
                         ${concept.dateTimeDeadline.toLocalDate()} ${concept.dateTimeDeadline.toLocalTime()}
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col">
-                        PRIORITY:
+                    <div class="col-6 text-right">
+                        <p class="langPL">PRIORYTET:</p>
+                        <p class="langEN">PRIORITY:</p>
                     </div>
-                    <div class="col">
+                    <div class="col-6">
                         ${concept.priority}
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col">
-                        PLANNER:
+                    <div class="col-6 text-right">
+                        <p class="langPL">PROJEKTANT/PLANISTA:</p>
+                        <p class="langEN">DESIGNER/PLANNER:</p>
                     </div>
-                    <div class="col">
+                    <div class="col-6">
                         ${concept.planner.nameFirst} ${concept.planner.nameLast}
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col">
-                        STATUS:
+                    <div class="col-6 text-right">
+                        <p class="langPL">STATUS:</p>
+                        <p class="langEN">STATUS:</p>
                     </div>
-                    <div class="col">
+                    <div class="col-6">
                         ${concept.status.toString()}
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col">
-                        DEVICE:
+                    <div class="col-6 text-right">
+                        <p class="langPL">APARAT:</p>
+                        <p class="langEN">DEVICE:</p>
                     </div>
-                    <div class="col">
+                    <div class="col-6">
                         ${concept.device.model}
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col">
-                        DESCRIPTION:
+                    <div class="col-6 text-right">
+                        <p class="langPL">OPIS:</p>
+                        <p class="langEN">DESCRIPTION:</p>
                     </div>
-                    <div class="col">
+                    <div class="col-6">
                         ${concept.description}
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col">
-                        LAYOUT:
+                    <div class="col-6 text-right">
+                        <p class="langPL">PODKŁAD ARCHITEKTONICZNY:</p>
+                        <p class="langEN">ARCHITECTURAL LAYOUT:</p>
                     </div>
-                    <div class="col">
+                    <div class="col-6">
                         ${concept.layout}
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col">
-                        ON SITE VISITED:
+                    <div class="col-6 text-right">
+                        <p class="langPL">WIZJA LOKALNA:</p>
+                        <p class="langEN">ON SITE VISITED:</p>
                     </div>
-                    <div class="col">
+                    <div class="col-6">
                         ${concept.onSiteVisited}
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col">
-                        WALL INTERFERENCE POSSIBILITY:
+                    <div class="col-6 text-right">
+                        <p class="langPL">MOŻLIWOŚĆ INGERENCJI W UKŁAD ŚCIAN:</p>
+                        <p class="langEN">WALL INTERFERENCE POSSIBILITY:</p>
                     </div>
-                    <div class="col">
+                    <div class="col-6">
                         ${concept.wallInterferencePossible}
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col">
-                        CUSTOMER SUGGESTIONS:
+                    <div class="col-6 text-right">
+                        <p class="langPL">SUGESTIE KLIENTA:</p>
+                        <p class="langEN">CUSTOMER SUGGESTIONS:</p>
                     </div>
-                    <div class="col">
+                    <div class="col-6">
                         <c:if test="${concept.customerSuggestions eq null}">
-                            NO SUGESTIONS FROM CUSTOMER
+                            <p class="langPL">BRAK SUGESTII KLIENTA</p>
+                            <p class="langEN">NO SUGESTIONS FROM CUSTOMER</p>
                         </c:if>
                         <c:if test="${concept.customerSuggestions ne null}">
                             ${concept.customerSuggestions}
@@ -135,30 +148,34 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col">
-                        TRANSPORT ROUTE TO DESIGN:
+                    <div class="col-6 text-right">
+                        <p class="langPL">WYZNACZENIE DROGI TRANSPORTOWEJ:</p>
+                        <p class="langEN">TRANSPORT ROUTE TO MARK:</p>
                     </div>
-                    <div class="col">
+                    <div class="col-6">
                         ${concept.transportRouteDesignNeeded}
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col">
-                        ELECTRICAL BOX PLACE SPECIFIED:
+                    <div class="col-6 text-right">
+                        <p class="langPL">WSKAZANO MIEJSCE TABLICY ELEKTR.:</p>
+                        <p class="langEN">ELECTRICAL BOX PLACE SPECIFIED:</p>
                     </div>
-                    <div class="col">
+                    <div class="col-6">
                         ${concept.electricBoxSpecified}
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col">
-                        ADDITIONAL ROOMS TO DESIGN:
+                    <div class="col-6 text-right">
+                        <p class="langPL">ZAPROJEKTOWANIE DODATKOWYCH POMIESZCZEŃ:</p>
+                        <p class="langEN">ADDITIONAL ROOMS TO DESIGN:</p>
                     </div>
-                    <div class="col">
+                    <div class="col-6">
                         <c:if test="${concept.additionalRoomsToDesign eq null}">
-                            NO ADDITIONAL ROOM NEEDED
+                            <p class="langPL">BRAK DODATKOWYCH POMIESZCZEŃ DO ZAPROJEKTOWANIA</p>
+                            <p class="langEN">NO ADDITIONAL ROOM NEEDED</p>
                         </c:if>
                         <c:if test="${concept.additionalRoomsToDesign ne null}">
                             ${concept.additionalRoomsToDesign}
@@ -167,26 +184,35 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col">
-                        PROJECT MANAGER OTHER REMARKS:
+                    <div class="col-6 text-right">
+                        <p class="langPL">INNE UWAGI KIEROWNIKA PROJEKTU:</p>
+                        <p class="langEN">PROJECT MANAGER OTHER REMARKS:</p>
                     </div>
-                    <div class="col">
+                    <div class="col-6">
                         ${concept.remarks}
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col">
-                        GUDELINE:
+                    <div class="col-6 text-right">
+                        <p class="langPL">WYTYCZNE:</p>
+                        <p class="langEN">GUDELINE:</p>
                     </div>
-                    <div class="col">
-                        ${concept.guideline.id}
+                    <div class="col-6">
+                        ID: ${concept.guideline.id}
                     </div>
                 </div>
 
             </div>
-            <div class="card-footer text-right">
-                <a href="/concepts/edit/${concept.id}" class="btn btn-primary">EDIT</a>
+            <div class="card-footer">
+                <a href="/concepts/all" class="btn btn-warning">
+                    <p class="langPL">WSTECZ</p>
+                    <p class="langEN">BACK</p>
+                </a>
+                <a href="/concepts/edit/${concept.id}" class="btn btn-primary float-right">
+                    <p class="langPL">EDYCJA</p>
+                    <p class="langEN">EDIT</p>
+                </a>
             </div>
         </div>
     </div>
