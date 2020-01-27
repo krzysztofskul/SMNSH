@@ -17,12 +17,11 @@
     - add delete methods for classes/repo/service
     - concepts/all/inProgress for planner - to see only loggedIn planner concepts
 
-#
-    - concept details/edit page updates
-        - status/planner validation (waiting -> no planner; in_progress -> setDesigner; finished -> no planner)
-
 
 *** DONE ***
+# 0.1.2
+    + Validation for concept details/edit page
+        + status/planner validation (status waiting -> no planner needed; status in-progress -> planner needed; status finished -> no planner needed)
 # 0.1.1
     + concept details/edit page updates
         + details fornt-end update

@@ -5,10 +5,17 @@ import pl.krzysztofskul.order.Order;
 import pl.krzysztofskul.order.Status;
 import pl.krzysztofskul.order.guideline.Guideline;
 import pl.krzysztofskul.user.User;
+import pl.krzysztofskul.validator.StatusPlannerMatch;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@StatusPlannerMatch.List({
+        @StatusPlannerMatch(
+                status = "status",
+                planner = "planner"
+        )
+})
 @Entity
 public class Concept extends Order {
 

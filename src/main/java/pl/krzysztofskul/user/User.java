@@ -20,7 +20,6 @@ import java.util.List;
                 passwordConfirmation = "passwordConfirmation"
         )
 })
-
 @Entity
 public class User {
 
@@ -180,5 +179,20 @@ public class User {
         return BCrypt.checkpw(password, this.getPassword());
     }
 
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "id=" + id +
+//                ", nameFirst='" + nameFirst + '\'' +
+//                ", nameLast='" + nameLast + '\'' +
+//                '}';
+//    }
 
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                '}';
+    }
 }

@@ -132,7 +132,7 @@ public class ConceptController {
             Model model
     ) {
         Concept concept = conceptService.loadById(id);
-        Hibernate.initialize(concept);
+//        Hibernate.initialize(concept);
         model.addAttribute("concept", concept);
         return "orders/concepts/edit";
     }
@@ -154,11 +154,13 @@ public class ConceptController {
         if (concept.getCustomerSuggestions().length() == 0) {
             concept.setCustomerSuggestions(null);
         }
-        if (concept.getStatus() == Status.FINISHED) {
+        if (concept.getStatus() == Status.FINISHED || concept.getStatus() == Status.ORDERED_WAITING) {
             concept.setPlanner(null);
         }
-        if (concept.getPlanner().getId() == 0) {
-            concept.setPlanner(null);
+        if (concept.getPlanner() != null) {
+            if (concept.getPlanner().getId() == 0) {
+                concept.setPlanner(null);
+            }
         }
         conceptService.save(concept);
         return "redirect:/concepts/details/"+id;
