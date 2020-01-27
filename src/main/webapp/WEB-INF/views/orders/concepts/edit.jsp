@@ -85,6 +85,10 @@
                                 </c:forEach>
                             </form:select>
                         </div>
+                        <div class="col-6"></div>
+                        <div class="col-6 error">
+                            <form:errors path="planner"/>
+                        </div>
                     </div>
                     <hr>
                     <div class="row">
@@ -98,6 +102,10 @@
                                     <form:option value="${orderStatus}" label="${orderStatus.toString()}"/>
                                 </c:forEach>
                             </form:select>
+                        </div>
+                        <div class="col-6"></div>
+                        <div class="col-6 error">
+                            <form:errors path="status"/>
                         </div>
                     </div>
                     <hr>

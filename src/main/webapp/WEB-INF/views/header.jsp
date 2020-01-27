@@ -16,15 +16,21 @@
 </head>
 <body>
     <div class="container border-bottom pt-4 pb-1 mb-5 bg-light">
+        <div class="text-left">
+            <h4 class="pl-5 font-weight-bold" style="letter-spacing: 15px; color: dimgrey">SMNSH APP.</h4>
+        </div>
         <div class="text-right">
             <%
                 if (session.getAttribute("userLoggedIn") != null) {
                     User user = (User) session.getAttribute("userLoggedIn");
                     out.print(
-                            user.getNameFirst()+" "
-                                    +user.getNameLast()
-                                    +" | "
-                                    +"<a href='/logout' class='btn btn-danger'>LOG OUT</a>"
+                            user.getNameFirst()+" "+
+                                    user.getNameLast()+" "+
+                                    "<a href='/users/details/"+user.getId()+"' class='btn btn-dark ml-2 mr-2'>" +
+                                    "<div class='langPL'>MÓJ PROFIL</div>" +
+                                    "<div class='langEN'>MY PROFILE</div>" +
+                                    "</a>"+
+                                    "<a href='/logout' class='btn btn-danger'>LOG OUT</a>"
                     );
                 } else {
                     out.print("<div>"+

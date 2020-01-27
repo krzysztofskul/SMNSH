@@ -16,9 +16,16 @@
         - Order (Concept) - Order (Guideline)
     - add delete methods for classes/repo/service
     - concepts/all/inProgress for planner - to see only loggedIn planner concepts
+# 0.1.3
+    - error info for status/planner validation in jsp
+    - permission for planner to admin profile err.
 
+# 0.1.2.2
+    - new guideline
 
 *** DONE ***
+# 0.1.2.1 (new branch)
+    + my profile button in header
 # 0.1.2
     + Validation for concept details/edit page
         + status/planner validation (status waiting -> no planner needed; status in-progress -> planner needed; status finished -> no planner needed)
