@@ -23,7 +23,7 @@ public class Concept extends Order {
      * params.
      */
 
-    private Status status;
+//    private Status status;
 
     private boolean isLayout;
 
@@ -54,19 +54,21 @@ public class Concept extends Order {
      * constr.
      */
     public Concept() {
+//        this.setStatus(Status.ORDERED_WAITING);
+        this.setTitle("Zamówienie projektu KONCEPCYJNEGO na sprzęt: ..., dla klienta: ... / New order for CONCEPTUAL PROJECT for device: ..., to the customer: ...");
     }
 
     /**
      *  getters and setters
      */
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
+//    public Status getStatus() {
+//        return status;
+//    }
+//
+//    public void setStatus(Status status) {
+//        this.status = status;
+//    }
 
     public boolean isLayout() {
         return isLayout;

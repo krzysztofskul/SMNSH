@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,9 +19,13 @@ public class Guideline extends Order {
      * params.
      */
 
-    private Status status;
+//    private Status status;
 
     private String remarks;
+
+    private String personAccepting;
+
+    private LocalDate dateOfAcceptation;
 
     @OneToOne
     private Concept concept;
@@ -32,17 +37,21 @@ public class Guideline extends Order {
      * constr.
      */
 
+    public Guideline() {
+        this.setTitle("Zamówienie projektu WYTYCZNYCH na sprzęt: ..., dla klienta: ... / New order for GUIDELINES PROJECT for device: ..., to the customer: ...");
+    }
+
     /**
      * getters and setters
      */
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
+//    public Status getStatus() {
+//        return status;
+//    }
+//
+//    public void setStatus(Status status) {
+//        this.status = status;
+//    }
 
     public String getRemarks() {
         return remarks;
@@ -50,6 +59,22 @@ public class Guideline extends Order {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public String getPersonAccepting() {
+        return personAccepting;
+    }
+
+    public void setPersonAccepting(String personAccepting) {
+        this.personAccepting = personAccepting;
+    }
+
+    public LocalDate getDateOfAcceptation() {
+        return dateOfAcceptation;
+    }
+
+    public void setDateOfAcceptation(LocalDate dateOfAcceptation) {
+        this.dateOfAcceptation = dateOfAcceptation;
     }
 
     public Concept getConcept() {

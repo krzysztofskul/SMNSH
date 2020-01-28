@@ -20,10 +20,17 @@
     - error info for status/planner validation in jsp
     - permission for planner to admin profile err.
 
-# 0.1.2.2
-    - new guideline
+#
+    - guidelines validation
+        - dateOfAcceptation: @Past
+        - new guideline possible only when concept is finished
+    - description/remarks -> only in Orderd.class
 
 *** DONE ***
+# 0.1.2.2
+    + new guideline form
+    + concepts/new jsp valid error
+    + private Status status: Concept.class -> Order.class
 # 0.1.2.1 (new branch)
     + my profile button in header
 # 0.1.2

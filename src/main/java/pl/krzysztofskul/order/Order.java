@@ -24,7 +24,7 @@ public class Order {
 
     private String priority;
 
-    private String title = "Zamówienie projektu na sprzęt: ..., dla klienta: ... / New concept order for device: ..., to the customer: ...";
+    private String title = "Zamówienie projektu na sprzęt: ..., dla klienta: ... / New order for device: ..., to the customer: ...";
 
     private String description;
 
@@ -33,13 +33,14 @@ public class Order {
     @Future
     private LocalDateTime dateTimeDeadline = LocalDateTime.now().plusDays(7);
 
-
+    private Status status;
 
     /**
      * constr.
      */
 
     public Order() {
+        this.setStatus(Status.ORDERED_WAITING);
     }
 
     /**
@@ -109,6 +110,14 @@ public class Order {
 
     public void setDateTimeDeadline(LocalDateTime dateTimeDeadline) {
         this.dateTimeDeadline = dateTimeDeadline;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     /**

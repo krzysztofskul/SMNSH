@@ -67,6 +67,6 @@ public class GuidelineController {
             @ModelAttribute("guidelineNew") Guideline guidelineNew
     ) {
         guidelineService.save(guidelineNew);
-        return "redirect:/users/"+guidelineNew.getAuthor().getId()+"/details";
+        return "redirect:/users/details/"+guidelineNew.getAuthor().getId();
     }
 }
