@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -19,12 +21,12 @@ public class Guideline extends Order {
      * params.
      */
 
-//    private Status status;
-
     private String remarks;
 
+    @NotBlank(message = "Wpisz osobę akceptującą projekt koncepcyjny ze strony klienta / Enter person who accepted conceptual project from customer site!")
     private String personAccepting;
 
+    @PastOrPresent
     private LocalDate dateOfAcceptation;
 
     @OneToOne
@@ -39,19 +41,12 @@ public class Guideline extends Order {
 
     public Guideline() {
         this.setTitle("Zamówienie projektu WYTYCZNYCH na sprzęt: ..., dla klienta: ... / New order for GUIDELINES PROJECT for device: ..., to the customer: ...");
+        this.setDateOfAcceptation(LocalDate.now());
     }
 
     /**
      * getters and setters
      */
-
-//    public Status getStatus() {
-//        return status;
-//    }
-//
-//    public void setStatus(Status status) {
-//        this.status = status;
-//    }
 
     public String getRemarks() {
         return remarks;

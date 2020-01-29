@@ -19,14 +19,18 @@
 # 0.1.3
     - error info for status/planner validation in jsp
     - permission for planner to admin profile err.
+    - date converter / date pattern for new concept/guideline
 
 #
     - guidelines validation
-        - dateOfAcceptation: @Past
         - new guideline possible only when concept is finished
-    - description/remarks -> only in Orderd.class
 
 *** DONE ***
+# 0.1.2.3
+    + guidelines validation
+        + dateOfAcceptation: @PastOrPresent
+    + description: Gudeline <- Concept
+    + date/time updates in concept/guideline form
 # 0.1.2.2
     + new guideline form
     + concepts/new jsp valid error

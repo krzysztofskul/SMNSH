@@ -41,11 +41,6 @@
                                     </form:select>
                                 </c:when>
                                 <c:otherwise>
-<%--                                    <form:select path="author.id">--%>
-<%--                                        <c:forEach items="${usersAll}" var="user">--%>
-<%--                                            <form:option value="${user.id}" label="${user.nameFirst} ${user.nameLast}" disabled="true"/>--%>
-<%--                                        </c:forEach>--%>
-<%--                                    </form:select>--%>
                                     <form:hidden path="author.id"/>
                                     <input type="text" readonly value="${conceptNew.author.nameFirst} ${conceptNew.author.nameLast}"/>
                                 </c:otherwise>
@@ -71,7 +66,6 @@
                         </div>
                     </div>
                     <hr>
-                    <!-- *** DATES/PRIORITY SECTION *** -->
                     <div class="row">
                         <div class="col-6">
                             <p class="langPL">PRIORYTET:</p>
@@ -87,15 +81,19 @@
                             <p class="langEN">DEADLINE:</p>
                         </div>
                         <div class="col">
-                            <%--<input class="w-100" type="date" disabled/>--%>
                             <form:input cssClass="w-100" path="dateTimeDeadline"/>
                             <div>
                                 <form:errors cssClass="error" path="dateTimeDeadline"/>
                             </div>
                         </div>
                     </div>
+                    <div class="row mt-2">
+                        <div class="col-6"></div>
+                        <div class="col">
+                            <span class="d-block text-black-50 font-italic">DD.MM.YY HH:MM</span>
+                        </div>
+                    </div>
                     <hr>
-                    <!-- *** TITLE/DESCRIPTION SECTION *** -->
                     <div class="row mt-2">
                         <div class="col-6">
                             <p class="langPL">TYTUŁ:</p>
@@ -114,7 +112,6 @@
                             <form:textarea cssClass="w-100" path="description"/>
                         </div>
                     </div>
-                    <!-- *** QUESTIONS SECTION *** -->
                     <hr>
                     <div class="row mt-2">
                         <div class="col-6">
@@ -180,14 +177,12 @@
                         </div>
                     </div>
                 </div>
-                <!-- *** FOOTER SECTION *** -->
                 <div class="card-footer">
                     <a href="/concepts/all" class="btn btn-warning float-left">
                         <span><<</span>
                         <p class="langPL">ANULUJ / WSTECZ</p>
                         <p class="langEN">CANCEL / BACK</p>
                     </a>
-<%--                    <input type="submit" class="btn btn-success float-right" value="SAVE"/>--%>
                     <form:button class="btn btn-success float-right">
                         <span>.</span>
                         <p class="langPL">ZAMÓW</p>

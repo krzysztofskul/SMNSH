@@ -120,7 +120,6 @@ public class ConceptController {
             return "orders/concepts/new";
         }
         conceptService.save(conceptNew);
-//        return "redirect:/concepts/all";
         return "redirect:/users/details/"+conceptNew.getAuthor().getId();
     }
 
@@ -140,14 +139,10 @@ public class ConceptController {
     public String conceptsEditById(
             @PathVariable("id") Long id,
             @ModelAttribute("concept") @Valid Concept concept, BindingResult result
-//            @RequestParam(value = "inputDateDeadline", required = false) Date date
     ) {
         if (result.hasErrors()) {
             return "redirect:/concepts/edit/"+id;
         }
-//        LocalDate localDate = date.toLocalDate();
-//        LocalDateTime localDateTime = localDate.atTime(0,0,0);
-//        concept.setDateTimeDeadline(localDateTime);
         if (concept.getAdditionalRoomsToDesign().length() == 0) {
             concept.setAdditionalRoomsToDesign(null);
         }

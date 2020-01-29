@@ -29,6 +29,7 @@
                     <form:hidden path="client"/>
                     <form:hidden path="concept.id"/>
                     <form:hidden path="device.id"/>
+                    <form:hidden path="description" value="${guidelineNew.concept.description}"/>
                     <div class="form-row">
                         <div class="form-group col-sm-8 ml-auto mr-auto">
                             <label for="title">
@@ -44,7 +45,11 @@
                                 <p class="langPL">DATA AKCEPTACJI KLIENTA:</p>
                                 <p class="langEN">DATE OF ACCEPTATION BY CUSTOMER:</p>
                             </label>
-                            <input type="date" id="dateOfAcceptation" class="form-control" disabled/>
+                            <form:input path="dateOfAcceptation" id="dateOfAcceptation" cssClass="form-control"/>
+                            <span class="d-block text-black-50 font-italic">DD/MM/YY</span>
+                            <div>
+                                <form:errors cssClass="error" path="dateOfAcceptation"/>
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
@@ -54,6 +59,9 @@
                                 <p class="langEN">PERSON ACCEPTING:</p>
                             </label>
                             <form:input path="personAccepting" id="personAccepting" cssClass="form-control"/>
+                            <div>
+                                <form:errors cssClass="error" path="personAccepting"/>
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
@@ -71,7 +79,10 @@
                                 <p class="langPL">TERMIN REALIZACJI:</p>
                                 <p class="langEN">DEADLINE:</p>
                             </label>
-                            <input type="date" id="dateTimeDeadline" class="form-control" disabled/>
+                            <%--<input type="date" id="dateTimeDeadline" class="form-control"/>
+                            <input type="time" class="form-control"/>--%>
+                            <form:input path="dateTimeDeadline" id="dateTimeDeadLine" cssClass="form-control"/>
+                            <span class="d-block text-black-50 font-italic">DD.MM.YY HH:MM</span>
                         </div>
                     </div>
                     <div class="form-row d-block">
@@ -84,14 +95,12 @@
                         </div>
                     </div>
                 </div>
-                <!-- *** FOOTER SECTION *** -->
                 <div class="card-footer">
                     <a href="/users/details/${guidelineNew.author.id}" class="btn btn-warning float-left">
                         <span><<</span>
                         <p class="langPL">ANULUJ / WSTECZ</p>
                         <p class="langEN">CANCEL / BACK</p>
                     </a>
-                        <%--                    <input type="submit" class="btn btn-success float-right" value="SAVE"/>--%>
                     <form:button class="btn btn-success float-right">
                         <span>.</span>
                         <p class="langPL">ZAMÓW</p>

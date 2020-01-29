@@ -2,12 +2,14 @@ package pl.krzysztofskul.order.guideline;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.concept.ConceptService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -64,8 +66,12 @@ public class GuidelineController {
     }
     @PostMapping("/new")
     public String newGuideline(
-            @ModelAttribute("guidelineNew") Guideline guidelineNew
+            @ModelAttribute("guidelineNew") @Valid Guideline guidelineNew,
+            BindingResult result
     ) {
+        if (result.hasErrors()) {
+            return "orders/guidelines/new";
+        }
         guidelineService.save(guidelineNew);
         return "redirect:/users/details/"+guidelineNew.getAuthor().getId();
     }

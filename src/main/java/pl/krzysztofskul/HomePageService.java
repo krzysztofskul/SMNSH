@@ -25,6 +25,7 @@ import pl.krzysztofskul.user.avatar.AvatarService;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Service
@@ -200,6 +201,8 @@ public class HomePageService {
             guideline.setStatus(Status.ORDERED_WAITING);
             guideline.setPriority("!!!");
             guideline.setDateTimeDeadline(LocalDateTime.now().plusDays(14+2*i));
+            guideline.setPersonAccepting("Dr X");
+            guideline.setDateOfAcceptation(LocalDate.now().minusDays(2));
             guidelineService.save(guideline);
         }
     }
