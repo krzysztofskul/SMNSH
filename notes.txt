@@ -22,10 +22,16 @@
     - date converter / date pattern for new concept/guideline
 # 0.1.3
     - additional Class/Form and JSP form depends on which type of device was chosen for order
+        - new class DeviceType with fields which represents additional questions for order
     - guideline operations for designer/planner
 
+# 0.1.2.6
+    - new Class DeviceCategory
+        - code @Unique
 
 *** DONE ***
+# 0.1.2.5-NEWCLASS (new branch)
+    + new Class DeviceCategory
 # 0.1.2.4
     + guidelines validation/filter todo: @Autowired CocneptCervice issue in @WebFilter
         + new guideline possible only when concept is finished

@@ -26,6 +26,7 @@ public class HomePageController {
 	@GetMapping("/initDB")
 	public String initDB() {
 		homePageService.createUsers();
+		homePageService.createDeviceCategories();
 		homePageService.createDevices();
 		homePageService.createConcepts();
 		homePageService.createGuidelines();

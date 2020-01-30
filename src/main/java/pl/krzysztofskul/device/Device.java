@@ -1,5 +1,6 @@
 package pl.krzysztofskul.device;
 
+import pl.krzysztofskul.device.category.DeviceCategory;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.guideline.Guideline;
 
@@ -24,6 +25,9 @@ public class Device {
 
     @OneToMany(mappedBy = "device", cascade = CascadeType.REMOVE)
     private List<Guideline> guidelineList = new ArrayList<>();
+
+    @ManyToOne
+    private DeviceCategory deviceCategory;
 
     /**
      * constr.
@@ -64,6 +68,14 @@ public class Device {
 
     public void setGuidelineList(List<Guideline> guidelineList) {
         this.guidelineList = guidelineList;
+    }
+
+    public DeviceCategory getDeviceCategory() {
+        return deviceCategory;
+    }
+
+    public void setDeviceCategory(DeviceCategory deviceCategory) {
+        this.deviceCategory = deviceCategory;
     }
 
     /**

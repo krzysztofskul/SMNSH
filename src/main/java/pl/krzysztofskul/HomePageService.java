@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
+import pl.krzysztofskul.device.category.DeviceCategory;
+import pl.krzysztofskul.device.category.DeviceCategoryService;
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.investor.InvestorService;
 import pl.krzysztofskul.order.Status;
@@ -36,6 +38,7 @@ public class HomePageService {
      * params.
      */
     private UserService userService;
+    private DeviceCategoryService deviceCategoryService;
     private DeviceService deviceService;
     private ConceptService conceptService;
     private GuidelineService guidelineService;
@@ -49,6 +52,7 @@ public class HomePageService {
     @Autowired
     public HomePageService(
             UserService userService,
+            DeviceCategoryService deviceCategoryService,
             DeviceService deviceService,
             ConceptService conceptService,
             GuidelineService guidelineService,
@@ -57,6 +61,7 @@ public class HomePageService {
             AvatarService avatarService
     ) {
         this.userService = userService;
+        this.deviceCategoryService = deviceCategoryService;
         this.deviceService = deviceService;
         this.conceptService = conceptService;
         this.guidelineService = guidelineService;
@@ -207,20 +212,43 @@ public class HomePageService {
         }
     }
 
+    public void createDeviceCategories() {
+        DeviceCategory deviceCategory;
+
+        deviceCategory = new DeviceCategory();
+        deviceCategory.setCode("MRI");
+        deviceCategory.setName("Magnetic resonance imaging system");
+        deviceCategoryService.save(deviceCategory);
+
+        deviceCategory = new DeviceCategory();
+        deviceCategory.setCode("X-RAY");
+        deviceCategory.setName("X-Ray imaging system");
+        deviceCategoryService.save(deviceCategory);
+
+        deviceCategory = new DeviceCategory();
+        deviceCategory.setCode("CT");
+        deviceCategory.setName("Computed tomography system");
+        deviceCategoryService.save(deviceCategory);
+
+    }
+
     public void createDevices() {
         for (int i = 1; i <= 3; i++) {
             Device device = new Device();
             device.setModel("X-Ray device / model "+i);
+            device.setDeviceCategory(deviceCategoryService.loadByCode("X-RAY"));
             deviceService.save(device);
         }
         for (int i = 4; i <= 6; i++) {
             Device device = new Device();
             device.setModel("CT device / model "+(i-3));
+            device.setDeviceCategory(deviceCategoryService.loadByCode("CT"));
             deviceService.save(device);
         }
         for (int i = 7; i <= 9; i++) {
             Device device = new Device();
             device.setModel("MRI device / model "+(i-6));
+            device.setDeviceCategory(deviceCategoryService.loadByCode("MRI"));
             deviceService.save(device);
         }
     }
