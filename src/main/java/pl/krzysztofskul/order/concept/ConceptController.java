@@ -131,7 +131,6 @@ public class ConceptController {
             Model model
     ) {
         Concept concept = conceptService.loadById(id);
-//        Hibernate.initialize(concept);
         model.addAttribute("concept", concept);
         return "orders/concepts/edit";
     }

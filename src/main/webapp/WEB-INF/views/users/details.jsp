@@ -92,7 +92,6 @@
                         <p class="langPL">ANULUJ / WSTECZ</p>
                         <p class="langEN">CANCEL / BACK</p>
                     </a>
-<%--                    <input class="btn btn-success float-right" type="submit" value="SAVE">--%>
                     <form:button class="btn btn-success float-right">
                         <span>.</span>
                         <p class="langPL">ZAPISZ ZMIANY</p>
@@ -100,123 +99,6 @@
                     </form:button>
                 </div>
                 <div class="card-body">
-                    <!-- OLD VER. WITH TABLE -->
-                    <!--
-                    <table class="table table-sm">
-                        <thead class="text-center bg-light">
-                            <tr>
-                                <td colspan="7">
-                                    <p class="langPL">ZAMÓWENIA KONCPECJI / WYTYCZNYCH UŻYTKOWNIKA</p>
-                                    <p class="langEN">ORDERS CREATED BY USER</p>
-                                </td>
-                            </tr>
-                            <tr class="font-weight-bold">
-                                <td>
-                                    <p class="langPL">DATA UTWORZENIA</p>
-                                    <p class="langEN">DATE OF CREATION</p>
-                                </td>
-                                <td>
-                                    <p class="langPL">SPRZĘT</p>
-                                    <p class="langEN">DEVICE</p>
-                                </td>
-                                <td>
-                                    <p class="langPL">TYTUŁ</p>
-                                    <p class="langEN">TITLE</p>
-                                </td>
-                                <td>
-                                    <p class="langPL">PRIORYTET</p>
-                                    <p class="langEN">PRIORITY</p>
-                                </td>
-                                <td>
-                                    <p class="langPL">TERMIN REALIZACJI</p>
-                                    <p class="langEN">DEADLINE</p>
-                                </td>
-                                <td>
-                                    <p class="langPL">STATUS</p>
-                                    <p class="langEN">STATUS</p>
-                                </td>
-                                <td class="text-info">
-                                    <p class="langPL">MENU</p>
-                                    <p class="langEN">ACTIONS</p>
-                                </td>
-                            </tr>
-                        </thead>
-                        <c:forEach items="${user.conceptList}" var="concept">
-                            <tbody>
-                                <tr class="bg-light">
-                                    <td>
-                                        ${concept.dateTimeCreated.toLocalDate()}
-                                        <br>
-                                        ${concept.dateTimeCreated.toLocalTime()}
-                                    </td>
-                                    <td>${concept.device.model}</td>
-                                    <td>${concept.title}</td>
-                                    <td>${concept.priority}</td>
-                                    <td>${concept.dateTimeDeadline}</td>
-                                    <td>${concept.status.toString()}</td>
-                                    <td colspan="7">
-                                        <a href="#"
-                                           class="btn btn-danger disabled float-right ml-1 mr-1">
-                                            <p class="langPL">USUŃ</p>
-                                            <p class="langEN">DEL</p>
-                                        </a>
-                                        <a href="/concepts/details/${concept.id}"
-                                           class="btn btn-primary float-right ml-1 mr-1">
-                                            <p class="langPL">SZCZEGÓŁY / EDYCJA</p>
-                                            <p class="langEN">DETAILS / EDIT</p>
-                                        </a>
-                                        <br>
-                                        <c:if test="${concept.guideline eq null}">
-                                        <a href="/guidelines/new?conceptId=${concept.id} "
-                                           class="btn btn-success float-right ml-1 mr-1"
-                                        >
-                                            <p class="langPL">ZAMÓWENIE WYTYCZNYCH DLA TEJ KONCEPCJI</p>
-                                            <p class="langEN">NEW GUIDELINE ORDER FOR THIS CONCEPT</p>
-                                        </a>
-                                        </c:if>
-                                        <c:if test="${concept.guideline ne null}">
-                                            <a href="/guidelines/new?conceptId=${concept.id}"
-                                               class="btn btn-success float-right disabled ml-1 mr-1"
-                                            >
-                                                <p class="langPL">ZAMÓWENIE WYTYCZNYCH DLA TEJ KONCEPCJI</p>
-                                                <p class="langEN">NEW GUIDELINE ORDER FOR THIS CONCEPT</p>
-                                            </a>
-                                        </c:if>
-                                    </td>
-                                </tr>
-                                <tr class="font-italic">
-                                    <c:choose>
-                                        <c:when test="${concept.guideline eq null}">
-                                            <td colspan="7">
-                                                <p class="langPL">BRAK PROCEDOWANYCH WYTYCZNYCH DLA TEJ KONCEPCJI</p>
-                                                <p class="langEN">NO GUIDELINE ORDER SENT FOR THIS CONCEPT</p>
-                                            </td>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <td>${concept.guideline.dateTimeCreated}</td>
-                                            <td>${concept.guideline.device}</td>
-                                            <td>${concept.guideline.title}</td>
-                                            <td>${concept.guideline.priority.toString()}</td>
-                                            <td>${concept.guideline.dateTimeDeadline}</td>
-                                            <td>${concept.guideline.status}</td>
-                                            <td class="float-right">
-                                                <a href="#" class="btn btn-primary disabled float-right">
-                                                    <p class="langPL">SZCZEGÓŁY / EDYCJA</p>
-                                                    <p class="langEN">DETAILS / EDIT</p>
-                                                </a>
-                                                <a href="#" class="btn btn-danger disabled float-right">
-                                                    <p class="langPL">USUŃ</p>
-                                                    <p class="langEN">DEL</p>
-                                                </a>
-                                            </td>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </tr>
-                            </tbody>
-                        </c:forEach>
-                    </table>
-                    -->
-                    <!-- CARD FOR CONCEPTS / GUIDELINES -->
                     <div class="row border-top border-bottom text-center bg-light mt-3 mb-3 pt-2 pb-2"
                          style="font-size: larger">
                         <div class="col-12">
@@ -224,7 +106,6 @@
                             <p class="langEN">ORDERS CREATED BY USER</p>
                         </div>
                     </div>
-                    <!-- CONCEPT CARD VER. -->
                     <c:forEach items="${user.conceptList}" var="concept">
                         <div class="card mt-2 mb-3">
                             <div class="card-header text-left">
@@ -294,9 +175,21 @@
                                             <p class="langPL">STATUS</p>
                                             <p class="langEN">STATUS</p>
                                         </span>
-                                        <span class="d-inline-block align-top">
-                                            ${concept.status.toString()}
-                                        </span>
+                                        <c:if test="${concept.status == 'ORDERED_WAITING'}">
+                                            <span class="d-inline-block align-top text-danger">
+                                                ${concept.status.toString()}
+                                            </span>
+                                        </c:if>
+                                        <c:if test="${concept.status == 'IN_PROGRESS'}">
+                                            <span class="d-inline-block align-top text-warning">
+                                                    ${concept.status.toString()}
+                                            </span>
+                                        </c:if>
+                                        <c:if test="${concept.status == 'FINISHED'}">
+                                            <span class="d-inline-block align-top text-success">
+                                                    ${concept.status.toString()}
+                                            </span>
+                                        </c:if>
                                     </div>
                                     <div class="col-4 border">
                                         <span class="d-inline-block align-top mr-5">
@@ -320,7 +213,7 @@
                                             </div>
                                             <div class="col-5">
                                                 <c:if test="${concept.guideline eq null}">
-                                                    <a href="/guidelines/new?conceptId=${concept.id} "
+                                                    <a href="/guidelines/new?conceptId=${concept.id}&conceptStatus=${concept.status}"
                                                        class="btn btn-success float-right ml-1 mr-1"
                                                     >
                                                         <p class="langPL">ZAMÓWENIE WYTYCZNYCH</p>
@@ -328,7 +221,7 @@
                                                     </a>
                                                 </c:if>
                                                 <c:if test="${concept.guideline ne null}">
-                                                    <a href="/guidelines/new?conceptId=${concept.id}"
+                                                    <a href="/guidelines/new?conceptId=${concept.id}&conceptStatus=${concept.status}"
                                                        class="btn btn-success float-right disabled ml-1 mr-1"
                                                     >
                                                         <p class="langPL">ZAMÓWENIE WYTYCZNYCH</p>
@@ -384,9 +277,21 @@
                                                     <p class="langPL">STATUS</p>
                                                     <p class="langEN">STATUS</p>
                                                 </span>
-                                                <span class="d-inline-block align-top">
-                                                    ${concept.guideline.status}
-                                                </span>
+                                                <c:if test="${concept.guideline.status == 'ORDERED_WAITING'}">
+                                                    <span class="d-inline-block align-top text-danger">
+                                                            ${concept.guideline.status.toString()}
+                                                    </span>
+                                                </c:if>
+                                                <c:if test="${concept.guideline.status == 'IN_PROGRESS'}">
+                                                    <span class="d-inline-block align-top text-warning">
+                                                            ${concept.guideline.status.toString()}
+                                                    </span>
+                                                </c:if>
+                                                <c:if test="${concept.guideline.status == 'FINISHED'}">
+                                                    <span class="d-inline-block align-top text-success">
+                                                            ${concept.guideline.status.toString()}
+                                                    </span>
+                                                </c:if>
                                             </div>
                                             <div class="col-3 border">
                                                 <span class="d-inline-block align-top mr-5">
@@ -405,8 +310,6 @@
                             </div>
                         </div>
                     </c:forEach>
-                    <!-- END CARD FOR CONCEPTS / GUIDELINES -->
-
                 </div>
                 <div class="card-footer">
                     <a href="/concepts/new?userId=${user.id}" class="btn btn-success float-right">

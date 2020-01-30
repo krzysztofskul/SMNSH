@@ -16,16 +16,20 @@
         - Order (Concept) - Order (Guideline)
     - add delete methods for classes/repo/service
     - concepts/all/inProgress for planner - to see only loggedIn planner concepts
-# 0.1.3
+# 0.1.4
     - error info for status/planner validation in jsp
     - permission for planner to admin profile err.
     - date converter / date pattern for new concept/guideline
+# 0.1.3
+    - additional Class/Form and JSP form depends on which type of device was chosen for order
+    - guideline operations for designer/planner
 
-#
-    - guidelines validation
-        - new guideline possible only when concept is finished
 
 *** DONE ***
+# 0.1.2.4
+    + guidelines validation/filter todo: @Autowired CocneptCervice issue in @WebFilter
+        + new guideline possible only when concept is finished
+    + concept/guideline status information updates in JSPs
 # 0.1.2.3
     + guidelines validation
         + dateOfAcceptation: @PastOrPresent

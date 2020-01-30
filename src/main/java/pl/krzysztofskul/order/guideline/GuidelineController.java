@@ -75,4 +75,10 @@ public class GuidelineController {
         guidelineService.save(guidelineNew);
         return "redirect:/users/details/"+guidelineNew.getAuthor().getId();
     }
+
+    /** ERROR PAGE*/
+    @GetMapping("/errorStatus")
+    public String errorStatus() {
+        return "orders/guidelines/errorStatus";
+    }
 }

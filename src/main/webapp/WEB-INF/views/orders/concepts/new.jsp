@@ -24,7 +24,6 @@
                     <h4 class="langEN">NEW CONCEPT ORDER FORM</h4>
                     <form:hidden path="id" disabled="true"/>
                 </div>
-                <!-- *** AUTHOR/CUSTOMER/ SECTION *** -->
                 <div class="card-body">
                     <div class="row">
                         <div class="col-6">
