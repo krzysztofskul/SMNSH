@@ -16,6 +16,9 @@ import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.concept.ConceptService;
 import pl.krzysztofskul.order.guideline.Guideline;
 import pl.krzysztofskul.order.guideline.GuidelineService;
+import pl.krzysztofskul.questionSet.QuestionForm;
+import pl.krzysztofskul.questionSet.QuestionFormService;
+import pl.krzysztofskul.questionSet.QuestionSetForXRAY;
 import pl.krzysztofskul.recipient.Recipient;
 import pl.krzysztofskul.recipient.RecipientService;
 import pl.krzysztofskul.user.User;
@@ -41,6 +44,7 @@ public class HomePageService {
     private DeviceCategoryService deviceCategoryService;
     private DeviceService deviceService;
     private ConceptService conceptService;
+    private QuestionFormService questionFormService;
     private GuidelineService guidelineService;
     private InvestorService investorService;
     private RecipientService recipientService;
@@ -55,6 +59,7 @@ public class HomePageService {
             DeviceCategoryService deviceCategoryService,
             DeviceService deviceService,
             ConceptService conceptService,
+            QuestionFormService questionFormService,
             GuidelineService guidelineService,
             InvestorService investorService,
             RecipientService recipientService,
@@ -64,6 +69,7 @@ public class HomePageService {
         this.deviceCategoryService = deviceCategoryService;
         this.deviceService = deviceService;
         this.conceptService = conceptService;
+        this.questionFormService = questionFormService;
         this.guidelineService = guidelineService;
         this.investorService = investorService;
         this.recipientService = recipientService;
@@ -160,8 +166,22 @@ public class HomePageService {
             concept.setDescription("Lorem ipsum dolor sit amet mi eget sapien. Aliquam quis tortor. Cras volutpat ligula enim.");
             concept.setRemarks("Phasellus vitae ante. Duis non.");
             concept.setDevice(deviceService.loadById(Long.parseLong("1")));
+
+            /*************************************************************************************************************
+             * question form
+             *
+             * */
+            QuestionForm questionForm = new QuestionForm(new QuestionSetForXRAY());
+            questionForm.getQuestionSetForXRAY().setXrayProtectionToDesign(false);
+            questionForm.getQuestionSetForXRAY().setSourceImageDistanceRequired(115);
+            questionForm.setConcept(concept);
+            questionFormService.save(questionForm);
+
+            /**
+             *
+             *************************************************************************************************************/
+
             concept.setPriority("!");
-//            concept.setPlanner(userService.loadById(Long.parseLong(String.valueOf(1))));
             conceptService.save(concept);
             /** change dates of creation */
             concept = conceptService.loadById(Long.parseLong(String.valueOf(i)));

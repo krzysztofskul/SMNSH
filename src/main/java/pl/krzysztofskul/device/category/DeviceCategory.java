@@ -1,6 +1,9 @@
 package pl.krzysztofskul.device.category;
 
 import pl.krzysztofskul.device.Device;
+import pl.krzysztofskul.questionSet.QuestionSetForCT;
+import pl.krzysztofskul.questionSet.QuestionSetForMRI;
+import pl.krzysztofskul.questionSet.QuestionSetForXRAY;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -19,6 +22,15 @@ public class DeviceCategory {
 
     @OneToMany(mappedBy = "deviceCategory", cascade = CascadeType.ALL)
     private List<Device> deviceList = new ArrayList<>();
+
+    @OneToOne
+    private QuestionSetForMRI questionSetForMRI;
+
+    @OneToOne
+    private QuestionSetForCT questionSetForCT;
+
+    @OneToOne
+    private QuestionSetForXRAY questionSetForXRAY;
 
     public DeviceCategory() {
     }
@@ -55,4 +67,27 @@ public class DeviceCategory {
         this.deviceList = deviceList;
     }
 
+    public QuestionSetForMRI getQuestionSetForMRI() {
+        return questionSetForMRI;
+    }
+
+    public void setQuestionSetForMRI(QuestionSetForMRI questionSetForMRI) {
+        this.questionSetForMRI = questionSetForMRI;
+    }
+
+    public QuestionSetForCT getQuestionSetForCT() {
+        return questionSetForCT;
+    }
+
+    public void setQuestionSetForCT(QuestionSetForCT questionSetForCT) {
+        this.questionSetForCT = questionSetForCT;
+    }
+
+    public QuestionSetForXRAY getQuestionSetForXRAY() {
+        return questionSetForXRAY;
+    }
+
+    public void setQuestionSetForXRAY(QuestionSetForXRAY questionSetForXRAY) {
+        this.questionSetForXRAY = questionSetForXRAY;
+    }
 }

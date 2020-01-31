@@ -1,8 +1,5 @@
 package pl.krzysztofskul.questionSet;
 
-import pl.krzysztofskul.device.category.DeviceCategory;
-import pl.krzysztofskul.order.concept.Concept;
-
 import javax.persistence.*;
 
 @Entity
@@ -12,12 +9,25 @@ public class QuestionSetForMRI {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    private DeviceCategory deviceCategory;
-
     private boolean isFaradayCageToDesign;
 
-    @ManyToOne
-    private Concept concept;
+    public QuestionSetForMRI() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public boolean isFaradayCageToDesign() {
+        return isFaradayCageToDesign;
+    }
+
+    public void setFaradayCageToDesign(boolean faradayCageToDesign) {
+        isFaradayCageToDesign = faradayCageToDesign;
+    }
 
 }

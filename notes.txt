@@ -25,7 +25,7 @@
         - new class DeviceType with fields which represents additional questions for order
     - guideline operations for designer/planner
 
-# 0.1.2.5.2
+# 0.1.2.5.X
     + new Class DeviceCategory
         - code @Unique
         - additional questions for new concept depends on device category
@@ -34,6 +34,10 @@
         - relations with DeviceCategory and Concept
 
 *** DONE ***
+# 0.1.2.5.2
+    + new Class QuestionForm, Repo, Service
+    + relations Concept - QuestionForm - QuestionSet
+    + HomePageService updates
 # 0.1.2.5.1
     + new Class DeviceCategory
         + DeviceCategoryService

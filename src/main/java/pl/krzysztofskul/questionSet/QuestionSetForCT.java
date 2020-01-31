@@ -1,8 +1,5 @@
 package pl.krzysztofskul.questionSet;
 
-import pl.krzysztofskul.device.category.DeviceCategory;
-import pl.krzysztofskul.order.concept.Concept;
-
 import javax.persistence.*;
 
 @Entity
@@ -12,12 +9,26 @@ public class QuestionSetForCT {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    private DeviceCategory deviceCategory;
-
     private boolean isXrayProtectionToDesign;
 
-    @ManyToOne
-    private Concept concept;
+
+    public QuestionSetForCT() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public boolean isXrayProtectionToDesign() {
+        return isXrayProtectionToDesign;
+    }
+
+    public void setXrayProtectionToDesign(boolean xrayProtectionToDesign) {
+        isXrayProtectionToDesign = xrayProtectionToDesign;
+    }
 
 }
