@@ -8,6 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
+import pl.krzysztofskul.device.category.DeviceCategory;
+import pl.krzysztofskul.device.category.DeviceCategoryService;
 import pl.krzysztofskul.order.Status;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
@@ -30,6 +32,7 @@ public class ConceptController {
 
     private ConceptService conceptService;
     private DeviceService deviceService;
+    private DeviceCategoryService deviceCategoryService;
     private UserService userService;
 
     /**
@@ -39,10 +42,12 @@ public class ConceptController {
     public ConceptController(
             ConceptService conceptService,
             DeviceService deviceService,
+            DeviceCategoryService deviceCategoryService,
             UserService userService
     ) {
         this.conceptService = conceptService;
         this.deviceService = deviceService;
+        this.deviceCategoryService = deviceCategoryService;
         this.userService = userService;
     }
 
@@ -63,7 +68,9 @@ public class ConceptController {
     public List<Device> getDevicesAll() {
         return deviceService.loadAll();
     }
-
+    public List<DeviceCategory> getDeviceCategoryAll() {
+        return deviceCategoryService.loadAll();
+    }
     @ModelAttribute("orderStatuses")
     public Status[] getOrderStatuses() {
         return Status.values();

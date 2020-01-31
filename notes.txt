@@ -16,20 +16,28 @@
         - Order (Concept) - Order (Guideline)
     - add delete methods for classes/repo/service
     - concepts/all/inProgress for planner - to see only loggedIn planner concepts
-# 0.1.4
+# 0.1.5
     - error info for status/planner validation in jsp
     - permission for planner to admin profile err.
     - date converter / date pattern for new concept/guideline
-# 0.1.3
+# 0.1.4
     - additional Class/Form and JSP form depends on which type of device was chosen for order
         - new class DeviceType with fields which represents additional questions for order
     - guideline operations for designer/planner
 
-# 0.1.2.6
-    - new Class DeviceCategory
+# 0.1.2.5.2
+    + new Class DeviceCategory
         - code @Unique
+        - additional questions for new concept depends on device category
+        - form:select device sorted by deviceCategory
+    + new Classes QuestionSetForMRI/CT/XRAY
+        - relations with DeviceCategory and Concept
 
 *** DONE ***
+# 0.1.2.5.1
+    + new Class DeviceCategory
+        + DeviceCategoryService
+    + new Classes QuestionSetForMRI/CT/XRAY
 # 0.1.2.5-NEWCLASS (new branch)
     + new Class DeviceCategory
 # 0.1.2.4
