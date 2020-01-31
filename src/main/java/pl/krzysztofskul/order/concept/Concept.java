@@ -49,8 +49,8 @@ public class Concept extends Order {
     @ManyToOne
     private User planner;
 
-//    @OneToOne
-//    private QuestionForm questionForm;
+    @OneToOne(mappedBy = "concept")
+    private QuestionForm questionForm;
 
     /**
      * constr.
@@ -151,13 +151,13 @@ public class Concept extends Order {
         this.planner = planner;
     }
 
-//    public QuestionForm getQuestionForm() {
-//        return questionForm;
-//    }
-//
-//    public void setQuestionForm(QuestionForm questionForm) {
-//        this.questionForm = questionForm;
-//    }
+    public QuestionForm getQuestionForm() {
+        return questionForm;
+    }
+
+    public void setQuestionForm(QuestionForm questionForm) {
+        this.questionForm = questionForm;
+    }
 
     /**
      * methods

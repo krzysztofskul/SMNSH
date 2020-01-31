@@ -11,6 +11,10 @@ import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.device.category.DeviceCategory;
 import pl.krzysztofskul.device.category.DeviceCategoryService;
 import pl.krzysztofskul.order.Status;
+import pl.krzysztofskul.questionSet.QuestionForm;
+import pl.krzysztofskul.questionSet.QuestionSetForCT;
+import pl.krzysztofskul.questionSet.QuestionSetForMRI;
+import pl.krzysztofskul.questionSet.QuestionSetForXRAY;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
@@ -126,7 +130,43 @@ public class ConceptController {
         if (result.hasErrors()) {
             return "orders/concepts/new";
         }
+
+        /****************************
+         * ADD. QUESTION SET FORM REDIRECT
+         */
+
+        Device device = deviceService.loadById(conceptNew.getDevice().getId());
+        Hibernate.initialize(device.getDeviceCategory());
+
+        switch (device.getDeviceCategory().getCode()) {
+            case "MRI": {
+                QuestionSetForMRI questionSetForMRI = new QuestionSetForMRI();
+                QuestionForm questionForm = new QuestionForm();
+                questionForm.setQuestionSetForMRI(questionSetForMRI);
+                conceptNew.setQuestionForm(questionForm);
+                return "questionSets/questionSetMRI";
+            }
+            case "CT": {
+                QuestionSetForCT questionSetForCT = new QuestionSetForCT();
+                QuestionForm questionForm = new QuestionForm();
+                questionForm.setQuestionSetForCT(questionSetForCT);
+                conceptNew.setQuestionForm(questionForm);
+                return "questionSets/questionSetCT";
+            }
+            case "X-RAY": {
+                QuestionSetForXRAY questionSetForXRAY = new QuestionSetForXRAY();
+                QuestionForm questionForm = new QuestionForm();
+                questionForm.setQuestionSetForXRAY(questionSetForXRAY);
+                conceptNew.setQuestionForm(questionForm);
+                return "questionSets/questionSetXRAY";
+            }
+        }
+
+        /**
+         *
+         ****************************/
         conceptService.save(conceptNew);
+
         return "redirect:/users/details/"+conceptNew.getAuthor().getId();
     }
 

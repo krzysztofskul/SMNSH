@@ -33,7 +33,12 @@
     + new Classes QuestionSetForMRI/CT/XRAY
         - relations with DeviceCategory and Concept
 
+#
+    - HomePageService upadets for other concepts/device categories
+
 *** DONE ***
+# 0.1.2.5.3
+     + question sets JSPs redirect for new concept
 # 0.1.2.5.2
     + new Class QuestionForm, Repo, Service
     + relations Concept - QuestionForm - QuestionSet

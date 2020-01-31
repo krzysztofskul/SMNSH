@@ -16,9 +16,7 @@ import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.concept.ConceptService;
 import pl.krzysztofskul.order.guideline.Guideline;
 import pl.krzysztofskul.order.guideline.GuidelineService;
-import pl.krzysztofskul.questionSet.QuestionForm;
-import pl.krzysztofskul.questionSet.QuestionFormService;
-import pl.krzysztofskul.questionSet.QuestionSetForXRAY;
+import pl.krzysztofskul.questionSet.*;
 import pl.krzysztofskul.recipient.Recipient;
 import pl.krzysztofskul.recipient.RecipientService;
 import pl.krzysztofskul.user.User;
@@ -199,6 +197,20 @@ public class HomePageService {
             concept.setDescription("Drogi Marszałku, Wysoka Izbo. PKB rośnie. Różnorakie i rozwijanie struktur umożliwia w restrukturyzacji przedsiębiorstwa. Jednakże.");
             concept.setRemarks("Izbo, inwestowanie w większym stopniu.");
             concept.setDevice(deviceService.loadById(Long.parseLong("4")));
+
+            /*************************************************************************************************************
+             * question form
+             *
+             * */
+            QuestionForm questionForm = new QuestionForm(new QuestionSetForCT());
+            questionForm.getQuestionSetForCT().setXrayProtectionToDesign(false);
+            questionForm.setConcept(concept);
+            questionFormService.save(questionForm);
+
+            /**
+             *
+             *************************************************************************************************************/
+
             concept.setPriority("!");
             concept.setDateTimeDeadline(LocalDateTime.now().plusDays(7+i));
             conceptService.save(concept);
@@ -210,6 +222,20 @@ public class HomePageService {
             concept.setDescription("Początek traktatu czasu panowania Fryderyka Wielkiego, Króla Pruskiego żył w.");
             concept.setRemarks("Na przykład w kolei przypadków.");
             concept.setDevice(deviceService.loadById(Long.parseLong("7")));
+
+            /*************************************************************************************************************
+             * question form
+             *
+             * */
+            QuestionForm questionForm = new QuestionForm(new QuestionSetForMRI());
+            questionForm.getQuestionSetForMRI().setFaradayCageToDesign(true);
+            questionForm.setConcept(concept);
+            questionFormService.save(questionForm);
+
+            /**
+             *
+             *************************************************************************************************************/
+
             concept.setPriority("!");
             concept.setDateTimeDeadline(LocalDateTime.now().plusDays(7+i));
             conceptService.save(concept);
