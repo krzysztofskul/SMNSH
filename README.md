@@ -12,7 +12,7 @@ Aplikacja wspiera zarządzanie dokumentacją techniczną oraz komunikację pomi�
 
 ## SCHEMAT DZIAŁANIA / *WORKFLOW*
 
-**Project Manager**
+**Kierownik projektu / Project Manager**
 
 - Zarejestruj/zaloguj się jako Project Manager
 | *Register/log in as a Project Manager*
@@ -31,8 +31,20 @@ Aplikacja wspiera zarządzanie dokumentacją techniczną oraz komunikację pomi�
   ###
   <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_formfornewconcept_001.png)-->
   <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_formfornewconcept_001.png" width="400"/>
+  
+- Wypełnij dodatkowy formularz dot. tematów zależnych od rodzaju sprzętu
+| *Fill in additional questionnaire containing issues depended on device category*
+    ###
+    <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_questionSetCT_001.png)-->
+    <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_questionSetCT_001.png" width="200"/>
+    
+    <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_questionSetXray_001.png)-->
+    <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_questionSetXray_001.png" width="200"/>
+        
+    <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_questionSetMRI_001.png)-->
+    <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_questionSetMRI_001.png" width="200"/>
 
-**Designer/Planner**
+**Projektant/Planista / Designer/Planner**
 
 - Zarejestruj/zaloguj się jako Projektant/Planista
 | *Register/log in as a Designer/Planner*
@@ -56,7 +68,7 @@ Aplikacja wspiera zarządzanie dokumentacją techniczną oraz komunikację pomi�
   <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_setorderstatuspage_001.png)-->
   <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_setorderstatuspage_001.png" width="400"/>
 
-**Project Manager**
+**Kierownik projektu / Project Manager**
 
 - Dla wykonanych projektów koncepcji, utwórz zamówienie wykonania wytycznych instalacyjnych | *For finished concept designs, create new order for installation guidelines design*
 

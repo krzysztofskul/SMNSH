@@ -25,21 +25,19 @@
         - new class DeviceType with fields which represents additional questions for order
     - guideline operations for designer/planner
 
-# 0.1.2.5.X
+#
     + new Class DeviceCategory
         - code @Unique
         - additional questions for new concept depends on device category
         - form:select device sorted by deviceCategory
     + new Classes QuestionSetForMRI/CT/XRAY
         - relations with DeviceCategory and Concept
-
-#
     - null in QuestionSetMRI/CT (questionForm_id = null) in DB from HomePageService
-    - merge branch
     - issue when new concept will be break o the add questions stage
-    - readme.md update
 
 *** DONE ***
+# 0.1.2.5.7
+    + readme.md update
 # 0.1.2.5.6
     + update JSPs for concept details depends on additional questions
     + code clean up
