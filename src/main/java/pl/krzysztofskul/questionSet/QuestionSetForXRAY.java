@@ -13,6 +13,8 @@ public class QuestionSetForXRAY {
 
     private int sourceImageDistanceRequired;
 
+    @OneToOne
+    private QuestionForm questionForm;
 
     public QuestionSetForXRAY() {
     }
@@ -41,4 +43,11 @@ public class QuestionSetForXRAY {
         this.sourceImageDistanceRequired = sourceImageDistanceRequired;
     }
 
+    public QuestionForm getQuestionForm() {
+        return questionForm;
+    }
+
+    public void setQuestionForm(QuestionForm questionForm) {
+        this.questionForm = questionForm;
+    }
 }

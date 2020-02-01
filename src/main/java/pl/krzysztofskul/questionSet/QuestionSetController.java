@@ -1,6 +1,5 @@
 package pl.krzysztofskul.questionSet;
 
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,25 +10,50 @@ public class QuestionSetController {
 
     private QuestionFormService questionFormService;
     private QuestionSetForMRIService questionSetForMRIService;
+    private QuestionSetForCTService questionSetForCTService;
+    private QuestionSetForXRAYService questionSetForXRAYService;
 
     @Autowired
     public QuestionSetController(
             QuestionFormService questionFormService,
-            QuestionSetForMRIService questionSetForMRIService
+            QuestionSetForMRIService questionSetForMRIService,
+            QuestionSetForCTService questionSetForCTService,
+            QuestionSetForXRAYService questionSetForXRAYService
     ) {
         this.questionFormService = questionFormService;
         this.questionSetForMRIService = questionSetForMRIService;
+        this.questionSetForCTService = questionSetForCTService;
+        this.questionSetForXRAYService = questionSetForXRAYService;
     }
 
-    @PostMapping("/questionSet/save")
+    @PostMapping("/questionSetMRI/save")
     public String questionSet(
             @ModelAttribute("questionSetForMRI") QuestionSetForMRI questionSetForMRI
     ) {
-        //questionFormService.save(questionSetForMRI.getQuestionForm());
         QuestionForm questionForm = questionFormService.loadById(questionSetForMRI.getQuestionForm().getId());
         questionSetForMRI.setQuestionForm(questionForm);
         questionSetForMRIService.save(questionSetForMRI);
         return "redirect:/users/details/"+questionSetForMRI.getQuestionForm().getConcept().getAuthor().getId();
+    }
+
+    @PostMapping("/questionSetCT/save")
+    public String questionSet(
+            @ModelAttribute("questionSetForCT") QuestionSetForCT questionSetForCT
+    ) {
+        QuestionForm questionForm = questionFormService.loadById(questionSetForCT.getQuestionForm().getId());
+        questionSetForCT.setQuestionForm(questionForm);
+        questionSetForCTService.save(questionSetForCT);
+        return "redirect:/users/details/"+questionSetForCT.getQuestionForm().getConcept().getAuthor().getId();
+    }
+
+    @PostMapping("/questionSetXRAY/save")
+    public String questionSet(
+            @ModelAttribute("questionSetForXRAY") QuestionSetForXRAY questionSetForXRAY
+    ) {
+        QuestionForm questionForm = questionFormService.loadById(questionSetForXRAY.getQuestionForm().getId());
+        questionSetForXRAY.setQuestionForm(questionForm);
+        questionSetForXRAYService.save(questionSetForXRAY);
+        return "redirect:/users/details/"+questionSetForXRAY.getQuestionForm().getConcept().getAuthor().getId();
     }
 
 }

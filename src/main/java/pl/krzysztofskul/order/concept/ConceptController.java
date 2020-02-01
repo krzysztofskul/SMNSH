@@ -143,9 +143,11 @@ public class ConceptController {
             case "MRI": {
                 QuestionSetForMRI questionSetForMRI = new QuestionSetForMRI();
                 QuestionForm questionForm = new QuestionForm();
+
                 questionForm.setQuestionSetForMRI(questionSetForMRI);
                 questionSetForMRI.setQuestionForm(questionForm);
                 questionForm.setConcept(conceptNew);
+
                 conceptNew.setQuestionForm(questionForm);
                 questionFormService.save(questionForm);
                 conceptService.save(conceptNew);
@@ -155,15 +157,29 @@ public class ConceptController {
             case "CT": {
                 QuestionSetForCT questionSetForCT = new QuestionSetForCT();
                 QuestionForm questionForm = new QuestionForm();
+
                 questionForm.setQuestionSetForCT(questionSetForCT);
+                questionSetForCT.setQuestionForm(questionForm);
+                questionForm.setConcept(conceptNew);
+
                 conceptNew.setQuestionForm(questionForm);
+                questionFormService.save(questionForm);
+                conceptService.save(conceptNew);
+                model.addAttribute("questionSetForCT", questionSetForCT);
                 return "questionSets/questionSetCT";
             }
             case "X-RAY": {
                 QuestionSetForXRAY questionSetForXRAY = new QuestionSetForXRAY();
                 QuestionForm questionForm = new QuestionForm();
+
                 questionForm.setQuestionSetForXRAY(questionSetForXRAY);
+                questionSetForXRAY.setQuestionForm(questionForm);
+                questionForm.setConcept(conceptNew);
+
                 conceptNew.setQuestionForm(questionForm);
+                questionFormService.save(questionForm);
+                conceptService.save(conceptNew);
+                model.addAttribute("questionSetForXRAY", questionSetForXRAY);
                 return "questionSets/questionSetXRAY";
             }
         }

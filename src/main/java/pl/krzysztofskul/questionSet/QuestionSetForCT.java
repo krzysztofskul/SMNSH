@@ -11,6 +11,8 @@ public class QuestionSetForCT {
 
     private boolean isXrayProtectionToDesign;
 
+    @OneToOne
+    private QuestionForm questionForm;
 
     public QuestionSetForCT() {
     }
@@ -31,4 +33,11 @@ public class QuestionSetForCT {
         isXrayProtectionToDesign = xrayProtectionToDesign;
     }
 
+    public QuestionForm getQuestionForm() {
+        return questionForm;
+    }
+
+    public void setQuestionForm(QuestionForm questionForm) {
+        this.questionForm = questionForm;
+    }
 }

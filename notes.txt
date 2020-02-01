@@ -34,13 +34,14 @@
         - relations with DeviceCategory and Concept
 
 #
-    - HomePageService upadets for other concepts/device categories
-    - questionSet forms
-
-# 0.1.2.6
-    - New Concept save with QuestionFOrm/QuestionSetCT/XRAY
+    - update JSPs for concept details depends on additional questions
+    - errors when init DB (?)
+    - null in QuestionSetMRI/CT (questionForm_id = null) in DB from HomePageService
+    - merge branch
 
 *** DONE ***
+# 0.1.2.5.5
+    - New Concept save with QuestionForm/QuestionSetCT/XRAY
 # 0.1.2.5.4
     + New Concept save with QuenstionForm/QuestionSetMRI
 # 0.1.2.5.3

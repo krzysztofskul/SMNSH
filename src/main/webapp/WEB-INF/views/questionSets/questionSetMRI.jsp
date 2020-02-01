@@ -18,7 +18,7 @@
     <div class="container">
         <h1>ADDITIONAL QUESTION SET MRI</h1>
 
-        <form:form modelAttribute="questionSetForMRI" method="post" action="/questionSet/save">
+        <form:form modelAttribute="questionSetForMRI" method="post" action="/questionSetMRI/save">
             <div class="card">
                 <div class="card-header">
                     ${questionSetForMRI.questionForm.concept.title}
