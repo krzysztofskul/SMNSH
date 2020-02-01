@@ -8,16 +8,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
+import pl.krzysztofskul.device.category.DeviceCategory;
+import pl.krzysztofskul.device.category.DeviceCategoryService;
 import pl.krzysztofskul.order.Status;
+import pl.krzysztofskul.questionnaire.*;
+import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForCT;
+import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForMRI;
+import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForXRAY;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -30,7 +31,9 @@ public class ConceptController {
 
     private ConceptService conceptService;
     private DeviceService deviceService;
+    private DeviceCategoryService deviceCategoryService;
     private UserService userService;
+    private QuestionFormService questionFormService;
 
     /**
      * c.
@@ -39,11 +42,15 @@ public class ConceptController {
     public ConceptController(
             ConceptService conceptService,
             DeviceService deviceService,
-            UserService userService
+            DeviceCategoryService deviceCategoryService,
+            UserService userService,
+            QuestionFormService questionFormService
     ) {
         this.conceptService = conceptService;
         this.deviceService = deviceService;
+        this.deviceCategoryService = deviceCategoryService;
         this.userService = userService;
+        this.questionFormService = questionFormService;
     }
 
     /**
@@ -63,7 +70,9 @@ public class ConceptController {
     public List<Device> getDevicesAll() {
         return deviceService.loadAll();
     }
-
+    public List<DeviceCategory> getDeviceCategoryAll() {
+        return deviceCategoryService.loadAll();
+    }
     @ModelAttribute("orderStatuses")
     public Status[] getOrderStatuses() {
         return Status.values();
@@ -114,11 +123,67 @@ public class ConceptController {
     @PostMapping("/new")
     public String conceptNew(
             @ModelAttribute("conceptNew") @Valid Concept conceptNew,
-            BindingResult result
-    ) {
+            BindingResult result,
+            Model model
+    )
+    {
         if (result.hasErrors()) {
             return "orders/concepts/new";
         }
+
+        if (conceptNew.getQuestionForm() == null) {
+            /****************************
+             * ADDITION QUESTION SET REDIRECT (DEPENDS ON DEVICE CATEGORY)
+             */
+            Device device = deviceService.loadById(conceptNew.getDevice().getId());
+            Hibernate.initialize(device.getDeviceCategory());
+            switch (device.getDeviceCategory().getCode()) {
+                case "MRI": {
+                    QuestionSetForMRI questionSetForMRI = new QuestionSetForMRI();
+                    QuestionForm questionForm = new QuestionForm();
+
+                    questionForm.setQuestionSetForMRI(questionSetForMRI);
+                    questionSetForMRI.setQuestionForm(questionForm);
+                    questionForm.setConcept(conceptNew);
+
+                    conceptNew.setQuestionForm(questionForm);
+                    questionFormService.save(questionForm);
+                    conceptService.save(conceptNew);
+                    model.addAttribute("questionSetForMRI", questionSetForMRI);
+                    return "questionSets/questionSetMRI";
+                }
+                case "CT": {
+                    QuestionSetForCT questionSetForCT = new QuestionSetForCT();
+                    QuestionForm questionForm = new QuestionForm();
+
+                    questionForm.setQuestionSetForCT(questionSetForCT);
+                    questionSetForCT.setQuestionForm(questionForm);
+                    questionForm.setConcept(conceptNew);
+
+                    conceptNew.setQuestionForm(questionForm);
+                    questionFormService.save(questionForm);
+                    conceptService.save(conceptNew);
+                    model.addAttribute("questionSetForCT", questionSetForCT);
+                    return "questionSets/questionSetCT";
+                }
+                case "X-RAY": {
+                    QuestionSetForXRAY questionSetForXRAY = new QuestionSetForXRAY();
+                    QuestionForm questionForm = new QuestionForm();
+
+                    questionForm.setQuestionSetForXRAY(questionSetForXRAY);
+                    questionSetForXRAY.setQuestionForm(questionForm);
+                    questionForm.setConcept(conceptNew);
+
+                    conceptNew.setQuestionForm(questionForm);
+                    questionFormService.save(questionForm);
+                    conceptService.save(conceptNew);
+                    model.addAttribute("questionSetForXRAY", questionSetForXRAY);
+                    return "questionSets/questionSetXRAY";
+                }
+            }
+            /******************************/
+        }
+
         conceptService.save(conceptNew);
         return "redirect:/users/details/"+conceptNew.getAuthor().getId();
     }

@@ -28,6 +28,10 @@ public class DeviceCategoryService {
         deviceCategoryRepo.save(deviceCategory);
     }
 
+    public List<DeviceCategory> loadAll() {
+        return deviceCategoryRepo.findAll();
+    }
+
     public DeviceCategory loadByCode(String code) {
         return deviceCategoryRepo.findByCode(code);
     }

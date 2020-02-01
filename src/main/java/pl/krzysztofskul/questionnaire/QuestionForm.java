@@ -1,38 +1,44 @@
-package pl.krzysztofskul.device.category;
+package pl.krzysztofskul.questionnaire;
 
-import pl.krzysztofskul.device.Device;
+import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForCT;
 import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForMRI;
 import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForXRAY;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-public class DeviceCategory {
+public class QuestionForm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String code;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Concept concept;
 
-    private String name;
-
-    @OneToMany(mappedBy = "deviceCategory", cascade = CascadeType.ALL)
-    private List<Device> deviceList = new ArrayList<>();
-
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private QuestionSetForMRI questionSetForMRI;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private QuestionSetForCT questionSetForCT;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private QuestionSetForXRAY questionSetForXRAY;
 
-    public DeviceCategory() {
+    public QuestionForm() {
+    }
+
+    public QuestionForm(QuestionSetForXRAY questionSetForXRAY) {
+        this.questionSetForXRAY = questionSetForXRAY;
+    }
+
+    public QuestionForm(QuestionSetForCT questionSetForCT) {
+        this.questionSetForCT = questionSetForCT;
+    }
+
+    public QuestionForm(QuestionSetForMRI questionSetForMRI) {
+        this.questionSetForMRI = questionSetForMRI;
     }
 
     public Long getId() {
@@ -43,28 +49,12 @@ public class DeviceCategory {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public Concept getConcept() {
+        return concept;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Device> getDeviceList() {
-        return deviceList;
-    }
-
-    public void setDeviceList(List<Device> deviceList) {
-        this.deviceList = deviceList;
+    public void setConcept(Concept concept) {
+        this.concept = concept;
     }
 
     public QuestionSetForMRI getQuestionSetForMRI() {

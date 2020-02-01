@@ -1,10 +1,8 @@
 package pl.krzysztofskul;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.device.category.DeviceCategory;
@@ -16,17 +14,17 @@ import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.concept.ConceptService;
 import pl.krzysztofskul.order.guideline.Guideline;
 import pl.krzysztofskul.order.guideline.GuidelineService;
+import pl.krzysztofskul.questionnaire.*;
+import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForCT;
+import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForMRI;
+import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForXRAY;
 import pl.krzysztofskul.recipient.Recipient;
 import pl.krzysztofskul.recipient.RecipientService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserBusinessPosition;
 import pl.krzysztofskul.user.UserService;
-import pl.krzysztofskul.user.avatar.Avatar;
 import pl.krzysztofskul.user.avatar.AvatarService;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -41,6 +39,7 @@ public class HomePageService {
     private DeviceCategoryService deviceCategoryService;
     private DeviceService deviceService;
     private ConceptService conceptService;
+    private QuestionFormService questionFormService;
     private GuidelineService guidelineService;
     private InvestorService investorService;
     private RecipientService recipientService;
@@ -55,6 +54,7 @@ public class HomePageService {
             DeviceCategoryService deviceCategoryService,
             DeviceService deviceService,
             ConceptService conceptService,
+            QuestionFormService questionFormService,
             GuidelineService guidelineService,
             InvestorService investorService,
             RecipientService recipientService,
@@ -64,6 +64,7 @@ public class HomePageService {
         this.deviceCategoryService = deviceCategoryService;
         this.deviceService = deviceService;
         this.conceptService = conceptService;
+        this.questionFormService = questionFormService;
         this.guidelineService = guidelineService;
         this.investorService = investorService;
         this.recipientService = recipientService;
@@ -160,8 +161,14 @@ public class HomePageService {
             concept.setDescription("Lorem ipsum dolor sit amet mi eget sapien. Aliquam quis tortor. Cras volutpat ligula enim.");
             concept.setRemarks("Phasellus vitae ante. Duis non.");
             concept.setDevice(deviceService.loadById(Long.parseLong("1")));
+
+            QuestionForm questionForm = new QuestionForm(new QuestionSetForXRAY());
+            questionForm.getQuestionSetForXRAY().setXrayProtectionToDesign(false);
+            questionForm.getQuestionSetForXRAY().setSourceImageDistanceRequired(115);
+            questionForm.setConcept(concept);
+            questionFormService.save(questionForm);
+
             concept.setPriority("!");
-//            concept.setPlanner(userService.loadById(Long.parseLong(String.valueOf(1))));
             conceptService.save(concept);
             /** change dates of creation */
             concept = conceptService.loadById(Long.parseLong(String.valueOf(i)));
@@ -179,6 +186,12 @@ public class HomePageService {
             concept.setDescription("Drogi Marszałku, Wysoka Izbo. PKB rośnie. Różnorakie i rozwijanie struktur umożliwia w restrukturyzacji przedsiębiorstwa. Jednakże.");
             concept.setRemarks("Izbo, inwestowanie w większym stopniu.");
             concept.setDevice(deviceService.loadById(Long.parseLong("4")));
+
+            QuestionForm questionForm = new QuestionForm(new QuestionSetForCT());
+            questionForm.getQuestionSetForCT().setXrayProtectionToDesign(false);
+            questionForm.setConcept(concept);
+            questionFormService.save(questionForm);
+
             concept.setPriority("!");
             concept.setDateTimeDeadline(LocalDateTime.now().plusDays(7+i));
             conceptService.save(concept);
@@ -190,6 +203,12 @@ public class HomePageService {
             concept.setDescription("Początek traktatu czasu panowania Fryderyka Wielkiego, Króla Pruskiego żył w.");
             concept.setRemarks("Na przykład w kolei przypadków.");
             concept.setDevice(deviceService.loadById(Long.parseLong("7")));
+
+            QuestionForm questionForm = new QuestionForm(new QuestionSetForMRI());
+            questionForm.getQuestionSetForMRI().setFaradayCageToDesign(true);
+            questionForm.setConcept(concept);
+            questionFormService.save(questionForm);
+
             concept.setPriority("!");
             concept.setDateTimeDeadline(LocalDateTime.now().plusDays(7+i));
             conceptService.save(concept);
