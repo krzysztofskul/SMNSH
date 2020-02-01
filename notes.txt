@@ -34,12 +34,15 @@
         - relations with DeviceCategory and Concept
 
 #
-    - update JSPs for concept details depends on additional questions
-    - errors when init DB (?)
     - null in QuestionSetMRI/CT (questionForm_id = null) in DB from HomePageService
     - merge branch
+    - issue when new concept will be break o the add questions stage
+    - readme.md update
 
 *** DONE ***
+# 0.1.2.5.6
+    + update JSPs for concept details depends on additional questions
+    + code clean up
 # 0.1.2.5.5
     - New Concept save with QuestionForm/QuestionSetCT/XRAY
 # 0.1.2.5.4

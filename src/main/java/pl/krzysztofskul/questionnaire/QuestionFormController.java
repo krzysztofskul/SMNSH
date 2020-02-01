@@ -1,12 +1,13 @@
-package pl.krzysztofskul.questionSet;
+package pl.krzysztofskul.questionnaire;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.krzysztofskul.questionnaire.questionSet.*;
 
 @Controller
-public class QuestionSetController {
+public class QuestionFormController {
 
     private QuestionFormService questionFormService;
     private QuestionSetForMRIService questionSetForMRIService;
@@ -14,7 +15,7 @@ public class QuestionSetController {
     private QuestionSetForXRAYService questionSetForXRAYService;
 
     @Autowired
-    public QuestionSetController(
+    public QuestionFormController(
             QuestionFormService questionFormService,
             QuestionSetForMRIService questionSetForMRIService,
             QuestionSetForCTService questionSetForCTService,

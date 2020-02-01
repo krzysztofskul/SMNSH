@@ -1,9 +1,11 @@
-package pl.krzysztofskul.questionSet;
+package pl.krzysztofskul.questionnaire.questionSet;
+
+import pl.krzysztofskul.questionnaire.QuestionForm;
 
 import javax.persistence.*;
 
 @Entity
-public class QuestionSetForCT {
+public class QuestionSetForXRAY {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,10 +13,12 @@ public class QuestionSetForCT {
 
     private boolean isXrayProtectionToDesign;
 
+    private int sourceImageDistanceRequired;
+
     @OneToOne
     private QuestionForm questionForm;
 
-    public QuestionSetForCT() {
+    public QuestionSetForXRAY() {
     }
 
     public Long getId() {
@@ -31,6 +35,14 @@ public class QuestionSetForCT {
 
     public void setXrayProtectionToDesign(boolean xrayProtectionToDesign) {
         isXrayProtectionToDesign = xrayProtectionToDesign;
+    }
+
+    public int getSourceImageDistanceRequired() {
+        return sourceImageDistanceRequired;
+    }
+
+    public void setSourceImageDistanceRequired(int sourceImageDistanceRequired) {
+        this.sourceImageDistanceRequired = sourceImageDistanceRequired;
     }
 
     public QuestionForm getQuestionForm() {

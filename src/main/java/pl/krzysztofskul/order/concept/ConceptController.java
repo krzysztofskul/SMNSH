@@ -11,7 +11,10 @@ import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.device.category.DeviceCategory;
 import pl.krzysztofskul.device.category.DeviceCategoryService;
 import pl.krzysztofskul.order.Status;
-import pl.krzysztofskul.questionSet.*;
+import pl.krzysztofskul.questionnaire.*;
+import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForCT;
+import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForMRI;
+import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForXRAY;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
@@ -31,7 +34,6 @@ public class ConceptController {
     private DeviceCategoryService deviceCategoryService;
     private UserService userService;
     private QuestionFormService questionFormService;
-    private QuestionSetForMRIService questionSetForMRIService;
 
     /**
      * c.
@@ -42,15 +44,13 @@ public class ConceptController {
             DeviceService deviceService,
             DeviceCategoryService deviceCategoryService,
             UserService userService,
-            QuestionFormService questionFormService,
-            QuestionSetForMRIService questionSetForMRIService
+            QuestionFormService questionFormService
     ) {
         this.conceptService = conceptService;
         this.deviceService = deviceService;
         this.deviceCategoryService = deviceCategoryService;
         this.userService = userService;
         this.questionFormService = questionFormService;
-        this.questionSetForMRIService = questionSetForMRIService;
     }
 
     /**
@@ -125,72 +125,66 @@ public class ConceptController {
             @ModelAttribute("conceptNew") @Valid Concept conceptNew,
             BindingResult result,
             Model model
-    ) {
+    )
+    {
         if (result.hasErrors()) {
             return "orders/concepts/new";
         }
 
         if (conceptNew.getQuestionForm() == null) {
+            /****************************
+             * ADDITION QUESTION SET REDIRECT (DEPENDS ON DEVICE CATEGORY)
+             */
+            Device device = deviceService.loadById(conceptNew.getDevice().getId());
+            Hibernate.initialize(device.getDeviceCategory());
+            switch (device.getDeviceCategory().getCode()) {
+                case "MRI": {
+                    QuestionSetForMRI questionSetForMRI = new QuestionSetForMRI();
+                    QuestionForm questionForm = new QuestionForm();
 
-        /****************************
-         * ADD. QUESTION SET FORM REDIRECT
-         */
+                    questionForm.setQuestionSetForMRI(questionSetForMRI);
+                    questionSetForMRI.setQuestionForm(questionForm);
+                    questionForm.setConcept(conceptNew);
 
-        Device device = deviceService.loadById(conceptNew.getDevice().getId());
-        Hibernate.initialize(device.getDeviceCategory());
+                    conceptNew.setQuestionForm(questionForm);
+                    questionFormService.save(questionForm);
+                    conceptService.save(conceptNew);
+                    model.addAttribute("questionSetForMRI", questionSetForMRI);
+                    return "questionSets/questionSetMRI";
+                }
+                case "CT": {
+                    QuestionSetForCT questionSetForCT = new QuestionSetForCT();
+                    QuestionForm questionForm = new QuestionForm();
 
-        switch (device.getDeviceCategory().getCode()) {
-            case "MRI": {
-                QuestionSetForMRI questionSetForMRI = new QuestionSetForMRI();
-                QuestionForm questionForm = new QuestionForm();
+                    questionForm.setQuestionSetForCT(questionSetForCT);
+                    questionSetForCT.setQuestionForm(questionForm);
+                    questionForm.setConcept(conceptNew);
 
-                questionForm.setQuestionSetForMRI(questionSetForMRI);
-                questionSetForMRI.setQuestionForm(questionForm);
-                questionForm.setConcept(conceptNew);
+                    conceptNew.setQuestionForm(questionForm);
+                    questionFormService.save(questionForm);
+                    conceptService.save(conceptNew);
+                    model.addAttribute("questionSetForCT", questionSetForCT);
+                    return "questionSets/questionSetCT";
+                }
+                case "X-RAY": {
+                    QuestionSetForXRAY questionSetForXRAY = new QuestionSetForXRAY();
+                    QuestionForm questionForm = new QuestionForm();
 
-                conceptNew.setQuestionForm(questionForm);
-                questionFormService.save(questionForm);
-                conceptService.save(conceptNew);
-                model.addAttribute("questionSetForMRI", questionSetForMRI);
-                return "questionSets/questionSetMRI";
+                    questionForm.setQuestionSetForXRAY(questionSetForXRAY);
+                    questionSetForXRAY.setQuestionForm(questionForm);
+                    questionForm.setConcept(conceptNew);
+
+                    conceptNew.setQuestionForm(questionForm);
+                    questionFormService.save(questionForm);
+                    conceptService.save(conceptNew);
+                    model.addAttribute("questionSetForXRAY", questionSetForXRAY);
+                    return "questionSets/questionSetXRAY";
+                }
             }
-            case "CT": {
-                QuestionSetForCT questionSetForCT = new QuestionSetForCT();
-                QuestionForm questionForm = new QuestionForm();
-
-                questionForm.setQuestionSetForCT(questionSetForCT);
-                questionSetForCT.setQuestionForm(questionForm);
-                questionForm.setConcept(conceptNew);
-
-                conceptNew.setQuestionForm(questionForm);
-                questionFormService.save(questionForm);
-                conceptService.save(conceptNew);
-                model.addAttribute("questionSetForCT", questionSetForCT);
-                return "questionSets/questionSetCT";
-            }
-            case "X-RAY": {
-                QuestionSetForXRAY questionSetForXRAY = new QuestionSetForXRAY();
-                QuestionForm questionForm = new QuestionForm();
-
-                questionForm.setQuestionSetForXRAY(questionSetForXRAY);
-                questionSetForXRAY.setQuestionForm(questionForm);
-                questionForm.setConcept(conceptNew);
-
-                conceptNew.setQuestionForm(questionForm);
-                questionFormService.save(questionForm);
-                conceptService.save(conceptNew);
-                model.addAttribute("questionSetForXRAY", questionSetForXRAY);
-                return "questionSets/questionSetXRAY";
-            }
-        }
-
-        /**
-         *
-         ****************************/
+            /******************************/
         }
 
         conceptService.save(conceptNew);
-
         return "redirect:/users/details/"+conceptNew.getAuthor().getId();
     }
 

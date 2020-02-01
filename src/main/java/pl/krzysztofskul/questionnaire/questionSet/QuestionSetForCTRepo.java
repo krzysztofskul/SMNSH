@@ -1,4 +1,4 @@
-package pl.krzysztofskul.questionSet;
+package pl.krzysztofskul.questionnaire.questionSet;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

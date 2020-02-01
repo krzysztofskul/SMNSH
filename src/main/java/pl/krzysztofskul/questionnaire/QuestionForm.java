@@ -1,6 +1,9 @@
-package pl.krzysztofskul.questionSet;
+package pl.krzysztofskul.questionnaire;
 
 import pl.krzysztofskul.order.concept.Concept;
+import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForCT;
+import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForMRI;
+import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForXRAY;
 
 import javax.persistence.*;
 

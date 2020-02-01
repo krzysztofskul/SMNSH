@@ -1,4 +1,6 @@
-package pl.krzysztofskul.questionSet;
+package pl.krzysztofskul.questionnaire.questionSet;
+
+import pl.krzysztofskul.questionnaire.QuestionForm;
 
 import javax.persistence.*;
 

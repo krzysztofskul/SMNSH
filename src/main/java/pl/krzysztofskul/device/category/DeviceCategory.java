@@ -1,9 +1,9 @@
 package pl.krzysztofskul.device.category;
 
 import pl.krzysztofskul.device.Device;
-import pl.krzysztofskul.questionSet.QuestionSetForCT;
-import pl.krzysztofskul.questionSet.QuestionSetForMRI;
-import pl.krzysztofskul.questionSet.QuestionSetForXRAY;
+import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForCT;
+import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForMRI;
+import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForXRAY;
 
 import javax.persistence.*;
 import java.util.ArrayList;

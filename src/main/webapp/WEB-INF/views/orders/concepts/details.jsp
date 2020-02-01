@@ -193,7 +193,55 @@
                     </div>
                 </div>
                 <hr>
+                <!-- ***** ADD. QUESTION SET ****** -->
+                <div>
+                <!-- IF MRI -->
+                <c:if test="${concept.device.deviceCategory.code eq 'MRI'}">
                 <div class="row">
+                    <div class="col-6 text-right">
+                        <p class="langPL">DODATKOWY KWESTIONARIUSZ DLA MRI (PROJEKT KLATKI FARADAYA):</p>
+                        <p class="langEN">MRI QUESTION SET (FARADY CAGE TO DESIGN):</p>
+                    </div>
+                    <div class="col-6">
+                        ${concept.questionForm.questionSetForMRI.faradayCageToDesign}
+                    </div>
+                </div>
+                </c:if>
+                <!-- IF CT -->
+                <c:if test="${concept.device.deviceCategory.code eq 'CT'}">
+                <div class="row">
+                    <div class="col-6 text-right">
+                        <p class="langPL">DODATKOWY KWESTIONARIUSZ DLA CT (PROJEKT OSŁON RADIOLOG.):</p>
+                        <p class="langEN">MRI QUESTION SET (XRAY PROTECTION PROJECT TO PREPARE):</p>
+                    </div>
+                    <div class="col-6">
+                            ${concept.questionForm.questionSetForCT.xrayProtectionToDesign}
+                    </div>
+                </div>
+                </c:if>
+                <!-- IF X-RAY -->
+                <c:if test="${concept.device.deviceCategory.code eq 'X-RAY'}">
+                <div class="row">
+                    <div class="col-6 text-right">
+                        <p class="langPL">DODATKOWY KWESTIONARIUSZ DLA XRAY (PROJEKT OSŁON RADIOLOG.):</p>
+                        <p class="langEN">MRI QUESTION SET (XRAY PROTECTION PROJECT TO PREPARE):</p>
+                    </div>
+                    <div class="col-6">
+                        ${concept.questionForm.questionSetForXRAY.xrayProtectionToDesign}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 text-right">
+                        <p class="langPL">DODATKOWY KWESTIONARIUSZ DLA XRAY (WYMAGANY SID):</p>
+                        <p class="langEN">MRI QUESTION SET (SID REQUIRED):</p>
+                    </div>
+                    <div class="col-6">
+                        ${concept.questionForm.questionSetForXRAY.sourceImageDistanceRequired}
+                    </div>
+                </div>
+                </c:if>
+                <!--- ********** END ADD. QUESTION SET ******** -->
+                <div class="row mt-5 border-top">
                     <div class="col-6 text-right">
                         <p class="langPL">WYTYCZNE:</p>
                         <p class="langEN">GUDELINE:</p>
@@ -202,55 +250,6 @@
                         ID: ${concept.guideline.id}
                     </div>
                 </div>
-                <!-- ***** ADD. QUESTION SET ****** -->
-                <div class="row border-top border-bottom border-warning">
-                    <!-- IF MRI -->
-<%--                    <c:if test="${concept.device.deviceCategory eq 'MRI'}">--%>
-                        <div class="row">
-                            <div class="col-6 text-right">
-                                <p class="langPL">DODATKOWY KWESTIONARIUSZ DLA MRI (PROJEKT KLATKI FARADAYA):</p>
-                                <p class="langEN">MRI QUESTION SET (FARADY CAGE TO DESIGN):</p>
-                            </div>
-                            <div class="col-6">
-                                ${concept.questionForm.questionSetForMRI.faradayCageToDesign}
-                            </div>
-                        </div>
-<%--                    </c:if>--%>
-                    <!-- IF CT -->
-<%--                    <c:if test='${concept.device.deviceCategory == "CT"}'>--%>
-                        <div class="row">
-                            <div class="col-6 text-right">
-                                <p class="langPL">DODATKOWY KWESTIONARIUSZ DLA CT (PROJEKT OSŁON RADIOLOG.):</p>
-                                <p class="langEN">MRI QUESTION SET (XRAY PROTECTION PROJECT TO PREPARE):</p>
-                            </div>
-                            <div class="col-6">
-                                    ${concept.questionForm.questionSetForCT.xrayProtectionToDesign}
-                            </div>
-                        </div>
-<%--                    </c:if>--%>
-                    <!-- IF XRAY -->
-                        <%--                    <c:if test='${concept.device.deviceCategory == "XRAY"}'>--%>
-                        <div class="row">
-                            <div class="col-6 text-right">
-                                <p class="langPL">DODATKOWY KWESTIONARIUSZ DLA XRAY (PROJEKT OSŁON RADIOLOG.):</p>
-                                <p class="langEN">MRI QUESTION SET (XRAY PROTECTION PROJECT TO PREPARE):</p>
-                            </div>
-                            <div class="col-6">
-                                ${concept.questionForm.questionSetForXRAY.xrayProtectionToDesign}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6 text-right">
-                                <p class="langPL">DODATKOWY KWESTIONARIUSZ DLA XRAY (WYMAGANY SID):</p>
-                                <p class="langEN">MRI QUESTION SET (SID REQUIRED):</p>
-                            </div>
-                            <div class="col-6">
-                                ${concept.questionForm.questionSetForXRAY.sourceImageDistanceRequired}
-                            </div>
-                        </div>
-                    <%--                    </c:if>--%>
-                </div>
-                <!--- ********** END ADD. QUESTION SET ******** -->
             </div>
             <div class="card-footer">
                 <a href="/concepts/all" class="btn btn-warning">
