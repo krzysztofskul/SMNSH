@@ -202,7 +202,16 @@
                         ID: ${concept.guideline.id}
                     </div>
                 </div>
-
+                <!-- ***** ADD. QUESTION SET ****** -->
+                <div class="row border-top border-warning">
+                    <div class="col-6 text-right">
+                        <p class="langPL">DODATKOWY KWESTIONARIUSZ DLA MRI (PROJEKT KLATKI FARADAYA):</p>
+                        <p class="langEN">MRI QUESTION SET (FARADY CAGE TO DESIGN):</p>
+                    </div>
+                    <div class="col-6">
+                        ${concept.questionForm.questionSetForMRI.faradayCageToDesign}
+                    </div>
+                </div>
             </div>
             <div class="card-footer">
                 <a href="/concepts/all" class="btn btn-warning">

@@ -11,19 +11,11 @@ import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.device.category.DeviceCategory;
 import pl.krzysztofskul.device.category.DeviceCategoryService;
 import pl.krzysztofskul.order.Status;
-import pl.krzysztofskul.questionSet.QuestionForm;
-import pl.krzysztofskul.questionSet.QuestionSetForCT;
-import pl.krzysztofskul.questionSet.QuestionSetForMRI;
-import pl.krzysztofskul.questionSet.QuestionSetForXRAY;
+import pl.krzysztofskul.questionSet.*;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -38,6 +30,8 @@ public class ConceptController {
     private DeviceService deviceService;
     private DeviceCategoryService deviceCategoryService;
     private UserService userService;
+    private QuestionFormService questionFormService;
+    private QuestionSetForMRIService questionSetForMRIService;
 
     /**
      * c.
@@ -47,12 +41,16 @@ public class ConceptController {
             ConceptService conceptService,
             DeviceService deviceService,
             DeviceCategoryService deviceCategoryService,
-            UserService userService
+            UserService userService,
+            QuestionFormService questionFormService,
+            QuestionSetForMRIService questionSetForMRIService
     ) {
         this.conceptService = conceptService;
         this.deviceService = deviceService;
         this.deviceCategoryService = deviceCategoryService;
         this.userService = userService;
+        this.questionFormService = questionFormService;
+        this.questionSetForMRIService = questionSetForMRIService;
     }
 
     /**
@@ -125,11 +123,14 @@ public class ConceptController {
     @PostMapping("/new")
     public String conceptNew(
             @ModelAttribute("conceptNew") @Valid Concept conceptNew,
-            BindingResult result
+            BindingResult result,
+            Model model
     ) {
         if (result.hasErrors()) {
             return "orders/concepts/new";
         }
+
+        if (conceptNew.getQuestionForm() == null) {
 
         /****************************
          * ADD. QUESTION SET FORM REDIRECT
@@ -143,7 +144,12 @@ public class ConceptController {
                 QuestionSetForMRI questionSetForMRI = new QuestionSetForMRI();
                 QuestionForm questionForm = new QuestionForm();
                 questionForm.setQuestionSetForMRI(questionSetForMRI);
+                questionSetForMRI.setQuestionForm(questionForm);
+                questionForm.setConcept(conceptNew);
                 conceptNew.setQuestionForm(questionForm);
+                questionFormService.save(questionForm);
+                conceptService.save(conceptNew);
+                model.addAttribute("questionSetForMRI", questionSetForMRI);
                 return "questionSets/questionSetMRI";
             }
             case "CT": {
@@ -165,6 +171,8 @@ public class ConceptController {
         /**
          *
          ****************************/
+        }
+
         conceptService.save(conceptNew);
 
         return "redirect:/users/details/"+conceptNew.getAuthor().getId();

@@ -11,6 +11,9 @@ public class QuestionSetForMRI {
 
     private boolean isFaradayCageToDesign;
 
+    @OneToOne
+    private QuestionForm questionForm;
+
     public QuestionSetForMRI() {
     }
 
@@ -30,4 +33,11 @@ public class QuestionSetForMRI {
         isFaradayCageToDesign = faradayCageToDesign;
     }
 
+    public QuestionForm getQuestionForm() {
+        return questionForm;
+    }
+
+    public void setQuestionForm(QuestionForm questionForm) {
+        this.questionForm = questionForm;
+    }
 }

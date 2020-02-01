@@ -19,4 +19,8 @@ public class QuestionFormService {
         questionFormRepo.save(questionForm);
     }
 
+    public QuestionForm loadById(Long id) {
+        return questionFormRepo.findById(id).get();
+    }
+
 }
