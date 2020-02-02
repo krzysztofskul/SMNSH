@@ -13,7 +13,7 @@ public class QuestionSetForMRI {
 
     private boolean isFaradayCageToDesign;
 
-    @OneToOne
+    @OneToOne(mappedBy = "questionSetForMRI")
     private QuestionForm questionForm;
 
     public QuestionSetForMRI() {

@@ -15,7 +15,7 @@ public class QuestionSetForXRAY {
 
     private int sourceImageDistanceRequired;
 
-    @OneToOne
+    @OneToOne(mappedBy = "questionSetForXRAY")
     private QuestionForm questionForm;
 
     public QuestionSetForXRAY() {

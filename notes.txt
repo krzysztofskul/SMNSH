@@ -32,11 +32,12 @@
         - form:select device sorted by deviceCategory
     + new Classes QuestionSetForMRI/CT/XRAY
         - relations with DeviceCategory and Concept
-    - null in QuestionSetMRI/CT (questionForm_id = null) in DB from HomePageService
-    - issue when new concept will be break o the add questions stage
+    - issue when new concept will be break on the add questions stage
 
 
 *** DONE ***
+# 0.1.2.7
+    + relations updates for Concept / QuestionForm / QuestionSet
 # 0.1.2.6
     + updates connected with setting planner and status (after questionnaire depended od device category functionality added)
 # 0.1.2.5.7

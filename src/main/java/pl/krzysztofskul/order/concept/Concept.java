@@ -49,7 +49,7 @@ public class Concept extends Order {
     @ManyToOne
     private User planner;
 
-    @OneToOne(mappedBy = "concept", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private QuestionForm questionForm;
 
     /**

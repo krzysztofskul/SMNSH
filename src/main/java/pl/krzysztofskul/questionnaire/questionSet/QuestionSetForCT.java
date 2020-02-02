@@ -13,7 +13,7 @@ public class QuestionSetForCT {
 
     private boolean isXrayProtectionToDesign;
 
-    @OneToOne
+    @OneToOne(mappedBy = "questionSetForCT")
     private QuestionForm questionForm;
 
     public QuestionSetForCT() {

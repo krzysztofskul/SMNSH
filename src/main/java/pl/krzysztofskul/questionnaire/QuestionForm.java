@@ -14,7 +14,7 @@ public class QuestionForm {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "questionForm", cascade = CascadeType.ALL)
     private Concept concept;
 
     @OneToOne(cascade = CascadeType.ALL)

@@ -15,9 +15,7 @@ import pl.krzysztofskul.order.concept.ConceptService;
 import pl.krzysztofskul.order.guideline.Guideline;
 import pl.krzysztofskul.order.guideline.GuidelineService;
 import pl.krzysztofskul.questionnaire.*;
-import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForCT;
-import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForMRI;
-import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForXRAY;
+import pl.krzysztofskul.questionnaire.questionSet.*;
 import pl.krzysztofskul.recipient.Recipient;
 import pl.krzysztofskul.recipient.RecipientService;
 import pl.krzysztofskul.user.User;
@@ -27,6 +25,7 @@ import pl.krzysztofskul.user.avatar.AvatarService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Random;
 
 @Service
 @Transactional
@@ -40,6 +39,9 @@ public class HomePageService {
     private DeviceService deviceService;
     private ConceptService conceptService;
     private QuestionFormService questionFormService;
+    private QuestionSetForXRAYService questionSetForXRAYService;
+    private QuestionSetForCTService questionSetForCTService;
+    private QuestionSetForMRIService questionSetForMRIService;
     private GuidelineService guidelineService;
     private InvestorService investorService;
     private RecipientService recipientService;
@@ -55,6 +57,9 @@ public class HomePageService {
             DeviceService deviceService,
             ConceptService conceptService,
             QuestionFormService questionFormService,
+            QuestionSetForXRAYService questionSetForXRAYService,
+            QuestionSetForCTService questionSetForCTService,
+            QuestionSetForMRIService questionSetForMRIService,
             GuidelineService guidelineService,
             InvestorService investorService,
             RecipientService recipientService,
@@ -65,6 +70,9 @@ public class HomePageService {
         this.deviceService = deviceService;
         this.conceptService = conceptService;
         this.questionFormService = questionFormService;
+        this.questionSetForXRAYService = questionSetForXRAYService;
+        this.questionSetForCTService = questionSetForCTService;
+        this.questionSetForMRIService = questionSetForMRIService;
         this.guidelineService = guidelineService;
         this.investorService = investorService;
         this.recipientService = recipientService;
@@ -162,14 +170,24 @@ public class HomePageService {
             concept.setRemarks("Phasellus vitae ante. Duis non.");
             concept.setDevice(deviceService.loadById(Long.parseLong("1")));
 
-            QuestionForm questionForm = new QuestionForm(new QuestionSetForXRAY());
-            questionForm.getQuestionSetForXRAY().setXrayProtectionToDesign(false);
-            questionForm.getQuestionSetForXRAY().setSourceImageDistanceRequired(115);
+            QuestionForm questionForm = new QuestionForm();
+            QuestionSetForXRAY questionSetForXRAY = new QuestionSetForXRAY();
+
+            questionForm.setQuestionSetForXRAY(questionSetForXRAY);
+            questionSetForXRAY.setQuestionForm(questionForm);
             questionForm.setConcept(concept);
-            questionFormService.save(questionForm);
+            concept.setQuestionForm(questionForm);
 
             concept.setPriority("!");
             conceptService.save(concept);
+
+            questionSetForXRAY.setXrayProtectionToDesign(new Random().nextBoolean());
+            questionSetForXRAY.setSourceImageDistanceRequired(new Random().nextInt(200));
+
+            questionForm =questionFormService.loadById(questionSetForXRAY.getQuestionForm().getId());
+            questionSetForXRAY.setQuestionForm(questionForm);
+            questionSetForXRAYService.save(questionSetForXRAY);
+
             /** change dates of creation */
             concept = conceptService.loadById(Long.parseLong(String.valueOf(i)));
             concept.setDateTimeCreated(LocalDateTime.now().minusDays(31-i));
@@ -187,14 +205,24 @@ public class HomePageService {
             concept.setRemarks("Izbo, inwestowanie w większym stopniu.");
             concept.setDevice(deviceService.loadById(Long.parseLong("4")));
 
-            QuestionForm questionForm = new QuestionForm(new QuestionSetForCT());
-            questionForm.getQuestionSetForCT().setXrayProtectionToDesign(false);
+            QuestionForm questionForm = new QuestionForm();
+            QuestionSetForCT questionSetForCT = new QuestionSetForCT();
+
+            questionForm.setQuestionSetForCT(questionSetForCT);
+            questionSetForCT.setQuestionForm(questionForm);
             questionForm.setConcept(concept);
-            questionFormService.save(questionForm);
+            concept.setQuestionForm(questionForm);
 
             concept.setPriority("!");
             concept.setDateTimeDeadline(LocalDateTime.now().plusDays(7+i));
             conceptService.save(concept);
+
+            questionSetForCT.setXrayProtectionToDesign(new Random().nextBoolean());
+
+            questionForm =questionFormService.loadById(questionSetForCT.getQuestionForm().getId());
+            questionSetForCT.setQuestionForm(questionForm);
+            questionSetForCTService.save(questionSetForCT);
+
         }
         for (int i = 9; i <= 9; i++) {
             Concept concept = new Concept();
@@ -204,14 +232,24 @@ public class HomePageService {
             concept.setRemarks("Na przykład w kolei przypadków.");
             concept.setDevice(deviceService.loadById(Long.parseLong("7")));
 
-            QuestionForm questionForm = new QuestionForm(new QuestionSetForMRI());
-            questionForm.getQuestionSetForMRI().setFaradayCageToDesign(true);
-            questionForm.setConcept(concept);
-            questionFormService.save(questionForm);
+            QuestionForm questionForm = new QuestionForm();
+            QuestionSetForMRI questionSetForMRI = new QuestionSetForMRI();
 
+            questionForm.setQuestionSetForMRI(questionSetForMRI);
+            questionSetForMRI.setQuestionForm(questionForm);
+            questionForm.setConcept(concept);
+            concept.setQuestionForm(questionForm);
+            
             concept.setPriority("!");
             concept.setDateTimeDeadline(LocalDateTime.now().plusDays(7+i));
             conceptService.save(concept);
+
+            questionSetForMRI.setFaradayCageToDesign(new Random().nextBoolean());
+
+            questionForm =questionFormService.loadById(questionSetForMRI.getQuestionForm().getId());
+            questionSetForMRI.setQuestionForm(questionForm);
+            questionSetForMRIService.save(questionSetForMRI);
+            
         }
     }
 
