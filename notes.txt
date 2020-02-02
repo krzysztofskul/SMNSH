@@ -35,7 +35,10 @@
     - null in QuestionSetMRI/CT (questionForm_id = null) in DB from HomePageService
     - issue when new concept will be break o the add questions stage
 
+
 *** DONE ***
+# 0.1.2.6
+    + updates connected with setting planner and status (after questionnaire depended od device category functionality added)
 # 0.1.2.5.7
     + readme.md update
 # 0.1.2.5.6
