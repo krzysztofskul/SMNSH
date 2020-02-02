@@ -51,4 +51,22 @@ public class DeviceCategoryService {
         deviceList.remove(device);
         deviceCategory.setDeviceList(deviceList);
     }
+
+    /***
+     * NO CRUD METHODS
+     */
+
+    public boolean isExistent(String value) {
+        List<DeviceCategory> deviceCategoryList = deviceCategoryRepo.findAll();
+
+        if (deviceCategoryList.size() != 0) {
+            for (DeviceCategory deviceCategory : deviceCategoryList) {
+                if (deviceCategory.getCode().equals(value)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }

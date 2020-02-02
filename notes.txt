@@ -27,8 +27,6 @@
 
 #
     + new Class DeviceCategory
-        - code @Unique
-        - additional questions for new concept depends on device category
         - form:select device sorted by deviceCategory
     + new Classes QuestionSetForMRI/CT/XRAY
         - relations with DeviceCategory and Concept
@@ -36,6 +34,8 @@
 
 
 *** DONE ***
+# 0.1.2.8
+    + DeviceCategory code @Unique
 # 0.1.2.7
     + relations updates for Concept / QuestionForm / QuestionSet
 # 0.1.2.6

@@ -4,6 +4,7 @@ import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForCT;
 import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForMRI;
 import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForXRAY;
+import pl.krzysztofskul.validator.UniqueCode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class DeviceCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @UniqueCode
     private String code;
 
     private String name;
