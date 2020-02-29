@@ -14,6 +14,8 @@ import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.concept.ConceptService;
 import pl.krzysztofskul.order.guideline.Guideline;
 import pl.krzysztofskul.order.guideline.GuidelineService;
+import pl.krzysztofskul.project.Project;
+import pl.krzysztofskul.project.ProjectService;
 import pl.krzysztofskul.questionnaire.*;
 import pl.krzysztofskul.questionnaire.questionSet.*;
 import pl.krzysztofskul.recipient.Recipient;
@@ -25,6 +27,8 @@ import pl.krzysztofskul.user.avatar.AvatarService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -45,6 +49,7 @@ public class HomePageService {
     private GuidelineService guidelineService;
     private InvestorService investorService;
     private RecipientService recipientService;
+    private ProjectService projectService;
     private AvatarService avatarService;
 
     /** constr.
@@ -63,6 +68,7 @@ public class HomePageService {
             GuidelineService guidelineService,
             InvestorService investorService,
             RecipientService recipientService,
+            ProjectService projectService,
             AvatarService avatarService
     ) {
         this.userService = userService;
@@ -76,6 +82,7 @@ public class HomePageService {
         this.guidelineService = guidelineService;
         this.investorService = investorService;
         this.recipientService = recipientService;
+        this.projectService = projectService;
         this.avatarService = avatarService;
     }
 
@@ -307,6 +314,26 @@ public class HomePageService {
             device.setModel("MRI device / model "+(i-6));
             device.setDeviceCategory(deviceCategoryService.loadByCode("MRI"));
             deviceService.save(device);
+        }
+    }
+
+    public void createProjects() {
+        for (int i = 1; i <= 2; i++) {
+            Project project = new Project();
+            project.setProjectName("Test project no. "+i);
+            project.setAgreementNo("AGR-NO-WAW-00"+i+"-2020");
+            project.setDeadline(LocalDateTime.now().plusDays(Long.parseLong("28")));
+            project.setStatus("in progress");
+            List<Device> deviceList = new ArrayList<>();
+            deviceList.add(deviceService.loadById(Long.valueOf("1")+i));
+            deviceList.add(deviceService.loadById(Long.valueOf("4")+i));
+            project.setDeviceList(deviceList);
+            project.setBuildingContractor("BC GmbH & Co. KG");
+            project.setInvestor("MED Investor Sp. z o.o.");
+            project.setRecipient("City Hospital, Diagnostic Dep., Room "+i+"00, Room "+i+"20");
+            project.setSls("Sales Rep. name and surname");
+            project.setProjectManager(userService.loadById(Long.valueOf("3")+i));
+            projectService.save(project);
         }
     }
 }

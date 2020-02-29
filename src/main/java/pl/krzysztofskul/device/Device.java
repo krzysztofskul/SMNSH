@@ -3,6 +3,7 @@ package pl.krzysztofskul.device;
 import pl.krzysztofskul.device.category.DeviceCategory;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.guideline.Guideline;
+import pl.krzysztofskul.project.Project;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ public class Device {
 
     @ManyToOne
     private DeviceCategory deviceCategory;
+
+    @ManyToMany(mappedBy = "deviceList")
+    private List<Project> projectList = new ArrayList<>();
 
     /**
      * constr.
@@ -76,6 +80,14 @@ public class Device {
 
     public void setDeviceCategory(DeviceCategory deviceCategory) {
         this.deviceCategory = deviceCategory;
+    }
+
+    public List<Project> getProjectList() {
+        return projectList;
+    }
+
+    public void setProjectList(List<Project> projectList) {
+        this.projectList = projectList;
     }
 
     /**

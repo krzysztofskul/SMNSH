@@ -3,6 +3,7 @@ package pl.krzysztofskul.user;
 import org.mindrot.jbcrypt.BCrypt;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.guideline.Guideline;
+import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.user.avatar.Avatar;
 import pl.krzysztofskul.validator.PasswordMatch;
 import pl.krzysztofskul.validator.UniqueEmail;
@@ -57,6 +58,9 @@ public class User {
 
     @OneToMany(mappedBy = "planner", cascade = CascadeType.ALL)
     private List<Concept> conceptListToDo = new ArrayList<>();
+
+    @OneToMany(mappedBy = "projectManager", cascade = CascadeType.ALL)
+    private List<Project> projectList = new ArrayList<>();
 
     @OneToOne
     private Avatar avatar;
@@ -149,6 +153,14 @@ public class User {
 
     public void setConceptListToDo(List<Concept> conceptListToDo) {
         this.conceptListToDo = conceptListToDo;
+    }
+
+    public List<Project> getProjectList() {
+        return projectList;
+    }
+
+    public void setProjectList(List<Project> projectList) {
+        this.projectList = projectList;
     }
 
     public Avatar getAvatar() {

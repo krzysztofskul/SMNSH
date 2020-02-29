@@ -32,6 +32,7 @@ public class HomePageController {
 		homePageService.createGuidelines();
 		homePageService.createInvestors();
 		homePageService.createRecipients();
+		homePageService.createProjects();
 		return "redirect:/home";
 	}
 
