@@ -43,8 +43,11 @@ public class UserService {
     }
 
     public List<User> loadAllDesigners() {
-
         return userRepo.findAllByBusinessPosition(UserBusinessPosition.PLANNER);
+    }
+
+    public List<User> loadAllProjectManagers() {
+        return userRepo.findAllByBusinessPosition(UserBusinessPosition.PROJECT_MANAGER);
     }
 
     public User loadById(Long id) {

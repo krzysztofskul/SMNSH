@@ -39,7 +39,7 @@ public class Project {
 
     @ManyToMany
     @JoinTable(
-            name = "projects_rooms",
+            name = "projects_devices",
             joinColumns = @JoinColumn(name = "project_id"),
             inverseJoinColumns = @JoinColumn(name = "device_id")
     )
@@ -54,6 +54,7 @@ public class Project {
     private String remarks;
 
     public Project() {
+        this.deadline = LocalDateTime.now().plusDays(Long.parseLong("1"));
     }
 
     public Long getId() {

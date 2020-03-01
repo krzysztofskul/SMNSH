@@ -42,7 +42,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-3 border-bottom pb-1">
                                     <a href="#" class="btn btn-danger float-right ml-1">
                                         <p class="langPL">USUŃ</p>
                                         <p class="langEN">DEL</p>
@@ -71,6 +71,16 @@
                                                 ${project.projectManager.nameFirst} ${project.projectManager.nameLast}
                                         </div>
                                     </div>
+                                    <c:forEach items="${project.deviceList}" var="device">
+                                        <div class="row">
+                                            <div class="col-1 bg-light">
+                                                    ${device.deviceCategory.code}
+                                            </div>
+                                            <div class="col-11">
+                                                ${device.deviceCategory.name} ${device.model}
+                                            </div>
+                                        </div>
+                                    </c:forEach>
                                     <div class="row">
                                         <div class="col">
                                                 ${project.status}

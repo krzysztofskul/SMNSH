@@ -31,6 +31,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link btn-light ml-1 mr-1" href="/projects/all">
+                    <p class="langPL">PROJEKTY</p>
+                    <p class="langEN">PROJECTS</p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link btn-light ml-1 mr-1" href="/concepts/all?filter=all">
                     <p class="langPL">ZAMÓWIENIA KONCEPCJI</p>
                     <p class="langEN">CONCEPT ORDERS</p>

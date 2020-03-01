@@ -26,6 +26,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import pl.krzysztofskul.device.DeviceConverter;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -101,5 +102,14 @@ public class AppConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry handlerRegistry) {
         handlerRegistry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
-    
+
+    @Bean
+    public DeviceConverter getDeviceCOnverter() {
+        return new DeviceConverter();
+    }
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(getDeviceCOnverter());
+    }
 }

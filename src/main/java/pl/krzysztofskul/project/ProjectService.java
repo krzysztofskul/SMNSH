@@ -1,5 +1,6 @@
 package pl.krzysztofskul.project;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,4 +26,11 @@ public class ProjectService {
         return projectRepo.findAll();
     }
 
+    public List<Project> loadAllWithDeviceList() {
+        List<Project> projectList = projectRepo.findAll();
+        for (Project project : projectList) {
+            Hibernate.initialize(project.getDeviceList());
+        }
+        return projectList;
+    }
 }

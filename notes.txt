@@ -29,13 +29,18 @@
         - project card class
             - save new
                 . init. DB
-                - form
+                . jsp form
+                    - LocalDateTime
+                - validation
             . view all
             - details/edit
     . pom.xml
+    - menu update
     - readme.md
 
 *** DONE ***
+# 0.2.1
+    + jsp form for new project card
 # 0.2.0-BRANCH:PROJECTCARD
     + new branch for new idea: project manager's project card
     + new classes:

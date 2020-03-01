@@ -7,16 +7,40 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.krzysztofskul.device.Device;
+import pl.krzysztofskul.device.DeviceService;
+import pl.krzysztofskul.user.User;
+import pl.krzysztofskul.user.UserService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/projects")
 public class projectController {
 
     private ProjectService projectService;
+    private DeviceService deviceService;
+    private UserService userService;
 
     @Autowired
-    public projectController(ProjectService projectService) {
+    public projectController(
+            ProjectService projectService,
+            DeviceService deviceService,
+            UserService userService
+    ) {
         this.projectService = projectService;
+        this.deviceService = deviceService;
+        this.userService = userService;
+    }
+
+    @ModelAttribute("allDeviceList")
+    public List<Device> getAllDeviceList() {
+        return deviceService.loadAll();
+    }
+
+    @ModelAttribute("allProjectManagerList")
+    public List<User> getAllUserList() {
+        return userService.loadAllProjectManagers();
     }
 
     @GetMapping("/new")
@@ -32,14 +56,14 @@ public class projectController {
             @ModelAttribute("projectNew") Project projectNew
     ) {
         projectService.save(projectNew);
-        return "projects/all";
+        return "redirect:/projects/all";
     }
 
     @GetMapping("/all")
     public String projectsAll(
             Model model
     ) {
-        model.addAttribute("projectsAll", projectService.loadAll());
+        model.addAttribute("projectsAll", projectService.loadAllWithDeviceList());
         return "projects/all";
     }
 

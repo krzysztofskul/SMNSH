@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/users/all","/concepts/*", "/guidelines/*, /projects/*"})
+@WebFilter(urlPatterns = {"/users/all","/concepts/*", "/guidelines/*", "/projects/*"})
 public class Authorization extends GenericFilterBean {
 
     @Override
