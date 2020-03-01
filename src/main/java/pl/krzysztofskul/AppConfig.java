@@ -6,11 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.format.FormatterRegistry;
-import org.springframework.format.datetime.DateFormatter;
-import org.springframework.format.datetime.DateFormatterRegistrar;
-import org.springframework.format.number.NumberFormatAnnotationFormatterFactory;
-import org.springframework.format.support.DefaultFormattingConversionService;
-import org.springframework.format.support.FormattingConversionService;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -27,6 +22,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import pl.krzysztofskul.device.DeviceConverter;
+import pl.krzysztofskul.localDateTime.LocalDateTimeConverter;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -104,12 +100,19 @@ public class AppConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public DeviceConverter getDeviceCOnverter() {
+    public DeviceConverter getDeviceConverter() {
         return new DeviceConverter();
     }
 
+    @Bean
+    public LocalDateTimeConverter getLocalDateTimeConverter() {
+        return new LocalDateTimeConverter();
+    }
+
+
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(getDeviceCOnverter());
+        registry.addConverter(getDeviceConverter());
+        registry.addConverter(getLocalDateTimeConverter());
     }
 }

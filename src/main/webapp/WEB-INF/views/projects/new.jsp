@@ -94,7 +94,7 @@
                             <p class="langEN">DEADLINE:</p>
                         </div>
                         <div class="col-8">
-                            <form:input path="deadline" cssClass="w-100"/>
+                            <form:input type="date" path="deadline" cssClass="w-100"/>
                         </div>
                     </div>
 

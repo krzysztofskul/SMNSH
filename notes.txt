@@ -30,7 +30,7 @@
             - save new
                 . init. DB
                 . jsp form
-                    - LocalDateTime
+                    . LocalDate String to LocalDateTime converter
                 - validation
             . view all
             - details/edit
@@ -39,6 +39,8 @@
     - readme.md
 
 *** DONE ***
+# 0.2.2
+    + LocalDate String to LocalDateTime converter for new project form
 # 0.2.1
     + jsp form for new project card
 # 0.2.0-BRANCH:PROJECTCARD

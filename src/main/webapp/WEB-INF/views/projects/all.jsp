@@ -86,7 +86,7 @@
                                                 ${project.status}
                                         </div>
                                         <div class="col">
-                                                ${project.deadline}
+                                                ${project.deadline.toLocalDate()} ${project.deadline.toLocalTime()}
                                         </div>
                                     </div>
                                 </div>
