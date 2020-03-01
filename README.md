@@ -74,3 +74,10 @@ Aplikacja wspiera zarządzanie dokumentacją techniczną oraz komunikację pomi�
 
   <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_guidelinesorder_001.png)-->
   <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_guidelinesorder_001.png" width="400"/>
+  
+## KARTA PROJEKTU / *PROJECT CARD*
+
+    w toku... / in progress...
+
+  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_allprojects_001.png" width="400"/>
+  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_newprojectform_001.png" width="400"/>

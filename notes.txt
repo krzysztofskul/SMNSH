@@ -27,7 +27,7 @@
 # 0.2.0-BRANCH:PROJECTCARD
     - new idea / new branch (Project Manager's Project Card)
         - project card class
-            - save new
+            . save new
                 . init. DB
                 . jsp form
                     . LocalDate String to LocalDateTime converter
@@ -35,10 +35,11 @@
             . view all
             - details/edit
     . pom.xml
-    - menu update
-    - readme.md
+    . menu update
+    . readme.md
 
 *** DONE ***
+# 0.2.2-SNAPSHOT
 # 0.2.2
     + LocalDate String to LocalDateTime converter for new project form
 # 0.2.1
