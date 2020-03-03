@@ -33,12 +33,15 @@
                     . LocalDate String to LocalDateTime converter
                 - validation
             . view all
-            . details/edit
+            . details
+            - edit
     . pom.xml
     . menu update
     . readme.md
 
 *** DONE ***
+# 0.2.3
+    + readme update
 # 0.2.3
     + project details jsp added
 # 0.2.2-SNAPSHOT
