@@ -333,6 +333,7 @@ public class HomePageService {
             project.setRecipient("City Hospital, Diagnostic Dep., Room "+i+"00, Room "+i+"20");
             project.setSls("Sales Rep. name and surname");
             project.setProjectManager(userService.loadById(Long.valueOf("3")+i));
+            project.setRemarks("Lorem ipsum. Lorem ipsum dolor sit amet leo. Suspendisse potenti. Suspend fringilla mi, viverra et, porttitor sem nec diam. Phasellus a mauris. Pellentesque scelerisque rhoncus tortor. In hac habitasse plate dictumst.");
             projectService.save(project);
         }
     }

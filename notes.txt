@@ -24,7 +24,7 @@
         - relations with DeviceCategory and Concept
     - issue when new concept will be break on the add questions stage
 
-# 0.2.0-BRANCH:PROJECTCARD
+# 0.2.4
     - new idea / new branch (Project Manager's Project Card)
         - project card class
             . save new
@@ -33,12 +33,14 @@
                     . LocalDate String to LocalDateTime converter
                 - validation
             . view all
-            - details/edit
+            . details/edit
     . pom.xml
     . menu update
     . readme.md
 
 *** DONE ***
+# 0.2.3
+    + project details jsp added
 # 0.2.2-SNAPSHOT
 # 0.2.2
     + LocalDate String to LocalDateTime converter for new project form

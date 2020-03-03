@@ -30,7 +30,10 @@
                     <div class="row border-top border-bottom pt-1 pb-1">
                         <div class="col-12">
                             <div class="row">
-                                <div class="col-9 font-weight-bold">
+                                <div class="col-1">
+                                    ${project.id}
+                                </div>
+                                <div class="col-8 font-weight-bold">
                                     <div class="row">
                                         <div class="col">
                                                 ${project.investor}
@@ -47,7 +50,7 @@
                                         <p class="langPL">USUŃ</p>
                                         <p class="langEN">DEL</p>
                                     </a>
-                                    <a href="#" class="btn btn-primary float-right">
+                                    <a href="/projects/details/${project.id}" class="btn btn-primary float-right">
                                         <p class="langPL">SZCZEGÓŁY</p>
                                         <p class="langEN">DETAILS</p>
                                     </a>

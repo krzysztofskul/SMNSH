@@ -33,4 +33,11 @@ public class ProjectService {
         }
         return projectList;
     }
+
+    public Project loadByIdWithDeviceList(Long id) {
+        Project project = projectRepo.findById(id).get();
+        Hibernate.initialize(project.getDeviceList());
+        return project;
+    }
+
 }

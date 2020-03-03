@@ -79,5 +79,6 @@ Aplikacja wspiera zarządzanie dokumentacją techniczną oraz komunikację pomi�
 
     w toku... / in progress...
 
-  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_allprojects_001.png" width="400"/>
-  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_newprojectform_001.png" width="400"/>
+  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_allprojects_001.png" width="200"/>
+  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_newprojectform_001.png" width="200"/>
+  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_projectDetails_001.png" width="200"/>
