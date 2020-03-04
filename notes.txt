@@ -23,8 +23,9 @@
     + new Classes QuestionSetForMRI/CT/XRAY
         - relations with DeviceCategory and Concept
     - issue when new concept will be break on the add questions stage
+    - connect project with orders for conceptual project and guidelines
 
-# 0.2.4
+# 0.2.5
     - new idea / new branch (Project Manager's Project Card)
         - project card class
             . save new
@@ -35,11 +36,18 @@
             . view all
             . details
             - edit
+                . deadline initially checked
+                - devices initially checked
     . pom.xml
     . menu update
     . readme.md
+    . LocalDateTime To String Converter
 
 *** DONE ***
+# 0.2.4
+    + project card edit form added
+    + readme update
+    + LocalDateTime To String Converter added
 # 0.2.3
     + readme update
 # 0.2.3

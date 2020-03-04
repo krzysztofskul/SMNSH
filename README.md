@@ -82,3 +82,4 @@ Aplikacja wspiera zarządzanie dokumentacją techniczną oraz komunikację pomi�
   <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_allprojects_001.png" width="200"/>
   <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_newprojectform_001.png" width="200"/>
   <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_projectDetails_001.png" width="200"/>
+  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_projectEdit_001.png" width="200"/>

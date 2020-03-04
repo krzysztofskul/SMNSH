@@ -23,6 +23,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import pl.krzysztofskul.device.DeviceConverter;
 import pl.krzysztofskul.localDateTime.LocalDateTimeConverter;
+import pl.krzysztofskul.localDateTime.LocalDateTimeConverterToString;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -108,11 +109,16 @@ public class AppConfig implements WebMvcConfigurer {
     public LocalDateTimeConverter getLocalDateTimeConverter() {
         return new LocalDateTimeConverter();
     }
+    @Bean
+    public LocalDateTimeConverterToString getLocalDateTimeConverterToString() {
+        return new LocalDateTimeConverterToString();
+    }
 
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(getDeviceConverter());
         registry.addConverter(getLocalDateTimeConverter());
+        registry.addConverter(getLocalDateTimeConverterToString());
     }
 }

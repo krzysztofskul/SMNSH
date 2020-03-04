@@ -67,10 +67,30 @@ public class ProjectController {
     @GetMapping("/details/{id}")
     public String projectDetails(
             @PathVariable("id") Long id,
+            @RequestParam(name = "edit", required = false) String edit,
             Model model
     ) {
+        if (edit == null && model.containsAttribute("edit")) {
+            model.addAttribute("edit", false);
+        }
+        if (edit  != null && edit.equals("true")) {
+            model.addAttribute("edit", true);
+        }
         model.addAttribute("project", projectService.loadByIdWithDeviceList(id));
         return "projects/details";
+    }
+
+    @PostMapping("/details/{id}")
+    private String projectDetailsUpdate(
+            @PathVariable("id") Long id,
+            @ModelAttribute("project") Project project,
+            Model model
+    ) {
+        if (model.containsAttribute("edit")) {
+            model.addAttribute("edit", false);
+        }
+        projectService.save(project);
+        return "redirect:/projects/details/"+id;
     }
 
 }
