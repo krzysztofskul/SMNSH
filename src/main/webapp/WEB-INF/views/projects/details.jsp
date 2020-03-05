@@ -203,10 +203,21 @@
                     </div>
                     <c:choose>
                         <c:when test="${edit eq true}">
-                            <form:select path="deviceList" multiple="true" cssClass="w-100"
-                                         items="${allDeviceList}" itemValue="id"
-                                         itemLabel="model"
-                            />
+                            <form:select path="deviceList" multiple="true" cssClass="w-100">
+                                <c:forEach items="${allDeviceList}" var="device">
+                                    <c:set var="marked" value="false"/>
+                                    <c:forEach items="${project.deviceList}" var="deviceInProject">
+                                        <c:if test="${device.id.toString() eq deviceInProject.id.toString()}">
+                                            <form:option value="${device.id}" label="${device.model}" selected="true"/>
+                                            <c:set var="marked" value="true"/>
+                                        </c:if>
+                                        <c:if test="${device.id.toString() ne deviceInProject.id.toString() && marked eq false}">
+                                            <form:option value="${device.id}" label="${device.model}"/>
+                                            <c:set var="marked" value="true"/>
+                                        </c:if>
+                                    </c:forEach>
+                                </c:forEach>
+                            </form:select>
                         </c:when>
                         <c:otherwise>
                             <c:forEach items="${project.deviceList}" var="device">

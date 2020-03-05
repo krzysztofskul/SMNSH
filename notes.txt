@@ -25,7 +25,8 @@
     - issue when new concept will be break on the add questions stage
     - connect project with orders for conceptual project and guidelines
 
-# 0.2.5
+# 0.2.X
+    - new project form validation
     - new idea / new branch (Project Manager's Project Card)
         - project card class
             . save new
@@ -35,15 +36,17 @@
                 - validation
             . view all
             . details
-            - edit
+            . edit
                 . deadline initially checked
-                - devices initially checked
+                . devices initially checked
     . pom.xml
     . menu update
     . readme.md
     . LocalDateTime To String Converter
 
 *** DONE ***
+# 0.2.5
+    + initially selected elements of the list for project edit form jsp
 # 0.2.4
     + project card edit form added
     + readme update
