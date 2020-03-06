@@ -7,7 +7,7 @@
   Time: 20:17
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
 </head>
@@ -66,6 +66,7 @@
                             <c:choose>
                                 <c:when test="${edit eq true}">
                                     <form:input path="agreementNo"/>
+                                    <form:errors path="agreementNo" cssClass="error"/>
                                 </c:when>
                                 <c:otherwise>
                                     ${project.agreementNo}
@@ -83,6 +84,7 @@
                             <c:choose>
                                 <c:when test="${edit eq true}">
                                     <form:input path="investor"/>
+                                    <form:errors path="investor" cssClass="error"/>
                                 </c:when>
                                 <c:otherwise>
                                     ${project.investor}
@@ -97,6 +99,7 @@
                             <c:choose>
                                 <c:when test="${edit eq true}">
                                     <form:input path="recipient"/>
+                                    <form:errors path="recipient" cssClass="error"/>
                                 </c:when>
                                 <c:otherwise>
                                     ${project.recipient}
@@ -136,6 +139,7 @@
                                             />
                                         </c:forEach>
                                     </form:select>
+                                    <form:errors path="projectManager" cssClass="error"/>
                                 </c:when>
                                 <c:otherwise>
                                     ${project.projectManager.nameFirst} ${project.projectManager.nameFirst}
@@ -167,6 +171,7 @@
                             <c:choose>
                                 <c:when test="${edit eq true}">
                                     <form:input type="date" path="deadline"/>
+                                    <form:errors path="deadline" cssClass="error"/>
                                 </c:when>
                                 <c:otherwise>
                                     ${project.deadline.toLocalDate()} ${project.deadline.toLocalTime()}
@@ -184,6 +189,7 @@
                             <c:choose>
                                 <c:when test="${edit eq true}">
                                     <form:input path="status"/>
+                                    <form:errors path="status" cssClass="error"/>
                                 </c:when>
                                 <c:otherwise>
                                     ${project.status}
@@ -218,6 +224,7 @@
                                     </c:forEach>
                                 </c:forEach>
                             </form:select>
+                            <form:errors path="deviceList" cssClass="error"/>
                         </c:when>
                         <c:otherwise>
                             <c:forEach items="${project.deviceList}" var="device">

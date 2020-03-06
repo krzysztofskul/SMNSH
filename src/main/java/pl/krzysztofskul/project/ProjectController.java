@@ -3,12 +3,14 @@ package pl.krzysztofskul.project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -50,8 +52,11 @@ public class ProjectController {
 
     @PostMapping("/new")
     public String projectNew(
-            @ModelAttribute("projectNew") Project projectNew
+            @ModelAttribute("projectNew") @Valid Project projectNew, BindingResult result
     ) {
+        if (result.hasErrors()) {
+            return "/projects/new";
+        }
         projectService.save(projectNew);
         return "redirect:/projects/all";
     }
@@ -81,11 +86,15 @@ public class ProjectController {
     }
 
     @PostMapping("/details/{id}")
-    private String projectDetailsUpdate(
+    public String projectDetails(
             @PathVariable("id") Long id,
-            @ModelAttribute("project") Project project,
+            @ModelAttribute("project") @Valid Project project, BindingResult result,
             Model model
     ) {
+        if (result.hasErrors()) {
+            return "projects/details/"+id+"?edit=true";
+        }
+
         if (model.containsAttribute("edit")) {
             model.addAttribute("edit", false);
         }

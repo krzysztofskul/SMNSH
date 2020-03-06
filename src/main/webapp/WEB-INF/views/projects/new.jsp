@@ -34,7 +34,6 @@
                         </div>
                         <div class="col-8">
                             <form:hidden path="id" cssClass="w-100"/>
-<%--                            <form:input path="id" cssClass="w-100" disabled="true"/>--%>
                         </div>
                     </div>
 
@@ -55,6 +54,7 @@
                         </div>
                         <div class="col-8">
                             <form:input path="investor" cssClass="w-100"/>
+                            <form:errors path="investor" cssClass="error"/>
                         </div>
                     </div>
 
@@ -65,6 +65,7 @@
                         </div>
                         <div class="col-8">
                             <form:input path="recipient" cssClass="w-100"/>
+                            <form:errors path="recipient" cssClass="error"/>
                         </div>
                     </div>
 
@@ -75,6 +76,7 @@
                         </div>
                         <div class="col-8">
                             <form:input path="agreementNo" cssClass="w-100"/>
+                            <form:errors path="agreementNo" cssClass="error"/>
                         </div>
                     </div>
 
@@ -95,6 +97,18 @@
                         </div>
                         <div class="col-8">
                             <form:input type="date" path="deadline" cssClass="w-100"/>
+                            <form:errors path="deadline" cssClass="error"/>
+                        </div>
+                    </div>
+
+                    <div class="row mb-1">
+                        <div class="col-4 text-right">
+                            <p class="langPL">STATUS:</p>
+                            <p class="langEN">STATUS:</p>
+                        </div>
+                        <div class="col-8">
+                            <form:input path="status" cssClass="w-100"/>
+                            <form:errors path="status" cssClass="error"/>
                         </div>
                     </div>
 
@@ -122,6 +136,7 @@
                                 </c:forEach>
                             </form:select>
                         </div>
+                        <form:errors path="projectManager" cssClass="error"/>
                     </div>
 
                     <div class="row mb-1">
@@ -167,6 +182,7 @@
                                     <form:option label="${device.deviceCategory.name} ${device.model}" value="${device.id}"/>
                                 </c:forEach>
                             </form:select>
+                            <form:errors path="deviceList" cssClass="error"/>
                         </div>
                     </div>
 

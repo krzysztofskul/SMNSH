@@ -4,6 +4,7 @@ import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.user.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,14 +15,19 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String investor;
 
+    @NotBlank
     private String recipient;
 
+    @NotBlank
     private String agreementNo;
 
+    @NotBlank
     private String status;
 
+    @Future
     private LocalDateTime deadline;
 
     private String projectName;
@@ -37,6 +43,7 @@ public class Project {
 
     private String pfc;
 
+    @NotEmpty
     @ManyToMany
     @JoinTable(
             name = "projects_devices",
