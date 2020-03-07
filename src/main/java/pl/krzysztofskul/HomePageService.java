@@ -16,6 +16,7 @@ import pl.krzysztofskul.order.guideline.Guideline;
 import pl.krzysztofskul.order.guideline.GuidelineService;
 import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.ProjectService;
+import pl.krzysztofskul.project.StatusProject;
 import pl.krzysztofskul.questionnaire.*;
 import pl.krzysztofskul.questionnaire.questionSet.*;
 import pl.krzysztofskul.recipient.Recipient;
@@ -323,7 +324,7 @@ public class HomePageService {
             project.setProjectName("Test project no. "+i);
             project.setAgreementNo("AGR-NO-WAW-00"+i+"-2020");
             project.setDeadline(LocalDateTime.now().plusDays(Long.parseLong("28")));
-            project.setStatus("in progress");
+            project.setStatus(StatusProject.STATUS_PROJECT_0);
             List<Device> deviceList = new ArrayList<>();
             deviceList.add(deviceService.loadById(Long.valueOf("1")+i));
             deviceList.add(deviceService.loadById(Long.valueOf("4")+i));

@@ -180,7 +180,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6"></div>
+                        <div class="col-2"></div>
                         <div class="col-3 text-right pt-2 float-right">
                             <p class="langPL">STATUS:</p>
                             <p class="langEN">STATUS:</p>
@@ -188,11 +188,11 @@
                         <div class="col-3 pt-2 float-right">
                             <c:choose>
                                 <c:when test="${edit eq true}">
-                                    <form:input path="status"/>
+                                    <form:select path="status" items="${allStatusesProject}" itemLabel="name"/>
                                     <form:errors path="status" cssClass="error"/>
                                 </c:when>
                                 <c:otherwise>
-                                    ${project.status}
+                                    ${project.status.toString()}
                                 </c:otherwise>
                             </c:choose>
                         </div>

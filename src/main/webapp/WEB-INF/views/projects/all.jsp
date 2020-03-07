@@ -86,7 +86,7 @@
                                     </c:forEach>
                                     <div class="row">
                                         <div class="col">
-                                                ${project.status}
+                                                ${project.status.toString()}
                                         </div>
                                         <div class="col">
                                                 ${project.deadline.toLocalDate()} ${project.deadline.toLocalTime()}

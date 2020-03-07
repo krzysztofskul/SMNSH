@@ -27,25 +27,12 @@
     - remarks max length problem
 
 # 0.2.X
-    + new project form validation
-    . new idea / new branch (Project Manager's Project Card)
-        . project card class
-            . save new
-                . init. DB
-                . jsp form
-                    . LocalDate String to LocalDateTime converter
-                - validation // todo
-            . view all
-            . details
-            . edit
-                . deadline initially checked
-                . devices initially checked
-    . pom.xml
-    . menu update
-    . readme.md
-    . LocalDateTime To String Converter
+    - connect project with order for concept (preliminary planning) and for guidelines (final planning)
+    - validation for edit project // todo: update project back when no validation problem
 
 *** DONE ***
+# 0.2.7
+    + added new enum class: statuses of project
 # 0.2.6
     + validation for new project form
     + validation fot edit project form

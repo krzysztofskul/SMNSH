@@ -24,8 +24,8 @@ public class Project {
     @NotBlank
     private String agreementNo;
 
-    @NotBlank
-    private String status;
+//    @NotBlank
+    private StatusProject status;
 
     @Future
     private LocalDateTime deadline;
@@ -96,11 +96,11 @@ public class Project {
         this.agreementNo = agreementNo;
     }
 
-    public String getStatus() {
+    public StatusProject getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusProject status) {
         this.status = status;
     }
 

@@ -11,6 +11,7 @@ import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -40,6 +41,11 @@ public class ProjectController {
     @ModelAttribute("allProjectManagerList")
     public List<User> getAllUserList() {
         return userService.loadAllProjectManagers();
+    }
+
+    @ModelAttribute("allStatusesProject")
+    public List<StatusProject> getAllStatusesProject() {
+        return Arrays.asList(StatusProject.values());
     }
 
     @GetMapping("/new")

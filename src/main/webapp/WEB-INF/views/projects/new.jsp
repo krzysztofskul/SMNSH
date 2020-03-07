@@ -107,7 +107,7 @@
                             <p class="langEN">STATUS:</p>
                         </div>
                         <div class="col-8">
-                            <form:input path="status" cssClass="w-100"/>
+                            <form:select path="status" items="${allStatusesProject}" itemLabel="name" cssClass="w-100"/>
                             <form:errors path="status" cssClass="error"/>
                         </div>
                     </div>
