@@ -31,6 +31,11 @@
     - validation for edit project // todo: update project back when no validation problem
 
 *** DONE ***
+# 0.2.8
+    + AWS Amazon DB configuration
+        + http://smnshtest2-env.eba-mhppknzr.us-east-2.elasticbeanstalk.com/
+    + create real test users/investors
+    + readme update
 # 0.2.7
     + added new enum class: statuses of project
 # 0.2.6

@@ -27,6 +27,9 @@ import pl.krzysztofskul.localDateTime.LocalDateTimeConverterToString;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Locale;
 import java.util.Properties;
 
@@ -88,10 +91,19 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
+
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?useSSL=false");
-        dataSource.setUsername("root");
-        dataSource.setPassword("coderslab");
+
+        /* local DB*/
+//        dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?useSSL=false");
+//        dataSource.setUsername("root");
+//        dataSource.setPassword("coderslab");
+
+        /* remote DB */
+        dataSource.setUrl("jdbc:mysql://aahgjd0vhp5jg5.c2xg2t1abu8q.us-east-2.rds.amazonaws.com:3306/ebdb?useSSL=false");
+        dataSource.setUsername(System.getProperty("RDS_USERNAME"));
+        dataSource.setPassword(System.getProperty("RDS_PASSWORD"));
+
         return dataSource;
     }
     

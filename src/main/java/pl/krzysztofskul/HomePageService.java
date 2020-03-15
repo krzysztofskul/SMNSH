@@ -152,6 +152,55 @@ public class HomePageService {
         //userService.loadById(Long.parseLong("1")).setAvatar(avatar);
     }
 
+    public void createRealTestUsers() {
+        User user;
+        /** NEW USER : ADMIN */
+        user = new User();
+        user.setNameFirst("Piotr");
+        user.setNameLast("W.");
+        user.setEmail("piotr.w@test.test");
+        user.setPassword("test");
+        user.setPasswordConfirmation(user.getPassword());
+        user.setBusinessPosition(UserBusinessPosition.ADMIN);
+        userService.save(user);
+        /** NEW USER : PROJECT MANAGER */
+        user = new User();
+        user.setNameFirst("Sebastian");
+        user.setNameLast("K.");
+        user.setEmail("sebastian.k@test.test");
+        user.setPassword("test");
+        user.setPasswordConfirmation(user.getPassword());
+        user.setBusinessPosition(UserBusinessPosition.PROJECT_MANAGER);
+        userService.save(user);
+        /** NEW USER : PROJECT MANAGER */
+        user = new User();
+        user.setNameFirst("Ewa");
+        user.setNameLast("W-M.");
+        user.setEmail("ewa.w-m@test.test");
+        user.setPassword("test");
+        user.setPasswordConfirmation(user.getPassword());
+        user.setBusinessPosition(UserBusinessPosition.PROJECT_MANAGER);
+        userService.save(user);
+        /** NEW USER : DESIGNER */
+        user = new User();
+        user.setNameFirst("Krzysztof");
+        user.setNameLast("K.");
+        user.setEmail("krzysztof.k@test.test");
+        user.setPassword("test");
+        user.setPasswordConfirmation(user.getPassword());
+        user.setBusinessPosition(UserBusinessPosition.PLANNER);
+        userService.save(user);
+        /** NEW USER : DESIGNER */
+        user = new User();
+        user.setNameFirst("Maciej");
+        user.setNameLast("D.");
+        user.setEmail("maciej.d@test.test");
+        user.setPassword("test");
+        user.setPasswordConfirmation(user.getPassword());
+        user.setBusinessPosition(UserBusinessPosition.PLANNER);
+        userService.save(user);
+    }
+
     public void createInvestors() {
         for (int i = 1; i <= 9; i++) {
             Investor investor = new Investor();
@@ -160,12 +209,42 @@ public class HomePageService {
         }
     }
 
+    public void createRealTestInvestors() {
+        Investor investor;
+
+        investor = new Investor();
+        investor.setName("Szpital Centralny w Warszawie");
+        investorService.save(investor);
+
+        investor = new Investor();
+        investor.setName("Szpital Powiatowy w Otwocku");
+        investorService.save(investor);
+
+        investor = new Investor();
+        investor.setName("Szpital Kliniczny w Krakowie");
+        investorService.save(investor);
+
+    }
+
     public void createRecipients() {
         for (int i = 1; i <= 9; i++) {
             Recipient recipient = new Recipient();
             recipient.setDepartment("Department "+i);
             recipientService.save(recipient);
         }
+    }
+
+    public void createRealTestRecipients() {
+        Recipient recipient;
+
+        recipient = new Recipient();
+        recipient.setDepartment("Oddział diagnostyki obrazowej");
+        recipientService.save(recipient);
+
+        recipient = new Recipient();
+        recipient.setDepartment("Szpitalny oddział ratunkowy");
+        recipientService.save(recipient);
+
     }
 
     public void createConcepts() {
@@ -316,6 +395,41 @@ public class HomePageService {
             device.setDeviceCategory(deviceCategoryService.loadByCode("MRI"));
             deviceService.save(device);
         }
+    }
+
+    public void createRealTestDevices() {
+        Device device;
+
+        device = new Device();
+        device.setModel("Lorem");
+        device.setDeviceCategory(deviceCategoryService.loadByCode("X-RAY"));
+        deviceService.save(device);
+
+        device = new Device();
+        device.setModel("Ipsum");
+        device.setDeviceCategory(deviceCategoryService.loadByCode("X-RAY"));
+        deviceService.save(device);
+
+        device = new Device();
+        device.setModel("Etiam");
+        device.setDeviceCategory(deviceCategoryService.loadByCode("CT"));
+        deviceService.save(device);
+
+        device = new Device();
+        device.setModel("Suspendisse");
+        device.setDeviceCategory(deviceCategoryService.loadByCode("CT"));
+        deviceService.save(device);
+
+        device = new Device();
+        device.setModel("Curabitur");
+        device.setDeviceCategory(deviceCategoryService.loadByCode("MRI"));
+        deviceService.save(device);
+
+        device = new Device();
+        device.setModel("Vestibulum");
+        device.setDeviceCategory(deviceCategoryService.loadByCode("MRI"));
+        deviceService.save(device);
+
     }
 
     public void createProjects() {

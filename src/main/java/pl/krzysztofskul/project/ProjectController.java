@@ -98,7 +98,7 @@ public class ProjectController {
             Model model
     ) {
         if (result.hasErrors()) {
-            return "projects/details/"+id+"?edit=true";
+            return "/projects/details/"+id.toString()+"?edit=true";
         }
 
         if (model.containsAttribute("edit")) {
