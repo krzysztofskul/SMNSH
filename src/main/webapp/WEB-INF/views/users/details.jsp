@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
-
+    <script src="/resources/js/userProfile.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -21,11 +21,17 @@
             <form:hidden path="password"/>
             <form:hidden path="passwordConfirmation"/>
             <div class="card">
-                <div class="card-header text-center" style="font-size: larger">
-                    <p class="langPL">PROFIL UŻYTKOWNIKA</p>
-                    <p class="langEN">USER'S PROFILE</p>
+                <div class="card-header text-center" id="userDataHeader" style="font-size: larger">
+                    <div class="d-inline-block position-absolute">
+                        <p class="langPL">PROFIL UŻYTKOWNIKA</p>
+                        <p class="langEN">USER'S PROFILE</p>
+                    </div>
+                    <div class="btn btn-outline-dark w-100px float-right">
+                        <p class="langPL">ZWIŃ</p>
+                        <p class="langEN">HIDE</p>
+                    </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="userDataBody">
                     <div class="row">
                         <div class="col text-right">
                             <span class="font-weight-bold">ID:</span> <form:input path="id" disabled="true" cssStyle="max-width: 50px"/>
@@ -86,8 +92,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <a href="/users/all" class="btn btn-warning float-left">
+                <div class="card-footer" id="userDataFooter">
+                    <a href="/users/all" class="btn btn-warning float-left disabled">
                         <span><<</span>
                         <p class="langPL">ANULUJ / WSTECZ</p>
                         <p class="langEN">CANCEL / BACK</p>
@@ -108,8 +114,12 @@
                     </div>
                     <c:forEach items="${user.conceptList}" var="concept">
                         <div class="card mt-2 mb-3">
-                            <div class="card-header text-left">
+                            <div class="card-header text-left border-top border-bottom-0 border-dark">
                                 <div class="row border-bottom pb-2">
+                                    <div class="btn btn-outline-dark col-2 float-right ordersHideUnhideBtn">
+                                        <p class="langPL">ZWIŃ</p>
+                                        <p class="langEN">HIDE</p>
+                                    </div>
                                     <div class="col-3">
                                         <p class="langPL">ZAMÓWIENIE KONCEPCJI</p>
                                         <p class="langEN">CONCEPT ORDER</p>
@@ -117,7 +127,7 @@
                                     <div class="col-2">
                                         ID: ${concept.id}
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-5">
                                         <a href="#"
                                            class="btn btn-danger disabled float-right ml-1 mr-1">
                                             <p class="langPL">USUŃ</p>
@@ -130,7 +140,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row orderDetailsRow-1">
                                     <div class="col-4 border">
                                         <span class="d-inline-block align-top mr-5">
                                             <p class="langPL">DATA UTWORZENIA</p>
@@ -160,7 +170,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row orderDetailsRow-2">
                                     <div class="col-4 border">
                                         <span class="d-inline-block align-top mr-5">
                                             <p class="langPL">PRIORYTET</p>
@@ -203,7 +213,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body orderDetailsRow-3">
                                 <c:choose>
                                     <c:when test="${concept.guideline eq null}">
                                         <div class="row">
@@ -306,7 +316,7 @@
                                     </c:otherwise>
                                 </c:choose>
                             </div>
-                            <div class="card-footer">
+                            <div class="card-footer border border-dark border-top-0">
                             </div>
                         </div>
                     </c:forEach>

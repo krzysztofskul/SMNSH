@@ -25,12 +25,15 @@
                     User user = (User) session.getAttribute("userLoggedIn");
                     out.print(
                             user.getNameFirst()+" "+
-                                    user.getNameLast()+" "+
-                                    "<a href='/users/details/"+user.getId()+"' class='btn btn-dark ml-2 mr-2'>" +
-                                    "<div class='langPL'>MÓJ PROFIL</div>" +
-                                    "<div class='langEN'>MY PROFILE</div>" +
-                                    "</a>"+
-                                    "<a href='/logout' class='btn btn-danger'>LOG OUT</a>"
+                            user.getNameLast()+" "+
+                            "<a href='/users/details/"+user.getId()+"' class='btn btn-primary ml-2 mr-2'>" +
+                                "<div class='langPL text-white'>MÓJ PROFIL</div>" +
+                                "<div class='langEN text-dark'>MY PROFILE</div>" +
+                            "</a>"+
+                            "<a href='/logout' class='btn btn-danger'>" +
+                                "<div class='langPL text-white'>WYLOGUJ</div>" +
+                                "<div class='langEN text-dark'>LOG OUT</div>" +
+                            "</a>"
                     );
                 } else {
                     out.print("<div>"+

@@ -26,34 +26,34 @@
 
         <div class="card-body text-center">
             <c:forEach items="${usersAll}" var="user">
-                <div class="card bg-light mb-3" style="display: inline-block;">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-2 border-right">
+                <div class="card bg-light mb-3 w-500px d-inline-block">
+                    <div class="card-header w-500px">
+                        <div class="row h-50px">
+                            <div class="col-3 border-right">
                                     ${user.id}
                             </div>
-                            <div class="col font-weight-bold">
+                            <div class="col-9 font-weight-bold">
                                     ${user.nameFirst} ${user.nameLast}
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
+                            <div class="col-12 text-right">
                                     ${user.businessPosition.toString()}
                             </div>
                         </div>
                     </div>
-                        <div class="card-body" style="min-height: 100px; max-height: 100px">
-                            <c:choose>
-                                <c:when test="${user.avatar eq null}">
-                                    <img src="/resources/img/avatars/img_avatar_someone.png" width="75px" height="75px"/>
-                                </c:when>
-                                <c:otherwise>
-                                    <%--<img src="/resources/img/avatars/usersAll/${user.avatar.id}.png" width="75px" height="75px"/>--%> <!-- todo?: when img from DB is save in project resources dir -->
-                                    <img src="/avatars/${user.avatar.id}.png" width="75px" height="75px" alt="AVATAR"/> <!-- todo: users's avatar -->
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                    <div class="card-footer text-right">
+                    <div class="card-body w-500px" style="min-height: 100px; max-height: 100px">
+                        <c:choose>
+                            <c:when test="${user.avatar eq null}">
+                                <img src="/resources/img/avatars/img_avatar_someone.png" width="75px" height="75px"/>
+                            </c:when>
+                            <c:otherwise>
+                                <%--<img src="/resources/img/avatars/usersAll/${user.avatar.id}.png" width="75px" height="75px"/>--%> <!-- todo?: when img from DB is save in project resources dir -->
+                                <img src="/avatars/${user.avatar.id}.png" width="75px" height="75px" alt="AVATAR"/> <!-- todo: users's avatar -->
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                    <div class="card-footer text-right w-500px">
                         <a href="/users/details/${user.id}" class="btn btn-primary">
                             <p class="langPL">SZCZEGÓŁY / EDYCJA</p>
                             <p class="langEN">DETAILS/EDIT</p>

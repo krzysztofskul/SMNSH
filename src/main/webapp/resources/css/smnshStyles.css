@@ -11,7 +11,7 @@
     font-style: italic;
     font-weight: normal;
     font-size: x-small;
-    color: grey;
+    color: #4d4d4d;
     margin: 0;
     padding: 0;
 }
@@ -20,4 +20,36 @@
     color: red;
     font-size: 12px;
     font-style: italic;
+}
+
+.w-100px {
+    min-width: 100px;
+    max-width: 100px;
+}
+.w-500px {
+    min-width: 500px;
+    max-width: 500px;
+}
+.h-50px {
+    min-height: 50px;
+    max-height: 50px;
+}
+
+/*.myTooltip {*/
+/*    !*border: black solid 1px;*!*/
+/*}*/
+
+.myTooltip div {
+    display: none;
+}
+
+.myTooltip:hover div {
+    display: inline;
+    font-style: italic;
+    position: absolute;
+    margin: 15px 0 0 15px;
+    padding: 10px;
+    border:  solid 3px lightgrey;
+    border-radius: 10px;
+    background-color: #333333;
 }
