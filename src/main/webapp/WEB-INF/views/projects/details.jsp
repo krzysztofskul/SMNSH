@@ -18,10 +18,22 @@
     <div class="container">
 
         <form:form method="post" modelAttribute="project">
-            <div class="card">
+            <div class="card border border-dark border-left-0 border-right-0 mb-5">
 
                 <div class="card-header">
+                    <c:if test="${edit eq true}">
+                        <form:hidden path="id"/>
+                    </c:if>
                     <div class="row border-bottom pb-2">
+                        <div class="col-sm-4 ml-2 position-absolute d-inline-block p-0">
+                            <div class="text-left position-relative d-inline-block mr-2">
+                                <p class="langPL"> ID:</p>
+                                <p class="langEN"> ID:</p>
+                            </div>
+                            <div class="text-left position-relative d-inline-block align-top">
+                                ${project.id}
+                            </div>
+                        </div>
                         <div class="col-12 text-center">
                             <c:set var="pageTitlePL" value="SZCZEGÓŁY PROJEKTU"/>
                             <c:set var="pageTitleEN" value="PROJECT DETAILS"/>
@@ -34,21 +46,11 @@
                         </div>
                     </div>
                     <div class="row border-bottom">
-                        <div class="col-sm-1 text-right pt-2">
-                            <p class="langPL"> ID:</p>
-                            <p class="langEN"> ID:</p>
-                        </div>
-                        <div class="col-sm-1 text-left pt-2">
-                            ${project.id}
-                            <c:if test="${edit eq true}">
-                                <form:hidden path="id"/>
-                            </c:if>
-                        </div>
-                        <div class="col-2 text-right pt-2">
+                        <div class="col-3 text-right pt-2">
                             <p class="langPL">NAZWA PROJEKTU:</p>
                             <p class="langEN">PROJECT NAME:</p>
                         </div>
-                        <div class="col-2 text-left pt-2">
+                        <div class="col-3 text-left pt-2">
                             <c:choose>
                                 <c:when test="${edit eq true}">
                                     <form:input path="projectName"/>
@@ -65,7 +67,7 @@
                         <div class="col-3 text-left pt-2">
                             <c:choose>
                                 <c:when test="${edit eq true}">
-                                    <form:input path="agreementNo"/>
+                                    <form:input path="agreementNo" cssClass="w-100"/>
                                     <form:errors path="agreementNo" cssClass="error"/>
                                 </c:when>
                                 <c:otherwise>
@@ -98,7 +100,7 @@
                         <div class="col-3 text-left pt-2">
                             <c:choose>
                                 <c:when test="${edit eq true}">
-                                    <form:input path="recipient"/>
+                                    <form:input path="recipient" cssClass="w-100"/>
                                     <form:errors path="recipient" cssClass="error"/>
                                 </c:when>
                                 <c:otherwise>
@@ -130,7 +132,7 @@
                         <div class="col-3 text-left pt-2">
                             <c:choose>
                                 <c:when test="${edit eq true}">
-                                    <form:select path="projectManager.id">
+                                    <form:select path="projectManager.id" cssClass="w-100">
                                         <c:forEach items="${allProjectManagerList}"
                                                    var="projectManager">
                                             <form:option
@@ -170,7 +172,7 @@
                         <div class="col-3 text-left pt-2">
                             <c:choose>
                                 <c:when test="${edit eq true}">
-                                    <form:input type="date" path="deadline"/>
+                                    <form:input type="date" path="deadline" cssClass="w-100"/>
                                     <form:errors path="deadline" cssClass="error"/>
                                 </c:when>
                                 <c:otherwise>
@@ -180,7 +182,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-2"></div>
+                        <div class="col-6"></div>
                         <div class="col-3 text-right pt-2 float-right">
                             <p class="langPL">STATUS:</p>
                             <p class="langEN">STATUS:</p>
@@ -188,7 +190,7 @@
                         <div class="col-3 pt-2 float-right">
                             <c:choose>
                                 <c:when test="${edit eq true}">
-                                    <form:select path="status" items="${allStatusesProject}" itemLabel="name"/>
+                                    <form:select path="status" items="${allStatusesProject}" itemLabel="name" cssClass="w-100"/>
                                     <form:errors path="status" cssClass="error"/>
                                 </c:when>
                                 <c:otherwise>
@@ -201,7 +203,7 @@
                 </div>
 
                 <div class="card-body">
-                    <div class="row border-bottom pb-2">
+                    <div class="row border-dark border-top pb-3">
                         <div class="col-12 text-center">
                             <p class="langPL">URZĄDZENIA PLANOWANE DO INSTALACJI:</p>
                             <p class="langEN">DEVICES PLANNED FOR INSTALLATION:</p>
@@ -228,7 +230,7 @@
                         </c:when>
                         <c:otherwise>
                             <c:forEach items="${project.deviceList}" var="device">
-                                <div class="row">
+                                <div class="row border-top pt-1 pb-2">
                                     <div class="col-12">
                                         <span class="font-weight-bold">${device.deviceCategory.name}</span> ${device.model}
                                     </div>
@@ -236,21 +238,25 @@
                             </c:forEach>
                         </c:otherwise>
                     </c:choose>
-                    <div class="row border-bottom border-top">
-                        <div class="col-12 text-center">
+                    <div class="row border-dark border-top">
+                        <div class="col-12 text-center mt-3 mb-3">
                             <p class="langPL">UWAGI DO PROJEKTU</p>
                             <p class="langEN">REMARKS</p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row border-top">
                         <div class="col-12">
-
                             <c:choose>
                                 <c:when test="${edit eq true}">
                                     <form:textarea path="remarks" cssClass="w-100"/>
                                 </c:when>
                                 <c:otherwise>
-                                    <span class="font-italic">${project.remarks}</span>
+                                    <c:if test="${project.recipient ne null}">
+                                        <p class="font-italic mt-2 mb-2">${project.remarks}</p>
+                                    </c:if>
+                                    <c:if test="${project.recipient eq null}">
+                                        <p class="font-italic mt-2 mb-2">BRAK UWAG DO TEGO PROJEKTU / NO ADDITIONAL REMARKS TO THI PROJECT</p>
+                                    </c:if>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -293,6 +299,93 @@
                     </c:if>
                 </div>
 
+            </div>
+
+
+            <%--LIST OF RELATED ORDERS FOR CONCEPTUAL PROJECTS (PRELIMINARY PROJECTS) --%>
+            <div class="card mt-2 border-dark border-left-0 border-right-0 border">
+
+                <div class="card-header text-center p-0">
+                    <div class="m-0 p-2">
+                        <div class="langPL">ZAMÓWIENIA PROJEKTU KONCEPCYJNEGO</div>
+                        <div class="langEN">LIST OF ORDERS FOR CONCEPTUAL (PRELIMINARY) PROJECT</div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <c:if test="${project.conceptList.size() == 0}">
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="langPL">NIE WYSŁANO JESZCZE ŻADNEGO ZAMÓWIENIA PROJKETU KONECPCYJNEGO</p>
+                                <p class="langEN">NOT SENT ANY ORDERD FOR CONCEPTUAL (PRELIMINARY) PROJECT YET</p>
+                            </div>
+                        </div>
+                    </c:if>
+                    <c:if test="${project.conceptList ne null}">
+                        <c:forEach items="${project.conceptList}" var="concept">
+                            <div class="card mb-3 border-bottom-0 border-left-0 border-right-0 border-dark">
+                                <div class="card-header">
+                                    <div class="row h-100px">
+                                        <div class="col-sm-1 <%--border border-dark--%> p-0 pr-sm-1">
+                                            <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                                <p class="langPL">ID:</p>
+                                                <p class="langEN">ID:</p>
+                                            </div>
+                                            <p class="text-left pt-2 pl-2">${concept.id}</p>
+                                        </div>
+                                        <div class="col-sm-3 <%--border border-dark--%> p-0 pr-sm-1">
+                                            <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                                <p class="langPL">UTWORZONO:</p>
+                                                <p class="langEN">CREATED:</p>
+                                            </div>
+                                            <p class="text-left pt-2 pl-2">${concept.dateTimeCreated.toLocalDate()}</p>
+                                        </div>
+                                        <div class="col-sm-3 <%--border border-dark--%> p-0 pr-sm-1">
+                                            <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                                <p class="langPL">TERMIN REALIZACJI:</p>
+                                                <p class="langEN">DEADLINE:</p>
+                                            </div>
+                                            <p class="text-left pt-2 pl-2">${concept.dateTimeDeadline.toLocalDate()} ${concept.dateTimeDeadline.toLocalTime()}</p>
+                                        </div>
+                                        <div class="col-sm-5 <%--border border-dark--%> p-0 pr-sm-1">
+                                            <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                                <p class="langPL">STATUS:</p>
+                                                <p class="langEN">STATUS:</p>
+                                            </div>
+                                            <p class="text-left pt-2 pl-2">${concept.status.toString()}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <span class="w-100px bg-lightgrey-75 p-1 d-inline-block">${concept.device.deviceCategory.code}</span>
+                                            <span>${concept.device.model}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="/concepts/details/${concept.id}" class="btn btn-outline-primary float-right ml-1">
+                                        <p class="langPL">PRZEJDŹ >></p>
+                                        <p class="langEN">GO TO >></p>
+                                    </a>
+                                    <div class="btn btn-outline-dark disabled float-right">
+                                        <p class="langPL">ROZWIŃ</p>
+                                        <p class="langEN">UNHIDE</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </c:forEach>
+                    </c:if>
+                </div>
+
+                <div class="card-footer">
+                    <a href="/concepts/new?projectId=${project.id}&userId=${project.projectManager.id}" class="btn btn-success float-right">
+                        <div class="langPL">ZAMÓWIENIE PROJEKTU KONCEPCYJNEGO</div>
+                        <div class="langEN">ORDER FOR CONCEPTUAL (PRELIMINARY PROJECT)</div>
+                    </a>
+                </div>
             </div>
         </form:form>
     </div>

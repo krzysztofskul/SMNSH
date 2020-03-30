@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofskul
@@ -16,14 +17,25 @@
     <jsp:include page="../header.jsp"/>
 
     <div class="container">
-        <h1>ADDITIONAL QUESTION SET XRAY</h1>
-
         <form:form modelAttribute="questionSetForXRAY" method="post" action="/questionSetXRAY/save">
             <div class="card">
-                <div class="card-header">
-                        ${questionSetForXRAY.questionForm.concept.title}
-                    <form:hidden path="id"/>
-                    <form:hidden path="questionForm.id"/>
+                <div class="card-header text-center">
+                    <div class="row m-3">
+                        <div class="col-12">
+                            <p class="langPL">DODATKOWY FORMULARZ DOT. ZAMÓWIENIA PROJEKTU KONCEPCJNEGO DLA APARATU RTG</p>
+                            <p class="langEN">ADDITIONAL QUESTION SET FOR ORDER FOR CONCEPTUAL (PRELIMINARY) PROJECT OF X-RAY INSTALLATION</p>
+                        </div>
+                    </div>
+                    <div class="row border-top p-2">
+                        <div class="col-12">
+                            ${questionSetForXRAY.questionForm.concept.title}
+                            <form:hidden path="id"/>
+                            <form:hidden path="questionForm.id"/>
+                            <c:if test="${questionSetForXRAY.questionForm.backToPage ne null}">
+                                <input type="hidden" name="backToPage" value="/projects/details/${conceptNew.project.id}">
+                            </c:if>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row">

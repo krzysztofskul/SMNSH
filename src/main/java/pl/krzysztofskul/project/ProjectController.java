@@ -87,7 +87,7 @@ public class ProjectController {
         if (edit  != null && edit.equals("true")) {
             model.addAttribute("edit", true);
         }
-        model.addAttribute("project", projectService.loadByIdWithDeviceList(id));
+        model.addAttribute("project", projectService.loadByIdWithDeviceListAndConceptList(id));
         return "projects/details";
     }
 

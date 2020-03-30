@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofskul
@@ -19,10 +20,16 @@
 <%--        <a href="/concepts/all">CONCEPTS ALL</a>--%>
         <ul class="nav nav-pills">
             <li class="nav-item">
-                <a class="nav-link btn-warning ml-1 mr-1" href="/initDB">
-                    <p class="langPL">INICJALIZACJA BAZY DANYCH</p>
-                    <p class="langEN">INIT.DB</p>
-                </a>
+                <div class="myTooltip">
+                    <a class="nav-link btn-warning ml-1 mr-1" href="/initDB">
+                            <p class="langPL">INICJALIZACJA BAZY DANYCH</p>
+                            <p class="langEN">INIT.DB</p>
+                    </a>
+                    <div>
+                        <p class="langPL">WSTĘPNA INICJALIZACJA TESTOWEJ BAZY DANYCH</p>
+                        <p class="langEN">TEST DATA BASE INITIALISATION</p>
+                    </div>
+                </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link btn-light ml-1 mr-1" href="/home">
@@ -53,6 +60,18 @@
                     <p class="langPL">UŻYTKOWNICY</p>
                     <p class="langEN">ALL USERS</p>
                 </a>
+            </li>
+            <li class="nav-item">
+                <div class="myTooltip">
+                    <a class="nav-link btn-light ml-1 mr-1" href="#">
+                        <p class="langPL">TEST</p>
+                        <p class="langEN">TEST</p>
+                    </a>
+                    <div>
+                        myTtooltip text ...<br>
+                        lorem ipsum
+                    </div>
+                </div>
             </li>
         </ul>
     </div>

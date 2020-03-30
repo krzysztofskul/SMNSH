@@ -11,6 +11,7 @@ import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.device.category.DeviceCategory;
 import pl.krzysztofskul.device.category.DeviceCategoryService;
 import pl.krzysztofskul.order.Status;
+import pl.krzysztofskul.project.ProjectService;
 import pl.krzysztofskul.questionnaire.*;
 import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForCT;
 import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForMRI;
@@ -33,7 +34,8 @@ public class ConceptController {
     private DeviceService deviceService;
     private DeviceCategoryService deviceCategoryService;
     private UserService userService;
-    private QuestionFormService questionFormService;
+//    private QuestionFormService questionFormService;
+    private ProjectService projectService;
 
     /**
      * c.
@@ -44,13 +46,15 @@ public class ConceptController {
             DeviceService deviceService,
             DeviceCategoryService deviceCategoryService,
             UserService userService,
-            QuestionFormService questionFormService
+//            QuestionFormService questionFormService,
+            ProjectService projectService
     ) {
         this.conceptService = conceptService;
         this.deviceService = deviceService;
         this.deviceCategoryService = deviceCategoryService;
         this.userService = userService;
-        this.questionFormService = questionFormService;
+//        this.questionFormService = questionFormService;
+        this.projectService = projectService;
     }
 
     /**
@@ -111,11 +115,15 @@ public class ConceptController {
     @GetMapping("/new")
     public String conceptsNew(
             @RequestParam(name = "userId", required = false) Long userId,
+            @RequestParam(name = "projectId", required = false) Long projectId,
             Model model
     ) {
         Concept conceptNew = new Concept();
         if (userId != null) {
             conceptNew.setAuthor(userService.loadById(userId));
+        }
+        if (projectId != null) {
+            conceptNew.setProject(projectService.loadById(projectId));
         }
         model.addAttribute("conceptNew", conceptNew);
         return "orders/concepts/new";
@@ -123,6 +131,7 @@ public class ConceptController {
     @PostMapping("/new")
     public String conceptNew(
             @ModelAttribute("conceptNew") @Valid Concept conceptNew,
+            @RequestParam(name = "backToPage", required = false) String backToPage,
             BindingResult result,
             Model model
     )
@@ -140,6 +149,9 @@ public class ConceptController {
             switch (device.getDeviceCategory().getCode()) {
                 case "MRI": {
                     QuestionForm questionForm = new QuestionForm();
+                    if (backToPage != null) {
+                        questionForm.setBackToPage(backToPage);
+                    }
                     QuestionSetForMRI questionSetForMRI = new QuestionSetForMRI();
 
                     questionForm.setQuestionSetForMRI(questionSetForMRI);
@@ -153,6 +165,9 @@ public class ConceptController {
                 }
                 case "CT": {
                     QuestionForm questionForm = new QuestionForm();
+                    if (backToPage != null) {
+                        questionForm.setBackToPage(backToPage);
+                    }
                     QuestionSetForCT questionSetForCT = new QuestionSetForCT();
 
                     questionForm.setQuestionSetForCT(questionSetForCT);
@@ -166,6 +181,9 @@ public class ConceptController {
                 }
                 case "X-RAY": {
                     QuestionForm questionForm = new QuestionForm();
+                    if (backToPage != null) {
+                        questionForm.setBackToPage(backToPage);
+                    }
                     QuestionSetForXRAY questionSetForXRAY = new QuestionSetForXRAY();
 
                     questionForm.setQuestionSetForXRAY(questionSetForXRAY);
@@ -183,6 +201,11 @@ public class ConceptController {
         }
 
         conceptService.save(conceptNew);
+
+        if (backToPage != null) {
+            return "redirect:"+backToPage;
+        }
+
         return "redirect:/users/details/"+conceptNew.getAuthor().getId();
     }
 

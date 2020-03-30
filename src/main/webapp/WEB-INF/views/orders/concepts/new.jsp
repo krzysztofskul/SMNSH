@@ -23,6 +23,10 @@
                     <h4 class="langPL">KREATOR ZAMÓWIENIA NOWEJ KONCEPCJI</h4>
                     <h4 class="langEN">NEW CONCEPT ORDER FORM</h4>
                     <form:hidden path="id" disabled="true"/>
+                    <c:if test="${conceptNew.project ne null}">
+                        <form:hidden path="project.id"/>
+                        <input type="hidden" name="backToPage" value="/projects/details/${conceptNew.project.id}"/>
+                    </c:if>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -41,7 +45,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <form:hidden path="author.id"/>
-                                    <input type="text" readonly value="${conceptNew.author.nameFirst} ${conceptNew.author.nameLast}"/>
+                                    <input type="text" readonly value="${conceptNew.author.nameFirst} ${conceptNew.author.nameLast}" class="w-100"/>
                                 </c:otherwise>
                             </c:choose>
                         </div>

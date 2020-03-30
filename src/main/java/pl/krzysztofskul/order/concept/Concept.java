@@ -4,6 +4,7 @@ import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.order.Order;
 import pl.krzysztofskul.order.Status;
 import pl.krzysztofskul.order.guideline.Guideline;
+import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.questionnaire.QuestionForm;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.validator.StatusPlannerMatch;
@@ -51,6 +52,9 @@ public class Concept extends Order {
 
     @OneToOne(cascade = CascadeType.ALL)
     private QuestionForm questionForm;
+
+    @ManyToOne
+    private Project project;
 
     /**
      * constr.
@@ -157,6 +161,14 @@ public class Concept extends Order {
 
     public void setQuestionForm(QuestionForm questionForm) {
         this.questionForm = questionForm;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     /**

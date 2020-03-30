@@ -22,6 +22,9 @@
                 <div class="card-header">
                     <form:input path="id" disabled="true" cssStyle="max-width: 50px"/> | <%--${concept.title}--%> <form:input path="title"/>
                     <form:hidden path="dateTimeCreated"/>
+                    <c:if test="${concept.project ne null}">
+                        <form:hidden path="project.id"/>
+                    </c:if>
                 </div>
                 <div class="card-body">
                     <div class="row">

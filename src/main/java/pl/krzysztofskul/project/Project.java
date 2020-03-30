@@ -1,11 +1,13 @@
 package pl.krzysztofskul.project;
 
 import pl.krzysztofskul.device.Device;
+import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -59,6 +61,9 @@ public class Project {
     private String trainings;
 
     private String remarks;
+
+    @OneToMany(mappedBy = "project")
+    private List<Concept> conceptList = new ArrayList<>();
 
     public Project() {
         this.deadline = LocalDateTime.now().plusDays(Long.parseLong("1"));
@@ -198,5 +203,13 @@ public class Project {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public List<Concept> getConceptList() {
+        return conceptList;
+    }
+
+    public void setConceptList(List<Concept> conceptList) {
+        this.conceptList = conceptList;
     }
 }

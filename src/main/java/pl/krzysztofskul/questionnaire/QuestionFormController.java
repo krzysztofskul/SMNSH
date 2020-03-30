@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.krzysztofskul.questionnaire.questionSet.*;
 
 @Controller
@@ -29,31 +30,43 @@ public class QuestionFormController {
 
     @PostMapping("/questionSetMRI/save")
     public String questionSet(
-            @ModelAttribute("questionSetForMRI") QuestionSetForMRI questionSetForMRI
+            @ModelAttribute("questionSetForMRI") QuestionSetForMRI questionSetForMRI,
+            @RequestParam(name = "backToPage", required = false) String backToPage
     ) {
         QuestionForm questionForm = questionFormService.loadById(questionSetForMRI.getQuestionForm().getId());
         questionSetForMRI.setQuestionForm(questionForm);
         questionSetForMRIService.save(questionSetForMRI);
+        if (backToPage != null) {
+            return "redirect:"+backToPage;
+        }
         return "redirect:/users/details/"+questionSetForMRI.getQuestionForm().getConcept().getAuthor().getId();
     }
 
     @PostMapping("/questionSetCT/save")
     public String questionSet(
-            @ModelAttribute("questionSetForCT") QuestionSetForCT questionSetForCT
+            @ModelAttribute("questionSetForCT") QuestionSetForCT questionSetForCT,
+            @RequestParam(name = "backToPage", required = false) String backToPage
     ) {
         QuestionForm questionForm = questionFormService.loadById(questionSetForCT.getQuestionForm().getId());
         questionSetForCT.setQuestionForm(questionForm);
         questionSetForCTService.save(questionSetForCT);
+        if (backToPage != null) {
+            return "redirect:"+backToPage;
+        }
         return "redirect:/users/details/"+questionSetForCT.getQuestionForm().getConcept().getAuthor().getId();
     }
 
     @PostMapping("/questionSetXRAY/save")
     public String questionSet(
-            @ModelAttribute("questionSetForXRAY") QuestionSetForXRAY questionSetForXRAY
+            @ModelAttribute("questionSetForXRAY") QuestionSetForXRAY questionSetForXRAY,
+            @RequestParam(name = "backToPage", required = false) String backToPage
     ) {
         QuestionForm questionForm = questionFormService.loadById(questionSetForXRAY.getQuestionForm().getId());
         questionSetForXRAY.setQuestionForm(questionForm);
         questionSetForXRAYService.save(questionSetForXRAY);
+        if (backToPage != null) {
+            return "redirect:"+backToPage;
+        }
         return "redirect:/users/details/"+questionSetForXRAY.getQuestionForm().getConcept().getAuthor().getId();
     }
 
