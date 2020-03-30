@@ -22,6 +22,18 @@
     font-style: italic;
 }
 
+.bg-lightgrey-75 {
+    background-color: #bfbfbf;
+}
+
+.bg-lightgrey-50 {
+    background-color: #808080;
+}
+
+.bg-lightgrey-25 {
+    background-color: #404040;
+}
+
 .w-100px {
     min-width: 100px;
     max-width: 100px;
@@ -34,10 +46,14 @@
     min-height: 50px;
     max-height: 50px;
 }
-
-/*.myTooltip {*/
-/*    !*border: black solid 1px;*!*/
-/*}*/
+.h-75px {
+    min-height: 75px;
+    max-height: 75px;
+}
+.h-100px {
+    min-height: 100px;
+    max-height: 100px;
+}
 
 .myTooltip div {
     display: none;

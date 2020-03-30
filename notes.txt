@@ -25,16 +25,43 @@
     - issue when new concept will be break on the add questions stage
     - connect project with orders for conceptual project and guidelines
     - remarks max length problem
+    - one question set / questions set stream for all device types if projects have more devices
 
 # 0.3.0.X
+    . front end updates
+        . additional questions set
+            . question set form xray mod.
+            . question set form mri mod.
+            . question set form ct mod.
+        . project details page modification
+    . redirection back page functionality to project page when concept is created form project page
     - front end updates
+        - concept details page: create guideline functionality if concept is finished
         - disable initDB button when DB is already initialized
-        - concepts and guidelines my concepts and my guidelines update
+        - concepts and guidelines / my concepts and my guidelines update
         - no save concept when no additional questions finished
-    - connect project with order for concept (preliminary planning) and for guidelines (final planning)
+    . create relations for project / concept list / guideline list
+        . created relation for project and concept list
+        - create relation for project/concept and guidelines list
+    - change status and designer updates for Admin
     - validation for edit project // todo: update project back when no validation problem
+    - demo mode
+        - init DB
+        - login as project manager
+        - go to projects page
+        - create new project
+        - create new order for conceptual (preliminary) project -> back to projects page ...
 
 *** DONE ***
+# 0.3.0.2
+    + additional questions set
+        + question set form xray mod.
+        + question set form mri mod.
+        + question set form ct mod.
+    + project details page modification
+    + redirection back page functionality to project page when concept is created form project page
+    + create relations for project / concept list / guideline list
+        + created relation for project and concept list
 # 0.3.0.1
     + new branch created
     + pom.xml updated

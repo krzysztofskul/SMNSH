@@ -26,6 +26,8 @@ public class QuestionForm {
     @OneToOne(cascade = CascadeType.ALL)
     private QuestionSetForXRAY questionSetForXRAY;
 
+    private String backToPage;
+
     public QuestionForm() {
     }
 
@@ -79,5 +81,13 @@ public class QuestionForm {
 
     public void setQuestionSetForXRAY(QuestionSetForXRAY questionSetForXRAY) {
         this.questionSetForXRAY = questionSetForXRAY;
+    }
+
+    public String getBackToPage() {
+        return backToPage;
+    }
+
+    public void setBackToPage(String backToPage) {
+        this.backToPage = backToPage;
     }
 }
