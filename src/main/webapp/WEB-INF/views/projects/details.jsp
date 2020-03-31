@@ -387,10 +387,21 @@
                                         <p class="langEN">GO TO >></p>
                                     </a>
                                     <c:if test="${concept.planner eq null && sessionScope.userLoggedIn.businessPosition.toString() eq 'Projektant/Planista / Designer/Planner'}">
-                                        <a href="/concepts/setDesigner/${concept.id}/${sessionScope.userLoggedIn.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
-                                            <p class="langPL">PRZYPISZ MNIE JAKO PROJEKTANTA</p>
-                                            <p class="langEN">ASSIGN ME AS A DESIGNER</p>
-                                        </a>
+                                        <c:if test="${concept.status.toString() eq 'OCZEKUJE / WAITING'}">
+                                            <a href="/concepts/setDesigner/${concept.id}/${sessionScope.userLoggedIn.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
+                                                <p class="langPL">PRZYPISZ MNIE JAKO PROJEKTANTA</p>
+                                                <p class="langEN">ASSIGN ME AS A DESIGNER</p>
+                                            </a>
+                                        </c:if>
+
+                                    </c:if>
+                                    <c:if test="${concept.planner ne null && sessionScope.userLoggedIn.businessPosition.toString() eq 'Projektant/Planista / Designer/Planner'}">
+                                        <c:if test="${concept.status.toString() eq 'W TOKU / IN PROGRESS'}">
+                                            <a href="/concepts/setStatusFinished/${concept.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
+                                                <p class="langPL">USTAW JAKO ZAKOŃCZONY</p>
+                                                <p class="langEN">SET AS FINISHED</p>
+                                            </a>
+                                        </c:if>
                                     </c:if>
                                     <div class="btn btn-outline-dark disabled float-right">
                                         <p class="langPL">ROZWIŃ</p>

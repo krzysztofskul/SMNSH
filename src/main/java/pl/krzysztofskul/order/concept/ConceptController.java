@@ -285,6 +285,18 @@ public class ConceptController {
         model.addAttribute("concept", conceptService.loadByIdWithAll(id));
         return "orders/concepts/setStatus";
     }
+    @GetMapping("/setStatusFinished/{conceptId}")
+    public String setStatusFinished(
+            @PathVariable("conceptId") Long conceptId,
+            @RequestParam(name = "backToPage", required = true) String backToPage
+    ) {
+        Concept concept = conceptService.loadById(conceptId);
+        concept.setStatus(Status.FINISHED);
+        concept.setPlanner(null);
+        conceptService.save(concept);
+        return "redirect:/"+backToPage;
+    }
+
     @PostMapping("/setStatus/{id}")
     public String setStatus(
             @ModelAttribute("concept") Concept concept

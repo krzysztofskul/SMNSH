@@ -29,6 +29,9 @@
 
 # 0.3.0.X
     - copy resources to AWS server (?):
+        - reactivate tooltips at menuMain
+        - ? https://maven.apache.org/plugins-archives/maven-war-plugin-2.3/examples/adding-filtering-webresources.html ...
+        - ?
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-resources-plugin</artifactId>
@@ -79,15 +82,25 @@
         . go to projects -> project id
         . assign loggedIn designer to the project
             . show button depends on loggedIn user
-                - if status is "in progress": show finish project button for designer ....
+                . if status is "in progress": show finish project button for designer
             . make functionality
         . log in as project manager
-            - modify order
+            . modify order
         . log in as designer
-            - change status for finish
-
+            . change status for finished
+        . log in as project manager
+            - order guideline (final planning) project .....
+                - show button to order guideline:
+                    - if concept project is finished
+                    - if user loggedIn is project manager
 
 *** DONE ***
+# 0.3.0.4
+    + new functionality: finish project as a designer at the project details page
+        + show/hide button depends on:
+            + if loggedIn user is a designer
+            + if status of the order is "in progress"
+            + if order for project has designer assigned
 # 0.3.0.3
     + new functionality: assign loggedIn designer to the project at the project details page
         + show/hide button depends on:

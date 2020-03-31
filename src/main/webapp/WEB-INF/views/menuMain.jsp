@@ -25,10 +25,10 @@
                             <p class="langPL">INICJALIZACJA BAZY DANYCH</p>
                             <p class="langEN">INIT.DB</p>
                     </a>
-                    <div>
+                    <%--<div>
                         <p class="langPL">WSTĘPNA INICJALIZACJA TESTOWEJ BAZY DANYCH</p>
                         <p class="langEN">TEST DATA BASE INITIALISATION</p>
-                    </div>
+                    </div>--%>
                 </div>
             </li>
             <li class="nav-item">
@@ -61,7 +61,7 @@
                     <p class="langEN">ALL USERS</p>
                 </a>
             </li>
-            <li class="nav-item">
+            <%--<li class="nav-item">
                 <div class="myTooltip">
                     <a class="nav-link btn-light ml-1 mr-1" href="#">
                         <p class="langPL">TEST</p>
@@ -72,7 +72,7 @@
                         lorem ipsum
                     </div>
                 </div>
-            </li>
+            </li>--%>
         </ul>
     </div>
 </body>
