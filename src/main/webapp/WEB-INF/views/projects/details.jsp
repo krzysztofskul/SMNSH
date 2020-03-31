@@ -7,7 +7,7 @@
   Time: 20:17
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" session="true" %>
 <html>
 <head>
 </head>
@@ -184,8 +184,8 @@
                     <div class="row">
                         <div class="col-6"></div>
                         <div class="col-3 text-right pt-2 float-right">
-                            <p class="langPL">STATUS:</p>
-                            <p class="langEN">STATUS:</p>
+                            <p class="langPL">STATUS PROJEKTU:</p>
+                            <p class="langEN">PROJECT STATUS:</p>
                         </div>
                         <div class="col-3 pt-2 float-right">
                             <c:choose>
@@ -349,10 +349,27 @@
                                         </div>
                                         <div class="col-sm-5 <%--border border-dark--%> p-0 pr-sm-1">
                                             <div class="bg-lightgrey-75 m-0 p-2 w-100">
-                                                <p class="langPL">STATUS:</p>
-                                                <p class="langEN">STATUS:</p>
+                                                <p class="langPL">STATUS ZAMÓWIENIA PROJEKTU KONCEPCYJNEGO:</p>
+                                                <p class="langEN">ORDER FOR THE CONCEPTUAL (PRELIMINARY) PROJECT STATUS:</p>
                                             </div>
                                             <p class="text-left pt-2 pl-2">${concept.status.toString()}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-7 text-right ">
+                                            <p class="langPL">PROJEKTANT:</p>
+                                            <p class="langEN">DESIGNER:</p>
+                                        </div>
+                                        <div class="col-5">
+                                            <c:choose>
+                                                <c:when test="${concept.planner eq null}">
+                                                    <p class="langPL">BRAK JESZCZE PRZYPISANEGO PROJEKTANTA</p>
+                                                    <p class="langEN">NO DESIGNER ASSIGNED YET</p>
+                                                </c:when>
+                                                <c:when test="${concept.planner ne null}">
+                                                    <p class="text-left pt-2 pl-2">${concept.planner.nameFirst} ${concept.planner.nameLast}</p>
+                                                </c:when>
+                                            </c:choose>
                                         </div>
                                     </div>
                                 </div>
@@ -369,6 +386,12 @@
                                         <p class="langPL">PRZEJDŹ >></p>
                                         <p class="langEN">GO TO >></p>
                                     </a>
+                                    <c:if test="${concept.planner eq null && sessionScope.userLoggedIn.businessPosition.toString() eq 'Projektant/Planista / Designer/Planner'}">
+                                        <a href="/concepts/setDesigner/${concept.id}/${sessionScope.userLoggedIn.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
+                                            <p class="langPL">PRZYPISZ MNIE JAKO PROJEKTANTA</p>
+                                            <p class="langEN">ASSIGN ME AS A DESIGNER</p>
+                                        </a>
+                                    </c:if>
                                     <div class="btn btn-outline-dark disabled float-right">
                                         <p class="langPL">ROZWIŃ</p>
                                         <p class="langEN">UNHIDE</p>
