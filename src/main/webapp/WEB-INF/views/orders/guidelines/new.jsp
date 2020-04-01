@@ -30,6 +30,9 @@
                     <form:hidden path="concept.id"/>
                     <form:hidden path="device.id"/>
                     <form:hidden path="description" value="${guidelineNew.concept.description}"/>
+<%--                    <c:if test="${backToPage ne null}">--%>
+<%--                        <input type="hidden" name="backToPage" value="${backToPage}">--%>
+<%--                    </c:if>--%>
                     <div class="form-row">
                         <div class="form-group col-sm-8 ml-auto mr-auto">
                             <label for="title">

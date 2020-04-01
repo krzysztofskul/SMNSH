@@ -53,6 +53,7 @@ public class GuidelineController {
     @GetMapping("/new")
     public String newGuideline(
             @RequestParam("conceptId") Long conceptId,
+//            @RequestParam(name = "backToPage", required = false) String backToPage,
             Model model
     ) {
         Concept concept = conceptService.loadByIdWithAll(conceptId);
@@ -62,10 +63,14 @@ public class GuidelineController {
         guidelineNew.setClient(concept.getClient());
         guidelineNew.setDevice(concept.getDevice());
         model.addAttribute("guidelineNew", guidelineNew);
+//        if (backToPage != null) {
+//            model.addAttribute("backToPage", backToPage);
+//        }
         return "orders/guidelines/new";
     }
     @PostMapping("/new")
     public String newGuideline(
+            @RequestParam(name = "backToPage", required = false) String backToPage,
             @ModelAttribute("guidelineNew") @Valid Guideline guidelineNew,
             BindingResult result
     ) {
@@ -73,6 +78,9 @@ public class GuidelineController {
             return "orders/guidelines/new";
         }
         guidelineService.save(guidelineNew);
+        if (backToPage != null) {
+            return "redirect:/"+backToPage;
+        }
         return "redirect:/users/details/"+guidelineNew.getAuthor().getId();
     }
 

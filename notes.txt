@@ -72,6 +72,7 @@
         - create relation for project/concept and guidelines list
     - change status and designer updates for Admin
     - validation for edit project // todo: update project back when no validation problem
+    . order for conceptual project button show/hide depends on who is logged in
     - demo mode scheme:
         . init DB
         . login as project manager
@@ -89,12 +90,23 @@
         . log in as designer
             . change status for finished
         . log in as project manager
-            - order guideline (final planning) project .....
-                - show button to order guideline:
-                    - if concept project is finished
-                    - if user loggedIn is project manager
+            - order guideline (final planning) project
+                . show button to order guideline:
+                    . if concept project is finished
+                    . if user loggedIn is project manager
+                - add functionality of sending order for guideline ...
+                    . show guidelines on project pages 
+                    . hide guideline button if order was sent
+        - log in as designer
+            - set guideline to himself
 
 *** DONE ***
+# 0.3.0.5
+    + button show/hide for ordering the final planning (guidelines) project at the project details page
+        + if concept project is finished
+        + if user loggedIn is project manager
+    + show order for final planning (guidelines) project on business project page, if was ordered by Project Manager
+    + hide button for ordering the final planning (guideline), if order was sent
 # 0.3.0.4
     + new functionality: finish project as a designer at the project details page
         + show/hide button depends on:
