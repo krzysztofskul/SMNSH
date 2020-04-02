@@ -357,14 +357,14 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-7 text-right ">
-                                            <p class="langPL">PROJEKTANT:</p>
-                                            <p class="langEN">DESIGNER:</p>
+                                            <p class="langPL">PLANISTA:</p>
+                                            <p class="langEN">PLANNER:</p>
                                         </div>
                                         <div class="col-5">
                                             <c:choose>
                                                 <c:when test="${concept.planner eq null}">
-                                                    <p class="langPL">BRAK PRZYPISANEGO PROJEKTANTA</p>
-                                                    <p class="langEN">NO DESIGNER ASSIGNED</p>
+                                                    <p class="langPL">BRAK PRZYPISANEGO PLANISTY</p>
+                                                    <p class="langEN">NO PLANNER ASSIGNED</p>
                                                 </c:when>
                                                 <c:when test="${concept.planner ne null}">
                                                     <p class="text-left pt-2 pl-2">${concept.planner.nameFirst} ${concept.planner.nameLast}</p>
@@ -433,15 +433,83 @@
                                             <p class="langEN">ORDER FOR FINAL PLANNING (GUIDELINES) PROJECT</p>
                                         </div>
                                         <div class="card-body">
-                                            <p>ID: ${concept.guideline.id}</p>
-                                            <p>TITLE: ${concept.guideline.title}</p>
-                                            <p>STATUS: ${concept.guideline.status}</p>
+                                            <div class="row h-100px">
+                                                <div class="col-sm-1 <%--border border-dark--%> p-0 pr-sm-1">
+                                                    <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                                        <p class="langPL">ID:</p>
+                                                        <p class="langEN">ID:</p>
+                                                    </div>
+                                                    <p class="text-left pt-2 pl-2">${concept.guideline.id}</p>
+                                                </div>
+                                                <div class="col-sm-3 <%--border border-dark--%> p-0 pr-sm-1">
+                                                    <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                                        <p class="langPL">UTWORZONO:</p>
+                                                        <p class="langEN">CREATED:</p>
+                                                    </div>
+                                                    <p class="text-left pt-2 pl-2">${concept.guideline.dateTimeCreated.toLocalDate()}</p>
+                                                </div>
+                                                <div class="col-sm-3 <%--border border-dark--%> p-0 pr-sm-1">
+                                                    <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                                        <p class="langPL">TERMIN REALIZACJI:</p>
+                                                        <p class="langEN">DEADLINE:</p>
+                                                    </div>
+                                                    <p class="text-left pt-2 pl-2">${concept.guideline.dateTimeDeadline.toLocalDate()} ${concept.guideline.dateTimeDeadline.toLocalTime()}</p>
+                                                </div>
+                                                <div class="col-sm-5 <%--border border-dark--%> p-0 pr-sm-1">
+                                                    <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                                        <p class="langPL">STATUS ZAMÓWIENIA PROJEKTU WYTYCZNYCH:</p>
+                                                        <p class="langEN">ORDER FOR THE FINAL PLANNING (GUIDELINES) PROJECT STATUS:</p>
+                                                    </div>
+                                                    <p class="text-left pt-2 pl-2">${concept.guideline.status.toString()}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-7 text-right ">
+                                                    <p class="langPL">PROJEKTANT:</p>
+                                                    <p class="langEN">DESIGNER:</p>
+                                                </div>
+                                                <div class="col-5">
+                                                    <c:choose>
+                                                        <c:when test="${concept.guideline.designer eq null}">
+                                                            <p class="langPL">BRAK PRZYPISANEGO PROJEKTANTA</p>
+                                                            <p class="langEN">NO DESIGNER ASSIGNED</p>
+                                                        </c:when>
+                                                        <c:when test="${concept.guideline.designer ne null}">
+                                                            <p class="text-left pt-2 pl-2">${concept.guideline.designer.nameFirst} ${concept.guideline.designer.nameLast}</p>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="card-footer h-75px">
-                                            <a href="/guidelines/details/${concept.guideline.id}" class="btn btn-outline-primary float-right ml-1 disabled">
-                                                <p class="langPL">SZCZEGÓLY</p>
-                                                <p class="langEN">DETAILS</p>
-                                            </a>
+                                            <%-- BUTTON: ASSIGN DESIGNER TO GUIDELINE PROJECT --%>
+                                            <c:if test="${concept.guideline.designer eq null && sessionScope.userLoggedIn.businessPosition.toString() eq 'Projektant/Planista / Designer/Planner'}">
+                                                <c:if test="${concept.guideline.status.toString() eq 'OCZEKUJE / WAITING'}">
+                                                    <a href="/guidelines/setDesigner/${concept.guideline.id}/${sessionScope.userLoggedIn.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
+                                                        <p class="langPL">PRZYPISZ MNIE JAKO PROJEKTANTA</p>
+                                                        <p class="langEN">ASSIGN ME AS A DESIGNER</p>
+                                                    </a>
+                                                </c:if>
+                                            </c:if>
+                                                <%-- BUTTON: SET GUIDELINE PROJECT AS FINISHED --%>
+                                            <c:if test="${concept.guideline.designer ne null && sessionScope.userLoggedIn.businessPosition.toString() eq 'Projektant/Planista / Designer/Planner'}">
+                                                <c:if test="${concept.guideline.status.toString() eq 'W TOKU / IN PROGRESS'}">
+                                                    <a href="/guidelines/setStatusFinished/${concept.guideline.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
+                                                        <p class="langPL">USTAW JAKO ZAKOŃCZONY</p>
+                                                        <p class="langEN">SET AS FINISHED</p>
+                                                    </a>
+                                                </c:if>
+                                            </c:if>
+                                            <div class="btn btn-outline-dark disabled float-right">
+                                                <p class="langPL">ROZWIŃ</p>
+                                                <p class="langEN">UNHIDE</p>
+                                            </div>
+                                            <div>
+                                                <a href="/guidelines/details/${concept.guideline.id}" class="btn btn-outline-primary float-right ml-1 disabled">
+                                                    <p class="langPL">SZCZEGÓŁY</p>
+                                                    <p class="langEN">DETAILS</p>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </c:if>

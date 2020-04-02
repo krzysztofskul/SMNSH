@@ -94,13 +94,20 @@
                 . show button to order guideline:
                     . if concept project is finished
                     . if user loggedIn is project manager
-                - add functionality of sending order for guideline ...
+                . add functionality of sending order for guideline
                     . show guidelines on project pages 
                     . hide guideline button if order was sent
         - log in as designer
-            - set guideline to himself
+            . new functionality added: allow designer to assign himself to the order for final planning (guideline) project
+            . added designer to Guideline class and added guidelineList to User class
+            . project details.jsp updated
+            - update front-end for guideline at project page ...
 
 *** DONE ***
+# 0.3.0.6
+    + new functionality added: allow designer to assign himself to the order for final planning (guideline) project
+    + added designer to Guideline class and added guidelineList to User class
+    + project details.jsp updated
 # 0.3.0.5
     + button show/hide for ordering the final planning (guidelines) project at the project details page
         + if concept project is finished

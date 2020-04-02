@@ -4,6 +4,7 @@ import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.order.Order;
 import pl.krzysztofskul.order.Status;
 import pl.krzysztofskul.order.concept.Concept;
+import pl.krzysztofskul.user.User;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -34,6 +35,9 @@ public class Guideline extends Order {
 
     @ManyToOne
     private Device device;
+
+    @ManyToOne
+    private User designer;
 
     /**
      * constr.
@@ -86,6 +90,14 @@ public class Guideline extends Order {
 
     public void setDevice(Device device) {
         this.device = device;
+    }
+
+    public User getDesigner() {
+        return designer;
+    }
+
+    public void setDesigner(User designer) {
+        this.designer = designer;
     }
 
     /**
