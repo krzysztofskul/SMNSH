@@ -59,6 +59,9 @@ public class User {
     @OneToMany(mappedBy = "planner", cascade = CascadeType.ALL)
     private List<Concept> conceptListToDo = new ArrayList<>();
 
+    @OneToMany(mappedBy = "designer", cascade = CascadeType.ALL)
+    private List<Guideline> guidelineListToDo = new ArrayList<>();
+
     @OneToMany(mappedBy = "projectManager", cascade = CascadeType.ALL)
     private List<Project> projectList = new ArrayList<>();
 
@@ -153,6 +156,14 @@ public class User {
 
     public void setConceptListToDo(List<Concept> conceptListToDo) {
         this.conceptListToDo = conceptListToDo;
+    }
+
+    public List<Guideline> getGuidelineListToDo() {
+        return guidelineListToDo;
+    }
+
+    public void setGuidelineListToDo(List<Guideline> guidelineListToDo) {
+        this.guidelineListToDo = guidelineListToDo;
     }
 
     public List<Project> getProjectList() {

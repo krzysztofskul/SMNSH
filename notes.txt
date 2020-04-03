@@ -28,6 +28,33 @@
     - one question set / questions set stream for all device types if projects have more devices
 
 # 0.3.0.X
+    - copy resources to AWS server (?):
+        - reactivate tooltips at menuMain
+        - ? https://maven.apache.org/plugins-archives/maven-war-plugin-2.3/examples/adding-filtering-webresources.html ...
+        - ?
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>2.4.2</version>
+            <executions>
+                <execution>
+                    <id>default-copy-resources</id>
+                    <phase>process-resources</phase>
+                    <goals>
+                        <goal>copy-resources</goal>
+                    </goals>
+                    <configuration>
+                        <overwrite>true</overwrite>
+                        <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/WEB-INF/</outputDirectory>
+                        <resources>
+                            <resource>
+                                <directory>${project.basedir}/src/main/resources</directory>
+                            </resource>
+                        </resources>
+                    </configuration>
+                </execution>
+            </executions>
+          </plugin>
     . front end updates
         . additional questions set
             . question set form xray mod.
@@ -45,14 +72,65 @@
         - create relation for project/concept and guidelines list
     - change status and designer updates for Admin
     - validation for edit project // todo: update project back when no validation problem
-    - demo mode
-        - init DB
-        - login as project manager
-        - go to projects page
-        - create new project
-        - create new order for conceptual (preliminary) project -> back to projects page ...
+    . order for conceptual project button show/hide depends on who is logged in
+    - demo mode scheme:
+        . init DB
+        . login as project manager
+        . go to projects page
+        . create new project
+        . create new order for conceptual (preliminary) project -> back to project page
+        . login as designer
+        . go to projects -> project id
+        . assign loggedIn designer to the project
+            . show button depends on loggedIn user
+                . if status is "in progress": show finish project button for designer
+            . make functionality
+        . log in as project manager
+            . modify order
+        . log in as designer
+            . change status for finished
+        . log in as project manager
+            - order guideline (final planning) project
+                . show button to order guideline:
+                    . if concept project is finished
+                    . if user loggedIn is project manager
+                . add functionality of sending order for guideline
+                    . show guidelines on project pages 
+                    . hide guideline button if order was sent
+        - log in as designer
+            . new functionality added: allow designer to assign himself to the order for final planning (guideline) project
+            . added designer to Guideline class and added guidelineList to User class
+            . project details.jsp updated
+            + update front-end for guideline at project page
+                + update concepts/details page
+        + menuMain update
 
 *** DONE ***
+# 0.3.0.7
+    + front-end updates in guideline at project page
+    + updates in concepts/details page
+    + menuMain update
+# 0.3.0.6
+    + new functionality added: allow designer to assign himself to the order for final planning (guideline) project
+    + added designer to Guideline class and added guidelineList to User class
+    + project details.jsp updated
+# 0.3.0.5
+    + button show/hide for ordering the final planning (guidelines) project at the project details page
+        + if concept project is finished
+        + if user loggedIn is project manager
+    + show order for final planning (guidelines) project on business project page, if was ordered by Project Manager
+    + hide button for ordering the final planning (guideline), if order was sent
+# 0.3.0.4
+    + new functionality: finish project as a designer at the project details page
+        + show/hide button depends on:
+            + if loggedIn user is a designer
+            + if status of the order is "in progress"
+            + if order for project has designer assigned
+# 0.3.0.3
+    + new functionality: assign loggedIn designer to the project at the project details page
+        + show/hide button depends on:
+            + if loggedIn user is a designer
+            + if order for project has no designer assigned yet
 # 0.3.0.2
     + additional questions set
         + question set form xray mod.

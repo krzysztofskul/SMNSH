@@ -7,7 +7,7 @@
   Time: 20:17
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" session="true" %>
 <html>
 <head>
 </head>
@@ -184,8 +184,8 @@
                     <div class="row">
                         <div class="col-6"></div>
                         <div class="col-3 text-right pt-2 float-right">
-                            <p class="langPL">STATUS:</p>
-                            <p class="langEN">STATUS:</p>
+                            <p class="langPL">STATUS PROJEKTU:</p>
+                            <p class="langEN">PROJECT STATUS:</p>
                         </div>
                         <div class="col-3 pt-2 float-right">
                             <c:choose>
@@ -323,7 +323,7 @@
                     </c:if>
                     <c:if test="${project.conceptList ne null}">
                         <c:forEach items="${project.conceptList}" var="concept">
-                            <div class="card mb-3 border-bottom-0 border-left-0 border-right-0 border-dark">
+                            <div class="card mb-3 border-bottom-0 border-dark">
                                 <div class="card-header">
                                     <div class="row h-100px">
                                         <div class="col-sm-1 <%--border border-dark--%> p-0 pr-sm-1">
@@ -349,10 +349,37 @@
                                         </div>
                                         <div class="col-sm-5 <%--border border-dark--%> p-0 pr-sm-1">
                                             <div class="bg-lightgrey-75 m-0 p-2 w-100">
-                                                <p class="langPL">STATUS:</p>
-                                                <p class="langEN">STATUS:</p>
+                                                <p class="langPL">STATUS ZAMÓWIENIA PROJEKTU KONCEPCYJNEGO:</p>
+                                                <p class="langEN">ORDER FOR THE CONCEPTUAL (PRELIMINARY) PROJECT STATUS:</p>
                                             </div>
-                                            <p class="text-left pt-2 pl-2">${concept.status.toString()}</p>
+                                            <c:choose>
+                                                <c:when test="${concept.status.toString() eq 'OCZEKUJE / WAITING'}">
+                                                    <p class="text-left pt-2 pl-2 text-danger">${concept.status.toString()}</p>
+                                                </c:when>
+                                                <c:when test="${concept.status.toString() eq 'W TOKU / IN PROGRESS'}">
+                                                    <p class="text-left pt-2 pl-2 text-warning">${concept.status.toString()}</p>
+                                                </c:when>
+                                                <c:when test="${concept.status.toString() eq 'ZAKOŃCZONY / FINISHED'}">
+                                                    <p class="text-left pt-2 pl-2 text-success">${concept.status.toString()}</p>
+                                                </c:when>
+                                            </c:choose>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-7 text-right ">
+                                            <p class="langPL">PLANISTA:</p>
+                                            <p class="langEN">PLANNER:</p>
+                                        </div>
+                                        <div class="col-5">
+                                            <c:choose>
+                                                <c:when test="${concept.planner eq null}">
+                                                    <p class="langPL">BRAK PRZYPISANEGO PLANISTY</p>
+                                                    <p class="langEN">NO PLANNER ASSIGNED</p>
+                                                </c:when>
+                                                <c:when test="${concept.planner ne null}">
+                                                    <p class="text-left pt-2 pl-2">${concept.planner.nameFirst} ${concept.planner.nameLast}</p>
+                                                </c:when>
+                                            </c:choose>
                                         </div>
                                     </div>
                                 </div>
@@ -366,25 +393,166 @@
                                 </div>
                                 <div class="card-footer">
                                     <a href="/concepts/details/${concept.id}" class="btn btn-outline-primary float-right ml-1">
-                                        <p class="langPL">PRZEJDŹ >></p>
-                                        <p class="langEN">GO TO >></p>
+                                        <p class="langPL">SZCZEGÓLY</p>
+                                        <p class="langEN">DETAILS</p>
                                     </a>
+                                    <%-- BUTTON: ASSIGN DESIGNER --%>
+                                    <c:if test="${concept.planner eq null && sessionScope.userLoggedIn.businessPosition.toString() eq 'Projektant/Planista / Designer/Planner'}">
+                                        <c:if test="${concept.status.toString() eq 'OCZEKUJE / WAITING'}">
+                                            <a href="/concepts/setDesigner/${concept.id}/${sessionScope.userLoggedIn.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
+                                                <p class="langPL">PRZYPISZ MNIE JAKO PROJEKTANTA</p>
+                                                <p class="langEN">ASSIGN ME AS A DESIGNER</p>
+                                            </a>
+                                        </c:if>
+                                    </c:if>
+                                    <%-- BUTTON: SET CONCEPTUAL PROJECT AS FINISHED --%>
+                                    <c:if test="${concept.planner ne null && sessionScope.userLoggedIn.businessPosition.toString() eq 'Projektant/Planista / Designer/Planner'}">
+                                        <c:if test="${concept.status.toString() eq 'W TOKU / IN PROGRESS'}">
+                                            <a href="/concepts/setStatusFinished/${concept.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
+                                                <p class="langPL">USTAW JAKO ZAKOŃCZONY</p>
+                                                <p class="langEN">SET AS FINISHED</p>
+                                            </a>
+                                        </c:if>
+                                    </c:if>
+                                    <%-- BUTTON: ORDER FINAL PLANNING (GUIDELINES) PROJECT --%>
+                                    <c:set var="isLoggedPM" value="${sessionScope.userLoggedIn.businessPosition.toString() eq 'Kierownik projektu / Project Manager'}"/>
+                                    <c:set var="isConceptFinished" value="${concept.status.toString() eq 'ZAKOŃCZONY / FINISHED'}"/>
+                                    <c:set var="isOrderForGuidelineSent" value="${concept.guideline ne null}"/>
+                                    <c:if test="${isLoggedPM && isConceptFinished && !isOrderForGuidelineSent}">
+                                        <a href="/guidelines/new/?conceptId=${concept.id}&backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
+                                            <p class="langPL">ZAMÓWIENIE PROJEKTU WYTYCZNYCH</p>
+                                            <p class="langEN">ORDER FOR FINAL PLANNING PROJECT</p>
+                                        </a>
+                                    </c:if>
+                                    <c:if test="${isLoggedPM && isConceptFinished && isOrderForGuidelineSent}">
+                                        <a href="/guidelines/new/?conceptId=${concept.id}&backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1 disabled">
+                                            <p class="langPL">ZAMÓWIENIE PROJEKTU WYTYCZNYCH</p>
+                                            <p class="langEN">ORDER FOR FINAL PLANNING PROJECT</p>
+                                        </a>
+                                    </c:if>
                                     <div class="btn btn-outline-dark disabled float-right">
                                         <p class="langPL">ROZWIŃ</p>
                                         <p class="langEN">UNHIDE</p>
                                     </div>
                                 </div>
+                                <%-- FINAL PLANNING (GUIDELINES) LIST --%>
+                                <c:if test="${concept.guideline ne null}">
+                                    <div class="card d-block float-left w-100 mt-2 border-left-0 border-right-0 border-dark">
+                                        <div class="card-header text-center">
+                                            <p class="langPL">ZAMÓWIENIE PROJEKTU WYTYCZNYCH INSTALACYJNYCH</p>
+                                            <p class="langEN">ORDER FOR FINAL PLANNING (GUIDELINES) PROJECT</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row h-100px">
+                                                <div class="col-sm-1 <%--border border-dark--%> p-0 pr-sm-1">
+                                                    <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                                        <p class="langPL">ID:</p>
+                                                        <p class="langEN">ID:</p>
+                                                    </div>
+                                                    <p class="text-left pt-2 pl-2">${concept.guideline.id}</p>
+                                                </div>
+                                                <div class="col-sm-3 <%--border border-dark--%> p-0 pr-sm-1">
+                                                    <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                                        <p class="langPL">UTWORZONO:</p>
+                                                        <p class="langEN">CREATED:</p>
+                                                    </div>
+                                                    <p class="text-left pt-2 pl-2">${concept.guideline.dateTimeCreated.toLocalDate()}</p>
+                                                </div>
+                                                <div class="col-sm-3 <%--border border-dark--%> p-0 pr-sm-1">
+                                                    <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                                        <p class="langPL">TERMIN REALIZACJI:</p>
+                                                        <p class="langEN">DEADLINE:</p>
+                                                    </div>
+                                                    <p class="text-left pt-2 pl-2">${concept.guideline.dateTimeDeadline.toLocalDate()} ${concept.guideline.dateTimeDeadline.toLocalTime()}</p>
+                                                </div>
+                                                <div class="col-sm-5 <%--border border-dark--%> p-0 pr-sm-1">
+                                                    <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                                        <p class="langPL">STATUS ZAMÓWIENIA PROJEKTU WYTYCZNYCH:</p>
+                                                        <p class="langEN">ORDER FOR THE FINAL PLANNING (GUIDELINES) PROJECT STATUS:</p>
+                                                    </div>
+                                                    <c:choose>
+                                                        <c:when test="${concept.guideline.status.toString() eq 'OCZEKUJE / WAITING'}">
+                                                            <p class="text-left pt-2 pl-2 text-danger">${concept.guideline.status.toString()}</p>
+                                                        </c:when>
+                                                        <c:when test="${concept.guideline.status.toString() eq 'W TOKU / IN PROGRESS'}">
+                                                            <p class="text-left pt-2 pl-2 text-warning">${concept.guideline.status.toString()}</p>
+                                                        </c:when>
+                                                        <c:when test="${concept.guideline.status.toString() eq 'ZAKOŃCZONY / FINISHED'}">
+                                                            <p class="text-left pt-2 pl-2 text-success">${concept.guideline.status.toString()}</p>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-7 text-right ">
+                                                    <p class="langPL">PROJEKTANT:</p>
+                                                    <p class="langEN">DESIGNER:</p>
+                                                </div>
+                                                <div class="col-5">
+                                                    <c:choose>
+                                                        <c:when test="${concept.guideline.designer eq null}">
+                                                            <p class="langPL">BRAK PRZYPISANEGO PROJEKTANTA</p>
+                                                            <p class="langEN">NO DESIGNER ASSIGNED</p>
+                                                        </c:when>
+                                                        <c:when test="${concept.guideline.designer ne null}">
+                                                            <p class="text-left pt-2 pl-2">${concept.guideline.designer.nameFirst} ${concept.guideline.designer.nameLast}</p>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer h-75px">
+                                            <div>
+                                                <a href="/guidelines/details/${concept.guideline.id}" class="btn btn-outline-primary float-right ml-1 disabled">
+                                                    <p class="langPL">SZCZEGÓŁY</p>
+                                                    <p class="langEN">DETAILS</p>
+                                                </a>
+                                            </div>
+                                            <%-- BUTTON: ASSIGN DESIGNER TO GUIDELINE PROJECT --%>
+                                            <c:if test="${concept.guideline.designer eq null && sessionScope.userLoggedIn.businessPosition.toString() eq 'Projektant/Planista / Designer/Planner'}">
+                                                <c:if test="${concept.guideline.status.toString() eq 'OCZEKUJE / WAITING'}">
+                                                    <a href="/guidelines/setDesigner/${concept.guideline.id}/${sessionScope.userLoggedIn.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
+                                                        <p class="langPL">PRZYPISZ MNIE JAKO PROJEKTANTA</p>
+                                                        <p class="langEN">ASSIGN ME AS A DESIGNER</p>
+                                                    </a>
+                                                </c:if>
+                                            </c:if>
+                                                <%-- BUTTON: SET GUIDELINE PROJECT AS FINISHED --%>
+                                            <c:if test="${concept.guideline.designer ne null && sessionScope.userLoggedIn.businessPosition.toString() eq 'Projektant/Planista / Designer/Planner'}">
+                                                <c:if test="${concept.guideline.status.toString() eq 'W TOKU / IN PROGRESS'}">
+                                                    <a href="/guidelines/setStatusFinished/${concept.guideline.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
+                                                        <p class="langPL">USTAW JAKO ZAKOŃCZONY</p>
+                                                        <p class="langEN">SET AS FINISHED</p>
+                                                    </a>
+                                                </c:if>
+                                            </c:if>
+                                            <div class="btn btn-outline-dark disabled float-right">
+                                                <p class="langPL">ROZWIŃ</p>
+                                                <p class="langEN">UNHIDE</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:if>
                             </div>
-
                         </c:forEach>
                     </c:if>
                 </div>
-
                 <div class="card-footer">
-                    <a href="/concepts/new?projectId=${project.id}&userId=${project.projectManager.id}" class="btn btn-success float-right">
-                        <div class="langPL">ZAMÓWIENIE PROJEKTU KONCEPCYJNEGO</div>
-                        <div class="langEN">ORDER FOR CONCEPTUAL (PRELIMINARY PROJECT)</div>
-                    </a>
+                    <c:choose>
+                        <c:when test="${sessionScope.userLoggedIn.businessPosition.toString() ne 'Projektant/Planista / Designer/Planner'}">
+                            <a href="/concepts/new?projectId=${project.id}&userId=${project.projectManager.id}" class="btn btn-success float-right">
+                                <div class="langPL">ZAMÓWIENIE PROJEKTU KONCEPCYJNEGO</div>
+                                <div class="langEN">ORDER FOR CONCEPTUAL (PRELIMINARY PROJECT)</div>
+                            </a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/concepts/new?projectId=${project.id}&userId=${project.projectManager.id}" class="btn btn-success float-right disabled">
+                                <div class="langPL">ZAMÓWIENIE PROJEKTU KONCEPCYJNEGO</div>
+                                <div class="langEN">ORDER FOR CONCEPTUAL (PRELIMINARY PROJECT)</div>
+                            </a>
+                        </c:otherwise>
+                    </c:choose>
+
                 </div>
             </div>
         </form:form>

@@ -255,6 +255,19 @@ public class ConceptController {
         model.addAttribute("usersDesigners", userService.loadAllDesigners());
         return "orders/concepts/setDesigner";
     }
+    @GetMapping("/setDesigner/{conceptId}/{designerId}")
+    public String setDesigner(
+            @PathVariable("conceptId") Long conceptId,
+            @PathVariable("designerId") Long designerID,
+            @RequestParam(name = "backToPage", required = true) String backToPage
+    ) {
+        Concept concept = conceptService.loadById(conceptId);
+        concept.setPlanner(userService.loadById(designerID));
+        concept.setStatus(Status.IN_PROGRESS);
+        conceptService.save(concept);
+        return "redirect:/"+backToPage;
+    }
+
     @PostMapping("/setDesigner/{id}")
     public String setDesigner (
             @ModelAttribute("concept") Concept concept
@@ -272,6 +285,18 @@ public class ConceptController {
         model.addAttribute("concept", conceptService.loadByIdWithAll(id));
         return "orders/concepts/setStatus";
     }
+    @GetMapping("/setStatusFinished/{conceptId}")
+    public String setStatusFinished(
+            @PathVariable("conceptId") Long conceptId,
+            @RequestParam(name = "backToPage", required = true) String backToPage
+    ) {
+        Concept concept = conceptService.loadById(conceptId);
+        concept.setStatus(Status.FINISHED);
+        concept.setPlanner(null);
+        conceptService.save(concept);
+        return "redirect:/"+backToPage;
+    }
+
     @PostMapping("/setStatus/{id}")
     public String setStatus(
             @ModelAttribute("concept") Concept concept
