@@ -247,7 +247,13 @@
                         <p class="langEN">GUDELINE:</p>
                     </div>
                     <div class="col-6">
-                        ID: ${concept.guideline.id}
+                        <c:if test="${concept.guideline ne null}">
+                            ${concept.guideline.status.toString()}
+                        </c:if>
+                        <c:if test="${concept.guideline eq null}">
+                            <p class="langPL">NIE WYSŁANO ZAMÓWIENIA PROJEKTU WYTYCZNYCH</p>
+                            <p class="langEN">ORDER FOR FINAL PLANNING (GUIDELINES) PROJECT HASN'T BEEN SENT</p>
+                        </c:if>
                     </div>
                 </div>
             </div>

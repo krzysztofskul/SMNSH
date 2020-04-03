@@ -101,9 +101,15 @@
             . new functionality added: allow designer to assign himself to the order for final planning (guideline) project
             . added designer to Guideline class and added guidelineList to User class
             . project details.jsp updated
-            - update front-end for guideline at project page ...
+            + update front-end for guideline at project page
+                + update concepts/details page
+        + menuMain update
 
 *** DONE ***
+# 0.3.0.7
+    + front-end updates in guideline at project page
+    + updates in concepts/details page
+    + menuMain update
 # 0.3.0.6
     + new functionality added: allow designer to assign himself to the order for final planning (guideline) project
     + added designer to Guideline class and added guidelineList to User class
