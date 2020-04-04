@@ -352,7 +352,17 @@
                                                 <p class="langPL">STATUS ZAMÓWIENIA PROJEKTU KONCEPCYJNEGO:</p>
                                                 <p class="langEN">ORDER FOR THE CONCEPTUAL (PRELIMINARY) PROJECT STATUS:</p>
                                             </div>
-                                            <p class="text-left pt-2 pl-2">${concept.status.toString()}</p>
+                                            <c:choose>
+                                                <c:when test="${concept.status.toString() eq 'OCZEKUJE / WAITING'}">
+                                                    <p class="text-left pt-2 pl-2 text-danger">${concept.status.toString()}</p>
+                                                </c:when>
+                                                <c:when test="${concept.status.toString() eq 'W TOKU / IN PROGRESS'}">
+                                                    <p class="text-left pt-2 pl-2 text-warning">${concept.status.toString()}</p>
+                                                </c:when>
+                                                <c:when test="${concept.status.toString() eq 'ZAKOŃCZONY / FINISHED'}">
+                                                    <p class="text-left pt-2 pl-2 text-success">${concept.status.toString()}</p>
+                                                </c:when>
+                                            </c:choose>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -383,8 +393,8 @@
                                 </div>
                                 <div class="card-footer">
                                     <a href="/concepts/details/${concept.id}" class="btn btn-outline-primary float-right ml-1">
-                                        <p class="langPL">PRZEJDŹ >></p>
-                                        <p class="langEN">GO TO >></p>
+                                        <p class="langPL">SZCZEGÓLY</p>
+                                        <p class="langEN">DETAILS</p>
                                     </a>
                                     <%-- BUTTON: ASSIGN DESIGNER --%>
                                     <c:if test="${concept.planner eq null && sessionScope.userLoggedIn.businessPosition.toString() eq 'Projektant/Planista / Designer/Planner'}">
@@ -460,7 +470,17 @@
                                                         <p class="langPL">STATUS ZAMÓWIENIA PROJEKTU WYTYCZNYCH:</p>
                                                         <p class="langEN">ORDER FOR THE FINAL PLANNING (GUIDELINES) PROJECT STATUS:</p>
                                                     </div>
-                                                    <p class="text-left pt-2 pl-2">${concept.guideline.status.toString()}</p>
+                                                    <c:choose>
+                                                        <c:when test="${concept.guideline.status.toString() eq 'OCZEKUJE / WAITING'}">
+                                                            <p class="text-left pt-2 pl-2 text-danger">${concept.guideline.status.toString()}</p>
+                                                        </c:when>
+                                                        <c:when test="${concept.guideline.status.toString() eq 'W TOKU / IN PROGRESS'}">
+                                                            <p class="text-left pt-2 pl-2 text-warning">${concept.guideline.status.toString()}</p>
+                                                        </c:when>
+                                                        <c:when test="${concept.guideline.status.toString() eq 'ZAKOŃCZONY / FINISHED'}">
+                                                            <p class="text-left pt-2 pl-2 text-success">${concept.guideline.status.toString()}</p>
+                                                        </c:when>
+                                                    </c:choose>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -482,6 +502,12 @@
                                             </div>
                                         </div>
                                         <div class="card-footer h-75px">
+                                            <div>
+                                                <a href="/guidelines/details/${concept.guideline.id}" class="btn btn-outline-primary float-right ml-1 disabled">
+                                                    <p class="langPL">SZCZEGÓŁY</p>
+                                                    <p class="langEN">DETAILS</p>
+                                                </a>
+                                            </div>
                                             <%-- BUTTON: ASSIGN DESIGNER TO GUIDELINE PROJECT --%>
                                             <c:if test="${concept.guideline.designer eq null && sessionScope.userLoggedIn.businessPosition.toString() eq 'Projektant/Planista / Designer/Planner'}">
                                                 <c:if test="${concept.guideline.status.toString() eq 'OCZEKUJE / WAITING'}">
@@ -504,12 +530,6 @@
                                                 <p class="langPL">ROZWIŃ</p>
                                                 <p class="langEN">UNHIDE</p>
                                             </div>
-                                            <div>
-                                                <a href="/guidelines/details/${concept.guideline.id}" class="btn btn-outline-primary float-right ml-1 disabled">
-                                                    <p class="langPL">SZCZEGÓŁY</p>
-                                                    <p class="langEN">DETAILS</p>
-                                                </a>
-                                            </div>
                                         </div>
                                     </div>
                                 </c:if>
@@ -517,7 +537,6 @@
                         </c:forEach>
                     </c:if>
                 </div>
-
                 <div class="card-footer">
                     <c:choose>
                         <c:when test="${sessionScope.userLoggedIn.businessPosition.toString() ne 'Projektant/Planista / Designer/Planner'}">

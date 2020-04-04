@@ -12,6 +12,7 @@
     <title>SMNSH</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/resources/css/smnshStyles.css"/>
+    <script type="text/javascript" src="<c:url value="/resources/js/demoMode.js"/>"></script>
 </head>
 <body>
     <div class="container">
@@ -20,8 +21,14 @@
 <%--        <a href="/concepts/all">CONCEPTS ALL</a>--%>
         <ul class="nav nav-pills">
             <li class="nav-item">
+                <a id="demoModeBtn" class="nav-link ml-1 mr-1" href="#">
+                    <p class="langPL">TRYB DEMO</p>
+                    <p class="langEN">DEMO MODE</p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <div class="myTooltip">
-                    <a class="nav-link btn-warning ml-1 mr-1" href="/initDB">
+                    <a id="initDbBtn" class="nav-link btn-warning ml-1 mr-1" href="/initDB">
                             <p class="langPL">INICJALIZACJA BAZY DANYCH</p>
                             <p class="langEN">INIT.DB</p>
                     </a>
@@ -44,21 +51,23 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link btn-light ml-1 mr-1" href="/users/all">
+                    <p class="langPL">UŻYTKOWNICY</p>
+                    <p class="langEN">ALL USERS</p>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav nav-pills border-top m-1">
+            <li class="nav-item">
                 <a class="nav-link btn-light ml-1 mr-1" href="/concepts/all?filter=all">
                     <p class="langPL">ZAMÓWIENIA KONCEPCJI</p>
                     <p class="langEN">CONCEPT ORDERS</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link btn-light ml-1 mr-1" href="#">
+                <a class="nav-link btn-light ml-1 mr-1 disabled" href="#">
                     <p class="langPL">ZAMÓWIENIA WYTYCZNYCH</p>
                     <p class="langEN">GUIDELINE ORDERS</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link btn-light ml-1 mr-1" href="/users/all">
-                    <p class="langPL">UŻYTKOWNICY</p>
-                    <p class="langEN">ALL USERS</p>
                 </a>
             </li>
             <%--<li class="nav-item">

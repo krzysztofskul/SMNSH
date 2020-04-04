@@ -7,17 +7,20 @@
   Time: 20:45
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
     <title>SMNSH</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/resources/css/smnshStyles.css"/>
+    <script type="text/javascript" src="<c:url value="/resources/js/demoMode.js"/>"></script>
 </head>
 <body>
     <div class="container border-bottom pt-4 pb-1 mb-5 bg-light">
-        <div class="text-left">
+        <div class="text-left" id="headerTitle">
             <h4 class="pl-5 font-weight-bold" style="letter-spacing: 15px; color: dimgrey">SMNSH APP.</h4>
+            <p id="demoCounterTitle" class="d-inline-block">Tryb demo aktywny - wykonano kroków / Demo mode activated - steps done: </p>
+            <p id="demoCounter" class="d-inline-block">${sessionScope.demoSession.toString()}</p>
         </div>
         <div class="text-right">
             <%
