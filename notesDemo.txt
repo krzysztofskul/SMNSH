@@ -2,29 +2,28 @@
 
 /*
 * scheme:
-    + click demo mode button ->
-        + DemoController -> @Get:StartDemoMode ->
-        + DemoService ->
-            + init DemoSingletonClass
-            + increase Demo.stepByOne
-            + set initDB button marked to click as first
+    . click demo mode button ->
+        . DemoController -> @Get:StartDemoMode ->
+        . DemoService ->
+            . init DemoSingletonClass
+            . increase Demo.stepByOne
+            . set initDB button marked to click as first
                 - *** set var in session ang get by js (?)
                 - *** or set var in model and get in jsp (?)
-            + redirect back to home page
-    - click initDB button in DemoMode ->
-        - @Get:initDB ->
-            - increase Demo.stepByOne
-            - unmark initDB button and mark login as PM button to click as second click
+            . redirect back to home page
+    . click initDB button in DemoMode ->
+        . @Get:initDB ->
+            . increase Demo.stepByOne
 
 */
 
-+ Demo (singleton) class
-    + counter of steps/clicks on buttons
+. Demo (singleton) class
+    . counter of steps/clicks on buttons
 
 - DemoController / DemoService
-    + on demo mode
+    . on demo mode
     - off demo mode
 
-+ javascript demoMode.js for managing demo mode functionality
-    + start demo mode function (activate demo mode button)
-    - step no 1 function (initDB) ...
+. javascript demoMode.js created for managing demo mode functionality
+    . start demo mode function (activate demo mode button)
+    . demo mode functions: step no 1,2,3,4 ...

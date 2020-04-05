@@ -58,7 +58,7 @@
                             "LUB ZALOGUJ JAKO GOŚĆ/PROJEKTANT"+
                             "<p class='langEN'>OR LOGIN AS A GUEST/DESIGNER</p>"+
                             "</a>"+
-                            "<a href='/login?guest=projectManager'>"+
+                            "<a id='loginAsPmBtn' href='/login?guest=projectManager'>"+
                             "LUB ZALOGUJ JAKO GOŚĆ/KIEROWNIK PROJEKTU"+
                             "<p class='langEN'>OR LOGIN AS A GUEST/PROJECT MANAGER</p>"+
                             "</a>"+

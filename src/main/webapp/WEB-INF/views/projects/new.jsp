@@ -225,7 +225,7 @@
                         <p class="langPL">ANULUJ</p>
                         <p class="langEN">CANCEL</p>
                     </a>
-                    <form:button type="submit" class="btn btn-success float-right">
+                    <form:button type="submit" id="projectNewBtnSave" class="btn btn-success float-right">
                         <p class="langPL">ZAPISZ</p>
                         <p class="langEN">SAVE</p>
                     </form:button>

@@ -101,7 +101,7 @@
             </c:forEach>
 
             <div class="card-footer">
-                <a href="/projects/new" class="btn btn-success float-right">
+                <a id="newProjectBtn" href="/projects/new" class="btn btn-success float-right">
                     <p class="langPL">NOWY PROJEKT</p>
                     <p class="langEN">NEW PROJECT</p>
                 </a>

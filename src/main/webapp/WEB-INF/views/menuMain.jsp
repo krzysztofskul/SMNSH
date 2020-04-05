@@ -12,7 +12,7 @@
     <title>SMNSH</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/resources/css/smnshStyles.css"/>
-    <script type="text/javascript" src="<c:url value="/resources/js/demoMode.js"/>"></script>
+<%--    <script type="text/javascript" src="<c:url value="/resources/js/demoMode.js"/>"></script>--%>
 </head>
 <body>
     <div class="container">
@@ -45,7 +45,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link btn-light ml-1 mr-1" href="/projects/all">
+                <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/projects/all">
                     <p class="langPL">PROJEKTY</p>
                     <p class="langEN">PROJECTS</p>
                 </a>
