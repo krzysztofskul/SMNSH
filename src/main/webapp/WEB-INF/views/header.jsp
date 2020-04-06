@@ -33,7 +33,7 @@
                                 "<div class='langPL text-white'>MÓJ PROFIL</div>" +
                                 "<div class='langEN text-dark'>MY PROFILE</div>" +
                             "</a>"+
-                            "<a href='/logout' class='btn btn-danger'>" +
+                            "<a id ='logoutBtn' href='/logout' class='btn btn-danger'>" +
                                 "<div class='langPL text-white'>WYLOGUJ</div>" +
                                 "<div class='langEN text-dark'>LOG OUT</div>" +
                             "</a>"
@@ -54,7 +54,7 @@
                             "LUB ZALOGUJ JAKO GOŚĆ/ADMIN"+
                             "<p class='langEN'>OR LOGIN AS A GUEST/ADMIN</p>"+
                             "</a>"+
-                            "<a href='/login?guest=designer'>"+
+                            "<a id='loginAsDesignerBtn' href='/login?guest=designer'>"+
                             "LUB ZALOGUJ JAKO GOŚĆ/PROJEKTANT"+
                             "<p class='langEN'>OR LOGIN AS A GUEST/DESIGNER</p>"+
                             "</a>"+

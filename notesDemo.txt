@@ -26,4 +26,13 @@
 
 . javascript demoMode.js created for managing demo mode functionality
     . start demo mode function (activate demo mode button)
-    . demo mode functions: step no 1,2,3,4 ...
+    . demo mode functions: step no 1,2,3,4
+    . step no. 5
+    . done steps 6,7,8
+    - 9 ... (as a designer go into details of the latest created project)
+        - todo: find details button to mark as demo next step;
+         - sort projects from tha latest to the oldest and mar first one from the list (?)
+         - force the name of the nemo project on the last step and find by demo name of the project (?) ...
+         - find by the latest date of creation (?)
+         - save projectId in session/cookie as demoProject (?)
+         - new field in project class: private boolean demo; (?)

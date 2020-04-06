@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const projectsBtn = document.getElementById("projectsBtn");
     const newProjectBtn = document.getElementById("newProjectBtn");
     const projectNewBtnSave = document.getElementById("projectNewBtnSave");
+    const formNewProject = document.getElementById("formNewProject");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const loginAsDesignerBtn = document.getElementById("loginAsDesignerBtn");
 
     const demoCounterTitle = document.getElementById("demoCounterTitle");
     const demoCounter = document.getElementById("demoCounter").innerText;
@@ -30,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     function startDemoMode() {
         initDbBtn.classList.replace("btn-warning", "btn-success");
-        initDbBtn.setAttribute("href", "/demoStepNo1");
+        initDbBtn.setAttribute("href", "/demoStepNumber1");
         alert("demo mode started");
     }
     function setButtonDemoModeDisabled() {
@@ -43,26 +46,54 @@ document.addEventListener("DOMContentLoaded", function() {
         demoCounterTitle.classList.remove("text-hide");
         demoCounter.classList.remove("text-hide");
     }
-    function setStepNo1Ready() {
+    function setStepNumber1Ready() {
         initDbBtn.classList.replace("btn-warning", "btn-success");
-        initDbBtn.setAttribute("href", "/demoStepNo1");
+        initDbBtn.setAttribute("href", "/demoStepNumber1");
     }
-    function setStepNo2Ready() {
+    function setStepNumber2Ready() {
         loginAsPmBtn.classList.add('text-success');
-        loginAsPmBtn.setAttribute("href", "/demoStepNo2");
+        loginAsPmBtn.setAttribute("href", "/demoStepNumber2");
     }
-    function setStepNo3Ready() {
+    function setStepNumber3Ready() {
         projectsBtn.classList.replace('btn-light','btn-success');
-        projectsBtn.setAttribute("href", "/demoStepNo3");
+        projectsBtn.setAttribute("href", "/demoStepNumber3");
         loginAsPmBtn.classList.remove('text-success');
         loginAsPmBtn.setAttribute("href", "/login?guest=projectManager");
     }
-    function setStepNo4Ready() {
-        newProjectBtn.setAttribute("href", "/demoStepNo4");
+    function setStepNumber4Ready() {
+        newProjectBtn.setAttribute("href", "/demoStepNumber4");
     }
-    function setStepNo5Ready() {
-        //projectNewBtnSave.classList.add("disabled");
-        projectNewBtnSave.setAttribute("href", "/#");
+    function setStepNumber5Ready() {
+        formNewProject.setAttribute("action", "/demoStepNumber5");
+    }
+    function setStepNumber6Ready() {
+        newProjectBtn.classList.add("disabled");
+        logoutBtn.classList.replace("btn-danger", "btn-success");
+        logoutBtn.setAttribute("href", "/demoStepNumber6");
+    }
+    function setStepNumber7Ready() {
+        loginAsDesignerBtn.classList.add("text-success");
+        loginAsDesignerBtn.setAttribute("href", "/demoStepNumber7");
+    }
+
+    function setStepNumber8Ready() {
+        projectsBtn.classList.replace("btn-light","btn-success");
+        projectsBtn.setAttribute("href", "/demoStepNumber8");
+        newProjectBtn.classList.add("disabled");
+    }
+    function setStepNumber9Ready() {
+        var x = document.querySelectorAll(".projectNameDiv");
+        x.forEach(function (e, i , arr) {
+            if (e.innerHTML.includes("DEMO")) {
+                e.classList.add("text-success");
+                var parent = e.parentElement.parentElement.parentElement.parentElement;
+                var child1 = parent.children.item(1);
+                var child2 = child1.children.item(4); // 3
+                var child3 = child2.children.item(2); // 2
+                child3.classList.add("pt-5");
+                // TODO
+            }
+        });
     }
 
     /**
@@ -79,16 +110,28 @@ document.addEventListener("DOMContentLoaded", function() {
         startDemoMode();
     }
     if (demoCounter === "1") {
-        setStepNo2Ready();
+        setStepNumber2Ready();
     }
     if (demoCounter === "2") {
-        setStepNo3Ready();
+        setStepNumber3Ready();
     }
     if (demoCounter === "3") {
-        setStepNo4Ready();
+        setStepNumber4Ready();
     }
     if (demoCounter === "4") {
-        setStepNo5Ready();
+        setStepNumber5Ready();
+    }
+    if (demoCounter === "5") {
+        setStepNumber6Ready();
+    }
+    if (demoCounter === "6") {
+        setStepNumber7Ready();
+    }
+    if (demoCounter === "7") {
+        setStepNumber8Ready();
+    }
+    if (demoCounter === "8") {
+        setStepNumber9Ready();
     }
 
 });
