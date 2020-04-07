@@ -84,16 +84,22 @@ document.addEventListener("DOMContentLoaded", function() {
     function setStepNumber9Ready() {
         var x = document.querySelectorAll(".projectNameDiv");
         x.forEach(function (e, i , arr) {
-            if (e.innerHTML.includes("DEMO")) {
+            if (e.innerHTML.includes("DEMO PROJECT NAME")) {
                 e.classList.add("text-success");
                 var parent = e.parentElement.parentElement.parentElement.parentElement;
-                var child1 = parent.children.item(1);
-                var child2 = child1.children.item(4); // 3
-                var child3 = child2.children.item(2); // 2
-                child3.classList.add("pt-5");
-                // TODO
+                var child1 = parent.children.item(0);
+                var child2 = child1.children.item(2); // 3
+                var child3 = child2.children.item(1); // 2
+                var projectId = parent.children.item(0).children.item(0).innerHTML;
+                child3.classList.replace("btn-primary", "btn-success");
+                child3.setAttribute("href", "/demoStepNumber9/"+projectId);
             }
         });
+        //newProjectBtn.classList.replace("btn-success", "btn-light");
+        newProjectBtn.classList.add("disabled");
+    }
+    function setStepNumber10Ready() {
+
     }
 
     /**
@@ -132,6 +138,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     if (demoCounter === "8") {
         setStepNumber9Ready();
+    }
+    if (demoCounter === "9") {
+        setStepNumber10Ready();
     }
 
 });

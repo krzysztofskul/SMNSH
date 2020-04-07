@@ -48,8 +48,8 @@
                                     <form:input path="projectName" cssClass="w-100"/>
                                 </c:when>
                                 <c:otherwise>
-                                    <form:input  path="projectName" value="DEMO" disabled="true" cssClass="w-100"/>
-                                    <form:hidden path="projectName" value="DEMO"/>
+                                    <form:input  path="projectName" value="DEMO PROJECT NAME" disabled="true" cssClass="w-100"/>
+                                    <form:hidden path="projectName" value="DEMO PROJECT NAME"/>
                                 </c:otherwise>
 
                             </c:choose>

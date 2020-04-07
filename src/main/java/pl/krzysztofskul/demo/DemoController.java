@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
@@ -134,6 +135,16 @@ public class DemoController {
         Demo.increaseStepByOne();
         httpSession.setAttribute("demoSession", Demo.getStep());
         return "redirect:/projects/all";
+    }
+
+    @GetMapping("/demoStepNumber9/{projectId}")
+    public String demoStepNumber9(
+            HttpSession httpSession,
+            @PathVariable("projectId") Long projectId
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/projects/details/"+projectId;
     }
 
 }
