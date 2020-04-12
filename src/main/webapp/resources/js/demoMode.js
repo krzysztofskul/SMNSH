@@ -9,8 +9,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const loginAsPmBtn = document.getElementById("loginAsPmBtn");
     const projectsBtn = document.getElementById("projectsBtn");
     const newProjectBtn = document.getElementById("newProjectBtn");
-    const projectNewBtnSave = document.getElementById("projectNewBtnSave");
+    // const projectNewBtnSave = document.getElementById("projectNewBtnSave");
     const formNewProject = document.getElementById("formNewProject");
+    const newConceptBtn = document.getElementById("newConceptBtn");
+    const conceptNewForm = document.getElementById("conceptNewForm");
+    const saveConceptBtn = document.getElementById("saveConceptBtn");
     const logoutBtn = document.getElementById("logoutBtn");
     const loginAsDesignerBtn = document.getElementById("loginAsDesignerBtn");
 
@@ -67,21 +70,10 @@ document.addEventListener("DOMContentLoaded", function() {
         formNewProject.setAttribute("action", "/demoStepNumber5");
     }
     function setStepNumber6Ready() {
-        newProjectBtn.classList.add("disabled");
-        logoutBtn.classList.replace("btn-danger", "btn-success");
-        logoutBtn.setAttribute("href", "/demoStepNumber6");
-    }
-    function setStepNumber7Ready() {
-        loginAsDesignerBtn.classList.add("text-success");
-        loginAsDesignerBtn.setAttribute("href", "/demoStepNumber7");
-    }
+        // newProjectBtn.classList.add("disabled");
+        // logoutBtn.classList.replace("btn-danger", "btn-success");
+        // logoutBtn.setAttribute("href", "/demoStepNumber6");
 
-    function setStepNumber8Ready() {
-        projectsBtn.classList.replace("btn-light","btn-success");
-        projectsBtn.setAttribute("href", "/demoStepNumber8");
-        newProjectBtn.classList.add("disabled");
-    }
-    function setStepNumber9Ready() {
         var x = document.querySelectorAll(".projectNameDiv");
         x.forEach(function (e, i , arr) {
             if (e.innerHTML.includes("DEMO PROJECT NAME")) {
@@ -92,14 +84,51 @@ document.addEventListener("DOMContentLoaded", function() {
                 var child3 = child2.children.item(1); // 2
                 var projectId = parent.children.item(0).children.item(0).innerHTML;
                 child3.classList.replace("btn-primary", "btn-success");
-                child3.setAttribute("href", "/demoStepNumber9/"+projectId);
+                child3.setAttribute("href", "/demoStepNumber6/"+projectId);
             }
         });
         //newProjectBtn.classList.replace("btn-success", "btn-light");
         newProjectBtn.classList.add("disabled");
     }
-    function setStepNumber10Ready() {
+    function setStepNumber7Ready() {    // get ready the button for the new concept
+        // loginAsDesignerBtn.classList.add("text-success");
+        // loginAsDesignerBtn.setAttribute("href", "/demoStepNumber7");
 
+        // /concepts/new?projectId=${project.id}&userId=${project.projectManager.id}
+        var projectId = newConceptBtn.parentElement.parentElement.parentElement
+            .firstElementChild.firstElementChild.firstElementChild.firstElementChild.children.item(1).innerHTML
+        var userId = document.querySelector("#projectManagerId").innerHTML;
+        // console.log("projectId: "+projectId);
+        // console.log("userId "+userId);
+        newConceptBtn.setAttribute("href", "/demoStepNumber7?projectId="+projectId+"&userId="+userId);
+    }
+
+    function setStepNumber8Ready() { // get save concept button ready
+        // projectsBtn.classList.replace("btn-light","btn-success");
+        // projectsBtn.setAttribute("href", "/demoStepNumber8");
+        // newProjectBtn.classList.add("disabled");
+
+        conceptNewForm.setAttribute("action", "/demoStepNumber8");
+    }
+    function setStepNumber9Ready() {
+        // var x = document.querySelectorAll(".projectNameDiv");
+        // x.forEach(function (e, i , arr) {
+        //     if (e.innerHTML.includes("DEMO PROJECT NAME")) {
+        //         e.classList.add("text-success");
+        //         var parent = e.parentElement.parentElement.parentElement.parentElement;
+        //         var child1 = parent.children.item(0);
+        //         var child2 = child1.children.item(2); // 3
+        //         var child3 = child2.children.item(1); // 2
+        //         var projectId = parent.children.item(0).children.item(0).innerHTML;
+        //         child3.classList.replace("btn-primary", "btn-success");
+        //         child3.setAttribute("href", "/demoStepNumber9/"+projectId);
+        //     }
+        // });
+        // //newProjectBtn.classList.replace("btn-success", "btn-light");
+        // newProjectBtn.classList.add("disabled");
+    }
+    function setStepNumber10Ready() {
+        logoutBtn.classList.replace("btn-danger", "btn-success");
     }
 
     /**
@@ -131,16 +160,19 @@ document.addEventListener("DOMContentLoaded", function() {
         setStepNumber6Ready();
     }
     if (demoCounter === "6") {
-        setStepNumber7Ready();
+        setStepNumber7Ready(); // get ready the button for the new concept
     }
     if (demoCounter === "7") {
-        setStepNumber8Ready();
+        setStepNumber8Ready(); // get save new concept button ready
     }
     if (demoCounter === "8") {
-        setStepNumber9Ready();
+        // save new concept
+        // setStepNumber9Ready();   // get ready addQuestionSet button save ready
     }
     if (demoCounter === "9") {
-        setStepNumber10Ready();
+        // save additionalQuestionSet form
+        alert("Zamówienie projektu koncepcji usytuowania aparatu zostało utworzone! / The order for preliminary (conceptual) design of the device location has been created!")
+        setStepNumber10Ready();  // get log out PM button ready, disable other buttons
     }
 
 });

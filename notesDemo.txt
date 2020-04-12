@@ -29,5 +29,6 @@
     . demo mode functions: step no 1,2,3,4
     . step no. 5
     . done steps 6,7,8
-    + created step number 9 (as a designer go into details of the latest created project)
-    - create steps 5.1 ... (create order for preliminary (conceptual) project as a project manager)
+    . created step number 9 (as a designer go into details of the latest created project)
+    + modifications steps 6, 7, 8, 9
+        + order for new conceptual project (with additional questions set form)

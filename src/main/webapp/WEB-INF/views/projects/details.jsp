@@ -145,6 +145,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     ${project.projectManager.nameFirst} ${project.projectManager.nameFirst}
+                                    (<span id="projectManagerId">${project.projectManager.id}</span>)
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -540,13 +541,13 @@
                 <div class="card-footer">
                     <c:choose>
                         <c:when test="${sessionScope.userLoggedIn.businessPosition.toString() ne 'Projektant/Planista / Designer/Planner'}">
-                            <a href="/concepts/new?projectId=${project.id}&userId=${project.projectManager.id}" class="btn btn-success float-right">
+                            <a id="newConceptBtn" href="/concepts/new?projectId=${project.id}&userId=${project.projectManager.id}" class="btn btn-success float-right">
                                 <div class="langPL">ZAMÓWIENIE PROJEKTU KONCEPCYJNEGO</div>
                                 <div class="langEN">ORDER FOR CONCEPTUAL (PRELIMINARY PROJECT)</div>
                             </a>
                         </c:when>
                         <c:otherwise>
-                            <a href="/concepts/new?projectId=${project.id}&userId=${project.projectManager.id}" class="btn btn-success float-right disabled">
+                            <a id="newConceptBtn" href="/concepts/new?projectId=${project.id}&userId=${project.projectManager.id}" class="btn btn-success float-right disabled">
                                 <div class="langPL">ZAMÓWIENIE PROJEKTU KONCEPCYJNEGO</div>
                                 <div class="langEN">ORDER FOR CONCEPTUAL (PRELIMINARY PROJECT)</div>
                             </a>

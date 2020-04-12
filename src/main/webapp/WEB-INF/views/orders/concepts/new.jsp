@@ -17,7 +17,7 @@
     <jsp:include page="/WEB-INF/views/header.jsp"/>
 
     <div class="container">
-        <form:form modelAttribute="conceptNew" method="post" action="/concepts/new">
+        <form:form id="conceptNewForm" modelAttribute="conceptNew" method="post" action="/concepts/new">
             <div class="card">
                 <div class="card-header text-center">
                     <h4 class="langPL">KREATOR ZAMÓWIENIA NOWEJ KONCEPCJI</h4>

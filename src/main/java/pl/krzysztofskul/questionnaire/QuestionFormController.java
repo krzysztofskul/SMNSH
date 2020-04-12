@@ -5,7 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.krzysztofskul.demo.Demo;
 import pl.krzysztofskul.questionnaire.questionSet.*;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class QuestionFormController {
@@ -31,11 +34,14 @@ public class QuestionFormController {
     @PostMapping("/questionSetMRI/save")
     public String questionSet(
             @ModelAttribute("questionSetForMRI") QuestionSetForMRI questionSetForMRI,
-            @RequestParam(name = "backToPage", required = false) String backToPage
+            @RequestParam(name = "backToPage", required = false) String backToPage,
+            HttpSession httpSession
     ) {
         QuestionForm questionForm = questionFormService.loadById(questionSetForMRI.getQuestionForm().getId());
         questionSetForMRI.setQuestionForm(questionForm);
         questionSetForMRIService.save(questionSetForMRI);
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
         if (backToPage != null) {
             return "redirect:"+backToPage;
         }
@@ -45,11 +51,14 @@ public class QuestionFormController {
     @PostMapping("/questionSetCT/save")
     public String questionSet(
             @ModelAttribute("questionSetForCT") QuestionSetForCT questionSetForCT,
-            @RequestParam(name = "backToPage", required = false) String backToPage
+            @RequestParam(name = "backToPage", required = false) String backToPage,
+            HttpSession httpSession
     ) {
         QuestionForm questionForm = questionFormService.loadById(questionSetForCT.getQuestionForm().getId());
         questionSetForCT.setQuestionForm(questionForm);
         questionSetForCTService.save(questionSetForCT);
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
         if (backToPage != null) {
             return "redirect:"+backToPage;
         }
@@ -59,11 +68,14 @@ public class QuestionFormController {
     @PostMapping("/questionSetXRAY/save")
     public String questionSet(
             @ModelAttribute("questionSetForXRAY") QuestionSetForXRAY questionSetForXRAY,
-            @RequestParam(name = "backToPage", required = false) String backToPage
+            @RequestParam(name = "backToPage", required = false) String backToPage,
+            HttpSession httpSession
     ) {
         QuestionForm questionForm = questionFormService.loadById(questionSetForXRAY.getQuestionForm().getId());
         questionSetForXRAY.setQuestionForm(questionForm);
         questionSetForXRAYService.save(questionSetForXRAY);
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
         if (backToPage != null) {
             return "redirect:"+backToPage;
         }
