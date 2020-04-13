@@ -30,7 +30,7 @@
                                 <p class="langPL"> ID:</p>
                                 <p class="langEN"> ID:</p>
                             </div>
-                            <div class="text-left position-relative d-inline-block align-top">
+                            <div id="projectId" class="text-left position-relative d-inline-block align-top">
                                 ${project.id}
                             </div>
                         </div>
@@ -332,7 +332,7 @@
                                                 <p class="langPL">ID:</p>
                                                 <p class="langEN">ID:</p>
                                             </div>
-                                            <p class="text-left pt-2 pl-2">${concept.id}</p>
+                                            <p class="conceptId text-left pt-2 pl-2">${concept.id}</p>
                                         </div>
                                         <div class="col-sm-3 <%--border border-dark--%> p-0 pr-sm-1">
                                             <div class="bg-lightgrey-75 m-0 p-2 w-100">
@@ -400,7 +400,7 @@
                                     <%-- BUTTON: ASSIGN DESIGNER --%>
                                     <c:if test="${concept.planner eq null && sessionScope.userLoggedIn.businessPosition.toString() eq 'Projektant/Planista / Designer/Planner'}">
                                         <c:if test="${concept.status.toString() eq 'OCZEKUJE / WAITING'}">
-                                            <a href="/concepts/setDesigner/${concept.id}/${sessionScope.userLoggedIn.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
+                                            <a id="setMeAsDesignerBtn" href="/concepts/setDesigner/${concept.id}/${sessionScope.userLoggedIn.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
                                                 <p class="langPL">PRZYPISZ MNIE JAKO PROJEKTANTA</p>
                                                 <p class="langEN">ASSIGN ME AS A DESIGNER</p>
                                             </a>
@@ -409,7 +409,7 @@
                                     <%-- BUTTON: SET CONCEPTUAL PROJECT AS FINISHED --%>
                                     <c:if test="${concept.planner ne null && sessionScope.userLoggedIn.businessPosition.toString() eq 'Projektant/Planista / Designer/Planner'}">
                                         <c:if test="${concept.status.toString() eq 'W TOKU / IN PROGRESS'}">
-                                            <a href="/concepts/setStatusFinished/${concept.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
+                                            <a id="setOrderAsFinishedBtn" href="/concepts/setStatusFinished/${concept.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
                                                 <p class="langPL">USTAW JAKO ZAKOŃCZONY</p>
                                                 <p class="langEN">SET AS FINISHED</p>
                                             </a>

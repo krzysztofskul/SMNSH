@@ -213,6 +213,8 @@ public class DemoController {
                     conceptNew.setQuestionForm(questionForm);
 
                     conceptService.save(conceptNew);
+                    Demo.increaseStepByOne();
+                    httpSession.setAttribute("demoSession", Demo.getStep());
                     model.addAttribute("questionSetForMRI", questionSetForMRI);
                     return "questionSets/questionSetMRI";
                 }
@@ -229,6 +231,8 @@ public class DemoController {
                     conceptNew.setQuestionForm(questionForm);
 
                     conceptService.save(conceptNew);
+                    Demo.increaseStepByOne();
+                    httpSession.setAttribute("demoSession", Demo.getStep());
                     model.addAttribute("questionSetForCT", questionSetForCT);
                     return "questionSets/questionSetCT";
                 }
@@ -266,6 +270,69 @@ public class DemoController {
         }
 
         return "redirect:/users/details/"+conceptNew.getAuthor().getId();
+    }
+
+    @GetMapping("/demoStepNumber10")
+    public String demoStepNumber10(
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/logout";
+    }
+
+    @GetMapping("/demoStepNumber11")    // login as designer
+    public String demoStepNumber11(
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/login?guest=designer";
+    }
+
+    @GetMapping("/demoStepNumber12")    // redirect to all projects page
+    public String demoStepNumber12(
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/projects/all";
+    }
+
+    @GetMapping("/demoStepNumber13/{projectId}")    // go to demo project
+    public String demoStepNumber13(
+            @PathVariable("projectId") Long projectId,
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/projects/details/"+projectId;
+    }
+
+    // set designer - assign me to the project
+    @GetMapping("/demoStepNumber14/{conceptId}/{designerId}")
+    public String demoStepNumber14(
+            @PathVariable("conceptId") Long conceptId,
+            @PathVariable("designerId") Long designerId,
+            @RequestParam(name = "backToPage", required = true) String backToPage,
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/concepts/setDesigner/"+conceptId+"/"+designerId+"?backToPage="+backToPage;
+    }
+
+    // set status as finished
+    @GetMapping("/demoStepNumber15/{conceptId}")
+    public String demoStepNumber15(
+            @PathVariable("conceptId") Long conceptId,
+            @RequestParam("backToPage") String backToPage,
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        //concepts/setStatusFinished/${concept.id}?backToPage=projects/details/${project.id}
+        return "redirect:/concepts/setStatusFinished/"+conceptId+"?backToPage="+backToPage;
     }
 
 //

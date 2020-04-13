@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const saveConceptBtn = document.getElementById("saveConceptBtn");
     const logoutBtn = document.getElementById("logoutBtn");
     const loginAsDesignerBtn = document.getElementById("loginAsDesignerBtn");
+    const setMeAsDesignerBtn = document.getElementById("setMeAsDesignerBtn");
 
     const demoCounterTitle = document.getElementById("demoCounterTitle");
     const demoCounter = document.getElementById("demoCounter").innerText;
@@ -129,6 +130,47 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     function setStepNumber10Ready() {
         logoutBtn.classList.replace("btn-danger", "btn-success");
+        logoutBtn.setAttribute("href", "/demoStepNumber10");
+        newConceptBtn.classList.add("disabled");
+    }
+    function setStepNumber11Ready() {   // get ready login as designer
+        loginAsDesignerBtn.classList.add("text-success");
+        loginAsDesignerBtn.setAttribute("href", "/demoStepNumber11")
+    }
+    function setStepNumber12Ready() {
+        projectsBtn.classList.replace("btn-light","btn-success");
+        projectsBtn.setAttribute("href", "/demoStepNumber12")
+    }
+    function setStepNumber13Ready() {
+        var x = document.querySelectorAll(".projectNameDiv");
+        x.forEach(function (e, i , arr) {
+            if (e.innerHTML.includes("DEMO PROJECT NAME")) {
+                e.classList.add("text-success");
+                var parent = e.parentElement.parentElement.parentElement.parentElement;
+                var child1 = parent.children.item(0);
+                var child2 = child1.children.item(2); // 3
+                var child3 = child2.children.item(1); // 2
+                var projectId = parent.children.item(0).children.item(0).innerHTML;
+                child3.classList.replace("btn-primary", "btn-success");
+                child3.setAttribute("href", "/demoStepNumber13/"+projectId);
+            }
+        });
+        //newProjectBtn.classList.replace("btn-success", "btn-light");
+        newProjectBtn.classList.add("disabled");
+    }
+    function setStepNumber14Ready() {
+        // /concepts/setDesigner/${concept.id}/${sessionScope.userLoggedIn.id}?backToPage=projects/details/${project.id}"
+        var conceptId = document.querySelector(".conceptId").innerHTML;
+        var designerId = document.getElementById("userLoggedIn").innerHTML;
+        var projectId = document.getElementById("projectId").innerHTML;
+        setMeAsDesignerBtn.setAttribute("href", "/demoStepNumber14/"+conceptId+"/"+designerId+"?backToPage=projects/details/"+projectId);
+    }
+    function setStepNumber15Ready() {
+        var setOrderAsFinishedBtn = document.getElementById("setOrderAsFinishedBtn");
+        var conceptId = document.querySelector(".conceptId").innerHTML;
+        var projectId = document.getElementById("projectId").innerHTML;
+        setOrderAsFinishedBtn.setAttribute("href", "/demoStepNumber15/"+conceptId+"?backToPage=projects/details/"+projectId);
+        setOrderAsFinishedBtn.classList.replace("btn-outline-success", "btn-success");
     }
 
     /**
@@ -174,5 +216,23 @@ document.addEventListener("DOMContentLoaded", function() {
         alert("Zamówienie projektu koncepcji usytuowania aparatu zostało utworzone! / The order for preliminary (conceptual) design of the device location has been created!")
         setStepNumber10Ready();  // get log out PM button ready, disable other buttons
     }
+    if (demoCounter === "10") {
+        setStepNumber11Ready()
+    }
+    if (demoCounter === "11") {
+        setStepNumber12Ready()
+    }
+    if (demoCounter === "12") {
+        setStepNumber13Ready()
+    }
+    if (demoCounter === "13") {
+        setStepNumber14Ready()
+    }
+    if (demoCounter === "14") {
+        setStepNumber15Ready()
+    }
+    // if (demoCounter === "15") {
+    //     setStepNumber16Ready()
+    // }
 
 });
