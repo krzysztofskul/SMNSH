@@ -420,7 +420,7 @@
                                     <c:set var="isConceptFinished" value="${concept.status.toString() eq 'ZAKOŃCZONY / FINISHED'}"/>
                                     <c:set var="isOrderForGuidelineSent" value="${concept.guideline ne null}"/>
                                     <c:if test="${isLoggedPM && isConceptFinished && !isOrderForGuidelineSent}">
-                                        <a href="/guidelines/new/?conceptId=${concept.id}&backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
+                                        <a id="newFinalProjectOrderBtn" href="/guidelines/new/?conceptId=${concept.id}&backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
                                             <p class="langPL">ZAMÓWIENIE PROJEKTU WYTYCZNYCH</p>
                                             <p class="langEN">ORDER FOR FINAL PLANNING PROJECT</p>
                                         </a>

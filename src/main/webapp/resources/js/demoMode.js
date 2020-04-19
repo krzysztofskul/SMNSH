@@ -17,6 +17,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const logoutBtn = document.getElementById("logoutBtn");
     const loginAsDesignerBtn = document.getElementById("loginAsDesignerBtn");
     const setMeAsDesignerBtn = document.getElementById("setMeAsDesignerBtn");
+    const newFinalProjectOrderBtn = document.getElementById("newFinalProjectOrderBtn");
+    const orderGuidelineBtn = document.getElementById("orderGuidelineBtn");
+    const newGuidelineForm = document.getElementById("newGuidelineForm");
 
     const demoCounterTitle = document.getElementById("demoCounterTitle");
     const demoCounter = document.getElementById("demoCounter").innerText;
@@ -172,6 +175,59 @@ document.addEventListener("DOMContentLoaded", function() {
         setOrderAsFinishedBtn.setAttribute("href", "/demoStepNumber15/"+conceptId+"?backToPage=projects/details/"+projectId);
         setOrderAsFinishedBtn.classList.replace("btn-outline-success", "btn-success");
     }
+    function setStepNumber16Ready() { // set logout button active
+        logoutBtn.classList.replace("btn-danger", "btn-success");
+        logoutBtn.setAttribute("href", "/demoStepNumber16");
+    }
+    function setStepNumber17Ready() { // login as PM active
+        loginAsPmBtn.classList.add("text-success");
+        loginAsPmBtn.setAttribute("href", "/demoStepNumber17")
+    }
+    function setStepNumber18Ready() {
+        projectsBtn.classList.replace("btn-light", "btn-success");
+        projectsBtn.setAttribute("href", "/demoStepNumber18")
+    }
+    function setStepNumber19Ready() {
+        var x = document.querySelectorAll(".projectNameDiv");
+        x.forEach(function (e, i , arr) {
+            if (e.innerHTML.includes("DEMO PROJECT NAME")) {
+                e.classList.add("text-success");
+                var parent = e.parentElement.parentElement.parentElement.parentElement;
+                var child1 = parent.children.item(0);
+                var child2 = child1.children.item(2); // 3
+                var child3 = child2.children.item(1); // 2
+                var projectId = parent.children.item(0).children.item(0).innerHTML;
+                child3.classList.replace("btn-primary", "btn-success");
+                child3.setAttribute("href", "/demoStepNumber19/"+projectId);
+            }
+        });
+        newProjectBtn.classList.add("disabled");
+    }
+    function setStepNumber20Ready() { // get ready the button for the new final project
+        var conceptId = document.querySelector(".conceptId").innerHTML;
+        var designerId = document.getElementById("userLoggedIn").innerHTML;
+        var projectId = document.getElementById("projectId").innerHTML;
+        newFinalProjectOrderBtn.setAttribute("href", "/demoStepNumber20/"+conceptId+"/"+designerId+"?backToPage=projects/details/"+projectId);
+        newConceptBtn.classList.add("disabled");
+        var interval = setInterval(function () {
+            setTimeout(function () {
+                newFinalProjectOrderBtn.classList.replace("btn-outline-success", "btn-success");
+            }, 250);
+            newFinalProjectOrderBtn.classList.replace("btn-success", "btn-outline-success");
+        }, 500);
+        // newFinalProjectOrderBtn.addEventListener("click", function () {
+        //     clearInterval(interval);
+        // });
+    }
+    function setStepNumber21Ready() {
+        newGuidelineForm.setAttribute("action", "/demoStepNumber21")
+        var interval = setInterval(function () {
+            setTimeout(function () {
+                orderGuidelineBtn.classList.replace("btn-success", "btn-outline-success")
+            }, 250);
+            orderGuidelineBtn.classList.replace("btn-outline-success", "btn-success");
+        }, 500);
+    }
 
     /**
      * demo mode functionality
@@ -231,8 +287,26 @@ document.addEventListener("DOMContentLoaded", function() {
     if (demoCounter === "14") {
         setStepNumber15Ready()
     }
-    // if (demoCounter === "15") {
-    //     setStepNumber16Ready()
-    // }
+    if (demoCounter === "15") {
+        setStepNumber16Ready(); // set logout buttone active
+    }
+    if (demoCounter === "16") {
+        setStepNumber17Ready(); // set login as PM active
+    }
+    if (demoCounter === "17") {
+        setStepNumber18Ready(); // set projects button active
+    }
+    if (demoCounter === "18") {
+        setStepNumber19Ready(); // set details of the demo project button ready
+    }
+    if (demoCounter === "19") { // set button for new final planning order ready
+        setStepNumber20Ready();
+    }
+    if (demoCounter === "20") { // set save final planning order button ready
+        setStepNumber21Ready();
+    }
+    if (demoCounter === "21") {
+        //setStepNumber21Ready();
+    }
 
 });

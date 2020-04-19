@@ -10,6 +10,8 @@ import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.concept.ConceptService;
+import pl.krzysztofskul.order.guideline.Guideline;
+import pl.krzysztofskul.order.guideline.GuidelineService;
 import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.ProjectService;
 import pl.krzysztofskul.project.StatusProject;
@@ -33,14 +35,16 @@ public class DemoController {
     private UserService userService;
     private DeviceService deviceService;
     private ConceptService conceptService;
+    private GuidelineService guidelineService;
 
     @Autowired
-    public DemoController(DemoService demoService, ProjectService projectService, UserService userService, DeviceService deviceService, ConceptService conceptService) {
+    public DemoController(DemoService demoService, ProjectService projectService, UserService userService, DeviceService deviceService, ConceptService conceptService, GuidelineService guidelineService) {
         this.demoService = demoService;
         this.projectService = projectService;
         this.userService = userService;
         this.deviceService = deviceService;
         this.conceptService = conceptService;
+        this.guidelineService = guidelineService;
     }
 
     @ModelAttribute("allStatusesProject")
@@ -333,6 +337,91 @@ public class DemoController {
         httpSession.setAttribute("demoSession", Demo.getStep());
         //concepts/setStatusFinished/${concept.id}?backToPage=projects/details/${project.id}
         return "redirect:/concepts/setStatusFinished/"+conceptId+"?backToPage="+backToPage;
+    }
+
+    @GetMapping("/demoStepNumber16")
+    public String demoStepNumber16(
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/logout";
+    }
+
+    @GetMapping("/demoStepNumber17")
+    public String demoStepNumber17(
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/login?guest=projectManager";
+    }
+    
+    @GetMapping("/demoStepNumber18")
+    public String demoStepNumber18(
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/projects/all";
+    }
+
+    @GetMapping("/demoStepNumber19/{projectId}")    // go to demo project
+    public String demoStepNumber19(
+            @PathVariable("projectId") Long projectId,
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/projects/details/"+projectId;
+    }
+
+    @GetMapping("/demoStepNumber20/{conceptId}/{designerId}")
+    public String demoStepNumber20(
+            @PathVariable("conceptId") Long conceptId,
+            @PathVariable("designerId") Long designerId,
+            @RequestParam(name = "backToPage") String backToPage,
+            HttpSession httpSession, Model model
+    ) {
+//        Concept conceptNew = new Concept();
+//        if (userId != null) {
+//            conceptNew.setAuthor(userService.loadById(userId));
+//        }
+//        if (projectId != null) {
+//            conceptNew.setProject(projectService.loadById(projectId));
+//        }
+//        model.addAttribute("conceptNew", conceptNew);
+        Concept concept = conceptService.loadByIdWithAll(conceptId);
+        Guideline guidelineNew = new Guideline();
+        guidelineNew.setConcept(concept);
+        guidelineNew.setAuthor(concept.getAuthor());
+        guidelineNew.setClient(concept.getClient());
+        guidelineNew.setDevice(concept.getDevice());
+        model.addAttribute("guidelineNew", guidelineNew);
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/guidelines/new/?conceptId="+conceptId+"&backToPage="+backToPage;
+    }
+
+    @PostMapping("/demoStepNumber21")
+    public String demoStepNumber21(
+            @RequestParam(name = "backToPage", required = false) String backToPage,
+            @ModelAttribute("guidelineNew") @Valid Guideline guidelineNew,
+            BindingResult result,
+            HttpSession httpSession
+    ) {
+            if (result.hasErrors()) {
+                return "orders/guidelines/new";
+            }
+            guidelineService.save(guidelineNew);
+            Long conceptId = guidelineNew.getConcept().getId();
+            Long projectId = conceptService.loadById(conceptId).getProject().getId();
+            if (backToPage != null) {
+                return "redirect:/"+backToPage;
+            }
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/projects/details/"+projectId;
     }
 
 //
