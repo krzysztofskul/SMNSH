@@ -186,7 +186,7 @@
                         <p class="langPL">ANULUJ / WSTECZ</p>
                         <p class="langEN">CANCEL / BACK</p>
                     </a>
-                    <form:button class="btn btn-success float-right">
+                    <form:button id="saveConceptBtn" class="btn btn-success float-right">
                         <span>.</span>
                         <p class="langPL">ZAMÓW</p>
                         <p class="langEN">ORDER</p>
