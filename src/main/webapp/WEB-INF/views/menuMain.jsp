@@ -21,14 +21,14 @@
 <%--        <a href="/concepts/all">CONCEPTS ALL</a>--%>
         <ul class="nav nav-pills">
             <li class="nav-item">
-                <a id="demoModeBtn" class="nav-link ml-1 mr-1" href="#">
+                <a id="demoModeBtn" class="nav-link btn btn-light ml-1 mr-1" href="#">
                     <p class="langPL">TRYB DEMO</p>
                     <p class="langEN">DEMO MODE</p>
                 </a>
             </li>
             <li class="nav-item">
                 <div class="myTooltip">
-                    <a class="nav-link btn-warning ml-1 mr-1" href="/initDB">
+                    <a id="initDbBtn" class="nav-link btn btn-warning ml-1 mr-1" href="/initDB">
                             <p class="langPL">INICJALIZACJA BAZY DANYCH</p>
                             <p class="langEN">INIT.DB</p>
                     </a>
@@ -45,7 +45,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link btn-light ml-1 mr-1" href="/projects/all">
+                <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/projects/all">
                     <p class="langPL">PROJEKTY</p>
                     <p class="langEN">PROJECTS</p>
                 </a>

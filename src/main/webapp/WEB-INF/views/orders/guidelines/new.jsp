@@ -17,7 +17,7 @@
     <jsp:include page="/WEB-INF/views/header.jsp"/>
 
     <div class="container">
-        <form:form method="post" modelAttribute="guidelineNew">
+        <form:form id="newGuidelineForm" method="post" modelAttribute="guidelineNew">
             <div class="card">
                 <div class="card-header text-center">
                     <h4 class="langPL">KREATOR ZAMÓWIENIA WYTYCZNYCH DO PROJEKTU KONECPJI O ID:${guidelineNew.concept.id} </h4>
@@ -104,7 +104,7 @@
                         <p class="langPL">ANULUJ / WSTECZ</p>
                         <p class="langEN">CANCEL / BACK</p>
                     </a>
-                    <form:button class="btn btn-success float-right">
+                    <form:button id="orderGuidelineBtn" class="btn btn-success float-right">
                         <span>.</span>
                         <p class="langPL">ZAMÓW</p>
                         <p class="langEN">ORDER</p>

@@ -17,7 +17,7 @@
     <jsp:include page="/WEB-INF/views/header.jsp"/>
 
     <div class="container">
-        <form:form modelAttribute="conceptNew" method="post" action="/concepts/new">
+        <form:form id="conceptNewForm" modelAttribute="conceptNew" method="post" action="/concepts/new">
             <div class="card">
                 <div class="card-header text-center">
                     <h4 class="langPL">KREATOR ZAMÓWIENIA NOWEJ KONCEPCJI</h4>
@@ -186,7 +186,7 @@
                         <p class="langPL">ANULUJ / WSTECZ</p>
                         <p class="langEN">CANCEL / BACK</p>
                     </a>
-                    <form:button class="btn btn-success float-right">
+                    <form:button id="saveConceptBtn" class="btn btn-success float-right">
                         <span>.</span>
                         <p class="langPL">ZAMÓW</p>
                         <p class="langEN">ORDER</p>

@@ -17,7 +17,7 @@
 
     <div class="container">
 
-        <form:form method="post" modelAttribute="projectNew">
+        <form:form id="formNewProject" method="post" modelAttribute="projectNew">
             <div class="card">
 
                 <div class="card-header text-center">
@@ -43,7 +43,16 @@
                             <p class="langEN">PROJECT NAME:</p>
                         </div>
                         <div class="col-8">
-                            <form:input path="projectName" cssClass="w-100"/>
+                            <c:choose>
+                                <c:when test="${sessionScope.demoSession == null}">
+                                    <form:input path="projectName" cssClass="w-100"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <form:input  path="projectName" value="DEMO PROJECT NAME" disabled="true" cssClass="w-100"/>
+                                    <form:hidden path="projectName" value="DEMO PROJECT NAME"/>
+                                </c:otherwise>
+
+                            </c:choose>
                         </div>
                     </div>
 
@@ -225,7 +234,7 @@
                         <p class="langPL">ANULUJ</p>
                         <p class="langEN">CANCEL</p>
                     </a>
-                    <form:button type="submit" class="btn btn-success float-right">
+                    <form:button type="submit" id="projectNewBtnSave" class="btn btn-success float-right">
                         <p class="langPL">ZAPISZ</p>
                         <p class="langEN">SAVE</p>
                     </form:button>

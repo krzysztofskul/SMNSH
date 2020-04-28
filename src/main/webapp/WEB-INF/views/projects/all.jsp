@@ -50,7 +50,7 @@
                                         <p class="langPL">USUŃ</p>
                                         <p class="langEN">DEL</p>
                                     </a>
-                                    <a href="/projects/details/${project.id}" class="btn btn-primary float-right">
+                                    <a href="/projects/details/${project.id}" class="projectDetailsBtn btn btn-primary float-right">
                                         <p class="langPL">SZCZEGÓŁY</p>
                                         <p class="langEN">DETAILS</p>
                                     </a>
@@ -62,7 +62,7 @@
                                         <div class="col">
                                                 ${project.agreementNo}
                                         </div>
-                                        <div class="col">
+                                        <div class="projectNameDiv col">
                                                 ${project.projectName}
                                         </div>
                                     </div>
@@ -101,7 +101,7 @@
             </c:forEach>
 
             <div class="card-footer">
-                <a href="/projects/new" class="btn btn-success float-right">
+                <a id="newProjectBtn" href="/projects/new" class="btn btn-success float-right">
                     <p class="langPL">NOWY PROJEKT</p>
                     <p class="langEN">NEW PROJECT</p>
                 </a>
