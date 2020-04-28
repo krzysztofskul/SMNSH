@@ -34,7 +34,8 @@
         . order for new conceptual project (with additional questions set form)
     . demo steps 10-15 done
     . demo steps 16-21 done (order for a final planning (guidelines) project as a project manager)
-    . js code modifications (setButtonActive function update) ...
+    . js code modifications (setButtonActive function update)
         . demo tooltip information
-        - all other buttons set disabled function ...
-        - set layer of the tooltip ...
+        + set z-index of the tooltip
+    . demo steps till 16th with tooltips
+    - all other buttons set disabled function
