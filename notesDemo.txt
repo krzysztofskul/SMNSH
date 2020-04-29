@@ -36,6 +36,9 @@
     . demo steps 16-21 done (order for a final planning (guidelines) project as a project manager)
     . js code modifications (setButtonActive function update)
         . demo tooltip information
-        + set z-index of the tooltip
+        . set z-index of the tooltip
     . demo steps till 16th with tooltips
-    - all other buttons set disabled function
+        - all other buttons set disabled function
+    + reset demo mode function
+        + resetSteps function in Demo class
+        + delete demo project with relations

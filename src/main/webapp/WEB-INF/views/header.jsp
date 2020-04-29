@@ -22,6 +22,7 @@
             <h4 class="pl-5 font-weight-bold" style="letter-spacing: 15px; color: dimgrey">SMNSH APP.</h4>
             <p id="demoCounterTitle" class="btn btn-outline-dark d-inline-block">Tryb demo aktywny - wykonano kroków / Demo mode activated - steps done: </p>
             <p id="demoCounter" class="d-inline-block btn btn-outline-dark">${sessionScope.demoSession.toString()}</p>
+            <a id="demoModeReset" class="d-inline-block btn btn-outline-dark" href="/demoModeReset">DEMO MODE RESET</a>
         </div>
         <div class="text-right">
             <%

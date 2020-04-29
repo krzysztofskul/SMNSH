@@ -50,4 +50,13 @@ public class ProjectService {
         Hibernate.initialize(project.getConceptList());
         return project;
     }
+
+    public void deleteByProjectName(String name) {
+        List<Project> projectList = projectRepo.findAll();
+        for (Project project : projectList) {
+            if (name.equals(project.getProjectName())) {
+                projectRepo.delete(project);
+            }
+        }
+    }
 }

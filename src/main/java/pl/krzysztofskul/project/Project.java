@@ -46,7 +46,7 @@ public class Project {
     private String pfc;
 
     @NotEmpty
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(
             name = "projects_devices",
             joinColumns = @JoinColumn(name = "project_id"),
@@ -62,7 +62,7 @@ public class Project {
 
     private String remarks;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Concept> conceptList = new ArrayList<>();
 
     public Project() {

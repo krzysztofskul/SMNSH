@@ -76,6 +76,16 @@ public class DemoController {
         return "redirect:/home";
     }
 
+    @GetMapping("/demoModeReset")
+    public String demoModeReset(
+            HttpSession httpSession
+    ) {
+        Demo.resetSteps();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        projectService.deleteByProjectName("DEMO PROJECT NAME");
+        return "redirect:/home";
+    }
+
     @GetMapping("/demoStepNumber1")
     public String demoStepNumber1(
             HttpSession httpSession
