@@ -6,10 +6,7 @@ import pl.krzysztofskul.order.Status;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.user.User;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.PrePersist;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDate;

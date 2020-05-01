@@ -35,4 +35,9 @@ public class Demo {
     public static void increaseStepByOne() {
         Demo.setStep(getStep()+1);
     }
+
+    public static void resetSteps() {
+        Demo.setStep(0);
+    }
+
 }

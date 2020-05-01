@@ -41,7 +41,7 @@ public class Concept extends Order {
 
     private String remarks;
 
-    @OneToOne(mappedBy = "concept")
+    @OneToOne(mappedBy = "concept", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Guideline guideline;
 
     @ManyToOne
@@ -50,7 +50,7 @@ public class Concept extends Order {
     @ManyToOne
     private User planner;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private QuestionForm questionForm;
 
     @ManyToOne

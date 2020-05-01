@@ -17,13 +17,13 @@ public class QuestionForm {
     @OneToOne(mappedBy = "questionForm", cascade = CascadeType.ALL)
     private Concept concept;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private QuestionSetForMRI questionSetForMRI;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private QuestionSetForCT questionSetForCT;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private QuestionSetForXRAY questionSetForXRAY;
 
     private String backToPage;
