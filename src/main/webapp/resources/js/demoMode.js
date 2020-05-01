@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
      */
     var tooltipDemoInfo = document.getElementById("tooltipDemoInfo");
     const demoModeBtn = document.getElementById("demoModeBtn");
+    var demoModeResetBtn = document.getElementById("demoModeReset");
     const initDbBtn = document.getElementById("initDbBtn");
     const loginAsPmBtn = document.getElementById("loginAsPmBtn");
     const projectsBtn = document.getElementById("projectsBtn");
@@ -102,6 +103,9 @@ document.addEventListener("DOMContentLoaded", function() {
     function showTooltipDemoInfo() {
         tooltipDemoInfo.classList.remove("d-none");
     }
+    function showDemoModeResetBtn() {
+        demoModeResetBtn.classList.remove("invisible");
+    }
 
     function createTooltipDemoInfo(txtPL, txtEN) {
         tooltipDemoInfo.style.position = "fixed";
@@ -162,6 +166,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function setStepNumber1Ready() {
         initDbBtn.classList.replace("btn-warning", "btn-success");
         initDbBtn.setAttribute("href", "/demoStepNumber1");
+        showDemoModeResetBtn();
     }
     function setStepNumber2Ready() {
         var logInBtn = document.getElementById("logInBtn");
@@ -169,6 +174,7 @@ document.addEventListener("DOMContentLoaded", function() {
         createTooltipDemoInfo("TESTOWA BAZA DANYCH ZOSTAŁA ZAINICJOWANA. ZALOGUJ SIĘ JAKO GOŚĆ - KIEROWNIK PROJEKTU ...", "TEST DATABASE HAS BEEN INITIALIZED. LOG IN AS A GUEST - PROJECT MANAGER ...")
         //loginAsPmBtn.classList.add('text-success');
         loginAsPmBtn.setAttribute("href", "/demoStepNumber2");
+        showDemoModeResetBtn();
     }
     function setStepNumber3Ready() {
         // projectsBtn.classList.replace('btn-light','btn-success');
@@ -177,6 +183,7 @@ document.addEventListener("DOMContentLoaded", function() {
         projectsBtn.setAttribute("href", "/demoStepNumber3");
         // loginAsPmBtn.classList.remove('text-success');
         // loginAsPmBtn.setAttribute("href", "/login?guest=projectManager");
+        showDemoModeResetBtn();
     }
     function setStepNumber4Ready() {
         setButtonReady(newProjectBtn);
@@ -185,6 +192,7 @@ document.addEventListener("DOMContentLoaded", function() {
             "THIS IS THE PAGE WITH ALL OF ACTIVE PROJECTS OF THE LOGGED IN PROJECT MANAGER. CREATE THE NEW ONE NOW ..."
         );
         newProjectBtn.setAttribute("href", "/demoStepNumber4");
+        showDemoModeResetBtn();
     }
     function setStepNumber5Ready() {
         createTooltipDemoInfo(
@@ -193,6 +201,7 @@ document.addEventListener("DOMContentLoaded", function() {
         );
         setButtonReady(projectNewBtnSave);
         formNewProject.setAttribute("action", "/demoStepNumber5");
+        showDemoModeResetBtn();
     }
     function setStepNumber6Ready() {
         // newProjectBtn.classList.add("disabled");
@@ -220,6 +229,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         //newProjectBtn.classList.replace("btn-success", "btn-light");
         newProjectBtn.classList.add("disabled");
+        showDemoModeResetBtn();
     }
     function setStepNumber7Ready() {    // get ready the button for the new concept
         // loginAsDesignerBtn.classList.add("text-success");
@@ -239,6 +249,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // console.log("userId "+userId);
         setButtonReady(newConceptBtn);
         newConceptBtn.setAttribute("href", "/demoStepNumber7?projectId="+projectId+"&userId="+userId);
+        showDemoModeResetBtn();
     }
 
     function setStepNumber8Ready() { // get save concept button ready
@@ -253,6 +264,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         setButtonReady(saveConceptBtn);
         conceptNewForm.setAttribute("action", "/demoStepNumber8");
+        showDemoModeResetBtn();
     }
     function setStepNumber9Ready() {
         // var x = document.querySelectorAll(".projectNameDiv");
@@ -277,6 +289,7 @@ document.addEventListener("DOMContentLoaded", function() {
         );
 
         setButtonReady(questionSetSaveBtn);
+        showDemoModeResetBtn();
     }
     function setStepNumber10Ready() {
         createTooltipDemoInfo(
@@ -287,6 +300,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // logoutBtn.classList.replace("btn-danger", "btn-success");
         logoutBtn.setAttribute("href", "/demoStepNumber10");
         newConceptBtn.classList.add("disabled");
+        showDemoModeResetBtn();
     }
     function setStepNumber11Ready() {   // get ready login as designer
         createTooltipDemoInfo(
@@ -296,6 +310,7 @@ document.addEventListener("DOMContentLoaded", function() {
         setButtonReady(loginAsDesignerBtn);
         // loginAsDesignerBtn.classList.add("text-success");
         loginAsDesignerBtn.setAttribute("href", "/demoStepNumber11")
+        showDemoModeResetBtn();
     }
     function setStepNumber12Ready() {
         createTooltipDemoInfo(
@@ -305,6 +320,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // projectsBtn.classList.replace("btn-light","btn-success");
         setButtonReady(projectsBtn);
         projectsBtn.setAttribute("href", "/demoStepNumber12")
+        showDemoModeResetBtn();
     }
     function setStepNumber13Ready() {
         createTooltipDemoInfo(
@@ -327,6 +343,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         //newProjectBtn.classList.replace("btn-success", "btn-light");
         newProjectBtn.classList.add("disabled");
+        showDemoModeResetBtn();
     }
     function setStepNumber14Ready() {
         // /concepts/setDesigner/${concept.id}/${sessionScope.userLoggedIn.id}?backToPage=projects/details/${project.id}"
@@ -340,6 +357,7 @@ document.addEventListener("DOMContentLoaded", function() {
         );
         setButtonReady(setMeAsDesignerBtn);
         setMeAsDesignerBtn.setAttribute("href", "/demoStepNumber14/"+conceptId+"/"+designerId+"?backToPage=projects/details/"+projectId);
+        showDemoModeResetBtn();
     }
     function setStepNumber15Ready() {
         // var setOrderAsFinishedBtn = document.getElementById("setOrderAsFinishedBtn");
@@ -352,12 +370,14 @@ document.addEventListener("DOMContentLoaded", function() {
             "ZADANIE WYKONANIA PROJEKTU/RYSUNKU ZOSTAŁO PRZYIPSANE DO ZALOGOWANEGO PROJEKTANTA I JEST OZNACZONE JAKO 'W TOKU'. PO ZAKOŃCZONEJ PRACY USTAW TEMAT JAKO 'ZAKOŃCZONY'.",
             "THE TASK FOR CREATION OF THE PRELIMINARY (CONCEPTUAL DESIGN) HAS BEEN SET TO THE LOOGGED IN DESIGNER AND I SET AS 'IN RPGRESS'. WHEN THE TASK WILL BE FINISHED MARK IT AS 'FINNISHED' STATUS."
         );
+        showDemoModeResetBtn();
     }
     function setStepNumber16Ready() { // set logout button active
         createTooltipDemoInfo("KLINIK WYLOGUJ", "CLICK THE LOG OUT BUTTON");
         // logoutBtn.classList.replace("btn-danger", "btn-success");
         setButtonReady(logoutBtn);
         logoutBtn.setAttribute("href", "/demoStepNumber16");
+        showDemoModeResetBtn();
     }
     function setStepNumber17Ready() { // login as PM active
         createTooltipDemoInfo(
@@ -365,10 +385,12 @@ document.addEventListener("DOMContentLoaded", function() {
             "YOU CAN LOG IN AS GUEST-PROJEKT MANAGER AND CHECK YOUR ORDER STATUS. IF IT IS FINISHED YOU CAN ORDER THE FINAL PLANNING DRAWING, WHEN CONCEPTUAL DESIGN IS ACCEPTED BY CUSTOMER.");
         loginAsPmBtn.classList.add("text-success");
         loginAsPmBtn.setAttribute("href", "/demoStepNumber17")
+        showDemoModeResetBtn();
     }
     function setStepNumber18Ready() {
         projectsBtn.classList.replace("btn-light", "btn-success");
         projectsBtn.setAttribute("href", "/demoStepNumber18")
+        showDemoModeResetBtn();
     }
     function setStepNumber19Ready() {
         var x = document.querySelectorAll(".projectNameDiv");
@@ -385,6 +407,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
         newProjectBtn.classList.add("disabled");
+        showDemoModeResetBtn();
     }
     function setStepNumber20Ready() { // get ready the button for the new final project
         var conceptId = document.querySelector(".conceptId").innerHTML;
@@ -401,6 +424,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // newFinalProjectOrderBtn.addEventListener("click", function () {
         //     clearInterval(interval);
         // });
+        showDemoModeResetBtn();
     }
     function setStepNumber21Ready() {
         newGuidelineForm.setAttribute("action", "/demoStepNumber21")
@@ -410,6 +434,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }, 250);
             orderGuidelineBtn.classList.replace("btn-outline-success", "btn-success");
         }, 500);
+        showDemoModeResetBtn();
     }
 
     /**

@@ -39,6 +39,8 @@
         . set z-index of the tooltip
     . demo steps till 16th with tooltips
         - all other buttons set disabled function
-    + reset demo mode function
-        + resetSteps function in Demo class
-        + delete demo project with relations
+        + demo reset button mod. (hide when not needed)
+        + log out user if logged in after click demo reset button
+    . reset demo mode function
+        . resetSteps function in Demo class
+        . delete demo project with relations
