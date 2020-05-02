@@ -83,6 +83,9 @@ public class DemoController {
         Demo.resetSteps();
         httpSession.setAttribute("demoSession", Demo.getStep());
         projectService.deleteByProjectName("DEMO PROJECT NAME");
+        if (httpSession.getAttribute("userLoggedIn") != null) {
+            return "redirect:/logout";
+        }
         return "redirect:/home";
     }
 

@@ -42,3 +42,4 @@
     + reset demo mode function
         + resetSteps function in Demo class
         + delete demo project with relations
+        - hide reset demo mode button when the mode is turned off
