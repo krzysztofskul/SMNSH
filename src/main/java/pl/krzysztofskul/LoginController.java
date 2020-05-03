@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.krzysztofskul.email.EmailServiceImpl;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserBusinessPosition;
 import pl.krzysztofskul.user.UserService;
@@ -22,13 +23,15 @@ public class LoginController {
      * params.
      */
     private UserService userService;
+    private EmailServiceImpl emailService;
 
     /**
      * constr.
      */
     @Autowired
-    public LoginController(UserService userService) {
+    public LoginController(UserService userService, EmailServiceImpl emailService) {
         this.userService = userService;
+        this.emailService = emailService;
     }
 
     /**
@@ -109,6 +112,7 @@ public class LoginController {
             return "/users/new";
         }
         userService.save(user);
+        emailService.sendHtmlMessage(user.getEmail(), "REGISTRATION ACCEPTED", "LOREM IPSUM SMSNSH APP.");
         return "redirect:/";
     }
 

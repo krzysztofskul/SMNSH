@@ -46,7 +46,7 @@ public class Project {
     private String pfc;
 
     @NotEmpty
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany
     @JoinTable(
             name = "projects_devices",
             joinColumns = @JoinColumn(name = "project_id"),

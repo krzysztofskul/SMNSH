@@ -1,0 +1,3 @@
+# 0.3.0-EMAIL
+
++ registration email send functionality (test)
