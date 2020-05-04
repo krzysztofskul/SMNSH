@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var tooltipDemoInfo = document.getElementById("tooltipDemoInfo");
     const demoModeBtn = document.getElementById("demoModeBtn");
     var demoModeResetBtn = document.getElementById("demoModeReset");
+    var demoModeOffBtn = document.getElementById("demoModeOFF");
     const initDbBtn = document.getElementById("initDbBtn");
     const loginAsPmBtn = document.getElementById("loginAsPmBtn");
     const projectsBtn = document.getElementById("projectsBtn");
@@ -100,11 +101,16 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 500);
     }
 
+    function showDemoModeOffBtn() {
+        demoModeOffBtn.classList.remove("invisible");
+    }
+
     function showTooltipDemoInfo() {
         tooltipDemoInfo.classList.remove("d-none");
     }
     function showDemoModeResetBtn() {
         demoModeResetBtn.classList.remove("invisible");
+        showDemoModeOffBtn();
     }
 
     function createTooltipDemoInfo(txtPL, txtEN) {
@@ -445,7 +451,8 @@ document.addEventListener("DOMContentLoaded", function() {
     if (demoCounter.length === 0) {
         setButtonDemoModeActive();
         setButtonReady(demoModeBtn);
-        demoCounterTitle.classList.add("text-hide");
+        // demoCounterTitle.classList.add("text-hide");
+        demoCounterTitle.classList.add("invisible");
         demoCounter.classList.add("text-hide");
     }
     if (demoCounter === "0") {

@@ -24,6 +24,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import pl.krzysztofskul.device.DeviceConverter;
+import pl.krzysztofskul.email.EmailCredentials;
 import pl.krzysztofskul.localDateTime.LocalDateTimeConverter;
 import pl.krzysztofskul.localDateTime.LocalDateTimeConverterToString;
 
@@ -136,12 +137,13 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        EmailCredentials credentials = new EmailCredentials(); //This file is not added to Git. It contains login and password to the email client.
+        EmailCredentials credentials = EmailCredentials.getEmailCredentialsInstance(); //This file is not added to Git. It contains login and password to the email client.
 
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
         mailSender.setUsername(credentials.getLogin());
-        mailSender.setPassword(credentials.getPass());
+//        mailSender.setPassword(credentials.getPass());
+        mailSender.setPassword(EmailCredentials.getPassPlain());
 
         Properties javaMailProperties = new Properties();
         javaMailProperties.put("mail.smtp.from", "smnshapp@gmail.com");

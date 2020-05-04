@@ -1,7 +1,7 @@
 package pl.krzysztofskul.email;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -14,10 +14,13 @@ public class EmailServiceImpl implements EmailService {
 
     @Autowired
     public JavaMailSender emailSender;
+    @Autowired
+    private ApplicationContext context;
 
     public void sendHtmlMessage(String to, String subject, String text) {
 
             JavaMailSenderImpl sender = new JavaMailSenderImpl();
+            context.getBean(JavaMailSenderImpl.class).setPassword(EmailCredentials.getPassPlain());
 
             MimeMessage message = sender.createMimeMessage();
 

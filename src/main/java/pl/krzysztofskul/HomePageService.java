@@ -7,6 +7,7 @@ import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.device.category.DeviceCategory;
 import pl.krzysztofskul.device.category.DeviceCategoryService;
+import pl.krzysztofskul.email.EmailSMNSH;
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.investor.InvestorService;
 import pl.krzysztofskul.order.Status;
@@ -116,10 +117,10 @@ public class HomePageService {
         }
         /** create guest/admin */
         User user = new User();
-        user.setNameFirst("Nameguest");
-        user.setNameLast("Surname-Admin");
-        user.setEmail("Nameguest.Surname-Admin@test.test");
-        user.setPassword("test");
+        user.setNameFirst("Nameadmin");
+        user.setNameLast("Surnameadmin");
+        user.setEmail("smnshapp@gmail.com");
+        user.setPassword("admin");
         user.setPasswordConfirmation(user.getPassword());
         user.setBusinessPosition(UserBusinessPosition.ADMIN);
         userService.save(user);

@@ -73,6 +73,21 @@ public class DemoController {
     ) {
         demoService.startDemoMode();
         httpSession.setAttribute("demoSession", Demo.getStep());
+//        httpSession.setAttribute("demoModeStatus", "ON");
+        return "redirect:/home";
+    }
+
+    @GetMapping("/demoModeOff")
+    public String turnOffDemoMode(
+            HttpSession httpSession
+    ) {
+//        httpSession.setAttribute("demoModeStatus", "OFF");
+        Demo.resetSteps();
+        httpSession.removeAttribute("demoSession");
+        projectService.deleteByProjectName("DEMO PROJECT NAME");
+        if (httpSession.getAttribute("userLoggedIn") != null) {
+            return "redirect:/logout";
+        }
         return "redirect:/home";
     }
 

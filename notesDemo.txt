@@ -20,9 +20,9 @@
 . Demo (singleton) class
     . counter of steps/clicks on buttons
 
-- DemoController / DemoService
+. DemoController / DemoService
     . on demo mode
-    - off demo mode
+    . turn off demo mode functionality
 
 . javascript demoMode.js created for managing demo mode functionality
     . start demo mode function (activate demo mode button)

@@ -106,6 +106,13 @@
         + menuMain update
 
 *** DONE ***
+# 0.3.0.8
+    + pom ver. 0.3.0.8
+    + turn off demo mode functionality
+    + admin authorization
+    + EmailSMNSH entity
+        + email send after user registering
+    + admin control panel page
 # 0.3.0.7
     + front-end updates in guideline at project page
     + updates in concepts/details page

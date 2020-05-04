@@ -20,9 +20,19 @@
         <div id="tooltipDemoInfo"></div>
         <div class="text-left" id="headerTitle">
             <h4 class="pl-5 font-weight-bold" style="letter-spacing: 15px; color: dimgrey">SMNSH APP.</h4>
-            <p id="demoCounterTitle" class="btn btn-outline-dark d-inline-block">Tryb demo aktywny - wykonano kroków / Demo mode activated - steps done: </p>
-            <p id="demoCounter" class="d-inline-block btn btn-outline-dark">${sessionScope.demoSession.toString()}</p>
-            <a id="demoModeReset" class="d-inline-block btn btn-outline-dark invisible" href="/demoModeReset">DEMO MODE RESET</a>
+            <div>
+                <div id="demoCounterTitle" class="d-inline-block">
+                    <p class="langPL">Tryb demo aktywny - wykonano kroków:</p>
+                    <p class="langEN">Demo mode activated - steps done:</p>
+                </div>
+                <span>
+                    <p id="demoCounter" class="d-inline-block ml-5" style="font-size: 40px">${sessionScope.demoSession.toString()}</p>
+                </span>
+            </div>
+            <div>
+                <a id="demoModeReset" class="d-inline-block btn btn-outline-dark invisible" href="/demoModeReset">DEMO MODE RESET</a>
+                <a id="demoModeOFF" class="d-inline-block btn btn-outline-dark invisible" href="/demoModeOff">DEMO MODE OFF</a>
+            </div>
         </div>
         <div class="text-right">
             <%
@@ -53,10 +63,10 @@
                             "</a>"+
                             "</div>"+
                             "<div class='mt-2'>"+
-                            "<a href='/login?guest=admin' class='btn btn-light'>"+
-                            "LUB ZALOGUJ JAKO GOŚĆ/ADMIN"+
-                            "<p class='langEN'>OR LOGIN AS A GUEST/ADMIN</p>"+
-                            "</a>"+
+//                            "<a href='/login?guest=admin' class='btn btn-light'>"+
+//                            "LUB ZALOGUJ JAKO GOŚĆ/ADMIN"+
+//                            "<p class='langEN'>OR LOGIN AS A GUEST/ADMIN</p>"+
+//                            "</a>"+
                             "<a id='loginAsDesignerBtn' href='/login?guest=designer' class='btn btn-light'>"+
                             "LUB ZALOGUJ JAKO GOŚĆ/PROJEKTANT"+
                             "<p class='langEN'>OR LOGIN AS A GUEST/DESIGNER</p>"+

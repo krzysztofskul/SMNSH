@@ -68,7 +68,9 @@
                         <div class="col-6">
                             <form:select cssClass="w-100" path="businessPosition">
                                 <c:forEach items="${userBusinessPositionList}" var="businessPosition">
-                                    <form:option value="${businessPosition}" label="${businessPosition.toString()}"/>
+                                    <c:if test="${businessPosition.toString() ne 'ADMINI / ADMIN'}">
+                                        <form:option value="${businessPosition}" label="${businessPosition.toString()}"/>
+                                    </c:if>
                                 </c:forEach>
                             </form:select>
                         </div>

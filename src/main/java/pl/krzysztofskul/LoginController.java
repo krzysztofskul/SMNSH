@@ -1,6 +1,8 @@
 package pl.krzysztofskul;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.krzysztofskul.email.EmailCredentials;
+import pl.krzysztofskul.email.EmailSMNSH;
+import pl.krzysztofskul.email.EmailSMNSHService;
 import pl.krzysztofskul.email.EmailServiceImpl;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserBusinessPosition;
@@ -24,14 +29,16 @@ public class LoginController {
      */
     private UserService userService;
     private EmailServiceImpl emailService;
+    private EmailSMNSHService emailSMNSHService;
 
     /**
      * constr.
      */
     @Autowired
-    public LoginController(UserService userService, EmailServiceImpl emailService) {
+    public LoginController(UserService userService, EmailServiceImpl emailService, EmailSMNSHService emailSMNSHService) {
         this.userService = userService;
         this.emailService = emailService;
+        this.emailSMNSHService = emailSMNSHService;
     }
 
     /**
@@ -119,6 +126,27 @@ public class LoginController {
     @GetMapping("/permissionDenied")
     public String permissionDenied() {
         return "permissionDenied";
+    }
+
+    @GetMapping("/admin/controlpanel")
+    public String adminControlPanel(
+            Model model
+    ) {
+        EmailSMNSH emailSMNSH = new EmailSMNSH();
+        emailSMNSH.setEmail("smnshapp@gmail.com");
+        model.addAttribute("listEmailSMNSH", emailSMNSHService.getAllEmailSMNSHEntity());
+        model.addAttribute("emailSMNSH", emailSMNSH);
+        return "admin/controlpanel";
+    }
+    @PostMapping("/admin/controlpanel")
+    public String adminControlPanel(
+            @ModelAttribute("emailSMNSH") EmailSMNSH emailSMNSH
+    ) {
+        EmailCredentials.getEmailCredentialsInstance().setPassPlain(emailSMNSH.getPassword());
+        String passBcrypted = BCrypt.hashpw(emailSMNSH.getPassword(), BCrypt.gensalt());
+        emailSMNSH.setPassword(passBcrypted);
+        emailSMNSHService.save(emailSMNSH);
+        return "redirect:/admin/controlpanel";
     }
 
 }
