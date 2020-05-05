@@ -5,12 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import pl.krzysztofskul.attachment.AttachmentService;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,16 +24,19 @@ public class ProjectController {
     private ProjectService projectService;
     private DeviceService deviceService;
     private UserService userService;
+    private AttachmentService attachmentService;
 
     @Autowired
     public ProjectController(
             ProjectService projectService,
             DeviceService deviceService,
-            UserService userService
+            UserService userService,
+            AttachmentService attachmentService
     ) {
         this.projectService = projectService;
         this.deviceService = deviceService;
         this.userService = userService;
+        this.attachmentService = attachmentService;
     }
 
     @ModelAttribute("allDeviceList")
@@ -58,8 +64,12 @@ public class ProjectController {
 
     @PostMapping("/new")
     public String projectNew(
+            @RequestParam(name = "fileUpload", required = false) MultipartFile fileUpload,
             @ModelAttribute("projectNew") @Valid Project projectNew, BindingResult result
-    ) {
+    ) throws IOException {
+
+        attachmentService.save(fileUpload);
+
         if (result.hasErrors()) {
             return "/projects/new";
         }

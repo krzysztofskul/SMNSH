@@ -17,7 +17,7 @@
 
     <div class="container">
 
-        <form:form id="formNewProject" method="post" modelAttribute="projectNew">
+        <form:form id="formNewProject" method="post" modelAttribute="projectNew" enctype="multipart/form-data">
             <div class="card">
 
                 <div class="card-header text-center">
@@ -224,6 +224,16 @@
                         </div>
                         <div class="col-8">
                             <form:textarea path="remarks" cssClass="w-100"/>
+                        </div>
+                    </div>
+
+                    <div class="row mb-1">
+                        <div class="col-4 text-right">
+                            <p class="langPL">ZAŁĄCZNIK:</p>
+                            <p class="langEN">ATTACHMENT:</p>
+                        </div>
+                        <div class="col-8">
+                            <input type="file" name="fileUpload"/>
                         </div>
                     </div>
 

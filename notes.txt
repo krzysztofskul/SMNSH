@@ -27,7 +27,6 @@
     - remarks max length problem
     - one question set / questions set stream for all device types if projects have more devices
 
-# 0.3.0.X
     - copy resources to AWS server (?):
         - reactivate tooltips at menuMain
         - ? https://maven.apache.org/plugins-archives/maven-war-plugin-2.3/examples/adding-filtering-webresources.html ...
@@ -104,6 +103,34 @@
             + update front-end for guideline at project page
                 + update concepts/details page
         + menuMain update
+
+# next
+    - add attachment(s) functionality to database when:
+        - creating new project
+            . pom.xml update for upload file dependency
+            . attachment.class
+            . projects/new.jsp form updates
+            . service.class
+            . repo.class
+            . controller.class
+            . appconfig appinitializer updates
+            - project.class relationship with attachment.class ...
+        - order for conceptual design / order for final planning design
+        - finish conceptual design / final planning design
+    - show attachments for download functionality at project/concept/guidelines pages
+    - avatar upload functionality when creating new user ...
+
+
+# 0.4.0-1
+    - add attachment(s) functionality to database when:
+        - creating new project
+            + pom.xml update for upload file dependency
+            + attachment.class
+            + projects/new.jsp form updates
+            + service.class
+            + repo.class
+            + controller.class
+            + appconfig appinitializer updates
 
 *** DONE ***
 # 0.3.0.8
