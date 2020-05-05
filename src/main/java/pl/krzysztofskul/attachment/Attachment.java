@@ -1,5 +1,7 @@
 package pl.krzysztofskul.attachment;
 
+import pl.krzysztofskul.project.Project;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,9 @@ public class Attachment {
 
     @Lob
     private byte[] data;
+
+    @OneToOne
+    private Project project;
 
     public Attachment() {
     }
@@ -50,5 +55,11 @@ public class Attachment {
         this.data = data;
     }
 
+    public Project getProject() {
+        return project;
+    }
 
+    public void setProject(Project project) {
+        this.project = project;
+    }
 }

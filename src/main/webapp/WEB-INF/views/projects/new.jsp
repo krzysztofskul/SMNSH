@@ -234,6 +234,8 @@
                         </div>
                         <div class="col-8">
                             <input type="file" name="fileUpload"/>
+<%--                            <form:input path="attachment.id" type="file"/>--%>
+<%--                            <form:errors path="attachment" cssClass="error"/>--%>
                         </div>
                     </div>
 

@@ -68,12 +68,13 @@ public class ProjectController {
             @ModelAttribute("projectNew") @Valid Project projectNew, BindingResult result
     ) throws IOException {
 
-        attachmentService.save(fileUpload);
+//        attachmentService.save(fileUpload);
 
         if (result.hasErrors()) {
             return "/projects/new";
         }
         projectService.save(projectNew);
+        attachmentService.saveToProject(fileUpload, projectNew);
         return "redirect:/projects/all";
     }
 
