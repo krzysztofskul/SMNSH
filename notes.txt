@@ -114,13 +114,19 @@
             . repo.class
             . controller.class
             . appconfig appinitializer updates
-            + project.class relationship with attachment.class
-            - show attachment on the project details page ...
+            . project.class relationship with attachment.class
+                . updates for no attachment new project save
+            . show attachment to download on the project details page (if exist)
+            - download attachment functionality ...
         - order for conceptual design / order for final planning design
         - finish conceptual design / final planning design
     - show attachments for download functionality at project/concept/guidelines pages
     - avatar upload functionality when creating new user ...
         - show avat jpg on the user details page ...
+
+# 0.4.0-3
+    + updates for no attachment new project save
+    + show attachment to download on the project details page (if exist)
 
 # 0.4.0-2
     + project.class relationship with attachment.class

@@ -74,7 +74,9 @@ public class ProjectController {
             return "/projects/new";
         }
         projectService.save(projectNew);
-        attachmentService.saveToProject(fileUpload, projectNew);
+        if (fileUpload != null && !fileUpload.isEmpty()) {
+            attachmentService.saveToProject(fileUpload, projectNew);
+        }
         return "redirect:/projects/all";
     }
 

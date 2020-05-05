@@ -262,6 +262,32 @@
                             </c:choose>
                         </div>
                     </div>
+                    <div class="row border-dark border-top">
+                        <div class="col-12 text-center mt-3 mb-3">
+                            <p class="langPL">ZAŁĄCZNIK</p>
+                            <p class="langEN">ATTACHEMNT</p>
+                        </div>
+                    </div>
+                    <div class="row border-top border-bottom">
+                        <c:choose>
+                            <c:when test="${project.attachment ne null}">
+                                <div class="col-10">
+                                        ${project.attachment.fileName}
+                                </div>
+                                <div class="col-2">
+                                    <a href="#" class="btn btn-dark float-right">
+                                        <p class="langPL">POBIERZ</p>
+                                        <p class="langEN">DWONLOAD</p>
+                                    </a>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="col-12">
+                                    <p>BRAK ZAŁĄCZNIKÓW</p>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
                 </div>
 
                 <div class="card-footer">
