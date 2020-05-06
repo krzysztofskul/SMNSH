@@ -1,5 +1,6 @@
 package pl.krzysztofskul.project;
 
+import pl.krzysztofskul.attachment.Attachment;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.user.User;
@@ -64,6 +65,9 @@ public class Project {
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Concept> conceptList = new ArrayList<>();
+
+    @OneToOne(mappedBy = "project")
+    private Attachment attachment;
 
     public Project() {
         this.deadline = LocalDateTime.now().plusDays(Long.parseLong("1"));
@@ -211,5 +215,13 @@ public class Project {
 
     public void setConceptList(List<Concept> conceptList) {
         this.conceptList = conceptList;
+    }
+
+    public Attachment getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(Attachment attachment) {
+        this.attachment = attachment;
     }
 }

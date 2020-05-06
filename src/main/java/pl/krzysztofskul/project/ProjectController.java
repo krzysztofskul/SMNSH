@@ -3,14 +3,20 @@ package pl.krzysztofskul.project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import pl.krzysztofskul.attachment.Attachment;
+import pl.krzysztofskul.attachment.AttachmentService;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,16 +27,19 @@ public class ProjectController {
     private ProjectService projectService;
     private DeviceService deviceService;
     private UserService userService;
+    private AttachmentService attachmentService;
 
     @Autowired
     public ProjectController(
             ProjectService projectService,
             DeviceService deviceService,
-            UserService userService
+            UserService userService,
+            AttachmentService attachmentService
     ) {
         this.projectService = projectService;
         this.deviceService = deviceService;
         this.userService = userService;
+        this.attachmentService = attachmentService;
     }
 
     @ModelAttribute("allDeviceList")
@@ -58,12 +67,19 @@ public class ProjectController {
 
     @PostMapping("/new")
     public String projectNew(
+            @RequestParam(name = "fileUpload", required = false) MultipartFile fileUpload,
             @ModelAttribute("projectNew") @Valid Project projectNew, BindingResult result
-    ) {
+    ) throws IOException {
+
+//        attachmentService.save(fileUpload);
+
         if (result.hasErrors()) {
             return "/projects/new";
         }
         projectService.save(projectNew);
+        if (fileUpload != null && !fileUpload.isEmpty()) {
+            attachmentService.saveToProject(fileUpload, projectNew);
+        }
         return "redirect:/projects/all";
     }
 
@@ -106,6 +122,21 @@ public class ProjectController {
         }
         projectService.save(project);
         return "redirect:/projects/details/"+id;
+    }
+
+    @GetMapping("/{projectId}/attachment-download/{attachmentId}")
+    public String attachmentDownload(
+            @PathVariable("projectId") Long projectId,
+            @PathVariable("attachmentId") Long attachmentId,
+            HttpServletResponse httpServletResponse
+    ) throws IOException {
+        Attachment attachment = attachmentService.loadById(attachmentId);
+        httpServletResponse.setContentType(attachment.getFileType());
+        httpServletResponse.setContentLength(attachment.getData().length);
+        httpServletResponse.setHeader("Content-Disposition", "attachment; filename=\""+attachment.getFileName()+"\"");
+        FileCopyUtils.copy(attachment.getData(), httpServletResponse.getOutputStream());
+        return "redirect:/projects/details/"+projectId;
+
     }
 
 }

@@ -15,6 +15,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.LocaleContextResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -126,7 +127,6 @@ public class AppConfig implements WebMvcConfigurer {
         return new LocalDateTimeConverterToString();
     }
 
-
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(getDeviceConverter());
@@ -154,6 +154,11 @@ public class AppConfig implements WebMvcConfigurer {
 
         mailSender.setJavaMailProperties(javaMailProperties);
         return mailSender;
+    }
+
+    @Bean
+    public StandardServletMultipartResolver multipartResolver() {
+        return new StandardServletMultipartResolver();
     }
 
 }
