@@ -124,6 +124,9 @@
     - avatar upload functionality when creating new user ...
         - show avat jpg on the user details page ...
 
+# 0.4.1
+    + pom.xml update for 0.4.1 version
+
 # 0.4.0-4
     + download attachment functionality
 
