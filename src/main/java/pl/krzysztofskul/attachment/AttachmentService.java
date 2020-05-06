@@ -49,4 +49,7 @@ public class AttachmentService {
 
     }
 
+    public Attachment loadById(Long attachmentId) {
+        return attachmentRepo.findById(attachmentId).get();
+    }
 }

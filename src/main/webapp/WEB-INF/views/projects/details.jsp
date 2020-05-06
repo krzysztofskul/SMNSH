@@ -271,13 +271,17 @@
                     <div class="row border-top border-bottom">
                         <c:choose>
                             <c:when test="${project.attachment ne null}">
-                                <div class="col-10">
+                                <div class="col-8 pt-3">
                                         ${project.attachment.fileName}
                                 </div>
-                                <div class="col-2">
-                                    <a href="#" class="btn btn-dark float-right">
+                                <div class="col-4">
+                                    <a href="#" class="btn btn-danger float-right m-1 d-inline-block disabled">
+                                        <p class="langPL">USUŃ</p>
+                                        <p class="langEN">DEL</p>
+                                    </a>
+                                    <a href="/projects/${project.id}/attachment-download/${project.attachment.id}" class="btn btn-dark float-right m-1 d-inline-block">
                                         <p class="langPL">POBIERZ</p>
-                                        <p class="langEN">DWONLOAD</p>
+                                        <p class="langEN">DOWNLOAD</p>
                                     </a>
                                 </div>
                             </c:when>
