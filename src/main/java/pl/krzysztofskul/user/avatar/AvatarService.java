@@ -22,11 +22,10 @@ public class AvatarService {
     /** g&s */
 
     /** m. */
-    //todo: user's avatar
-    /*public void save(Avatar avatar) {
+    public void save(Avatar avatar) {
         avatarRepo.save(avatar);
-    }*/
-    /*public Avatar save(MultipartFile multipartFile){
+    }
+    public Avatar save(MultipartFile multipartFile){
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         try {
             if(fileName.contains("..")) {
@@ -40,8 +39,11 @@ public class AvatarService {
         } catch (IOException e) {
             throw new RuntimeException("Couldn't store the file! Try again.");
         }
-    }*/
+    }
 
+    public Avatar loadByUserId(Long id) {
+        return avatarRepo.findByUserId(id);
+    }
 
     public Avatar loadById(Long id) {
         return avatarRepo.findById(id).get();

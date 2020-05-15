@@ -7,7 +7,7 @@
   <groupId>pl.krzysztofskul</groupId>
   <artifactId>smnsh</artifactId>
   <packaging>war</packaging>
-  <version>0.4.1</version>
+  <version>0.4.2-SNAPSHOT</version>
   <name>smnsh Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
@@ -130,6 +130,13 @@
           <version>1.6.2</version>
       </dependency>
       <!-- END E-MAIL -->
+
+      <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+      <dependency>
+          <groupId>commons-io</groupId>
+          <artifactId>commons-io</artifactId>
+          <version>2.5</version>
+      </dependency>
 
   </dependencies>
 

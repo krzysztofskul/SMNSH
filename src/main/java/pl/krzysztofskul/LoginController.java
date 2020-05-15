@@ -2,7 +2,6 @@ package pl.krzysztofskul;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import pl.krzysztofskul.email.EmailCredentials;
 import pl.krzysztofskul.email.EmailSMNSH;
 import pl.krzysztofskul.email.EmailSMNSHService;
@@ -17,6 +17,8 @@ import pl.krzysztofskul.email.EmailServiceImpl;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserBusinessPosition;
 import pl.krzysztofskul.user.UserService;
+import pl.krzysztofskul.user.avatar.Avatar;
+import pl.krzysztofskul.user.avatar.AvatarService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -30,15 +32,17 @@ public class LoginController {
     private UserService userService;
     private EmailServiceImpl emailService;
     private EmailSMNSHService emailSMNSHService;
+    private AvatarService avatarService;
 
     /**
      * constr.
      */
     @Autowired
-    public LoginController(UserService userService, EmailServiceImpl emailService, EmailSMNSHService emailSMNSHService) {
+    public LoginController(UserService userService, EmailServiceImpl emailService, EmailSMNSHService emailSMNSHService, AvatarService avatarService) {
         this.userService = userService;
         this.emailService = emailService;
         this.emailSMNSHService = emailSMNSHService;
+        this.avatarService = avatarService;
     }
 
     /**
@@ -113,11 +117,18 @@ public class LoginController {
     }
     @PostMapping("/register")
     public String register(
+            @RequestParam(name = "avatarUpload") MultipartFile avatarUpload,
             @ModelAttribute("user") @Valid User user, BindingResult result
     ) {
         if (result.hasErrors()) {
             return "/users/new";
         }
+        // TEST
+//        if (avatarUpload != null) {
+//            avatarService.save(avatarUpload);
+//            Avatar avatar = avatarService.loadById(Long.parseLong("2"));
+//            user.setAvatar(avatar);
+//        }
         userService.save(user);
         emailService.sendHtmlMessage(user.getEmail(), "REGISTRATION ACCEPTED", "LOREM IPSUM SMSNSH APP.");
         return "redirect:/";

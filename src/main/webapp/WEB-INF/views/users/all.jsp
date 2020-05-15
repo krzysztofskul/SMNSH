@@ -48,8 +48,7 @@
                                 <img src="/resources/img/avatars/img_avatar_someone.png" width="75px" height="75px"/>
                             </c:when>
                             <c:otherwise>
-                                <%--<img src="/resources/img/avatars/usersAll/${user.avatar.id}.png" width="75px" height="75px"/>--%> <!-- todo?: when img from DB is save in project resources dir -->
-                                <img src="/avatars/${user.avatar.id}.png" width="75px" height="75px" alt="AVATAR"/> <!-- todo: users's avatar -->
+                                <img src="/users/avatar/${user.id}" width="75px" height="75px" alt="AVATAR"/>
                             </c:otherwise>
                         </c:choose>
                     </div>

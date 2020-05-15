@@ -16,7 +16,7 @@
     <jsp:include page="/WEB-INF/views/header.jsp"/>
 
     <div class="container">
-        <form:form method="post" modelAttribute="user">
+        <form:form method="post" modelAttribute="user" enctype="multipart/form-data">
             <div class="card">
                 <div class="card-header text-center">
                     <p class="langPL">KREATOR NOWEGO UŻYTKOWNIKA</p>
@@ -125,7 +125,7 @@
                             <p class="langEN">AVATAR:</p>
                         </div>
                         <div class="col-6">
-                            <input type="file" disabled>
+                            <input type="file" name="avatarUpload">
                         </div>
                     </div>
                 </div>

@@ -20,7 +20,6 @@ public class AvatarController {
     }
 
     /** m. */
-    //todo: user's avatar
     /*@RequestMapping(value = "/avatars/{id}")
     @ResponseBody
     public byte[] avatar(@PathVariable("id") Long id) {

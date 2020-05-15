@@ -7,7 +7,6 @@ import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.device.category.DeviceCategory;
 import pl.krzysztofskul.device.category.DeviceCategoryService;
-import pl.krzysztofskul.email.EmailSMNSH;
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.investor.InvestorService;
 import pl.krzysztofskul.order.Status;
@@ -25,8 +24,14 @@ import pl.krzysztofskul.recipient.RecipientService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserBusinessPosition;
 import pl.krzysztofskul.user.UserService;
+import pl.krzysztofskul.user.avatar.Avatar;
 import pl.krzysztofskul.user.avatar.AvatarService;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -123,34 +128,45 @@ public class HomePageService {
         user.setPassword("admin");
         user.setPasswordConfirmation(user.getPassword());
         user.setBusinessPosition(UserBusinessPosition.ADMIN);
-        userService.save(user);
-
-        //todo: user's avatar
+        //userService.save(user);
         /** save avatar for 1st user */
-        /* load File */
-        //todo?: del / convert File to MultiPartFile
-        //File file = new File("/resources/img/avatars/avatar-01_128x128px.png");
-        /* convert File to MultipartFile */
+//        Path path = Paths.get("http://localhost:8080/resources/img/avatars/img_avatar_businesswoman.jpg");
 
-        /* save MultipartFile to DB*/
-        //avatarService.save(multipartFile);
+        /* ok */
+        URL res = getClass().getClassLoader().getResource("img/avatars/img_avatar_businesswoman.jpg");
+        try {
+            File file = Paths.get(res.toURI()).toFile();
+            String absPath = file.getAbsolutePath();
+            Avatar avatar = new Avatar();
+            avatar.setFileType("image/jpg");
+            avatar.setFileName(file.getName());
+            try {
+                avatar.setData(Files.readAllBytes(file.toPath()));
+                avatarService.save(avatar);
+                user.setAvatar(avatar);
+                userService.save(user);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
 
-        //byte[] byteFile = new byte[(int) file.length()];
-        //try {
-        //    FileInputStream fileInputStream = new FileInputStream(file);
-        //    /* convert file into array of bytes */
-        //    fileInputStream.read(byteFile);
-        //    fileInputStream.close();
-        //} catch (Exception e) {
-        //    e.printStackTrace();
-        //}
-        /* create Avatar from loaded file */
-        //Avatar avatar = new Avatar();
-        //avatar.setData(byteFile);
-        /* save avatar to DB */
-        //avatarService.save(avatar);
-        /* connect avatar to user */
-        //userService.loadById(Long.parseLong("1")).setAvatar(avatar);
+        /* ok */
+        /*Path path = Paths.get("/home/krzysztofskul/workspace/IdeaProjects/SMNSH/src/main/webapp/resources/img/avatars/img_avatar_businesswoman.png");
+        Avatar avatar = new Avatar();
+        avatar.setFileType("image/png");
+        avatar.setFileName(path.toFile().getName());
+        try {
+            avatar.setData(Files.readAllBytes(path));
+            avatarService.save(avatar);
+            user.setAvatar(avatar);
+            //userService.save(user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            userService.save(user);
+        }*/
     }
 
     public void createRealTestUsers() {
@@ -327,7 +343,7 @@ public class HomePageService {
             questionSetForMRI.setQuestionForm(questionForm);
             questionForm.setConcept(concept);
             concept.setQuestionForm(questionForm);
-            
+
             concept.setPriority("!");
             concept.setDateTimeDeadline(LocalDateTime.now().plusDays(7+i));
             conceptService.save(concept);
@@ -337,7 +353,7 @@ public class HomePageService {
             questionForm =questionFormService.loadById(questionSetForMRI.getQuestionForm().getId());
             questionSetForMRI.setQuestionForm(questionForm);
             questionSetForMRIService.save(questionSetForMRI);
-            
+
         }
     }
 
