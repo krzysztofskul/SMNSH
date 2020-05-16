@@ -39,7 +39,7 @@
                 if (session.getAttribute("userLoggedIn") != null) {
                     User user = (User) session.getAttribute("userLoggedIn");
                     out.print(
-                            "<span id='userLoggedIn'>"+user.getId()+"</span>"+
+                            "<span>ID: </span>"+"<span id='userLoggedIn'>"+user.getId()+"</span>"+"<span> | </span>"+
                             user.getNameFirst()+" "+
                             user.getNameLast()+" "+
                             "<a href='/users/details/"+user.getId()+"' class='btn btn-primary ml-2 mr-2'>" +

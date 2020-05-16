@@ -452,24 +452,13 @@ public class DemoController {
         return "redirect:/projects/details/"+projectId;
     }
 
-//
-//    @GetMapping("/demoStepNumber8")
-//    public String demoStepNumber8(
-//            HttpSession httpSession
-//    ) {
-//        Demo.increaseStepByOne();
-//        httpSession.setAttribute("demoSession", Demo.getStep());
-//        return "redirect:/projects/all";
-//    }
-//
-//    @GetMapping("/demoStepNumber9/{projectId}")
-//    public String demoStepNumber9(
-//            HttpSession httpSession,
-//            @PathVariable("projectId") Long projectId
-//    ) {
-//        Demo.increaseStepByOne();
-//        httpSession.setAttribute("demoSession", Demo.getStep());
-//        return "redirect:/projects/details/"+projectId;
-//    }
+    @GetMapping("/demoStepNumber22")
+    public String demoStepNumber22(
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/logout";
+    }
 
 }

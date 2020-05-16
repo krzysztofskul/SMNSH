@@ -101,8 +101,10 @@ public class HomePageService {
         /** create 2 users at planner business position */
         for (int i = 1; i <= 2; i++) {
             User user = new User();
-            user.setNameFirst("Name"+i);
-            user.setNameLast("Surname"+i);
+//            user.setNameFirst("Name"+i);
+//            user.setNameLast("Surname"+i);
+            user.setNameFirst("Jan");
+            user.setNameLast("Kowalski-"+i);
             user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
             user.setPassword("test");
             user.setPasswordConfirmation(user.getPassword());
@@ -112,8 +114,10 @@ public class HomePageService {
         /** create 6 users at project manager business position */
         for (int i = 3; i <= 9; i++) {
             User user = new User();
-            user.setNameFirst("Name"+i);
-            user.setNameLast("Surname"+i);
+//            user.setNameFirst("Name"+i);
+//            user.setNameLast("Surname"+i);
+            user.setNameFirst("Janina");
+            user.setNameLast("Nowak-"+i);
             user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
             user.setPassword("test");
             user.setPasswordConfirmation(user.getPassword());
@@ -122,8 +126,8 @@ public class HomePageService {
         }
         /** create guest/admin */
         User user = new User();
-        user.setNameFirst("Nameadmin");
-        user.setNameLast("Surnameadmin");
+        user.setNameFirst("Admin");
+        user.setNameLast("Administrator");
         user.setEmail("smnshapp@gmail.com");
         user.setPassword("admin");
         user.setPasswordConfirmation(user.getPassword());

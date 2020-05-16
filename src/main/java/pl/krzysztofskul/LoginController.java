@@ -67,17 +67,20 @@ public class LoginController {
         if (guest != null) {
             switch (guest) {
                 case "admin": {
-                    User user = userService.loadByEmail("Nameguest.Surname-Admin@test.test");
+//                    User user = userService.loadByEmail("Nameguest.Surname-Admin@test.test");
+                    User user = userService.loadByEmail("piotr.w@test.test");
                     session.setAttribute("userLoggedIn", user);
                     return "redirect:/";
                 }
                 case "designer": {
-                    User user = userService.loadByEmail("Name1Surname1@test.test");
+//                    User user = userService.loadByEmail("Name1Surname1@test.test");
+                    User user = userService.loadByEmail("maciej.d@test.test");
                     session.setAttribute("userLoggedIn", user);
                     return "redirect:/";
                 }
                 case "projectManager": {
-                    User user = userService.loadByEmail("Name3Surname3@test.test");
+//                    User user = userService.loadByEmail("Name3Surname3@test.test");
+                    User user = userService.loadByEmail("sebastian.k@test.test");
                     session.setAttribute("userLoggedIn", user);
                     return "redirect:/";
                 }

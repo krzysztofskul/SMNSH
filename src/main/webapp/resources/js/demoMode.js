@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // initDbBtn.classList.replace("btn-warning", "btn-success");
         setButtonReady(initDbBtn);
         initDbBtn.setAttribute("href", "/demoStepNumber1");
-        createTooltipDemoInfo("TRYB DEMO ZOSTAŁ AKTYWOWANY", "DEMO MODE HAS BEEN STARTED");
+        createTooltipDemoInfo("TRYB DEMO ZOSTAŁ AKTYWOWANY. PODĄŻAJ ZA ZIELONYM PRZYCISKIEM ...", "DEMO MODE HAS BEEN STARTED. FOLLOW UP THE GREEN BUTTON ...");
         // alert("demo mode started");
     }
     function setButtonDisabled(btn) {
@@ -194,8 +194,8 @@ document.addEventListener("DOMContentLoaded", function() {
     function setStepNumber4Ready() {
         setButtonReady(newProjectBtn);
         createTooltipDemoInfo(
-            "TO JEST STRONA Z WSZYSTKIMI AKTYWNYMI PROJEKTAMI ZALOGOWANEGO KIEROWNIKA PROJEKTU. UTWÓRZ TERAZ NOWY PROJEKT ...",
-            "THIS IS THE PAGE WITH ALL OF ACTIVE PROJECTS OF THE LOGGED IN PROJECT MANAGER. CREATE THE NEW ONE NOW ..."
+            "TO JEST STRONA Z WSZYSTKIMI AKTYWNYMI PROJEKTAMI. UTWÓRZ TERAZ NOWY PROJEKT ...",
+            "THIS IS THE PAGE WITH ALL OF ACTIVE PROJECTS. CREATE THE NEW ONE NOW ..."
         );
         newProjectBtn.setAttribute("href", "/demoStepNumber4");
         showDemoModeResetBtn();
@@ -244,7 +244,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // /concepts/new?projectId=${project.id}&userId=${project.projectManager.id}
 
         createTooltipDemoInfo(
-            "TO JEST STRONA WYŚWIETLAJĄCA WSZYSTKIE SZCZEGÓŁY PROJEKTU. UTWÓRZ ZAMÓWIENIE DO DZIAŁU PROJEKTOWEGO WYKONANIE PROJEKTU/RYSUNKU KONCEPCYJNEGO POSADOWIENIA I INSTALACJI APARATU ...",
+            "TO JEST STRONA WYŚWIETLAJĄCA WSZYSTKIE SZCZEGÓŁY PROJEKTU. UTWÓRZ ZAMÓWIENIE DO DZIAŁU PROJEKTOWEGO NA WYKONANIE PROJEKTU/RYSUNKU KONCEPCYJNEGO POSADOWIENIA I INSTALACJI APARATU ...",
             "THIS IS THE SITE WITH ALL INFORMATION ABOUT THE PROJECT. CREATE A NEW ORDER TO DESIGNING OFFICE FOR CREATING A PRELIMINARY (CONCEPTUAL) DESIGN OF THE DEVICE POSITIONING AND INSTALLATION ..."
         );
 
@@ -299,7 +299,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     function setStepNumber10Ready() {
         createTooltipDemoInfo(
-            "Zamówienie projektu koncepcji usytuowania aparatu zostało utworzone! <br> Wyloguj się teraz i poczekaj jak projekt zostanie ukończony.",
+            "ZAMÓWIENIE PROJEKTU KONCEPCYJNEGO ZOSTAŁO UTWORZONE! <br> Wyloguj się teraz i zaczekaj jak projekt zostanie wykonany przez dział projektowy.",
             "The order for preliminary (conceptual) design of the device location has been created! <br> Log out now and wait for design will be created."
         );
         setButtonReady(logoutBtn);
@@ -357,7 +357,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var designerId = document.getElementById("userLoggedIn").innerHTML;
         var projectId = document.getElementById("projectId").innerHTML;
         createTooltipDemoInfo(
-            "Na tej stronie wyświetlana jest lista wysłanych zamówień na przygotowanie projektu/rysunku koncepcyjnego posadowienia aparatu planowanego do instalacji. Klinik przycisk 'PRZYPISZ MNIE JAKO PROJEKTANTA' aby oznaczyć, że projekt/rysunek jest w przygotowaniu przez Ciebie. ",
+            "Na tej stronie wyświetlana jest lista wysłanych zamówień na przygotowanie projektu/rysunku koncepcyjnego posadowienia aparatu planowanego do instalacji. Kliknij przycisk 'PRZYPISZ MNIE JAKO PROJEKTANTA' aby oznaczyć, że projekt/rysunek jest w przygotowaniu przez Ciebie. ",
             "On this page there is shown the list of orders to create preliminary (conceptual) project/design of device planned to installation. Click the 'ASSIGN ME AS A DEISGNER' button to sign this order is in progress stage by you."
 
         );
@@ -373,7 +373,7 @@ document.addEventListener("DOMContentLoaded", function() {
         setOrderAsFinishedBtn.setAttribute("href", "/demoStepNumber15/"+conceptId+"?backToPage=projects/details/"+projectId);
         //setOrderAsFinishedBtn.classList.replace("btn-outline-success", "btn-success");
         createTooltipDemoInfo(
-            "ZADANIE WYKONANIA PROJEKTU/RYSUNKU ZOSTAŁO PRZYIPSANE DO ZALOGOWANEGO PROJEKTANTA I JEST OZNACZONE JAKO 'W TOKU'. PO ZAKOŃCZONEJ PRACY USTAW TEMAT JAKO 'ZAKOŃCZONY'.",
+            "ZADANIE WYKONANIA PROJEKTU/RYSUNKU ZOSTAŁO PRZYIPSANE DO ZALOGOWANEGO PROJEKTANTA I JEST OZNACZONE JAKO 'W TOKU'. PO ZAKOŃCZONEJ PRACY ZMIEŃ STATUS NA 'ZAKOŃCZONY'.",
             "THE TASK FOR CREATION OF THE PRELIMINARY (CONCEPTUAL DESIGN) HAS BEEN SET TO THE LOOGGED IN DESIGNER AND I SET AS 'IN RPGRESS'. WHEN THE TASK WILL BE FINISHED MARK IT AS 'FINNISHED' STATUS."
         );
         showDemoModeResetBtn();
@@ -389,13 +389,18 @@ document.addEventListener("DOMContentLoaded", function() {
         createTooltipDemoInfo(
             "ZALOGUJ SIĘ TERAZ JAKO GOŚĆ-KIEROWNIK PROJEKTU I SPRAWDŹ STATUS SWOJEGO ZAMÓWIENIA. JEŚLI JEST ZAKOŃCZONE MOŻESZ ZAMÓWIĆ RYSUNEK WYTYCZNYCH INSTALCYJNCYCH GDY PROJEKT KONCEPCYJNY ZOSTANIE PRZYJĘTY PRZEZ KLIENTA",
             "YOU CAN LOG IN AS GUEST-PROJEKT MANAGER AND CHECK YOUR ORDER STATUS. IF IT IS FINISHED YOU CAN ORDER THE FINAL PLANNING DRAWING, WHEN CONCEPTUAL DESIGN IS ACCEPTED BY CUSTOMER.");
-        loginAsPmBtn.classList.add("text-success");
-        loginAsPmBtn.setAttribute("href", "/demoStepNumber17")
+        // loginAsPmBtn.classList.add("text-success");
+        setButtonReady(loginAsPmBtn);
+        loginAsPmBtn.setAttribute("href", "/demoStepNumber17");
         showDemoModeResetBtn();
     }
     function setStepNumber18Ready() {
-        projectsBtn.classList.replace("btn-light", "btn-success");
-        projectsBtn.setAttribute("href", "/demoStepNumber18")
+        // projectsBtn.classList.replace("btn-light", "btn-success");
+        setButtonReady(projectsBtn);
+        createTooltipDemoInfo(
+            "PRZEJDŹ DO LISTY WSZYSTKICH PROJEKTÓW...",
+            "GO TO THE LIST OF ALL PROJECTS PAGE...");
+        projectsBtn.setAttribute("href", "/demoStepNumber18");
         showDemoModeResetBtn();
     }
     function setStepNumber19Ready() {
@@ -410,9 +415,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 var projectId = parent.children.item(0).children.item(0).innerHTML;
                 child3.classList.replace("btn-primary", "btn-success");
                 child3.setAttribute("href", "/demoStepNumber19/"+projectId);
+                setButtonReady(child3);
             }
         });
         newProjectBtn.classList.add("disabled");
+        createTooltipDemoInfo(
+            "PRZEJDŹ DO SZCZEGÓŁÓW PROJEKTU...",
+            "GO TO DETAILS OF THE PROJECT...");
         showDemoModeResetBtn();
     }
     function setStepNumber20Ready() { // get ready the button for the new final project
@@ -430,20 +439,53 @@ document.addEventListener("DOMContentLoaded", function() {
         // newFinalProjectOrderBtn.addEventListener("click", function () {
         //     clearInterval(interval);
         // });
+        createTooltipDemoInfo(
+            "PROJEKT KONCEPCYJNY JEST WYKONANY. MOŻESZ TERAZ ZAMÓWIĆ PROJEKT WYTYCZNYCH W ANALOGICZNY SPOSÓB...",
+            "PRELIMINARY (CONCEPTUAL) DESIGN HAS BEEN FINISHED. YOU CAN ORDER FINAL PLANNING (GUIDELINES) DESIGN NOW...");
         showDemoModeResetBtn();
     }
     function setStepNumber21Ready() {
-        newGuidelineForm.setAttribute("action", "/demoStepNumber21")
+        newGuidelineForm.setAttribute("action", "/demoStepNumber21");
         var interval = setInterval(function () {
             setTimeout(function () {
                 orderGuidelineBtn.classList.replace("btn-success", "btn-outline-success")
             }, 250);
             orderGuidelineBtn.classList.replace("btn-outline-success", "btn-success");
         }, 500);
+        createTooltipDemoInfo(
+            "WYPEŁNIJ FORMULARZ DLA ZAMÓWIENIA WYTYCZNYCH...",
+            "FILL IN THE FORM FOR FINAL PLANNING ORDER...");
         showDemoModeResetBtn();
     }
 
-    /**
+    function setStepNumber22Ready() {
+        newConceptBtn.classList.add("disabled");
+        createTooltipDemoInfo(
+            "ZAMÓWIENIE WYTYCZNYCH ZOSTAŁO UTWORZONE. MOŻESZ SIĘ WYLOGOWAĆ...",
+            "FINAL PLANNING ORDER HAS BEEN CREATED. YOU CAN LOG OUT NOW...");
+        logoutBtn.setAttribute("href", "/demoStepNumber22");
+        setButtonReady(logoutBtn);
+    }
+    function setStepNumber23Ready() {
+        createTooltipDemoInfo(
+            "ZALOGUJE SIĘ TERAZ JAKO GOŚĆ-PROJEKTANT...",
+            "LOG IN AS GUEST-DESIGNER NOW...");
+        setButtonReady(loginAsDesignerBtn);
+    }
+
+    function setStepNumber24Ready() {
+    }
+
+    function setStepNumber25Ready() {
+    }
+
+    function setStepNumber26Ready() {
+    }
+
+    function setStepNumber27Ready() {
+    }
+
+        /**
      * demo mode functionality
      */
 
@@ -529,7 +571,22 @@ document.addEventListener("DOMContentLoaded", function() {
         setStepNumber21Ready();
     }
     if (demoCounter === "21") {
-        //setStepNumber21Ready();
+        setStepNumber22Ready();
+    }
+    if (demoCounter === "22") {
+        setStepNumber23Ready();
+    }
+    if (demoCounter === "23") {
+        setStepNumber24Ready();
+    }
+    if (demoCounter === "24") {
+        setStepNumber25Ready();
+    }
+    if (demoCounter === "25") {
+        setStepNumber26Ready();
+    }
+    if (demoCounter === "26") {
+        setStepNumber27Ready();
     }
 
 });
