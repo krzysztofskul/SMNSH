@@ -467,6 +467,7 @@ document.addEventListener("DOMContentLoaded", function() {
         setButtonReady(logoutBtn);
     }
     function setStepNumber23Ready() {
+        loginAsDesignerBtn.setAttribute("href", "/demoStepNumber23")
         createTooltipDemoInfo(
             "ZALOGUJE SIĘ TERAZ JAKO GOŚĆ-PROJEKTANT...",
             "LOG IN AS GUEST-DESIGNER NOW...");
@@ -474,12 +475,39 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function setStepNumber24Ready() {
+        projectsBtn.setAttribute("href", "/demoStepNumber24")
+        createTooltipDemoInfo(
+            "PRZEJDŹ DO LISTY WSZYSTKICH PROJEKTÓW...",
+            "GO TO THE LIST OF ALL PROJECTS...");
+        setButtonReady(projectsBtn);
     }
 
     function setStepNumber25Ready() {
+        var x = document.querySelectorAll(".projectNameDiv");
+        x.forEach(function (e, i , arr) {
+            if (e.innerHTML.includes("DEMO PROJECT NAME")) {
+                e.classList.add("text-success");
+                var parent = e.parentElement.parentElement.parentElement.parentElement;
+                var child1 = parent.children.item(0);
+                var child2 = child1.children.item(2); // 3
+                var child3 = child2.children.item(1); // 2
+                var projectId = parent.children.item(0).children.item(0).innerHTML;
+                child3.classList.replace("btn-primary", "btn-success");
+                child3.setAttribute("href", "/demoStepNumber25/"+projectId);
+                setButtonReady(child3);
+            }
+        });
+        createTooltipDemoInfo(
+            "PRZEJDŹ DO SZCZEGÓŁÓW PROJEKTU DEMO...",
+            "GO TO THE DEMO PROJECT DETAILS...");
     }
 
     function setStepNumber26Ready() {
+        createTooltipDemoInfo(
+            "PRZYPISZ PROJEKTANTA WYKONUJĄCEGO PROJEKT WYTYCZNYCH...",
+            "SET THE DESIGNER PREPARING FINAL PLANNING DESIGN...");
+        //setButtonReady(setMeAsDesignerBtn);
+        //setMeAsDesignerBtn.classList.replace("href", "/demoStepNumber26")
     }
 
     function setStepNumber27Ready() {
@@ -587,6 +615,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     if (demoCounter === "26") {
         setStepNumber27Ready();
+    }
+    if (demoCounter === "27") {
+        setStepNumber28Ready();
     }
 
 });

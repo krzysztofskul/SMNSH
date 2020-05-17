@@ -34,7 +34,7 @@
                                 ${project.id}
                             </div>
                         </div>
-                        <div class="col-12 text-center">
+                        <div class="col-sm-9 text-center">
                             <c:set var="pageTitlePL" value="SZCZEGÓŁY PROJEKTU"/>
                             <c:set var="pageTitleEN" value="PROJECT DETAILS"/>
                             <c:if test="${edit eq true}">
@@ -43,6 +43,38 @@
                             </c:if>
                             <p class="langPL">${pageTitlePL}</p>
                             <p class="langEN">${pageTitleEN}</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <c:set var="backTo" value="/projects/all"/>
+                            <c:set var="forwardTo" value="/projects/details/${project.id}?edit=true"/>
+                            <c:set var="forwardBtnPL" value="EDYCJA"/>
+                            <c:set var="forwardBtnEN" value="EDIT"/>
+                            <c:set var="forwardClr" value="btn-primary"/>
+                            <c:if test="${edit eq true}">
+                                <c:set var="backTo" value="/projects/details/${project.id}"/>
+                                <c:set var="forwardTo" value="/projects/details/${project.id}"/>
+                                <c:set var="forwardBtnPL" value="ZAPISZ"/>
+                                <c:set var="forwardBtnEN" value="SAVE"/>
+                                <c:set var="forwardClr" value="btn-success"/>
+                            </c:if>
+                            <c:if test="${edit ne true}">
+                                <a href="${forwardTo}" class="btn ${forwardClr} float-right">
+                                    <p class="langPL">${forwardBtnPL}</p>
+                                    <p class="langEN">${forwardBtnEN}</p>
+                                </a>
+                            </c:if>
+                            <c:if test="${edit eq true}">
+                                <form:button type="submit"
+                                             class="btn ${forwardClr} float-right"
+                                >
+                                    <p class="langPL">${forwardBtnPL}</p>
+                                    <p class="langEN">${forwardBtnEN}</p>
+                                </form:button>
+                            </c:if>
+                            <a href="${backTo}" class="btn btn-warning float-right mr-2">
+                                <p class="langPL">WSTECZ</p>
+                                <p class="langEN">BACK</p>
+                            </a>
                         </div>
                     </div>
                     <div class="row border-bottom">
@@ -144,7 +176,7 @@
                                     <form:errors path="projectManager" cssClass="error"/>
                                 </c:when>
                                 <c:otherwise>
-                                    ${project.projectManager.nameFirst} ${project.projectManager.nameFirst}
+                                    ${project.projectManager.nameFirst} ${project.projectManager.nameLast}
                                     (<span id="projectManagerId">${project.projectManager.id}</span>)
                                 </c:otherwise>
                             </c:choose>
@@ -204,8 +236,8 @@
                 </div>
 
                 <div class="card-body">
-                    <div class="row border-dark border-top pb-3">
-                        <div class="col-12 text-center">
+                    <div class="row border-dark border-top pb-3 bg-light">
+                        <div class="col-12 text-center pt-2">
                             <p class="langPL">URZĄDZENIA PLANOWANE DO INSTALACJI:</p>
                             <p class="langEN">DEVICES PLANNED FOR INSTALLATION:</p>
                         </div>
@@ -239,7 +271,7 @@
                             </c:forEach>
                         </c:otherwise>
                     </c:choose>
-                    <div class="row border-dark border-top">
+                    <div class="row border-dark border-top bg-light mt-3">
                         <div class="col-12 text-center mt-3 mb-3">
                             <p class="langPL">UWAGI DO PROJEKTU</p>
                             <p class="langEN">REMARKS</p>
@@ -262,11 +294,19 @@
                             </c:choose>
                         </div>
                     </div>
-                    <div class="row border-dark border-top">
+                    <div class="row border-dark border-top bg-light mt-3">
                         <div class="col-12 text-center mt-3 mb-3">
-                            <p class="langPL">ZAŁĄCZNIK</p>
-                            <p class="langEN">ATTACHEMNT</p>
+                            <p class="langPL">ZAŁĄCZNIKI</p>
+                            <p class="langEN">ATTACHEMNTS</p>
                         </div>
+                        <c:if test="${edit eq true}">
+                            <div class="col-3 position-absolute mt-2 float-right">
+                                <div class="btn btn-primary disabled">
+                                    <p class="langPL">DODAJ ZAŁ.</p>
+                                    <p class="langEN">UPLOAD ATT.</p>
+                                </div>
+                            </div>
+                        </c:if>
                     </div>
                     <div class="row border-top border-bottom">
                         <c:choose>
@@ -296,38 +336,38 @@
 
                 <div class="card-footer">
 
-                    <c:set var="backTo" value="/projects/all"/>
-                    <c:set var="forwardTo" value="/projects/details/${project.id}?edit=true"/>
-                    <c:set var="forwardBtnPL" value="EDYCJA"/>
-                    <c:set var="forwardBtnEN" value="EDIT"/>
-                    <c:set var="forwardClr" value="btn-primary"/>
-                    <c:if test="${edit eq true}">
-                        <c:set var="backTo" value="/projects/details/${project.id}"/>
-                        <c:set var="forwardTo" value="/projects/details/${project.id}"/>
-                        <c:set var="forwardBtnPL" value="ZAPISZ"/>
-                        <c:set var="forwardBtnEN" value="SAVE"/>
-                        <c:set var="forwardClr" value="btn-success"/>
-                    </c:if>
+<%--                    <c:set var="backTo" value="/projects/all"/>--%>
+<%--                    <c:set var="forwardTo" value="/projects/details/${project.id}?edit=true"/>--%>
+<%--                    <c:set var="forwardBtnPL" value="EDYCJA"/>--%>
+<%--                    <c:set var="forwardBtnEN" value="EDIT"/>--%>
+<%--                    <c:set var="forwardClr" value="btn-primary"/>--%>
+<%--                    <c:if test="${edit eq true}">--%>
+<%--                        <c:set var="backTo" value="/projects/details/${project.id}"/>--%>
+<%--                        <c:set var="forwardTo" value="/projects/details/${project.id}"/>--%>
+<%--                        <c:set var="forwardBtnPL" value="ZAPISZ"/>--%>
+<%--                        <c:set var="forwardBtnEN" value="SAVE"/>--%>
+<%--                        <c:set var="forwardClr" value="btn-success"/>--%>
+<%--                    </c:if>--%>
 
-                    <a href="${backTo}" class="btn btn-warning float-left">
-                        <p class="langPL">WSTECZ</p>
-                        <p class="langEN">BACK</p>
-                    </a>
+<%--                    <a href="${backTo}" class="btn btn-warning float-left">--%>
+<%--                        <p class="langPL">WSTECZ</p>--%>
+<%--                        <p class="langEN">BACK</p>--%>
+<%--                    </a>--%>
 
-                    <c:if test="${edit ne true}">
-                        <a href="${forwardTo}" class="btn ${forwardClr} float-right">
-                            <p class="langPL">${forwardBtnPL}</p>
-                            <p class="langEN">${forwardBtnEN}</p>
-                        </a>
-                    </c:if>
-                    <c:if test="${edit eq true}">
-                        <form:button type="submit"
-                                     class="btn ${forwardClr} float-right"
-                        >
-                            <p class="langPL">${forwardBtnPL}</p>
-                            <p class="langEN">${forwardBtnEN}</p>
-                        </form:button>
-                    </c:if>
+<%--                    <c:if test="${edit ne true}">--%>
+<%--                        <a href="${forwardTo}" class="btn ${forwardClr} float-right">--%>
+<%--                            <p class="langPL">${forwardBtnPL}</p>--%>
+<%--                            <p class="langEN">${forwardBtnEN}</p>--%>
+<%--                        </a>--%>
+<%--                    </c:if>--%>
+<%--                    <c:if test="${edit eq true}">--%>
+<%--                        <form:button type="submit"--%>
+<%--                                     class="btn ${forwardClr} float-right"--%>
+<%--                        >--%>
+<%--                            <p class="langPL">${forwardBtnPL}</p>--%>
+<%--                            <p class="langEN">${forwardBtnEN}</p>--%>
+<%--                        </form:button>--%>
+<%--                    </c:if>--%>
                 </div>
 
             </div>

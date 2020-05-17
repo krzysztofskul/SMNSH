@@ -123,7 +123,7 @@ public class ConceptController {
             conceptNew.setAuthor(userService.loadById(userId));
         }
         if (projectId != null) {
-            conceptNew.setProject(projectService.loadById(projectId));
+            conceptNew.setProject(projectService.loadByIdWithDeviceList(projectId));
         }
         model.addAttribute("conceptNew", conceptNew);
         return "orders/concepts/new";

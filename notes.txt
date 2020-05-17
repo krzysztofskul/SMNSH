@@ -132,6 +132,13 @@
 # project messages/chat
     - new class projectMessage
 
+#
+    - demo mode updates ...
+
+# 0.4.2-3
+    + demo mode updates
+    + front/back-end corrections
+
 # 0.4.2-2
     + front/back-end modifications
 

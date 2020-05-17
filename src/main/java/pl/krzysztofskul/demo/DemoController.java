@@ -205,7 +205,7 @@ public class DemoController {
             conceptNew.setAuthor(userService.loadById(userId));
         }
         if (projectId != null) {
-            conceptNew.setProject(projectService.loadById(projectId));
+            conceptNew.setProject(projectService.loadByIdWithDeviceList(projectId));
         }
         model.addAttribute("conceptNew", conceptNew);
         Demo.increaseStepByOne();
@@ -459,6 +459,34 @@ public class DemoController {
         Demo.increaseStepByOne();
         httpSession.setAttribute("demoSession", Demo.getStep());
         return "redirect:/logout";
+    }
+
+    @GetMapping("/demoStepNumber23")
+    public String demoStepNumber23(
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/login?guest=designer";
+    }
+
+    @GetMapping("/demoStepNumber24")
+    public String demoStepNumber24(
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/projects/all";
+    }
+
+    @GetMapping("/demoStepNumber25/{projectId}")
+    public String demoStepNumber25(
+            @PathVariable("projectId") Long projectId,
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/projects/details/"+projectId;
     }
 
 }
