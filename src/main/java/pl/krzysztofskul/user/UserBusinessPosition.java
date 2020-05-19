@@ -18,5 +18,17 @@ public enum UserBusinessPosition {
         public String toString() {
             return "Kierownik projektu / Project Manager";
         }
-    };
+    },
+    SALES_REP {
+        @Override
+        public String toString() {
+            return "Przedstawiciel handlowy / Sales rep.";
+        }
+        public String toStringPL() {
+            return "Przedstawiciel handlowy";
+        }
+        public String toStringEN() {
+            return "Sales rep.";
+        }
+    }
 }

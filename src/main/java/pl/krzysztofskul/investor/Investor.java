@@ -18,6 +18,14 @@ public class Investor {
 
     private String name;
 
+    private String postalCode;
+
+    private String city;
+
+    private String street;
+
+    private int number;
+
     /**
      * constr.
      */
@@ -40,5 +48,37 @@ public class Investor {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 }

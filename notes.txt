@@ -132,8 +132,11 @@
 # project messages/chat
     - new class projectMessage
 
-#
-    - demo mode updates ...
+# 0.4.2-4
+    + demo mode updates
+    + new user business position: sales rep.
+    + user names/surnames creator class
+    + investors creator class
 
 # 0.4.2-3
     + demo mode updates

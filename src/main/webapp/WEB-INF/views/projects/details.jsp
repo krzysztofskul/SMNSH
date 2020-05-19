@@ -582,7 +582,7 @@
                                             <%-- BUTTON: ASSIGN DESIGNER TO GUIDELINE PROJECT --%>
                                             <c:if test="${concept.guideline.designer eq null && sessionScope.userLoggedIn.businessPosition.toString() eq 'Projektant/Planista / Designer/Planner'}">
                                                 <c:if test="${concept.guideline.status.toString() eq 'OCZEKUJE / WAITING'}">
-                                                    <a href="/guidelines/setDesigner/${concept.guideline.id}/${sessionScope.userLoggedIn.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
+                                                    <a id="setMeAsDesignerGuidelinesBtn" href="/guidelines/setDesigner/${concept.guideline.id}/${sessionScope.userLoggedIn.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
                                                         <p class="langPL">PRZYPISZ MNIE JAKO PROJEKTANTA</p>
                                                         <p class="langEN">ASSIGN ME AS A DESIGNER</p>
                                                     </a>

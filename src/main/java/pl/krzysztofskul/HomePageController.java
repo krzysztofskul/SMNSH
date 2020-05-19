@@ -29,8 +29,9 @@ public class HomePageController {
 		InitDB.getInstanceInitDB();
 		if (InitDB.getCounter() == 0) {
 			InitDB.increaseCounter();
-			homePageService.createUsers();
 			homePageService.createRealTestUsers();
+			homePageService.createUsers();
+
 			homePageService.createDeviceCategories();
 			homePageService.createDevices();
 			homePageService.createRealTestDevices();

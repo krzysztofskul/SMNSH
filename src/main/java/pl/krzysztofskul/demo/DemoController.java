@@ -488,5 +488,17 @@ public class DemoController {
         httpSession.setAttribute("demoSession", Demo.getStep());
         return "redirect:/projects/details/"+projectId;
     }
+    @GetMapping("/demoStepNumber26/{guidelineId}/{userLoggedInId}")
+    public String demoStepNumber26 (
+            @PathVariable Long guidelineId,
+            @PathVariable Long userLoggedInId,
+            @RequestParam("backToPage") String backToPage,
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/guidelines/setDesigner/"+guidelineId+"/"+userLoggedInId+"?backToPage="+backToPage;
+    }
+
 
 }

@@ -1,6 +1,7 @@
 package pl.krzysztofskul;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.device.Device;
@@ -9,6 +10,7 @@ import pl.krzysztofskul.device.category.DeviceCategory;
 import pl.krzysztofskul.device.category.DeviceCategoryService;
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.investor.InvestorService;
+import pl.krzysztofskul.investor.creator.Creator;
 import pl.krzysztofskul.order.Status;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.concept.ConceptService;
@@ -27,6 +29,7 @@ import pl.krzysztofskul.user.UserService;
 import pl.krzysztofskul.user.avatar.Avatar;
 import pl.krzysztofskul.user.avatar.AvatarService;
 
+import javax.validation.constraints.Email;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -97,80 +100,22 @@ public class HomePageService {
      *
      */
 
-    public void createUsers() {
-        /** create 2 users at planner business position */
-        for (int i = 1; i <= 2; i++) {
-            User user = new User();
-//            user.setNameFirst("Name"+i);
-//            user.setNameLast("Surname"+i);
-            user.setNameFirst("Jan");
-            user.setNameLast("Kowalski-"+i);
-            user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
-            user.setPassword("test");
-            user.setPasswordConfirmation(user.getPassword());
-            user.setBusinessPosition(UserBusinessPosition.PLANNER);
-            userService.save(user);
-        }
-        /** create 6 users at project manager business position */
-        for (int i = 3; i <= 9; i++) {
-            User user = new User();
-//            user.setNameFirst("Name"+i);
-//            user.setNameLast("Surname"+i);
-            user.setNameFirst("Janina");
-            user.setNameLast("Nowak-"+i);
-            user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
-            user.setPassword("test");
-            user.setPasswordConfirmation(user.getPassword());
-            user.setBusinessPosition(UserBusinessPosition.PROJECT_MANAGER);
-            userService.save(user);
-        }
-        /** create guest/admin */
-        User user = new User();
-        user.setNameFirst("Admin");
-        user.setNameLast("Administrator");
-        user.setEmail("smnshapp@gmail.com");
-        user.setPassword("admin");
-        user.setPasswordConfirmation(user.getPassword());
-        user.setBusinessPosition(UserBusinessPosition.ADMIN);
-        //userService.save(user);
-        /** save avatar for 1st user */
-//        Path path = Paths.get("http://localhost:8080/resources/img/avatars/img_avatar_businesswoman.jpg");
-
-        /* ok */
-        URL res = getClass().getClassLoader().getResource("img/avatars/img_avatar_businesswoman.jpg");
-        try {
-            File file = Paths.get(res.toURI()).toFile();
-            String absPath = file.getAbsolutePath();
-            Avatar avatar = new Avatar();
-            avatar.setFileType("image/jpg");
-            avatar.setFileName(file.getName());
-            try {
-                avatar.setData(Files.readAllBytes(file.toPath()));
-                avatarService.save(avatar);
-                user.setAvatar(avatar);
-                userService.save(user);
-            } catch (IOException e) {
-                e.printStackTrace();
+    private String verifyEmail(User user) {
+        List<User> userList = userService.loadAll();
+        boolean isValid = true;
+        do {
+            int j = 2;
+            for (User userExisted : userList) {
+                if (userExisted.getEmail().equals(user.getEmail())) {
+                    user.setEmail(user.getNameFirst()+user.getNameLast()+"-"+j+"@test.test");
+                    isValid = false;
+                    j++;
+                } else {
+                    isValid = true;
+                }
             }
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-
-        /* ok */
-        /*Path path = Paths.get("/home/krzysztofskul/workspace/IdeaProjects/SMNSH/src/main/webapp/resources/img/avatars/img_avatar_businesswoman.png");
-        Avatar avatar = new Avatar();
-        avatar.setFileType("image/png");
-        avatar.setFileName(path.toFile().getName());
-        try {
-            avatar.setData(Files.readAllBytes(path));
-            avatarService.save(avatar);
-            user.setAvatar(avatar);
-            //userService.save(user);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            userService.save(user);
-        }*/
+        } while (!isValid);
+        return user.getEmail();
     }
 
     public void createRealTestUsers() {
@@ -222,10 +167,111 @@ public class HomePageService {
         userService.save(user);
     }
 
+    public void createUsers() {
+        /** create guest/admin */
+        User user = new User();
+        user.setNameFirst("Admin");
+        user.setNameLast("Administrator");
+        user.setEmail("smnshapp@gmail.com");
+        user.setPassword("admin");
+        user.setPasswordConfirmation(user.getPassword());
+        user.setBusinessPosition(UserBusinessPosition.ADMIN);
+        //userService.save(user);
+        /** save avatar for 1st user */
+//        Path path = Paths.get("http://localhost:8080/resources/img/avatars/img_avatar_businesswoman.jpg");
+
+        /* ok */
+        URL res = getClass().getClassLoader().getResource("img/avatars/img_avatar_businesswoman.jpg");
+        try {
+            File file = Paths.get(res.toURI()).toFile();
+            String absPath = file.getAbsolutePath();
+            Avatar avatar = new Avatar();
+            avatar.setFileType("image/jpg");
+            avatar.setFileName(file.getName());
+            try {
+                avatar.setData(Files.readAllBytes(file.toPath()));
+                avatarService.save(avatar);
+                user.setAvatar(avatar);
+                userService.save(user);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        /* ok */
+        /*Path path = Paths.get("/home/krzysztofskul/workspace/IdeaProjects/SMNSH/src/main/webapp/resources/img/avatars/img_avatar_businesswoman.png");
+        Avatar avatar = new Avatar();
+        avatar.setFileType("image/png");
+        avatar.setFileName(path.toFile().getName());
+        try {
+            avatar.setData(Files.readAllBytes(path));
+            avatarService.save(avatar);
+            user.setAvatar(avatar);
+            //userService.save(user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            userService.save(user);
+        }*/
+        /** create 5 users at sales rep. position */
+        for (int i = 1; i <= 5; i++) {
+            user = new User();
+//            user.setNameFirst(Creator.getCreator().getRandomNameMale());
+//            user.setNameLast(Creator.getCreator().getRandomSurnameMale());
+            user.setNameFirst("Jan");
+//            user.setNameLast("Nowak-"+i);
+            user.setNameLast("Nowak");
+            user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
+            user.setEmail(verifyEmail(user));
+            user.setPassword("test");
+            user.setPasswordConfirmation(user.getPassword());
+            user.setBusinessPosition(UserBusinessPosition.SALES_REP);
+            userService.save(user);
+        }
+
+        /** create 2 users at planner business position */
+        for (int i = 1; i <= 2; i++) {
+            user = new User();
+//            user.setNameFirst("Name"+i);
+//            user.setNameLast("Surname"+i);
+            user.setNameFirst("Jan");
+            user.setNameLast("Kowalski-"+i);
+//            user.setNameFirst(Creator.getCreator().getRandomNameFemale());
+//            user.setNameLast(Creator.getCreator().getRandomSurnameFemale());
+            user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
+            user.setPassword("test");
+            user.setPasswordConfirmation(user.getPassword());
+            user.setBusinessPosition(UserBusinessPosition.PLANNER);
+            userService.save(user);
+        }
+        /** create 6 users at project manager business position */
+        for (int i = 3; i <= 9; i++) {
+            user = new User();
+//            user.setNameFirst("Name"+i);
+//            user.setNameLast("Surname"+i);
+            user.setNameFirst("Janina");
+            user.setNameLast("Nowak-"+i);
+//            user.setNameFirst(Creator.getCreator().getRandomNameMale());
+//            user.setNameLast(Creator.getCreator().getRandomSurnameMale());
+            user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
+            user.setPassword("test");
+            user.setPasswordConfirmation(user.getPassword());
+            user.setBusinessPosition(UserBusinessPosition.PROJECT_MANAGER);
+            userService.save(user);
+        }
+
+    }
+
     public void createInvestors() {
         for (int i = 1; i <= 9; i++) {
             Investor investor = new Investor();
             investor.setName("Investor no. "+i);
+            investor.setPostalCode(Creator.getCreator().getRandomPostalCode());
+            investor.setCity(Creator.getCreator().getRandomCity());
+            investor.setStreet(Creator.getCreator().getRandomStreet());
+            investor.setNumber(new Random().nextInt(249)+1);
             investorService.save(investor);
         }
     }
@@ -468,7 +514,7 @@ public class HomePageService {
             project.setInvestor("MED Investor Sp. z o.o.");
             project.setRecipient("City Hospital, Diagnostic Dep., Room "+i+"00, Room "+i+"20");
             project.setSls("Sales Rep. name and surname");
-            project.setProjectManager(userService.loadById(Long.valueOf("3")+i));
+            project.setProjectManager(userService.loadById(Long.valueOf("1")+i));
             project.setRemarks("Lorem ipsum. Lorem ipsum dolor sit amet leo. Suspendisse potenti. Suspend fringilla mi, viverra et, porttitor sem nec diam. Phasellus a mauris. Pellentesque scelerisque rhoncus tortor. In hac habitasse plate dictumst.");
             projectService.save(project);
         }

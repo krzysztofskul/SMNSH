@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
     /**
      * functions definitions
      */
-
+    
     function demoCounterEventListener() {
         demoCounterTitle.addEventListener("click", function () {
             showTooltipDemoInfo();
@@ -506,11 +506,23 @@ document.addEventListener("DOMContentLoaded", function() {
         createTooltipDemoInfo(
             "PRZYPISZ PROJEKTANTA WYKONUJĄCEGO PROJEKT WYTYCZNYCH...",
             "SET THE DESIGNER PREPARING FINAL PLANNING DESIGN...");
-        //setButtonReady(setMeAsDesignerBtn);
-        //setMeAsDesignerBtn.classList.replace("href", "/demoStepNumber26")
+        var setMeAsDesignerGuidelinesBtn = document.getElementById("setMeAsDesignerGuidelinesBtn");
+        setButtonReady(setMeAsDesignerGuidelinesBtn);
+        var guidelineId = setMeAsDesignerGuidelinesBtn.parentElement.parentElement
+            .children.item(1)
+            .children.item(0)
+            .children.item(0)
+            .children.item(1)
+            .innerHTML;
+        var designerId = document.getElementById("userLoggedIn").innerHTML;
+        var projectId = document.getElementById("projectId").innerHTML;
+        setMeAsDesignerGuidelinesBtn.setAttribute("href", "/demoStepNumber26/"+guidelineId+"/"+designerId+"?backToPage=projects/details/"+projectId);
     }
 
     function setStepNumber27Ready() {
+        createTooltipDemoInfo(
+            "27...",
+            "step 27 ready...");
     }
 
         /**
