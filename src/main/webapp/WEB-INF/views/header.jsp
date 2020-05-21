@@ -16,7 +16,7 @@
     <script type="text/javascript" src="<c:url value="/resources/js/demoMode.js"/>"></script>
 </head>
 <body>
-    <div class="container border-bottom pt-4 pb-1 mb-5 bg-light">
+    <div class="container-fluid border-bottom pt-4 pb-1 mb-5 bg-light">
         <div id="tooltipDemoInfo"></div>
         <div class="text-left" id="headerTitle">
             <h4 class="pl-5 font-weight-bold" style="letter-spacing: 15px; color: dimgrey">SMNSH APP.</h4>

@@ -15,7 +15,7 @@
     <script type="text/javascript" src="<c:url value="/resources/js/demoMode.js"/>"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid pl-5 pr-5">
 <%--        <a href="/initDB">INIT.DB</a>--%>
 <%--        <a href="/">HOME</a>--%>
 <%--        <a href="/concepts/all">CONCEPTS ALL</a>--%>
@@ -57,19 +57,19 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav nav-pills border-top m-1">
-            <li class="nav-item">
-                <a class="nav-link btn-light ml-1 mr-1" href="/concepts/all?filter=all disabled">
-                    <p class="langPL">ZAMÓWIENIA KONCEPCJI</p>
-                    <p class="langEN">CONCEPT ORDERS</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link btn-light ml-1 mr-1 disabled" href="#">
-                    <p class="langPL">ZAMÓWIENIA WYTYCZNYCH</p>
-                    <p class="langEN">GUIDELINE ORDERS</p>
-                </a>
-            </li>
+<%--        <ul class="nav nav-pills border-top m-1">--%>
+<%--            <li class="nav-item">--%>
+<%--                <a class="nav-link btn-light ml-1 mr-1" href="/concepts/all?filter=all disabled">--%>
+<%--                    <p class="langPL">ZAMÓWIENIA KONCEPCJI</p>--%>
+<%--                    <p class="langEN">CONCEPT ORDERS</p>--%>
+<%--                </a>--%>
+<%--            </li>--%>
+<%--            <li class="nav-item">--%>
+<%--                <a class="nav-link btn-light ml-1 mr-1 disabled" href="#">--%>
+<%--                    <p class="langPL">ZAMÓWIENIA WYTYCZNYCH</p>--%>
+<%--                    <p class="langEN">GUIDELINE ORDERS</p>--%>
+<%--                </a>--%>
+<%--            </li>--%>
             <%--<li class="nav-item">
                 <div class="myTooltip">
                     <a class="nav-link btn-light ml-1 mr-1" href="#">
@@ -82,7 +82,7 @@
                     </div>
                 </div>
             </li>--%>
-        </ul>
+<%--        </ul>--%>
     </div>
 </body>
 </html>

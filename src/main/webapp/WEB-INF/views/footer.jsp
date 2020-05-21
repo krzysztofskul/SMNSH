@@ -12,7 +12,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container border-top text-right mt-5 bg-light pt-2 pb-3">
+    <div class="container-fluid border-top text-right mt-5 bg-light pt-2 pb-3 pl-xl-5 pr-xl-5">
         <h3 class="font-italic">FOOTER</h3>
         <br>
         <div>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>

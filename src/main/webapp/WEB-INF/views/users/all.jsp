@@ -15,9 +15,9 @@
 
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 
-<div class="container">
+<div class="container-fluid">
 
-    <div class="card">
+    <div class="card" style="min-width: 600px">
 
         <div class="card-header text-center">
             <p class="langPL">UŻYTKOWNICY</p>
@@ -29,20 +29,25 @@
                 <div class="card bg-light mb-3 w-500px d-inline-block">
                     <div class="card-header w-500px">
                         <div class="row h-50px">
-                            <div class="col-3 border-right">
+                            <div class="col-3 border-right pt-3" style="font-size: 20px">
                                     ${user.id}
                             </div>
-                            <div class="col-9 font-weight-bold">
+                            <div class="col-9 text-left font-weight-bold pt-3" style="font-size: 20px">
                                     ${user.nameFirst} ${user.nameLast}
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row border-top border-50 mt-3 pt-2">
                             <div class="col-12 text-right">
                                     ${user.businessPosition.toString()}
                             </div>
                         </div>
+                        <div class="row border-top border-50 mt-3 pt-2">
+                            <div class="col-12 text-right">
+                                    ${user.email.toString()}
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body w-500px" style="min-height: 100px; max-height: 100px">
+                    <div class="card-body w-500px mb-3" style="min-height: 100px; max-height: 100px">
                         <c:choose>
                             <c:when test="${user.avatar eq null}">
                                 <img src="/resources/img/avatars/img_avatar_someone.png" width="75px" height="75px"/>

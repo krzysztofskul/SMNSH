@@ -41,7 +41,7 @@ public class Guideline extends Order {
      */
 
     public Guideline() {
-        this.setTitle("Zamówienie projektu WYTYCZNYCH na sprzęt: ..., dla klienta: ... / New order for GUIDELINES PROJECT for device: ..., to the customer: ...");
+        this.setTitle("Zamówienie wytycznych. / Order for final planning.");
         this.setDateOfAcceptation(LocalDate.now());
     }
 

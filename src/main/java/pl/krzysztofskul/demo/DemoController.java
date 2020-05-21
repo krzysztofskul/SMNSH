@@ -488,6 +488,7 @@ public class DemoController {
         httpSession.setAttribute("demoSession", Demo.getStep());
         return "redirect:/projects/details/"+projectId;
     }
+
     @GetMapping("/demoStepNumber26/{guidelineId}/{userLoggedInId}")
     public String demoStepNumber26 (
             @PathVariable Long guidelineId,
@@ -500,5 +501,24 @@ public class DemoController {
         return "redirect:/guidelines/setDesigner/"+guidelineId+"/"+userLoggedInId+"?backToPage="+backToPage;
     }
 
+    @GetMapping("/demoStepNumber27/{guidelineId}")
+    public String demoStepNumber27(
+            @PathVariable Long guidelineId,
+            @RequestParam String backToPage,
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/guidelines/setStatusFinished/"+guidelineId+"?backToPage="+backToPage;
+    }
+
+    @GetMapping("/demoStepNumber28")
+    public String demoStepNumber28(
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/logout";
+    }
 
 }

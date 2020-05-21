@@ -132,6 +132,22 @@
 # project messages/chat
     - new class projectMessage
 
+# log's class/classes
+    . logs for actions at website
+    . logs/history for changes at project
+        - logger class
+        - project class changes
+        - logger interface ...
+    - logs/history for user activities ...
+
+
+*** DONE ***
+
+# 0.4.2-5
+    + demo mode updates
+    + front-end updates
+    + logger class/functionality for user and project activities
+
 # 0.4.2-4
     + demo mode updates
     + new user business position: sales rep.
@@ -178,7 +194,6 @@
             + controller.class
             + appconfig appinitializer updates
 
-*** DONE ***
 # 0.3.0.8
     + pom ver. 0.3.0.8
     + turn off demo mode functionality

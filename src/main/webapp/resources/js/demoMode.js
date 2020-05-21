@@ -521,8 +521,27 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function setStepNumber27Ready() {
         createTooltipDemoInfo(
-            "27...",
-            "step 27 ready...");
+            "STATUS PROJEKTU WYTYCZNYCH ZOSTAŁ PRZYPISANY DO ZALOGOWANEGO UŻYTKOWNIKA-PROJEKTANTA. PO JEGO ZAKOŃCZENIU MOŻESZ MIENIĆ SATATUS NA ZAKOŃCZONY. KLIKNIJ ZATEM ZEILONY PRZYCISK...",
+            "STATUS OF THE FINAL PLANNING DESIGN HAS BEEN SET TO LOGGED IN USER-DESIGNER. AFTER WORK YOU CAN CHANGE THE STATUS FOR FINISHED. CLICK THE GREEN BUTTON SO...");
+        var setGuidelinesFinishedBtn = document.getElementById("setGuidelinesFinishedBtn");
+        setButtonReady(setGuidelinesFinishedBtn);
+        var guidelineId = setGuidelinesFinishedBtn.parentElement.parentElement
+            .children.item(1)
+            .children.item(0)
+            .children.item(0)
+            .children.item(1)
+            .innerHTML;
+        var projectId = document.getElementById("projectId").innerHTML;
+        setGuidelinesFinishedBtn.setAttribute("href", "/demoStepNumber27/"+guidelineId+"?backToPage=projects/details/"+projectId);
+    }
+
+    function setStepNumber28Ready() {
+        createTooltipDemoInfo(
+            "GRATULACJE! TRYB DEMO JAKO PROJEKTANTA ZOSTAŁ ZAKOŃCZONY - WYKONANA ZOSTAŁA KONCEPCYJA ORAZ WYTYCZNE POSADOWIENIA APARATU DOT. PROJEKTU DEMONSTRACYJNEGO. WYLOGUJ SIĘ TERAZ...",
+            "CONGRATULATION! DEMO MODE FOR DESIGNER HAS BEEN FINISHED - CONCEPTUAL DESIGN AND FINAL PLANNING FOR DEVICE INSTALLATION HAS BEEN FINISHED FOR DEMO PROJECT. YOU CAN LOG OUT NOW ..."
+        );
+        setButtonReady(logoutBtn);
+        logoutBtn.setAttribute("href", "/demoStepNumber28");
     }
 
         /**

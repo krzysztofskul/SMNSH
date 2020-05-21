@@ -2,6 +2,7 @@ package pl.krzysztofskul.project;
 
 import pl.krzysztofskul.attachment.Attachment;
 import pl.krzysztofskul.device.Device;
+import pl.krzysztofskul.logger.loggerProject.LoggerProject;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.user.User;
 
@@ -68,6 +69,9 @@ public class Project {
 
     @OneToOne(mappedBy = "project")
     private Attachment attachment;
+
+    @OneToMany(mappedBy = "project")
+    private List<LoggerProject> loggerProjectList;
 
     public Project() {
         this.deadline = LocalDateTime.now().plusDays(Long.parseLong("1"));
@@ -223,5 +227,13 @@ public class Project {
 
     public void setAttachment(Attachment attachment) {
         this.attachment = attachment;
+    }
+
+    public List<LoggerProject> getLoggerProjectList() {
+        return loggerProjectList;
+    }
+
+    public void setLoggerProjectList(List<LoggerProject> loggerProjectList) {
+        this.loggerProjectList = loggerProjectList;
     }
 }
