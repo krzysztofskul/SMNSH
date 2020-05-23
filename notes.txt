@@ -134,14 +134,20 @@
 
 # log's class/classes
     . logs for actions at website
-    . logs/history for changes at project
-        - logger class
-        - project class changes
-        - logger interface ...
-    - logs/history for user activities ...
-
+        - with generic actionAt (?)
+        - generic type to MySQL (?)
+        - service with interface (?)
 
 *** DONE ***
+
+# 0.4.2-6
+    + user logs
+        + user actions enum
+        + logs for user log in
+        + logs for user register
+    + project logs
+        + logs for new project
+    + logs/all.jsp
 
 # 0.4.2-5
     + demo mode updates

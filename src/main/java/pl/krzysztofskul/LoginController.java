@@ -14,14 +14,16 @@ import pl.krzysztofskul.email.EmailCredentials;
 import pl.krzysztofskul.email.EmailSMNSH;
 import pl.krzysztofskul.email.EmailSMNSHService;
 import pl.krzysztofskul.email.EmailServiceImpl;
+import pl.krzysztofskul.logger.loggerUser.LoggerUserService;
 import pl.krzysztofskul.user.User;
+import pl.krzysztofskul.user.UserAction;
 import pl.krzysztofskul.user.UserBusinessPosition;
 import pl.krzysztofskul.user.UserService;
-import pl.krzysztofskul.user.avatar.Avatar;
 import pl.krzysztofskul.user.avatar.AvatarService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 
 @Controller
 public class LoginController {
@@ -33,16 +35,24 @@ public class LoginController {
     private EmailServiceImpl emailService;
     private EmailSMNSHService emailSMNSHService;
     private AvatarService avatarService;
+    private LoggerUserService<Object> loggerUserService;
 
     /**
      * constr.
      */
     @Autowired
-    public LoginController(UserService userService, EmailServiceImpl emailService, EmailSMNSHService emailSMNSHService, AvatarService avatarService) {
+    public LoginController(
+            UserService userService,
+            EmailServiceImpl emailService,
+            EmailSMNSHService emailSMNSHService,
+            AvatarService avatarService,
+            LoggerUserService<Object> loggerUserService
+    ) {
         this.userService = userService;
         this.emailService = emailService;
         this.emailSMNSHService = emailSMNSHService;
         this.avatarService = avatarService;
+        this.loggerUserService = loggerUserService;
     }
 
     /**
@@ -70,21 +80,26 @@ public class LoginController {
 //                    User user = userService.loadByEmail("Nameguest.Surname-Admin@test.test");
                     User user = userService.loadByEmail("piotr.w@test.test");
                     session.setAttribute("userLoggedIn", user);
+                    loggerUserService.log(user, LocalDateTime.now(), UserAction.LOG_IN, null);
                     return "redirect:/";
                 }
                 case "designer": {
 //                    User user = userService.loadByEmail("Name1Surname1@test.test");
                     User user = userService.loadByEmail("maciej.d@test.test");
                     session.setAttribute("userLoggedIn", user);
+                    loggerUserService.log(user, LocalDateTime.now(), UserAction.LOG_IN, null);
                     return "redirect:/";
                 }
                 case "projectManager": {
 //                    User user = userService.loadByEmail("Name3Surname3@test.test");
                     User user = userService.loadByEmail("sebastian.k@test.test");
                     session.setAttribute("userLoggedIn", user);
+                    loggerUserService.log(user, LocalDateTime.now(), UserAction.LOG_IN, null);
                     return "redirect:/";
                 }
             }
+//        loggerUserService.log(user, LocalDateTime.now(), UserAction.LOG_IN, null);
+//        return "redirect:/";
         }
         return "login";
     }
@@ -100,6 +115,7 @@ public class LoginController {
         }
         if (user.checkPassword(password)) {
             session.setAttribute("userLoggedIn", user);
+            loggerUserService.log(user, LocalDateTime.now(), UserAction.LOG_IN, null);
         }
         return "redirect:/home";
     }
@@ -134,6 +150,7 @@ public class LoginController {
 //        }
         userService.save(user);
         emailService.sendHtmlMessage(user.getEmail(), "REGISTRATION ACCEPTED", "LOREM IPSUM SMSNSH APP.");
+        loggerUserService.log(user, LocalDateTime.now(), UserAction.REGISTER, null);
         return "redirect:/";
     }
 

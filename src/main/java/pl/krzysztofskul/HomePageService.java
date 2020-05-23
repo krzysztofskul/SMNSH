@@ -1,7 +1,6 @@
 package pl.krzysztofskul;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.device.Device;
@@ -11,6 +10,7 @@ import pl.krzysztofskul.device.category.DeviceCategoryService;
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.investor.InvestorService;
 import pl.krzysztofskul.investor.creator.Creator;
+import pl.krzysztofskul.logger.loggerUser.LoggerUserService;
 import pl.krzysztofskul.order.Status;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.concept.ConceptService;
@@ -24,12 +24,12 @@ import pl.krzysztofskul.questionnaire.questionSet.*;
 import pl.krzysztofskul.recipient.Recipient;
 import pl.krzysztofskul.recipient.RecipientService;
 import pl.krzysztofskul.user.User;
+import pl.krzysztofskul.user.UserAction;
 import pl.krzysztofskul.user.UserBusinessPosition;
 import pl.krzysztofskul.user.UserService;
 import pl.krzysztofskul.user.avatar.Avatar;
 import pl.krzysztofskul.user.avatar.AvatarService;
 
-import javax.validation.constraints.Email;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -61,6 +61,7 @@ public class HomePageService {
     private RecipientService recipientService;
     private ProjectService projectService;
     private AvatarService avatarService;
+    private LoggerUserService<Object> loggerUserService;
 
     /** constr.
      *
@@ -79,8 +80,8 @@ public class HomePageService {
             InvestorService investorService,
             RecipientService recipientService,
             ProjectService projectService,
-            AvatarService avatarService
-    ) {
+            AvatarService avatarService,
+            LoggerUserService<Object> loggerUserService) {
         this.userService = userService;
         this.deviceCategoryService = deviceCategoryService;
         this.deviceService = deviceService;
@@ -94,6 +95,7 @@ public class HomePageService {
         this.recipientService = recipientService;
         this.projectService = projectService;
         this.avatarService = avatarService;
+        this.loggerUserService = loggerUserService;
     }
 
     /** methods
@@ -517,6 +519,7 @@ public class HomePageService {
             project.setProjectManager(userService.loadById(Long.valueOf("1")+i));
             project.setRemarks("Lorem ipsum. Lorem ipsum dolor sit amet leo. Suspendisse potenti. Suspend fringilla mi, viverra et, porttitor sem nec diam. Phasellus a mauris. Pellentesque scelerisque rhoncus tortor. In hac habitasse plate dictumst.");
             projectService.save(project);
+            loggerUserService.log(project.getProjectManager(), LocalDateTime.now(), UserAction.PROJECT_CREATE, project);
         }
     }
 }

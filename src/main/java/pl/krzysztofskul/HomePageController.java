@@ -31,7 +31,6 @@ public class HomePageController {
 			InitDB.increaseCounter();
 			homePageService.createRealTestUsers();
 			homePageService.createUsers();
-
 			homePageService.createDeviceCategories();
 			homePageService.createDevices();
 			homePageService.createRealTestDevices();

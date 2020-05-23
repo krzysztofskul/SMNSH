@@ -236,4 +236,11 @@ public class Project {
     public void setLoggerProjectList(List<LoggerProject> loggerProjectList) {
         this.loggerProjectList = loggerProjectList;
     }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                '}';
+    }
 }
