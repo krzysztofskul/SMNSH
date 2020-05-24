@@ -9,11 +9,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
-    <title>Title</title>
 </head>
 <body>
 
-    <jsp:include page="../header.jsp"/>
+    <jsp:include page="../../header.jsp"/>
 
     <div class="container">
         <table class="table">
@@ -42,17 +41,20 @@
                 <c:forEach items="${logs}" var="log">
                     <tr>
                         <th scope="row">${log.id}</th>
-                        <td>${log.user.nameFirst} ${log.user.nameLast}</td>
-                        <td>${log.localDateTime.toLocalDate()} ${log.localDateTime.toLocalTime()}</td>
+                        <td style="width: 250px">${log.user.nameFirst} ${log.user.nameLast}</td>
+                        <td>
+                            <p class="font-weight-bold">${log.localDateTime.toLocalDate()}</p>
+                            <p class="font-italic">${log.localDateTime.toLocalTime()}</p>
+                        </td>
                         <td>${log.userAction.toString()}</td>
-                        <td>${log.actionAt.toString()}</td>
+                        <td style="width: 300px">${log.actionAt.toString()}</td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
     </div>
 
-    <jsp:include page="../footer.jsp"/>
+    <jsp:include page="../../footer.jsp"/>
 
 </body>
 </html>

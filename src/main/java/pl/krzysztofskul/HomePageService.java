@@ -175,7 +175,7 @@ public class HomePageService {
         user.setNameFirst("Admin");
         user.setNameLast("Administrator");
         user.setEmail("smnshapp@gmail.com");
-        user.setPassword("admin");
+        user.setPassword("test");
         user.setPasswordConfirmation(user.getPassword());
         user.setBusinessPosition(UserBusinessPosition.ADMIN);
         //userService.save(user);

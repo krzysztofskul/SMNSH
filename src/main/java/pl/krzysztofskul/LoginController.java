@@ -163,20 +163,26 @@ public class LoginController {
     public String adminControlPanel(
             Model model
     ) {
-        EmailSMNSH emailSMNSH = new EmailSMNSH();
-        emailSMNSH.setEmail("smnshapp@gmail.com");
-        model.addAttribute("listEmailSMNSH", emailSMNSHService.getAllEmailSMNSHEntity());
-        model.addAttribute("emailSMNSH", emailSMNSH);
-        return "admin/controlpanel";
+        if (EmailCredentials.getPassPlain() == null) {
+            EmailSMNSH emailSMNSH = new EmailSMNSH();
+            emailSMNSH.setEmail("smnshapp@gmail.com");
+            model.addAttribute("listEmailSMNSH", emailSMNSHService.getAllEmailSMNSHEntity());
+            model.addAttribute("emailSMNSH", emailSMNSH);
+            return "admin/controlpanel";
+        } else {
+            return "redirect:/";
+        }
     }
     @PostMapping("/admin/controlpanel")
     public String adminControlPanel(
-            @ModelAttribute("emailSMNSH") EmailSMNSH emailSMNSH
+            @ModelAttribute("emailSMNSH") EmailSMNSH emailSMNSH,
+            HttpSession httpSession
     ) {
         EmailCredentials.getEmailCredentialsInstance().setPassPlain(emailSMNSH.getPassword());
         String passBcrypted = BCrypt.hashpw(emailSMNSH.getPassword(), BCrypt.gensalt());
         emailSMNSH.setPassword(passBcrypted);
         emailSMNSHService.save(emailSMNSH);
+        loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.EMAIL_CONFIGURATION, null);
         return "redirect:/admin/controlpanel";
     }
 

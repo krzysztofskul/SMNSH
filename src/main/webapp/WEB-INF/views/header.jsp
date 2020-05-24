@@ -30,7 +30,7 @@
                 </span>
             </div>
             <div>
-                <a id="demoModeReset" class="d-inline-block btn btn-outline-dark invisible" href="/demoModeReset">DEMO MODE RESET</a>
+                <a id="demoModeReset" class="d-inline-block btn btn-outline-dark invisible disabled" href="/demoModeReset">DEMO MODE RESET</a>
                 <a id="demoModeOFF" class="d-inline-block btn btn-outline-dark invisible" href="/demoModeOff">DEMO MODE OFF</a>
             </div>
         </div>

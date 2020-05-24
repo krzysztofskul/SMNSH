@@ -134,11 +134,12 @@
 
 # log's class/classes
     . logs for actions at website
-        - with generic actionAt (?)
-        - generic type to MySQL (?)
         - service with interface (?)
 
 *** DONE ***
+
+# 0.4.2-FINAL
+    + front/back-end updates
 
 # 0.4.2-6
     + user logs
