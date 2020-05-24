@@ -7,7 +7,7 @@
   <groupId>pl.krzysztofskul</groupId>
   <artifactId>smnsh</artifactId>
   <packaging>war</packaging>
-  <version>0.4.1</version>
+  <version>0.4.2-FINAL</version>
   <name>smnsh Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
@@ -45,13 +45,15 @@
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-webmvc</artifactId>
-        <version>5.1.8.RELEASE</version>
+<!--        <version>5.1.8.RELEASE</version>-->
+        <version>5.2.5.RELEASE</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-orm</artifactId>
-        <version>5.1.8.RELEASE</version>
+<!--        <version>5.1.8.RELEASE</version>-->
+        <version>5.2.5.RELEASE</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
     <dependency>
@@ -110,6 +112,7 @@
           <groupId>org.springframework</groupId>
           <artifactId>spring-context-support</artifactId>
           <version>5.2.5.RELEASE</version>
+<!--          <version>5.1.8.RELEASE</version>-->
       </dependency>
       <!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
       <dependency>
@@ -130,6 +133,13 @@
           <version>1.6.2</version>
       </dependency>
       <!-- END E-MAIL -->
+
+      <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+      <dependency>
+          <groupId>commons-io</groupId>
+          <artifactId>commons-io</artifactId>
+          <version>2.5</version>
+      </dependency>
 
   </dependencies>
 

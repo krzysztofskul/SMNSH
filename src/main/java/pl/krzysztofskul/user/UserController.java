@@ -1,14 +1,15 @@
 package pl.krzysztofskul.user;
 
-import org.hibernate.Hibernate;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import pl.krzysztofskul.user.avatar.Avatar;
 import pl.krzysztofskul.user.avatar.AvatarService;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
@@ -60,6 +61,7 @@ public class UserController {
     }
     @PostMapping("/new")
     public String newUser(
+            @RequestParam(name = "avatarUpload", required = false) MultipartFile avatarUpload,
             @ModelAttribute("user") @Valid User user, BindingResult result,
             Model model //, HttpSession session
     ) {
@@ -86,28 +88,17 @@ public class UserController {
         List<User> usersAll = userService.loadAll();
         model.addAttribute("usersAll", usersAll);
         model.addAttribute("errorPasswordConfirm", "false");
-
-        /* laod avatars from DB */
-        //todo?: move to UserService
-//        for (User user : usersAll) {
-//            if (user.getAvatar() != null) {
-                //byte[] byteAvatar = user.getAvatar().getData();
-//                avatarService.loadById(user.getId());
-                //try {
-                    //FileOutputStream fileOutputStream = new FileOutputStream("/resources/img/avatars/usersAll/"+user.getAvatar().getId()+".png");
-//                    FileOutputStream fileOutputStream = new FileOutputStream("/resources/img/avatars/usersAll/1.png");
-//                    FileOutputStream fileOutputStream = new FileOutputStream("src/main/webapp/resources/img/avatars/usersAll/"+user.getAvatar().getId()+".png");
-                    //fileOutputStream.write(byteAvatar);
-                    //fileOutputStream.close();
-
-                //} catch (Exception e) {
-                    //e.printStackTrace();
-                //}
-//            }
-//        }
-
         return "users/all";
     }
+
+    @GetMapping(value = "/avatar/{id}", produces = MediaType.IMAGE_PNG_VALUE)
+    @ResponseBody
+    public byte[] usersAvatars(@PathVariable("id") Long id) {
+        Avatar avatar = avatarService.loadByUserId(id);
+        return avatar.getData();
+
+    }
+
 
 //    @GetMapping("/{id}/details")
     @GetMapping("/details/{id}")
@@ -127,7 +118,6 @@ public class UserController {
             @PathVariable("id") Long id,
             @ModelAttribute("user") @Valid User user, BindingResult result,
             HttpSession session, Model model
-            //todo: user's avatar //@RequestParam("file") MultipartFile multipartFile
     ) {
         if (result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
@@ -146,11 +136,6 @@ public class UserController {
             return "users/details";
         }
         userService.save(user);
-        /* //todo: user's avatar
-        User userEdited = userService.loadById(id);
-        userEdited.setAvatar(avatarService.save(multipartFile));
-        userService.save(userEdited);*/
-//        return "redirect:/users/all";
         return "redirect:/users/details/"+id;
     }
 

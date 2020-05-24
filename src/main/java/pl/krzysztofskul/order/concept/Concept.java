@@ -60,7 +60,7 @@ public class Concept extends Order {
      * constr.
      */
     public Concept() {
-        this.setTitle("Zamówienie projektu KONCEPCYJNEGO na sprzęt: ..., dla klienta: ... / New order for CONCEPTUAL PROJECT for device: ..., to the customer: ...");
+        this.setTitle("Zamówienie koncpecji. / Order for preliminary design.");
     }
 
     /**

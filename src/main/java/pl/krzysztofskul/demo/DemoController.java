@@ -2,12 +2,14 @@ package pl.krzysztofskul.demo;
 
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
+import pl.krzysztofskul.logger.loggerUser.LoggerUserService;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.concept.ConceptService;
 import pl.krzysztofskul.order.guideline.Guideline;
@@ -20,10 +22,15 @@ import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForCT;
 import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForMRI;
 import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForXRAY;
 import pl.krzysztofskul.user.User;
+import pl.krzysztofskul.user.UserAction;
 import pl.krzysztofskul.user.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,15 +43,17 @@ public class DemoController {
     private DeviceService deviceService;
     private ConceptService conceptService;
     private GuidelineService guidelineService;
+    private LoggerUserService<Object> loggerUserService;
 
     @Autowired
-    public DemoController(DemoService demoService, ProjectService projectService, UserService userService, DeviceService deviceService, ConceptService conceptService, GuidelineService guidelineService) {
+    public DemoController(DemoService demoService, ProjectService projectService, UserService userService, DeviceService deviceService, ConceptService conceptService, GuidelineService guidelineService, LoggerUserService<Object> loggerUserService) {
         this.demoService = demoService;
         this.projectService = projectService;
         this.userService = userService;
         this.deviceService = deviceService;
         this.conceptService = conceptService;
         this.guidelineService = guidelineService;
+        this.loggerUserService = loggerUserService;
     }
 
     @ModelAttribute("allStatusesProject")
@@ -69,11 +78,13 @@ public class DemoController {
 
     @GetMapping("/startDemoMode")
     public String startDemoMode(
-            HttpSession httpSession
+            HttpSession httpSession,
+            HttpServletRequest httpServletRequest
     ) {
         demoService.startDemoMode();
         httpSession.setAttribute("demoSession", Demo.getStep());
 //        httpSession.setAttribute("demoModeStatus", "ON");
+        loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.DEMO_MODE_START, httpServletRequest.getHeader("User-Agent"));
         return "redirect:/home";
     }
 
@@ -205,7 +216,7 @@ public class DemoController {
             conceptNew.setAuthor(userService.loadById(userId));
         }
         if (projectId != null) {
-            conceptNew.setProject(projectService.loadById(projectId));
+            conceptNew.setProject(projectService.loadByIdWithDeviceList(projectId));
         }
         model.addAttribute("conceptNew", conceptNew);
         Demo.increaseStepByOne();
@@ -452,24 +463,73 @@ public class DemoController {
         return "redirect:/projects/details/"+projectId;
     }
 
-//
-//    @GetMapping("/demoStepNumber8")
-//    public String demoStepNumber8(
-//            HttpSession httpSession
-//    ) {
-//        Demo.increaseStepByOne();
-//        httpSession.setAttribute("demoSession", Demo.getStep());
-//        return "redirect:/projects/all";
-//    }
-//
-//    @GetMapping("/demoStepNumber9/{projectId}")
-//    public String demoStepNumber9(
-//            HttpSession httpSession,
-//            @PathVariable("projectId") Long projectId
-//    ) {
-//        Demo.increaseStepByOne();
-//        httpSession.setAttribute("demoSession", Demo.getStep());
-//        return "redirect:/projects/details/"+projectId;
-//    }
+    @GetMapping("/demoStepNumber22")
+    public String demoStepNumber22(
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/logout";
+    }
+
+    @GetMapping("/demoStepNumber23")
+    public String demoStepNumber23(
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/login?guest=designer";
+    }
+
+    @GetMapping("/demoStepNumber24")
+    public String demoStepNumber24(
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/projects/all";
+    }
+
+    @GetMapping("/demoStepNumber25/{projectId}")
+    public String demoStepNumber25(
+            @PathVariable("projectId") Long projectId,
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/projects/details/"+projectId;
+    }
+
+    @GetMapping("/demoStepNumber26/{guidelineId}/{userLoggedInId}")
+    public String demoStepNumber26 (
+            @PathVariable Long guidelineId,
+            @PathVariable Long userLoggedInId,
+            @RequestParam("backToPage") String backToPage,
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/guidelines/setDesigner/"+guidelineId+"/"+userLoggedInId+"?backToPage="+backToPage;
+    }
+
+    @GetMapping("/demoStepNumber27/{guidelineId}")
+    public String demoStepNumber27(
+            @PathVariable Long guidelineId,
+            @RequestParam String backToPage,
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/guidelines/setStatusFinished/"+guidelineId+"?backToPage="+backToPage;
+    }
+
+    @GetMapping("/demoStepNumber28")
+    public String demoStepNumber28(
+            HttpSession httpSession
+    ) {
+        Demo.increaseStepByOne();
+        httpSession.setAttribute("demoSession", Demo.getStep());
+        return "redirect:/logout";
+    }
 
 }

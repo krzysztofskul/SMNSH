@@ -56,7 +56,8 @@
                             <p class="langEN">DEVICE:</p>
                         </div>
                         <div class="col">
-                            <form:select cssClass="w-100" path="device.id" items="${devicesAll}" itemLabel="model" itemValue="id"/>
+<%--                            <form:select cssClass="w-100" path="device.id" items="${devicesAll}" itemLabel="model" itemValue="id"/>--%>
+                            <form:select cssClass="w-100" path="device.id" items="${conceptNew.project.deviceList}" itemLabel="model" itemValue="id"/>
                         </div>
                     </div>
                     <div class="row mt-2">

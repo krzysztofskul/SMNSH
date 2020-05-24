@@ -40,8 +40,10 @@ public class QuestionFormController {
         QuestionForm questionForm = questionFormService.loadById(questionSetForMRI.getQuestionForm().getId());
         questionSetForMRI.setQuestionForm(questionForm);
         questionSetForMRIService.save(questionSetForMRI);
-        Demo.increaseStepByOne();
-        httpSession.setAttribute("demoSession", Demo.getStep());
+        if (httpSession.getAttribute("demoSession") != null) {
+            Demo.increaseStepByOne();
+            httpSession.setAttribute("demoSession", Demo.getStep());
+        }
         if (backToPage != null) {
             return "redirect:"+backToPage;
         }
@@ -57,8 +59,10 @@ public class QuestionFormController {
         QuestionForm questionForm = questionFormService.loadById(questionSetForCT.getQuestionForm().getId());
         questionSetForCT.setQuestionForm(questionForm);
         questionSetForCTService.save(questionSetForCT);
-        Demo.increaseStepByOne();
-        httpSession.setAttribute("demoSession", Demo.getStep());
+        if (httpSession.getAttribute("demoSession") != null) {
+            Demo.increaseStepByOne();
+            httpSession.setAttribute("demoSession", Demo.getStep());
+        }
         if (backToPage != null) {
             return "redirect:"+backToPage;
         }
@@ -74,8 +78,10 @@ public class QuestionFormController {
         QuestionForm questionForm = questionFormService.loadById(questionSetForXRAY.getQuestionForm().getId());
         questionSetForXRAY.setQuestionForm(questionForm);
         questionSetForXRAYService.save(questionSetForXRAY);
-        Demo.increaseStepByOne();
-        httpSession.setAttribute("demoSession", Demo.getStep());
+        if (httpSession.getAttribute("demoSession") != null) {
+            Demo.increaseStepByOne();
+            httpSession.setAttribute("demoSession", Demo.getStep());
+        }
         if (backToPage != null) {
             return "redirect:"+backToPage;
         }

@@ -104,9 +104,9 @@
                 + update concepts/details page
         + menuMain update
 
-# next
+# avatar
     - add attachment(s) functionality to database when:
-        - creating new project
+        . creating new project
             . pom.xml update for upload file dependency
             . attachment.class
             . projects/new.jsp form updates
@@ -121,8 +121,61 @@
         - order for conceptual design / order for final planning design
         - finish conceptual design / final planning design
     - show attachments for download functionality at project/concept/guidelines pages
-    - avatar upload functionality when creating new user ...
-        - show avat jpg on the user details page ...
+    - avatar upload functionality when creating new user:
+        . show avatar jpg on all users page
+        . from web browser
+        . from filesystem
+        - upload from app. resources ...
+            . jpg's
+            - png's
+
+# project messages/chat
+    - new class projectMessage
+
+# log's class/classes
+    . logs for actions at website
+        - service with interface (?)
+
+*** DONE ***
+
+# 0.4.2-FINAL
+    + front/back-end updates
+
+# 0.4.2-6
+    + user logs
+        + user actions enum
+        + logs for user log in
+        + logs for user register
+    + project logs
+        + logs for new project
+    + logs/all.jsp
+
+# 0.4.2-5
+    + demo mode updates
+    + front-end updates
+    + logger class/functionality for user and project activities
+
+# 0.4.2-4
+    + demo mode updates
+    + new user business position: sales rep.
+    + user names/surnames creator class
+    + investors creator class
+
+# 0.4.2-3
+    + demo mode updates
+    + front/back-end corrections
+
+# 0.4.2-2
+    + front/back-end modifications
+
+# 0.4.2-1
+    + avatar upload functionality when creating new user:
+        + show avatar jpg on all users page
+        + from web browser
+        + from filesystem
+        - upload from app. resources ...
+            + jpg's
+            - png's
 
 # 0.4.1
     + pom.xml update for 0.4.1 version
@@ -148,7 +201,6 @@
             + controller.class
             + appconfig appinitializer updates
 
-*** DONE ***
 # 0.3.0.8
     + pom ver. 0.3.0.8
     + turn off demo mode functionality

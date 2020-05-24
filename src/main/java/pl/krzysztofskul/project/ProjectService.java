@@ -4,7 +4,9 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -12,14 +14,24 @@ import java.util.List;
 public class ProjectService {
 
     private ProjectRepo projectRepo;
+    private LoggerProjectService loggerProjectService;
 
     @Autowired
-    public ProjectService(ProjectRepo projectRepo) {
+    public ProjectService(
+            ProjectRepo projectRepo,
+            LoggerProjectService loggerProjectService
+    ) {
         this.projectRepo = projectRepo;
+        this.loggerProjectService = loggerProjectService;
     }
 
     public void save(Project project) {
         projectRepo.save(project);
+    }
+
+    public void saveAndLog(Project project, String logActionEN) {
+        projectRepo.save(project);
+        loggerProjectService.log(project, LocalDateTime.now(), logActionEN);
     }
 
     public List<Project> loadAll() {

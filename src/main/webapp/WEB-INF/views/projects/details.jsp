@@ -18,7 +18,7 @@
     <div class="container">
 
         <form:form method="post" modelAttribute="project">
-            <div class="card border border-dark border-left-0 border-right-0 mb-5">
+            <div class="card border border-dark border-left-0 border-right-0 border-bottom-0 mb-5">
 
                 <div class="card-header">
                     <c:if test="${edit eq true}">
@@ -34,7 +34,7 @@
                                 ${project.id}
                             </div>
                         </div>
-                        <div class="col-12 text-center">
+                        <div class="col-sm-9 text-center">
                             <c:set var="pageTitlePL" value="SZCZEGÓŁY PROJEKTU"/>
                             <c:set var="pageTitleEN" value="PROJECT DETAILS"/>
                             <c:if test="${edit eq true}">
@@ -43,6 +43,38 @@
                             </c:if>
                             <p class="langPL">${pageTitlePL}</p>
                             <p class="langEN">${pageTitleEN}</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <c:set var="backTo" value="/projects/all"/>
+                            <c:set var="forwardTo" value="/projects/details/${project.id}?edit=true"/>
+                            <c:set var="forwardBtnPL" value="EDYCJA"/>
+                            <c:set var="forwardBtnEN" value="EDIT"/>
+                            <c:set var="forwardClr" value="btn-outline-primary"/>
+                            <c:if test="${edit eq true}">
+                                <c:set var="backTo" value="/projects/details/${project.id}"/>
+                                <c:set var="forwardTo" value="/projects/details/${project.id}"/>
+                                <c:set var="forwardBtnPL" value="ZAPISZ"/>
+                                <c:set var="forwardBtnEN" value="SAVE"/>
+                                <c:set var="forwardClr" value="btn-success"/>
+                            </c:if>
+                            <c:if test="${edit ne true}">
+                                <a href="${forwardTo}" class="btn ${forwardClr} float-right">
+                                    <p class="langPL">${forwardBtnPL}</p>
+                                    <p class="langEN">${forwardBtnEN}</p>
+                                </a>
+                            </c:if>
+                            <c:if test="${edit eq true}">
+                                <form:button type="submit"
+                                             class="btn ${forwardClr} float-right"
+                                >
+                                    <p class="langPL">${forwardBtnPL}</p>
+                                    <p class="langEN">${forwardBtnEN}</p>
+                                </form:button>
+                            </c:if>
+                            <a href="${backTo}" class="btn btn-outline-warning float-right mr-2">
+                                <p class="langPL">WSTECZ</p>
+                                <p class="langEN">BACK</p>
+                            </a>
                         </div>
                     </div>
                     <div class="row border-bottom">
@@ -144,7 +176,7 @@
                                     <form:errors path="projectManager" cssClass="error"/>
                                 </c:when>
                                 <c:otherwise>
-                                    ${project.projectManager.nameFirst} ${project.projectManager.nameFirst}
+                                    ${project.projectManager.nameFirst} ${project.projectManager.nameLast}
                                     (<span id="projectManagerId">${project.projectManager.id}</span>)
                                 </c:otherwise>
                             </c:choose>
@@ -177,7 +209,8 @@
                                     <form:errors path="deadline" cssClass="error"/>
                                 </c:when>
                                 <c:otherwise>
-                                    ${project.deadline.toLocalDate()} ${project.deadline.toLocalTime()}
+                                    ${project.deadline.toLocalDate()}
+<%--                                    ${project.deadline.toLocalTime()}--%>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -204,8 +237,8 @@
                 </div>
 
                 <div class="card-body">
-                    <div class="row border-dark border-top pb-3">
-                        <div class="col-12 text-center">
+                    <div class="row border-50 border-top pb-3 bg-light">
+                        <div class="col-12 text-center pt-2">
                             <p class="langPL">URZĄDZENIA PLANOWANE DO INSTALACJI:</p>
                             <p class="langEN">DEVICES PLANNED FOR INSTALLATION:</p>
                         </div>
@@ -231,7 +264,7 @@
                         </c:when>
                         <c:otherwise>
                             <c:forEach items="${project.deviceList}" var="device">
-                                <div class="row border-top pt-1 pb-2">
+                                <div class="row pt-1 pb-2">
                                     <div class="col-12">
                                         <span class="font-weight-bold">${device.deviceCategory.name}</span> ${device.model}
                                     </div>
@@ -239,13 +272,13 @@
                             </c:forEach>
                         </c:otherwise>
                     </c:choose>
-                    <div class="row border-dark border-top">
-                        <div class="col-12 text-center mt-3 mb-3">
+                    <div class="row border-50 border-top bg-light mt-3">
+                        <div class="col-12 text-center mt-2 mb-2">
                             <p class="langPL">UWAGI DO PROJEKTU</p>
                             <p class="langEN">REMARKS</p>
                         </div>
                     </div>
-                    <div class="row border-top">
+                    <div class="row">
                         <div class="col-12">
                             <c:choose>
                                 <c:when test="${edit eq true}">
@@ -262,13 +295,21 @@
                             </c:choose>
                         </div>
                     </div>
-                    <div class="row border-dark border-top">
-                        <div class="col-12 text-center mt-3 mb-3">
-                            <p class="langPL">ZAŁĄCZNIK</p>
-                            <p class="langEN">ATTACHEMNT</p>
+                    <div class="row border-50 border-top bg-light mt-3">
+                        <div class="col-12 text-center mt-2 mb-3">
+                            <p class="langPL">ZAŁĄCZNIKI</p>
+                            <p class="langEN">ATTACHEMNTS</p>
                         </div>
+                        <c:if test="${edit eq true}">
+                            <div class="col-3 position-absolute mt-2 float-right">
+                                <div class="btn btn-primary disabled">
+                                    <p class="langPL">DODAJ ZAŁ.</p>
+                                    <p class="langEN">UPLOAD ATT.</p>
+                                </div>
+                            </div>
+                        </c:if>
                     </div>
-                    <div class="row border-top border-bottom">
+                    <div class="row pt-2">
                         <c:choose>
                             <c:when test="${project.attachment ne null}">
                                 <div class="col-8 pt-3">
@@ -287,54 +328,55 @@
                             </c:when>
                             <c:otherwise>
                                 <div class="col-12">
-                                    <p>BRAK ZAŁĄCZNIKÓW</p>
+                                    <p class="langPL">BRAK ZAŁĄCZNIKÓW</p>
+                                    <p class="langEN">NONE ATTACHMENTS</p>
                                 </div>
                             </c:otherwise>
                         </c:choose>
                     </div>
                 </div>
 
-                <div class="card-footer">
+<%--                <div class="card-footer">--%>
 
-                    <c:set var="backTo" value="/projects/all"/>
-                    <c:set var="forwardTo" value="/projects/details/${project.id}?edit=true"/>
-                    <c:set var="forwardBtnPL" value="EDYCJA"/>
-                    <c:set var="forwardBtnEN" value="EDIT"/>
-                    <c:set var="forwardClr" value="btn-primary"/>
-                    <c:if test="${edit eq true}">
-                        <c:set var="backTo" value="/projects/details/${project.id}"/>
-                        <c:set var="forwardTo" value="/projects/details/${project.id}"/>
-                        <c:set var="forwardBtnPL" value="ZAPISZ"/>
-                        <c:set var="forwardBtnEN" value="SAVE"/>
-                        <c:set var="forwardClr" value="btn-success"/>
-                    </c:if>
+<%--                    <c:set var="backTo" value="/projects/all"/>--%>
+<%--                    <c:set var="forwardTo" value="/projects/details/${project.id}?edit=true"/>--%>
+<%--                    <c:set var="forwardBtnPL" value="EDYCJA"/>--%>
+<%--                    <c:set var="forwardBtnEN" value="EDIT"/>--%>
+<%--                    <c:set var="forwardClr" value="btn-primary"/>--%>
+<%--                    <c:if test="${edit eq true}">--%>
+<%--                        <c:set var="backTo" value="/projects/details/${project.id}"/>--%>
+<%--                        <c:set var="forwardTo" value="/projects/details/${project.id}"/>--%>
+<%--                        <c:set var="forwardBtnPL" value="ZAPISZ"/>--%>
+<%--                        <c:set var="forwardBtnEN" value="SAVE"/>--%>
+<%--                        <c:set var="forwardClr" value="btn-success"/>--%>
+<%--                    </c:if>--%>
 
-                    <a href="${backTo}" class="btn btn-warning float-left">
-                        <p class="langPL">WSTECZ</p>
-                        <p class="langEN">BACK</p>
-                    </a>
+<%--                    <a href="${backTo}" class="btn btn-warning float-left">--%>
+<%--                        <p class="langPL">WSTECZ</p>--%>
+<%--                        <p class="langEN">BACK</p>--%>
+<%--                    </a>--%>
 
-                    <c:if test="${edit ne true}">
-                        <a href="${forwardTo}" class="btn ${forwardClr} float-right">
-                            <p class="langPL">${forwardBtnPL}</p>
-                            <p class="langEN">${forwardBtnEN}</p>
-                        </a>
-                    </c:if>
-                    <c:if test="${edit eq true}">
-                        <form:button type="submit"
-                                     class="btn ${forwardClr} float-right"
-                        >
-                            <p class="langPL">${forwardBtnPL}</p>
-                            <p class="langEN">${forwardBtnEN}</p>
-                        </form:button>
-                    </c:if>
-                </div>
+<%--                    <c:if test="${edit ne true}">--%>
+<%--                        <a href="${forwardTo}" class="btn ${forwardClr} float-right">--%>
+<%--                            <p class="langPL">${forwardBtnPL}</p>--%>
+<%--                            <p class="langEN">${forwardBtnEN}</p>--%>
+<%--                        </a>--%>
+<%--                    </c:if>--%>
+<%--                    <c:if test="${edit eq true}">--%>
+<%--                        <form:button type="submit"--%>
+<%--                                     class="btn ${forwardClr} float-right"--%>
+<%--                        >--%>
+<%--                            <p class="langPL">${forwardBtnPL}</p>--%>
+<%--                            <p class="langEN">${forwardBtnEN}</p>--%>
+<%--                        </form:button>--%>
+<%--                    </c:if>--%>
+<%--                </div>--%>
 
             </div>
 
 
             <%--LIST OF RELATED ORDERS FOR CONCEPTUAL PROJECTS (PRELIMINARY PROJECTS) --%>
-            <div class="card mt-2 border-dark border-left-0 border-right-0 border">
+            <div class="card mt-2 border-dark border-left-0 border-right-0">
 
                 <div class="card-header text-center p-0">
                     <div class="m-0 p-2">
@@ -354,44 +396,47 @@
                     </c:if>
                     <c:if test="${project.conceptList ne null}">
                         <c:forEach items="${project.conceptList}" var="concept">
-                            <div class="card mb-3 border-bottom-0 border-dark">
+                            <div class="card mb-3 border-50">
                                 <div class="card-header">
                                     <div class="row h-100px">
                                         <div class="col-sm-1 <%--border border-dark--%> p-0 pr-sm-1">
-                                            <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                            <div class="border border-50 m-0 p-2 w-100">
                                                 <p class="langPL">ID:</p>
                                                 <p class="langEN">ID:</p>
                                             </div>
                                             <p class="conceptId text-left pt-2 pl-2">${concept.id}</p>
                                         </div>
                                         <div class="col-sm-3 <%--border border-dark--%> p-0 pr-sm-1">
-                                            <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                            <div class="border border-50 m-0 p-2 w-100">
                                                 <p class="langPL">UTWORZONO:</p>
                                                 <p class="langEN">CREATED:</p>
                                             </div>
                                             <p class="text-left pt-2 pl-2">${concept.dateTimeCreated.toLocalDate()}</p>
                                         </div>
                                         <div class="col-sm-3 <%--border border-dark--%> p-0 pr-sm-1">
-                                            <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                            <div class="border border-50 m-0 p-2 w-100">
                                                 <p class="langPL">TERMIN REALIZACJI:</p>
                                                 <p class="langEN">DEADLINE:</p>
                                             </div>
-                                            <p class="text-left pt-2 pl-2">${concept.dateTimeDeadline.toLocalDate()} ${concept.dateTimeDeadline.toLocalTime()}</p>
+                                            <p class="text-left pt-2 pl-2">
+                                                    ${concept.dateTimeDeadline.toLocalDate()}
+<%--                                                    ${concept.dateTimeDeadline.toLocalTime()}--%>
+                                            </p>
                                         </div>
                                         <div class="col-sm-5 <%--border border-dark--%> p-0 pr-sm-1">
-                                            <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                            <div class="border border-50 m-0 p-2 w-100">
                                                 <p class="langPL">STATUS ZAMÓWIENIA PROJEKTU KONCEPCYJNEGO:</p>
                                                 <p class="langEN">ORDER FOR THE CONCEPTUAL (PRELIMINARY) PROJECT STATUS:</p>
                                             </div>
                                             <c:choose>
                                                 <c:when test="${concept.status.toString() eq 'OCZEKUJE / WAITING'}">
-                                                    <p class="text-left pt-2 pl-2 text-danger">${concept.status.toString()}</p>
+                                                    <p class="text-left pt-2 pl-2 text-danger font-weight-bold">${concept.status.toString()}</p>
                                                 </c:when>
                                                 <c:when test="${concept.status.toString() eq 'W TOKU / IN PROGRESS'}">
-                                                    <p class="text-left pt-2 pl-2 text-warning">${concept.status.toString()}</p>
+                                                    <p class="text-left pt-2 pl-2 text-warning font-weight-bold">${concept.status.toString()}</p>
                                                 </c:when>
                                                 <c:when test="${concept.status.toString() eq 'ZAKOŃCZONY / FINISHED'}">
-                                                    <p class="text-left pt-2 pl-2 text-success">${concept.status.toString()}</p>
+                                                    <p class="text-left pt-2 pl-2 text-success font-weight-bold">${concept.status.toString()}</p>
                                                 </c:when>
                                             </c:choose>
                                         </div>
@@ -417,7 +462,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12">
-                                            <span class="w-100px bg-lightgrey-75 p-1 d-inline-block">${concept.device.deviceCategory.code}</span>
+                                            <span class="w-100px font-weight-bold p-1 d-inline-block">${concept.device.deviceCategory.code}</span>
                                             <span>${concept.device.model}</span>
                                         </div>
                                     </div>
@@ -468,7 +513,7 @@
                                 </div>
                                 <%-- FINAL PLANNING (GUIDELINES) LIST --%>
                                 <c:if test="${concept.guideline ne null}">
-                                    <div class="card d-block float-left w-100 mt-2 border-left-0 border-right-0 border-dark">
+                                    <div class="card d-block float-left w-100 mt-2 border-left-0 border-right-0 border-50">
                                         <div class="card-header text-center">
                                             <p class="langPL">ZAMÓWIENIE PROJEKTU WYTYCZNYCH INSTALACYJNYCH</p>
                                             <p class="langEN">ORDER FOR FINAL PLANNING (GUIDELINES) PROJECT</p>
@@ -476,40 +521,43 @@
                                         <div class="card-body">
                                             <div class="row h-100px">
                                                 <div class="col-sm-1 <%--border border-dark--%> p-0 pr-sm-1">
-                                                    <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                                    <div class="border border-50 m-0 p-2 w-100">
                                                         <p class="langPL">ID:</p>
                                                         <p class="langEN">ID:</p>
                                                     </div>
                                                     <p class="text-left pt-2 pl-2">${concept.guideline.id}</p>
                                                 </div>
                                                 <div class="col-sm-3 <%--border border-dark--%> p-0 pr-sm-1">
-                                                    <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                                    <div class="border border-50 m-0 p-2 w-100">
                                                         <p class="langPL">UTWORZONO:</p>
                                                         <p class="langEN">CREATED:</p>
                                                     </div>
                                                     <p class="text-left pt-2 pl-2">${concept.guideline.dateTimeCreated.toLocalDate()}</p>
                                                 </div>
                                                 <div class="col-sm-3 <%--border border-dark--%> p-0 pr-sm-1">
-                                                    <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                                    <div class="border border-50 m-0 p-2 w-100">
                                                         <p class="langPL">TERMIN REALIZACJI:</p>
                                                         <p class="langEN">DEADLINE:</p>
                                                     </div>
-                                                    <p class="text-left pt-2 pl-2">${concept.guideline.dateTimeDeadline.toLocalDate()} ${concept.guideline.dateTimeDeadline.toLocalTime()}</p>
+                                                    <p class="text-left pt-2 pl-2">
+                                                            ${concept.guideline.dateTimeDeadline.toLocalDate()}
+<%--                                                            ${concept.guideline.dateTimeDeadline.toLocalTime()}--%>
+                                                    </p>
                                                 </div>
                                                 <div class="col-sm-5 <%--border border-dark--%> p-0 pr-sm-1">
-                                                    <div class="bg-lightgrey-75 m-0 p-2 w-100">
+                                                    <div class="border border-50 m-0 p-2 w-100">
                                                         <p class="langPL">STATUS ZAMÓWIENIA PROJEKTU WYTYCZNYCH:</p>
                                                         <p class="langEN">ORDER FOR THE FINAL PLANNING (GUIDELINES) PROJECT STATUS:</p>
                                                     </div>
                                                     <c:choose>
                                                         <c:when test="${concept.guideline.status.toString() eq 'OCZEKUJE / WAITING'}">
-                                                            <p class="text-left pt-2 pl-2 text-danger">${concept.guideline.status.toString()}</p>
+                                                            <p class="text-left pt-2 pl-2 text-danger font-weight-bold">${concept.guideline.status.toString()}</p>
                                                         </c:when>
                                                         <c:when test="${concept.guideline.status.toString() eq 'W TOKU / IN PROGRESS'}">
-                                                            <p class="text-left pt-2 pl-2 text-warning">${concept.guideline.status.toString()}</p>
+                                                            <p class="text-left pt-2 pl-2 text-warning font-weight-bold">${concept.guideline.status.toString()}</p>
                                                         </c:when>
                                                         <c:when test="${concept.guideline.status.toString() eq 'ZAKOŃCZONY / FINISHED'}">
-                                                            <p class="text-left pt-2 pl-2 text-success">${concept.guideline.status.toString()}</p>
+                                                            <p class="text-left pt-2 pl-2 text-success font-weight-bold">${concept.guideline.status.toString()}</p>
                                                         </c:when>
                                                     </c:choose>
                                                 </div>
@@ -542,7 +590,7 @@
                                             <%-- BUTTON: ASSIGN DESIGNER TO GUIDELINE PROJECT --%>
                                             <c:if test="${concept.guideline.designer eq null && sessionScope.userLoggedIn.businessPosition.toString() eq 'Projektant/Planista / Designer/Planner'}">
                                                 <c:if test="${concept.guideline.status.toString() eq 'OCZEKUJE / WAITING'}">
-                                                    <a href="/guidelines/setDesigner/${concept.guideline.id}/${sessionScope.userLoggedIn.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
+                                                    <a id="setMeAsDesignerGuidelinesBtn" href="/guidelines/setDesigner/${concept.guideline.id}/${sessionScope.userLoggedIn.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
                                                         <p class="langPL">PRZYPISZ MNIE JAKO PROJEKTANTA</p>
                                                         <p class="langEN">ASSIGN ME AS A DESIGNER</p>
                                                     </a>
@@ -551,7 +599,7 @@
                                                 <%-- BUTTON: SET GUIDELINE PROJECT AS FINISHED --%>
                                             <c:if test="${concept.guideline.designer ne null && sessionScope.userLoggedIn.businessPosition.toString() eq 'Projektant/Planista / Designer/Planner'}">
                                                 <c:if test="${concept.guideline.status.toString() eq 'W TOKU / IN PROGRESS'}">
-                                                    <a href="/guidelines/setStatusFinished/${concept.guideline.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
+                                                    <a id="setGuidelinesFinishedBtn" href="/guidelines/setStatusFinished/${concept.guideline.id}?backToPage=projects/details/${project.id}" class="btn btn-outline-success float-right ml-1">
                                                         <p class="langPL">USTAW JAKO ZAKOŃCZONY</p>
                                                         <p class="langEN">SET AS FINISHED</p>
                                                     </a>

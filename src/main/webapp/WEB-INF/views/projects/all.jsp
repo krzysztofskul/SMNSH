@@ -26,11 +26,11 @@
 
             <c:forEach items="${projectsAll}" var="project">
 
-                <div class="card-body">
-                    <div class="row border-top border-bottom pt-1 pb-1">
+                <div class="card-body mb-2">
+                    <div class="row pt-1 pb-1">
                         <div class="col-12">
-                            <div class="row">
-                                <div class="col-1">
+                            <div class="row border-top border-bottom border-dark pt-1">
+                                <div class="col-1 text-light">
                                     ${project.id}
                                 </div>
                                 <div class="col-8 font-weight-bold">
@@ -45,12 +45,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-3 border-bottom pb-1">
-                                    <a href="#" class="btn btn-danger float-right ml-1">
+                                <div class="col-3 pb-1">
+                                    <a href="#" class="btn btn-outline-danger float-right ml-1">
                                         <p class="langPL">USUŃ</p>
                                         <p class="langEN">DEL</p>
                                     </a>
-                                    <a href="/projects/details/${project.id}" class="projectDetailsBtn btn btn-primary float-right">
+                                    <a href="/projects/details/${project.id}" class="projectDetailsBtn btn btn-outline-primary float-right">
                                         <p class="langPL">SZCZEGÓŁY</p>
                                         <p class="langEN">DETAILS</p>
                                     </a>
@@ -58,38 +58,77 @@
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="row">
-                                        <div class="col">
+                                    <div class="row pt-1 pb-1">
+                                        <div class="col-2 text-right">
+                                            <p class="langPL">Nr Umowy:</p>
+                                            <p class="langEN">Agreement No:</p>
+                                        </div>
+                                        <div class="col-3">
                                                 ${project.agreementNo}
                                         </div>
-                                        <div class="projectNameDiv col">
+                                        <div class="col-2 text-right">
+                                            <p class="langPL">Nazwa projektu:</p>
+                                            <p class="langEN">Project name:</p>
+                                        </div>
+                                        <div class="projectNameDiv col-3">
                                                 ${project.projectName}
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col">
+                                    <div class="row pb-2">
+                                        <div class="col-2 text-right">
+                                            <p class="langPL">SLS:</p>
+                                            <p class="langEN">Sales rep.:</p>
+                                        </div>
+                                        <div class="col-3">
                                                 ${project.sls}
                                         </div>
-                                        <div class="col">
+                                        <div class="col-2 text-right">
+                                            <p class="langPL">Kierownik projektu:</p>
+                                            <p class="langEN">Project manager:</p>
+                                        </div>
+                                        <div class="col-3">
                                                 ${project.projectManager.nameFirst} ${project.projectManager.nameLast}
                                         </div>
                                     </div>
-                                    <c:forEach items="${project.deviceList}" var="device">
-                                        <div class="row">
-                                            <div class="col-1 bg-light">
-                                                    ${device.deviceCategory.code}
-                                            </div>
-                                            <div class="col-11">
-                                                ${device.deviceCategory.name} ${device.model}
-                                            </div>
-                                        </div>
-                                    </c:forEach>
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-2 text-right">
+                                            <p class="langPL">Urządzenia:</p>
+                                            <p class="langEN">Devices:</p>
+                                        </div>
+                                        <div class="col-10">
+                                            <c:forEach items="${project.deviceList}" var="device">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <span class="p-1 m-1 font-weight-bold">
+                                                                ${device.deviceCategory.code}
+                                                        </span>
+                                                        <span>${device.deviceCategory.name} ${device.model}</span>
+                                                    </div>
+                                                </div>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-2">
+                                        <div class="col-2 text-right">
+                                            <p class="langPL">Status projektu:</p>
+                                            <p class="langEN">Project status:</p>
+                                        </div>
+                                        <div class="col-9 pt-1 font-weight-bold" style="font-size: 18px">
                                                 ${project.status.toString()}
                                         </div>
-                                        <div class="col">
-                                                ${project.deadline.toLocalDate()} ${project.deadline.toLocalTime()}
+                                    </div>
+                                    <div class="row pt-2">
+                                        <div class="col-2 text-right">
+                                            <p class="langPL">Termin realizacji:</p>
+                                            <p class="langEN">Deadline:</p>
+                                        </div>
+                                        <div class="col-3 pt-1" style="font-size: 18px">
+                                            <span class="font-weight-bold">
+                                                ${project.deadline.toLocalDate()}
+                                            </span>
+                                            <span class="ml-2 text-black-50">
+                                                <%--${project.deadline.toLocalTime()}--%>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

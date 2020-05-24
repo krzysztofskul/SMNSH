@@ -11,12 +11,16 @@ import pl.krzysztofskul.attachment.Attachment;
 import pl.krzysztofskul.attachment.AttachmentService;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
+import pl.krzysztofskul.logger.loggerUser.LoggerUserService;
 import pl.krzysztofskul.user.User;
+import pl.krzysztofskul.user.UserAction;
 import pl.krzysztofskul.user.UserService;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,18 +32,21 @@ public class ProjectController {
     private DeviceService deviceService;
     private UserService userService;
     private AttachmentService attachmentService;
+    private LoggerUserService<Object> loggerUserService;
 
     @Autowired
     public ProjectController(
             ProjectService projectService,
             DeviceService deviceService,
             UserService userService,
-            AttachmentService attachmentService
+            AttachmentService attachmentService,
+            LoggerUserService<Object> loggerUserService
     ) {
         this.projectService = projectService;
         this.deviceService = deviceService;
         this.userService = userService;
         this.attachmentService = attachmentService;
+        this.loggerUserService = loggerUserService;
     }
 
     @ModelAttribute("allDeviceList")
@@ -68,7 +75,8 @@ public class ProjectController {
     @PostMapping("/new")
     public String projectNew(
             @RequestParam(name = "fileUpload", required = false) MultipartFile fileUpload,
-            @ModelAttribute("projectNew") @Valid Project projectNew, BindingResult result
+            @ModelAttribute("projectNew") @Valid Project projectNew, BindingResult result,
+            HttpSession httpSession
     ) throws IOException {
 
 //        attachmentService.save(fileUpload);
@@ -77,6 +85,7 @@ public class ProjectController {
             return "/projects/new";
         }
         projectService.save(projectNew);
+        loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.PROJECT_CREATE, projectNew);
         if (fileUpload != null && !fileUpload.isEmpty()) {
             attachmentService.saveToProject(fileUpload, projectNew);
         }

@@ -1,6 +1,7 @@
 package pl.krzysztofskul.user;
 
 import org.mindrot.jbcrypt.BCrypt;
+import pl.krzysztofskul.logger.loggerUser.LoggerUser;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.guideline.Guideline;
 import pl.krzysztofskul.project.Project;
@@ -67,6 +68,9 @@ public class User {
 
     @OneToOne
     private Avatar avatar;
+
+    @OneToMany(mappedBy = "user")
+    private List<LoggerUser> loggerUserList = new ArrayList<>();
 
     /** constr.
      *
@@ -180,6 +184,14 @@ public class User {
 
     public void setAvatar(Avatar avatar) {
         this.avatar = avatar;
+    }
+
+    public List<LoggerUser> getLoggerUserList() {
+        return loggerUserList;
+    }
+
+    public void setLoggerUserList(List<LoggerUser> loggerUserList) {
+        this.loggerUserList = loggerUserList;
     }
 
     /**

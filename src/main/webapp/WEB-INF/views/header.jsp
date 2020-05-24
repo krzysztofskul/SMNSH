@@ -16,7 +16,7 @@
     <script type="text/javascript" src="<c:url value="/resources/js/demoMode.js"/>"></script>
 </head>
 <body>
-    <div class="container border-bottom pt-4 pb-1 mb-5 bg-light">
+    <div class="container-fluid border-bottom pt-4 pb-1 mb-5 bg-light">
         <div id="tooltipDemoInfo"></div>
         <div class="text-left" id="headerTitle">
             <h4 class="pl-5 font-weight-bold" style="letter-spacing: 15px; color: dimgrey">SMNSH APP.</h4>
@@ -30,7 +30,7 @@
                 </span>
             </div>
             <div>
-                <a id="demoModeReset" class="d-inline-block btn btn-outline-dark invisible" href="/demoModeReset">DEMO MODE RESET</a>
+                <a id="demoModeReset" class="d-inline-block btn btn-outline-dark invisible disabled" href="/demoModeReset">DEMO MODE RESET</a>
                 <a id="demoModeOFF" class="d-inline-block btn btn-outline-dark invisible" href="/demoModeOff">DEMO MODE OFF</a>
             </div>
         </div>
@@ -39,7 +39,7 @@
                 if (session.getAttribute("userLoggedIn") != null) {
                     User user = (User) session.getAttribute("userLoggedIn");
                     out.print(
-                            "<span id='userLoggedIn'>"+user.getId()+"</span>"+
+                            "<span>ID: </span>"+"<span id='userLoggedIn'>"+user.getId()+"</span>"+"<span> | </span>"+
                             user.getNameFirst()+" "+
                             user.getNameLast()+" "+
                             "<a href='/users/details/"+user.getId()+"' class='btn btn-primary ml-2 mr-2'>" +
