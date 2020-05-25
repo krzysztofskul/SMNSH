@@ -7,6 +7,7 @@ import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserAction;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 @Service
@@ -24,7 +25,10 @@ public class LoggerUserService<T> /*implements LoggerService<User>*/ {
     public void log(User user, LocalDateTime localDateTime, UserAction userAction, T actionAt) {
         LoggerUser loggerUser = new LoggerUser();
         loggerUser.setUser(user);
-        loggerUser.setLocalDateTime(localDateTime);
+//        loggerUser.setLocalDateTime(localDateTime);
+        ZoneId zonedId = ZoneId.of("Europe/Warsaw");
+//        loggerUser.setLocalDateTime(LocalDateTime.now(zonedId));
+        loggerUser.setLocalDateTime(localDateTime.atZone(zonedId).toLocalDateTime());
         loggerUser.setUserAction(userAction);
         if (actionAt != null) {
             loggerUser.setActionAt(actionAt.toString());

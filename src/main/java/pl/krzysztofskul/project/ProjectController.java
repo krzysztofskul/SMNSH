@@ -94,10 +94,27 @@ public class ProjectController {
 
     @GetMapping("/all")
     public String projectsAll(
+            @RequestParam(name = "status", required = false) String status,
             Model model
     ) {
-        model.addAttribute("projectsAll", projectService.loadAllWithDeviceList());
-        return "projects/all";
+        if (status == null) {
+            model.addAttribute("projectsAll", projectService.loadAllWithDeviceList());
+            return "projects/all";
+        }
+        if ("acquisition".equals(status)) {
+            model.addAttribute("projectsAllByStatus", projectService.loadAllByStatusWithDevices(StatusProject.STATUS_PROJECT_0));
+            model.addAttribute("projectStatus", "AKWIZYCJA");
+            return "projects/allByStatus";
+        }
+        else if ("preliminaryPlanning".equals(status)) {
+            model.addAttribute("projectsAllByStatus", projectService.loadAllByStatusWithDevices(StatusProject.STATUS_PROJECT_1));
+            model.addAttribute("projectStatus", "PLANOWANIE INSTALACJI");
+            return "projects/allByStatus";
+        }
+        else {
+            return "projects/all";
+        }
+
     }
 
     @GetMapping("/details/{id}")

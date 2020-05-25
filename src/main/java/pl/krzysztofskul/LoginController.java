@@ -170,7 +170,7 @@ public class LoginController {
             model.addAttribute("emailSMNSH", emailSMNSH);
             return "admin/controlpanel";
         } else {
-            return "redirect:/";
+            return "redirect:/permissionDenied";
         }
     }
     @PostMapping("/admin/controlpanel")

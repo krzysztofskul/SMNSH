@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -70,5 +71,13 @@ public class ProjectService {
                 projectRepo.delete(project);
             }
         }
+    }
+
+    public List<Project> loadAllByStatusWithDevices(StatusProject statusProject) {
+        List<Project> projects = projectRepo.findAllByStatusOrderByDeadlineAsc(statusProject);
+        for (Project project : projects) {
+            Hibernate.initialize(project.getDeviceList());
+        }
+        return projects;
     }
 }

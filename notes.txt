@@ -136,7 +136,27 @@
     . logs for actions at website
         - service with interface (?)
 
+#
+    - page for all concept orders
+    - page for all guideline orders
+
+#
+    - back-end updates
+        - logs/projectId ...
+    . ZonedDateTime for logs DateTime updates ... //todo: doesnt work on AWS server
+    - front-end updates
+        - demo mode text ...
+
+
 *** DONE ***
+
+# 0.5.0-1
+    + front/back-end updates
+        + sort logs/all by DateTime
+        + menuMain updates
+            + projects by status with sorting by deadline
+            + menu for admin
+    + ZonedDateTime for logs DateTime updates
 
 # 0.4.2-FINAL
     + front/back-end updates

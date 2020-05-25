@@ -17,7 +17,7 @@ public enum  StatusProject {
     },
 
     STATUS_PROJECT_1 {
-        private String name = "PLANOWANIE INSTALACJI / PLANNING INSTALLATION";
+        private String name = "PLANOWANIE INSTALACJI / PRELIMINARY PLANNING";
         public String getName() {
             return name;
         }
@@ -31,7 +31,7 @@ public enum  StatusProject {
     },
 
     STATUS_PROJECT_2 {
-        private String name = "OPRACOWYWANIE WYTYCZNYCH / FINAL PLANNING PREPARATION";
+        private String name = "OPRACOWYWANIE WYTYCZNYCH / FINAL PLANNING";
         public String getName() {
             return name;
         }
