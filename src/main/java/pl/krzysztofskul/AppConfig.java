@@ -104,6 +104,7 @@ public class AppConfig implements WebMvcConfigurer {
         dataSource.setPassword("coderslab");
 
 
+
         /* remote DB */
 //        dataSource.setUrl("jdbc:mysql://aahgjd0vhp5jg5.c2xg2t1abu8q.us-east-2.rds.amazonaws.com:3306/ebdb?useSSL=false");
 //        dataSource.setUsername(System.getProperty("RDS_USERNAME"));

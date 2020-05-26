@@ -34,7 +34,7 @@
                                 ${project.id}
                             </div>
                         </div>
-                        <div class="col-sm-9 text-center">
+                        <div class="col-sm-6 text-center">
                             <c:set var="pageTitlePL" value="SZCZEGÓŁY PROJEKTU"/>
                             <c:set var="pageTitleEN" value="PROJECT DETAILS"/>
                             <c:if test="${edit eq true}">
@@ -44,7 +44,7 @@
                             <p class="langPL">${pageTitlePL}</p>
                             <p class="langEN">${pageTitleEN}</p>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-6">
                             <c:set var="backTo" value="/projects/all"/>
                             <c:set var="forwardTo" value="/projects/details/${project.id}?edit=true"/>
                             <c:set var="forwardBtnPL" value="EDYCJA"/>
@@ -71,6 +71,10 @@
                                     <p class="langEN">${forwardBtnEN}</p>
                                 </form:button>
                             </c:if>
+                            <a href="/logs/project/${project.id}" class="btn btn-outline-light float-right mr-2">
+                                <p class="langPL">HISTORIA</p>
+                                <p class="langEN">HISTORY</p>
+                            </a>
                             <a href="${backTo}" class="btn btn-outline-warning float-right mr-2">
                                 <p class="langPL">WSTECZ</p>
                                 <p class="langEN">BACK</p>

@@ -30,10 +30,10 @@ public class ProjectService {
         projectRepo.save(project);
     }
 
-    public void saveAndLog(Project project, String logActionEN) {
-        projectRepo.save(project);
-        loggerProjectService.log(project, LocalDateTime.now(), logActionEN);
-    }
+//    public void saveAndLog(Project project, String logActionEN) {
+//        projectRepo.save(project);
+//        loggerProjectService.log(project, LocalDateTime.now(), logActionEN, null);
+//    }
 
     public List<Project> loadAll() {
         return projectRepo.findAll();

@@ -22,6 +22,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -98,7 +99,14 @@ public class ProjectController {
             Model model
     ) {
         if (status == null) {
-            model.addAttribute("projectsAll", projectService.loadAllWithDeviceList());
+            List<Project> projectsAll = projectService.loadAllWithDeviceList();
+            projectsAll.sort(new Comparator<Project>() {
+                @Override
+                public int compare(Project o1, Project o2) {
+                    return o2.getId().compareTo(o1.getId());
+                }
+            });
+            model.addAttribute("projectsAll", projectsAll);
             return "projects/all";
         }
         if ("acquisition".equals(status)) {
@@ -108,7 +116,47 @@ public class ProjectController {
         }
         else if ("preliminaryPlanning".equals(status)) {
             model.addAttribute("projectsAllByStatus", projectService.loadAllByStatusWithDevices(StatusProject.STATUS_PROJECT_1));
-            model.addAttribute("projectStatus", "PLANOWANIE INSTALACJI");
+            model.addAttribute("projectStatus", "PROJEKT KONCEPCYJNY");
+            return "projects/allByStatus";
+        }
+        else if ("finalPlanning".equals(status)) {
+            model.addAttribute("projectsAllByStatus", projectService.loadAllByStatusWithDevices(StatusProject.STATUS_PROJECT_2));
+            model.addAttribute("projectStatus", "PROJEKT WYTYCZNYCH");
+            return "projects/allByStatus";
+        }
+        else if ("roomPreparation".equals(status)) {
+            model.addAttribute("projectsAllByStatus", projectService.loadAllByStatusWithDevices(StatusProject.STATUS_PROJECT_3));
+            model.addAttribute("projectStatus", "ADAPTACJA POMIESZCZĘŃ");
+            return "projects/allByStatus";
+        }
+        else if ("delivery".equals(status)) {
+            model.addAttribute("projectsAllByStatus", projectService.loadAllByStatusWithDevices(StatusProject.STATUS_PROJECT_4));
+            model.addAttribute("projectStatus", "DOSTAWA URZĄDZEŃ");
+            return "projects/allByStatus";
+        }
+        else if ("installation".equals(status)) {
+            model.addAttribute("projectsAllByStatus", projectService.loadAllByStatusWithDevices(StatusProject.STATUS_PROJECT_5));
+            model.addAttribute("projectStatus", "INSTALACJA URZĄDZEŃ");
+            return "projects/allByStatus";
+        }
+        else if ("startUp".equals(status)) {
+            model.addAttribute("projectsAllByStatus", projectService.loadAllByStatusWithDevices(StatusProject.STATUS_PROJECT_6));
+            model.addAttribute("projectStatus", "URUCHOMIENIE");
+            return "projects/allByStatus";
+        }
+        else if ("trainings".equals(status)) {
+            model.addAttribute("projectsAllByStatus", projectService.loadAllByStatusWithDevices(StatusProject.STATUS_PROJECT_7));
+            model.addAttribute("projectStatus", "SZKOLENIA");
+            return "projects/allByStatus";
+        }
+        else if ("finished".equals(status)) {
+            model.addAttribute("projectsAllByStatus", projectService.loadAllByStatusWithDevices(StatusProject.STATUS_PROJECT_8));
+            model.addAttribute("projectStatus", "ZAKOŃCZONY");
+            return "projects/allByStatus";
+        }
+        else if ("cancelled".equals(status)) {
+            model.addAttribute("projectsAllByStatus", projectService.loadAllByStatusWithDevices(StatusProject.STATUS_PROJECT_8));
+            model.addAttribute("projectStatus", "ANULOWANY");
             return "projects/allByStatus";
         }
         else {

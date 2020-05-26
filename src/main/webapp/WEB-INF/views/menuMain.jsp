@@ -67,27 +67,40 @@
                         <p class="langEN"></p>
                     </a>
                     <a class="dropdown-item" href="/projects/all?status=preliminaryPlanning">
-                        <p class="langPL">PLANOWANIE INSTALACJI</p>
+                        <p class="langPL">PROJEKT KONCEPCYJNY</p>
                         <p class="langEN"></p>
                     </a>
-                    <a class="dropdown-item" href="#">
-                        <p class="langPL">OPRACOWYWANIE WYTYCZNYCH</p>
+                    <a class="dropdown-item" href="/projects/all?status=finalPlanning">
+                        <p class="langPL">PROJEKT WYTYCZNY</p>
                         <p class="langEN"></p>
                     </a>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="/projects/all?status=roomPreparation">
                         <p class="langPL">ADAPTACJA POMIESZCZEŃ</p>
                         <p class="langEN"></p>
                     </a>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="/projects/all?status=delivery">
                         <p class="langPL">DOSTAWA URZĄDZEŃ</p>
                         <p class="langEN"></p>
                     </a>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="/projects/all?status=installation">
                         <p class="langPL">INSTALACJA URZĄDZEŃ</p>
                         <p class="langEN"></p>
                     </a>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="/projects/all?status=startUp">
+                        <p class="langPL">URUCHOMIENIE</p>
+                        <p class="langEN"></p>
+                    </a>
+                    <a class="dropdown-item" href="/projects/all?status=trainings">
+                        <p class="langPL">SZKOLENIA</p>
+                        <p class="langEN"></p>
+                    </a>
+                    <a class="dropdown-item" href="/projects/all?status=finished">
                         <p class="langPL">ZAKOŃCZONE</p>
+                        <p class="langEN"></p>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/projects/all?status=cancelled">
+                        <p class="langPL">ANULOWANE</p>
                         <p class="langEN"></p>
                     </a>
                 </div>
