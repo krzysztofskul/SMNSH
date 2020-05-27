@@ -147,12 +147,19 @@
 
 #
     . ZonedDateTime for logs DateTime updates ... //todo: doesnt work on AWS server
-    - front-end updates
+    . demo mode updates
         - demo mode text ...
-
-# beginner's mode
+        - beginner's mode ...
 
 *** DONE ***
+
+# 0.5.0-3
+    + back-end updates
+        + logs/history for projects updates
+            + project log: created/updated/attachment added
+            + sort by id desc
+    + demo mode updates
+        + last step update: rename demo project to arch. and save
 
 # 0.5.0-2
     + back-end updates

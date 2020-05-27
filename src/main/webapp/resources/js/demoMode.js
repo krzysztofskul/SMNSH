@@ -226,7 +226,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         var x = document.querySelectorAll(".projectNameDiv");
         x.forEach(function (e, i , arr) {
-            if (e.innerHTML.includes("DEMO PROJECT NAME")) {
+            // if (e.innerHTML.includes("DEMO PROJECT NAME")) {
+            if (e.innerText === "DEMO PROJECT NAME") {
                 e.classList.add("text-success");
                 var parent = e.parentElement.parentElement.parentElement.parentElement;
                 var child1 = parent.children.item(0);
@@ -340,7 +341,8 @@ document.addEventListener("DOMContentLoaded", function() {
         );
         var x = document.querySelectorAll(".projectNameDiv");
         x.forEach(function (e, i , arr) {
-            if (e.innerHTML.includes("DEMO PROJECT NAME")) {
+            // if (e.innerHTML.includes("DEMO PROJECT NAME")) {
+            if (e.innerText === "DEMO PROJECT NAME") {
                 e.classList.add("text-success");
                 var parent = e.parentElement.parentElement.parentElement.parentElement;
                 var child1 = parent.children.item(0);
@@ -405,7 +407,8 @@ document.addEventListener("DOMContentLoaded", function() {
     function setStepNumber19Ready() {
         var x = document.querySelectorAll(".projectNameDiv");
         x.forEach(function (e, i , arr) {
-            if (e.innerHTML.includes("DEMO PROJECT NAME")) {
+            // if (e.innerHTML.includes("DEMO PROJECT NAME")) {
+            if (e.innerText === "DEMO PROJECT NAME") {
                 e.classList.add("text-success");
                 var parent = e.parentElement.parentElement.parentElement.parentElement;
                 var child1 = parent.children.item(0);
@@ -481,7 +484,8 @@ document.addEventListener("DOMContentLoaded", function() {
     function setStepNumber25Ready() {
         var x = document.querySelectorAll(".projectNameDiv");
         x.forEach(function (e, i , arr) {
-            if (e.innerHTML.includes("DEMO PROJECT NAME")) {
+            // if (e.innerHTML.includes("DEMO PROJECT NAME")) {
+            if (e.innerText === "DEMO PROJECT NAME") {
                 e.classList.add("text-success");
                 var parent = e.parentElement.parentElement.parentElement.parentElement;
                 var child1 = parent.children.item(0);

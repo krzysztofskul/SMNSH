@@ -24,6 +24,13 @@
                 <p class="langEN">LIST OF ALL PROJECTS</p>
             </div>
 
+            <div class="card-footer float-right">
+                <a id="newProjectBtn" href="/projects/new" class="btn btn-success float-right">
+                    <p class="langPL">NOWY PROJEKT</p>
+                    <p class="langEN">NEW PROJECT</p>
+                </a>
+            </div>
+
             <c:forEach items="${projectsAll}" var="project">
 
                 <div class="card-body mb-2">
@@ -140,7 +147,7 @@
             </c:forEach>
 
             <div class="card-footer">
-                <a id="newProjectBtn" href="/projects/new" class="btn btn-success float-right">
+                <a id="newProjectBtnFooter" href="/projects/new" class="btn btn-success float-right">
                     <p class="langPL">NOWY PROJEKT</p>
                     <p class="langEN">NEW PROJECT</p>
                 </a>

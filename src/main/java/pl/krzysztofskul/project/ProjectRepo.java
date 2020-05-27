@@ -8,4 +8,6 @@ public interface ProjectRepo extends JpaRepository<Project, Long> {
 
     List<Project> findAllByStatusOrderByDeadlineAsc(StatusProject statusProject);
 
+    Project findByProjectName(String projectName);
+
 }

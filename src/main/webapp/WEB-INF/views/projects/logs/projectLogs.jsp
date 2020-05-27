@@ -15,13 +15,13 @@
     <jsp:include page="../../header.jsp"/>
 
     <div class="container">
-        <table class="table table-striped">
-            <thead>
+        <table class="table">
+            <thead class="thead-light">
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">#</th>
-                    <th scope="col">#</th>
-                    <th scope="col">#</th>
+                    <th scope="col">LOG ID</th>
+                    <th scope="col">DATE TIME</th>
+                    <th scope="col">ACTION</th>
+                    <th scope="col">USER</th>
                 </tr>
             </thead>
             <c:forEach items="${projectLogs}" var="log">

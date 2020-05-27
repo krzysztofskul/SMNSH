@@ -11,6 +11,7 @@ import pl.krzysztofskul.attachment.Attachment;
 import pl.krzysztofskul.attachment.AttachmentService;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
+import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 import pl.krzysztofskul.logger.loggerUser.LoggerUserService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserAction;
@@ -21,6 +22,8 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -34,6 +37,7 @@ public class ProjectController {
     private UserService userService;
     private AttachmentService attachmentService;
     private LoggerUserService<Object> loggerUserService;
+    private LoggerProjectService<Object> loggerProjectService;
 
     @Autowired
     public ProjectController(
@@ -41,13 +45,15 @@ public class ProjectController {
             DeviceService deviceService,
             UserService userService,
             AttachmentService attachmentService,
-            LoggerUserService<Object> loggerUserService
+            LoggerUserService<Object> loggerUserService,
+            LoggerProjectService<Object> loggerProjectService
     ) {
         this.projectService = projectService;
         this.deviceService = deviceService;
         this.userService = userService;
         this.attachmentService = attachmentService;
         this.loggerUserService = loggerUserService;
+        this.loggerProjectService = loggerProjectService;
     }
 
     @ModelAttribute("allDeviceList")
@@ -85,10 +91,19 @@ public class ProjectController {
         if (result.hasErrors()) {
             return "/projects/new";
         }
-        projectService.save(projectNew);
-        loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.PROJECT_CREATE, projectNew);
+
+        if (projectNew.getId() == null) {
+            projectService.save(projectNew);
+            loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.PROJECT_CREATE, projectNew);
+            loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "PROJECT CREATED", httpSession.getAttribute("userLoggedIn"));
+        } else {
+            projectService.save(projectNew);
+            loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.PROJECT_CREATE, projectNew);
+            loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "PROJECT UPDATED", httpSession.getAttribute("userLoggedIn"));
+        }
         if (fileUpload != null && !fileUpload.isEmpty()) {
             attachmentService.saveToProject(fileUpload, projectNew);
+            loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "ATTACHMENT ADDED", httpSession.getAttribute("userLoggedIn"));
         }
         return "redirect:/projects/all";
     }
@@ -185,7 +200,8 @@ public class ProjectController {
     public String projectDetails(
             @PathVariable("id") Long id,
             @ModelAttribute("project") @Valid Project project, BindingResult result,
-            Model model
+            Model model,
+            HttpSession httpSession
     ) {
         if (result.hasErrors()) {
             return "/projects/details/"+id.toString()+"?edit=true";
@@ -195,6 +211,7 @@ public class ProjectController {
             model.addAttribute("edit", false);
         }
         projectService.save(project);
+        loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "PROJECT UPDATED", httpSession.getAttribute("userLoggedIn"));
         return "redirect:/projects/details/"+id;
     }
 

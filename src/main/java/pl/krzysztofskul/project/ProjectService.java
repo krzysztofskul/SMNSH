@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -80,4 +78,9 @@ public class ProjectService {
         }
         return projects;
     }
+
+    public Project loadByProjectName(String projectName) {
+        return projectRepo.findByProjectName(projectName);
+    }
+
 }
