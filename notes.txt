@@ -129,14 +129,50 @@
             . jpg's
             - png's
 
+# statuses for project status
+    - waiting
+    - in progress
+    - finished
+
 # project messages/chat
     - new class projectMessage
 
 # log's class/classes
     . logs for actions at website
         - service with interface (?)
+        - pages section at front-end
+#
+    - page for all concept orders
+    - page for all guideline orders
+
+#
+    . ZonedDateTime for logs DateTime updates ... //todo: doesnt work on AWS server
+    . demo mode updates
+        - demo mode text ...
+        - beginner's mode ...
 
 *** DONE ***
+
+# 0.5.0-3 -> 5.0-FINAL
+    + back-end updates
+        + logs/history for projects updates
+            + project log: created/updated/attachment added
+            + sort by id desc
+    + demo mode updates
+        + last step update: rename demo project to arch. and save
+
+# 0.5.0-2
+    + back-end updates
+        + logs/history for projects
+        + projects sorted by status with sorting by deadline
+
+# 0.5.0-1
+    + front/back-end updates
+        + sort logs/all by DateTime
+        + menuMain updates
+            + projects by status with sorting by deadline
+            + menu for admin
+    + ZonedDateTime for logs DateTime updates
 
 # 0.4.2-FINAL
     + front/back-end updates

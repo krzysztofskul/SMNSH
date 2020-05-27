@@ -10,6 +10,7 @@ import pl.krzysztofskul.device.category.DeviceCategoryService;
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.investor.InvestorService;
 import pl.krzysztofskul.investor.creator.Creator;
+import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 import pl.krzysztofskul.logger.loggerUser.LoggerUserService;
 import pl.krzysztofskul.order.Status;
 import pl.krzysztofskul.order.concept.Concept;
@@ -37,6 +38,7 @@ import java.net.URL;
 import java.nio.file.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -62,6 +64,7 @@ public class HomePageService {
     private ProjectService projectService;
     private AvatarService avatarService;
     private LoggerUserService<Object> loggerUserService;
+    private LoggerProjectService<Object> loggerProjectService;
 
     /** constr.
      *
@@ -81,7 +84,9 @@ public class HomePageService {
             RecipientService recipientService,
             ProjectService projectService,
             AvatarService avatarService,
-            LoggerUserService<Object> loggerUserService) {
+            LoggerUserService<Object> loggerUserService,
+            LoggerProjectService<Object> loggerProjectService
+    ) {
         this.userService = userService;
         this.deviceCategoryService = deviceCategoryService;
         this.deviceService = deviceService;
@@ -96,6 +101,7 @@ public class HomePageService {
         this.projectService = projectService;
         this.avatarService = avatarService;
         this.loggerUserService = loggerUserService;
+        this.loggerProjectService = loggerProjectService;
     }
 
     /** methods
@@ -517,6 +523,58 @@ public class HomePageService {
             project.setRecipient("City Hospital, Diagnostic Dep., Room "+i+"00, Room "+i+"20");
             project.setSls("Sales Rep. name and surname");
             project.setProjectManager(userService.loadById(Long.valueOf("1")+i));
+            project.setRemarks("Lorem ipsum. Lorem ipsum dolor sit amet leo. Suspendisse potenti. Suspend fringilla mi, viverra et, porttitor sem nec diam. Phasellus a mauris. Pellentesque scelerisque rhoncus tortor. In hac habitasse plate dictumst.");
+            projectService.save(project);
+            loggerUserService.log(project.getProjectManager(), LocalDateTime.now(), UserAction.PROJECT_CREATE, project);
+            loggerProjectService.log(project,LocalDateTime.now(ZoneId.of("Europe/Warsaw")), "PROJECT CREATED", project.getProjectManager().getNameFirst()+" "+project.getProjectManager().getNameLast());
+            project.setStatus(StatusProject.STATUS_PROJECT_9);
+            projectService.save(project);
+            loggerProjectService.log(project,LocalDateTime.now(ZoneId.of("Europe/Warsaw")), "PROJECT STATUS CHANGED", project.getProjectManager().getNameFirst()+" "+project.getProjectManager().getNameLast());
+        }
+        for (int i = 0; i <= 19; i++) {
+            Project project = new Project();
+            project.setProjectName("Test project no. "+i);
+            project.setAgreementNo("AGR-NO-WAW-00"+i+"-2020");
+            project.setDeadline(LocalDateTime.now().plusDays(new Random().nextInt(28)+1));
+            if (i == 0 || i == 10) {
+                project.setStatus(StatusProject.STATUS_PROJECT_0);
+            }
+            if (i == 1 || i == 11) {
+                project.setStatus(StatusProject.STATUS_PROJECT_1);
+            }
+            if (i == 2 || i == 12) {
+                project.setStatus(StatusProject.STATUS_PROJECT_2);
+            }
+            if (i == 3 || i == 13) {
+                project.setStatus(StatusProject.STATUS_PROJECT_3);
+            }
+            if (i == 4 || i == 14) {
+                project.setStatus(StatusProject.STATUS_PROJECT_4);
+            }
+            if (i == 5 || i == 15) {
+                project.setStatus(StatusProject.STATUS_PROJECT_5);
+            }
+            if (i == 6 || i == 16) {
+                project.setStatus(StatusProject.STATUS_PROJECT_6);
+            }
+            if (i == 7 || i == 17) {
+                project.setStatus(StatusProject.STATUS_PROJECT_7);
+            }
+            if (i == 8 || i == 18) {
+                project.setStatus(StatusProject.STATUS_PROJECT_8);
+            }
+            if (i == 9 || i == 19) {
+                project.setStatus(StatusProject.STATUS_PROJECT_9);
+            }
+            List<Device> deviceList = new ArrayList<>();
+            deviceList.add(deviceService.loadById((long) (new Random().nextInt(15) + 1)));
+            deviceList.add(deviceService.loadById((long) (new Random().nextInt(15) + 1)));
+            project.setDeviceList(deviceList);
+            project.setBuildingContractor("BC GmbH & Co. KG");
+            project.setInvestor("MED Investor Sp. z o.o.");
+            project.setRecipient("City Hospital, Diagnostic Dep., Room "+i+"00, Room "+i+"20");
+            project.setSls("Sales Rep. name and surname");
+            project.setProjectManager(userService.loadById(Long.valueOf("1")));
             project.setRemarks("Lorem ipsum. Lorem ipsum dolor sit amet leo. Suspendisse potenti. Suspend fringilla mi, viverra et, porttitor sem nec diam. Phasellus a mauris. Pellentesque scelerisque rhoncus tortor. In hac habitasse plate dictumst.");
             projectService.save(project);
             loggerUserService.log(project.getProjectManager(), LocalDateTime.now(), UserAction.PROJECT_CREATE, project);

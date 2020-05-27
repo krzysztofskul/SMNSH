@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -29,10 +28,10 @@ public class ProjectService {
         projectRepo.save(project);
     }
 
-    public void saveAndLog(Project project, String logActionEN) {
-        projectRepo.save(project);
-        loggerProjectService.log(project, LocalDateTime.now(), logActionEN);
-    }
+//    public void saveAndLog(Project project, String logActionEN) {
+//        projectRepo.save(project);
+//        loggerProjectService.log(project, LocalDateTime.now(), logActionEN, null);
+//    }
 
     public List<Project> loadAll() {
         return projectRepo.findAll();
@@ -71,4 +70,17 @@ public class ProjectService {
             }
         }
     }
+
+    public List<Project> loadAllByStatusWithDevices(StatusProject statusProject) {
+        List<Project> projects = projectRepo.findAllByStatusOrderByDeadlineAsc(statusProject);
+        for (Project project : projects) {
+            Hibernate.initialize(project.getDeviceList());
+        }
+        return projects;
+    }
+
+    public Project loadByProjectName(String projectName) {
+        return projectRepo.findByProjectName(projectName);
+    }
+
 }

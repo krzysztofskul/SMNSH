@@ -71,9 +71,11 @@ public class AppConfig implements WebMvcConfigurer {
     Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "drop-and-create");
+//        properties.setProperty("hibernate.hbm2ddl.auto", "none");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
         properties.setProperty("hibernate.show_sql", "true");
         properties.setProperty("hibernate.format_sql", "true");
+        properties.setProperty("hibernate.jdbc.time_zone", "UTC");
         return properties;
     }
 
@@ -96,14 +98,17 @@ public class AppConfig implements WebMvcConfigurer {
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 
         /* local DB*/
-//        dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?useSSL=false");
-//        dataSource.setUsername("root");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?useSSL=false");
+        dataSource.setUsername("root");
 //        dataSource.setPassword("c*******b");
+        dataSource.setPassword("coderslab");
+
+
 
         /* remote DB */
-        dataSource.setUrl("jdbc:mysql://aahgjd0vhp5jg5.c2xg2t1abu8q.us-east-2.rds.amazonaws.com:3306/ebdb?useSSL=false");
-        dataSource.setUsername(System.getProperty("RDS_USERNAME"));
-        dataSource.setPassword(System.getProperty("RDS_PASSWORD"));
+//        dataSource.setUrl("jdbc:mysql://aahgjd0vhp5jg5.c2xg2t1abu8q.us-east-2.rds.amazonaws.com:3306/ebdb?useSSL=false");
+//        dataSource.setUsername(System.getProperty("RDS_USERNAME"));
+//        dataSource.setPassword(System.getProperty("RDS_PASSWORD"));
 
         return dataSource;
     }

@@ -20,6 +20,8 @@ public class LoggerProject {
 
     private String actionEN;
 
+    private String actionBy;
+
     public LoggerProject() {
     }
 
@@ -53,5 +55,13 @@ public class LoggerProject {
 
     public void setActionEN(String actionEN) {
         this.actionEN = actionEN;
+    }
+
+    public String getActionBy() {
+        return actionBy;
+    }
+
+    public void setActionBy(String actionBy) {
+        this.actionBy = actionBy;
     }
 }

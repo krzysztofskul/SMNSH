@@ -17,7 +17,7 @@ public enum  StatusProject {
     },
 
     STATUS_PROJECT_1 {
-        private String name = "PLANOWANIE INSTALACJI / PLANNING INSTALLATION";
+        private String name = "PLANOWANIE INSTALACJI / PRELIMINARY PLANNING";
         public String getName() {
             return name;
         }
@@ -31,7 +31,7 @@ public enum  StatusProject {
     },
 
     STATUS_PROJECT_2 {
-        private String name = "OPRACOWYWANIE WYTYCZNYCH / FINAL PLANNING PREPARATION";
+        private String name = "OPRACOWYWANIE WYTYCZNYCH / FINAL PLANNING";
         public String getName() {
             return name;
         }
@@ -87,7 +87,49 @@ public enum  StatusProject {
     },
 
     STATUS_PROJECT_6 {
+        private String name = "URUCHOMIENIE / START UP";
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
+        @Override
+        public String toString() {
+            return name;
+        }
+    },
+
+    STATUS_PROJECT_7 {
+        private String name = "SZKOLENIA / TRAININGS";
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
+        @Override
+        public String toString() {
+            return name;
+        }
+    },
+
+    STATUS_PROJECT_8 {
         private String name = "ZAKOŃCZONY / FINISHED";
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
+        @Override
+        public String toString() {
+            return name;
+        }
+    },
+
+    STATUS_PROJECT_9 {
+        private String name = "ANULOWANY / CANCELLED";
         public String getName() {
             return name;
         }

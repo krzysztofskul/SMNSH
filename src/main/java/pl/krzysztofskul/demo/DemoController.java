@@ -95,7 +95,12 @@ public class DemoController {
 //        httpSession.setAttribute("demoModeStatus", "OFF");
         Demo.resetSteps();
         httpSession.removeAttribute("demoSession");
-        projectService.deleteByProjectName("DEMO PROJECT NAME");
+        //projectService.deleteByProjectName("DEMO PROJECT NAME");
+        Project project = projectService.loadByProjectName("DEMO PROJECT NAME");
+        if (project != null) {
+            project.setProjectName(project.getProjectName()+" (ARCH.)");
+            projectService.save(project);
+        }
         if (httpSession.getAttribute("userLoggedIn") != null) {
             return "redirect:/logout";
         }
