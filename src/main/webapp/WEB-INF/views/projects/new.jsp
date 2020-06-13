@@ -223,7 +223,7 @@
                             <p class="langEN">REMARKS:</p>
                         </div>
                         <div class="col-8">
-                            <form:textarea path="remarks" cssClass="w-100"/>
+                            <form:textarea path="remarks" cssClass="myTextarea"/>
                         </div>
                     </div>
 

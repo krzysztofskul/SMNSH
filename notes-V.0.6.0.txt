@@ -1,0 +1,41 @@
+// TODO
+
+- ZonedDateTime / LocalDateTime 2h diff error on AWS server when log actions
+
+- jpg resources / homepage no background on AWS server
+
+- paging list of logs
+
+- statuses for project status/stage
+    - waiting
+    - in progress
+    - finished
+
+- project messages/chat
+    - new class projectMessage
+
+- demo mode updates
+    - demo mode text
+    - beginner's mode
+
+- device builder
+
+- user details page upd. ...
+    - info
+    - projects (link / page) ...
+    . orders (link / page)
+        - new concept order page ... ...
+            - created from users concept list page ... no project / no devices initially set
+        - back to page param.
+
+// DONE
+
+#0.6.0-1
+    + new branch
+    + user details page update
+        + "my orders" sub-page added
+    + other modifications
+        .front-end mod.
+            + textarea css class
+        . back-end mod.
+            + log-in logs modifications

@@ -103,8 +103,16 @@ public class ConceptController {
     @GetMapping("/details/{id}")
     public String conceptsDetailsById(
             Model model,
-            @PathVariable("id") Long id
+            @PathVariable("id") Long id,
+            @RequestParam(name = "conceptListPage", required = false) String conceptListPage
     ) {
+
+        if (conceptListPage != null && conceptListPage.equals("true")) {
+            List<Concept> conceptList = conceptService.loadAllByUserId(id);
+            model.addAttribute("conceptList", conceptList);
+            return "users/orders";
+        }
+
         Concept concept = conceptService.loadByIdWithAll(id);
         model.addAttribute("concept", concept);
         return "orders/concepts/details";
@@ -116,14 +124,21 @@ public class ConceptController {
     public String conceptsNew(
             @RequestParam(name = "userId", required = false) Long userId,
             @RequestParam(name = "projectId", required = false) Long projectId,
+            @RequestParam(name = "backToPage", required = false) String backToPage,
             Model model
     ) {
         Concept conceptNew = new Concept();
         if (userId != null) {
             conceptNew.setAuthor(userService.loadById(userId));
+            model.addAttribute("projectList", projectService.loadAllByProjectManager(userService.loadById(userId)));
         }
         if (projectId != null) {
             conceptNew.setProject(projectService.loadByIdWithDeviceList(projectId));
+        } else {
+            model.addAttribute("devicesAll", projectService.loadAll());
+        }
+        if (backToPage != null) {
+            model.addAttribute("backToPage", backToPage);
         }
         model.addAttribute("conceptNew", conceptNew);
         return "orders/concepts/new";

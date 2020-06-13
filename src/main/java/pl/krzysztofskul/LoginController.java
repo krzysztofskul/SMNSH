@@ -21,6 +21,7 @@ import pl.krzysztofskul.user.UserBusinessPosition;
 import pl.krzysztofskul.user.UserService;
 import pl.krzysztofskul.user.avatar.AvatarService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
@@ -107,7 +108,8 @@ public class LoginController {
     public String login(
             @RequestParam("email") String email,
             @RequestParam("password") String password,
-            HttpSession session
+            HttpSession session,
+            HttpServletRequest httpServletRequest
     ) {
         User user = userService.loadByEmail(email);
         if (user == null) {
@@ -115,7 +117,7 @@ public class LoginController {
         }
         if (user.checkPassword(password)) {
             session.setAttribute("userLoggedIn", user);
-            loggerUserService.log(user, LocalDateTime.now(), UserAction.LOG_IN, null);
+            loggerUserService.log(user, LocalDateTime.now(), UserAction.LOG_IN, httpServletRequest.getHeader("User-Agent"));
         }
         return "redirect:/home";
     }

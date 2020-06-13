@@ -258,7 +258,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a href="/concepts/all" class="btn btn-warning">
+                <a href="#/concepts/all" class="btn btn-warning disabled">
                     <p class="langPL">WSTECZ</p>
                     <p class="langEN">BACK</p>
                 </a>

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
+import pl.krzysztofskul.user.User;
 
 import java.util.List;
 
@@ -83,4 +84,7 @@ public class ProjectService {
         return projectRepo.findByProjectName(projectName);
     }
 
+    public List<Project> loadAllByProjectManager(User user) {
+        return projectRepo.findAllByProjectManager(user);
+    }
 }
