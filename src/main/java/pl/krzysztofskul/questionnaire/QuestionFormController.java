@@ -44,10 +44,11 @@ public class QuestionFormController {
             Demo.increaseStepByOne();
             httpSession.setAttribute("demoSession", Demo.getStep());
         }
-        if (backToPage != null) {
-            return "redirect:"+backToPage;
-        }
-        return "redirect:/users/details/"+questionSetForMRI.getQuestionForm().getConcept().getAuthor().getId();
+//        if (backToPage != null) {
+//            return "redirect:"+backToPage;
+//        }
+//        return "redirect:/users/details/"+questionSetForMRI.getQuestionForm().getConcept().getAuthor().getId();
+        return "redirect:"+questionSetForMRI.getQuestionForm().getBackToPage();
     }
 
     @PostMapping("/questionSetCT/save")
@@ -63,10 +64,11 @@ public class QuestionFormController {
             Demo.increaseStepByOne();
             httpSession.setAttribute("demoSession", Demo.getStep());
         }
-        if (backToPage != null) {
-            return "redirect:"+backToPage;
-        }
-        return "redirect:/users/details/"+questionSetForCT.getQuestionForm().getConcept().getAuthor().getId();
+//        if (backToPage != null) {
+//            return "redirect:"+backToPage;
+//        }
+//        return "redirect:/users/details/"+questionSetForCT.getQuestionForm().getConcept().getAuthor().getId();
+        return "redirect:"+questionSetForCT.getQuestionForm().getBackToPage();
     }
 
     @PostMapping("/questionSetXRAY/save")
@@ -82,10 +84,11 @@ public class QuestionFormController {
             Demo.increaseStepByOne();
             httpSession.setAttribute("demoSession", Demo.getStep());
         }
-        if (backToPage != null) {
-            return "redirect:"+backToPage;
-        }
-        return "redirect:/users/details/"+questionSetForXRAY.getQuestionForm().getConcept().getAuthor().getId();
+//        if (backToPage != null) {
+//            return "redirect:"+backToPage;
+//        }
+//        return "redirect:/users/details/"+questionSetForXRAY.getQuestionForm().getConcept().getAuthor().getId();
+        return "redirect:"+questionSetForXRAY.getQuestionForm().getBackToPage();
     }
 
 }

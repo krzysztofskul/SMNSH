@@ -17,6 +17,7 @@
     <jsp:include page="/WEB-INF/views/header.jsp"/>
 
     <div class="container">
+        <%--@elvariable id="conceptNew" type="pl.krzysztofskul.order.concept.Concept"--%>
         <form:form id="conceptNewForm" modelAttribute="conceptNew" method="post" action="/concepts/new">
             <div class="card">
                 <div class="card-header text-center">
@@ -34,6 +35,7 @@
                             <c:choose>
                                 <c:when test="${conceptNew.author.id eq null}">
                                     <form:select cssClass="w-100" path="author.id">
+                                        <jsp:useBean id="usersAll" scope="request" type="java.util.List"/>
                                         <c:forEach items="${usersAll}" var="user">
                                             <form:option value="${user.id}" label="${user.nameFirst} ${user.nameLast}"/>
                                         </c:forEach>
@@ -54,12 +56,11 @@
                         <div class="col">
                             <c:choose>
                                 <c:when test="${conceptNew.project ne null}">
+                                    <p class="input-group-text text-black-50">${conceptNew.project.agreementNo}
                                     <form:hidden path="project.id"/>
-                                    <input type="hidden" name="backToPage" value="/projects/details/${conceptNew.project.id}"/>
                                 </c:when>
                                 <c:otherwise>
                                     <form:select path="project.id" cssClass="w-100" items="${projectList}" itemValue="id" itemLabel="agreementNo"/>
-                                    <input type="hidden" name="backToPage" value="${backToPage}"/>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -70,12 +71,17 @@
                             <p class="langEN">DEVICE:</p>
                         </div>
                         <div class="col">
+                            <jsp:useBean id="devicesAll" scope="request" type="java.util.List"/>
                             <c:choose>
                                 <c:when test="${conceptNew.project eq null}">
                                     <form:select cssClass="w-100" path="device.id" items="${devicesAll}" itemLabel="model" itemValue="id"/>
                                 </c:when>
                                 <c:otherwise>
-                                    <form:select cssClass="w-100" path="device.id" items="${conceptNew.project.deviceList}" itemLabel="model" itemValue="id"/>
+                                    <form:select cssClass="w-100" path="device.id">
+                                        <c:forEach items="${devicesAll}" var="device">
+                                            <form:option value="${device.id}" label="${device.deviceCategory.code} ${device.model}"/>
+                                        </c:forEach>
+                                    </form:select>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -208,6 +214,7 @@
                         </c:when>
                         <c:otherwise>
                             <c:set var="backTo" value="${backToPage}"/>
+                            <input type="hidden" name="backToPage" value="${backToPage}"/>
                         </c:otherwise>
                     </c:choose>
                     <a href="${backTo}" class="btn btn-warning float-left">

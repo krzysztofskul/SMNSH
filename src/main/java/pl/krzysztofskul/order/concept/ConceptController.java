@@ -134,8 +134,6 @@ public class ConceptController {
         }
         if (projectId != null) {
             conceptNew.setProject(projectService.loadByIdWithDeviceList(projectId));
-        } else {
-            model.addAttribute("devicesAll", projectService.loadAll());
         }
         if (backToPage != null) {
             model.addAttribute("backToPage", backToPage);

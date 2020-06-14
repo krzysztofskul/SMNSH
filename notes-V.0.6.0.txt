@@ -24,11 +24,18 @@
     - info
     - projects (link / page) ...
     . orders (link / page)
-        - new concept order page ... ...
-            - created from users concept list page ... no project / no devices initially set
-        - back to page param.
+        . new concept order page
+            . created from users concept list page
+        . back to page param.
+    . order preliminary project form project page need to be repair
 
 // DONE
+
+#0.6.0-2
+    + user details page upd.
+        . orders (link / page)
+            + new order for concept/preliminary design from "my orders" page functionality with back to page parameter add.
+        + order for concept/preliminary design form project page upd.
 
 #0.6.0-1
     + new branch
