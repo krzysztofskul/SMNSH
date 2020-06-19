@@ -83,6 +83,7 @@ public class ProjectController {
     public String projectNew(
             @RequestParam(name = "fileUpload", required = false) MultipartFile fileUpload,
             @ModelAttribute("projectNew") @Valid Project projectNew, BindingResult result,
+            @RequestParam(name = "backToPage", required = false) String backToPage,
             HttpSession httpSession
     ) throws IOException {
 
@@ -105,22 +106,32 @@ public class ProjectController {
             attachmentService.saveToProject(fileUpload, projectNew);
             loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "ATTACHMENT ADDED", httpSession.getAttribute("userLoggedIn"));
         }
+        if (backToPage != null) {
+            return "redirect:"+backToPage;
+        }
         return "redirect:/projects/all";
     }
 
     @GetMapping("/all")
     public String projectsAll(
             @RequestParam(name = "status", required = false) String status,
+            @RequestParam(name = "userId", required = false) Long userId,
             Model model
     ) {
         if (status == null) {
             List<Project> projectsAll = projectService.loadAllWithDeviceList();
-            projectsAll.sort(new Comparator<Project>() {
-                @Override
-                public int compare(Project o1, Project o2) {
-                    return o2.getId().compareTo(o1.getId());
-                }
-            });
+            if (userId != null) {
+                projectsAll.removeIf(project -> !project.getProjectManager().getId().equals(userId));
+            }
+//            projectsAll.sort((Project o1, Project o2) -> o2.getId().compareTo(o1.getId()));
+            if (projectsAll != null) {
+                projectsAll.sort(new Comparator<Project>() {
+                    @Override
+                    public int compare(Project o1, Project o2) {
+                        return o2.getId().compareTo(o1.getId());
+                    }
+                });
+            }
             model.addAttribute("projectsAll", projectsAll);
             return "projects/all";
         }
@@ -184,6 +195,7 @@ public class ProjectController {
     public String projectDetails(
             @PathVariable("id") Long id,
             @RequestParam(name = "edit", required = false) String edit,
+            @RequestParam(name = "backToPage", required = false) String backToPage,
             Model model
     ) {
         if (edit == null && model.containsAttribute("edit")) {
@@ -191,6 +203,9 @@ public class ProjectController {
         }
         if (edit  != null && edit.equals("true")) {
             model.addAttribute("edit", true);
+        }
+        if (backToPage != null) {
+            model.addAttribute("backToPage", backToPage);
         }
         model.addAttribute("project", projectService.loadByIdWithDeviceListAndConceptList(id));
         return "projects/details";
@@ -200,6 +215,7 @@ public class ProjectController {
     public String projectDetails(
             @PathVariable("id") Long id,
             @ModelAttribute("project") @Valid Project project, BindingResult result,
+            @ModelAttribute("backToPage") String backToPage,
             Model model,
             HttpSession httpSession
     ) {
@@ -212,6 +228,9 @@ public class ProjectController {
         }
         projectService.save(project);
         loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "PROJECT UPDATED", httpSession.getAttribute("userLoggedIn"));
+        if (backToPage != null) {
+            return "redirect:"+backToPage;
+        }
         return "redirect:/projects/details/"+id;
     }
 

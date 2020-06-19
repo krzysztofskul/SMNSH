@@ -87,7 +87,9 @@ public class QuestionFormController {
 //        if (backToPage != null) {
 //            return "redirect:"+backToPage;
 //        }
-//        return "redirect:/users/details/"+questionSetForXRAY.getQuestionForm().getConcept().getAuthor().getId();
+//        if (backToPage == null) {
+//            return "redirect:/users/details/"+questionSetForXRAY.getQuestionForm().getConcept().getAuthor().getId()
+//        }
         return "redirect:"+questionSetForXRAY.getQuestionForm().getBackToPage();
     }
 

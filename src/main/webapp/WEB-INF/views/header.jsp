@@ -78,16 +78,16 @@
                             "</div>"+
                             "<div class='mt-2'>"+
 //                            "<a href='/login?guest=admin' class='btn btn-light'>"+
-//                            "LUB ZALOGUJ JAKO GOŚĆ/ADMIN"+
-//                            "<p class='langEN'>OR LOGIN AS A GUEST/ADMIN</p>"+
+//                            "ZALOGUJ JAKO ADMIN (GOŚĆ)"+
+//                            "<p class='langEN'>LOGIN AS AN ADMIN (GUEST)</p>"+
 //                            "</a>"+
                             "<a id='loginAsDesignerBtn' href='/login?guest=designer' class='btn btn-light'>"+
-                            "LUB ZALOGUJ JAKO GOŚĆ/PROJEKTANT"+
-                            "<p class='langEN'>OR LOGIN AS A GUEST/DESIGNER</p>"+
+                            "ZALOGUJ JAKO PROJEKTANT (GOŚĆ)"+
+                            "<p class='langEN'>LOGIN AS A DESIGNER (GUEST)</p>"+
                             "</a>"+
                             "<a id='loginAsPmBtn' href='/login?guest=projectManager' class='btn btn-light'>"+
-                            "LUB ZALOGUJ JAKO GOŚĆ/KIEROWNIK PROJEKTU"+
-                            "<p class='langEN'>OR LOGIN AS A GUEST/PROJECT MANAGER</p>"+
+                            "ZALOGUJ JAKO KIEROWNIK PROJEKTU (GOŚĆ)"+
+                            "<p class='langEN'>LOGIN AS A PROJECT MANAGER (GUEST)</p>"+
                             "</a>"+
                             "</div>"
                     );
