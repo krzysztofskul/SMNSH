@@ -17,16 +17,13 @@
     <jsp:include page="/WEB-INF/views/header.jsp"/>
 
     <div class="container">
+        <%--@elvariable id="conceptNew" type="pl.krzysztofskul.order.concept.Concept"--%>
         <form:form id="conceptNewForm" modelAttribute="conceptNew" method="post" action="/concepts/new">
             <div class="card">
                 <div class="card-header text-center">
                     <h4 class="langPL">KREATOR ZAMÓWIENIA NOWEJ KONCEPCJI</h4>
                     <h4 class="langEN">NEW CONCEPT ORDER FORM</h4>
                     <form:hidden path="id" disabled="true"/>
-                    <c:if test="${conceptNew.project ne null}">
-                        <form:hidden path="project.id"/>
-                        <input type="hidden" name="backToPage" value="/projects/details/${conceptNew.project.id}"/>
-                    </c:if>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -38,6 +35,7 @@
                             <c:choose>
                                 <c:when test="${conceptNew.author.id eq null}">
                                     <form:select cssClass="w-100" path="author.id">
+                                        <jsp:useBean id="usersAll" scope="request" type="java.util.List"/>
                                         <c:forEach items="${usersAll}" var="user">
                                             <form:option value="${user.id}" label="${user.nameFirst} ${user.nameLast}"/>
                                         </c:forEach>
@@ -52,12 +50,40 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
+                            <p class="langPL">DOT. UMOWY:</p>
+                            <p class="langEN">AGREEMENT:</p>
+                        </div>
+                        <div class="col">
+                            <c:choose>
+                                <c:when test="${conceptNew.project ne null}">
+                                    <p class="input-group-text text-black-50">${conceptNew.project.agreementNo}
+                                    <form:hidden path="project.id"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <form:select path="project.id" cssClass="w-100" items="${projectList}" itemValue="id" itemLabel="agreementNo"/>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
                             <p class="langPL">SPRZĘT:</p>
                             <p class="langEN">DEVICE:</p>
                         </div>
                         <div class="col">
-<%--                            <form:select cssClass="w-100" path="device.id" items="${devicesAll}" itemLabel="model" itemValue="id"/>--%>
-                            <form:select cssClass="w-100" path="device.id" items="${conceptNew.project.deviceList}" itemLabel="model" itemValue="id"/>
+                            <jsp:useBean id="devicesAll" scope="request" type="java.util.List"/>
+                            <c:choose>
+                                <c:when test="${conceptNew.project eq null}">
+                                    <form:select cssClass="w-100" path="device.id" items="${devicesAll}" itemLabel="model" itemValue="id"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <form:select cssClass="w-100" path="device.id">
+                                        <c:forEach items="${devicesAll}" var="device">
+                                            <form:option value="${device.id}" label="${device.deviceCategory.code} ${device.model}"/>
+                                        </c:forEach>
+                                    </form:select>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -182,7 +208,16 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a href="/concepts/all" class="btn btn-warning float-left">
+                    <c:choose>
+                        <c:when test="${backToPage eq null}">
+                            <c:set var="backTo" value="/concepts/all"/>
+                        </c:when>
+                        <c:otherwise>
+                            <c:set var="backTo" value="${backToPage}"/>
+                            <input type="hidden" name="backToPage" value="${backToPage}"/>
+                        </c:otherwise>
+                    </c:choose>
+                    <a href="${backTo}" class="btn btn-warning float-left">
                         <span><<</span>
                         <p class="langPL">ANULUJ / WSTECZ</p>
                         <p class="langEN">CANCEL / BACK</p>

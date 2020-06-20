@@ -11,77 +11,64 @@ Aplikacja wspiera zarządzanie dokumentacją techniczną oraz komunikację pomi�
 
 *The application supports technical documentation management and communication between Project Managers and Designers/Planners connected, with preparation of the project documentation, needed to medical devices installation in hospital rooms.*
  
+## PODSTAWOWE FUNCKJONALNOŚĆI I MOŻLIWOŚCI / *MAIN FUNCTIONS AND CAPABILITIES*
+ - Tworzenie projektu dostawy sprzętu medycznego / *Medical devices supplies' project development*
+    - Przypisywanie sprzętu z bazy danych wg kategorii / *Medical devices from database assignment to the project based on category*
+    - Zarządznie statusam projektu  / *Statuses' project managemennt*
+    - Dodawanie podkładów architektonicznych w formie załącznika / * Attach architectural layout addition*
+ - Wyświetlanie projektów wg aktualnego status / *Displaying projects based on actual status*
+ - Zamawianie rysunków koncepcyjnych i wytycznych posadowienia sprzętu / *Making orders of medical devices' conceptual drawings and installation guidelines*
+    - Walidacja wymaganych danych wejściowych do wykonania rysnku / *Necessary data needed to prepare drawing validation*
+ - Przypisywanie projektanta do zamówienia / *Assingning designer to the order*
+ - Wyświetlanie projektanta opracowującego rysunek / *Displaying designer preparing the drawing*
+ - Wyświetlanie aktualnego statusu opracowania zamówienia / *Displaying the current status of the order under preparation*
+ 
+## UŻYTE TECHNOLOGIE / *USED TECHNOLOGIES*
+ - Java
+     - Spring MVC
+     - JPA, Hibernate
+ - MySQL
+ - HTML, JSP, JSTL, CSS, JS, BootStrap
+ - Intellij
 
-## SCHEMAT DZIAŁANIA / *WORKFLOW*
+## ZRZUTY EKRANU / *SCREENSHOTS*
 
-**Kierownik projektu / Project Manager**
-
-- Zarejestruj/zaloguj się jako Project Manager
-| *Register/log in as a Project Manager*
-  ###
-  <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_registerpage_001.png)-->
-  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_registerpage_001.png" width="400"/>
-
-- Wejdź na swój profil
-| *Go to your profile page*
-  ###
-  <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_userpage_001.png)-->
-  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_userpage_001.png" width="400"/>
-  
-- Utwórz nowe zamówienie projektu koncpecyjnego
-| *Create a new order for a conceptual project* 
-  ###
-  <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_formfornewconcept_001.png)-->
-  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_formfornewconcept_001.png" width="400"/>
-  
-- Wypełnij dodatkowy formularz dot. tematów zależnych od rodzaju sprzętu
-| *Fill in additional questionnaire containing issues depended on device category*
-    ###
-    <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_questionSetCT_001.png)-->
-    <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_questionSetCT_001.png" width="200"/>
-    
-    <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_questionSetXray_001.png)-->
-    <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_questionSetXray_001.png" width="200"/>
-        
-    <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_questionSetMRI_001.png)-->
-    <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_questionSetMRI_001.png" width="200"/>
-
-**Projektant/Planista / Designer/Planner**
-
-- Zarejestruj/zaloguj się jako Projektant/Planista
-| *Register/log in as a Designer/Planner*
-  
-  <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_loginpage_001.png)-->
-  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_loginpage_001.png" width="400"/>
-  
-- Wejdź na stronę z listą koncepcji "oczekujących do wykonania" | *Go to conceptual projects page with "waiting for prepare" status*
-
-  ###
-  <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_allconcepts_001.png)-->
-  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_allconcepts_001.png" width="400"/>
-
-- Oznacz się jako Projektant/Planista wykonujący koncepcję | *Set up yourself as a Designer/Planner with this conceptual project*
-
-  <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_setdesignerpage_001.png)-->
-  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_setdesignerpage_001.png" width="400"/>
-
-- Po zakończonym projekcie oznacz status koncepcji jako "wykonane" | *When you finnish, mark the status of the concept as "finished"*
-
-  <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_setorderstatuspage_001.png)-->
-  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_setorderstatuspage_001.png" width="400"/>
-
-**Kierownik projektu / Project Manager**
-
-- Dla wykonanych projektów koncepcji, utwórz zamówienie wykonania wytycznych instalacyjnych | *For finished concept designs, create new order for installation guidelines design*
-
-  <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_guidelinesorder_001.png)-->
-  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_guidelinesorder_001.png" width="400"/>
-  
-## KARTA PROJEKTU / *PROJECT CARD*
-
-    w toku... / in progress...
+-  Karta projektu / *Project card*
 
   <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_allprojects_001.png" width="200"/>
   <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_newprojectform_001.png" width="200"/>
   <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_projectDetails_001.png" width="200"/>
   <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_projectEdit_001.png" width="200"/>
+
+- Rejestracja nowego użytkownika
+| *New user registration page*
+
+  <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_registerpage_001.png)-->
+  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_registerpage_001.png" width="200"/>
+
+- Strona użytkownika
+| *User's profile page*
+
+  <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_userpage_001.png)-->
+  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_userpage_001.png" width="200"/>
+  
+- Formularz nowego zamówienia projektu koncepcyjnego
+| *The form for order a new preliminary (conceptual) design* 
+
+  <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_formfornewconcept_001.png)-->
+  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_formfornewconcept_001.png" width="200"/>
+
+- Przypisanie projektanta do zamówienia rysunku koncepcyjnego | *Setting up a designer to the order for preliminary (conceptual) design*
+
+  <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_setdesignerpage_001.png)-->
+  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_setdesignerpage_001.png" width="200"/>
+
+- Zmiana statusu zamówienia | *Changing the status of the order*
+
+  <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_setorderstatuspage_001.png)-->
+  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_setorderstatuspage_001.png" width="200"/>
+
+- Zamówienie wykonania wytycznych instalacyjnych | *The order form for final planning design*
+
+  <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_guidelinesorder_001.png)-->
+  <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_guidelinesorder_001.png" width="200"/>

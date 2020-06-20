@@ -17,6 +17,7 @@
     <jsp:include page="../header.jsp"/>
 
     <div class="container">
+        <%--@elvariable id="questionSetForMRI" type="pl.krzysztofskul.questionnaire.questionSet.QuestionSetForMRI"--%>
         <form:form modelAttribute="questionSetForMRI" method="post" action="/questionSetMRI/save">
             <div class="card">
                 <div class="card-header text-center">
@@ -31,9 +32,10 @@
                                 ${questionSetForMRI.questionForm.concept.title}
                             <form:hidden path="id"/>
                             <form:hidden path="questionForm.id"/>
-                            <c:if test="${questionSetForMRI.questionForm.backToPage ne null}">
-                                <input type="hidden" name="backToPage" value="/projects/details/${conceptNew.project.id}">
-                            </c:if>
+<%--                            <c:if test="${questionSetForMRI.questionForm.backToPage ne null}">--%>
+<%--                                <input type="hidden" name="backToPage" value="/projects/details/${conceptNew.project.id}">--%>
+                                <input type="hidden" name="backToPage" value="${backToPage}">
+<%--                            </c:if>--%>
                         </div>
                     </div>
                 </div>
@@ -50,6 +52,7 @@
 
                 </div>
                 <div class="card-footer">
+<%--                    <input type="hidden" name="backToPage" value="${backToPage}"/>--%>
                     <a href="#" class="btn btn-warning float-left">
                         <span><<</span>
                         <p class="langPL">ANULUJ / WSTECZ</p>

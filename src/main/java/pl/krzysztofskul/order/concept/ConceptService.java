@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.order.Status;
+import pl.krzysztofskul.user.User;
+import pl.krzysztofskul.user.UserService;
 
 import java.util.List;
 
@@ -17,14 +19,20 @@ public class ConceptService {
      */
 
     private ConceptRepo conceptRepo;
+    private UserService userService;
 
     /**
      * constr.
      * @param conceptRepo
+     * @param userService
      */
     @Autowired
-    public ConceptService(ConceptRepo conceptRepo) {
+    public ConceptService(
+            ConceptRepo conceptRepo,
+            UserService userService
+    ) {
         this.conceptRepo = conceptRepo;
+        this.userService = userService;
     }
 
     /**
@@ -71,4 +79,9 @@ public class ConceptService {
         conceptRepo.deleteById(id);
     }
 
+    public List<Concept> loadAllByUserId(Long userId) {
+        User user = userService.loadById(userId);
+        List<Concept> conceptList = conceptRepo.findAllByAuthorOrderByDateTimeDeadlineAsc(user);
+        return conceptList;
+    }
 }

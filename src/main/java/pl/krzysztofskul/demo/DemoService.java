@@ -14,22 +14,4 @@ public class DemoService {
         Demo.getDemoInstance();
     }
 
-    public Demo getDemoMode() {
-        return Demo.getDemoInstance();
-    }
-
-    public int getDemoStep() {
-        return Demo.getStep();
-    }
-
-    public void increaseDemoStepByOne() {
-        Demo.increaseStepByOne();
-    }
-
-    public void makeDemoStep(int step, HttpServletResponse httpServletResponse) throws IOException {
-        if (step == 1) {
-            httpServletResponse.sendRedirect("/initDB");
-        }
-    }
-
 }

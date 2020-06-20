@@ -223,7 +223,7 @@
                             <p class="langEN">REMARKS:</p>
                         </div>
                         <div class="col-8">
-                            <form:textarea path="remarks" cssClass="w-100"/>
+                            <form:textarea path="remarks" cssClass="myTextarea"/>
                         </div>
                     </div>
 
@@ -242,6 +242,9 @@
                 </div>
 
                 <div class="card-footer">
+                    <c:if test="${backToPage ne null}">
+                        <input type="hidden" name="backToPage" value="${backToPage}">
+                    </c:if>
                     <a href="/projects/all" class="btn btn-warning float-left">
                         <p class="langPL">ANULUJ</p>
                         <p class="langEN">CANCEL</p>

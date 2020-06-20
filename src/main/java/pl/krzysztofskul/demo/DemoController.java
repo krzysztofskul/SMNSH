@@ -203,7 +203,6 @@ public class DemoController {
             @RequestParam("userId") Long userId,
             HttpSession httpSession
     ) {
-
         //return "redirect:/login?guest=designer";
         return "redirect:/demoStepNumber8?projectId="+projectId+"&userId="+userId;
 
@@ -213,6 +212,7 @@ public class DemoController {
     public String conceptsNew(
             @RequestParam(name = "userId", required = false) Long userId,
             @RequestParam(name = "projectId", required = false) Long projectId,
+//            @RequestParam(name = "backToPage", required = false) String backToPage,
             Model model,
             HttpSession httpSession
     ) {
@@ -226,6 +226,7 @@ public class DemoController {
         model.addAttribute("conceptNew", conceptNew);
         Demo.increaseStepByOne();
         httpSession.setAttribute("demoSession", Demo.getStep());
+        model.addAttribute("backToPage", "/projects/details/"+projectId);
         return "orders/concepts/new";
     }
 

@@ -3,150 +3,25 @@
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofskul
-  Date: 10.01.2020
-  Time: 20:11
+  Date: 13.06.2020
+  Time: 19:44
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
-    <script src="/resources/js/userProfile.js" type="text/javascript"></script>
+    <script src="/resources/js/userOrders.js" type="text/javascript"></script>
 </head>
 <body>
 
-    <jsp:include page="/WEB-INF/views/header.jsp"/>
+    <jsp:include page="../header.jsp"/>
 
     <div class="container">
-        <form:form method="post" modelAttribute="user">
-            <form:hidden path="password"/>
-            <form:hidden path="passwordConfirmation"/>
-            <div class="card">
-                <!-- USER INFO -->
-                <div class="card-header text-center" id="userDataHeader" style="font-size: larger">
-                    <div class="d-inline-block position-absolute">
-                        <p class="langPL">PROFIL UŻYTKOWNIKA</p>
-                        <p class="langEN">USER'S PROFILE</p>
-                    </div>
-                    <div class="btn btn-outline-dark w-100px float-right">
-                        <p class="langPL">ZWIŃ</p>
-                        <p class="langEN">HIDE</p>
-                    </div>
-                </div>
-                <div class="card-body" id="userDataBody">
-                    <div class="row">
-                        <div class="col text-right">
-                            <span class="font-weight-bold">ID:</span> <form:input path="id" disabled="true" cssStyle="max-width: 50px"/>
-                        </div>
-                        <div class="col text-left">
-                            <form:input path="nameFirst" cssClass="w-40"/>
-                            <form:input path="nameLast" cssClass="w-50"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6"></div>
-                        <div class="col-3">
-                            <form:errors path="nameFirst" cssClass="error"/>
-                        </div>
-                        <div class="col-3">
-                            <form:errors path="nameLast" cssClass="error"/>
-                        </div>
-                    </div>
-                    <div class="row border-bottom pb-2 mb-2">
-                        <div class="col text-right" style="margin: auto">
-                            <p class="langPL">Zdjęcie profilowe:</p>
-                            <p class="langEN">Avatar:</p>
-                        </div>
-                        <div class="col">
-                                <%--<form:hidden path="avatar"/>--%>
-                            <img class="img-thumbnail" src="/resources/img/avatars/img_avatar_someone.png" width="75" height="75" alt="AVATAR ICO">
-                            <input type="file" name="file" id="file" disabled>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 text-right" style="margin: auto">
-                            <p class="langPL">E-mail:</p>
-                            <p class="langEN">E-mail:</p>
-                        </div>
-                        <div class="col-6"><form:input path="email" cssClass="w-100"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6"></div>
-                        <div class="col-6">
-                            <form:errors cssClass="error" path="email"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col text-right" style="margin: auto">
-                            <p class="langPL">Stanowisko:</p>
-                            <p class="langEN">Business position:</p>
-                        </div>
-                        <div class="col">
-                            <c:if test='${sessionScope.userLoggedIn.getEmail() == "Nameguest.Surname-Admin@test.test"}'>
-                                <div>
-                                    <p class="langPL">ADMIN</p>
-                                    <p class="langEN">ADMIN</p>
-                                </div>
-                            </c:if>
-                            <c:if test='${sessionScope.userLoggedIn.getEmail() != "Nameguest.Surname-Admin@test.test"}'>
-                                <form:select path="businessPosition" items="${businessPositions}" cssClass="w-100"/>
-                            </c:if>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer" id="userDataFooter">
-                    <a href="/users/all" class="btn btn-warning float-left disabled">
-                        <span><<</span>
-                        <p class="langPL">ANULUJ / WSTECZ</p>
-                        <p class="langEN">CANCEL / BACK</p>
-                    </a>
-                    <form:button class="btn btn-success float-right">
-                        <span>.</span>
-                        <p class="langPL">ZAPISZ ZMIANY</p>
-                        <p class="langEN">SAVE CHANGES</p>
-                    </form:button>
-                </div>
-            </div>
 
-            <!-- MENU -->
-            <div class="jumbotron mt-5">
-                <h1 class="display-4">
-                    MOJE PROJEKTY
-                </h1>
-                <p class="lead">
-                    PRZEJDŹ DO STRONY Z LISTĄ MOICH PROJEKTÓW
-                </p>
-                <hr class="my-4">
-                <p>
-                    GOT TO THE PAGE WITH THE LIST OF ALL MY PROJECTS
-                </p>
-                <a class="btn btn-primary btn-lg" href="/projects/all?userId=${user.id}" role="button">
-                    <svg class="bi bi-chevron-double-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
-                        <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
-                    </svg>
-                </a>
-            </div>
-            <div class="jumbotron">
-                <h1 class="display-4">
-                    MOJE ZAMÓWIENIA KONCEPCJI I WYTYCZNYCH
-                </h1>
-                <p class="lead">
-                    PRZEJDŹ DO STRONY Z MOIMI ZAMÓWIENIAMI KONCPECJI I WYTYCZNYCH
-                </p>
-                <hr class="my-4">
-                <p>
-                    GO TO THE PAGE WITH THE LIST OF ALL MY PRELIMINARY AND FINAL PLANNING DESIGNS
-                </p>
-                <a class="btn btn-primary btn-lg" href="/concepts/details/${user.id}?conceptListPage=true" role="button">
-                    <svg class="bi bi-chevron-double-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
-                        <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
-                    </svg>
-                </a>
-            </div>
+        <form:form modelAttribute="conceptList" method="post">
 
             <!-- ORDERS FOR  PRELIMINARY DESIGN -->
-            <div class="card invisible">
+            <div class="card">
                 <div class="card-body">
                     <div class="row border-top border-bottom text-center bg-light mt-3 mb-3 pt-2 pb-2"
                          style="font-size: larger">
@@ -155,7 +30,7 @@
                             <p class="langEN">ORDERS CREATED BY USER</p>
                         </div>
                     </div>
-                    <c:forEach items="${user.conceptList}" var="concept">
+                    <c:forEach items="${conceptList}" var="concept">
                         <div class="card mt-2 mb-3">
                             <div class="card-header text-left border-top border-bottom-0 border-dark">
                                 <div class="row border-bottom pb-2">
@@ -200,7 +75,7 @@
                                             <p class="langEN">DEVICE</p>
                                         </span>
                                         <span class="d-inline-block align-top">
-                                            ${concept.device.model}
+                                                ${concept.device.model}
                                         </span>
                                     </div>
                                     <div class="col-4 border">
@@ -209,7 +84,7 @@
                                             <p class="langEN">CUSTOMER</p>
                                         </span>
                                         <span class="d-inline-block align-top">
-                                            ${concept.client}
+                                                ${concept.client}
                                         </span>
                                     </div>
                                 </div>
@@ -220,7 +95,7 @@
                                             <p class="langEN">PRIORITY</p>
                                         </span>
                                         <span class="d-inline-block align-top">
-                                            ${concept.priority.toString()}
+                                                ${concept.priority.toString()}
                                         </span>
                                     </div>
                                     <div class="col-4 border">
@@ -230,7 +105,7 @@
                                         </span>
                                         <c:if test="${concept.status == 'ORDERED_WAITING'}">
                                             <span class="d-inline-block align-top text-danger">
-                                                ${concept.status.toString()}
+                                                    ${concept.status.toString()}
                                             </span>
                                         </c:if>
                                         <c:if test="${concept.status == 'IN_PROGRESS'}">
@@ -365,16 +240,19 @@
                     </c:forEach>
                 </div>
                 <div class="card-footer">
-                    <a href="/concepts/new?userId=${user.id}" class="btn btn-success float-right">
+                    <a href="/concepts/new?userId=${sessionScope.userLoggedIn.id}&backToPage=/concepts/details/${sessionScope.userLoggedIn.id}?conceptListPage=true&conceptListPage=true" class="btn btn-success float-right">
                         <p class="langPL">NOWE ZAMÓWIENIE KONCEPCJI</p>
                         <p class="langEN">NEW CONCEPT ORDER</p>
                     </a>
                 </div>
             </div>
+
         </form:form>
+
     </div>
 
-    <jsp:include page="/WEB-INF/views/footer.jsp"/>
+    <jsp:include page="../footer.jsp"/>
+
 
 </body>
 </html>

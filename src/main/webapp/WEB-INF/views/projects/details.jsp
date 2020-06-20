@@ -623,7 +623,7 @@
                 <div class="card-footer">
                     <c:choose>
                         <c:when test="${sessionScope.userLoggedIn.businessPosition.toString() ne 'Projektant/Planista / Designer/Planner'}">
-                            <a id="newConceptBtn" href="/concepts/new?projectId=${project.id}&userId=${project.projectManager.id}" class="btn btn-success float-right">
+                            <a id="newConceptBtn" href="/concepts/new?projectId=${project.id}&userId=${project.projectManager.id}&backToPage=/projects/details/${project.id}" class="btn btn-success float-right">
                                 <div class="langPL">ZAMÓWIENIE PROJEKTU KONCEPCYJNEGO</div>
                                 <div class="langEN">ORDER FOR CONCEPTUAL (PRELIMINARY PROJECT)</div>
                             </a>
