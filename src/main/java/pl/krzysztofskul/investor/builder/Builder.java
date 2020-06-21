@@ -1,6 +1,6 @@
 package pl.krzysztofskul.investor.builder;
 
-import pl.krzysztofskul.company.CompanyType;
+import pl.krzysztofskul.company.type.CompanyType;
 import pl.krzysztofskul.investor.Investor;
 
 public final class Builder {

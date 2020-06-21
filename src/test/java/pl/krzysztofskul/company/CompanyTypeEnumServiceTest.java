@@ -11,6 +11,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import pl.krzysztofskul.AppConfig;
+import pl.krzysztofskul.company.type.CompanyType;
+import pl.krzysztofskul.company.type.CompanyTypeService;
 
 import java.util.List;
 import static org.junit.Assert.assertTrue;

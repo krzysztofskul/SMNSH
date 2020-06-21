@@ -4,7 +4,8 @@ import com.thedeanda.lorem.LoremIpsum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.krzysztofskul.company.CompanyTypeService;
+import pl.krzysztofskul.company.quality.QualityTypeEnum;
+import pl.krzysztofskul.company.type.CompanyTypeService;
 
 import java.util.List;
 import java.util.Random;
@@ -56,7 +57,11 @@ public class SubcontractorService {
                 subcontractor.setStreet(loremIpsum.getName());
                 subcontractor.setStreetNumber(new Random().nextInt(100));
                 subcontractor.setEmail(loremIpsum.getEmail());
-//                Subcontractor.testSubcontractors.add(subcontractor);
+                switch (new Random().nextInt(3)) {
+                    case 0: subcontractor.setQualityTypeEnum(QualityTypeEnum.GREEN); break;
+                    case 1: subcontractor.setQualityTypeEnum(QualityTypeEnum.YELLOW); break;
+                    case 2: subcontractor.setQualityTypeEnum(QualityTypeEnum.RED); break;
+                }
                 this.save(subcontractor);
             }
 

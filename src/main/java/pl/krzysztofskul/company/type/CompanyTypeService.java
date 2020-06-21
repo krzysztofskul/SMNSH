@@ -1,4 +1,4 @@
-package pl.krzysztofskul.company;
+package pl.krzysztofskul.company.type;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

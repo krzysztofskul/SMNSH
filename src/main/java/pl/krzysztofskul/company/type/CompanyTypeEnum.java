@@ -1,4 +1,4 @@
-package pl.krzysztofskul.company;
+package pl.krzysztofskul.company.type;
 
 public enum CompanyTypeEnum {
 

@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import pl.krzysztofskul.AppConfig;
+import pl.krzysztofskul.company.type.CompanyTypeService;
 
 import static org.junit.Assert.assertTrue;
 
@@ -27,6 +28,9 @@ public class SubcontractorServiceTest {
     @Autowired
     private SubcontractorService subcontractorService;
 
+    @Autowired
+    private CompanyTypeService companyTypeService;
+
     @Before
     public void setup() throws Exception {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
@@ -34,7 +38,9 @@ public class SubcontractorServiceTest {
 
     @Test
     public void createTestSubcontractors() {
+        companyTypeService.createCompanyTypesAndSaveToDB();
         subcontractorService.createTestSubcontractors();
         assertTrue(subcontractorService.loadAll().size() == 10);
+        assertTrue(subcontractorService.loadAll().get(1).getQualityTypeEnum() != null);
     }
 }

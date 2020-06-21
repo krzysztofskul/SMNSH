@@ -11,8 +11,12 @@ import pl.krzysztofskul.attachment.Attachment;
 import pl.krzysztofskul.attachment.AttachmentService;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
+import pl.krzysztofskul.investor.Investor;
+import pl.krzysztofskul.investor.InvestorService;
 import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 import pl.krzysztofskul.logger.loggerUser.LoggerUserService;
+import pl.krzysztofskul.subcontractor.Subcontractor;
+import pl.krzysztofskul.subcontractor.SubcontractorService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserAction;
 import pl.krzysztofskul.user.UserService;
@@ -33,6 +37,8 @@ import java.util.List;
 public class ProjectController {
 
     private ProjectService projectService;
+    private InvestorService investorService;
+    private SubcontractorService subcontractorService;
     private DeviceService deviceService;
     private UserService userService;
     private AttachmentService attachmentService;
@@ -42,6 +48,8 @@ public class ProjectController {
     @Autowired
     public ProjectController(
             ProjectService projectService,
+            InvestorService investorService,
+            SubcontractorService subcontractorService,
             DeviceService deviceService,
             UserService userService,
             AttachmentService attachmentService,
@@ -49,6 +57,8 @@ public class ProjectController {
             LoggerProjectService<Object> loggerProjectService
     ) {
         this.projectService = projectService;
+        this.investorService = investorService;
+        this.subcontractorService = subcontractorService;
         this.deviceService = deviceService;
         this.userService = userService;
         this.attachmentService = attachmentService;
@@ -69,6 +79,16 @@ public class ProjectController {
     @ModelAttribute("allStatusesProject")
     public List<StatusProject> getAllStatusesProject() {
         return Arrays.asList(StatusProject.values());
+    }
+
+    @ModelAttribute("allInvestorList")
+    public List<Investor> getAllInvestorList() {
+        return investorService.loadAll();
+    }
+
+    @ModelAttribute("allSubcontractorList")
+    public List<Subcontractor> getAllSubcontractorList() {
+        return subcontractorService.loadAll();
     }
 
     @GetMapping("/new")

@@ -1,6 +1,6 @@
 package pl.krzysztofskul.investor;
 
-import pl.krzysztofskul.company.CompanyType;
+import pl.krzysztofskul.company.type.CompanyType;
 import pl.krzysztofskul.project.Project;
 
 import javax.persistence.*;

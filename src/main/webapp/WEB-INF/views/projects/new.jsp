@@ -62,7 +62,11 @@
                             <p class="langEN">INVESTOR:</p>
                         </div>
                         <div class="col-8">
-                            <form:input path="investor" cssClass="w-100"/>
+                            <form:select path="investor.id" cssClass="w-100">
+                                <c:forEach items="${allInvestorList}" var="investor">
+                                    <form:option value="${investor.id}" label="${investor.name} ${investor.companyType.name}"/>
+                                </c:forEach>
+                            </form:select>
                             <form:errors path="investor" cssClass="error"/>
                         </div>
                     </div>
@@ -95,7 +99,11 @@
                             <p class="langEN">BUILDING CONTRACTOR:</p>
                         </div>
                         <div class="col-8">
-                            <form:input path="buildingContractor" cssClass="w-100"/>
+                            <form:select path="subcontractor.id" cssClass="w-100">
+                                <c:forEach items="${allSubcontractorList}" var="subcontractor">
+                                        <form:option value="${subcontractor.id}" label="${subcontractor.name} ${subcontractor.type.name}"/>
+                                </c:forEach>
+                            </form:select>
                         </div>
                     </div>
 

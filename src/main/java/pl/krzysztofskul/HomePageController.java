@@ -3,7 +3,7 @@ package pl.krzysztofskul;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import pl.krzysztofskul.company.CompanyTypeService;
+import pl.krzysztofskul.company.type.CompanyTypeService;
 import pl.krzysztofskul.initDB.InitDB;
 import pl.krzysztofskul.investor.InvestorService;
 import pl.krzysztofskul.subcontractor.SubcontractorService;

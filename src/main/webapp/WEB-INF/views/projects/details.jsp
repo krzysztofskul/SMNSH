@@ -121,7 +121,11 @@
                         <div class="col-3 text-left pt-2">
                             <c:choose>
                                 <c:when test="${edit eq true}">
-                                    <form:input path="investor"/>
+                                    <form:select path="investor.id" cssClass="w-100">
+                                        <c:forEach items="${allInvestorList}" var="investor">
+                                            <form:option value="${investor.id}" label="${investor.name} ${investor.companyType.name}"/>
+                                        </c:forEach>
+                                    </form:select>
                                     <form:errors path="investor" cssClass="error"/>
                                 </c:when>
                                 <c:otherwise>
@@ -195,10 +199,13 @@
                         <div class="col-3 text-left pt-2">
                             <c:choose>
                                 <c:when test="${edit eq true}">
-                                    <form:input path="buildingContractor"/>
+                                    <form:select path="subcontractor.id" cssClass="w-100">
+                                        <c:forEach items="${allSubcontractorList}" var="subcontractor">
+                                            <form:option value="${subcontractor.id}" label="${subcontractor.name} ${subcontractor.type.name}"/>
+                                        </c:forEach>
+                                    </form:select>
                                 </c:when>
                                 <c:otherwise>
-                                    ${project.buildingContractor} <br>
                                     ${project.subcontractor.name} ${project.subcontractor.type.name}
                                 </c:otherwise>
                             </c:choose>

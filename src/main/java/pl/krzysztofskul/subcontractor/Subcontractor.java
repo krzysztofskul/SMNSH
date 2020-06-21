@@ -1,6 +1,7 @@
 package pl.krzysztofskul.subcontractor;
 
-import pl.krzysztofskul.company.CompanyType;
+import pl.krzysztofskul.company.quality.QualityTypeEnum;
+import pl.krzysztofskul.company.type.CompanyType;
 import pl.krzysztofskul.project.Project;
 
 import javax.persistence.*;
@@ -37,11 +38,7 @@ public class Subcontractor {
     
     private String email;
 
-//    @OneToMany(mappedBy = "subcontractor")
-//    private List<User> employeeList = new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "subcontractor", cascade = CascadeType.ALL)
-//    private List<Project> projectList = new ArrayList<>();
+    private QualityTypeEnum qualityTypeEnum;
 
     @OneToMany(mappedBy = "subcontractor")
     private List<Project> projectList = new ArrayList<>();
@@ -52,14 +49,6 @@ public class Subcontractor {
     }
 
     /** getters and setters */
-
-//    public static List<Subcontractor> getTestSubcontractors() {
-//        return testSubcontractors;
-//    }
-//
-//    public static void setTestSubcontractors(List<Subcontractor> testSubcontractors) {
-//        Subcontractor.testSubcontractors = testSubcontractors;
-//    }
 
     public Long getId() {
         return id;
@@ -125,15 +114,6 @@ public class Subcontractor {
         this.streetNumber = streetNumber;
     }
 
-//    public List<User> getEmployee() {
-//        return employee;
-//    }
-//
-//    public void setEmployee(List<User> employee) {
-//        this.employee = employee;
-//    }
-//
-
     public List<Project> getProjectList() {
         return projectList;
     }
@@ -150,14 +130,11 @@ public class Subcontractor {
         this.email = email;
     }
 
-    /** methods */
+    public QualityTypeEnum getQualityTypeEnum() {
+        return qualityTypeEnum;
+    }
 
-//    public void addProject(Project project) {
-//        this.projectList.add(project);
-//    }
-//
-//    public void removeProject(Project project) {
-//        this.projectList.remove(project);
-//    }
-
+    public void setQualityTypeEnum(QualityTypeEnum qualityTypeEnum) {
+        this.qualityTypeEnum = qualityTypeEnum;
+    }
 }

@@ -4,7 +4,7 @@ import com.thedeanda.lorem.LoremIpsum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.krzysztofskul.company.CompanyTypeService;
+import pl.krzysztofskul.company.type.CompanyTypeService;
 import pl.krzysztofskul.investor.builder.Builder;
 
 import java.util.List;

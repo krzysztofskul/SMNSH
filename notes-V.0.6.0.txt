@@ -26,14 +26,19 @@
 
 - user avatar mod.: file from resources null exception // todo (!)
 
-- ...
-    - front-end updates:
-        - new project jsp (forms)
-        - project details edit
-            - investor
-            - subcontractor
+- delete functions
 
 // DONE
+
+#0.6.0-5
+    + subcontractor quality class
+    + front-end updates:
+        + new project jsp, forms for:
+            + investor
+            + subcontractor
+        + project details edit, forms for:
+            + investor
+            + subcontractor
 
 #0.6.0-4
     + Lorem Ipsum class
