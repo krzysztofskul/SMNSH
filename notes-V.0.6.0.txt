@@ -24,7 +24,24 @@
     - info
     - my projects / my orders front-end update
 
+- user avatar mod.: file from resources null exception // todo (!)
+
+- ...
+    - front-end updates:
+        - new project jsp (forms)
+        - project details edit
+            - investor
+            - subcontractor
+
 // DONE
+
+#0.6.0-4
+    + Lorem Ipsum class
+    + Investor class
+    + CompanyTypes class
+    + Subcontractor class
+    + JUnit
+    + init DB updates
 
 #0.6.0-3
     + user details page updates

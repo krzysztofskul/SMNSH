@@ -25,6 +25,8 @@ public class ProjectService {
         this.loggerProjectService = loggerProjectService;
     }
 
+    /** CRUD METHODS */
+
     public void save(Project project) {
         projectRepo.save(project);
     }

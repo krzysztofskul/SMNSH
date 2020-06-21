@@ -20,22 +20,18 @@ import pl.krzysztofskul.order.guideline.GuidelineService;
 import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.ProjectService;
 import pl.krzysztofskul.project.StatusProject;
-import pl.krzysztofskul.questionnaire.*;
+import pl.krzysztofskul.questionnaire.QuestionForm;
+import pl.krzysztofskul.questionnaire.QuestionFormService;
 import pl.krzysztofskul.questionnaire.questionSet.*;
 import pl.krzysztofskul.recipient.Recipient;
 import pl.krzysztofskul.recipient.RecipientService;
+import pl.krzysztofskul.subcontractor.SubcontractorService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserAction;
 import pl.krzysztofskul.user.UserBusinessPosition;
 import pl.krzysztofskul.user.UserService;
-import pl.krzysztofskul.user.avatar.Avatar;
 import pl.krzysztofskul.user.avatar.AvatarService;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -65,6 +61,7 @@ public class HomePageService {
     private AvatarService avatarService;
     private LoggerUserService<Object> loggerUserService;
     private LoggerProjectService<Object> loggerProjectService;
+    private SubcontractorService subcontractorService;
 
     /** constr.
      *
@@ -85,8 +82,8 @@ public class HomePageService {
             ProjectService projectService,
             AvatarService avatarService,
             LoggerUserService<Object> loggerUserService,
-            LoggerProjectService<Object> loggerProjectService
-    ) {
+            LoggerProjectService<Object> loggerProjectService,
+            SubcontractorService subcontractorService) {
         this.userService = userService;
         this.deviceCategoryService = deviceCategoryService;
         this.deviceService = deviceService;
@@ -102,6 +99,7 @@ public class HomePageService {
         this.avatarService = avatarService;
         this.loggerUserService = loggerUserService;
         this.loggerProjectService = loggerProjectService;
+        this.subcontractorService = subcontractorService;
     }
 
     /** methods
@@ -189,24 +187,24 @@ public class HomePageService {
 //        Path path = Paths.get("http://localhost:8080/resources/img/avatars/img_avatar_businesswoman.jpg");
 
         /* ok */
-        URL res = getClass().getClassLoader().getResource("img/avatars/img_avatar_businesswoman.jpg");
-        try {
-            File file = Paths.get(res.toURI()).toFile();
-            String absPath = file.getAbsolutePath();
-            Avatar avatar = new Avatar();
-            avatar.setFileType("image/jpg");
-            avatar.setFileName(file.getName());
-            try {
-                avatar.setData(Files.readAllBytes(file.toPath()));
-                avatarService.save(avatar);
-                user.setAvatar(avatar);
-                userService.save(user);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+//        URL res = getClass().getClassLoader().getResource("img/avatars/img_avatar_businesswoman.jpg");
+//        try {
+//            File file = Paths.get(res.toURI()).toFile();
+//            String absPath = file.getAbsolutePath();
+//            Avatar avatar = new Avatar();
+//            avatar.setFileType("image/jpg");
+//            avatar.setFileName(file.getName());
+//            try {
+//                avatar.setData(Files.readAllBytes(file.toPath()));
+//                avatarService.save(avatar);
+//                user.setAvatar(avatar);
+//                userService.save(user);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        } catch (URISyntaxException e) {
+//            e.printStackTrace();
+//        }
 
         /* ok */
         /*Path path = Paths.get("/home/krzysztofskul/workspace/IdeaProjects/SMNSH/src/main/webapp/resources/img/avatars/img_avatar_businesswoman.png");
@@ -519,7 +517,11 @@ public class HomePageService {
             deviceList.add(deviceService.loadById(Long.valueOf("4")+i));
             project.setDeviceList(deviceList);
             project.setBuildingContractor("BC GmbH & Co. KG");
-            project.setInvestor("MED Investor Sp. z o.o.");
+            project.setSubcontractor(subcontractorService.loadById(
+                    (long) new Random().nextInt(subcontractorService.loadAll().size())+1
+            ));
+//            project.setInvestor("MED Investor Sp. z o.o.");
+            project.setInvestor(investorService.loadById(Long.parseLong(String.valueOf(i))));
             project.setRecipient("City Hospital, Diagnostic Dep., Room "+i+"00, Room "+i+"20");
             project.setSls("Sales Rep. name and surname");
             project.setProjectManager(userService.loadById(Long.valueOf("1")+i));
@@ -571,7 +573,15 @@ public class HomePageService {
             deviceList.add(deviceService.loadById((long) (new Random().nextInt(15) + 1)));
             project.setDeviceList(deviceList);
             project.setBuildingContractor("BC GmbH & Co. KG");
-            project.setInvestor("MED Investor Sp. z o.o.");
+            project.setSubcontractor(subcontractorService.loadById(
+                    (long) new Random().nextInt(subcontractorService.loadAll().size())+1
+            ));
+//            project.setInvestor("MED Investor Sp. z o.o.");
+            project.setInvestor(investorService.loadById(
+                    (long) new Random().nextInt(
+                        investorService.loadAll().size())+1
+                    )
+            );
             project.setRecipient("City Hospital, Diagnostic Dep., Room "+i+"00, Room "+i+"20");
             project.setSls("Sales Rep. name and surname");
             project.setProjectManager(userService.loadById(Long.valueOf("1")));

@@ -125,7 +125,7 @@
                                     <form:errors path="investor" cssClass="error"/>
                                 </c:when>
                                 <c:otherwise>
-                                    ${project.investor}
+                                    ${project.investor.name} ${project.investor.companyType.name}
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -198,7 +198,8 @@
                                     <form:input path="buildingContractor"/>
                                 </c:when>
                                 <c:otherwise>
-                                    ${project.buildingContractor}
+                                    ${project.buildingContractor} <br>
+                                    ${project.subcontractor.name} ${project.subcontractor.type.name}
                                 </c:otherwise>
                             </c:choose>
                         </div>

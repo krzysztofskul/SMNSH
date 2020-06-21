@@ -51,12 +51,20 @@
                                         </div>
                                         <div class="col-8 font-weight-bold">
                                             <div class="row">
-                                                <div class="col">
-                                                        ${project.investor}
+                                                <div class="col-3 text-right">
+                                                        <p class="langPL">INWESTOR</p>
+                                                        <p class="langEN">INVESTOR</p>
+                                                </div>
+                                                <div class="col float-left">
+                                                        ${project.investor.name} ${project.investor.companyType.name}
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col">
+                                                <div class="col-3 text-right">
+                                                    <p class="langPL">MIEJSCE DOSTAWY</p>
+                                                    <p class="langEN">CONSUMER</p>
+                                                </div>
+                                                <div class="col float-left">
                                                         ${project.recipient}
                                                 </div>
                                             </div>

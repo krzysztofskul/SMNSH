@@ -1,15 +1,17 @@
 package pl.krzysztofskul.investor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import pl.krzysztofskul.company.CompanyType;
+import pl.krzysztofskul.project.Project;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Investor {
 
     /**
-     * params.
+     * entity params.
      */
 
     @Id
@@ -17,6 +19,11 @@ public class Investor {
     private Long id;
 
     private String name;
+
+    @ManyToOne
+    private CompanyType companyType;
+
+    private String country;
 
     private String postalCode;
 
@@ -26,9 +33,15 @@ public class Investor {
 
     private int number;
 
+    @OneToMany(mappedBy = "investor")
+    private List<Project> projectList = new ArrayList<>();
+
     /**
      * constr.
      */
+
+    public Investor() {
+    }
 
     /**
      * getters and setters
@@ -48,6 +61,22 @@ public class Investor {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public CompanyType getCompanyType() {
+        return companyType;
+    }
+
+    public void setCompanyType(CompanyType companyType) {
+        this.companyType = companyType;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getStreet() {
@@ -81,4 +110,25 @@ public class Investor {
     public void setNumber(int number) {
         this.number = number;
     }
+
+    public List<Project> getProjectList() {
+        return projectList;
+    }
+
+    public void setProjectList(List<Project> projects) {
+        this.projectList = projects;
+    }
+
+    /** methods */
+
+    public void addProject(Project project) {
+        this.projectList.add(project);
+        project.setInvestor(this);
+    }
+
+    public void removeProject(Project project) {
+        this.projectList.remove(project);
+        project.setInvestor(null);
+    }
+
 }
