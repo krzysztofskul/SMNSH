@@ -26,9 +26,12 @@
 
 - user avatar mod.: file from resources null exception // todo (!)
 
-- delete functions
 
 // DONE
+
+#0.6.0-FINAL
+    + pom.xml update
+    + delete project functionality
 
 #0.6.0-5
     + subcontractor quality class

@@ -70,7 +70,7 @@
                                             </div>
                                         </div>
                                         <div class="col-3 pb-1">
-                                            <a href="#" class="btn btn-outline-danger float-right ml-1">
+                                            <a href="/projects/delete/${project.id}" class="btn btn-outline-danger float-right ml-1">
                                                 <p class="langPL">USUŃ</p>
                                                 <p class="langEN">DEL</p>
                                             </a>

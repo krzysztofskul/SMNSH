@@ -269,4 +269,12 @@ public class ProjectController {
 
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteProjectById(
+            @PathVariable(name = "id") Long projectId
+    ) {
+        projectService.deleteById(projectId);
+        return "redirect:/projects/all";
+    }
+
 }

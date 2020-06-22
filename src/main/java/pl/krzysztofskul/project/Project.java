@@ -19,6 +19,8 @@ import java.util.List;
 @Entity
 public class Project {
 
+    /** entity fields/params.*/
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -75,15 +77,20 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Concept> conceptList = new ArrayList<>();
 
-    @OneToOne(mappedBy = "project")
+    @OneToOne(mappedBy = "project", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Attachment attachment;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<LoggerProject> loggerProjectList;
+
+    /** constructors */
 
     public Project() {
         this.deadline = LocalDateTime.now().plusDays(Long.parseLong("1"));
     }
+
+    /** getters and setters */
+
 
     public Long getId() {
         return id;
