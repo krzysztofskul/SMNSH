@@ -2,12 +2,16 @@ package pl.krzysztofskul.project;
 
 import pl.krzysztofskul.attachment.Attachment;
 import pl.krzysztofskul.device.Device;
+import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.logger.loggerProject.LoggerProject;
 import pl.krzysztofskul.order.concept.Concept;
+import pl.krzysztofskul.subcontractor.Subcontractor;
 import pl.krzysztofskul.user.User;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +19,15 @@ import java.util.List;
 @Entity
 public class Project {
 
+    /** entity fields/params.*/
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    private String investor;
+//    @NotBlank
+    @ManyToOne
+    private Investor investor;
 
     @NotBlank
     private String recipient;
@@ -60,6 +67,9 @@ public class Project {
 
     private String buildingContractor;
 
+    @ManyToOne
+    private Subcontractor subcontractor;
+
     private String trainings;
 
     private String remarks;
@@ -67,15 +77,20 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Concept> conceptList = new ArrayList<>();
 
-    @OneToOne(mappedBy = "project")
+    @OneToOne(mappedBy = "project", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Attachment attachment;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<LoggerProject> loggerProjectList;
+
+    /** constructors */
 
     public Project() {
         this.deadline = LocalDateTime.now().plusDays(Long.parseLong("1"));
     }
+
+    /** getters and setters */
+
 
     public Long getId() {
         return id;
@@ -85,11 +100,11 @@ public class Project {
         this.id = id;
     }
 
-    public String getInvestor() {
+    public Investor getInvestor() {
         return investor;
     }
 
-    public void setInvestor(String investor) {
+    public void setInvestor(Investor investor) {
         this.investor = investor;
     }
 
@@ -193,8 +208,16 @@ public class Project {
         return buildingContractor;
     }
 
-    public void setBuildingContractor(String buildingContractr) {
-        this.buildingContractor = buildingContractr;
+    public void setBuildingContractor(String buildingContractor) {
+        this.buildingContractor = buildingContractor;
+    }
+
+    public Subcontractor getSubcontractor() {
+        return subcontractor;
+    }
+
+    public void setSubcontractor(Subcontractor subcontractor) {
+        this.subcontractor = subcontractor;
     }
 
     public String getTrainings() {

@@ -43,7 +43,7 @@
                 <tr>
                     <th scope="row">${project.id}</th>
                     <td>
-                        <p>${project.investor}</p>
+                        <p>${project.investor.name} ${project.investor.companyType.name}</p>
                         <p>${project.recipient}</p>
                     </td>
                     <td>

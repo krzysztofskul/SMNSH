@@ -25,6 +25,8 @@ public class ProjectService {
         this.loggerProjectService = loggerProjectService;
     }
 
+    /** CRUD METHODS */
+
     public void save(Project project) {
         projectRepo.save(project);
     }
@@ -63,15 +65,6 @@ public class ProjectService {
         return project;
     }
 
-    public void deleteByProjectName(String name) {
-        List<Project> projectList = projectRepo.findAll();
-        for (Project project : projectList) {
-            if (name.equals(project.getProjectName())) {
-                projectRepo.delete(project);
-            }
-        }
-    }
-
     public List<Project> loadAllByStatusWithDevices(StatusProject statusProject) {
         List<Project> projects = projectRepo.findAllByStatusOrderByDeadlineAsc(statusProject);
         for (Project project : projects) {
@@ -86,5 +79,18 @@ public class ProjectService {
 
     public List<Project> loadAllByProjectManager(User user) {
         return projectRepo.findAllByProjectManager(user);
+    }
+
+    public void deleteById(Long projectId) {
+        projectRepo.deleteById(projectId);
+    }
+
+    public void deleteByProjectName(String name) {
+        List<Project> projectList = projectRepo.findAll();
+        for (Project project : projectList) {
+            if (name.equals(project.getProjectName())) {
+                projectRepo.delete(project);
+            }
+        }
     }
 }
