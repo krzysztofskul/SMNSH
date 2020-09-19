@@ -1,0 +1,17 @@
+// TODO:
+
+#next
+    - comments to projects functionality
+        . create Entity class
+        . create Service class
+            . create save tests for Comment instances
+            - create load tests for Comment instances todo: 2020-09-16 ...
+        - Controller, Repo classes
+
+
+// DONE:
+
+#1.0-1
+    + created Entity class for comments
+    + created Service class for comments
+    + created save tests for Comment instances
