@@ -231,6 +231,15 @@ public class ProjectController {
         return "projects/details";
     }
 
+    @GetMapping("/details/{id}/comments")
+    public String projectDetailsWithComments(
+            @PathVariable(name = "id") Long id,
+            Model model
+    ) {
+        model.addAttribute("projectWithComments", projectService.loadByIdWithComments(id));
+        return "projects/comments/allByProjectId";
+    }
+
     @PostMapping("/details/{id}")
     public String projectDetails(
             @PathVariable("id") Long id,

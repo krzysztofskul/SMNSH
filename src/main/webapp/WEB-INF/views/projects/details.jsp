@@ -628,6 +628,7 @@
                         </c:forEach>
                     </c:if>
                 </div>
+
                 <div class="card-footer">
                     <c:choose>
                         <c:when test="${sessionScope.userLoggedIn.businessPosition.toString() ne 'Projektant/Planista / Designer/Planner'}">
@@ -643,11 +644,11 @@
                             </a>
                         </c:otherwise>
                     </c:choose>
-
                 </div>
             </div>
         </form:form>
     </div>
+
 
     <jsp:include page="../footer.jsp"/>
 

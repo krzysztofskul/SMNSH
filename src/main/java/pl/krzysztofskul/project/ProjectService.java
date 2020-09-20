@@ -81,6 +81,12 @@ public class ProjectService {
         return projectRepo.findAllByProjectManager(user);
     }
 
+    public Project loadByIdWithComments(Long id) {
+        Project project = projectRepo.findById(id).get();
+        Hibernate.initialize(project.getCommentList());
+        return project;
+    }
+
     public void deleteById(Long projectId) {
         projectRepo.deleteById(projectId);
     }
@@ -93,4 +99,6 @@ public class ProjectService {
             }
         }
     }
+
+
 }
