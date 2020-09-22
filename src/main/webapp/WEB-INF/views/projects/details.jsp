@@ -75,6 +75,10 @@
                                 <p class="langPL">HISTORIA</p>
                                 <p class="langEN">HISTORY</p>
                             </a>
+                            <a href="/projects/details/${project.id}/comments" class="btn btn-outline-light float-right mr-2">
+                                <p class="langPL">KOMENTARZE</p>
+                                <p class="langEN">COMMENTS</p>
+                            </a>
                             <a href="${backTo}" class="btn btn-outline-warning float-right mr-2">
                                 <p class="langPL">WSTECZ</p>
                                 <p class="langEN">BACK</p>

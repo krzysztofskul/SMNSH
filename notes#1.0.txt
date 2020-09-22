@@ -5,15 +5,26 @@
         . create Entity class
         . create Service class
             . create save tests for Comment instances
-            + create load tests for Comment instances (in the previous commit)
-            + create demo comments method in commentsService class
-            + projects controller update for get method: "/projects/details/{id}/comments"
-        - update front-end todo ...
-            + project details page with comments
-            - add comment button/functionality todo ...
+            . create load tests for Comment instances (in the previous commit)
+            . create demo comments method in commentsService class
+            . projects controller update for get method: "/projects/details/{id}/comments"
+        - update front-end
+            . project details page with comments
+            . add comment button/functionality / get method / jsp file / post method 
+            . button menu in project details menu
+            . back button in comments page
+            - create project detail section on comments page
+            - sort comments by date
 
 
 // DONE:
+
+#1.0-2
+    + updated front-end:
+        + updated project details page with comments
+        + added comment button/functionality / get method / jsp file / post method
+        + added button menu in project details menu section
+        + added back button in comments page
 
 #1.0-2
     + created load tests for comments (in the previous commit)

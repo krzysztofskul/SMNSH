@@ -15,6 +15,8 @@ import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.investor.InvestorService;
 import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 import pl.krzysztofskul.logger.loggerUser.LoggerUserService;
+import pl.krzysztofskul.project.comment.Comment;
+import pl.krzysztofskul.project.comment.CommentService;
 import pl.krzysztofskul.subcontractor.Subcontractor;
 import pl.krzysztofskul.subcontractor.SubcontractorService;
 import pl.krzysztofskul.user.User;
@@ -25,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -44,6 +47,7 @@ public class ProjectController {
     private AttachmentService attachmentService;
     private LoggerUserService<Object> loggerUserService;
     private LoggerProjectService<Object> loggerProjectService;
+    private CommentService commentService;
 
     @Autowired
     public ProjectController(
@@ -54,8 +58,8 @@ public class ProjectController {
             UserService userService,
             AttachmentService attachmentService,
             LoggerUserService<Object> loggerUserService,
-            LoggerProjectService<Object> loggerProjectService
-    ) {
+            LoggerProjectService<Object> loggerProjectService,
+            CommentService commentService) {
         this.projectService = projectService;
         this.investorService = investorService;
         this.subcontractorService = subcontractorService;
@@ -64,6 +68,7 @@ public class ProjectController {
         this.attachmentService = attachmentService;
         this.loggerUserService = loggerUserService;
         this.loggerProjectService = loggerProjectService;
+        this.commentService = commentService;
     }
 
     @ModelAttribute("allDeviceList")
@@ -237,7 +242,30 @@ public class ProjectController {
             Model model
     ) {
         model.addAttribute("projectWithComments", projectService.loadByIdWithComments(id));
-        return "projects/comments/allByProjectId";
+        return "/projects/comments/allCommentsByProjectId";
+    }
+
+    @GetMapping("/details/{id}/comments/new")
+    public String commentNew(
+            @PathVariable(name = "id") Long projectId,
+            Model model,
+            HttpSession httpSession
+    ) {
+        Comment comment = new Comment();
+        comment.setAuthor((User) httpSession.getAttribute("userLoggedIn"));
+        comment.setProject(projectService.loadById(projectId));
+        model.addAttribute("comment", comment);
+        return "projects/comments/new";
+    }
+
+    @PostMapping("/details/{id}/comments/new")
+    public String commentNew(
+        @PathVariable(name = "id") Long projectId,
+        @ModelAttribute Comment comment
+    ) {
+        comment.setDateOfCreation(LocalDate.now());
+        commentService.save(comment);
+        return "redirect:/projects/details/"+projectId+"/comments";
     }
 
     @PostMapping("/details/{id}")
