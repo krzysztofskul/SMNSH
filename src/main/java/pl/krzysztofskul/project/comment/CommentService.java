@@ -8,7 +8,7 @@ import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.ProjectService;
 import pl.krzysztofskul.user.UserService;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
 
@@ -47,7 +47,7 @@ public class CommentService {
                 Comment comment = new Comment();
                 comment.setAuthor(project.getProjectManager());
                 comment.setProject(project);
-                comment.setDateOfCreation(LocalDate.now().minusDays(i));
+                comment.setDateOfCreation(LocalDateTime.now().minusDays(i));
                 comment.setMessage(LoremIpsum.getInstance().getWords(5,20));
                 save(comment);
             }

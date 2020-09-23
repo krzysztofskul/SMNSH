@@ -27,7 +27,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -263,7 +262,7 @@ public class ProjectController {
         @PathVariable(name = "id") Long projectId,
         @ModelAttribute Comment comment
     ) {
-        comment.setDateOfCreation(LocalDate.now());
+        comment.setDateOfCreation(LocalDateTime.now());
         commentService.save(comment);
         return "redirect:/projects/details/"+projectId+"/comments";
     }

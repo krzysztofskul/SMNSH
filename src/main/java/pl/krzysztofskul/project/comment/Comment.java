@@ -4,7 +4,7 @@ import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.user.User;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Comment {
@@ -23,7 +23,7 @@ public class Comment {
 
     private String message;
 
-    private LocalDate dateOfCreation;
+    private LocalDateTime dateOfCreation;
 
     /**constructors*/
 
@@ -64,11 +64,11 @@ public class Comment {
         this.message = message;
     }
 
-    public LocalDate getDateOfCreation() {
+    public LocalDateTime getDateOfCreation() {
         return dateOfCreation;
     }
 
-    public void setDateOfCreation(LocalDate dateOfCreation) {
+    public void setDateOfCreation(LocalDateTime dateOfCreation) {
         this.dateOfCreation = dateOfCreation;
     }
 

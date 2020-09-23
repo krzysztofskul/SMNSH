@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-8"></div>
                         <div class="col-2 text-right text-black-50">
-                            ${comment.dateOfCreation}
+                            ${comment.dateOfCreation.toLocalDate()} ${comment.dateOfCreation.toLocalTime()}
                         </div>
                     </div>
                     <div class="row border-bottom font-italic p-3">

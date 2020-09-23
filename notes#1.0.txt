@@ -1,8 +1,9 @@
 // TODO:
 
-#next
+#next in #1.0
     - comments to projects functionality
         . create Entity class
+            . update comments functionality - LocalDate to LocalDateTime changes in dateOfCreation
         . create Service class
             . create save tests for Comment instances
             . create load tests for Comment instances (in the previous commit)
@@ -14,12 +15,20 @@
             . button menu in project details menu
             . back button in comments page
             - create project detail section on comments page
-            - sort comments by date
+        - update back-end:
+            . sort comments by date of creation descending
+                - paging todo ..
 
 
 // DONE:
 
-#1.0-2
+#1.0-4
+    + updated front-end
+        + sort comments by date of creation descending
+    + updated back-end
+        + LocalDate to LocalDateTime changes in dateOfCreation
+
+#1.0-2(3)
     + updated front-end:
         + updated project details page with comments
         + added comment button/functionality / get method / jsp file / post method

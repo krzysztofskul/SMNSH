@@ -5,8 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
+import pl.krzysztofskul.project.comment.Comment;
 import pl.krzysztofskul.user.User;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -84,6 +87,12 @@ public class ProjectService {
     public Project loadByIdWithComments(Long id) {
         Project project = projectRepo.findById(id).get();
         Hibernate.initialize(project.getCommentList());
+        Collections.sort(project.getCommentList(), new Comparator<Comment>() {
+            @Override
+            public int compare(Comment c1, Comment c2) {
+                return c2.getDateOfCreation().compareTo(c1.getDateOfCreation());
+            }
+        });
         return project;
     }
 
