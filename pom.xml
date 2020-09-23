@@ -7,7 +7,7 @@
   <groupId>pl.krzysztofskul</groupId>
   <artifactId>smnsh</artifactId>
   <packaging>war</packaging>
-  <version>0.6.0-FINAL</version>
+  <version>1.0-FINAL</version>
   <name>smnsh Maven Webapp</name>
   <url>http://maven.apache.org</url>
 

@@ -20,6 +20,7 @@ import pl.krzysztofskul.order.guideline.GuidelineService;
 import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.ProjectService;
 import pl.krzysztofskul.project.StatusProject;
+import pl.krzysztofskul.project.comment.CommentService;
 import pl.krzysztofskul.questionnaire.QuestionForm;
 import pl.krzysztofskul.questionnaire.QuestionFormService;
 import pl.krzysztofskul.questionnaire.questionSet.*;
@@ -62,6 +63,7 @@ public class HomePageService {
     private LoggerUserService<Object> loggerUserService;
     private LoggerProjectService<Object> loggerProjectService;
     private SubcontractorService subcontractorService;
+    private CommentService commentService;
 
     /** constr.
      *
@@ -83,7 +85,7 @@ public class HomePageService {
             AvatarService avatarService,
             LoggerUserService<Object> loggerUserService,
             LoggerProjectService<Object> loggerProjectService,
-            SubcontractorService subcontractorService) {
+            SubcontractorService subcontractorService, CommentService commentService) {
         this.userService = userService;
         this.deviceCategoryService = deviceCategoryService;
         this.deviceService = deviceService;
@@ -100,6 +102,7 @@ public class HomePageService {
         this.loggerUserService = loggerUserService;
         this.loggerProjectService = loggerProjectService;
         this.subcontractorService = subcontractorService;
+        this.commentService = commentService;
     }
 
     /** methods
@@ -589,5 +592,6 @@ public class HomePageService {
             projectService.save(project);
             loggerUserService.log(project.getProjectManager(), LocalDateTime.now(), UserAction.PROJECT_CREATE, project);
         }
+        commentService.createDemoComments();
     }
 }
