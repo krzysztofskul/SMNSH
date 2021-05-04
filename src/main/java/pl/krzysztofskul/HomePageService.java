@@ -158,6 +158,15 @@ public class HomePageService {
         userService.save(user);
         /** NEW USER : DESIGNER */
         user = new User();
+        user.setNameFirst("Maciej");
+        user.setNameLast("D.");
+        user.setEmail("maciej.d@test.test");
+        user.setPassword("test");
+        user.setPasswordConfirmation(user.getPassword());
+        user.setBusinessPosition(UserBusinessPosition.PLANNER);
+        userService.save(user);
+        /** NEW USER : DESIGNER */
+        user = new User();
         user.setNameFirst("Krzysztof");
         user.setNameLast("K.");
         user.setEmail("krzysztof.k@test.test");
@@ -165,14 +174,14 @@ public class HomePageService {
         user.setPasswordConfirmation(user.getPassword());
         user.setBusinessPosition(UserBusinessPosition.PLANNER);
         userService.save(user);
-        /** NEW USER : DESIGNER */
+        /** NEW USER : SALES REP. */
         user = new User();
-        user.setNameFirst("Maciej");
-        user.setNameLast("D.");
-        user.setEmail("maciej.d@test.test");
+        user.setNameFirst("Wojciech");
+        user.setNameLast("G.");
+        user.setEmail("wojciech.g@test.test");
         user.setPassword("test");
         user.setPasswordConfirmation(user.getPassword());
-        user.setBusinessPosition(UserBusinessPosition.PLANNER);
+        user.setBusinessPosition(UserBusinessPosition.SALES_REP);
         userService.save(user);
     }
 

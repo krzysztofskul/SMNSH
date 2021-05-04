@@ -100,7 +100,7 @@ public class AppConfig implements WebMvcConfigurer {
         /* local DB*/
         dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?useSSL=false");
         dataSource.setUsername("root");
-        dataSource.setPassword("coderslab");
+        dataSource.setPassword("@xDpo9Ec16N7&OP0");
 
 
 

@@ -81,7 +81,7 @@ public class Project {
     @OneToOne(mappedBy = "project", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Attachment attachment;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE/*, orphanRemoval = true*/)
     private List<LoggerProject> loggerProjectList;
 
     @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)

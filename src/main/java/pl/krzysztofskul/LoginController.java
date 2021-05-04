@@ -98,6 +98,12 @@ public class LoginController {
                     loggerUserService.log(user, LocalDateTime.now(), UserAction.LOG_IN, null);
                     return "redirect:/";
                 }
+                case "salesRep": {
+                    User user = userService.loadByEmail("wojciech.g@test.test");
+                    session.setAttribute("userLoggedIn", user);
+                    loggerUserService.log(user, LocalDateTime.now(), UserAction.LOG_IN, null);
+                    return "redirect:/";
+                }
             }
 //        loggerUserService.log(user, LocalDateTime.now(), UserAction.LOG_IN, null);
 //        return "redirect:/";

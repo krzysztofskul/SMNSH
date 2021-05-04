@@ -136,9 +136,19 @@
                             <p class="langPL">PRZEDSTAWICIEL HANDLOWY:</p>
                             <p class="langEN">SALES REP.:</p>
                         </div>
-                        <div class="col-8">
-                            <form:input path="sls" cssClass="w-100"/>
-                        </div>
+                        <c:choose>
+                            <c:when test="${sessionScope.userLoggedIn.businessPosition.toString() eq 'Przedstawiciel handlowy / Sales rep.'}">
+                                <div class="col-8">
+                                    <form:input path="sls" cssClass="w-100" value="${sessionScope.userLoggedIn.nameFirst} ${sessionScope.userLoggedIn.nameLast}"/>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="col-8">
+                                    <form:input path="sls" cssClass="w-100"/>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+
                     </div>
 
                     <div class="row mb-1">

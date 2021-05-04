@@ -89,6 +89,11 @@
                             "ZALOGUJ JAKO KIEROWNIK PROJEKTU (GOŚĆ)"+
                             "<p class='langEN'>LOGIN AS A PROJECT MANAGER (GUEST)</p>"+
                             "</a>"+
+                            "</div>"+
+                            "<a id='loginAsPmBtn' href='/login?guest=salesRep' class='btn btn-light'>"+
+                            "ZALOGUJ JAKO PRZEDSTAWICIEL HANDLOWY (GOŚĆ)"+
+                            "<p class='langEN'>LOGIN AS A SALES REP. (GUEST)</p>"+
+                            "</a>"+
                             "</div>"
                     );
 
