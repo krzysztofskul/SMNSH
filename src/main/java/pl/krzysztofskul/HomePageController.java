@@ -47,13 +47,13 @@ public class HomePageController {
 			subcontractorService.createTestSubcontractors();
 			investorService.createTestInvestors(15);
 			homePageService.createRealTestUsers();
-			homePageService.createUsers();
+			//homePageService.createUsers();
 			homePageService.createDeviceCategories();
 			homePageService.createDevices();
 			homePageService.createRealTestDevices();
 			homePageService.createConcepts();
 			homePageService.createGuidelines();
-//			homePageService.createInvestors();
+			//homePageService.createInvestors();
 			homePageService.createRealTestInvestors();
 			homePageService.createRecipients();
 			homePageService.createRealTestRecipients();

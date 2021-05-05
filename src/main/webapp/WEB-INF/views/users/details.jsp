@@ -108,45 +108,24 @@
             </div>
 
             <!-- MENU -->
-            <div class="jumbotron mt-5">
-                <h1 class="display-4">
-                    MOJE PROJEKTY
-                </h1>
-                <p class="lead">
-                    PRZEJDŹ DO STRONY Z LISTĄ MOICH PROJEKTÓW
-                </p>
-                <hr class="my-4">
-                <p>
-                    GOT TO THE PAGE WITH THE LIST OF ALL MY PROJECTS
-                </p>
-                <a class="btn btn-primary btn-lg" href="/projects/all?userId=${user.id}" role="button">
-                    <svg class="bi bi-chevron-double-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
-                        <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
-                    </svg>
-                </a>
-            </div>
-            <div class="jumbotron">
-                <h1 class="display-4">
-                    MOJE ZAMÓWIENIA KONCEPCJI I WYTYCZNYCH
-                </h1>
-                <p class="lead">
-                    PRZEJDŹ DO STRONY Z MOIMI ZAMÓWIENIAMI KONCPECJI I WYTYCZNYCH
-                </p>
-                <hr class="my-4">
-                <p>
-                    GO TO THE PAGE WITH THE LIST OF ALL MY PRELIMINARY AND FINAL PLANNING DESIGNS
-                </p>
-                <a class="btn btn-primary btn-lg" href="/concepts/details/${user.id}?conceptListPage=true" role="button">
-                    <svg class="bi bi-chevron-double-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
-                        <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
-                    </svg>
-                </a>
+            <div class="card mt-5 mb-5">
+                <div class="card-header text-center">
+                    <p class="langPL">MOJE PROJEKTY</p>
+                    <p class="langEN">MY PROJECTS</p>
+                </div>
+                <div class="card">
+                    <a class="btn btn-primary btn-lg" href="/projects/all?userId=${user.id}" role="button">
+                        <svg class="bi bi-chevron-double-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
 
             <!-- ORDERS FOR  PRELIMINARY DESIGN -->
-            <div class="card invisible">
+            <c:if test="${sessionScope.userLoggedIn.businessPosition eq 'PROJECT_MANAGER'}">
+                <div class="card">
                 <div class="card-body">
                     <div class="row border-top border-bottom text-center bg-light mt-3 mb-3 pt-2 pb-2"
                          style="font-size: larger">
@@ -371,6 +350,7 @@
                     </a>
                 </div>
             </div>
+            </c:if>
         </form:form>
     </div>
 

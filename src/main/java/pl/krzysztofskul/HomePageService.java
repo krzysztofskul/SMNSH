@@ -183,6 +183,15 @@ public class HomePageService {
         user.setPasswordConfirmation(user.getPassword());
         user.setBusinessPosition(UserBusinessPosition.SALES_REP);
         userService.save(user);
+        /** NEW USER : SALES REP. */
+        user = new User();
+        user.setNameFirst("Tomasz");
+        user.setNameLast("B.");
+        user.setEmail("tomasz.b@test.test");
+        user.setPassword("test");
+        user.setPasswordConfirmation(user.getPassword());
+        user.setBusinessPosition(UserBusinessPosition.SALES_REP);
+        userService.save(user);
     }
 
     public void createUsers() {

@@ -85,7 +85,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="row border-bottom">
+                    <div class="row border-bottom border-top">
                         <div class="col-3 text-right pt-2">
                             <p class="langPL">NAZWA PROJEKTU:</p>
                             <p class="langEN">PROJECT NAME:</p>
@@ -154,7 +154,7 @@
                         </div>
                     </div>
 
-                    <div class="row border-bottom">
+                    <div class="row border-bottom border-top">
                         <div class="col-3 text-right pt-2">
                             <p class="langPL">HANDLOWIEC:</p>
                             <p class="langEN">SALES REP.:</p>
@@ -281,9 +281,30 @@
                         </c:when>
                         <c:otherwise>
                             <c:forEach items="${project.deviceList}" var="device">
-                                <div class="row pt-1 pb-2">
-                                    <div class="col-12">
-                                        <span class="font-weight-bold">${device.deviceCategory.name}</span> ${device.model}
+                                <div class="row pt-1 pb-2 border-top border-bottom no-gutters">
+                                    <div class="col-6 font-weight-bold">
+                                        <p style="top: 25%; position: absolute">
+                                            ${device.deviceCategory.name}
+                                        </p>
+                                    </div>
+                                    <div class="col-4 font-italic">
+                                        <p style="top: 25%; position: absolute">
+                                            ${device.model}
+                                        </p>
+                                    </div>
+                                    <div class="col-2">
+                                        <c:set var="btnConfClass" value="btn btn-sm btn-outline-primary"/>
+                                        <c:set var="btnConfTitlePL" value="SPRAWDŹ KONFIGURACJĘ"/>
+                                        <c:set var="btnConfTitleEN" value="CHECK CONFIGURATION"/>
+                                        <c:if test="${sessionScope.userLoggedIn.businessPosition eq 'SALES_REP'}">
+                                            <c:set var="btnConfClass" value="btn btn-sm btn-outline-success"/>
+                                            <c:set var="btnConfTitlePL" value="EDYTUJ KONFIGURACJĘ"/>
+                                            <c:set var="btnConfTitleEN" value="EDIT CONFIGURATION"/>
+                                        </c:if>
+                                        <button class="${btnConfClass}" disabled>
+                                            <p class="langPL">${btnConfTitlePL}</p>
+                                            <p class="langEN">${btnConfTitleEN}</p>
+                                        </button>
                                     </div>
                                 </div>
                             </c:forEach>

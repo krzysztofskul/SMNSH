@@ -107,17 +107,26 @@
             </li>
             <li class="nav-item">
                 <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/projects/all">
-                    <p class="langPL">PROJEKTY</p>
-                    <p class="langEN">PROJECTS</p>
+                    <p class="langPL">PROJEKTY W FIRMIE</p>
+                    <p class="langEN">PROJECTS IN THE COMPANY</p>
                 </a>
             </li>
+            <c:if test="${sessionScope.userLoggedIn != null}">
+                <li class="nav-item">
+                    <c:set var="user" value="?userId=${sessionScope.userLoggedIn.id}"/>
+                    <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/projects/all${user}">
+                        <p class="langPL">MOJE PROJEKTY</p>
+                        <p class="langEN">MY PROJECTS</p>
+                    </a>
+                </li>
+            </c:if>
             <li class="nav-item border-left">
                 <a class="nav-link btn-light ml-1 mr-1" href="/users/all">
                     <p class="langPL">UŻYTKOWNICY</p>
                     <p class="langEN">ALL USERS</p>
                 </a>
             </li>
-            <c:if test="${sessionScope.userLoggedIn.businessPosition.toString() eq 'ADMINI / ADMIN'}">
+            <c:if test="${sessionScope.userLoggedIn.businessPosition eq 'ADMIN'}">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle btn-light ml-1 mr-1" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <p class="langPL">ADMIN</p>
