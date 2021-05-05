@@ -104,7 +104,7 @@
                                                     <p class="langEN">Sales rep.:</p>
                                                 </div>
                                                 <div class="col-3">
-                                                        ${project.sls}
+                                                        ${project.sls.nameFirst} ${project.sls.nameLast}
                                                 </div>
                                                 <div class="col-2 text-right">
                                                     <p class="langPL">Kierownik projektu:</p>

@@ -1,0 +1,19 @@
+// todo/to commit:
+
+    - demo mode to update (workflow with sales rep. creating new project)
+
+// todo/done/committed:
+
+#2.0-SNAPSHOT
+    + my projects page update for sales rep. is logged in
+        + sales rep (sls) - project / relationship as @OneToMany
+        + project details page update: sales rep name and surname
+        + project edit page update: sales rep name and surname
+
+#2.0-SNAPSHOT
+    + sales rep. login as a guest functionality to add
+    + sales rep. auto fill when sales create new project
+    + new project functionality bugs to fix (error when save a new one)
+    + edit project functionality bugs to fix (edit project)
+        + logger class / orphan removal problem
+        + check delete project functionality (ok)

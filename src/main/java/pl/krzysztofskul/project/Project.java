@@ -47,7 +47,8 @@ public class Project {
     @ManyToOne
     private User projectManager;
 
-    private String sls;
+    @ManyToOne
+    private User sls;
 
     private String log;
 
@@ -160,11 +161,11 @@ public class Project {
         this.projectManager = projectManager;
     }
 
-    public String getSls() {
+    public User getSls() {
         return sls;
     }
 
-    public void setSls(String sls) {
+    public void setSls(User sls) {
         this.sls = sls;
     }
 

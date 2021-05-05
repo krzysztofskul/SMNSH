@@ -66,6 +66,10 @@ public class User {
     @OneToMany(mappedBy = "projectManager", cascade = CascadeType.ALL)
     private List<Project> projectList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "sls", cascade = CascadeType.ALL)
+    private List<Project> projectListAsSalesRep = new ArrayList<>();
+
+
     @OneToOne
     private Avatar avatar;
 
@@ -178,6 +182,14 @@ public class User {
         this.projectList = projectList;
     }
 
+    public List<Project> getProjectListAsSalesRep() {
+        return projectListAsSalesRep;
+    }
+
+    public void setProjectListAsSalesRep(List<Project> projectListAsSalesRep) {
+        this.projectListAsSalesRep = projectListAsSalesRep;
+    }
+
     public Avatar getAvatar() {
         return avatar;
     }
@@ -204,6 +216,16 @@ public class User {
         this.conceptListToDo.remove(concept);
     }
 
+    public void addProject(Project project) {
+        this.projectListAsSalesRep.add(project);
+        project.setSls(this);
+    }
+
+    public void removeProject(Project project) {
+        this.projectListAsSalesRep.remove(project);
+        project.setSls(null);
+    }
+
     @PrePersist
     public void prePersist() {
         this.password = BCrypt.hashpw(this.getPassword(), BCrypt.gensalt());
@@ -222,7 +244,6 @@ public class User {
 //                ", nameLast='" + nameLast + '\'' +
 //                '}';
 //    }
-
 
     @Override
     public String toString() {

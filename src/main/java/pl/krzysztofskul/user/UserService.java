@@ -50,6 +50,10 @@ public class UserService {
         return userRepo.findAllByBusinessPosition(UserBusinessPosition.PROJECT_MANAGER);
     }
 
+    public List<User> loadAllSalesReps() {
+        return userRepo.findAllByBusinessPosition(UserBusinessPosition.SALES_REP);
+    }
+
     public User loadById(Long id) {
         return userRepo.findById(id).get();
     }

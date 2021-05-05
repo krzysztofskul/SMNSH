@@ -139,13 +139,20 @@
                         <c:choose>
                             <c:when test="${sessionScope.userLoggedIn.businessPosition.toString() eq 'Przedstawiciel handlowy / Sales rep.'}">
                                 <div class="col-8">
-                                    <form:input path="sls" cssClass="w-100" value="${sessionScope.userLoggedIn.nameFirst} ${sessionScope.userLoggedIn.nameLast}"/>
+                                    <form:input path="sls.id" cssClass="w-100" value="${sessionScope.userLoggedIn.nameFirst} ${sessionScope.userLoggedIn.nameLast}" disabled="true"/>
+                                    <form:hidden path="sls.id" value="${sessionScope.userLoggedIn.id}"/>
                                 </div>
                             </c:when>
                             <c:otherwise>
                                 <div class="col-8">
-                                    <form:input path="sls" cssClass="w-100"/>
+                                    <%--<form:input path="sls" cssClass="w-100"/>--%>
+                                    <form:select path="sls.id" cssClass="w-100">
+                                        <c:forEach items="${allSlsList}" var="sls">
+                                            <form:option value="${sls.id}" label="${sls.nameFirst} ${sls.nameLast}"/>
+                                        </c:forEach>
+                                    </form:select>
                                 </div>
+                                <form:errors path="sls" cssClass="error"/>
                             </c:otherwise>
                         </c:choose>
 

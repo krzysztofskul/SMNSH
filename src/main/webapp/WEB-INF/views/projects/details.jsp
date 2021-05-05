@@ -162,10 +162,11 @@
                         <div class="col-3 text-left pt-2">
                             <c:choose>
                                 <c:when test="${edit eq true}">
-                                    <form:input path="sls"/>
+                                    <form:input path="sls" disabled="true" value="${project.sls.nameFirst} ${project.sls.nameLast}"/>
+                                    <form:hidden path="sls.id"  value="${project.sls.id}"/>
                                 </c:when>
                                 <c:otherwise>
-                                    ${project.sls}
+                                    ${project.sls.nameFirst} ${project.sls.nameLast}
                                 </c:otherwise>
                             </c:choose>
                         </div>

@@ -80,6 +80,11 @@ public class ProjectController {
         return userService.loadAllProjectManagers();
     }
 
+    @ModelAttribute("allSlsList")
+    public List<User> getAllSalesRepList() {
+        return userService.loadAllSalesReps();
+    }
+
     @ModelAttribute("allStatusesProject")
     public List<StatusProject> getAllStatusesProject() {
         return Arrays.asList(StatusProject.values());
@@ -145,7 +150,7 @@ public class ProjectController {
         if (status == null) {
             List<Project> projectsAll = projectService.loadAllWithDeviceList();
             if (userId != null) {
-                projectsAll.removeIf(project -> !project.getProjectManager().getId().equals(userId));
+                projectsAll.removeIf(project -> !project.getProjectManager().getId().equals(userId) && !project.getSls().getId().equals(userId)); // todo ...
             }
 //            projectsAll.sort((Project o1, Project o2) -> o2.getId().compareTo(o1.getId()));
             if (projectsAll != null) {
