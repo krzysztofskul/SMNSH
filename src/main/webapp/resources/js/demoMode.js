@@ -547,9 +547,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     /* beginning conditions check on the page (which demo mode step is set up)  */
     if (demoCounter.length === 0) {
-        setButtonDemoModeActive();
-        setButtonReady(demoModeBtn);
-        // demoCounterTitle.classList.add("text-hide");
+        /**
+         * demo mode button set ready
+         */
+        //setButtonDemoModeActive();
+        //setButtonReady(demoModeBtn);
         demoCounterTitle.classList.add("invisible");
         demoCounter.classList.add("text-hide");
     }

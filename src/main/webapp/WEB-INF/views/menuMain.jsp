@@ -21,7 +21,7 @@
 <%--        <a href="/concepts/all">CONCEPTS ALL</a>--%>
         <ul class="nav nav-pills">
             <li class="nav-item">
-                <a id="demoModeBtn" class="nav-link btn btn-light ml-1 mr-1" href="#">
+                <a id="demoModeBtn" class="nav-link btn btn-light ml-1 mr-1 disabled" href="#">
                     <p class="langPL">TRYB DEMO</p>
                     <p class="langEN">DEMO MODE</p>
                 </a>

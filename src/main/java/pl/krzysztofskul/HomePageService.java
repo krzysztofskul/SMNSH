@@ -185,9 +185,9 @@ public class HomePageService {
         userService.save(user);
         /** NEW USER : SALES REP. */
         user = new User();
-        user.setNameFirst("Tomasz");
-        user.setNameLast("B.");
-        user.setEmail("tomasz.b@test.test");
+        user.setNameFirst("Ryszard");
+        user.setNameLast("G.");
+        user.setEmail("ryszard.g@test.test");
         user.setPassword("test");
         user.setPasswordConfirmation(user.getPassword());
         user.setBusinessPosition(UserBusinessPosition.SALES_REP);

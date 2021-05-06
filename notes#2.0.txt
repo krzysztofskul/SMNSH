@@ -1,12 +1,22 @@
 // todo/to commit:
 
     - demo mode to update (workflow with sales rep. creating new project)
-    - configuration for devices functionality
+    - configuration for devices functionality ...
         - relation with project and device
+            - part.class related with device/device category/project ... relationship ...
         - add for sales rep.
         - check for project manager and designer
+    + demo mode turned off
+    + init db updates
+
 
 // todo/done/committed:
+
+#2.0-SNAPSHOT
+    - configuration for devices functionality
+        + Part.class (represent device's configuration parts)
+        - relation with project and device
+            + part demo generator & test
 
 #2.0-SNAPSHOT
     + front-end updates
