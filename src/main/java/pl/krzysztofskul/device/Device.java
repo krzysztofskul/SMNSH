@@ -4,6 +4,7 @@ import pl.krzysztofskul.device.category.DeviceCategory;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.guideline.Guideline;
 import pl.krzysztofskul.project.Project;
+import pl.krzysztofskul.project.configuration.Configuration;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -32,6 +33,9 @@ public class Device {
 
     @ManyToMany(mappedBy = "deviceList")
     private List<Project> projectList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "device")
+    private List<Configuration> configurationList = new ArrayList<>();
 
     /**
      * constr.
@@ -88,6 +92,14 @@ public class Device {
 
     public void setProjectList(List<Project> projectList) {
         this.projectList = projectList;
+    }
+
+    public List<Configuration> getConfigurationList() {
+        return configurationList;
+    }
+
+    public void setConfigurationList(List<Configuration> configurationList) {
+        this.configurationList = configurationList;
     }
 
     /**

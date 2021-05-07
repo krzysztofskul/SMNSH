@@ -49,7 +49,7 @@ public class HomePageController {
 			homePageService.createRealTestUsers();
 			//homePageService.createUsers();
 			homePageService.createDeviceCategories();
-			homePageService.createDevices();
+			homePageService.createDevicesAndParts();
 			homePageService.createRealTestDevices();
 			homePageService.createConcepts();
 			homePageService.createGuidelines();

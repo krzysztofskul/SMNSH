@@ -6,6 +6,7 @@ import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.logger.loggerProject.LoggerProject;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.project.comment.Comment;
+import pl.krzysztofskul.project.configuration.Configuration;
 import pl.krzysztofskul.subcontractor.Subcontractor;
 import pl.krzysztofskul.user.User;
 
@@ -87,6 +88,9 @@ public class Project {
 
     @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
     private List<Comment> commentList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Configuration> configurationList = new ArrayList<>();
 
     /** constructors */
 
@@ -271,6 +275,14 @@ public class Project {
 
     public void setCommentList(List<Comment> commentList) {
         this.commentList = commentList;
+    }
+
+    public List<Configuration> getConfigurationList() {
+        return configurationList;
+    }
+
+    public void setConfigurationList(List<Configuration> configurationList) {
+        this.configurationList = configurationList;
     }
 
     /** mmethods */

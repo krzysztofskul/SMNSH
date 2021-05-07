@@ -7,6 +7,9 @@ import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.device.category.DeviceCategory;
 import pl.krzysztofskul.device.category.DeviceCategoryService;
+import pl.krzysztofskul.device.part.Part;
+import pl.krzysztofskul.device.part.PartDemoGenerator;
+import pl.krzysztofskul.device.part.PartService;
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.investor.InvestorService;
 import pl.krzysztofskul.investor.creator.Creator;
@@ -64,6 +67,7 @@ public class HomePageService {
     private LoggerProjectService<Object> loggerProjectService;
     private SubcontractorService subcontractorService;
     private CommentService commentService;
+    private PartService partService;
 
     /** constr.
      *
@@ -85,7 +89,7 @@ public class HomePageService {
             AvatarService avatarService,
             LoggerUserService<Object> loggerUserService,
             LoggerProjectService<Object> loggerProjectService,
-            SubcontractorService subcontractorService, CommentService commentService) {
+            SubcontractorService subcontractorService, CommentService commentService, PartService partService) {
         this.userService = userService;
         this.deviceCategoryService = deviceCategoryService;
         this.deviceService = deviceService;
@@ -103,6 +107,7 @@ public class HomePageService {
         this.loggerProjectService = loggerProjectService;
         this.subcontractorService = subcontractorService;
         this.commentService = commentService;
+        this.partService = partService;
     }
 
     /** methods
@@ -470,7 +475,7 @@ public class HomePageService {
 
     }
 
-    public void createDevices() {
+    public void createDevicesAndParts() {
         for (int i = 1; i <= 3; i++) {
             Device device = new Device();
             device.setModel("X-Ray device / model "+i);
@@ -488,6 +493,10 @@ public class HomePageService {
             device.setModel("MRI device / model "+(i-6));
             device.setDeviceCategory(deviceCategoryService.loadByCode("MRI"));
             deviceService.save(device);
+        }
+
+        for (Part part : PartDemoGenerator.getPartDemoGenerator().getPartDemoList()) {
+            partService.save(part);
         }
     }
 

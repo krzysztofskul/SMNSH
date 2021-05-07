@@ -1,8 +1,6 @@
 package pl.krzysztofskul.device.part;
 
-import pl.krzysztofskul.device.Device;
-import pl.krzysztofskul.device.category.DeviceCategory;
-import pl.krzysztofskul.project.Project;
+import pl.krzysztofskul.project.configuration.Configuration;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -24,14 +22,8 @@ public class Part {
 
     private BigDecimal price;
 
-//    @ManyToOne
-//    private DeviceCategory deviceCategory;
-
-    @ManyToMany
-    private List<Device> deviceList = new ArrayList<>();
-
-    @ManyToOne
-    private Project project;
+    @ManyToMany(mappedBy = "partList")
+    private List<Configuration> configurationList = new ArrayList<>();
 
     /**
      * constructors
@@ -71,30 +63,6 @@ public class Part {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    /*public DeviceCategory getDeviceCategory() {
-        return deviceCategory;
-    }
-
-    public void setDeviceCategory(DeviceCategory deviceCategory) {
-        this.deviceCategory = deviceCategory;
-    }*/
-
-    public List<Device> getDevice() {
-        return deviceList;
-    }
-
-    public void setDevice(List<Device> deviceList) {
-        this.deviceList = deviceList;
-    }
-
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
     }
 
     /**
