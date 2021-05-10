@@ -24,6 +24,8 @@ import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.ProjectService;
 import pl.krzysztofskul.project.StatusProject;
 import pl.krzysztofskul.project.comment.CommentService;
+import pl.krzysztofskul.project.configuration.Configuration;
+import pl.krzysztofskul.project.configuration.ConfigurationService;
 import pl.krzysztofskul.questionnaire.QuestionForm;
 import pl.krzysztofskul.questionnaire.QuestionFormService;
 import pl.krzysztofskul.questionnaire.questionSet.*;
@@ -68,6 +70,7 @@ public class HomePageService {
     private SubcontractorService subcontractorService;
     private CommentService commentService;
     private PartService partService;
+    private ConfigurationService configurationService;
 
     /** constr.
      *
@@ -89,7 +92,7 @@ public class HomePageService {
             AvatarService avatarService,
             LoggerUserService<Object> loggerUserService,
             LoggerProjectService<Object> loggerProjectService,
-            SubcontractorService subcontractorService, CommentService commentService, PartService partService) {
+            SubcontractorService subcontractorService, CommentService commentService, PartService partService, ConfigurationService configurationService) {
         this.userService = userService;
         this.deviceCategoryService = deviceCategoryService;
         this.deviceService = deviceService;
@@ -108,6 +111,7 @@ public class HomePageService {
         this.subcontractorService = subcontractorService;
         this.commentService = commentService;
         this.partService = partService;
+        this.configurationService = configurationService;
     }
 
     /** methods
@@ -475,7 +479,7 @@ public class HomePageService {
 
     }
 
-    public void createDevicesAndParts() {
+    public void createDevices() {
         for (int i = 1; i <= 3; i++) {
             Device device = new Device();
             device.setModel("X-Ray device / model "+i);
@@ -493,10 +497,6 @@ public class HomePageService {
             device.setModel("MRI device / model "+(i-6));
             device.setDeviceCategory(deviceCategoryService.loadByCode("MRI"));
             deviceService.save(device);
-        }
-
-        for (Part part : PartDemoGenerator.getPartDemoGenerator().getPartDemoList()) {
-            partService.save(part);
         }
     }
 
@@ -622,5 +622,27 @@ public class HomePageService {
             loggerUserService.log(project.getProjectManager(), LocalDateTime.now(), UserAction.PROJECT_CREATE, project);
         }
         commentService.createDemoComments();
+    }
+
+    public void createParts() {
+        for (Part part : PartDemoGenerator.getPartDemoGenerator().getPartDemoList()) {
+            partService.save(part);
+        }
+    }
+
+    public void createConfigurations() {
+        for (Project project : projectService.loadAllWithDeviceList()) {
+            for (Device device : project.getDeviceList()) {
+                /* set project and device */
+                Configuration configuration = new Configuration(project, device);
+                /* set parts */
+                List<Part> partList = partService.loadAll();
+                configuration.setPartList(partList);
+                /* save configuration */
+                configurationService.save(configuration);
+            }
+
+        }
+
     }
 }

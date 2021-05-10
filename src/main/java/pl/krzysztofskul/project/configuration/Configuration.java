@@ -27,7 +27,7 @@ public class Configuration {
 
     @ManyToMany
     @JoinTable(
-            name = "configuration_cart",
+            name = "configuration_part",
             joinColumns = {@JoinColumn(name = "configuration_id")},
             inverseJoinColumns = {@JoinColumn(name = "part_id")}
     )
@@ -38,6 +38,11 @@ public class Configuration {
      */
 
     public Configuration() {
+    }
+
+    public Configuration(Project project, Device device) {
+        this.project = project;
+        this.device = device;
     }
 
     /**

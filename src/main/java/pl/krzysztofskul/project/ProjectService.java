@@ -68,6 +68,15 @@ public class ProjectService {
         return project;
     }
 
+
+    public List<Project> loadAllWithConfigurationList() {
+        List<Project> projectList = projectRepo.findAll();
+        for (Project project : projectList) {
+            Hibernate.initialize(project.getConfigurationList());
+        }
+        return projectList;
+    }
+
     public List<Project> loadAllByStatusWithDevices(StatusProject statusProject) {
         List<Project> projects = projectRepo.findAllByStatusOrderByDeadlineAsc(statusProject);
         for (Project project : projects) {

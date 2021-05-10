@@ -47,17 +47,19 @@ public class HomePageController {
 			subcontractorService.createTestSubcontractors();
 			investorService.createTestInvestors(15);
 			homePageService.createRealTestUsers();
-			//homePageService.createUsers();
+			homePageService.createUsers();
 			homePageService.createDeviceCategories();
-			homePageService.createDevicesAndParts();
+			homePageService.createDevices();
 			homePageService.createRealTestDevices();
+			homePageService.createParts();
 			homePageService.createConcepts();
 			homePageService.createGuidelines();
-			//homePageService.createInvestors();
+			homePageService.createInvestors();
 			homePageService.createRealTestInvestors();
 			homePageService.createRecipients();
 			homePageService.createRealTestRecipients();
 			homePageService.createProjects();
+			homePageService.createConfigurations();
 		}
 		return "redirect:/home";
 	}

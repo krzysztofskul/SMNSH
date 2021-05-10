@@ -1,12 +1,20 @@
 // todo/to commit:
 
     - demo mode to update (workflow with sales rep. creating new project)
-    - configuration.class
-        - relation with project / device / parts ...
+    - configuration.class ...
+        . relation with project / device / parts
+        . createConfigurations() method in HomePageController.class and HomePageService.class
+            . HomePageServiceTest()
         - add configuration button for logged sales rep.
         - check configuration button for project manager and designer
 
 // todo/done/committed:
+
+#2.0-SNAPSHOT
+    - configuration.class
+        + relation with project / device / parts
+        + createConfigurations() method in HomePageController.class and HomePageService.class
+            + HomePageServiceTest()
 
 #2.0-SNAPSHOT
     + configuration.class
