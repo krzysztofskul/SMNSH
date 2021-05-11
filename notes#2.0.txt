@@ -2,13 +2,18 @@
 
     - demo mode to update (workflow with sales rep. creating new project)
     - configuration.class ...
-        . relation with project / device / parts
-        . createConfigurations() method in HomePageController.class and HomePageService.class
-            . HomePageServiceTest()
+        - check configuration front-end functionality ... js/jquery/ajax ...
+        - edit / delete configuration functionality/tests
         - add configuration button for logged sales rep.
         - check configuration button for project manager and designer
 
 // todo/done/committed:
+
+#2.0-SNAPSHOT
+    - configuration.class
+        + show configuration in jsp view
+        + HomePageServiceTest() updated
+        + ConfigurationService.class updated
 
 #2.0-SNAPSHOT
     - configuration.class

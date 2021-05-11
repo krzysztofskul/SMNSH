@@ -636,7 +636,15 @@ public class HomePageService {
                 /* set project and device */
                 Configuration configuration = new Configuration(project, device);
                 /* set parts */
-                List<Part> partList = partService.loadAll();
+                //List<Part> partList = partService.loadAll();
+                List<Part> partList = new ArrayList<>();
+                for (int i = 0; i < 5 ; i++) {
+                    int randomInt = new Random().nextInt(partService.loadAll().size()-1);
+                    Long id = Long.parseLong(String.valueOf(randomInt));
+                    if (partService.loadById(id) != null) {
+                        partList.add(partService.loadById(id));
+                    }
+                }
                 configuration.setPartList(partList);
                 /* save configuration */
                 configurationService.save(configuration);

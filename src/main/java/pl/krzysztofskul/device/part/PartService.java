@@ -26,7 +26,11 @@ public class PartService {
     }
 
     public Part loadById(Long id) {
-        return partRepo.findById(id).get();
+        if (partRepo.findById(id).isPresent()) {
+            return partRepo.findById(id).get();
+        } else {
+            return null;
+        }
     }
 
 }

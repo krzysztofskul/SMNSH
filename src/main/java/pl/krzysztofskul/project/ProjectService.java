@@ -4,8 +4,10 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 import pl.krzysztofskul.project.comment.Comment;
+import pl.krzysztofskul.project.configuration.Configuration;
 import pl.krzysztofskul.user.User;
 
 import java.util.Collections;
@@ -64,6 +66,12 @@ public class ProjectService {
     public Project loadByIdWithDeviceListAndConceptList(Long id) {
         Project project = projectRepo.findById(id).get();
         Hibernate.initialize(project.getDeviceList());
+        for (Device device : project.getDeviceList()) {
+            Hibernate.initialize(device.getConfigurationList());
+            for (Configuration configuration : device.getConfigurationList()) {
+                Hibernate.initialize(configuration.getPartList());
+            }
+        }
         Hibernate.initialize(project.getConceptList());
         return project;
     }

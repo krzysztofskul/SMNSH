@@ -307,6 +307,27 @@
                                         </button>
                                     </div>
                                 </div>
+                                <div id="configuration-details">
+                                    <div class="row p-2 text-center font-weight-bold">
+                                        <div class="col-12 text-center">CONFIGURATION</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">PART ID</div>
+                                        <div class="col-6">PART NAME</div>
+                                        <div class="col-3">PART PRICE</div>
+                                    </div>
+                                    <c:forEach items="${device.configurationList}" var="configuration">
+                                        <c:if test="${configuration.project.id eq project.id}">
+                                            <c:forEach items="${configuration.partList}" var="part">
+                                                <div class="row">
+                                                    <div class="col-3">${part.id}</div>
+                                                    <div class="col-6">${part.name}</div>
+                                                    <div class="col-3">${part.price}</div>
+                                                </div>
+                                            </c:forEach>
+                                        </c:if>
+                                    </c:forEach>
+                                </div>
                             </c:forEach>
                         </c:otherwise>
                     </c:choose>

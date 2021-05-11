@@ -16,6 +16,7 @@ import org.springframework.web.context.WebApplicationContext;
 import pl.krzysztofskul.company.type.CompanyTypeService;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.device.category.DeviceCategoryService;
+import pl.krzysztofskul.device.part.Part;
 import pl.krzysztofskul.device.part.PartService;
 import pl.krzysztofskul.investor.InvestorService;
 import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
@@ -140,13 +141,15 @@ public class HomePageServiceTest {
     }
 
     @Test
+    //    public void whenCreateConfigurations_shouldBeRelatedInDB()
     public void test3() {
         List<Project> projectList = projectService.loadAllWithConfigurationList();
         for (Project project : projectList) {
             for (Configuration configuration : project.getConfigurationList()) {
                 assertNotNull(configuration.getDevice());
                 assertNotNull(configuration.getProject());
-                assertNotNull(configuration.getPartList());
+                configuration = configurationService.loadByIdWithParts(configuration.getId());
+                assertTrue(configuration.getPartList().size() > 0);
             }
         }
     }

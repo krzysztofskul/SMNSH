@@ -236,7 +236,8 @@ public class ProjectController {
         if (backToPage != null) {
             model.addAttribute("backToPage", backToPage);
         }
-        model.addAttribute("project", projectService.loadByIdWithDeviceListAndConceptList(id));
+        Project project = projectService.loadByIdWithDeviceListAndConceptList(id);
+        model.addAttribute("project", project);
         return "projects/details";
     }
 
