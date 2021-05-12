@@ -22,6 +22,8 @@ public class Part {
 
     private BigDecimal price;
 
+    private String description;
+
     @ManyToMany(mappedBy = "partList")
     private List<Configuration> configurationList = new ArrayList<>();
 
@@ -32,9 +34,10 @@ public class Part {
     public Part() {
     }
 
-    public Part(String name, BigDecimal price) {
+    public Part(String name, BigDecimal price, String description) {
         this.name = name;
         this.price = price;
+        this.description = description;
     }
 
     /**
@@ -63,6 +66,16 @@ public class Part {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+
+
+    public List<Configuration> getConfigurationList() {
+        return configurationList;
+    }
+
+    public void setConfigurationList(List<Configuration> configurationList) {
+        this.configurationList = configurationList;
     }
 
     /**

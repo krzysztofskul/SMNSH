@@ -35,7 +35,7 @@ public class PartDemoGenerator implements Serializable {
 
     private void createPartsDemo() {
         for (int i = 0; i < 100; i++) {
-            partDemoList.add(new Part(LoremIpsum.getInstance().getWords(2), BigDecimal.valueOf(new Random().nextDouble()*1000+1)));
+            partDemoList.add(new Part(LoremIpsum.getInstance().getWords(2), BigDecimal.valueOf(new Random().nextDouble()*1000+1), LoremIpsum.getInstance().getWords(5,10)));
         }
     }
 

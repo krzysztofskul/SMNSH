@@ -10,6 +10,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" session="true" %>
 <html>
 <head>
+    <!--jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <%--JS--%>
+    <script src="/resources/js/projects/details.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -281,7 +285,8 @@
                         </c:when>
                         <c:otherwise>
                             <c:forEach items="${project.deviceList}" var="device">
-                                <div class="row pt-1 pb-2 border-top border-bottom no-gutters">
+                                <%--DEVICE NAME--%>
+                                <div class="row pt-1 pb-2 border-top border-bottom border-dark no-gutters">
                                     <div class="col-6 font-weight-bold">
                                         <p style="top: 25%; position: absolute">
                                             ${device.deviceCategory.name}
@@ -307,31 +312,62 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div id="configuration-details">
+                                <%--DEVICE CONFIGURATION--%>
+                                <div class="configuration-details border-bottom">
                                     <div class="row p-2 text-center font-weight-bold">
-                                        <div class="col-12 text-center">CONFIGURATION</div>
+                                        <div class="col-12 text-center">
+                                            <p class="langPL">KONFIGURACJA URZĄDZENIA</p>
+                                            <p class="langEN">DEVICE CONFIGURATION</p>
+                                        </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-3">PART ID</div>
-                                        <div class="col-6">PART NAME</div>
-                                        <div class="col-3">PART PRICE</div>
+                                        <div class="col-sm-2">
+                                            <p class="langPL">ID</p>
+                                            <p class="langEN">ID</p>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <p class="langPL">NAZWA CZĘŚCI</p>
+                                            <p class="langEN">PART NAME</p>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <p class="langPL">CENA CZĘŚCI</p>
+                                            <p class="langEN">PART PRICE</p>
+                                        </div>
+                                        <div class="col-sm-3 float-right">
+                                            <p class="langPL">AKCJE</p>
+                                            <p class="langEN">ACTIONS</p>
+                                        </div>
                                     </div>
                                     <c:forEach items="${device.configurationList}" var="configuration">
                                         <c:if test="${configuration.project.id eq project.id}">
+                                            <div id="'configurationId-'+${configuration.id}">
                                             <c:forEach items="${configuration.partList}" var="part">
-                                                <div class="row">
-                                                    <div class="col-3">${part.id}</div>
-                                                    <div class="col-6">${part.name}</div>
-                                                    <div class="col-3">${part.price}</div>
+                                                <div class="row mt-1 mb-1 no-gutters">
+                                                    <div class="col-sm-2">${part.id}</div>
+                                                    <div class="col-sm-4">${part.name}</div>
+                                                    <div class="col-sm-3">${part.price}</div>
+                                                    <div class="col-sm-3 float-right">
+                                                        <button class="btn btn-sm btn-primary" disabled>info</button>
+                                                        <button class="btn btn-sm btn-danger" disabled>DEL</button>
+                                                    </div>
                                                 </div>
                                             </c:forEach>
+                                            </div>
                                         </c:if>
                                     </c:forEach>
+                                    <div class="row mb-1">
+                                        <div class="col-sm-12">
+                                            <button class="id-add-part btn btn-sm btn-outline-success float-right" disabled>
+                                                <p class="langPL">DODAJ CZĘŚĆ</p>
+                                                <p class="langEN">ADD PART</p>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </c:forEach>
                         </c:otherwise>
                     </c:choose>
-                    <div class="row border-50 border-top bg-light mt-3">
+                    <div class="row border-dark border-top bg-light mt-5">
                         <div class="col-12 text-center mt-2 mb-2">
                             <p class="langPL">UWAGI DO PROJEKTU</p>
                             <p class="langEN">REMARKS</p>

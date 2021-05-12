@@ -1,13 +1,20 @@
 // todo/to commit:
 
     - demo mode to update (workflow with sales rep. creating new project)
-    - configuration.class ...
-        - check configuration front-end functionality ... js/jquery/ajax ...
+    - project/details.js ...
+        - add part to device configuration using js/jquery/ajax (?)
+            - addTestPartToConfiguration(configurationId) in project/details.js ...
+    - configuration.class
+        - part details / part 3d CAD
         - edit / delete configuration functionality/tests
         - add configuration button for logged sales rep.
         - check configuration button for project manager and designer
 
 // todo/done/committed:
+
+#2.0-SNAPSHOT
+    + project/details.js added
+    + Part.class and PartDemoGenerator.class updates
 
 #2.0-SNAPSHOT
     - configuration.class
