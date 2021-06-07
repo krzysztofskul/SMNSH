@@ -29,7 +29,8 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     /* file uploading configuration  */
 
-    private static final String LOCATION = "/tmp/"; // Temporary location where files will be stored
+    //private static final String LOCATION = "/tmp/"; // Temporary location where files will be stored
+    private static final String LOCATION = "D:\\KSKLN\\ZZX--TMP"; // Temporary location where files will be stored
 
     private static final long MAX_FILE_SIZE = 5242880; // 5MB : Max file size.
     // Beyond that size spring will throw exception.
@@ -39,6 +40,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     @Override
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+        //registration.setMultipartConfig(new MultipartConfigElement("./tmp"));
         registration.setMultipartConfig(getMultipartConfigElement());
     }
 

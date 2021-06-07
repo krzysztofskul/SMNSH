@@ -11,12 +11,15 @@ import pl.krzysztofskul.attachment.Attachment;
 import pl.krzysztofskul.attachment.AttachmentService;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
+import pl.krzysztofskul.device.part.Part;
+import pl.krzysztofskul.device.part.PartService;
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.investor.InvestorService;
 import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 import pl.krzysztofskul.logger.loggerUser.LoggerUserService;
 import pl.krzysztofskul.project.comment.Comment;
 import pl.krzysztofskul.project.comment.CommentService;
+import pl.krzysztofskul.project.configuration.Configuration;
 import pl.krzysztofskul.subcontractor.Subcontractor;
 import pl.krzysztofskul.subcontractor.SubcontractorService;
 import pl.krzysztofskul.user.User;
@@ -30,9 +33,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/projects")
@@ -47,6 +48,7 @@ public class ProjectController {
     private LoggerUserService<Object> loggerUserService;
     private LoggerProjectService<Object> loggerProjectService;
     private CommentService commentService;
+    private PartService partService;
 
     @Autowired
     public ProjectController(
@@ -58,7 +60,7 @@ public class ProjectController {
             AttachmentService attachmentService,
             LoggerUserService<Object> loggerUserService,
             LoggerProjectService<Object> loggerProjectService,
-            CommentService commentService) {
+            CommentService commentService, PartService partService) {
         this.projectService = projectService;
         this.investorService = investorService;
         this.subcontractorService = subcontractorService;
@@ -68,6 +70,7 @@ public class ProjectController {
         this.loggerUserService = loggerUserService;
         this.loggerProjectService = loggerProjectService;
         this.commentService = commentService;
+        this.partService = partService;
     }
 
     @ModelAttribute("allDeviceList")

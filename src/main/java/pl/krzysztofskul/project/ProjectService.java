@@ -5,9 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.device.Device;
+import pl.krzysztofskul.device.DeviceService;
+import pl.krzysztofskul.device.part.PartService;
 import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 import pl.krzysztofskul.project.comment.Comment;
 import pl.krzysztofskul.project.configuration.Configuration;
+import pl.krzysztofskul.project.configuration.ConfigurationService;
 import pl.krzysztofskul.user.User;
 
 import java.util.Collections;
@@ -19,20 +22,33 @@ import java.util.List;
 public class ProjectService {
 
     private ProjectRepo projectRepo;
+    private PartService partService;
+    private ConfigurationService configurationService;
     private LoggerProjectService loggerProjectService;
+    private DeviceService deviceService;
 
     @Autowired
     public ProjectService(
             ProjectRepo projectRepo,
-            LoggerProjectService loggerProjectService
-    ) {
+            PartService partService, ConfigurationService configurationService, LoggerProjectService loggerProjectService,
+            DeviceService deviceService) {
         this.projectRepo = projectRepo;
+        this.partService = partService;
+        this.configurationService = configurationService;
         this.loggerProjectService = loggerProjectService;
+        this.deviceService = deviceService;
     }
 
     /** CRUD METHODS */
 
     public void save(Project project) {
+        if (project.getId() == null) {
+            for (Device device : project.getDeviceList()) {
+                device.addTestConfiguration(configurationService.getTestConfiguration(project));
+                //deviceService.save(device);
+            }
+        }
+
         projectRepo.save(project);
     }
 
@@ -66,6 +82,7 @@ public class ProjectService {
     public Project loadByIdWithDeviceListAndConceptList(Long id) {
         Project project = projectRepo.findById(id).get();
         Hibernate.initialize(project.getDeviceList());
+        Hibernate.initialize(project.getConfigurationList());
         for (Device device : project.getDeviceList()) {
             Hibernate.initialize(device.getConfigurationList());
             for (Configuration configuration : device.getConfigurationList()) {
@@ -125,6 +142,7 @@ public class ProjectService {
             }
         }
     }
+
 
 
 }

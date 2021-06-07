@@ -313,7 +313,7 @@
                                     </div>
                                 </div>
                                 <%--DEVICE CONFIGURATION--%>
-                                <div class="configuration-details border-bottom">
+                                <div class="configuration-details border-bottom mb-5">
                                     <div class="row p-2 text-center font-weight-bold">
                                         <div class="col-12 text-center">
                                             <p class="langPL">KONFIGURACJA URZĄDZENIA</p>
@@ -339,13 +339,19 @@
                                         </div>
                                     </div>
                                     <c:forEach items="${device.configurationList}" var="configuration">
-                                        <c:if test="${configuration.project.id eq project.id}">
+
+                                        <c:if test="${device.id eq configuration.device.id && configuration.project.id eq project.id && project.configurationList.contains(configuration)}">
                                             <div id="'configurationId-'+${configuration.id}">
                                             <c:forEach items="${configuration.partList}" var="part">
                                                 <div class="row mt-1 mb-1 no-gutters">
                                                     <div class="col-sm-2">${part.id}</div>
                                                     <div class="col-sm-4">${part.name}</div>
-                                                    <div class="col-sm-3">${part.price}</div>
+                                                    <c:if test="${sessionScope.userLoggedIn.businessPosition eq 'SALES_REP'}">
+                                                        <div class="col-sm-3">${part.price}</div>
+                                                    </c:if>
+                                                    <c:if test="${sessionScope.userLoggedIn.businessPosition ne 'SALES_REP'}">
+                                                        <div class="col-sm-3">###</div>
+                                                    </c:if>
                                                     <div class="col-sm-3 float-right">
                                                         <button class="btn btn-sm btn-primary" disabled>info</button>
                                                         <button class="btn btn-sm btn-danger" disabled>DEL</button>
@@ -355,14 +361,16 @@
                                             </div>
                                         </c:if>
                                     </c:forEach>
+                                    <c:if test="${sessionScope.userLoggedIn.businessPosition eq 'SALES_REP'}">
                                     <div class="row mb-1">
                                         <div class="col-sm-12">
-                                            <button class="id-add-part btn btn-sm btn-outline-success float-right" disabled>
+                                            <button class="id-add-part btn btn-sm btn-outline-success float-right disabled" disabled>
                                                 <p class="langPL">DODAJ CZĘŚĆ</p>
                                                 <p class="langEN">ADD PART</p>
                                             </button>
                                         </div>
                                     </div>
+                                    </c:if>
                                 </div>
                             </c:forEach>
                         </c:otherwise>

@@ -19,13 +19,13 @@ public class Configuration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Project project;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Device device;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "configuration_part",
             joinColumns = {@JoinColumn(name = "configuration_id")},
