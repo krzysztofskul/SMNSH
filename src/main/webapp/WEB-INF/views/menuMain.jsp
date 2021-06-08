@@ -111,7 +111,7 @@
                     <p class="langEN">PROJECTS IN THE COMPANY</p>
                 </a>
             </li>
-            <c:if test="${sessionScope.userLoggedIn != null}">
+            <c:if test="${sessionScope.userLoggedIn != null && sessionScope.userLoggedIn.businessPosition ne 'PLANNER'}">
                 <li class="nav-item">
                     <c:set var="user" value="?userId=${sessionScope.userLoggedIn.id}"/>
                     <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/projects/all${user}">
@@ -146,19 +146,21 @@
             </li>
             </c:if>
         </ul>
-<%--        <ul class="nav nav-pills border-top m-1">--%>
-<%--            <li class="nav-item">--%>
-<%--                <a class="nav-link btn-light ml-1 mr-1" href="/concepts/all?filter=all disabled">--%>
-<%--                    <p class="langPL">ZAMÓWIENIA KONCEPCJI</p>--%>
-<%--                    <p class="langEN">CONCEPT ORDERS</p>--%>
-<%--                </a>--%>
-<%--            </li>--%>
-<%--            <li class="nav-item">--%>
-<%--                <a class="nav-link btn-light ml-1 mr-1 disabled" href="#">--%>
-<%--                    <p class="langPL">ZAMÓWIENIA WYTYCZNYCH</p>--%>
-<%--                    <p class="langEN">GUIDELINE ORDERS</p>--%>
-<%--                </a>--%>
-<%--            </li>--%>
+        <c:if test="${sessionScope.userLoggedIn.businessPosition eq 'PLANNER'}">
+            <ul class="nav nav-pills border-top m-1">
+                <li class="nav-item">
+                    <a class="nav-link btn-light ml-1 mr-1" href="/concepts/all?filter=waiting">
+                        <p class="langPL">ZAMÓWIENIA KONCEPCJI</p>
+                        <p class="langEN">CONCEPT ORDERS</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn-light ml-1 mr-1 disabled" href="#">
+                        <p class="langPL">ZAMÓWIENIA WYTYCZNYCH</p>
+                        <p class="langEN">GUIDELINE ORDERS</p>
+                    </a>
+                </li>
+            </c:if>
             <%--<li class="nav-item">
                 <div class="myTooltip">
                     <a class="nav-link btn-light ml-1 mr-1" href="#">

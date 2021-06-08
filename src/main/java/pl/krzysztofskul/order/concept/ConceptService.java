@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.order.Status;
+import pl.krzysztofskul.project.Project;
+import pl.krzysztofskul.project.ProjectService;
+import pl.krzysztofskul.project.StatusProject;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
@@ -20,19 +23,22 @@ public class ConceptService {
 
     private ConceptRepo conceptRepo;
     private UserService userService;
+    private ProjectService projectService;
 
     /**
      * constr.
      * @param conceptRepo
      * @param userService
+     * @param projectService
      */
     @Autowired
     public ConceptService(
             ConceptRepo conceptRepo,
-            UserService userService
-    ) {
+            UserService userService,
+            ProjectService projectService) {
         this.conceptRepo = conceptRepo;
         this.userService = userService;
+        this.projectService = projectService;
     }
 
     /**
@@ -42,6 +48,11 @@ public class ConceptService {
     /*** Create */
 
     public void save(Concept concept) {
+        if (concept.getProject() != null) {
+            Project project = projectService.loadById(concept.getProject().getId());
+            project.setStatus(StatusProject.STATUS_PROJECT_1);
+            projectService.save(project);
+        }
         conceptRepo.save(concept);
     }
 

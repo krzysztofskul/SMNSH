@@ -1,14 +1,22 @@
 // todo/to commit:
 
+    - planner projects page (to see conceptual designs to do) ...
+    - change project status automatically when planner finishes conceptual design ...
+
+#
     - demo mode to update (workflow with sales rep. creating new project)
     - readme.md update
     - configuration.class
         - part details / part 3d CAD
         - edit / delete configuration functionality/tests
-    - concepts button to set visible for planners ...
+
     - verify test devices' configuration for test database
 
 // todo/done/committed:
+
+#2.0-SNAPSHOT
+    + concepts button to set visible for planners
+    + change project status automatically when project designer orders conceptual design
 
 #2.0-SNAPSHOT
     + set standard configuration to the device/project functionality

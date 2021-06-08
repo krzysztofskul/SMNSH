@@ -108,6 +108,7 @@
             </div>
 
             <!-- MENU -->
+            <c:if test="${sessionScope.userLoggedIn.businessPosition ne 'PLANNER'}">
             <div class="card mt-5 mb-5">
                 <div class="card-header text-center">
                     <p class="langPL">MOJE PROJEKTY</p>
@@ -122,6 +123,7 @@
                     </a>
                 </div>
             </div>
+            </c:if>
 
             <!-- ORDERS FOR  PRELIMINARY DESIGN -->
             <c:if test="${sessionScope.userLoggedIn.businessPosition eq 'PROJECT_MANAGER'}">

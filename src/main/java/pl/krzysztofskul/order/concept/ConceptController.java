@@ -12,6 +12,7 @@ import pl.krzysztofskul.device.category.DeviceCategory;
 import pl.krzysztofskul.device.category.DeviceCategoryService;
 import pl.krzysztofskul.order.Status;
 import pl.krzysztofskul.project.ProjectService;
+import pl.krzysztofskul.project.StatusProject;
 import pl.krzysztofskul.questionnaire.*;
 import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForCT;
 import pl.krzysztofskul.questionnaire.questionSet.QuestionSetForMRI;
