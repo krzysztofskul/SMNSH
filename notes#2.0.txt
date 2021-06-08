@@ -5,15 +5,19 @@
     - configuration.class
         - part details / part 3d CAD
         - edit / delete configuration functionality/tests
-
+    - verify test devices' configuration for test database
 
 // todo/done/committed:
+
+#2.0-SNAPSHOT
+    + part list in details.jsp updates
+    + save project with test configuration functionality
 
 #2.0-SNAPSHOT
     - project/details.js / configuration for device
         + configuration button functionality
         + created testConfiguration method for new project and its devices
-            - part list in details.jsp bug to fix () // todo
+            - part list in details.jsp bug to fix
 
 #2.0-SNAPSHOT
     + project/details.js added

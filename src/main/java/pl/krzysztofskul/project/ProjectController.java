@@ -126,6 +126,11 @@ public class ProjectController {
         }
 
         if (projectNew.getId() == null) {
+            List<Device> deviceList = new ArrayList<>();
+            for (Device device : projectNew.getDeviceList()) {
+                deviceList.add(deviceService.loadByIdWithConfigurationList(device.getId()));
+            }
+            projectNew.setDeviceList(deviceList);
             projectService.save(projectNew);
             loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.PROJECT_CREATE, projectNew);
             loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "PROJECT CREATED", httpSession.getAttribute("userLoggedIn"));

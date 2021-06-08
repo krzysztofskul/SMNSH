@@ -19,10 +19,10 @@ public class Configuration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private Project project;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private Device device;
 
     @ManyToMany(cascade = CascadeType.PERSIST)

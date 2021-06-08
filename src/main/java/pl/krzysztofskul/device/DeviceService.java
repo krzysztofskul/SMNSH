@@ -1,5 +1,6 @@
 package pl.krzysztofskul.device;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,6 +44,12 @@ public class DeviceService {
 
     public Device loadById(Long id) {
         return deviceRepo.findById(id).get();
+    }
+
+    public Device loadByIdWithConfigurationList(Long id) {
+        Device device = this.loadById(id);
+        Hibernate.initialize(device.getConfigurationList());
+        return device;
     }
 
     /*** Update*/

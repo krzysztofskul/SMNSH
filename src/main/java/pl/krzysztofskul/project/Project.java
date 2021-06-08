@@ -287,6 +287,11 @@ public class Project {
 
     /** mmethods */
 
+    public void addConfiguration(Configuration configuration) {
+        this.configurationList.add(configuration);
+        configuration.setProject(this);
+    }
+
     @Override
     public String toString() {
         return "Project{" +

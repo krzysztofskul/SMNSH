@@ -42,7 +42,8 @@ public class ConfigurationService {
     public Configuration getTestConfiguration(Project project) {
 
             Configuration configuration = new Configuration();
-            configuration.setProject(project);
+            //configuration.setProject(project);
+            project.addConfiguration(configuration);
             List<Part> partList = new ArrayList<>();
             for (int i = 0; i < 5; i++) {
                 Random random = new Random();

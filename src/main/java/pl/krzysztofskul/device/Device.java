@@ -31,10 +31,10 @@ public class Device {
     @ManyToOne
     private DeviceCategory deviceCategory;
 
-    @ManyToMany(mappedBy = "deviceList", cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "deviceList")
     private List<Project> projectList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "device", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "device")
     private List<Configuration> configurationList = new ArrayList<>();
 
     /**

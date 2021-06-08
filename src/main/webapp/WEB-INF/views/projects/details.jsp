@@ -339,8 +339,7 @@
                                         </div>
                                     </div>
                                     <c:forEach items="${device.configurationList}" var="configuration">
-
-                                        <c:if test="${device.id eq configuration.device.id && configuration.project.id eq project.id && project.configurationList.contains(configuration)}">
+                                        <c:if test="${device.id eq configuration.device.id && configuration.project.id eq project.id}">
                                             <div id="'configurationId-'+${configuration.id}">
                                             <c:forEach items="${configuration.partList}" var="part">
                                                 <div class="row mt-1 mb-1 no-gutters">
@@ -357,7 +356,7 @@
                                                         <button class="btn btn-sm btn-danger" disabled>DEL</button>
                                                     </div>
                                                 </div>
-                                            </c:forEach>
+                                                </c:forEach>
                                             </div>
                                         </c:if>
                                     </c:forEach>
