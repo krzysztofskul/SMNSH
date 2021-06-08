@@ -4,6 +4,7 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.part.Part;
 import pl.krzysztofskul.device.part.PartService;
 import pl.krzysztofskul.project.Project;
@@ -59,7 +60,32 @@ public class ConfigurationService {
             configuration.setPartList(partList);
             //this.save(configuration);
             return configuration;
+    }
 
+    public Configuration getStandardConfiguration(Project project, Device device) {
+
+        Configuration configuration = new Configuration();
+        device.addConfiguration(configuration);
+
+        if (device.getDeviceCategory().getCode().contains("X-RAY")) {
+            for (long i = 1; i <= 5 ; i++) {
+                configuration.addPart(partService.loadById(i));
+            }
+        } else if (device.getDeviceCategory().getCode().contains("CT")) {
+            for (long i = 6; i <= 15 ; i++) {
+                configuration.addPart(partService.loadById(i));
+            }
+        } else if (device.getDeviceCategory().getCode().contains("MRI")) {
+            for (long i = 16; i <= 25 ; i++) {
+                configuration.addPart(partService.loadById(i));
+            }
+        } else {
+            return getTestConfiguration(project);
+        }
+
+        project.addConfiguration(configuration);
+
+        return configuration;
     }
 
 }

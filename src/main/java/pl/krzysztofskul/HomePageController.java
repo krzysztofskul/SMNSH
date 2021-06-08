@@ -59,7 +59,6 @@ public class HomePageController {
 			homePageService.createRecipients();
 			homePageService.createRealTestRecipients();
 			homePageService.createProjects();
-			homePageService.createConfigurations();
 		}
 		return "redirect:/home";
 	}

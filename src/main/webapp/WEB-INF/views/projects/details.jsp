@@ -353,7 +353,9 @@
                                                     </c:if>
                                                     <div class="col-sm-3 float-right">
                                                         <button class="btn btn-sm btn-primary" disabled>info</button>
-                                                        <button class="btn btn-sm btn-danger" disabled>DEL</button>
+                                                        <c:if test="${sessionScope.userLoggedIn.businessPosition eq 'SALES_REP'}">
+                                                            <button class="btn btn-sm btn-danger" disabled>DEL</button>
+                                                        </c:if>
                                                     </div>
                                                 </div>
                                                 </c:forEach>

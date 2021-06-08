@@ -45,6 +45,10 @@ public class Configuration {
         this.device = device;
     }
 
+    public Configuration(Project project) {
+        this.project = project;
+    }
+
     /**
      * getters and setters
      */
@@ -80,4 +84,13 @@ public class Configuration {
     public void setPartList(List<Part> partList) {
         this.partList = partList;
     }
+
+    /**
+     * methods
+     * */
+
+    public void addPart(Part part) {
+        this.partList.add(part);
+    }
+
 }

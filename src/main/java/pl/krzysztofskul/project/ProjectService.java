@@ -45,7 +45,7 @@ public class ProjectService {
         if (project.getId() == null) {
             for (Device device : project.getDeviceList()) {
                 Hibernate.initialize(device.getConfigurationList());
-                device.addTestConfiguration(configurationService.getTestConfiguration(project));
+                device.addConfiguration(configurationService.getStandardConfiguration(project, device));
                 //deviceService.save(device);
             }
         }

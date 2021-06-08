@@ -5,9 +5,14 @@
     - configuration.class
         - part details / part 3d CAD
         - edit / delete configuration functionality/tests
+    - concepts button to set visible for planners ...
     - verify test devices' configuration for test database
 
 // todo/done/committed:
+
+#2.0-SNAPSHOT
+    + set standard configuration to the device/project functionality
+    + project/details.jsp updates
 
 #2.0-SNAPSHOT
     + part list in details.jsp updates

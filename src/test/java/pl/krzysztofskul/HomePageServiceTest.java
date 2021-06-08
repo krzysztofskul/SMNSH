@@ -119,7 +119,6 @@ public class HomePageServiceTest {
         homePageService.createRecipients();
         homePageService.createRealTestRecipients();
         homePageService.createProjects();
-        homePageService.createConfigurations();
 
         List<Configuration> configurationList = configurationService.loadAll();
         assertTrue(configurationList != null && configurationList.size() > 0);

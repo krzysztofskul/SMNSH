@@ -106,7 +106,7 @@ public class Device {
      * methods
      */
 
-    public void addTestConfiguration(Configuration configuration) {
+    public void addConfiguration(Configuration configuration) {
         this.configurationList.add(configuration);
         configuration.setDevice(this);
     }
