@@ -11,6 +11,7 @@ import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.device.category.DeviceCategory;
 import pl.krzysztofskul.device.category.DeviceCategoryService;
 import pl.krzysztofskul.order.Status;
+import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.ProjectService;
 import pl.krzysztofskul.project.StatusProject;
 import pl.krzysztofskul.questionnaire.*;
@@ -35,7 +36,6 @@ public class ConceptController {
     private DeviceService deviceService;
     private DeviceCategoryService deviceCategoryService;
     private UserService userService;
-//    private QuestionFormService questionFormService;
     private ProjectService projectService;
 
     /**
@@ -262,10 +262,10 @@ public class ConceptController {
 
     @GetMapping("/setDesigner/{id}")
     public String setDesigner(
-            @PathVariable("id") Long id,
+            @PathVariable("id") Long conceptId,
             Model model
     ) {
-        model.addAttribute("concept", conceptService.loadById(id));
+        model.addAttribute("concept", conceptService.loadById(conceptId));
         model.addAttribute("usersDesigners", userService.loadAllDesigners());
         return "orders/concepts/setDesigner";
     }
@@ -282,12 +282,17 @@ public class ConceptController {
         return "redirect:/"+backToPage;
     }
 
-    @PostMapping("/setDesigner/{id}")
+    @PostMapping("/setDesigner/{plannerId}")
     public String setDesigner (
+            @PathVariable Long plannerId,
             @ModelAttribute("concept") Concept concept
     ) {
         concept.setStatus(Status.IN_PROGRESS);
+        concept.setPlanner(userService.loadById(plannerId));
         conceptService.save(concept);
+        Project project = projectService.loadById(concept.getProject().getId());
+        project.setDes(userService.loadById(plannerId));
+        projectService.save(project);
         return "redirect:/concepts/all?filter=all";
     }
 

@@ -11,7 +11,6 @@ import pl.krzysztofskul.attachment.Attachment;
 import pl.krzysztofskul.attachment.AttachmentService;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
-import pl.krzysztofskul.device.part.Part;
 import pl.krzysztofskul.device.part.PartService;
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.investor.InvestorService;
@@ -19,7 +18,6 @@ import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 import pl.krzysztofskul.logger.loggerUser.LoggerUserService;
 import pl.krzysztofskul.project.comment.Comment;
 import pl.krzysztofskul.project.comment.CommentService;
-import pl.krzysztofskul.project.configuration.Configuration;
 import pl.krzysztofskul.subcontractor.Subcontractor;
 import pl.krzysztofskul.subcontractor.SubcontractorService;
 import pl.krzysztofskul.user.User;
@@ -153,21 +151,20 @@ public class ProjectController {
     public String projectsAll(
             @RequestParam(name = "status", required = false) String status,
             @RequestParam(name = "userId", required = false) Long userId,
-            Model model
+            Model model,
+            HttpSession httpSession
     ) {
+        User userLoggedIn = (User) httpSession.getAttribute("userLoggedIn");
+
         if (status == null) {
-            List<Project> projectsAll = projectService.loadAllWithDeviceList();
+            List<Project> projectsAll;
             if (userId != null) {
-                projectsAll.removeIf(project -> !project.getProjectManager().getId().equals(userId) && !project.getSls().getId().equals(userId)); // todo ...
+                projectsAll = projectService.loadAllByIdWithDeviceList(userId);
+            } else {
+                projectsAll = projectService.loadAllWithDeviceList();
             }
-//            projectsAll.sort((Project o1, Project o2) -> o2.getId().compareTo(o1.getId()));
             if (projectsAll != null) {
-                projectsAll.sort(new Comparator<Project>() {
-                    @Override
-                    public int compare(Project o1, Project o2) {
-                        return o2.getId().compareTo(o1.getId());
-                    }
-                });
+                projectsAll.sort((o1, o2) -> o2.getId().compareTo(o1.getId()));
             }
             model.addAttribute("projectsAll", projectsAll);
             return "projects/all";

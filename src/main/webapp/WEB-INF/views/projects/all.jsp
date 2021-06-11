@@ -16,7 +16,6 @@
 
     <div class="container">
 
-
         <div class="card">
 
             <div class="card-header text-center">
@@ -46,8 +45,8 @@
                             <div class="row pt-1 pb-1">
                                 <div class="col-12">
                                     <div class="row border-top border-bottom border-dark pt-1">
-                                        <div class="col-1 text-light">
-                                            ${project.id}
+                                        <div class="col-1">
+                                            ID: ${project.id}
                                         </div>
                                         <div class="col-8 font-weight-bold">
                                             <div class="row">
@@ -169,8 +168,6 @@
                     </div>
                 </c:otherwise>
             </c:choose>
-
-
 
             <div class="card-footer">
                 <a id="newProjectBtnFooter" href="/projects/new" class="btn btn-success float-right">

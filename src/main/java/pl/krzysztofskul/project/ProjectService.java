@@ -12,6 +12,7 @@ import pl.krzysztofskul.project.comment.Comment;
 import pl.krzysztofskul.project.configuration.Configuration;
 import pl.krzysztofskul.project.configuration.ConfigurationService;
 import pl.krzysztofskul.user.User;
+import pl.krzysztofskul.user.UserService;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -26,17 +27,19 @@ public class ProjectService {
     private ConfigurationService configurationService;
     private LoggerProjectService loggerProjectService;
     private DeviceService deviceService;
+    private UserService userService;
 
     @Autowired
     public ProjectService(
             ProjectRepo projectRepo,
             PartService partService, ConfigurationService configurationService, LoggerProjectService loggerProjectService,
-            DeviceService deviceService) {
+            DeviceService deviceService, UserService userService) {
         this.projectRepo = projectRepo;
         this.partService = partService;
         this.configurationService = configurationService;
         this.loggerProjectService = loggerProjectService;
         this.deviceService = deviceService;
+        this.userService = userService;
     }
 
     /** CRUD METHODS */
@@ -53,13 +56,34 @@ public class ProjectService {
         projectRepo.save(project);
     }
 
-//    public void saveAndLog(Project project, String logActionEN) {
-//        projectRepo.save(project);
-//        loggerProjectService.log(project, LocalDateTime.now(), logActionEN, null);
-//    }
-
     public List<Project> loadAll() {
         return projectRepo.findAll();
+    }
+
+    public List<Project> loadAllByIdWithDeviceList(Long userId) {
+        User user = userService.loadById(userId);
+        List<Project> projectList;
+        switch (user.getBusinessPosition().name()) {
+            case "SALES_REP": {
+                projectList = projectRepo.findAllBySls(user);
+                break;
+            }
+            case "PROJECT_MANAGER": {
+                projectList = projectRepo.findAllByProjectManager(user);
+                break;
+            }
+            case "PLANNER": {
+                projectList = projectRepo.findAllByDes(user);
+                break;
+            }
+            default:
+                projectList = projectRepo.findAllById(userId);
+                break;
+        }
+        for (Project project : projectList) {
+            Hibernate.initialize(project.getDeviceList());
+        }
+        return projectList;
     }
 
     public List<Project> loadAllWithDeviceList() {
@@ -72,6 +96,12 @@ public class ProjectService {
 
     public Project loadById(Long id) {
         return projectRepo.findById(id).get();
+    }
+
+    public Project loadByIdWithConceptList(Long id) {
+        Project project = projectRepo.findById(id).get();
+        Hibernate.initialize(project.getConceptList());
+        return project;
     }
 
     public Project loadByIdWithDeviceList(Long id) {
@@ -143,7 +173,5 @@ public class ProjectService {
             }
         }
     }
-
-
 
 }

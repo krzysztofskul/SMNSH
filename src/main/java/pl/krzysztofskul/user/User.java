@@ -69,6 +69,8 @@ public class User {
     @OneToMany(mappedBy = "sls", cascade = CascadeType.ALL)
     private List<Project> projectListAsSalesRep = new ArrayList<>();
 
+    @OneToMany(mappedBy = "des")
+    private List<Project> projectListAsPlanner = new ArrayList<>();
 
     @OneToOne
     private Avatar avatar;
@@ -188,6 +190,14 @@ public class User {
 
     public void setProjectListAsSalesRep(List<Project> projectListAsSalesRep) {
         this.projectListAsSalesRep = projectListAsSalesRep;
+    }
+
+    public List<Project> getProjectListAsPlanner() {
+        return projectListAsPlanner;
+    }
+
+    public void setProjectListAsPlanner(List<Project> projectListAsPlanner) {
+        this.projectListAsPlanner = projectListAsPlanner;
     }
 
     public Avatar getAvatar() {

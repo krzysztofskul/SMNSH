@@ -19,7 +19,7 @@
 <%--        <a href="/initDB">INIT.DB</a>--%>
 <%--        <a href="/">HOME</a>--%>
 <%--        <a href="/concepts/all">CONCEPTS ALL</a>--%>
-        <ul class="nav nav-pills">
+        <ul class="nav nav-pills mb-2">
             <li class="nav-item">
                 <a id="demoModeBtn" class="nav-link btn btn-light ml-1 mr-1 disabled" href="#">
                     <p class="langPL">TRYB DEMO</p>
@@ -111,15 +111,13 @@
                     <p class="langEN">PROJECTS IN THE COMPANY</p>
                 </a>
             </li>
-            <c:if test="${sessionScope.userLoggedIn != null && sessionScope.userLoggedIn.businessPosition ne 'PLANNER'}">
-                <li class="nav-item">
-                    <c:set var="user" value="?userId=${sessionScope.userLoggedIn.id}"/>
-                    <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/projects/all${user}">
-                        <p class="langPL">MOJE PROJEKTY</p>
-                        <p class="langEN">MY PROJECTS</p>
-                    </a>
-                </li>
-            </c:if>
+            <li class="nav-item">
+                <c:set var="user" value="?userId=${sessionScope.userLoggedIn.id}"/>
+                <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/projects/all${user}">
+                    <p class="langPL">MOJE PROJEKTY</p>
+                    <p class="langEN">MY PROJECTS</p>
+                </a>
+            </li>
             <li class="nav-item border-left">
                 <a class="nav-link btn-light ml-1 mr-1" href="/users/all">
                     <p class="langPL">UŻYTKOWNICY</p>

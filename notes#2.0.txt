@@ -1,7 +1,8 @@
 // todo/to commit:
 
-    - planner projects page (to see conceptual designs to do) ...
-    - change project status automatically when planner finishes conceptual design ...
+    - fix bug: set correct planner to the concept ...
+    - planner projects page (to see conceptual designs to do)
+    - change project status automatically when planner finishes conceptual design
 
 #
     - demo mode to update (workflow with sales rep. creating new project)
@@ -13,6 +14,11 @@
     - verify test devices' configuration for test database
 
 // todo/done/committed:
+
+#2.0-SNAPSHOT
+    + set designer functionality
+    + order for conceptual design not visible for sales rep. and planner
+    + front-end updates
 
 #2.0-SNAPSHOT
     + concepts button to set visible for planners

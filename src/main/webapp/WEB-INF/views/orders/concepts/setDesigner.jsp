@@ -17,6 +17,7 @@
 
     <form:form modelAttribute="concept" method="post">
         <form:hidden path="id"/>
+        <form:hidden path="project.id"/>
         <form:hidden path="dateTimeDeadline"/>
         <form:hidden path="status"/>
         <form:hidden path="priority"/>
@@ -24,6 +25,7 @@
         <form:hidden path="client"/>
         <form:hidden path="device.id"/>
         <form:hidden path="dateTimeCreated"/>
+        <form:hidden path="questionForm.id"/>
         <c:if test="${concept.guideline ne null}">
             <form:hidden path="guideline.id"/>
         </c:if>

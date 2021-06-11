@@ -32,7 +32,7 @@
                 <div class="row border-top border-bottom bg-light font-weight-bold mb-2">
                     <div class="col-2">${concept.id}</div>
                     <div class="col-3">${concept.device.model}</div>
-                    <div class="col-3">DLA / FOR : </div>
+                    <div class="col-3">DLA / FOR : <span class="text-black-50">${concept.project.projectName}</span></div>
                     <div class="col-3">${concept.client}</div>
                 </div>
                 <div class="row">

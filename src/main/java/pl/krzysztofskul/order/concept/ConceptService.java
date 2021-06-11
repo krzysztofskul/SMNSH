@@ -48,11 +48,6 @@ public class ConceptService {
     /*** Create */
 
     public void save(Concept concept) {
-        if (concept.getProject() != null) {
-            Project project = projectService.loadById(concept.getProject().getId());
-            project.setStatus(StatusProject.STATUS_PROJECT_1);
-            projectService.save(project);
-        }
         conceptRepo.save(concept);
     }
 

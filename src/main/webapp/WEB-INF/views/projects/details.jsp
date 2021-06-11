@@ -28,7 +28,7 @@
                     <c:if test="${edit eq true}">
                         <form:hidden path="id"/>
                     </c:if>
-                    <div class="row border-bottom pb-2">
+                    <div class="row border-bottom pb-1 pt-1 bg-lightgrey-75">
                         <div class="col-sm-4 ml-2 position-absolute d-inline-block p-0">
                             <div class="text-left position-relative d-inline-block mr-2">
                                 <p class="langPL"> ID:</p>
@@ -258,7 +258,7 @@
                 </div>
 
                 <div class="card-body">
-                    <div class="row border-50 border-top pb-3 bg-light">
+                    <div class="row border-top pb-3 mb-1 bg-lightgrey-75">
                         <div class="col-12 text-center pt-2">
                             <p class="langPL">URZĄDZENIA PLANOWANE DO INSTALACJI:</p>
                             <p class="langEN">DEVICES PLANNED FOR INSTALLATION:</p>
@@ -376,7 +376,7 @@
                             </c:forEach>
                         </c:otherwise>
                     </c:choose>
-                    <div class="row border-dark border-top bg-light mt-5">
+                    <div class="row border-dark border-top bg-lightgrey-75 mt-5">
                         <div class="col-12 text-center mt-2 mb-2">
                             <p class="langPL">UWAGI DO PROJEKTU</p>
                             <p class="langEN">REMARKS</p>
@@ -389,17 +389,18 @@
                                     <form:textarea path="remarks" cssClass="w-100"/>
                                 </c:when>
                                 <c:otherwise>
-                                    <c:if test="${project.recipient ne null}">
+                                    <c:if test="${project.remarks ne null}">
                                         <p class="font-italic mt-2 mb-2">${project.remarks}</p>
                                     </c:if>
-                                    <c:if test="${project.recipient eq null}">
-                                        <p class="font-italic mt-2 mb-2">BRAK UWAG DO TEGO PROJEKTU / NO ADDITIONAL REMARKS TO THI PROJECT</p>
+                                    <c:if test="${project.remarks eq null || project.remarks.length() == 0}">
+                                        <p class="langPL">BRAK UWAG DO TEGO PROJEKTU</p>
+                                        <p class="langEN">NO ADDITIONAL REMARKS TO THI PROJECT</p>
                                     </c:if>
                                 </c:otherwise>
                             </c:choose>
                         </div>
                     </div>
-                    <div class="row border-50 border-top bg-light mt-3">
+                    <div class="row border-50 border-top bg-lightgrey-75 mt-3">
                         <div class="col-12 text-center mt-2 mb-3">
                             <p class="langPL">ZAŁĄCZNIKI</p>
                             <p class="langEN">ATTACHEMNTS</p>
@@ -483,7 +484,7 @@
             <div class="card mt-2 border-dark border-left-0 border-right-0">
 
                 <div class="card-header text-center p-0">
-                    <div class="m-0 p-2">
+                    <div class="m-0 p-2 bg-lightgrey-75">
                         <div class="langPL">ZAMÓWIENIA PROJEKTU KONCEPCYJNEGO</div>
                         <div class="langEN">LIST OF ORDERS FOR CONCEPTUAL (PRELIMINARY) PROJECT</div>
                     </div>
@@ -723,14 +724,14 @@
 
                 <div class="card-footer">
                     <c:choose>
-                        <c:when test="${sessionScope.userLoggedIn.businessPosition.toString() ne 'Projektant/Planista / Designer/Planner'}">
+                        <c:when test="${sessionScope.userLoggedIn.businessPosition ne 'SALES_REP' && sessionScope.userLoggedIn.businessPosition ne 'PLANNER'}">
                             <a id="newConceptBtn" href="/concepts/new?projectId=${project.id}&userId=${project.projectManager.id}&backToPage=/projects/details/${project.id}" class="btn btn-success float-right">
                                 <div class="langPL">ZAMÓWIENIE PROJEKTU KONCEPCYJNEGO</div>
                                 <div class="langEN">ORDER FOR CONCEPTUAL (PRELIMINARY PROJECT)</div>
                             </a>
                         </c:when>
                         <c:otherwise>
-                            <a id="newConceptBtn" href="/concepts/new?projectId=${project.id}&userId=${project.projectManager.id}" class="btn btn-success float-right disabled">
+                            <a id="newConceptBtn" href="#" class="btn btn-success float-right disabled">
                                 <div class="langPL">ZAMÓWIENIE PROJEKTU KONCEPCYJNEGO</div>
                                 <div class="langEN">ORDER FOR CONCEPTUAL (PRELIMINARY PROJECT)</div>
                             </a>

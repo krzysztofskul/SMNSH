@@ -51,6 +51,9 @@ public class Project {
     @ManyToOne
     private User sls;
 
+    @ManyToOne
+    private User des;
+
     private String log;
 
     private String pur;
@@ -77,7 +80,7 @@ public class Project {
 
     private String remarks;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "project", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
     private List<Concept> conceptList = new ArrayList<>();
 
     @OneToOne(mappedBy = "project", cascade = CascadeType.REMOVE, orphanRemoval = true)
@@ -171,6 +174,14 @@ public class Project {
 
     public void setSls(User sls) {
         this.sls = sls;
+    }
+
+    public User getDes() {
+        return des;
+    }
+
+    public void setDes(User des) {
+        this.des = des;
     }
 
     public String getLog() {
@@ -286,6 +297,11 @@ public class Project {
     }
 
     /** mmethods */
+
+    public void addConcept(Concept concept) {
+        this.conceptList.add(concept);
+        concept.setProject(this);
+    }
 
     public void addConfiguration(Configuration configuration) {
         this.configurationList.add(configuration);
