@@ -276,9 +276,12 @@ public class ConceptController {
             @RequestParam(name = "backToPage", required = true) String backToPage
     ) {
         Concept concept = conceptService.loadById(conceptId);
+        Project project = concept.getProject();
         concept.setPlanner(userService.loadById(designerID));
+        project.setDes(userService.loadById(designerID));
         concept.setStatus(Status.IN_PROGRESS);
         conceptService.save(concept);
+        projectService.save(project);
         return "redirect:/"+backToPage;
     }
 

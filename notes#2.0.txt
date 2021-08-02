@@ -1,10 +1,9 @@
 // todo/to commit:
 
-    - fix bug: set correct planner to the concept ...
+#
     - planner projects page (to see conceptual designs to do)
     - change project status automatically when planner finishes conceptual design
 
-#
     - demo mode to update (workflow with sales rep. creating new project)
     - readme.md update
     - configuration.class
@@ -14,6 +13,10 @@
     - verify test devices' configuration for test database
 
 // todo/done/committed:
+
+#2.0-FINAL
+    + set designer to the concept and to the project bug fixed
+    + designer's projects page
 
 #2.0-SNAPSHOT
     + set designer functionality
