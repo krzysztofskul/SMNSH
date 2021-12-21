@@ -14,6 +14,9 @@
 
 // todo/done/committed:
 
+#2.0.1-FINAL
+    + Amazon AWS configuration
+
 #2.0-FINAL
     + set designer to the concept and to the project bug fixed
     + designer's projects page

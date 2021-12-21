@@ -1,5 +1,7 @@
 # SMNSH (in progress..)
 
+DEMO PAGE : http://smnsh-env-2.eba-mcgkvimc.eu-central-1.elasticbeanstalk.com/
+
   <!--![](src/main/webapp/resources/img/forReadme/img_prntscrn_homepage_001.png)-->
   <img src="src/main/webapp/resources/img/forReadme/img_prntscrn_homepage_001.png" width="auto"/>
 

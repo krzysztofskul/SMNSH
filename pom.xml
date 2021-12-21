@@ -7,7 +7,7 @@
   <groupId>pl.krzysztofskul</groupId>
   <artifactId>smnsh</artifactId>
   <packaging>war</packaging>
-  <version>1.0-FINAL</version>
+  <version>2.0.1-FINAL</version>
   <name>smnsh Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
@@ -121,8 +121,9 @@
     <dependency>
         <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
-        <version>5.1.39</version>
-        <!--<version>8.0.17</version>-->
+        <!--<version>5.1.39</version>-->
+        <version>8.0.17</version>
+        <!--<scope>runtime</scope>-->
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
     <dependency>
