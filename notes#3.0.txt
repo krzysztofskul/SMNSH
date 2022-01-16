@@ -1,12 +1,17 @@
 TODO:
 
-# 3.0-2
-    - ProjectCharterController
-    - ProjectCharterService
-    - ProjectCharterRepo
+Idea for #3.0:
+Project charter for project managers. Based on PMI/PMBOK Guide.
 
 
 TODO / DONE:
+
+# 3.0-2
+    + ProjectCharterController created
+    + ProjectCharterService created
+    + ProjectCharterRepo created
+    + project-charter.jsp created (test link to project added)
+    + project.jsp updated (test link to project charter added)
 
 # 3.0-1
     + ProjectCharter.class created

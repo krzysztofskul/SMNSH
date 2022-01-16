@@ -28,6 +28,9 @@
                     <c:if test="${edit eq true}">
                         <form:hidden path="id"/>
                     </c:if>
+                    <div class="test">
+                        <p><a href="/project-charter/${project.projectCharter.id}">PROJECT CHARTER >>></a></p>
+                    </div>
                     <div class="row border-bottom pb-1 pt-1 bg-lightgrey-75">
                         <div class="col-sm-4 ml-2 position-absolute d-inline-block p-0">
                             <div class="text-left position-relative d-inline-block mr-2">
