@@ -1,0 +1,13 @@
+TODO:
+
+# 3.0-2
+    - ProjectCharterController
+    - ProjectCharterService
+    - ProjectCharterRepo
+
+
+TODO / DONE:
+
+# 3.0-1
+    + ProjectCharter.class created
+    + ProjectCharter one-to-one relation with Project.class created

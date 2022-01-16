@@ -98,14 +98,14 @@ public class AppConfig implements WebMvcConfigurer {
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 
         /* local DB*/
-        /*dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?useSSL=false");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?useSSL=false");
         dataSource.setUsername("root");
-        dataSource.setPassword("@xDpo9Ec16N7&OP0");*/
+        dataSource.setPassword("@xDpo9Ec16N7&OP0"); // randomly generated password for tests at localhost
 
         /* remote DB */
-        dataSource.setUrl("jdbc:mysql://db202112192116.cn58moquguac.eu-central-1.rds.amazonaws.com:3306/smnsh?useSSL=false");
-        dataSource.setUsername(System.getProperty("RDS_USERNAME"));
-        dataSource.setPassword(System.getProperty("RDS_PASSWORD"));
+//        dataSource.setUrl("");
+//        dataSource.setUsername(System.getProperty("RDS_USERNAME"));
+//        dataSource.setPassword(System.getProperty("RDS_PASSWORD"));
 
 
         return dataSource;
