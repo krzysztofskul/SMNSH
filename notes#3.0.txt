@@ -6,6 +6,10 @@ Project charter for project managers. Based on PMI/PMBOK Guide.
 
 TODO / DONE:
 
+# 3.0-3
+    + projectCharter.js created
+    + front-end updates for project details and project charter page
+
 # 3.0-2
     + ProjectCharterController created
     + ProjectCharterService created

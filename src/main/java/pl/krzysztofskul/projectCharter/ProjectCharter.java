@@ -1,5 +1,6 @@
 package pl.krzysztofskul.projectCharter;
 
+import com.thedeanda.lorem.LoremIpsum;
 import pl.krzysztofskul.project.Project;
 
 import javax.persistence.*;
@@ -14,11 +15,11 @@ public class ProjectCharter {
     @OneToOne
     private Project project;
 
-    private String reasons;
+    private String reasons  = LoremIpsum.getInstance().getWords(5);
 
-    private String goals;
+    private String goals = LoremIpsum.getInstance().getWords(5);
 
-    private String risks;
+    private String risks  = LoremIpsum.getInstance().getWords(5);
 
     /**
      * CONSTRUCTORS
