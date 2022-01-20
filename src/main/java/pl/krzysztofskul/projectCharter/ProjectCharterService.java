@@ -19,4 +19,7 @@ public class ProjectCharterService {
         return projectCharterRepo.findById(id).get();
     }
 
+    public ProjectCharter save(ProjectCharter projectCharter) {
+        return projectCharterRepo.save(projectCharter);
+    }
 }

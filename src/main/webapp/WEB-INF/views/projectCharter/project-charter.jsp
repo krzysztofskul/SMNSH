@@ -11,15 +11,16 @@
 <head>
     <title>SMNSH</title>
 
+    <!--jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+
     <%--bootstrap--%>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <%--css--%>
     <link rel="stylesheet" type="text/css" href="/resources/css/card.css"/>
     <link rel="stylesheet" type="text/css" href="/resources/css/row.css"/>
-    <!--jQuery-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <!--JS files-->
-    <script src="/resources/js/projectCharter/projectCharter.js" type="text/javascript"></script>
+    <script src="<c:url value="/resources/js/projectCharter/projectCharter.js"/>" type="text/javascript"></script>
 
 </head>
 <body>
@@ -44,12 +45,12 @@
                         <div class="col">
                             <p class="langPL">ID karty projektu</p>
                             <p class="langEN">Project charter ID</p>
-                            <p>${projectCharter.id}</p>
+                            <p id="projectCharterId">${projectCharter.id}</p>
                         </div>
                         <div class="col">
                             <p class="langPL">ID projektu</p>
                             <p class="langEN">Project ID</p>
-                            <p>${projectCharter.project.id}</p>
+                            <p id="projectId">${projectCharter.project.id}</p>
                         </div>
                         <div class="col">
                         </div>
@@ -74,10 +75,10 @@
                         <div class="input-group-text">
                             <div>
                                 <div class="langPL">GENEZA PROJEKTU</div>
-                                <div class="langEN">BUSINESS CASE</div>
+                                <div class="langEN">BACKGROUND</div>
                             </div>
                         </div>
-                        <textarea class="form-control" disabled aria-label="REASONS">${projectCharter.reasons}</textarea>
+                        <textarea class="form-control" disabled aria-label="REASONS" id="reasons">${projectCharter.reasons}</textarea>
                     </div>
                     <div class="input-group m-1">
                         <div class="input-group-text">
@@ -86,7 +87,7 @@
                                 <div class="langEN">GOAL STATEMENT</div>
                             </div>
                         </div>
-                        <textarea class="form-control" disabled aria-label="REASONS">${projectCharter.goals}</textarea>
+                        <textarea class="form-control" disabled aria-label="GOALS" id="goals">${projectCharter.goals}</textarea>
                     </div>
                     <div class="input-group m-1">
                         <div class="input-group-text">
@@ -95,7 +96,7 @@
                                 <div class="langEN">RISKS</div>
                             </div>
                         </div>
-                        <textarea class="form-control" disabled aria-label="REASONS">${projectCharter.risks}</textarea>
+                        <textarea class="form-control" disabled aria-label="RISKS" id="risks">${projectCharter.risks}</textarea>
                     </div>
                 </div>
                 <div class="card-footer">

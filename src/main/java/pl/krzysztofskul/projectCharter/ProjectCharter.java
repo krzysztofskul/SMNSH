@@ -1,18 +1,26 @@
 package pl.krzysztofskul.projectCharter;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.thedeanda.lorem.LoremIpsum;
 import pl.krzysztofskul.project.Project;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class ProjectCharter {
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
+public class ProjectCharter implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
     @OneToOne
+    @JsonIgnore
     private Project project;
 
     private String reasons  = LoremIpsum.getInstance().getWords(5);
