@@ -3,8 +3,17 @@ TODO:
 Idea for #3.0:
 Project charter for project managers. Based on PMI/PMBOK Guide.
 
+# 3.0-X
+    - save button functionality
+    - ajax post method to add for editing project charter
+    - milestones class to add
+
 
 TODO / DONE:
+
+# 3.0-4
+    + edit button functionality added
+    + cancel button functionality added
 
 # 3.0-3
     + projectCharter.js created
