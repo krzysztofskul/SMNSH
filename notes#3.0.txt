@@ -1,0 +1,34 @@
+TODO:
+
+Idea for #3.0:
+Project charter for project managers. Based on PMI/PMBOK Guide.
+
+# 3.0-X
+    - milestones class to add
+
+TODO / DONE:
+
+# 3.0-5
+    + ProjectCharterControllerRest.class added
+    + jackson dependency added to pom.xml
+    + save button functionality
+    + jquery ajax put method added for editing project charter
+
+# 3.0-4
+    + edit button functionality added
+    + cancel button functionality added
+
+# 3.0-3
+    + projectCharter.js created
+    + front-end updates for project details and project charter page
+
+# 3.0-2
+    + ProjectCharterController created
+    + ProjectCharterService created
+    + ProjectCharterRepo created
+    + project-charter.jsp created (test link to project added)
+    + project.jsp updated (test link to project charter added)
+
+# 3.0-1
+    + ProjectCharter.class created
+    + ProjectCharter one-to-one relation with Project.class created

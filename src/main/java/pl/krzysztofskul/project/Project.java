@@ -7,6 +7,7 @@ import pl.krzysztofskul.logger.loggerProject.LoggerProject;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.project.comment.Comment;
 import pl.krzysztofskul.project.configuration.Configuration;
+import pl.krzysztofskul.projectCharter.ProjectCharter;
 import pl.krzysztofskul.subcontractor.Subcontractor;
 import pl.krzysztofskul.user.User;
 
@@ -26,6 +27,9 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToOne(mappedBy = "project", cascade = CascadeType.PERSIST)
+    private ProjectCharter projectCharter;
 
 //    @NotBlank
     @ManyToOne
@@ -98,11 +102,19 @@ public class Project {
     /** constructors */
 
     public Project() {
+        this.setProjectCharter(new ProjectCharter(this));
         this.deadline = LocalDateTime.now().plusDays(Long.parseLong("1"));
     }
 
     /** getters and setters */
 
+    public ProjectCharter getProjectCharter() {
+        return projectCharter;
+    }
+
+    public void setProjectCharter(ProjectCharter projectCharter) {
+        this.projectCharter = projectCharter;
+    }
 
     public Long getId() {
         return id;
