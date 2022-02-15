@@ -24,12 +24,14 @@
 				<!-- MENU PROJECTS ALL	 -->
 				<div class="row">
 				
+				<c:if test="${param.userId ne null}">
 					<div class="col-12">
 						<jsp:include page="../menuProjectsAll.jsp">
 							<jsp:param name="projectsAll" value="${projectsAll}"/>
 							<jsp:param name="userId" value="${param.userId}"/>
 						</jsp:include>
 					</div>
+				</c:if>
 				
 				</div>
 				
