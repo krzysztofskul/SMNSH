@@ -8,6 +8,9 @@ Project charter for project managers. Based on PMI/PMBOK Guide.
 
 TODO / DONE:
 
+# 3.0-6
+	+ new method in project controller added: @GetMapping() public String projectsAllByUserByStatus(){};
+
 # 3.0-5
     + ProjectCharterControllerRest.class added
     + jackson dependency added to pom.xml
