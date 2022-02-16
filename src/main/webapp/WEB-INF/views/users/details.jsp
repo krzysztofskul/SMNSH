@@ -109,7 +109,7 @@
 
             <!-- MENU -->
 
-            <div class="card mt-5 mb-5">
+            <%-- <div class="card mt-5 mb-5">
                 <div class="card-header text-center">
                     <p class="langPL">MOJE PROJEKTY</p>
                     <p class="langEN">MY PROJECTS</p>
@@ -122,7 +122,7 @@
                         </svg>
                     </a>
                 </div>
-            </div>
+            </div> --%>
 
             <!-- ORDERS FOR  PRELIMINARY DESIGN -->
             <c:if test="${sessionScope.userLoggedIn.businessPosition eq 'PROJECT_MANAGER'}">

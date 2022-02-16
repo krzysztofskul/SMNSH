@@ -225,6 +225,20 @@ public class ProjectController {
 
     }
 
+    @GetMapping("/all/{statusCode}")
+    public String projectsAllByUserByStatus(
+    		@RequestParam(name = "userId", required = false) Long userId,
+    		@PathVariable String statusCode,
+    		Model model
+    		
+	) {
+    	List<Project> projectsAll = projectService.loadAllByUserId(userId);
+    	projectsAll.removeIf(project -> !project.getStatus().getCode().equals(statusCode));
+    	
+    	model.addAttribute("projectsAll", projectsAll);
+    	return "projects/all";
+    }
+    
     @GetMapping("/details/{id}")
     public String projectDetails(
             @PathVariable("id") Long id,
@@ -283,6 +297,7 @@ public class ProjectController {
             @PathVariable("id") Long id,
             @ModelAttribute("project") @Valid Project project, BindingResult result,
             @ModelAttribute("backToPage") String backToPage,
+            @RequestParam(name = "edit", required = false) boolean edit,
             Model model,
             HttpSession httpSession
     ) {

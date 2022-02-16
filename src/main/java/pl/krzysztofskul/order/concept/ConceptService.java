@@ -74,6 +74,7 @@ public class ConceptService {
         Hibernate.initialize(concept.getDevice());
         Hibernate.initialize(concept.getAuthor());
         Hibernate.initialize(concept.getGuideline());
+        Hibernate.initialize(concept.getProject());
         return concept;
     }
 

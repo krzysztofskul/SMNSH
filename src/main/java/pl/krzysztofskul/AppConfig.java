@@ -28,6 +28,7 @@ import pl.krzysztofskul.device.DeviceConverter;
 import pl.krzysztofskul.email.EmailCredentials;
 import pl.krzysztofskul.localDateTime.LocalDateTimeConverter;
 import pl.krzysztofskul.localDateTime.LocalDateTimeConverterToString;
+import pl.krzysztofskul.project.configuration.ConfigurationConverter;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -129,12 +130,17 @@ public class AppConfig implements WebMvcConfigurer {
     public LocalDateTimeConverterToString getLocalDateTimeConverterToString() {
         return new LocalDateTimeConverterToString();
     }
+    @Bean
+    public ConfigurationConverter getConfigurationConverter() {
+    	return new ConfigurationConverter();
+    }
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(getDeviceConverter());
         registry.addConverter(getLocalDateTimeConverter());
         registry.addConverter(getLocalDateTimeConverterToString());
+        registry.addConverter(getConfigurationConverter());
     }
 
     @Bean

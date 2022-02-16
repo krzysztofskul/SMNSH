@@ -12,8 +12,10 @@ import pl.krzysztofskul.project.comment.Comment;
 import pl.krzysztofskul.project.configuration.Configuration;
 import pl.krzysztofskul.project.configuration.ConfigurationService;
 import pl.krzysztofskul.user.User;
+import pl.krzysztofskul.user.UserBusinessPosition;
 import pl.krzysztofskul.user.UserService;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -59,6 +61,34 @@ public class ProjectService {
     public List<Project> loadAll() {
         return projectRepo.findAll();
     }
+    
+	public List<Project> loadAllByUserId(Long userId) {
+		// TODO Auto-generated method stub
+		
+		List<Project> projectList = new ArrayList<Project>();
+		
+		User user = userService.loadById(userId);
+		switch (user.getBusinessPosition()) {
+		case SALES_REP: {
+			 projectList = projectRepo.findAllBySls(user);
+			break;
+		}
+		case PROJECT_MANAGER: {
+			projectList = projectRepo.findAllByProjectManager(user);
+			break;
+		}
+		case PLANNER: {
+			projectList = projectRepo.findAllByDes(user);
+			break;
+		}
+		default:
+			break;
+		}
+        for (Project project : projectList) {
+            Hibernate.initialize(project.getDeviceList());
+        }
+		return projectList;
+	}
 
     public List<Project> loadAllByIdWithDeviceList(Long userId) {
         User user = userService.loadById(userId);
@@ -173,5 +203,7 @@ public class ProjectService {
             }
         }
     }
+
+
 
 }
