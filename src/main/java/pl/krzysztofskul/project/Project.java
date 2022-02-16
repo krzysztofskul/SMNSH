@@ -96,7 +96,7 @@ public class Project {
     @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
     private List<Comment> commentList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "project", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
+    @OneToMany(mappedBy = "project", cascade = {CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
     private List<Configuration> configurationList = new ArrayList<>();
 
     /** constructors */

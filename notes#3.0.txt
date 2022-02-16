@@ -4,9 +4,14 @@ Idea for #3.0:
 Project charter for project managers. Based on PMI/PMBOK Guide.
 
 # 3.0-X
+	
     - milestones class to add
 
 TODO / DONE:
+
+# 3.0-7
+	+ bug fixed when edit project
+	+ configuration converter class created
 
 # 3.0-6.1
 	+ front end update

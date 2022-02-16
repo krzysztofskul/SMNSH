@@ -30,6 +30,11 @@
                 <div class="card-header">
                     <c:if test="${edit eq true}">
                         <form:hidden path="id"/>
+                        <form:select path="configurationList" multiple="true">
+                                <c:forEach items="${project.configurationList}" var="configuration">
+                                        <form:option value="${configuration.id}" label="configuration id: ${configuration.id}" selected="true"/>
+                                </c:forEach>
+                         </form:select>
                     </c:if>
                     <div class="row smnshRow mb-2">
                         <div class="col">

@@ -297,6 +297,7 @@ public class ProjectController {
             @PathVariable("id") Long id,
             @ModelAttribute("project") @Valid Project project, BindingResult result,
             @ModelAttribute("backToPage") String backToPage,
+            @RequestParam(name = "edit", required = false) boolean edit,
             Model model,
             HttpSession httpSession
     ) {
