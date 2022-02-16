@@ -18,7 +18,15 @@
     <div class="container">
         <div class="card">
             <div class="card-header font-weight-bold">
-                ${concept.id} | ${concept.title}
+	            <div class="row">
+	            	<div class="col-3">
+	            		${concept.id} | ${concept.title}
+	            	</div>
+	            	<div class="col-9 border-left text-right">
+	            		<a href="/projects/details/${concept.project.id}">PROJECT >>></a>
+	            	</div>
+	            </div>
+                
             </div>
             <div class="card-body">
                 <div class="row">

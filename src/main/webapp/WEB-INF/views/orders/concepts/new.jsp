@@ -78,7 +78,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <form:select cssClass="w-100" path="device.id">
-                                        <c:forEach items="${devicesAll}" var="device">
+                                        <c:forEach items="${conceptNew.project.deviceList}" var="device">
                                             <form:option value="${device.id}" label="${device.deviceCategory.code} ${device.model}"/>
                                         </c:forEach>
                                     </form:select>

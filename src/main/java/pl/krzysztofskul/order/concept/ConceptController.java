@@ -142,6 +142,7 @@ public class ConceptController {
         model.addAttribute("conceptNew", conceptNew);
         return "orders/concepts/new";
     }
+    
     @PostMapping("/new")
     public String conceptNew(
             @ModelAttribute("conceptNew") @Valid Concept conceptNew,
@@ -260,9 +261,9 @@ public class ConceptController {
         return "redirect:/concepts/details/"+id;
     }
 
-    @GetMapping("/setDesigner/{id}")
+    @GetMapping("/setDesigner/{conceptId}")
     public String setDesigner(
-            @PathVariable("id") Long conceptId,
+            @PathVariable("conceptId") Long conceptId,
             Model model
     ) {
         model.addAttribute("concept", conceptService.loadById(conceptId));
