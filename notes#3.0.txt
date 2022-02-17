@@ -1,11 +1,21 @@
 TODO:
-
+---------------------------------------------
 Idea for #3.0:
 Project charter for project managers. Based on PMI/PMBOK Guide.
 
+# 3.0.1-SNAPSHOT
+	+ create Milestone.class ... 2022-02-18
+		- create relation with project.class (?)
+		- idea for default milestones for all projects and specific milestones to create for specific project (?)
 
 
 TODO / DONE:
+---------------------------------------------
+
+# 3.0.1-SNAPSHOT
+	+ markdown.md updates
+	+ Amazon AWS deploy
+	+ created Milestone.class
 
 # 3.0-8
 	+ back-end and front-end updates
