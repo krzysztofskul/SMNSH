@@ -30,7 +30,7 @@
                 <div class="card-header">
                     <c:if test="${edit eq true}">
                         <form:hidden path="id"/>
-                        <form:select path="configurationList" multiple="true">
+                        <form:select path="configurationList" multiple="true" hidden="true">
                                 <c:forEach items="${project.configurationList}" var="configuration">
                                         <form:option value="${configuration.id}" label="configuration id: ${configuration.id}" selected="true"/>
                                 </c:forEach>

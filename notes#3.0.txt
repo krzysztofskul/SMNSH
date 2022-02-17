@@ -1,11 +1,15 @@
 TODO:
-
+---------------------------------------------
 Idea for #3.0:
 Project charter for project managers. Based on PMI/PMBOK Guide.
 
 
-
 TODO / DONE:
+---------------------------------------------
+
+# 3.1-SNAPSHOT
+	+ markdown.md updates
+	+ Amazon AWS deploy
 
 # 3.0-8
 	+ back-end and front-end updates
