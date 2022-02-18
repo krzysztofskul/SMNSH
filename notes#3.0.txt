@@ -3,14 +3,21 @@ TODO:
 Idea for #3.0:
 Project charter for project managers. Based on PMI/PMBOK Guide.
 
+Idea for #3.0.1:
+Template milestones for all projects -> specific milestones to create in specific project
+Milestones accessible in project charter only.
+
 # 3.0.1-SNAPSHOT
-	+ create Milestone.class ... 2022-02-18
-		- create relation with project.class (?)
-		- idea for default milestones for all projects and specific milestones to create for specific project (?)
+	- create milestones relation with themselves and with project.class
 
 
 TODO / DONE:
 ---------------------------------------------
+
+# 3.0.1-SNAPSHOT-2
+	+ create Milestone.class (as a template for milestone instances in specific project)
+		+ create MilestoneTimeline.class
+		+ create MilestoneInstanceInProject.class
 
 # 3.0.1-SNAPSHOT
 	+ markdown.md updates

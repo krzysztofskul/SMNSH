@@ -24,15 +24,8 @@ public class Milestone {
 	
 	private String nameEN;
 	
-	private Date dateStartPlanned;
-	
-	private Date dateFinishPlanned;
-	
-	private Date dateStarted;
-	
-	private Date dateFinished;
-	
 	private String Description;
+	
 
 	/**
 	 * constructors
@@ -76,38 +69,6 @@ public class Milestone {
 
 	public void setNameEN(String nameEN) {
 		this.nameEN = nameEN;
-	}
-
-	public Date getDateStartPlanned() {
-		return dateStartPlanned;
-	}
-
-	public void setDateStartPlanned(Date dateStartPlanned) {
-		this.dateStartPlanned = dateStartPlanned;
-	}
-
-	public Date getDateFinishPlanned() {
-		return dateFinishPlanned;
-	}
-
-	public void setDateFinishPlanned(Date dateFinishPlanned) {
-		this.dateFinishPlanned = dateFinishPlanned;
-	}
-
-	public Date getDateStarted() {
-		return dateStarted;
-	}
-
-	public void setDateStarted(Date dateStarted) {
-		this.dateStarted = dateStarted;
-	}
-
-	public Date getDateFinished() {
-		return dateFinished;
-	}
-
-	public void setDateFinished(Date dateFinished) {
-		this.dateFinished = dateFinished;
 	}
 
 	public String getDescription() {
