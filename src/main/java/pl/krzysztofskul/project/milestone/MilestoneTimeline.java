@@ -21,7 +21,7 @@ public class MilestoneTimeline {
 	private Date dateFinished;
 	
 	@OneToOne(mappedBy = "milestoneTimeline")
-	private MilestoneInstanceInProject milestoneInstanceInProject;
+	private MilestoneInstance milestoneInstance;
 
 	public MilestoneTimeline() {
 	}
@@ -66,12 +66,12 @@ public class MilestoneTimeline {
 		this.dateFinished = dateFinished;
 	}
 
-	public MilestoneInstanceInProject getMilestoneInstanceInProject() {
-		return milestoneInstanceInProject;
+	public MilestoneInstance getMilestoneInstance() {
+		return milestoneInstance;
 	}
 
-	public void setMilestoneInstanceInProject(MilestoneInstanceInProject milestoneInstanceInProject) {
-		this.milestoneInstanceInProject = milestoneInstanceInProject;
+	public void setMilestoneInstance(MilestoneInstance milestoneInstance) {
+		this.milestoneInstance = milestoneInstance;
 	}
 	
 	

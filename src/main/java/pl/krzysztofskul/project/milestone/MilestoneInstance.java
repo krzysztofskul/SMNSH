@@ -2,40 +2,39 @@ package pl.krzysztofskul.project.milestone;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.PostPersist;
 
 import pl.krzysztofskul.project.Project;
 
 @Entity
-public class MilestoneInstanceInProject {
-	
+public class MilestoneInstance extends Milestone {
+
 	/**
 	 * parameters
 	 */
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	/*
+	 * todo 
+	 */
+//	@ManyToOne
+//	private Project project;
 	
-	@ManyToOne // todo 2022-02-18
-	private Milestone milestone;
-	
-	@ManyToOne // todo 2022-02-18
-	private Project project;
-	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private MilestoneTimeline milestoneTimeline = new MilestoneTimeline();
 	
 	/**
 	 * constructors
 	 */
 	
-	public MilestoneInstanceInProject() {
+	public MilestoneInstance() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -43,13 +42,17 @@ public class MilestoneInstanceInProject {
 	 * getters and setters
 	 */
 	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
+	/*
+	 * todo
+	 */
+//	public Project getProject() {
+//		return project;
+//	}
+//
+//	public void setProject(Project project) {
+//		this.project = project;
+//	}
 
 	public MilestoneTimeline getMilestoneTimeline() {
 		return milestoneTimeline;
@@ -63,5 +66,6 @@ public class MilestoneInstanceInProject {
 	/**
 	 * methods
 	 */
+	
 	
 }

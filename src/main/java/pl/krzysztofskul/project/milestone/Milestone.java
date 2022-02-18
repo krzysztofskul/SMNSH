@@ -1,13 +1,18 @@
 package pl.krzysztofskul.project.milestone;
 
-import java.sql.Date;
-
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
-@Entity
+/**
+ * 
+ * @author krzysztofskul
+ * This class represents milestones' templates possible to use inside the project, which are saved into database and are not mutable. 
+ *
+ */
+
+@MappedSuperclass
 public class Milestone {
 	
 	/**
@@ -32,9 +37,19 @@ public class Milestone {
 	 */
 	
 	public Milestone() {
-		// TODO Auto-generated constructor stub
 	}
 	
+	public Milestone(Long id, String codeName, String namePL, String nameEN, String description) {
+		//super();
+		this.id = id;
+		this.codeName = codeName;
+		this.namePL = namePL;
+		this.nameEN = nameEN;
+		Description = description;
+	}
+
+
+
 	/**
 	 * getters and setters
 	 */

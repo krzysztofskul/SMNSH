@@ -7,12 +7,27 @@ Idea for #3.0.1:
 Template milestones for all projects -> specific milestones to create in specific project
 Milestones accessible in project charter only.
 
+
 # 3.0.1-SNAPSHOT
-	- create milestones relation with themselves and with project.class
+	- create relation MilestoneInstance.class with Project.class or ProjectCharter.class
+	- add two methods to Project or ProjectService: 
+		- addMilestoneInstanceToProjectFromTemplate(Long milestoneId){...};
+		- addNewMilestoneInstanceToProject(){...};
 
 
 TODO / DONE:
 ---------------------------------------------
+
+# 3.0.1-SNAPSHOT-3
+	+ MilestoneSingleton created
+	+ services and repos created for Milestone.class
+	+ MilestoneTemplate class created as extended from Milestone
+	+ MilestoneInstanceInProject renamed to MilestoneInstance
+		+ created relation with MilestoneTimeline 
+	+ created tests:
+		+ for MilestoneSingleton
+		+ for MilestoneTemplate and MilestoneInstance save to and load from DB
+	+ deleted old tests
 
 # 3.0.1-SNAPSHOT-2
 	+ create Milestone.class (as a template for milestone instances in specific project)
