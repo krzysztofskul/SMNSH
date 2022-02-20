@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +54,10 @@ public class MilestoneService {
 		milestoneRepo.save(milestone);
 	}
 	
+	public MilestoneInstance saveMilestoneInstance(MilestoneInstance milestoneInstance) {
+		return milestoneRepo.save(milestoneInstance);
+	}
+	
 	
 	public List<MilestoneTemplate> loadAllMilestoneTemplateList() {
 		return milestoneTemplateRepo.findAll();
@@ -70,17 +75,15 @@ public class MilestoneService {
 		return milestoneInstanceRepo.findById(milestoneInstanceId).get();
 	}
 	
+	public MilestoneInstance loadMielestoneInstanceByIdWithProjectCharterList(Long milestoneInstaceId) {
+		MilestoneInstance milestoneInstance = loadMielestoneInstanceById(milestoneInstaceId);
+		Hibernate.initialize(milestoneInstance.getProjectCharterList());
+		return milestoneInstance;
+	}
+	
 	/**
 	 * NO-CRUD METHODS
 	 */
-	
-	public void addMilestoneFromTemplatesToProject(Long milestoneTemplateId, Long projectId) {
-		// todo
-	}
-	
-	public void addMilestoneInstanceToProject() {
-		// todo
-	}
 
 
 }

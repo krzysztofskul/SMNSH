@@ -5,9 +5,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.thedeanda.lorem.LoremIpsum;
 import pl.krzysztofskul.project.Project;
+import pl.krzysztofskul.project.milestone.Milestone;
+import pl.krzysztofskul.project.milestone.MilestoneInstance;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @JsonIdentityInfo(
@@ -29,6 +33,16 @@ public class ProjectCharter implements Serializable {
 
     private String risks  = LoremIpsum.getInstance().getWords(5);
 
+    @ManyToMany
+	@JoinTable(
+				name = "projectCharters_milestoneInstances",
+				joinColumns = @JoinColumn(name = "projectCharter_id"),
+				inverseJoinColumns = @JoinColumn(name = "milestoneInstance_ID")
+				
+			)
+    @JsonIgnore
+    private List<MilestoneInstance> milestoneInstanceList = new ArrayList<>();
+    
     /**
      * CONSTRUCTORS
      * */
@@ -84,4 +98,25 @@ public class ProjectCharter implements Serializable {
         this.risks = risks;
     }
 
+    public List<MilestoneInstance> getMilestoneInstanceList() {
+		return milestoneInstanceList;
+	}
+
+	public void setMilestoneInstanceList(List<MilestoneInstance> milestoneInstanceList) {
+		this.milestoneInstanceList = milestoneInstanceList;
+	}
+
+	/**
+     * METHODS
+     */
+    
+	public void addMilestoneInstance(MilestoneInstance milestoneInstance) {
+		this.milestoneInstanceList.add(milestoneInstance);
+		//milestoneInstance.addProjectCharter(this);
+	}
+	
+	public void removeMilestoneInstance(Milestone milestone) {
+		// todo
+	}
+	
 }

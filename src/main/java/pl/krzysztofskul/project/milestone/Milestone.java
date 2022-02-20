@@ -1,9 +1,17 @@
 package pl.krzysztofskul.project.milestone;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
+
+import pl.krzysztofskul.projectCharter.ProjectCharter;
 
 /**
  * 
@@ -30,7 +38,6 @@ public class Milestone {
 	private String nameEN;
 	
 	private String Description;
-	
 
 	/**
 	 * constructors
