@@ -81,6 +81,10 @@ public class MilestoneService {
 		return milestoneInstance;
 	}
 	
+	public void deleteMilestoneInstance(Long milestoneInstanceId) {
+		milestoneInstanceRepo.deleteById(milestoneInstanceId);
+	}
+	
 	/**
 	 * NO-CRUD METHODS
 	 */

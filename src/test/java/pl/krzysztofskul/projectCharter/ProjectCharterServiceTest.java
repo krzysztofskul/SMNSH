@@ -2,7 +2,7 @@ package pl.krzysztofskul.projectCharter;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +22,6 @@ import pl.krzysztofskul.project.milestone.MilestoneInstance;
 import pl.krzysztofskul.project.milestone.MilestoneSingleton;
 import pl.krzysztofskul.project.milestone.MilestoneTemplate;
 import pl.krzysztofskul.project.milestone.service.MilestoneService;
-import pl.krzysztofskul.project.milestone.service.MilestoneServiceTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfig.class})
@@ -84,6 +83,23 @@ public class ProjectCharterServiceTest {
 			assertTrue(projectCharter.getMilestoneInstanceList() != null && projectCharter.getMilestoneInstanceList().size() > 1);
 			assertTrue(projectCharter.getMilestoneInstanceList().size() == MilestoneSingleton.getMilestoneSingleton().getMilestoneTemplates().size());
 			assertTrue(milestoneService.loadAllMilestoneInstanceList().size() == projectCharterService.loadAll().size()*milestoneService.loadAllMilestoneTemplateList().size());
+		}
+	}
+	
+	@Test
+	@Order(value = 3)
+	public void givenProjectChareterWithMilestones_whenRemoveMilestone_shouldRemoveFromProjectCharterAndMilestoneInstanceFromDb() throws NoSuchElementException {
+		for (ProjectCharter projectCharter : projectCharterService.loadAllWithMilestoneInstanceList()) {
+			assertTrue(projectCharterService.loadAllWithMilestoneInstanceList().size() > 1);
+			for (MilestoneInstance milestoneInstance : projectCharter.getMilestoneInstanceList()) {
+				projectCharterService.removeMilestoneInstance(projectCharter.getId(), milestoneInstance.getId());
+				try {
+					milestoneService.loadMielestoneInstanceById(milestoneInstance.getId());
+				} catch(NoSuchElementException ex) {
+					assertNotNull(ex);
+				}
+			}
+			assertTrue(projectCharterService.loadByIdWithMilestoneInstances(projectCharter.getId()).getMilestoneInstanceList().size() == 0);
 		}
 	}
 	

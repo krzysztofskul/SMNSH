@@ -112,11 +112,10 @@ public class ProjectCharter implements Serializable {
     
 	public void addMilestoneInstance(MilestoneInstance milestoneInstance) {
 		this.milestoneInstanceList.add(milestoneInstance);
-		//milestoneInstance.addProjectCharter(this);
 	}
 	
-	public void removeMilestoneInstance(Milestone milestone) {
-		// todo
+	public void removeMilestoneInstance(MilestoneInstance milestoneInstance) {
+		this.milestoneInstanceList.remove(milestoneInstance);
 	}
 	
 }
