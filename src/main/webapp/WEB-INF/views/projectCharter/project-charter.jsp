@@ -170,10 +170,19 @@
 	        		<div class="col m-1">
 	        			<div class="card">
 	        				<div class="card-header">
-	        					<p class="langPL">KAMIENIE MILOWE</p>
-	        					<p class="langen">MILESTONES</p>
+		        				<div class="float-left">
+		        					<p class="langPL">KAMIENIE MILOWE</p>
+		        					<p class="langen">MILESTONES</p>
+	        					</div>
+	        					<div class="float-right d-inline">
+	        						<button class="btn-sm btn-outline-success">+</button>
+	        					</div>
 	        				</div>
 	        				<div class="card-body">
+	        					<c:if test="${null eq projectCharter.milestoneInstanceList || projectCharter.milestoneInstanceList.size() == 0}">
+	        						<p class="langPL">BRAK USTANOWIONYCH KAMIENI MILOWYCH</p>
+	        						<p class="langEN">NO MILESTONES SET</p>
+	        					</c:if>
 	        				</div>
 	        			</div>
 	        		</div>
@@ -195,10 +204,21 @@
 	        		<div class="col m-1">
 	        			<div class="card">
 	        				<div class="card-header">
+	        				<div class="float-left">
 	        					<p class="langPL">GENEZA PROJEKTU</p>
 	        					<p class="langen">PROJECT BACKGROUND</p>
+        					</div>
+        					<div class="float-right d-inline">
+        						<button class="btn-sm btn-outline-primary">
+        							<p class="langPL">EDYTUJ</p>
+        							<p class="langEN">EDIT</p>
+        						</button>
+        					</div>
 	        				</div>
 	        				<div class="card-body">
+	        					<p>
+	        						${projectCharter.reasons }
+	        					</p>
 	        				</div>
 	        			</div>
 	        		</div>
@@ -206,10 +226,21 @@
 	        		<div class="col m-1">
 	        			<div class="card">
 	        				<div class="card-header">
+	        				<div class="float-left">
 	        					<p class="langPL">RYZYKA PROJEKTU</p>
 	        					<p class="langen">PROJECT RISKS</p>
+        					</div>
+	        					<div class="float-right d-inline">
+        						<button class="btn-sm btn-outline-primary">
+        							<p class="langPL">EDYTUJ</p>
+        							<p class="langEN">EDIT</p>
+        						</button>
+        					</div>
 	        				</div>
 	        				<div class="card-body">
+	        					<p>
+	        						${projectCharter.risks }
+	        					</p>
 	        				</div>
 	        			</div>
 	        		</div>
@@ -217,10 +248,21 @@
 	        		<div class="col m-1">
 	        			<div class="card">
 	        				<div class="card-header">
-	        					<p class="langPL">CELE PROJEKTU</p>
-	        					<p class="langen">GOALS</p>
+		        				<div class="float-left">
+		        					<p class="langPL">CELE PROJEKTU</p>
+		        					<p class="langen">GOALS</p>
+	        					</div>
+	        					<div class="float-right d-inline">
+	        						<button class="btn-sm btn-outline-primary">
+	        							<p class="langPL">EDYTUJ</p>
+	        							<p class="langEN">EDIT</p>
+	        						</button>
+        						</div>
 	        				</div>
 	        				<div class="card-body">
+	        					<p>
+	        						${projectCharter.goals }
+	        					</p>
 	        				</div>
 	        			</div>
 	        		</div>

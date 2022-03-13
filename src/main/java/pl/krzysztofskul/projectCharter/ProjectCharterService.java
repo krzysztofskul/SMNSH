@@ -48,6 +48,12 @@ public class ProjectCharterService {
     public ProjectCharter loadById(Long id) {
         return projectCharterRepo.findById(id).get();
     }
+    
+    public ProjectCharter loadByIdWithMilestoneInstanceList(Long id) {
+    	ProjectCharter projectCharter = projectCharterRepo.findById(id).get();
+    	Hibernate.initialize(projectCharter.getMilestoneInstanceList());
+    	return projectCharter;
+    }
 
     public ProjectCharter save(ProjectCharter projectCharter) {
         return projectCharterRepo.save(projectCharter);

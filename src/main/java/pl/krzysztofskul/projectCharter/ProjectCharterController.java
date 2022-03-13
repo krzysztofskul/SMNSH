@@ -24,7 +24,7 @@ public class ProjectCharterController {
             Model model
     ) {
 
-        model.addAttribute("projectCharter", projectCharterService.loadById(id));
+        model.addAttribute("projectCharter", projectCharterService.loadByIdWithMilestoneInstanceList(id));
         return "/projectCharter/project-charter";
     }
 
