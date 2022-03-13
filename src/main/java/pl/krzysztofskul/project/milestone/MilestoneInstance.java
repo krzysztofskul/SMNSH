@@ -1,6 +1,7 @@
 package pl.krzysztofskul.project.milestone;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PostPersist;
+import javax.validation.constraints.FutureOrPresent;
 
 import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.projectCharter.ProjectCharter;

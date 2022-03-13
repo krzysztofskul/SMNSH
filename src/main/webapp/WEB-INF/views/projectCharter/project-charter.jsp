@@ -37,7 +37,10 @@
             <h2>And project name: ${projectCharter.project.projectName}</h2>
             <h3>And project manager name: ${projectCharter.project.projectManager.nameFirst}</h3>
         </div>
-        <div class="content">
+        <div class="content container-fluid">
+        
+        	<!-- OLD VERSION -->
+        	<%-- 
             <div class="card smnshCard">
 
                 <div class="card-header">
@@ -119,6 +122,112 @@
                     </div>
                 </div>
             </div>
+        	 --%>
+        	<!--  -->
+        	
+        	<!-- NEW VERSION -->
+        	<section class="new-version">
+	        	<div class="row p-5">
+	        		<!-- PROJECT DETAILS -->
+	        		<div class="col m-1">
+	        			<div class="card">
+	        				<div class="card-header">
+	        					<p class="langPL">SZCZEGÓŁY PROJEKTU</p>
+	        					<p class="langen">PROJECT DETAILS</p>
+	        				</div>
+	        				<div class="card-body">
+	        					<div class="row mt-1 mb-1 border-bottom">
+	        						<div class="col-4 text-right border-right">
+	        							<p class="langPL">NAZWA PROJEKTU:</p>
+	        							<p class="langEN">PROJECT NAME:</p>
+	        						</div>
+	        						<div class="col-8">
+	        							<p>${projectCharter.project.projectName}</p>
+	        						</div>
+	        					</div>
+	        					<div class="row mt-1 mb-1 border-bottom">
+	        						<div class="col-4 text-right border-right">
+	        							<p class="langPL">NR UMOWY:</p>
+	        							<p class="langEN">AGREEMENT NO:</p>
+	        						</div>
+	        						<div class="col-8">
+	        							<p>${projectCharter.project.agreementNo}</p>
+	        						</div>
+	        					</div>
+	        					<div class="row mt-1 mb-1">
+	        						<div class="col-4 text-right border-right">
+	        							<p class="langPL">MIEJSCE DOSTAWY:</p>
+	        							<p class="langEN">DELIVERY TO:</p>
+	        						</div>
+	        						<div class="col-8">
+	        							<p>${projectCharter.project.recipient}</p>
+	        						</div>
+	        					</div>
+	        				</div>
+	        			</div>
+	        		</div>
+	        		<!-- MILESTONES -->
+	        		<div class="col m-1">
+	        			<div class="card">
+	        				<div class="card-header">
+	        					<p class="langPL">KAMIENIE MILOWE</p>
+	        					<p class="langen">MILESTONES</p>
+	        				</div>
+	        				<div class="card-body">
+	        				</div>
+	        			</div>
+	        		</div>
+					<!-- STAKEHOLDERS -->
+	        		<div class="col m-1">
+	        			<div class="card">
+	        				<div class="card-header">
+	        					<p class="langPL">INTERESARIUSZE</p>
+	        					<p class="langen">STAKEHOLDERS</p>
+	        				</div>
+	        				<div class="card-body">
+	        				</div>
+	        			</div>
+	        		</div>
+	        	</div>
+	        	
+				<div class="row p-5">
+	        		<!-- PROJECT BACKGROUND -->
+	        		<div class="col m-1">
+	        			<div class="card">
+	        				<div class="card-header">
+	        					<p class="langPL">GENEZA PROJEKTU</p>
+	        					<p class="langen">PROJECT BACKGROUND</p>
+	        				</div>
+	        				<div class="card-body">
+	        				</div>
+	        			</div>
+	        		</div>
+	        		<!-- PROJECT RISKS -->
+	        		<div class="col m-1">
+	        			<div class="card">
+	        				<div class="card-header">
+	        					<p class="langPL">RYZYKA PROJEKTU</p>
+	        					<p class="langen">PROJECT RISKS</p>
+	        				</div>
+	        				<div class="card-body">
+	        				</div>
+	        			</div>
+	        		</div>
+					<!-- GOALS -->
+	        		<div class="col m-1">
+	        			<div class="card">
+	        				<div class="card-header">
+	        					<p class="langPL">CELE PROJEKTU</p>
+	        					<p class="langen">GOALS</p>
+	        				</div>
+	        				<div class="card-body">
+	        				</div>
+	        			</div>
+	        		</div>
+	        	</div>
+	        	
+        	</section>
+        	
         </div>
     </main>
 

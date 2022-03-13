@@ -1,6 +1,6 @@
 package pl.krzysztofskul.project.milestone;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,10 +15,10 @@ public class MilestoneTimeline {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private Date dateStartPlanned;
-	private Date dateFinishPlanned;
-	private Date dateStarted;
-	private Date dateFinished;
+	private LocalDate dateStartPlanned;
+	private LocalDate dateFinishPlanned;
+	private LocalDate dateStarted;
+	private LocalDate dateFinished;
 	
 	@OneToOne(mappedBy = "milestoneTimeline")
 	private MilestoneInstance milestoneInstance;
@@ -33,36 +33,36 @@ public class MilestoneTimeline {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	public Date getDateStartPlanned() {
+
+	public LocalDate getDateStartPlanned() {
 		return dateStartPlanned;
 	}
 
-	public void setDateStartPlanned(Date dateStartPlanned) {
+	public void setDateStartPlanned(LocalDate dateStartPlanned) {
 		this.dateStartPlanned = dateStartPlanned;
 	}
 
-	public Date getDateFinishPlanned() {
+	public LocalDate getDateFinishPlanned() {
 		return dateFinishPlanned;
 	}
 
-	public void setDateFinishPlanned(Date dateFinishPlanned) {
+	public void setDateFinishPlanned(LocalDate dateFinishPlanned) {
 		this.dateFinishPlanned = dateFinishPlanned;
 	}
 
-	public Date getDateStarted() {
+	public LocalDate getDateStarted() {
 		return dateStarted;
 	}
 
-	public void setDateStarted(Date dateStarted) {
+	public void setDateStarted(LocalDate dateStarted) {
 		this.dateStarted = dateStarted;
 	}
 
-	public Date getDateFinished() {
+	public LocalDate getDateFinished() {
 		return dateFinished;
 	}
 
-	public void setDateFinished(Date dateFinished) {
+	public void setDateFinished(LocalDate dateFinished) {
 		this.dateFinished = dateFinished;
 	}
 
@@ -73,7 +73,5 @@ public class MilestoneTimeline {
 	public void setMilestoneInstance(MilestoneInstance milestoneInstance) {
 		this.milestoneInstance = milestoneInstance;
 	}
-	
-	
-	
+
 }

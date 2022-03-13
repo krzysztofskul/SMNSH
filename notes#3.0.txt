@@ -9,16 +9,23 @@ Milestones accessible in project charter only.
 
 
 # 3.0.1-SNAPSHOT
-	- front end-updates for adding/removing milestone from project charter
+	- front end-updates 
+		. for project charter page
+		- for adding/removing milestone from project charter
 	- change Milestone @MappedSuperclass to SingleTable ?()
 	- add a functionality for create new milestone instance for project charter (not from template)
 	- add a functionality to create the request for create a milestone template from milestone instance
-	- add dates to milestone class
+	. add dates to milestone class // done: MilestoneTimeLine class
+	- add stakeholder class
 
 
 TODO / DONE:
 ---------------------------------------------
 
+# 3.0.1-SNAPSHOT-6
+	+ add dates to milestone class // done: MilestoneTimeLine class
+	+ front end-updates for project charter page
+	
 # 3.0.1-SNAPSHOT-5
 	+ created a functionality for removing milestone instance from project charter
 		+ created tests (for removing milestone instance from project charter)
