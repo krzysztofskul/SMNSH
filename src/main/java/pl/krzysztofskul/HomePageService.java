@@ -25,6 +25,11 @@ import pl.krzysztofskul.project.ProjectService;
 import pl.krzysztofskul.project.StatusProject;
 import pl.krzysztofskul.project.comment.CommentService;
 import pl.krzysztofskul.project.configuration.ConfigurationService;
+import pl.krzysztofskul.project.milestone.MilestoneInstance;
+import pl.krzysztofskul.project.milestone.MilestoneSingleton;
+import pl.krzysztofskul.project.milestone.MilestoneTemplate;
+import pl.krzysztofskul.project.milestone.service.MilestoneService;
+import pl.krzysztofskul.projectCharter.ProjectCharterService;
 import pl.krzysztofskul.questionnaire.QuestionForm;
 import pl.krzysztofskul.questionnaire.QuestionFormService;
 import pl.krzysztofskul.questionnaire.questionSet.*;
@@ -70,6 +75,8 @@ public class HomePageService {
     private CommentService commentService;
     private PartService partService;
     private ConfigurationService configurationService;
+    private MilestoneService milestoneService;
+    private ProjectCharterService projectCharterService;
 
     /** constr.
      *
@@ -91,7 +98,10 @@ public class HomePageService {
             AvatarService avatarService,
             LoggerUserService<Object> loggerUserService,
             LoggerProjectService<Object> loggerProjectService,
-            SubcontractorService subcontractorService, CommentService commentService, PartService partService, ConfigurationService configurationService) {
+            SubcontractorService subcontractorService, CommentService commentService, PartService partService, ConfigurationService configurationService,
+            MilestoneService milestoneService,
+            ProjectCharterService projectCharterService
+    		) {
         this.userService = userService;
         this.deviceCategoryService = deviceCategoryService;
         this.deviceService = deviceService;
@@ -111,6 +121,8 @@ public class HomePageService {
         this.commentService = commentService;
         this.partService = partService;
         this.configurationService = configurationService;
+        this.milestoneService = milestoneService;
+        this.projectCharterService = projectCharterService;
     }
 
     /** methods
@@ -533,8 +545,17 @@ public class HomePageService {
         deviceService.save(device);
 
     }
+    
+    public void initTestMilestonesToDB() {
+        for (MilestoneTemplate milestoneTemplate : MilestoneSingleton.getMilestoneSingleton().getMilestoneTemplates()) {
+    			milestoneService.saveMilestone(milestoneTemplate);
+		}
+    }
 
     public void createProjects() {
+    	
+        List<MilestoneTemplate> milestoneTemplateList = milestoneService.loadAllMilestoneTemplateList();
+    	
         for (int i = 1; i <= 2; i++) {
             Project project = new Project();
             project.setProjectName("Test project no. "+i);
@@ -562,9 +583,15 @@ public class HomePageService {
             project.setStatus(StatusProject.STATUS_PROJECT_9);
             projectService.save(project);
             loggerProjectService.log(project,LocalDateTime.now(ZoneId.of("Europe/Warsaw")), "PROJECT STATUS CHANGED", project.getProjectManager().getNameFirst()+" "+project.getProjectManager().getNameLast());
+            
+            for (MilestoneTemplate milestoneTemplate : milestoneTemplateList) {
+				projectCharterService.addMilestoneInstanceFromTemplates(project.getId(), milestoneTemplate.getId());
+			}
+            
         }
         for (int i = 0; i <= 19; i++) {
             Project project = new Project();
+            
             project.setProjectName("Test project no. "+i);
             project.setAgreementNo("AGR-NO-WAW-00"+i+"-2020");
             project.setDeadline(LocalDateTime.now().plusDays(new Random().nextInt(28)+1));
@@ -619,6 +646,11 @@ public class HomePageService {
             project.setRemarks("Lorem ipsum. Lorem ipsum dolor sit amet leo. Suspendisse potenti. Suspend fringilla mi, viverra et, porttitor sem nec diam. Phasellus a mauris. Pellentesque scelerisque rhoncus tortor. In hac habitasse plate dictumst.");
             projectService.save(project);
             loggerUserService.log(project.getProjectManager(), LocalDateTime.now(), UserAction.PROJECT_CREATE, project);
+            
+            for (MilestoneTemplate milestoneTemplate : milestoneTemplateList) {
+				projectCharterService.addMilestoneInstanceFromTemplates(project.getId(), milestoneTemplate.getId());
+			}
+            
         }
         commentService.createDemoComments();
     }

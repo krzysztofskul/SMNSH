@@ -49,6 +49,14 @@ public class ProjectCharterService {
         return projectCharterRepo.findById(id).get();
     }
     
+        
+    	public ProjectCharter loadByIdWithMilestoneInstances(Long id) {
+    	// TODO Auto-generated method stub
+    		ProjectCharter projectCharter = this.loadById(id);
+    		Hibernate.initialize(projectCharter.getMilestoneInstanceList());
+    		return projectCharter;
+    	}
+    
     public ProjectCharter loadByIdWithMilestoneInstanceList(Long id) {
     	ProjectCharter projectCharter = projectCharterRepo.findById(id).get();
     	Hibernate.initialize(projectCharter.getMilestoneInstanceList());
@@ -58,6 +66,14 @@ public class ProjectCharterService {
     public ProjectCharter save(ProjectCharter projectCharter) {
         return projectCharterRepo.save(projectCharter);
     }
+    
+    public void removeMilestoneInstance(Long projectId, Long mielstoneInstanceId) {
+	    	ProjectCharter projectCharter = this.loadByIdWithMilestoneInstance(projectId);
+	    	MilestoneInstance milestoneInstance = milestoneService.loadMielestoneInstanceById(mielstoneInstanceId);
+	    	projectCharter.removeMilestoneInstance(milestoneInstance);
+	    	milestoneService.deleteMilestoneInstance(mielstoneInstanceId);
+			this.save(projectCharter);
+	    }
     
 	private ProjectCharter loadByIdWithMilestoneInstance(Long milestoneId) {
 		ProjectCharter projectCharter = this.loadById(milestoneId);

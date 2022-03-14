@@ -58,6 +58,7 @@ public class HomePageController {
 			homePageService.createRealTestInvestors();
 			homePageService.createRecipients();
 			homePageService.createRealTestRecipients();
+			homePageService.initTestMilestonesToDB();;
 			homePageService.createProjects();
 		}
 		return "redirect:/home";

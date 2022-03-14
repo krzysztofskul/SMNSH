@@ -1,6 +1,7 @@
 package pl.krzysztofskul.project.milestone;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +25,8 @@ public class MilestoneTimeline {
 	private MilestoneInstance milestoneInstance;
 
 	public MilestoneTimeline() {
+		int x = LocalTime.now().getSecond() + LocalTime.now().getNano()/1000000;
+		this.setDateFinishPlanned(LocalDate.now().plusDays(x));
 	}
 
 	public Long getId() {

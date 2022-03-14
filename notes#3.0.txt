@@ -15,14 +15,16 @@ Milestones accessible in project charter only.
 	- change Milestone @MappedSuperclass to SingleTable ?()
 	- add a functionality for create new milestone instance for project charter (not from template)
 	- add a functionality to create the request for create a milestone template from milestone instance
-	. add dates to milestone class // done: MilestoneTimeLine class
 	- add stakeholder class
-	- add milestones to the test init projects ...
-	- add new milestonces form for project charter ...
+	- add the new milestone form for project charter ...
 
 
 TODO / DONE:
 ---------------------------------------------
+
+# 3.0.1-SNAPSHOT-8
+	+ front end-updates for project charter page
+	+ add milestones to the test init projects
 
 # 3.0.1-SNAPSHOT-7
 	+ front end-updates for project charter page

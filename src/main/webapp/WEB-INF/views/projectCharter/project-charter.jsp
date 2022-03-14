@@ -179,10 +179,28 @@
 	        					</div>
 	        				</div>
 	        				<div class="card-body">
-	        					<c:if test="${null eq projectCharter.milestoneInstanceList || projectCharter.milestoneInstanceList.size() == 0}">
+	        				<c:choose>
+	        				
+	        					<c:when test="${null eq projectCharter.milestoneInstanceList || projectCharter.milestoneInstanceList.size() == 0}">
 	        						<p class="langPL">BRAK USTANOWIONYCH KAMIENI MILOWYCH</p>
 	        						<p class="langEN">NO MILESTONES SET</p>
-	        					</c:if>
+	        					</c:when>
+	        					<c:otherwise>
+	        						<c:forEach items="${projectCharter.milestoneInstanceList}" var="milestoneInstance">
+		        						<div class="row border-top border-bottom">
+		        							<div class="col-9">
+		        								<p class="langPL">${milestoneInstance.namePL}</p>
+		        								<p class="langEN">${milestoneInstance.nameEN}</p>
+		        							</div>
+		        							<div class="col-3">
+		        								<button class="btn-sm btn-outline-danger">
+		        									${milestoneInstance.milestoneTimeline.dateFinishPlanned }
+		        								</button>
+		        							</div>
+		        						</div>
+	        						</c:forEach>
+	        					</c:otherwise>
+        					</c:choose>
 	        				</div>
 	        			</div>
 	        		</div>
