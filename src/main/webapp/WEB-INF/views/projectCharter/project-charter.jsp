@@ -175,7 +175,9 @@
 		        					<p class="langen">MILESTONES</p>
 	        					</div>
 	        					<div class="float-right d-inline">
-	        						<button class="btn-sm btn-outline-success">+</button>
+	        						<a href="/milestones/instances/new?projectCharterId=${projectCharter.id}&backToPage=project-charter/${projectCharter.id}">
+	        							<button class="btn-sm btn-outline-success">+</button>
+	        						</a>
 	        					</div>
 	        				</div>
 	        				<div class="card-body">
@@ -188,13 +190,18 @@
 	        					<c:otherwise>
 	        						<c:forEach items="${projectCharter.milestoneInstanceList}" var="milestoneInstance">
 		        						<div class="row border-top border-bottom">
-		        							<div class="col-9">
+		        							<div class="col-8">
 		        								<p class="langPL">${milestoneInstance.namePL}</p>
 		        								<p class="langEN">${milestoneInstance.nameEN}</p>
 		        							</div>
-		        							<div class="col-3">
-		        								<button class="btn-sm btn-outline-danger">
+		        							<div class="col-2">
+		        								<button class="btn-sm btn-outline-warning">
 		        									${milestoneInstance.milestoneTimeline.dateFinishPlanned }
+		        								</button>
+		        							</div>
+		        							<div class="col-2">
+		        								<button class="btn-sm btn-outline-danger">
+		        									DEL
 		        								</button>
 		        							</div>
 		        						</div>

@@ -93,5 +93,14 @@ public class ProjectCharterService {
     	projectCharter.addMilestoneInstance(milestoneInstance);
     	this.save(projectCharter);
     }
+
+
+	public void addMilestoneInstance(Long projectCharterId, Long milestoneInstanceId) {
+    	ProjectCharter projectCharter = this.loadByIdWithMilestoneInstance(projectCharterId);
+    	MilestoneInstance milestoneInstance = milestoneService.loadMielestoneInstanceById(milestoneInstanceId);
+    	projectCharter.addMilestoneInstance(milestoneInstance);
+    	this.save(projectCharter);
+		
+	}
     
 }
