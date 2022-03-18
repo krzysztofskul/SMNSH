@@ -38,95 +38,8 @@
             <h3>And project manager name: ${projectCharter.project.projectManager.nameFirst}</h3>
         </div>
         <div class="content container-fluid">
-        
-        	<!-- OLD VERSION -->
-        	<%-- 
-            <div class="card smnshCard">
-
-                <div class="card-header">
-                    <div class="row smnshRow">
-                        <div class="col">
-                            <p class="langPL">ID karty projektu</p>
-                            <p class="langEN">Project charter ID</p>
-                            <p id="projectCharterId">${projectCharter.id}</p>
-                        </div>
-                        <div class="col">
-                            <p class="langPL">ID projektu</p>
-                            <p class="langEN">Project ID</p>
-                            <p id="projectId">${projectCharter.project.id}</p>
-                        </div>
-                        <div class="col">
-                        </div>
-                        <div class="col">
-                            <p class="langPL">Nazwa projektu</p>
-                            <p class="langEN">Project name</p>
-                            <a href="/projects/details/${projectCharter.project.id}">
-                                <p>${projectCharter.project.projectName}</p>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <button class="btn btn-outline-primary float-right" id="btnEdit">
-                                <p class="langPL">EDYCJA</p>
-                                <p class="langEN">EDIT</p>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div class="input-group m-1">
-                        <div class="input-group-text">
-                            <div>
-                                <div class="langPL">GENEZA PROJEKTU</div>
-                                <div class="langEN">BACKGROUND</div>
-                            </div>
-                        </div>
-                        <textarea class="form-control" disabled aria-label="REASONS" id="reasons">${projectCharter.reasons}</textarea>
-                    </div>
-                    <div class="input-group m-1">
-                        <div class="input-group-text">
-                            <div>
-                                <div class="langPL">CELE PROJEKTU</div>
-                                <div class="langEN">GOAL STATEMENT</div>
-                            </div>
-                        </div>
-                        <textarea class="form-control" disabled aria-label="GOALS" id="goals">${projectCharter.goals}</textarea>
-                    </div>
-                    <div class="input-group m-1">
-                        <div class="input-group-text">
-                            <div>
-                                <div class="langPL">RYZYKA PROJEKTU</div>
-                                <div class="langEN">RISKS</div>
-                            </div>
-                        </div>
-                        <textarea class="form-control" disabled aria-label="RISKS" id="risks">${projectCharter.risks}</textarea>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="row smnshRow">
-                        <div class="col">
-                            <button class="btn btn-outline-warning" disabled id="btnCancel">
-                                <p class="langPL">ANULUJ</p>
-                                <p class="langEN">CANCEL</p>
-                            </button>
-                        </div>
-                        <div class="col"></div>
-                        <div class="col"></div>
-                        <div class="col"></div>
-                        <div class="col">
-                            <button class="btn btn-outline-success float-right" disabled id="btnSave">
-                                <p class="langPL">ZAPISZ</p>
-                                <p class="langEN">SAVE</p>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        	 --%>
-        	<!--  -->
         	
-        	<!-- NEW VERSION -->
-        	<section class="new-version">
+        	<section>
 	        	<div class="row p-5">
 	        		<!-- PROJECT DETAILS -->
 	        		<div class="col m-1">
@@ -157,7 +70,6 @@
 	        					<div class="row mt-1 mb-1">
 	        						<div class="col-4 text-right border-right">
 	        							<p class="langPL">MIEJSCE DOSTAWY:</p>
-	        							<p class="langEN">DELIVERY TO:</p>
 	        						</div>
 	        						<div class="col-8">
 	        							<p>${projectCharter.project.recipient}</p>
@@ -200,9 +112,11 @@
 		        								</button>
 		        							</div>
 		        							<div class="col-2">
-		        								<button class="btn-sm btn-outline-danger">
-		        									DEL
-		        								</button>
+		        								<a href="/milestones/instances/delete/${projectCharter.id}/${milestoneInstance.id}?backToPage=project-charter/${projectCharter.id}">
+			        								<button class="btn-sm btn-outline-danger">
+			        									DEL
+			        								</button>
+		        								</a>
 		        							</div>
 		        						</div>
 	        						</c:forEach>

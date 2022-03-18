@@ -99,8 +99,26 @@ public class ProjectCharterServiceTest {
 					assertNotNull(ex);
 				}
 			}
-			assertTrue(projectCharterService.loadByIdWithMilestoneInstances(projectCharter.getId()).getMilestoneInstanceList().size() == 0);
+			assertTrue(projectCharterService.loadByIdWithMilestoneInstanceList(projectCharter.getId()).getMilestoneInstanceList().size() == 0);
 		}
+	}
+	
+	@Test
+	@Order(value = 4)
+	public void givenMilestoneInstanceAmdProjectCharter_whenAddMilestoneInstance_shouldBeAddedToDbCorrectly() {
+		// given
+		MilestoneInstance milestoneInstance = new MilestoneInstance();
+		milestoneInstance = milestoneService.saveMilestoneInstance(milestoneInstance);
+		ProjectCharter projectCharter = new ProjectCharter();
+		projectCharter = projectCharterService.save(projectCharter);
+		
+		// when
+		projectCharterService.addMilestoneInstance(projectCharter.getId(), milestoneInstance.getId());
+
+		// should
+		assertTrue(projectCharterService.loadByIdWithMilestoneInstanceList(projectCharter.getId()).getMilestoneInstanceList().size() == 1);
+		assertTrue(milestoneService.loadMielestoneInstanceByIdWithProjectCharterList(milestoneInstance.getId()).getProjectCharterList().size() == 1);
+
 	}
 	
 

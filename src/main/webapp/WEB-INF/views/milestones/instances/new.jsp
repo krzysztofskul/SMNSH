@@ -118,7 +118,7 @@
 	        		</div>
 	        		
 	        		<div class="card-footer">
-	        			<button class="btn btn-outline-warning float-left">
+	        			<button class="btn btn-outline-warning float-left disabled">
 	        				<p class="langPL">ANULUJ</p>
 	        				<p class="langEN">CANCEL</p>
 	        			</button>

@@ -50,12 +50,12 @@ public class ProjectCharterService {
     }
     
         
-    	public ProjectCharter loadByIdWithMilestoneInstances(Long id) {
-    	// TODO Auto-generated method stub
-    		ProjectCharter projectCharter = this.loadById(id);
-    		Hibernate.initialize(projectCharter.getMilestoneInstanceList());
-    		return projectCharter;
-    	}
+//	public ProjectCharter loadByIdWithMilestoneInstances(Long id) {
+//	// TODO Auto-generated method stub
+//		ProjectCharter projectCharter = this.loadById(id);
+//		Hibernate.initialize(projectCharter.getMilestoneInstanceList());
+//		return projectCharter;
+//	}
     
     public ProjectCharter loadByIdWithMilestoneInstanceList(Long id) {
     	ProjectCharter projectCharter = projectCharterRepo.findById(id).get();
