@@ -1,0 +1,27 @@
+--------------
+TO DO :
+--------------
+
+#3.0.2.STAKEHOLDERS-SNAPSHOT
+
+- add stakeholder 
+	. class
+	- repo
+	- service
+		- init method
+	- test
+	- controller
+	
+- update front-end
+
+
+--------------
+DONE :
+--------------
+
+#3.0.2.STAKEHOLDERS-SNAPSHOT-1
+
+- stakeholder functionality in project charter
+	+ db diagram/relationship added
+	+ stakeheloder class creataed 
+	+ stakeholder in project details class created

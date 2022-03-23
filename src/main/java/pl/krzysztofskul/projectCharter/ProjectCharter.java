@@ -7,6 +7,7 @@ import com.thedeanda.lorem.LoremIpsum;
 import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.milestone.Milestone;
 import pl.krzysztofskul.project.milestone.MilestoneInstance;
+import pl.krzysztofskul.stakeholder.Stakeholder;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -42,6 +43,10 @@ public class ProjectCharter implements Serializable {
 			)
     @JsonIgnore
     private List<MilestoneInstance> milestoneInstanceList = new ArrayList<>();
+    
+    @JsonIgnore
+    @ManyToMany
+    private List<Stakeholder> stakeholders = new ArrayList<Stakeholder>();
     
     /**
      * CONSTRUCTORS
@@ -104,6 +109,15 @@ public class ProjectCharter implements Serializable {
 
 	public void setMilestoneInstanceList(List<MilestoneInstance> milestoneInstanceList) {
 		this.milestoneInstanceList = milestoneInstanceList;
+	}
+	
+
+	public List<Stakeholder> getStakeholders() {
+		return stakeholders;
+	}
+
+	public void setStakeholders(List<Stakeholder> stakeholders) {
+		this.stakeholders = stakeholders;
 	}
 
 	/**
