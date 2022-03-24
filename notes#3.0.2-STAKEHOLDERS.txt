@@ -5,9 +5,10 @@ TO DO :
 #3.0.2.STAKEHOLDERS-SNAPSHOT
 
 - add stakeholder 
-	. class
-	- repo
-	- service
+	+ class updates
+	+ deleted inheritance stakeholder from user
+	+ repo for stakeholder and for stakeholder in project details
+	+ service
 		- init method
 	- test
 	- controller

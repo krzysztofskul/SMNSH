@@ -8,6 +8,7 @@ import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.milestone.Milestone;
 import pl.krzysztofskul.project.milestone.MilestoneInstance;
 import pl.krzysztofskul.stakeholder.Stakeholder;
+import pl.krzysztofskul.stakeholder.StakeholderInProjectDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -47,6 +48,10 @@ public class ProjectCharter implements Serializable {
     @JsonIgnore
     @ManyToMany
     private List<Stakeholder> stakeholders = new ArrayList<Stakeholder>();
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "projectCharter")
+    private List<StakeholderInProjectDetails> stakeholderInProjectDetailsList = new ArrayList<>();
     
     /**
      * CONSTRUCTORS

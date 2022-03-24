@@ -1,6 +1,8 @@
 package pl.krzysztofskul.stakeholder;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -13,6 +15,7 @@ import pl.krzysztofskul.projectCharter.ProjectCharter;
 public class StakeholderInProjectDetails {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@ManyToOne
