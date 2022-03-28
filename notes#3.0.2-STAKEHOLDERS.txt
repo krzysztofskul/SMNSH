@@ -16,6 +16,9 @@ TO DO :
 DONE :
 --------------
 
+#3.0.2.STAKEHOLDERS-SNAPSHOT-4
+	+ StakeholderServiceTest updates
+
 #3.0.2.STAKEHOLDERS-SNAPSHOT-3
 	+ HomePageService class updates in verifyEmail(User user) method
 	+ Project, ProjectCharter projectCharter Service, Stakeholder, StakeholderService, StakholderServiceTest, UserService classes updates

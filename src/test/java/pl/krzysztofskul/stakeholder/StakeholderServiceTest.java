@@ -71,32 +71,53 @@ public class StakeholderServiceTest {
 	@Autowired
 	private DeviceService deviceService;
 
+	private static List<User> userTestList = new ArrayList<>();
 	private static User userTestSls = new User();
+	private static User userTestPlanner = new User();
 	private static Project projectTest;
-	private static Stakeholder stakeholderFromUserTest;
+	private static Stakeholder stakeholderFromUserTest1;
+	private static Stakeholder stakeholderFromUserTest2;
+	private static List<Stakeholder> stakeholderFromUserTestList = new ArrayList<Stakeholder>();
 	
-	@Test
-	@Order(value = 1)
-	// public Stakeholder createAndGetInitTestStakeholderFromUser(User user) {}
-	public void givenStakeholderFromUser_whenSaveToDb_shouldReturnStakeholderCorrectly() {
-		
-		// given
-		homePageService.initTestDb();
+	private void createTestUsersAndStakeholders() {
 		userTestSls.setNameFirst(LoremIpsum.getInstance().getFirstName());
 		userTestSls.setNameLast(LoremIpsum.getInstance().getLastName());
 		userTestSls.setBusinessPosition(UserBusinessPosition.SALES_REP);
 		userTestSls = userService.saveAndReturn(userTestSls);
-		stakeholderFromUserTest = stakeholderService.createAndGetInitTestStakeholderFromUser(userTestSls);
+		userTestPlanner.setNameFirst(LoremIpsum.getInstance().getFirstName());
+		userTestPlanner.setNameLast(LoremIpsum.getInstance().getLastName());
+		userTestPlanner.setBusinessPosition(UserBusinessPosition.PLANNER);
+		userTestPlanner = userService.saveAndReturn(userTestPlanner);
+		userTestList.add(userTestSls);
+		userTestList.add(userTestPlanner);
+		stakeholderFromUserTest1 = stakeholderService.createAndGetInitTestStakeholderFromUser(userTestSls);
+		stakeholderFromUserTest2 = stakeholderService.createAndGetInitTestStakeholderFromUser(userTestPlanner);
+		stakeholderFromUserTestList.add(stakeholderFromUserTest1);
+		stakeholderFromUserTestList.add(stakeholderFromUserTest2);	
+	}
+	
+	@Test
+	@Order(value = 1)
+	/*
+	 * method to test: createAndGetInitTestStakeholderFromUser(User user)
+	 */
+	public void givenStakeholderFromUser_whenSaveToDb_shouldReturnStakeholderCorrectly() {
+		
+		// given
+		homePageService.initTestDb();
+		this.createTestUsersAndStakeholders();
 		
 		// when
-		stakeholderFromUserTest = stakeholderService.saveStakeholder(stakeholderFromUserTest);
+		for (Stakeholder stakeholder : stakeholderFromUserTestList) {
+			stakeholder = stakeholderService.saveStakeholder(stakeholder);
+		}
 		
 		// should
-		assertTrue(stakeholderFromUserTest.getId() != null);
-		assertTrue(stakeholderFromUserTest.getId() > 0);
-		assertTrue(stakeholderFromUserTest.getNameFirst().equals(userTestSls.getNameFirst()));
-		assertTrue(stakeholderFromUserTest.getNameLast().equals(userTestSls.getNameLast()));
-		assertTrue(stakeholderFromUserTest.getStakeholderBusinessPosition().equals(userTestSls.getBusinessPosition().toString()));
+		assertTrue(stakeholderFromUserTest1.getId() != null);
+		assertTrue(stakeholderFromUserTest1.getId() > 0);
+		assertTrue(stakeholderFromUserTest1.getNameFirst().equals(userTestSls.getNameFirst()));
+		assertTrue(stakeholderFromUserTest1.getNameLast().equals(userTestSls.getNameLast()));
+		assertTrue(stakeholderFromUserTest1.getStakeholderBusinessPosition().equals(userTestSls.getBusinessPosition().toString()));
 
 	}
 	
@@ -108,24 +129,28 @@ public class StakeholderServiceTest {
 	
 	@Test
 	@Order(value = 3)
-	// public void addStakeholderFromUserToProject (Stakeholder stakeholder, Project project)
-	public void givenProjectAndStekholderFromUser_whenAddStakeholderFromUserToProject_shouldSaveToDbCorrectly() {
+	/*
+	 * method to test: addStakeholderFromUserToProject (...)
+	 */
+	public void givenProjectAndStekholdersFromUser_whenAddStakeholderFromUserToProject_shouldSaveToDbCorrectly() {
 		// given	
 		homePageService.initTestDb();		
 		projectTest = projectService.loadById((long) new Random().nextInt(projectService.loadAll().size())+1);
-		stakeholderFromUserTest = stakeholderService.loadStakeholderById(stakeholderFromUserTest.getId());
+		stakeholderFromUserTest1 = stakeholderService.loadStakeholderById(stakeholderFromUserTest1.getId());
 		
 		assertTrue(projectTest.getId() != null && projectTest.getId() > 0);
-		assertTrue(stakeholderFromUserTest.getId() != null && stakeholderFromUserTest.getId() > 0);
+		assertTrue(stakeholderFromUserTest1.getId() != null && stakeholderFromUserTest1.getId() > 0);
 		
 		// when
-		stakeholderService.addStakeholderFromUserToProject(stakeholderFromUserTest.getId(), projectTest.getProjectCharter().getId());
+		for (Stakeholder stakeholder: stakeholderFromUserTestList) {
+			stakeholderService.addStakeholderFromUserToProject(stakeholder.getId(), projectTest.getProjectCharter().getId());	
+		}
 		
 		// should
 		assertTrue(
-				stakeholderService.loadStakeholderInProjectDetailsById(stakeholderFromUserTest.getId())
+				stakeholderService.loadStakeholderInProjectDetailsById(stakeholderFromUserTest1.getId())
 					.getStakeholder().getId()
-					.equals(stakeholderFromUserTest.getId())
+					.equals(stakeholderFromUserTest1.getId())
 		);
 
 		assertTrue(
@@ -134,13 +159,12 @@ public class StakeholderServiceTest {
 		
 
 		assertTrue(
-				projectCharterService.loadByIdWithStakeholders(projectTest.getProjectCharter().getId()).getStakeholders().size() > 0
+				projectCharterService.loadByIdWithStakeholders(projectTest.getProjectCharter().getId()).getStakeholders().size() == stakeholderFromUserTestList.size()
 				);
 
 		/*
 		 * todo 2022-03-28
-		 */
-		
+		 */		
 //		assertTrue(
 //				projectService.loadByIdWithStakeholders(projectTest.getId()).getProjectCharter()
 //				.getStakeholders().stream()
