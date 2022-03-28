@@ -3,6 +3,8 @@ package pl.krzysztofskul;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import pl.krzysztofskul.company.type.CompanyTypeService;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.device.category.DeviceCategory;
@@ -10,6 +12,7 @@ import pl.krzysztofskul.device.category.DeviceCategoryService;
 import pl.krzysztofskul.device.part.Part;
 import pl.krzysztofskul.device.part.PartDemoGenerator;
 import pl.krzysztofskul.device.part.PartService;
+import pl.krzysztofskul.initDB.InitDB;
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.investor.InvestorService;
 import pl.krzysztofskul.investor.creator.Creator;
@@ -77,6 +80,7 @@ public class HomePageService {
     private ConfigurationService configurationService;
     private MilestoneService milestoneService;
     private ProjectCharterService projectCharterService;
+    private CompanyTypeService companyTypeService;
 
     /** constr.
      *
@@ -100,7 +104,8 @@ public class HomePageService {
             LoggerProjectService<Object> loggerProjectService,
             SubcontractorService subcontractorService, CommentService commentService, PartService partService, ConfigurationService configurationService,
             MilestoneService milestoneService,
-            ProjectCharterService projectCharterService
+            ProjectCharterService projectCharterService,
+            CompanyTypeService companyTypeService
     		) {
         this.userService = userService;
         this.deviceCategoryService = deviceCategoryService;
@@ -123,25 +128,52 @@ public class HomePageService {
         this.configurationService = configurationService;
         this.milestoneService = milestoneService;
         this.projectCharterService = projectCharterService;
+        this.companyTypeService = companyTypeService;
     }
 
     /** methods
      *
      */
 
+    public void initTestDb() {
+		InitDB.getInstanceInitDB();
+		if (InitDB.getCounter() == 0) {
+			InitDB.increaseCounter();
+			companyTypeService.createCompanyTypesAndSaveToDB();
+			subcontractorService.createTestSubcontractors();
+			investorService.createTestInvestors(15);
+			this.createRealTestUsers();
+			this.createUsers();
+			this.createDeviceCategories();
+			this.createDevices();
+			this.createRealTestDevices();
+			this.createParts();
+			this.createConcepts();
+			this.createGuidelines();
+			this.createInvestors();
+			this.createRealTestInvestors();
+			this.createRecipients();
+			this.createRealTestRecipients();
+			this.initTestMilestonesToDB();;
+			this.createProjects();
+		}
+    }
+    
     private String verifyEmail(User user) {
         List<User> userList = userService.loadAll();
         boolean isValid = true;
         do {
             int j = 2;
             for (User userExisted : userList) {
-                if (userExisted.getEmail().equals(user.getEmail())) {
-                    user.setEmail(user.getNameFirst()+user.getNameLast()+"-"+j+"@test.test");
-                    isValid = false;
-                    j++;
-                } else {
-                    isValid = true;
-                }
+            	if (null != userExisted.getEmail()) {
+	                if (userExisted.getEmail().equals(user.getEmail())) {
+	                    user.setEmail(user.getNameFirst()+user.getNameLast()+"-"+j+"@test.test");
+	                    isValid = false;
+	                    j++;
+	                } else {
+	                    isValid = true;
+	                }
+            	}
             }
         } while (!isValid);
         return user.getEmail();

@@ -1,5 +1,6 @@
 package pl.krzysztofskul.stakeholder;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,10 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-
-import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.projectCharter.ProjectCharter;
-import pl.krzysztofskul.user.User;
 
 @Entity
 public class Stakeholder {
@@ -31,7 +29,7 @@ public class Stakeholder {
 	private List<ProjectCharter> projectCharters = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "stakeholder")
-	private List<StakeholderInProjectDetails> stakeholderInProjectDetails = new ArrayList<>();
+	private List<StakeholderInProjectDetails> stakeholderInProjectDetailsList = new ArrayList<>();
 
 	/*
 	 * getters and setters
@@ -85,13 +83,15 @@ public class Stakeholder {
 		this.projectCharters = projectCharters;
 	}
 
-	public List<StakeholderInProjectDetails> getStakeholderInProjectDetails() {
-		return stakeholderInProjectDetails;
+	public List<StakeholderInProjectDetails> getStakeholderInProjectDetailsList() {
+		return stakeholderInProjectDetailsList;
 	}
 
-	public void setStakeholderInProjectDetails(List<StakeholderInProjectDetails> stakeholderInProjectDetails) {
-		this.stakeholderInProjectDetails = stakeholderInProjectDetails;
+	public void setStakeholderInProjectDetailsList(List<StakeholderInProjectDetails> stakeholderInProjectDetailsList) {
+		this.stakeholderInProjectDetailsList = stakeholderInProjectDetailsList;
 	}
+
+
 
 	
 }

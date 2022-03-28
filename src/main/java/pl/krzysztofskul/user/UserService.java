@@ -35,6 +35,10 @@ public class UserService {
     public void save(User user) {
         userRepo.save(user);
     }
+    
+    public User saveAndReturn(User user) {
+    	return userRepo.save(user);
+    }
 
     /*** Read */
 

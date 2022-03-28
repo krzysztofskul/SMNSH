@@ -9,7 +9,6 @@ import pl.krzysztofskul.project.milestone.Milestone;
 import pl.krzysztofskul.project.milestone.MilestoneInstance;
 import pl.krzysztofskul.stakeholder.Stakeholder;
 import pl.krzysztofskul.stakeholder.StakeholderInProjectDetails;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -36,18 +35,18 @@ public class ProjectCharter implements Serializable {
     private String risks  = LoremIpsum.getInstance().getWords(5);
 
     @ManyToMany
-	@JoinTable(
-				name = "projectCharters_milestoneInstances",
-				joinColumns = @JoinColumn(name = "projectCharter_id"),
-				inverseJoinColumns = @JoinColumn(name = "milestoneInstance_ID")
-				
-			)
     @JsonIgnore
     private List<MilestoneInstance> milestoneInstanceList = new ArrayList<>();
     
-    @JsonIgnore
+    
     @ManyToMany
-    private List<Stakeholder> stakeholders = new ArrayList<Stakeholder>();
+    @JoinTable(
+    			name = "projectcharter_stakeholder",
+    			joinColumns = @JoinColumn(name = "projectCharter_id"),
+    			inverseJoinColumns = @JoinColumn(name = "stakeholder_id")
+    		)
+    @JsonIgnore
+    private List<Stakeholder> stakeholders = new ArrayList<>();
     
     @JsonIgnore
     @OneToMany(mappedBy = "projectCharter")
@@ -125,6 +124,14 @@ public class ProjectCharter implements Serializable {
 		this.stakeholders = stakeholders;
 	}
 
+	public List<StakeholderInProjectDetails> getStakeholderInProjectDetailsList() {
+		return stakeholderInProjectDetailsList;
+	}
+
+	public void setStakeholderInProjectDetailsList(List<StakeholderInProjectDetails> stakeholderInProjectDetailsList) {
+		this.stakeholderInProjectDetailsList = stakeholderInProjectDetailsList;
+	}
+
 	/**
      * METHODS
      */
@@ -136,6 +143,12 @@ public class ProjectCharter implements Serializable {
 	
 	public void removeMilestoneInstance(Milestone milestoneInstance) {
 		this.milestoneInstanceList.remove(milestoneInstance);
+	}
+
+	public void addStakeholder(Stakeholder stakeholder) {
+		this.stakeholders.add(stakeholder);
+		//stakeholder.addProjectCharter(this);
+		
 	}
 	
 }

@@ -11,6 +11,7 @@ import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 import pl.krzysztofskul.project.comment.Comment;
 import pl.krzysztofskul.project.configuration.Configuration;
 import pl.krzysztofskul.project.configuration.ConfigurationService;
+import pl.krzysztofskul.projectCharter.ProjectCharter;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserBusinessPosition;
 import pl.krzysztofskul.user.UserService;
@@ -56,6 +57,18 @@ public class ProjectService {
         }
 
         projectRepo.save(project);
+    }
+    
+    public Project saveAndReturn(Project project) {
+        if (project.getId() == null) {
+            for (Device device : project.getDeviceList()) {
+                Hibernate.initialize(device.getConfigurationList());
+                device.addConfiguration(configurationService.getStandardConfiguration(project, device));
+                //deviceService.save(device);
+            }
+        }
+
+        return projectRepo.save(project);
     }
 
     public List<Project> loadAll() {
@@ -127,6 +140,13 @@ public class ProjectService {
     public Project loadById(Long id) {
         return projectRepo.findById(id).get();
     }
+    
+	public Project loadByIdWithStakeholders(Long id) {
+		Project project = this.loadById(id);
+		ProjectCharter projectCharter = project.getProjectCharter();
+		Hibernate.initialize(projectCharter.getStakeholders());
+		return project;
+	}
 
     public Project loadByIdWithConceptList(Long id) {
         Project project = projectRepo.findById(id).get();
@@ -203,6 +223,8 @@ public class ProjectService {
             }
         }
     }
+
+
 
 
 
