@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.project.milestone.MilestoneInstance;
 import pl.krzysztofskul.project.milestone.MilestoneTemplate;
 import pl.krzysztofskul.project.milestone.service.MilestoneService;
+import pl.krzysztofskul.stakeholder.StakeholderInProjectDetails;
+import pl.krzysztofskul.stakeholder.StakeholderService;
 
 @Service
 @Transactional
@@ -17,15 +19,18 @@ public class ProjectCharterService {
 
     private ProjectCharterRepo projectCharterRepo;
     private MilestoneService milestoneService;
+//    private StakeholderService stakeholderService;
 
     @Autowired
     public ProjectCharterService(
     		ProjectCharterRepo projectCharterRepo, 
     		MilestoneService milestoneService
+//    		StakeholderService stakeholderService
 		) {
 		super();
 		this.projectCharterRepo = projectCharterRepo;
 		this.milestoneService = milestoneService;
+//		this.stakeholderService = stakeholderService;
 	}
 
 
@@ -52,6 +57,12 @@ public class ProjectCharterService {
     public ProjectCharter loadByIdWithStakeholders(Long id) {
 		ProjectCharter projectCharter = this.loadById(id);
 		Hibernate.initialize(projectCharter.getStakeholders());
+		return projectCharter;
+	}
+    
+	public ProjectCharter loadByIdWithStakeholderInProjectDetailsList(Long projectCharterId) {
+		ProjectCharter projectCharter = this.loadById(projectCharterId);
+		Hibernate.initialize(projectCharter.getStakeholderInProjectDetailsList());
 		return projectCharter;
 	}
     
@@ -100,5 +111,15 @@ public class ProjectCharterService {
     	this.save(projectCharter);
 		
 	}
+	
+	public void addStakeholderInProjectDetailsToProjectCharter(StakeholderInProjectDetails stakeholderInProjectDetails, Long projectCharterId) {
+//		if (stakeholderInProjectDetails.getId() == null) {
+//			stakeholderInProjectDetails = stakeholderService.saveStakeholderInProjectDetails(stakeholderInProjectDetails);
+//		}
+		ProjectCharter projectCharter = this.loadByIdWithStakeholderInProjectDetailsList(projectCharterId);
+		projectCharter.addStakeholderInProjectDetails(stakeholderInProjectDetails);
+		this.save(projectCharter);
+	}
+
     
 }

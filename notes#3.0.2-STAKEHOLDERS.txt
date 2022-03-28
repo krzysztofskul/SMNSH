@@ -4,17 +4,17 @@ TO DO :
 
 #3.0.2.STAKEHOLDERS-SNAPSHOT
 
-- add stakeholder 
-	- create init test stakeholder method in service class ...
-	- test
-	- controller
-	
+- create controller for add stakeholder to project charetr functionality
 - update front-end
 
 
 --------------
 DONE :
 --------------
+
+#3.0.2.STAKEHOLDERS-SNAPSHOT-6
+	+ added stakeholder details in project functionality
+	+ test created
 
 #3.0.2.STAKEHOLDERS-SNAPSHOT-5
 	+ StakeholderServiceTest updates

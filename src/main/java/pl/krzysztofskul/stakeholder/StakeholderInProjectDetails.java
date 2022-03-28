@@ -27,10 +27,26 @@ public class StakeholderInProjectDetails {
 	private String roleInProject;
 	private String description;
 	
+
+	/*
+	 * contructors
+	 */
+	
+	public StakeholderInProjectDetails() {
+
+	}
+	
+	public StakeholderInProjectDetails(Stakeholder stakeholder, String roleInProject, String description) {
+		super();
+		this.stakeholder = stakeholder;
+		this.roleInProject = roleInProject;
+		this.description = description;
+	}
+	
 	/*
 	 * getters and setters
 	 */
-	
+
 	public Long getId() {
 		return id;
 	}

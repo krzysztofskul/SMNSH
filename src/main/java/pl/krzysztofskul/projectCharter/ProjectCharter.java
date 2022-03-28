@@ -49,7 +49,7 @@ public class ProjectCharter implements Serializable {
     private List<Stakeholder> stakeholders = new ArrayList<>();
     
     @JsonIgnore
-    @OneToMany(mappedBy = "projectCharter")
+    @OneToMany(mappedBy = "projectCharter", cascade = CascadeType.MERGE)
     private List<StakeholderInProjectDetails> stakeholderInProjectDetailsList = new ArrayList<>();
     
     /**
@@ -151,4 +151,12 @@ public class ProjectCharter implements Serializable {
 		
 	}
 	
+	public void removeStakeholder(Stakeholder stakeholder) {
+		// TODO
+	}
+	
+	public void addStakeholderInProjectDetails (StakeholderInProjectDetails stakeholderInProjectDetails) {
+		this.stakeholderInProjectDetailsList.add(stakeholderInProjectDetails);
+		stakeholderInProjectDetails.setProjectCharter(this);
+	}
 }

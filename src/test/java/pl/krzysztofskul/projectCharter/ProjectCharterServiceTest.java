@@ -2,7 +2,10 @@ package pl.krzysztofskul.projectCharter;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Random;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,12 +19,22 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.thedeanda.lorem.LoremIpsum;
+
 import pl.krzysztofskul.AppConfig;
+import pl.krzysztofskul.HomePageService;
+import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.milestone.Milestone;
 import pl.krzysztofskul.project.milestone.MilestoneInstance;
 import pl.krzysztofskul.project.milestone.MilestoneSingleton;
 import pl.krzysztofskul.project.milestone.MilestoneTemplate;
 import pl.krzysztofskul.project.milestone.service.MilestoneService;
+import pl.krzysztofskul.stakeholder.Stakeholder;
+import pl.krzysztofskul.stakeholder.StakeholderInProjectDetails;
+import pl.krzysztofskul.stakeholder.StakeholderService;
+import pl.krzysztofskul.user.User;
+import pl.krzysztofskul.user.UserBusinessPosition;
+import pl.krzysztofskul.user.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfig.class})
@@ -29,6 +42,15 @@ import pl.krzysztofskul.project.milestone.service.MilestoneService;
 public class ProjectCharterServiceTest {
 
 	private static boolean initializedDB = false;
+	
+	@Autowired
+	private HomePageService homePageService;
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private StakeholderService stakeholderService;
 	
 	@Autowired
 	private ProjectCharterService projectCharterService;
@@ -49,6 +71,7 @@ public class ProjectCharterServiceTest {
 			}
 		
 			ProjectCharterServiceTest.initializedDB = true;
+			
 		}
 		
 		
@@ -119,6 +142,69 @@ public class ProjectCharterServiceTest {
 		assertTrue(projectCharterService.loadByIdWithMilestoneInstanceList(projectCharter.getId()).getMilestoneInstanceList().size() == 1);
 		assertTrue(milestoneService.loadMielestoneInstanceByIdWithProjectCharterList(milestoneInstance.getId()).getProjectCharterList().size() == 1);
 
+	}
+	
+	@Test
+	@Order(value = 5)
+	public void givenProjectCharterAndStakeholders_whenAddStakholderDetailsToProjectCharetr_shouldBeSavedToDbCorretly() {
+		// given
+		homePageService.initTestDb();
+		createTestUsersAndStakeholders();
+		ProjectCharter projectCharter = getRandomProjectCharterWithStakeholderInProjectDetailsList();
+		List<Stakeholder> stakeholderList = getTestStakeholders();
+		
+		// when
+		for (Stakeholder stakeholder : stakeholderList) {
+			projectCharterService.addStakeholderInProjectDetailsToProjectCharter(
+					new StakeholderInProjectDetails(stakeholder, "test role", "test description"),
+					projectCharter.getId()
+			);
+		}
+		
+		// should
+		assertTrue(
+				projectCharterService.loadByIdWithStakeholderInProjectDetailsList(projectCharter.getId()).getStakeholderInProjectDetailsList().size()
+				==
+				stakeholderList.size()
+			);
+	}
+
+	private static List<User> userTestList = new ArrayList<>();
+	private static User userTestSls = new User();
+	private static User userTestPlanner = new User();
+	private static Project projectTest;
+	private static Stakeholder stakeholderFromUserTest1;
+	private static Stakeholder stakeholderFromUserTest2;
+	private static List<Stakeholder> stakeholderFromUserTestList = new ArrayList<Stakeholder>();
+	
+	private void createTestUsersAndStakeholders() {
+		userTestSls.setNameFirst(LoremIpsum.getInstance().getFirstName());
+		userTestSls.setNameLast(LoremIpsum.getInstance().getLastName());
+		userTestSls.setBusinessPosition(UserBusinessPosition.SALES_REP);
+		userTestSls = userService.saveAndReturn(userTestSls);
+		userTestPlanner.setNameFirst(LoremIpsum.getInstance().getFirstName());
+		userTestPlanner.setNameLast(LoremIpsum.getInstance().getLastName());
+		userTestPlanner.setBusinessPosition(UserBusinessPosition.PLANNER);
+		userTestPlanner = userService.saveAndReturn(userTestPlanner);
+		userTestList.add(userTestSls);
+		userTestList.add(userTestPlanner);
+		stakeholderFromUserTest1 = stakeholderService.createAndGetInitTestStakeholderFromUser(userTestSls);
+		stakeholderFromUserTest2 = stakeholderService.createAndGetInitTestStakeholderFromUser(userTestPlanner);
+		stakeholderFromUserTestList.add(stakeholderFromUserTest1);
+		stakeholderFromUserTestList.add(stakeholderFromUserTest2);	
+	}
+	
+	private List<Stakeholder> getTestStakeholders() {
+		for (Stakeholder stakeholder : stakeholderFromUserTestList) {
+			stakeholder = stakeholderService.saveStakeholder(stakeholder);
+		}
+		return stakeholderFromUserTestList;
+	}
+
+	private ProjectCharter getRandomProjectCharterWithStakeholderInProjectDetailsList() {
+		List<ProjectCharter> projectCharterList = projectCharterService.loadAll();
+		ProjectCharter projectCharter = projectCharterService.loadByIdWithStakeholderInProjectDetailsList((long) new Random().nextInt(projectCharterList.size()+1));
+		return projectCharter;
 	}
 	
 
