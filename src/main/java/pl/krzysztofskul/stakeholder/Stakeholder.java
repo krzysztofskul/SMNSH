@@ -31,6 +31,27 @@ public class Stakeholder {
 	@OneToMany(mappedBy = "stakeholder")
 	private List<StakeholderInProjectDetails> stakeholderInProjectDetailsList = new ArrayList<>();
 
+
+	/*
+	 * constructors
+	 */
+	
+	public Stakeholder() {
+		super();
+	}
+	
+	
+	
+	public Stakeholder(String nameFirst, String nameLast, String company, String stakeholderBusinessPosition) {
+		super();
+		this.nameFirst = nameFirst;
+		this.nameLast = nameLast;
+		this.company = company;
+		this.stakeholderBusinessPosition = stakeholderBusinessPosition;
+	}
+
+
+
 	/*
 	 * getters and setters
 	 */

@@ -19,18 +19,17 @@ public class ProjectCharterService {
 
     private ProjectCharterRepo projectCharterRepo;
     private MilestoneService milestoneService;
-//    private StakeholderService stakeholderService;
+    @Autowired
+    private StakeholderService stakeholderService;
 
     @Autowired
     public ProjectCharterService(
     		ProjectCharterRepo projectCharterRepo, 
     		MilestoneService milestoneService
-//    		StakeholderService stakeholderService
 		) {
 		super();
 		this.projectCharterRepo = projectCharterRepo;
 		this.milestoneService = milestoneService;
-//		this.stakeholderService = stakeholderService;
 	}
 
 
@@ -112,10 +111,11 @@ public class ProjectCharterService {
 		
 	}
 	
+	public void addStakeholderInProjectDetailsToProjectCharter(Long stakeholderInProjectDetailsId, Long projectCharterId) {
+		addStakeholderInProjectDetailsToProjectCharter(stakeholderService.loadStakeholderInProjectDetailsById(projectCharterId), projectCharterId);
+	}
+	
 	public void addStakeholderInProjectDetailsToProjectCharter(StakeholderInProjectDetails stakeholderInProjectDetails, Long projectCharterId) {
-//		if (stakeholderInProjectDetails.getId() == null) {
-//			stakeholderInProjectDetails = stakeholderService.saveStakeholderInProjectDetails(stakeholderInProjectDetails);
-//		}
 		ProjectCharter projectCharter = this.loadByIdWithStakeholderInProjectDetailsList(projectCharterId);
 		projectCharter.addStakeholderInProjectDetails(stakeholderInProjectDetails);
 		this.save(projectCharter);

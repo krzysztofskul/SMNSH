@@ -23,6 +23,7 @@ import com.thedeanda.lorem.LoremIpsum;
 
 import pl.krzysztofskul.AppConfig;
 import pl.krzysztofskul.HomePageService;
+import pl.krzysztofskul.initDB.InitDbForTests;
 import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.milestone.Milestone;
 import pl.krzysztofskul.project.milestone.MilestoneInstance;
@@ -45,6 +46,9 @@ public class ProjectCharterServiceTest {
 	
 	@Autowired
 	private HomePageService homePageService;
+	
+	@Autowired
+	private InitDbForTests initDbForTests;
 	
 	@Autowired
 	private UserService userService;
@@ -149,14 +153,14 @@ public class ProjectCharterServiceTest {
 	public void givenProjectCharterAndStakeholders_whenAddStakholderDetailsToProjectCharetr_shouldBeSavedToDbCorretly() {
 		// given
 		homePageService.initTestDb();
-		createTestUsersAndStakeholders();
-		ProjectCharter projectCharter = getRandomProjectCharterWithStakeholderInProjectDetailsList();
-		List<Stakeholder> stakeholderList = getTestStakeholders();
+		initDbForTests.createTestUsersAndStakeholders();
+		ProjectCharter projectCharter = initDbForTests.getRandomProjectCharterWithStakeholderInProjectDetailsList();
+		List<Stakeholder> stakeholderList = initDbForTests.getTestStakeholders();
 		
 		// when
 		for (Stakeholder stakeholder : stakeholderList) {
 			projectCharterService.addStakeholderInProjectDetailsToProjectCharter(
-					new StakeholderInProjectDetails(stakeholder, "test role", "test description"),
+					new StakeholderInProjectDetails(stakeholder, "test role of stakeholder from user", "test description for stakholder from user"),
 					projectCharter.getId()
 			);
 		}
@@ -168,43 +172,22 @@ public class ProjectCharterServiceTest {
 				stakeholderList.size()
 			);
 	}
-
-	private static List<User> userTestList = new ArrayList<>();
-	private static User userTestSls = new User();
-	private static User userTestPlanner = new User();
-	private static Project projectTest;
-	private static Stakeholder stakeholderFromUserTest1;
-	private static Stakeholder stakeholderFromUserTest2;
-	private static List<Stakeholder> stakeholderFromUserTestList = new ArrayList<Stakeholder>();
 	
-	private void createTestUsersAndStakeholders() {
-		userTestSls.setNameFirst(LoremIpsum.getInstance().getFirstName());
-		userTestSls.setNameLast(LoremIpsum.getInstance().getLastName());
-		userTestSls.setBusinessPosition(UserBusinessPosition.SALES_REP);
-		userTestSls = userService.saveAndReturn(userTestSls);
-		userTestPlanner.setNameFirst(LoremIpsum.getInstance().getFirstName());
-		userTestPlanner.setNameLast(LoremIpsum.getInstance().getLastName());
-		userTestPlanner.setBusinessPosition(UserBusinessPosition.PLANNER);
-		userTestPlanner = userService.saveAndReturn(userTestPlanner);
-		userTestList.add(userTestSls);
-		userTestList.add(userTestPlanner);
-		stakeholderFromUserTest1 = stakeholderService.createAndGetInitTestStakeholderFromUser(userTestSls);
-		stakeholderFromUserTest2 = stakeholderService.createAndGetInitTestStakeholderFromUser(userTestPlanner);
-		stakeholderFromUserTestList.add(stakeholderFromUserTest1);
-		stakeholderFromUserTestList.add(stakeholderFromUserTest2);	
-	}
-	
-	private List<Stakeholder> getTestStakeholders() {
-		for (Stakeholder stakeholder : stakeholderFromUserTestList) {
-			stakeholder = stakeholderService.saveStakeholder(stakeholder);
-		}
-		return stakeholderFromUserTestList;
-	}
-
-	private ProjectCharter getRandomProjectCharterWithStakeholderInProjectDetailsList() {
-		List<ProjectCharter> projectCharterList = projectCharterService.loadAll();
-		ProjectCharter projectCharter = projectCharterService.loadByIdWithStakeholderInProjectDetailsList((long) new Random().nextInt(projectCharterList.size()+1));
-		return projectCharter;
+	@Test
+	@Order(value = 6)
+	public void givenProjectCharter_whenAddNewStakeholder_shouldBeSavedToDbCorrectly() {
+		// given
+		ProjectCharter projectCharter = initDbForTests.getRandomProjectCharterWithStakeholderInProjectDetailsList();
+		Stakeholder newStakeholder = initDbForTests.createAndReturnNewTestStakeholder();
+		
+		// when
+		projectCharterService.addStakeholderInProjectDetailsToProjectCharter(new StakeholderInProjectDetails(newStakeholder, "test role of new stakeholder", "test description for new stakeholder"), projectCharter.getId());
+		
+		// should
+		assertTrue(projectCharterService.loadByIdWithStakeholderInProjectDetailsList(projectCharter.getId()).getStakeholderInProjectDetailsList().size() 
+				>
+				projectCharter.getStakeholderInProjectDetailsList().size()
+				);
 	}
 	
 

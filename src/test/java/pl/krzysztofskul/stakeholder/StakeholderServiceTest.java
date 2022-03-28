@@ -27,6 +27,7 @@ import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.device.category.DeviceCategory;
 import pl.krzysztofskul.initDB.InitDB;
+import pl.krzysztofskul.initDB.InitDbForTests;
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.investor.InvestorService;
 import pl.krzysztofskul.project.Project;
@@ -54,6 +55,8 @@ public class StakeholderServiceTest {
 	}
 	
 	@Autowired
+	private InitDbForTests initDbForTests;
+	@Autowired
 	private StakeholderService stakeholderService;
 	@Autowired
 	private UserService userService;
@@ -71,31 +74,6 @@ public class StakeholderServiceTest {
 	private ProjectCharterService projectCharterService;
 	@Autowired
 	private DeviceService deviceService;
-
-	private static List<User> userTestList = new ArrayList<>();
-	private static User userTestSls = new User();
-	private static User userTestPlanner = new User();
-	private static Project projectTest;
-	private static Stakeholder stakeholderFromUserTest1;
-	private static Stakeholder stakeholderFromUserTest2;
-	private static List<Stakeholder> stakeholderFromUserTestList = new ArrayList<Stakeholder>();
-	
-	private void createTestUsersAndStakeholders() {
-		userTestSls.setNameFirst(LoremIpsum.getInstance().getFirstName());
-		userTestSls.setNameLast(LoremIpsum.getInstance().getLastName());
-		userTestSls.setBusinessPosition(UserBusinessPosition.SALES_REP);
-		userTestSls = userService.saveAndReturn(userTestSls);
-		userTestPlanner.setNameFirst(LoremIpsum.getInstance().getFirstName());
-		userTestPlanner.setNameLast(LoremIpsum.getInstance().getLastName());
-		userTestPlanner.setBusinessPosition(UserBusinessPosition.PLANNER);
-		userTestPlanner = userService.saveAndReturn(userTestPlanner);
-		userTestList.add(userTestSls);
-		userTestList.add(userTestPlanner);
-		stakeholderFromUserTest1 = stakeholderService.createAndGetInitTestStakeholderFromUser(userTestSls);
-		stakeholderFromUserTest2 = stakeholderService.createAndGetInitTestStakeholderFromUser(userTestPlanner);
-		stakeholderFromUserTestList.add(stakeholderFromUserTest1);
-		stakeholderFromUserTestList.add(stakeholderFromUserTest2);	
-	}
 	
 	@Test
 	@Order(value = 1)
@@ -106,26 +84,26 @@ public class StakeholderServiceTest {
 		
 		// given
 		homePageService.initTestDb();
-		this.createTestUsersAndStakeholders();
+		initDbForTests.createTestUsersAndStakeholders();
 		
 		// when
-		for (Stakeholder stakeholder : stakeholderFromUserTestList) {
+		for (Stakeholder stakeholder : initDbForTests.stakeholderFromUserTestList) {
 			stakeholder = stakeholderService.saveStakeholder(stakeholder);
 		}
 		
 		// should
-		assertTrue(stakeholderFromUserTest1.getId() != null);
-		assertTrue(stakeholderFromUserTest1.getId() > 0);
-		assertTrue(stakeholderFromUserTest1.getNameFirst().equals(userTestSls.getNameFirst()));
-		assertTrue(stakeholderFromUserTest1.getNameLast().equals(userTestSls.getNameLast()));
-		assertTrue(stakeholderFromUserTest1.getStakeholderBusinessPosition().equals(userTestSls.getBusinessPosition().toString()));
+		assertTrue(initDbForTests.stakeholderFromUserTest1.getId() != null);
+		assertTrue(initDbForTests.stakeholderFromUserTest1.getId() > 0);
+		assertTrue(initDbForTests.stakeholderFromUserTest1.getNameFirst().equals(initDbForTests.userTestSls.getNameFirst()));
+		assertTrue(initDbForTests.stakeholderFromUserTest1.getNameLast().equals(initDbForTests.userTestSls.getNameLast()));
+		assertTrue(initDbForTests.stakeholderFromUserTest1.getStakeholderBusinessPosition().equals(initDbForTests.userTestSls.getBusinessPosition().toString()));
 
 	}
 	
 	@Test
 	@Order(value = 2)
 	public void testUserTestSls() {
-		assertTrue(StakeholderServiceTest.userTestSls.getId() != null && StakeholderServiceTest.userTestSls.getId() > 0);
+		assertTrue(initDbForTests.userTestSls.getId() != null && initDbForTests.userTestSls.getId() > 0);
 	}
 	
 	@Test
@@ -136,19 +114,19 @@ public class StakeholderServiceTest {
 	public void givenProjectAndStekholdersFromUser_whenAddStakeholderFromUserToProject_shouldSaveToDbCorrectly() {
 		// given	
 		homePageService.initTestDb();		
-		projectTest = projectService.loadById((long) new Random().nextInt(projectService.loadAll().size())+1);
-		stakeholderFromUserTest1 = stakeholderService.loadStakeholderById(stakeholderFromUserTest1.getId());
+		initDbForTests.projectTest = projectService.loadById((long) new Random().nextInt(projectService.loadAll().size())+1);
+		initDbForTests.stakeholderFromUserTest1 = stakeholderService.loadStakeholderById(initDbForTests.stakeholderFromUserTest1.getId());
 		
-		assertTrue(projectTest.getId() != null && projectTest.getId() > 0);
-		assertTrue(stakeholderFromUserTest1.getId() != null && stakeholderFromUserTest1.getId() > 0);
+		assertTrue(initDbForTests.projectTest.getId() != null && initDbForTests.projectTest.getId() > 0);
+		assertTrue(initDbForTests.stakeholderFromUserTest1.getId() != null && initDbForTests.stakeholderFromUserTest1.getId() > 0);
 		
 		// when
-		for (Stakeholder stakeholder: stakeholderFromUserTestList) {
-			stakeholderService.addStakeholderFromUserToProject(stakeholder.getId(), projectTest.getProjectCharter().getId());	
+		for (Stakeholder stakeholder: initDbForTests.stakeholderFromUserTestList) {
+			stakeholderService.addStakeholderFromUserToProject(stakeholder.getId(), initDbForTests.projectTest.getProjectCharter().getId());	
 		}
 		
 		// should
-		for (Stakeholder stakeholder : stakeholderFromUserTestList) {
+		for (Stakeholder stakeholder : initDbForTests.stakeholderFromUserTestList) {
 			assertTrue(
 					stakeholderService.loadStakeholderInProjectDetailsById(stakeholder.getId())
 						.getStakeholder().getId()
@@ -157,9 +135,9 @@ public class StakeholderServiceTest {
 		}
 
 		assertTrue(
-				projectCharterService.loadByIdWithStakeholders(projectTest.getProjectCharter().getId()).getStakeholders() != null
+				projectCharterService.loadByIdWithStakeholders(initDbForTests.projectTest.getProjectCharter().getId()).getStakeholders() != null
 				&&
-				projectCharterService.loadByIdWithStakeholders(projectTest.getProjectCharter().getId()).getStakeholders().size() == stakeholderFromUserTestList.size()
+				projectCharterService.loadByIdWithStakeholders(initDbForTests.projectTest.getProjectCharter().getId()).getStakeholders().size() == initDbForTests.stakeholderFromUserTestList.size()
 				);
 		
 	}

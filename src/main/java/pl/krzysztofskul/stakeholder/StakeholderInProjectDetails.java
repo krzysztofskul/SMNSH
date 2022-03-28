@@ -1,5 +1,6 @@
 package pl.krzysztofskul.stakeholder;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,7 @@ public class StakeholderInProjectDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.MERGE})
 	private Stakeholder stakeholder;
 	
 	@ManyToOne
@@ -29,7 +30,7 @@ public class StakeholderInProjectDetails {
 	
 
 	/*
-	 * contructors
+	 * constructors
 	 */
 	
 	public StakeholderInProjectDetails() {

@@ -12,6 +12,12 @@ TO DO :
 DONE :
 --------------
 
+#3.0.2.STAKEHOLDERS-SNAPSHOT-8
+	+ test updates
+
+#3.0.2.STAKEHOLDERS-SNAPSHOT-7
+	+ test updates
+
 #3.0.2.STAKEHOLDERS-SNAPSHOT-6
 	+ added stakeholder details in project functionality
 	+ test created
