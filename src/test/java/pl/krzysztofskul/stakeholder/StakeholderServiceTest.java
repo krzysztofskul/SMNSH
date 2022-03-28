@@ -31,6 +31,7 @@ import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.investor.InvestorService;
 import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.ProjectService;
+import pl.krzysztofskul.projectCharter.ProjectCharter;
 import pl.krzysztofskul.projectCharter.ProjectCharterService;
 import pl.krzysztofskul.subcontractor.SubcontractorService;
 import pl.krzysztofskul.user.User;
@@ -147,33 +148,19 @@ public class StakeholderServiceTest {
 		}
 		
 		// should
-		assertTrue(
-				stakeholderService.loadStakeholderInProjectDetailsById(stakeholderFromUserTest1.getId())
-					.getStakeholder().getId()
-					.equals(stakeholderFromUserTest1.getId())
-		);
+		for (Stakeholder stakeholder : stakeholderFromUserTestList) {
+			assertTrue(
+					stakeholderService.loadStakeholderInProjectDetailsById(stakeholder.getId())
+						.getStakeholder().getId()
+						.equals(stakeholder.getId())
+			);			
+		}
 
 		assertTrue(
 				projectCharterService.loadByIdWithStakeholders(projectTest.getProjectCharter().getId()).getStakeholders() != null
-				);
-		
-
-		assertTrue(
+				&&
 				projectCharterService.loadByIdWithStakeholders(projectTest.getProjectCharter().getId()).getStakeholders().size() == stakeholderFromUserTestList.size()
 				);
-
-		/*
-		 * todo 2022-03-28
-		 */		
-//		assertTrue(
-//				projectService.loadByIdWithStakeholders(projectTest.getId()).getProjectCharter()
-//				.getStakeholders().stream()
-//						.filter(
-//							s -> s.getId().equals(stakeholderFromUserTest.getId())
-//						).findAny().orElseThrow().equals(stakeholderFromUserTest.getId())
-//		);
-//		
-		
 		
 	}
 }

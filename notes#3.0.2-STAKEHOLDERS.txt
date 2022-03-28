@@ -16,6 +16,9 @@ TO DO :
 DONE :
 --------------
 
+#3.0.2.STAKEHOLDERS-SNAPSHOT-5
+	+ StakeholderServiceTest updates
+
 #3.0.2.STAKEHOLDERS-SNAPSHOT-4
 	+ StakeholderServiceTest updates
 
