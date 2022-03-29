@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,6 +16,8 @@ public class UserService {
      * params.
      */
 
+	private List<User> userTestList = new ArrayList<User>();
+	
     private UserRepo userRepo;
 
     /**
@@ -25,12 +28,24 @@ public class UserService {
     public UserService(UserRepo userRepo) {
         this.userRepo = userRepo;
     }
+    
+	/**
+     * getters and setters
+     */
+    
+    	public List<User> getUserTestList() {
+		return userTestList;
+	}
 
+	public void setUserTestList(List<User> userTestList) {
+		this.userTestList = userTestList;
+	}
+    
     /**
      * methods CRUD
      * */
 
-    /*** Create */
+	/*** Create */
 
     public void save(User user) {
         userRepo.save(user);
@@ -88,4 +103,52 @@ public class UserService {
     /*** Update*/
 
     /*** Delete */
+    
+    /**
+     * no-CRUD methods
+     */
+    
+    public void createRealTestUsers() {
+        userTestList.add(new User(
+        		"Piotr", "W.", UserBusinessPosition.ADMIN, 
+        		"piotr.w@test.test", "test"
+        		));
+        userTestList.add(new User(
+        		"Sebastian", "K.", UserBusinessPosition.PROJECT_MANAGER, 
+        		"sebastian.k@test.test", "test"
+        		));
+        userTestList.add(new User(
+        		"Ewa", "W-M.", UserBusinessPosition.PROJECT_MANAGER, 
+        		"ewa.w-m@test.test", "test"
+        		));
+        userTestList.add(new User(
+        		"Maciej", "W.", UserBusinessPosition.PLANNER, 
+        		"maciej.d@test.test", "test"
+        		));
+        userTestList.add(new User(
+        		"Krzysztof", "K.", UserBusinessPosition.PLANNER, 
+        		"krzysztof.k@test.test", "test"
+        		));
+        userTestList.add(new User(
+        		"Wojciech", "G.", UserBusinessPosition.SALES_REP, 
+        		"wojciech.g@test.test", "test"
+        		));
+        userTestList.add(new User(
+        		"Ryszard", "G.", UserBusinessPosition.SALES_REP, 
+        		"ryszard.g@test.test", "test"
+        		));
+    }
+    
+    
+    public void saveRealTestUsersToDb() {
+    	for (User user : this.getUserTestList()) {
+			this.save(user);
+		}
+    }
+
+	public void createRealTestUsersAndSaveToDb() {
+		this.createRealTestUsers();
+		this.saveRealTestUsersToDb();
+	}
+    
 }

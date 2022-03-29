@@ -142,8 +142,7 @@ public class HomePageService {
 			companyTypeService.createCompanyTypesAndSaveToDB();
 			subcontractorService.createTestSubcontractors();
 			investorService.createTestInvestors(15);
-			this.createRealTestUsers();
-			this.createUsers();
+			userService.createRealTestUsersAndSaveToDb();
 			this.createDeviceCategories();
 			this.createDevices();
 			this.createRealTestDevices();
@@ -177,73 +176,6 @@ public class HomePageService {
             }
         } while (!isValid);
         return user.getEmail();
-    }
-
-    public void createRealTestUsers() {
-        User user;
-        /** NEW USER : ADMIN */
-        user = new User();
-        user.setNameFirst("Piotr");
-        user.setNameLast("W.");
-        user.setEmail("piotr.w@test.test");
-        user.setPassword("test");
-        user.setPasswordConfirmation(user.getPassword());
-        user.setBusinessPosition(UserBusinessPosition.ADMIN);
-        userService.save(user);
-        /** NEW USER : PROJECT MANAGER */
-        user = new User();
-        user.setNameFirst("Sebastian");
-        user.setNameLast("K.");
-        user.setEmail("sebastian.k@test.test");
-        user.setPassword("test");
-        user.setPasswordConfirmation(user.getPassword());
-        user.setBusinessPosition(UserBusinessPosition.PROJECT_MANAGER);
-        userService.save(user);
-        /** NEW USER : PROJECT MANAGER */
-        user = new User();
-        user.setNameFirst("Ewa");
-        user.setNameLast("W-M.");
-        user.setEmail("ewa.w-m@test.test");
-        user.setPassword("test");
-        user.setPasswordConfirmation(user.getPassword());
-        user.setBusinessPosition(UserBusinessPosition.PROJECT_MANAGER);
-        userService.save(user);
-        /** NEW USER : DESIGNER */
-        user = new User();
-        user.setNameFirst("Maciej");
-        user.setNameLast("D.");
-        user.setEmail("maciej.d@test.test");
-        user.setPassword("test");
-        user.setPasswordConfirmation(user.getPassword());
-        user.setBusinessPosition(UserBusinessPosition.PLANNER);
-        userService.save(user);
-        /** NEW USER : DESIGNER */
-        user = new User();
-        user.setNameFirst("Krzysztof");
-        user.setNameLast("K.");
-        user.setEmail("krzysztof.k@test.test");
-        user.setPassword("test");
-        user.setPasswordConfirmation(user.getPassword());
-        user.setBusinessPosition(UserBusinessPosition.PLANNER);
-        userService.save(user);
-        /** NEW USER : SALES REP. */
-        user = new User();
-        user.setNameFirst("Wojciech");
-        user.setNameLast("G.");
-        user.setEmail("wojciech.g@test.test");
-        user.setPassword("test");
-        user.setPasswordConfirmation(user.getPassword());
-        user.setBusinessPosition(UserBusinessPosition.SALES_REP);
-        userService.save(user);
-        /** NEW USER : SALES REP. */
-        user = new User();
-        user.setNameFirst("Ryszard");
-        user.setNameLast("G.");
-        user.setEmail("ryszard.g@test.test");
-        user.setPassword("test");
-        user.setPasswordConfirmation(user.getPassword());
-        user.setBusinessPosition(UserBusinessPosition.SALES_REP);
-        userService.save(user);
     }
 
     public void createUsers() {

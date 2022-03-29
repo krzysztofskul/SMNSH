@@ -82,7 +82,28 @@ public class User {
      *
      */
 
-    /** getters and setters
+    public User() {
+		super();
+	}
+    
+    
+    
+    public User(@Size(min = 2, max = 32) String nameFirst, @Size(min = 2, max = 32) String nameLast,
+			UserBusinessPosition businessPosition,
+			@Email @NotBlank(message = "E-mail nie może być pusty / The email cannot be blank!") String email,
+			String password) {
+		super();
+		this.nameFirst = nameFirst;
+		this.nameLast = nameLast;
+		this.businessPosition = businessPosition;
+		this.email = email;
+		this.password = password;
+		this.passwordConfirmation = password;
+	}
+
+
+
+	/** getters and setters
      *
      */
 
@@ -90,7 +111,9 @@ public class User {
         return id;
     }
 
-    public void setId(Long id) {
+
+
+	public void setId(Long id) {
         this.id = id;
     }
 

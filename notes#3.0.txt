@@ -17,6 +17,9 @@ Milestones accessible in project charter only.
 TODO / DONE:
 ---------------------------------------------
 
+# 3.0.2-SNAPSHOT-2
+	+ init db updates
+
 # 3.0.2-SNAPSHOT-1
 	+ remove milestone instance test fixed
 	+ remove milestone instance from project charter functionality added
