@@ -24,8 +24,8 @@
         	
         	<form action="/milestones/instances/new" method="post">
         	
-        		<input type="text" name="backToPage" value="${param.backToPage}") />
-        		<input type="text" name="projectCharterId" value="${param.projectCharterId}" />
+        		<input type="text" name="backToPage" value="${param.backToPage}") hidden/>
+        		<input type="text" name="projectCharterId" value="${param.projectCharterId}" hidden/>
         	
 	        	<div class="card">
 	        	
@@ -118,10 +118,10 @@
 	        		</div>
 	        		
 	        		<div class="card-footer">
-	        			<button class="btn btn-outline-warning float-left disabled">
+	        			<a href="/project-charter/${projectCharterId}" class="btn btn-outline-warning float-left">
 	        				<p class="langPL">ANULUJ</p>
 	        				<p class="langEN">CANCEL</p>
-	        			</button>
+	        			</a>
 	        			<button class="btn btn-outline-success float-right" type="submit">
 	        				<p class="langPL">ZAPISZ</p>
 	        				<p class="langEN">SAVE</p>

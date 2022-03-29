@@ -66,10 +66,47 @@ public class MilestoneController {
 		milestoneInstance.setNamePL(namePL);
 		milestoneInstance.setNameEN(nameEN);
 		milestoneInstance.setDescription(description);
-		milestoneInstance.getMilestoneTimeline().setDateStartPlanned(LocalDate.parse(dateStartPlanned));
-		milestoneInstance.getMilestoneTimeline().setDateFinishPlanned(LocalDate.parse(dateFinishPlanned));
-		milestoneInstance.getMilestoneTimeline().setDateStarted(LocalDate.parse(dateStarted));
-		milestoneInstance.getMilestoneTimeline().setDateFinished(LocalDate.parse(dateFinished));
+		
+		if (dateStartPlanned == null) {
+			dateStartPlanned = LocalDate.now().toString();
+		} else {
+			try {
+				milestoneInstance.getMilestoneTimeline().setDateStartPlanned(LocalDate.parse(dateStartPlanned));
+			} catch (java.time.format.DateTimeParseException e) {
+				dateStartPlanned = LocalDate.now().toString();
+			}
+		}
+		if (dateFinishPlanned == null) {
+			dateFinishPlanned = LocalDate.now().toString();
+		} else {
+			try {
+				milestoneInstance.getMilestoneTimeline().setDateStartPlanned(LocalDate.parse(dateFinishPlanned));
+			} catch (java.time.format.DateTimeParseException e) {
+				dateFinishPlanned = LocalDate.now().toString();
+			}
+				
+		}
+		if (dateStarted == null) {
+			dateStarted = LocalDate.now().toString();
+		} else {
+			try {
+				milestoneInstance.getMilestoneTimeline().setDateStartPlanned(LocalDate.parse(dateStarted));	
+			} catch (java.time.format.DateTimeParseException e) {
+				dateStarted = LocalDate.now().toString();
+			}
+			
+		}
+		if (dateFinished == null) {
+			dateFinished = LocalDate.now().toString();
+		} else {
+			try {
+				milestoneInstance.getMilestoneTimeline().setDateStartPlanned(LocalDate.parse(dateFinished));
+			} catch (java.time.format.DateTimeParseException e) {
+				dateFinished = LocalDate.now().toString();
+			}
+				
+		}
+
 		milestoneInstance.setId(milestoneService.saveMilestoneInstance(milestoneInstance).getId());
 		
 		projectCharterService.addMilestoneInstance(projectCharterId, milestoneInstance.getId());

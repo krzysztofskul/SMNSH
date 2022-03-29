@@ -8,14 +8,20 @@ Template milestones for all projects -> specific milestones to create in specifi
 Milestones accessible in project charter only.
 
 
-# 3.0.2-SNAPSHOT
+# 3.0.2-MILESTONES-SNAPSHOT
 	- change Milestone @MappedSuperclass to SingleTable ?()
 	- add a functionality to create the request for create a milestone template from milestone instance
 	- add stakeholder class
 	
 
+	
+
 TODO / DONE:
 ---------------------------------------------
+
+# 3.0.2-MILESTONES-SNAPSHOT-2
+	+ new milestone page updates
+	+ add new milestone functionality bug fixed
 
 # 3.0.2-SNAPSHOT-2
 	+ init db updates
