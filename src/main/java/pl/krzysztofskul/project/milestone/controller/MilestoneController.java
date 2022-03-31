@@ -68,41 +68,41 @@ public class MilestoneController {
 		milestoneInstance.setDescription(description);
 		
 		if (dateStartPlanned == null) {
-			dateStartPlanned = LocalDate.now().toString();
+			//dateStartPlanned = LocalDate.now().toString();
 		} else {
 			try {
 				milestoneInstance.getMilestoneTimeline().setDateStartPlanned(LocalDate.parse(dateStartPlanned));
 			} catch (java.time.format.DateTimeParseException e) {
-				dateStartPlanned = LocalDate.now().toString();
+				dateStartPlanned = null;
 			}
 		}
 		if (dateFinishPlanned == null) {
-			dateFinishPlanned = LocalDate.now().toString();
+			//dateFinishPlanned = LocalDate.now().toString();
 		} else {
 			try {
 				milestoneInstance.getMilestoneTimeline().setDateStartPlanned(LocalDate.parse(dateFinishPlanned));
 			} catch (java.time.format.DateTimeParseException e) {
-				dateFinishPlanned = LocalDate.now().toString();
+				dateFinishPlanned = null;
 			}
 				
 		}
 		if (dateStarted == null) {
-			dateStarted = LocalDate.now().toString();
+			//dateStarted = LocalDate.now().toString();
 		} else {
 			try {
 				milestoneInstance.getMilestoneTimeline().setDateStartPlanned(LocalDate.parse(dateStarted));	
 			} catch (java.time.format.DateTimeParseException e) {
-				dateStarted = LocalDate.now().toString();
+				dateStarted = null;
 			}
 			
 		}
 		if (dateFinished == null) {
-			dateFinished = LocalDate.now().toString();
+			//dateFinished = LocalDate.now().toString();
 		} else {
 			try {
 				milestoneInstance.getMilestoneTimeline().setDateStartPlanned(LocalDate.parse(dateFinished));
 			} catch (java.time.format.DateTimeParseException e) {
-				dateFinished = LocalDate.now().toString();
+				dateFinished = null;
 			}
 				
 		}

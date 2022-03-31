@@ -70,6 +70,7 @@
 	        					<div class="row mt-1 mb-1">
 	        						<div class="col-4 text-right border-right">
 	        							<p class="langPL">MIEJSCE DOSTAWY:</p>
+	        							<p class="langEN">INSTALLATION PLACE:</p>
 	        						</div>
 	        						<div class="col-8">
 	        							<p>${projectCharter.project.recipient}</p>
@@ -101,24 +102,67 @@
 	        					</c:when>
 	        					<c:otherwise>
 	        						<c:forEach items="${projectCharter.milestoneInstanceList}" var="milestoneInstance">
-		        						<div class="row border-top border-bottom">
-		        							<div class="col-8">
-		        								<p class="langPL">${milestoneInstance.namePL}</p>
-		        								<p class="langEN">${milestoneInstance.nameEN}</p>
+		        						<div class="milestone-div m-1">
+			        						<div class="row border-top border-dark bg-light">
+			        							<div class="col-8">
+			        								<p class="langPL">${milestoneInstance.namePL}</p>
+			        								<p class="langEN">${milestoneInstance.nameEN}</p>
+			        							</div>
+	
+			        							<div class="col-4 text-right">
+			        								<div class="dropdown">
+													  <button class="btn-sm btn-outline-secondary dropdown-toggle mt-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													    MENU
+													  </button>
+													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													    <a class="dropdown-item" href="#">
+				        									<p class="langPL text-primary">EDYTUJ</p>
+				        									<p class="langEN text-primary">EDIT</p>
+													    </a>
+													    <a class="dropdown-item" href="#">
+				        									<p class="langPL text-success">USTAW JAKO WYKONANY</p>
+				        									<p class="langEN text-success">SET AS DONE</p>
+													    </a>
+													    <a class="dropdown-item" href="#">
+				        									<p class="langPL text-warning">USTAW JAKO NIEWYKONANY</p>
+				        									<p class="langEN text-warning">SET AS TODO</p>
+													    </a>
+													    <div class="dropdown-divider"></div>
+													    <a href="/milestones/instances/delete/${projectCharter.id}/${milestoneInstance.id}?backToPage=project-charter/${projectCharter.id}" class="text-center">
+				        									<p class="langPL text-danger">USUŃ</p>
+				        									<p class="langEN text-danger">DELETE</p>
+			        									</a>
+													  </div>
+													</div>
+			        							</div>
+			        						</div>
+		        							<div class="row">
+		        								<div class="col-4">
+		        									<p class="langPL text-black-50">ZAPLANOWANO NA:</p>
+		        									<p class="langEN text-black-50">PLANNED AT:</p>
+		        								</div>
+			        							<div class="col-4">
+			        									${milestoneInstance.milestoneTimeline.dateFinishPlanned }
+			        							</div>
 		        							</div>
-		        							<div class="col-2">
-		        								<button class="btn-sm btn-outline-warning">
-		        									${milestoneInstance.milestoneTimeline.dateFinishPlanned }
-		        								</button>
+		        							<div class="row border-bottom">
+		        								<div class="col-4">
+		        									<p class="langPL text-black-50">ZREALIZOWANO:</p>
+		        									<p class="langEN text-black-50">DONE:</p>
+		        								</div>
+			        							<div class="col-4">
+			        								<c:choose>
+				        								<c:when test="${milestoneInstance.milestoneTimeline.dateFinishPlanned eq null}">
+				        									<p class="langPL text-warning">NIE ZREALIZOWANO</p>
+				        									<p class="langEN text-warning">NOT FINISHED</p>
+				        								</c:when>
+				        								<c:otherwise>
+				        									${milestoneInstance.milestoneTimeline.dateFinished}
+			        									</c:otherwise>
+		        									</c:choose>
+			        							</div>
 		        							</div>
-		        							<div class="col-2">
-		        								<a href="/milestones/instances/delete/${projectCharter.id}/${milestoneInstance.id}?backToPage=project-charter/${projectCharter.id}">
-			        								<button class="btn-sm btn-outline-danger">
-			        									DEL
-			        								</button>
-		        								</a>
-		        							</div>
-		        						</div>
+	        							</div>
 	        						</c:forEach>
 	        					</c:otherwise>
         					</c:choose>

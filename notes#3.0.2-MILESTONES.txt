@@ -13,11 +13,14 @@ Milestones accessible in project charter only.
 	- add a functionality to create the request for create a milestone template from milestone instance
 	- add stakeholder class
 	
-
+	+ project charter / milestones front-end updates
 	
 
 TODO / DONE:
 ---------------------------------------------
+
+# 3.0.2-MILESTONES-SNAPSHOT-3
+	+ project charter / milestones front-end updates
 
 # 3.0.2-MILESTONES-SNAPSHOT-2
 	+ new milestone page updates
