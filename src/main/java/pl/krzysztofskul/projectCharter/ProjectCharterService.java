@@ -70,6 +70,13 @@ public class ProjectCharterService {
     	Hibernate.initialize(projectCharter.getMilestoneInstanceList());
     	return projectCharter;
     }
+    
+	public ProjectCharter loadByIdWithMilestoneInstanceListAndStakeholders(Long id) {
+		ProjectCharter projectCharter = this.loadByIdWithMilestoneInstanceList(id);
+		Hibernate.initialize(projectCharter.getStakeholders());
+		return projectCharter;
+	}
+
 
     public ProjectCharter save(ProjectCharter projectCharter) {
         return projectCharterRepo.save(projectCharter);

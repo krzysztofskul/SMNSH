@@ -173,10 +173,73 @@
 	        		<div class="col m-1">
 	        			<div class="card">
 	        				<div class="card-header">
-	        					<p class="langPL">INTERESARIUSZE</p>
-	        					<p class="langen">STAKEHOLDERS</p>
+		        				<div class="float-left">
+		        					<p class="langPL">INTERESARIUSZE</p>
+		        					<p class="langen">STAKEHOLDERS</p>
+	        					</div>
+	        					<div class="float-right d-inline">
+	        						<a href="#">
+	        							<button class="btn-sm btn-outline-success">+</button>
+	        						</a>
+	        					</div>
 	        				</div>
 	        				<div class="card-body">
+	        					<c:choose>
+	        				
+	        					<c:when test="${null eq projectCharter.stakeholders || projectCharter.stakeholders.size() == 0}">
+	        						<p class="langPL">BRAK INTERESARIUSZY</p>
+	        						<p class="langEN">NO STAKEHOLDERS</p>
+	        					</c:when>
+	        					<c:otherwise>
+	        						<c:forEach items="${projectCharter.stakeholders}" var="stakeholder">
+		        						<div class="stakeholder-div m-1">
+			        						<div class="row border-top border-dark bg-light">
+			        							<div class="col-8">
+			        								<p class="langPL">${stakeholder.nameFirs}</p>
+			        								<p class="langEN">${stakeholder.nameLast}</p>
+			        							</div>
+	
+			        							<div class="col-4 text-right">
+			        								<div class="dropdown">
+													  <button class="btn-sm btn-outline-secondary dropdown-toggle mt-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													    MENU
+													  </button>
+													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													    <a class="dropdown-item" href="#">
+				        									<p class="langPL text-primary">EDYTUJ</p>
+				        									<p class="langEN text-primary">EDIT</p>
+													    </a>
+													    <div class="dropdown-divider"></div>
+													    <a href="#" class="text-center">
+				        									<p class="langPL text-danger">USUŃ</p>
+				        									<p class="langEN text-danger">DELETE</p>
+			        									</a>
+													  </div>
+													</div>
+			        							</div>
+			        						</div>
+		        							<div class="row">
+		        								<div class="col-4">
+		        									<p class="langPL text-black-50">STANOWISKO:</p>
+		        									<p class="langEN text-black-50">BUSINESS POSITION:</p>
+		        								</div>
+			        							<div class="col-4">
+			        									${stakeholder.businessPosition}
+			        							</div>
+		        							</div>
+		        							<div class="row border-bottom">
+		        								<div class="col-4">
+		        									<p class="langPL text-black-50">FIRMA/INStyTUJCA:</p>
+		        									<p class="langEN text-black-50">COMPANY:</p>
+		        								</div>
+			        							<div class="col-4">
+		        									${stakeholder.company}
+			        							</div>
+		        							</div>
+	        							</div>
+	        						</c:forEach>
+	        					</c:otherwise>
+        					</c:choose>
 	        				</div>
 	        			</div>
 	        		</div>

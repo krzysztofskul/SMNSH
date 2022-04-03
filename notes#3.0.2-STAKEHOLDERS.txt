@@ -13,6 +13,10 @@ TO DO :
 DONE :
 --------------
 
+#3.0.2.STAKEHOLDERS-SNAPSHOT-10
+
+	+ front-end updates
+
 #3.0.2.STAKEHOLDERS-SNAPSHOT-9
 	+ auto create inner stakeholders from existing users functionality added
 	+ create outer stakeholders functionality added
