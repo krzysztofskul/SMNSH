@@ -195,8 +195,7 @@
 		        						<div class="stakeholder-div m-1">
 			        						<div class="row border-top border-dark bg-light">
 			        							<div class="col-8">
-			        								<p class="langPL">${stakeholder.nameFirs}</p>
-			        								<p class="langEN">${stakeholder.nameLast}</p>
+			        								<p class="langPL">${stakeholder.nameFirst} ${stakeholder.nameLast}</p>
 			        							</div>
 	
 			        							<div class="col-4 text-right">
@@ -205,6 +204,10 @@
 													    MENU
 													  </button>
 													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													    <a class="dropdown-item" href="#">
+				        									<p class="langPL text-primary">SZCZEGÓŁY</p>
+				        									<p class="langEN text-primary">DETAILS</p>
+													    </a>
 													    <a class="dropdown-item" href="#">
 				        									<p class="langPL text-primary">EDYTUJ</p>
 				        									<p class="langEN text-primary">EDIT</p>
@@ -224,12 +227,12 @@
 		        									<p class="langEN text-black-50">BUSINESS POSITION:</p>
 		        								</div>
 			        							<div class="col-4">
-			        									${stakeholder.businessPosition}
+			        									${stakeholder.stakeholderBusinessPosition}
 			        							</div>
 		        							</div>
 		        							<div class="row border-bottom">
 		        								<div class="col-4">
-		        									<p class="langPL text-black-50">FIRMA/INStyTUJCA:</p>
+		        									<p class="langPL text-black-50">FIRMA/INSTYTUJCA:</p>
 		        									<p class="langEN text-black-50">COMPANY:</p>
 		        								</div>
 			        							<div class="col-4">

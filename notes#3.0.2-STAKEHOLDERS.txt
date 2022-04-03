@@ -13,8 +13,11 @@ TO DO :
 DONE :
 --------------
 
-#3.0.2.STAKEHOLDERS-SNAPSHOT-10
+#3.0.2.STAKEHOLDERS-SNAPSHOT-11
+	+ created setDemoStakeholders(Long porjectCharterId) method in ProjectCharterService
+	+ front-end updates for project charter jsp file
 
+#3.0.2.STAKEHOLDERS-SNAPSHOT-10
 	+ front-end updates
 
 #3.0.2.STAKEHOLDERS-SNAPSHOT-9

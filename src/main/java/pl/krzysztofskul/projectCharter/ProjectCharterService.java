@@ -1,17 +1,22 @@
 package pl.krzysztofskul.projectCharter;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.milestone.MilestoneInstance;
 import pl.krzysztofskul.project.milestone.MilestoneTemplate;
 import pl.krzysztofskul.project.milestone.service.MilestoneService;
+import pl.krzysztofskul.stakeholder.Stakeholder;
 import pl.krzysztofskul.stakeholder.StakeholderInProjectDetails;
 import pl.krzysztofskul.stakeholder.StakeholderService;
+import pl.krzysztofskul.user.User;
 
 @Service
 @Transactional
@@ -128,5 +133,45 @@ public class ProjectCharterService {
 		this.save(projectCharter);
 	}
 
+	public void setDemoStakeholders(Long porjectCharterId) {
+		ProjectCharter projectCharter = this.loadByIdWithStakeholders(porjectCharterId);
+		Project project = projectCharter.getProject();
+		
+		/*
+		 * get users involved in the project
+		 */
+		List<User> userList = new ArrayList<>();
+		userList.add(project.getSls());
+		if (project.getDes() != null) {
+			userList.add(project.getDes());			
+		}
+		
+		/*
+		 * add stakeholders from users involved in the project to the list of stakeholders to add 
+		 */
+		List<Stakeholder> stakeholdersToAdd = new ArrayList<>();
+		for (User user : userList) {
+			stakeholdersToAdd.add(stakeholderService.loadStakeholderByUserId(user.getId()));	
+		}
+		
+		/*
+		 * add outer stakeholder
+		 */
+		List<Stakeholder> outerStakeholderList = stakeholderService.loadAllOuterStakeholders();
+		stakeholdersToAdd.add(outerStakeholderList.get(new Random().nextInt(outerStakeholderList.size())));
+		
+		/*
+		 * add stekeholders to project
+		 */
+		for (Stakeholder stakeholder : stakeholdersToAdd) {
+			projectCharter.addStakeholder(stakeholder);
+		}
+
+		/*
+		 * save the project / project charter
+		 */
+		this.save(projectCharter);
+
+	}
     
 }

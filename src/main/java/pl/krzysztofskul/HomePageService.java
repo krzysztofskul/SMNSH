@@ -32,6 +32,7 @@ import pl.krzysztofskul.project.milestone.MilestoneInstance;
 import pl.krzysztofskul.project.milestone.MilestoneSingleton;
 import pl.krzysztofskul.project.milestone.MilestoneTemplate;
 import pl.krzysztofskul.project.milestone.service.MilestoneService;
+import pl.krzysztofskul.projectCharter.ProjectCharter;
 import pl.krzysztofskul.projectCharter.ProjectCharterService;
 import pl.krzysztofskul.questionnaire.QuestionForm;
 import pl.krzysztofskul.questionnaire.QuestionFormService;
@@ -622,6 +623,9 @@ public class HomePageService {
             
         }
         commentService.createDemoComments();
+        for (ProjectCharter projectCharter : projectCharterService.loadAll()) {
+			projectCharterService.setDemoStakeholders(projectCharter.getId());
+		}
     }
 
     public void createParts() {

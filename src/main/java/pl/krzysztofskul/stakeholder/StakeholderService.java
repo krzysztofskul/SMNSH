@@ -57,6 +57,10 @@ public class StakeholderService {
 		return stakeholderRepo.findById(id).get();
 	}
 	
+	public Stakeholder loadStakeholderByUserId(Long userId) {
+		return stakeholderRepo.findStakeholderByUserId(userId);
+	}
+	
 	private Stakeholder loadStakeholderByIdWithProjectCharters(Long stakeholderId) {
 		Stakeholder stakeholder = stakeholderRepo.findById(stakeholderId).get();
 		Hibernate.initialize(stakeholder.getProjectCharters());
@@ -65,6 +69,10 @@ public class StakeholderService {
 
 	public List<Stakeholder> loadAllStakeholders() {
 		return stakeholderRepo.findAll();
+	}
+	
+	public List<Stakeholder> loadAllOuterStakeholders() {
+		return stakeholderRepo.findAllStakeholdersByUserId(null);
 	}
 	
 	public Stakeholder saveStakeholder(Stakeholder stakeholder) {
@@ -144,5 +152,7 @@ public class StakeholderService {
 						)
 				);
 	}
+	
+
 	
 }
