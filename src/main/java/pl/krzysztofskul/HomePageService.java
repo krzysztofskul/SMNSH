@@ -38,6 +38,7 @@ import pl.krzysztofskul.questionnaire.QuestionFormService;
 import pl.krzysztofskul.questionnaire.questionSet.*;
 import pl.krzysztofskul.recipient.Recipient;
 import pl.krzysztofskul.recipient.RecipientService;
+import pl.krzysztofskul.stakeholder.StakeholderService;
 import pl.krzysztofskul.subcontractor.SubcontractorService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserAction;
@@ -81,6 +82,7 @@ public class HomePageService {
     private MilestoneService milestoneService;
     private ProjectCharterService projectCharterService;
     private CompanyTypeService companyTypeService;
+    private StakeholderService stakeholderService;
 
     /** constr.
      *
@@ -105,7 +107,8 @@ public class HomePageService {
             SubcontractorService subcontractorService, CommentService commentService, PartService partService, ConfigurationService configurationService,
             MilestoneService milestoneService,
             ProjectCharterService projectCharterService,
-            CompanyTypeService companyTypeService
+            CompanyTypeService companyTypeService,
+            StakeholderService stakeholderService
     		) {
         this.userService = userService;
         this.deviceCategoryService = deviceCategoryService;
@@ -129,6 +132,7 @@ public class HomePageService {
         this.milestoneService = milestoneService;
         this.projectCharterService = projectCharterService;
         this.companyTypeService = companyTypeService;
+        this.stakeholderService = stakeholderService;
     }
 
     /** methods
@@ -143,6 +147,7 @@ public class HomePageService {
 			subcontractorService.createTestSubcontractors();
 			investorService.createTestInvestors(15);
 			userService.createRealTestUsersAndSaveToDb();
+			stakeholderService.createDemoOuterCompanyStakeholderAndSaveToDb();
 			this.createDeviceCategories();
 			this.createDevices();
 			this.createRealTestDevices();

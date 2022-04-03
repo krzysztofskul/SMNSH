@@ -53,7 +53,7 @@ public class InitDbForTests {
 		stakeholderFromUserTest1 = stakeholderService.createAndGetInitTestStakeholderFromUser(userTestSls);
 		stakeholderFromUserTest2 = stakeholderService.createAndGetInitTestStakeholderFromUser(userTestPlanner);
 		stakeholderFromUserTestList.add(stakeholderFromUserTest1);
-		stakeholderFromUserTestList.add(stakeholderFromUserTest2);	
+		stakeholderFromUserTestList.add(stakeholderFromUserTest2);
 	}
 	
 	public List<Stakeholder> getTestStakeholders() {

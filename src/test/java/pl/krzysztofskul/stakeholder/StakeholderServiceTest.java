@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.Random;
 
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.test.context.ContextConfiguration;
@@ -42,6 +44,7 @@ import pl.krzysztofskul.user.UserService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfig.class})
 @WebAppConfiguration
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class StakeholderServiceTest {
 
 	private MockMvc mockMvc;
@@ -75,70 +78,6 @@ public class StakeholderServiceTest {
 	@Autowired
 	private DeviceService deviceService;
 	
-	@Test
-	@Order(value = 1)
-	/*
-	 * method to test: createAndGetInitTestStakeholderFromUser(User user)
-	 */
-	public void givenStakeholderFromUser_whenSaveToDb_shouldReturnStakeholderCorrectly() {
-		
-		// given
-		homePageService.initTestDb();
-		initDbForTests.createTestUsersAndStakeholders();
-		
-		// when
-		for (Stakeholder stakeholder : initDbForTests.stakeholderFromUserTestList) {
-			stakeholder = stakeholderService.saveStakeholder(stakeholder);
-		}
-		
-		// should
-		assertTrue(initDbForTests.stakeholderFromUserTest1.getId() != null);
-		assertTrue(initDbForTests.stakeholderFromUserTest1.getId() > 0);
-		assertTrue(initDbForTests.stakeholderFromUserTest1.getNameFirst().equals(initDbForTests.userTestSls.getNameFirst()));
-		assertTrue(initDbForTests.stakeholderFromUserTest1.getNameLast().equals(initDbForTests.userTestSls.getNameLast()));
-		assertTrue(initDbForTests.stakeholderFromUserTest1.getStakeholderBusinessPosition().equals(initDbForTests.userTestSls.getBusinessPosition().toString()));
-
-	}
 	
-	@Test
-	@Order(value = 2)
-	public void testUserTestSls() {
-		assertTrue(initDbForTests.userTestSls.getId() != null && initDbForTests.userTestSls.getId() > 0);
-	}
 	
-	@Test
-	@Order(value = 3)
-	/*
-	 * method to test: addStakeholderFromUserToProject (...)
-	 */
-	public void givenProjectAndStekholdersFromUser_whenAddStakeholderFromUserToProject_shouldSaveToDbCorrectly() {
-		// given	
-		homePageService.initTestDb();		
-		initDbForTests.projectTest = projectService.loadById((long) new Random().nextInt(projectService.loadAll().size())+1);
-		initDbForTests.stakeholderFromUserTest1 = stakeholderService.loadStakeholderById(initDbForTests.stakeholderFromUserTest1.getId());
-		
-		assertTrue(initDbForTests.projectTest.getId() != null && initDbForTests.projectTest.getId() > 0);
-		assertTrue(initDbForTests.stakeholderFromUserTest1.getId() != null && initDbForTests.stakeholderFromUserTest1.getId() > 0);
-		
-		// when
-		for (Stakeholder stakeholder: initDbForTests.stakeholderFromUserTestList) {
-			stakeholderService.addStakeholderFromUserToProject(stakeholder.getId(), initDbForTests.projectTest.getProjectCharter().getId());	
-		}
-		
-		// should
-		for (Stakeholder stakeholder : initDbForTests.stakeholderFromUserTestList) {
-			assertTrue(
-					stakeholderService.loadStakeholderInProjectDetailsById(stakeholder.getId())
-						.getStakeholder().getId()
-						.equals(stakeholder.getId())
-			);			
-		}
-
-		assertTrue(
-				projectCharterService.loadByIdWithStakeholders(initDbForTests.projectTest.getProjectCharter().getId()).getStakeholders() != null
-				&&
-				projectCharterService.loadByIdWithStakeholders(initDbForTests.projectTest.getProjectCharter().getId()).getStakeholders().size() == initDbForTests.stakeholderFromUserTestList.size()
-				);
-		
-	}
 }

@@ -8,6 +8,7 @@ import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.user.avatar.Avatar;
 import pl.krzysztofskul.validator.PasswordMatch;
 import pl.krzysztofskul.validator.UniqueEmail;
+import pl.krzysztofskul.stakeholder.Stakeholder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -78,12 +79,16 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<LoggerUser> loggerUserList = new ArrayList<>();
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Stakeholder Stakeholder;
+    
     /** constr.
      *
      */
 
     public User() {
 		super();
+		this.Stakeholder = new Stakeholder(this);
 	}
     
     
@@ -99,6 +104,7 @@ public class User {
 		this.email = email;
 		this.password = password;
 		this.passwordConfirmation = password;
+		this.Stakeholder = new Stakeholder(this, nameFirst, nameLast, "smnsh", this.businessPosition.toString());
 	}
 
 
@@ -239,7 +245,21 @@ public class User {
         this.loggerUserList = loggerUserList;
     }
 
-    /**
+    
+    
+    public Stakeholder getStakeholder() {
+		return Stakeholder;
+	}
+
+
+
+	public void setStakeholder(Stakeholder stakeholder) {
+		Stakeholder = stakeholder;
+	}
+
+
+
+	/**
      * methods
      */
     public void addConceptToDo(Concept concept) {

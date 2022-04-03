@@ -8,9 +8,15 @@ TO DO :
 - update front-end
 
 
+
 --------------
 DONE :
 --------------
+
+#3.0.2.STAKEHOLDERS-SNAPSHOT-9
+	+ auto create inner stakeholders from existing users functionality added
+	+ create outer stakeholders functionality added
+	+ deleted test class for stakeholder service
 
 #3.0.2.STAKEHOLDERS-SNAPSHOT-8
 	+ test updates

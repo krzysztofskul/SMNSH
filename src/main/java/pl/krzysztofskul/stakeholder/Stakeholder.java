@@ -4,13 +4,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 import pl.krzysztofskul.projectCharter.ProjectCharter;
+import pl.krzysztofskul.user.User;
 
 @Entity
 public class Stakeholder {
@@ -18,6 +23,10 @@ public class Stakeholder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
     
     private String nameFirst;
     private String nameLast;
@@ -38,12 +47,25 @@ public class Stakeholder {
 	
 	public Stakeholder() {
 		super();
+		
 	}
 	
-	
+	public Stakeholder(User user) {
+		super();
+		this.user = user;
+	}
 	
 	public Stakeholder(String nameFirst, String nameLast, String company, String stakeholderBusinessPosition) {
 		super();
+		this.nameFirst = nameFirst;
+		this.nameLast = nameLast;
+		this.company = company;
+		this.stakeholderBusinessPosition = stakeholderBusinessPosition;
+	}
+	
+	public Stakeholder(User user, String nameFirst, String nameLast, String company, String stakeholderBusinessPosition) {
+		super();
+		this.user = user;
 		this.nameFirst = nameFirst;
 		this.nameLast = nameLast;
 		this.company = company;
@@ -63,6 +85,16 @@ public class Stakeholder {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
 
 	public String getNameFirst() {
 		return nameFirst;

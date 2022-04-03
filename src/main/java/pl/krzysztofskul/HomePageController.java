@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import pl.krzysztofskul.company.type.CompanyTypeService;
 import pl.krzysztofskul.initDB.InitDB;
 import pl.krzysztofskul.investor.InvestorService;
+import pl.krzysztofskul.stakeholder.StakeholderService;
 import pl.krzysztofskul.subcontractor.SubcontractorService;
 import pl.krzysztofskul.user.UserService;
 
@@ -18,6 +19,7 @@ public class HomePageController {
 	private CompanyTypeService companyTypeService;
 	private SubcontractorService subcontractorService;
 	private InvestorService investorService;
+	private StakeholderService stakeholderService; 
 
 	/** constr. */
 	@Autowired
@@ -26,13 +28,15 @@ public class HomePageController {
 			UserService userService,
 			CompanyTypeService companyTypeService,
 			SubcontractorService subcontractorService,
-			InvestorService investorService
+			InvestorService investorService,
+			StakeholderService stakeholderService
 	) {
 		this.homePageService = homePageService;
 		this.userService = userService;
 		this.companyTypeService = companyTypeService;
 		this.subcontractorService = subcontractorService;
 		this.investorService = investorService;
+		this.stakeholderService = stakeholderService;
 	}
 
 	/** methods */
@@ -51,6 +55,7 @@ public class HomePageController {
 			subcontractorService.createTestSubcontractors();
 			investorService.createTestInvestors(15);
 			userService.createRealTestUsersAndSaveToDb();
+			stakeholderService.createDemoOuterCompanyStakeholderAndSaveToDb();
 			homePageService.createDeviceCategories();
 			homePageService.createDevices();
 			homePageService.createRealTestDevices();

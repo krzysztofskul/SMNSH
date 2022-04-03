@@ -1,5 +1,6 @@
 package pl.krzysztofskul.stakeholder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -7,6 +8,8 @@ import javax.transaction.Transactional;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.thedeanda.lorem.LoremIpsum;
 
 import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.projectCharter.ProjectCharter;
@@ -127,7 +130,19 @@ public class StakeholderService {
 		// todo
 		return new Stakeholder();
 	}
-	
-	
+
+	/*
+	 * method creates demo outer company stakholder (not connected with existing user) and save to db
+	 */
+	public void createDemoOuterCompanyStakeholderAndSaveToDb() {
+		this.saveStakeholder(
+				new Stakeholder(
+							LoremIpsum.getInstance().getFirstName(),
+							LoremIpsum.getInstance().getLastName(),
+							LoremIpsum.getInstance().getName() + " Inc.",
+							"Unknown business position"
+						)
+				);
+	}
 	
 }
