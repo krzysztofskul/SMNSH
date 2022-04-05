@@ -1,0 +1,14 @@
+-------------------
+TODO:
+-------------------
+
+#3.0.PROJECTCHARTER-SNAPSHOT
+
+
+-------------------
+DONE:
+-------------------
+
+#3.0.PROJECTCHARTER-SNAPSHOT
+	+ front-end updates in project charter jsp file
+	

@@ -45,8 +45,16 @@
 	        		<div class="col m-1">
 	        			<div class="card">
 	        				<div class="card-header">
-	        					<p class="langPL">SZCZEGÓŁY PROJEKTU</p>
-	        					<p class="langen">PROJECT DETAILS</p>
+		        				<div class="d-inline-block">
+		        					<p class="langPL">SZCZEGÓŁY PROJEKTU</p>
+		        					<p class="langEN">PROJECT DETAILS</p>
+	        					</div>
+	        					<div class="d-inline-block float-right text-right">
+	        						<a href="/projects/details/${projectCharter.project.id}">
+			        					<p class="langPL text-primary fs-6 text">POWRÓT DO STRONY PROJEKTU</p>
+		        						<p class="langEN text-primary fs-6 text">BACK TO PROJECT PAGE</p>
+	        						</a> 
+	        					</div>
 	        				</div>
 	        				<div class="card-body">
 	        					<div class="row mt-1 mb-1 border-bottom">

@@ -1,5 +1,0 @@
-# 0.3.0-EMAIL
-
-- code verification
-- smmnsh email login and password entity with bcrypt to database
-+ registration email send functionality (test)
