@@ -122,12 +122,20 @@ public class UserService {
         		"ewa.w-m@test.test", "test"
         		));
         userTestList.add(new User(
+        		"Henryk", "S.", UserBusinessPosition.PROJECT_MANAGER, 
+        		"henryk.s@test.test", "test"
+        		));
+        userTestList.add(new User(
         		"Maciej", "W.", UserBusinessPosition.PLANNER, 
         		"maciej.d@test.test", "test"
         		));
         userTestList.add(new User(
         		"Krzysztof", "K.", UserBusinessPosition.PLANNER, 
         		"krzysztof.k@test.test", "test"
+        		));
+        userTestList.add(new User(
+        		"Karol", "D.", UserBusinessPosition.PLANNER, 
+        		"karol.d@test.test", "test"
         		));
         userTestList.add(new User(
         		"Wojciech", "G.", UserBusinessPosition.SALES_REP, 

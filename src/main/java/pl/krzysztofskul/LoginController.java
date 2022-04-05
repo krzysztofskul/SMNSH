@@ -76,37 +76,49 @@ public class LoginController {
             HttpSession session
     ) {
         if (guest != null) {
-            switch (guest) {
+        	User user = new User();
+            switch (guest) 
+            {
                 case "admin": {
-//                    User user = userService.loadByEmail("Nameguest.Surname-Admin@test.test");
-                    User user = userService.loadByEmail("piotr.w@test.test");
-                    session.setAttribute("userLoggedIn", user);
-                    loggerUserService.log(user, LocalDateTime.now(), UserAction.LOG_IN, null);
-                    return "redirect:/";
+                    user = userService.loadByEmail("piotr.w@test.test");
+                    break;
                 }
-                case "designer": {
-//                    User user = userService.loadByEmail("Name1Surname1@test.test");
-                    User user = userService.loadByEmail("maciej.d@test.test");
-                    session.setAttribute("userLoggedIn", user);
-                    loggerUserService.log(user, LocalDateTime.now(), UserAction.LOG_IN, null);
-                    return "redirect:/";
+                case "designer-md": {
+                    user = userService.loadByEmail("maciej.d@test.test");
+                    break;
                 }
-                case "projectManager": {
-//                    User user = userService.loadByEmail("Name3Surname3@test.test");
-                    User user = userService.loadByEmail("sebastian.k@test.test");
-                    session.setAttribute("userLoggedIn", user);
-                    loggerUserService.log(user, LocalDateTime.now(), UserAction.LOG_IN, null);
-                    return "redirect:/";
+                case "designer-kk": {
+                	user = userService.loadByEmail("krzysztof.k@test.test");
+                	break;
                 }
-                case "salesRep": {
-                    User user = userService.loadByEmail("wojciech.g@test.test");
-                    session.setAttribute("userLoggedIn", user);
-                    loggerUserService.log(user, LocalDateTime.now(), UserAction.LOG_IN, null);
-                    return "redirect:/";
+                case "designer-kd": {
+                	user = userService.loadByEmail("karol.d@test.test");
+                	break;
                 }
-            }
-//        loggerUserService.log(user, LocalDateTime.now(), UserAction.LOG_IN, null);
-//        return "redirect:/";
+                case "projectManager-sk": {
+                    user = userService.loadByEmail("sebastian.k@test.test");
+                    break;
+                }
+                case "projectManager-ewm": {
+                	user = userService.loadByEmail("ewa.w-m@test.test");
+                	break;
+                }
+                case "projectManager-hs": {
+                	user = userService.loadByEmail("henryk.s@test.test");
+                	break;
+                }
+                case "salesRep-wg": {
+                    user = userService.loadByEmail("wojciech.g@test.test");
+                    break;
+                }
+                case "salesRep-rg": {
+                	user = userService.loadByEmail("ryszard.g@test.test");
+                	break;
+                }
+        	}
+            	session.setAttribute("userLoggedIn", user);
+            	loggerUserService.log(user, LocalDateTime.now(), UserAction.LOG_IN, null);
+            	return "redirect:/";
         }
         return "login";
     }

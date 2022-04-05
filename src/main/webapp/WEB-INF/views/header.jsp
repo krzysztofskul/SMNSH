@@ -68,35 +68,49 @@
                             "</a>"
                     );
                 } else {
-                    out.print("<div>"+
-                            "<a href='/register' class='btn btn-dark ml-1'>" +
-                            "ZAREJESTRUJ" +
-                            "<p class='langEN'>REGISTER</p>"+
-                            "</a>"+
-                            "<a id='logInBtn' href='/login' class='btn btn-dark ml-1'>" +
-                            "ZALOGUJ" +
-                            "<p class='langEN'>LOG IN</p>"+
-                            "</a>"+
-                            "</div>"+
-                            "<div class='mt-2'>"+
-//                            "<a href='/login?guest=admin' class='btn btn-light'>"+
-//                            "ZALOGUJ JAKO ADMIN (GOŚĆ)"+
-//                            "<p class='langEN'>LOGIN AS AN ADMIN (GUEST)</p>"+
-//                            "</a>"+
-                            "<a id='loginAsDesignerBtn' href='/login?guest=designer' class='btn btn-light'>"+
-                            "ZALOGUJ JAKO PROJEKTANT (GOŚĆ)"+
-                            "<p class='langEN'>LOGIN AS A DESIGNER (GUEST)</p>"+
-                            "</a>"+
-                            "<a id='loginAsPmBtn' href='/login?guest=projectManager' class='btn btn-light'>"+
-                            "ZALOGUJ JAKO KIEROWNIK PROJEKTU (GOŚĆ)"+
-                            "<p class='langEN'>LOGIN AS A PROJECT MANAGER (GUEST)</p>"+
-                            "</a>"+
-                            "</div>"+
-                            "<a id='loginAsPmBtn' href='/login?guest=salesRep' class='btn btn-light'>"+
-                            "ZALOGUJ JAKO PRZEDSTAWICIEL HANDLOWY (GOŚĆ)"+
-                            "<p class='langEN'>LOGIN AS A SALES REP. (GUEST)</p>"+
-                            "</a>"+
-                            "</div>"
+                    out.print(
+                            "<div class='dropdown show'>"+
+                    		  "<a class='btn btn-secondary dropdown-toggle' href='#' role='button' id='dropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"+
+                    		    "<p class='langPL'>ZALOGUJ JAKO GOŚĆ:</p>"+
+                    		    "<p class='langEN'>LOGIN AS A GUEST:</p>"+
+                    		  "</a>"+
+                    		  "<div class='dropdown-menu' aria-labelledby='dropdownMenuLink'>"+
+                    		    "<a class='dropdown-item' href='/login?guest=salesRep-wg'>"+
+                            		    "<p class='langPL'>PRZEDSTAWICIEL HANDLOWY WOJCIECH G.</p>"+
+                            		    "<p class='langEN'>SALES REP. WOJCIECH G.</p>"+
+                    		  	"</a>"+
+                    		    "<a class='dropdown-item' href='/login?guest=salesRep-rg'>"+
+                            		    "<p class='langPL'>PRZEDSTAWICIEL HANDLOWY RYSZARD G.</p>"+
+                            		    "<p class='langEN'>SALES REP. RYSZARD G.</p>"+
+                    		  	"</a>"+
+                    		  	"<div class='dropdown-divider'></div>"+
+								"<a class='dropdown-item' href='/login?guest=projectManager-ewm'>"+
+                            		    "<p class='langPL'>KIEROWNIK PROJEKTU EWA W-M.</p>"+
+                            		    "<p class='langEN'>PROJECT MANAGER EWA W-M.</p>"+
+                    		  	"</a>"+
+                    		  	"<a class='dropdown-item' href='/login?guest=projectManager-sk'>"+
+                            		    "<p class='langPL'>KIEROWNIK PROJEKTU SEBASTIAN K.</p>"+
+                            		    "<p class='langEN'>PROJECT MANAGER SEBASTIANK.</p>"+
+                    		  	"</a>"+
+                    		  	"<a class='dropdown-item' href='/login?guest=projectManager-hs'>"+
+                            		    "<p class='langPL'>KIEROWNIK PROJEKTU HENRYK S.</p>"+
+                            		    "<p class='langEN'>PROJECT MANAGER HENRYK S.</p>"+
+                    		  	"</a>"+
+                    		  	"<div class='dropdown-divider'></div>"+
+								"<a class='dropdown-item' href='/login?guest=designer-md'>"+
+                            		    "<p class='langPL'>PROJEKTANT MACIEJ D.</p>"+
+                            		    "<p class='langEN'>DESIGNER MACIEJ D.</p>"+
+                    		  	"</a>"+
+								"<a class='dropdown-item' href='/login?guest=designer-kd'>"+
+                            		    "<p class='langPL'>PROJEKTANT KAROL D.</p>"+
+                            		    "<p class='langEN'>DESIGNER KAROL D.</p>"+
+                    		  	"</a>"+
+								"<a class='dropdown-item' href='/login?guest=designer-kk'>"+
+                            		    "<p class='langPL'>PROJEKTANT KRZYSZTOF K.</p>"+
+                            		    "<p class='langEN'>DESIGNER KRZYSZTOF K.</p>"+
+                    		  	"</a>"+
+                    		  "</div>"+
+                    		"</div>"
                     );
 
                 }
