@@ -116,12 +116,12 @@ public class Project {
 		switch (type)  {
 			case "demo": {
 				this.agreementNo = "AGR-DEMO-NO-"+LocalDate.now().getYear()+"-"+LocalTime.now().getNano();
-				this.projectName = LoremIpsum.getInstance().getTitle(2, 3)+" demo project.";
+				this.projectName = LoremIpsum.getInstance().getTitle(2, 3)+" demo project";
 				break;
 			}
 			case "test": {
 				this.agreementNo = "AGR-TEST-NO-"+LocalDate.now().getYear()+"-"+LocalTime.now().getNano();
-				this.projectName = LoremIpsum.getInstance().getTitle(2, 3)+" test project.";
+				this.projectName = LoremIpsum.getInstance().getTitle(2, 3)+" test project";
 				break;
 			}
 		}

@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.thedeanda.lorem.LoremIpsum;
+
 import pl.krzysztofskul.company.type.CompanyTypeService;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
@@ -51,6 +53,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -150,7 +153,7 @@ public class HomePageService {
 			userService.createRealTestUsersAndSaveToDb();
 			stakeholderService.createDemoOuterCompanyStakeholderAndSaveToDb();
 			this.createDeviceCategories();
-			this.createDevices();
+			//this.createDevices();
 			this.createRealTestDevices();
 			this.createParts();
 			this.createConcepts();
@@ -492,36 +495,25 @@ public class HomePageService {
     public void createRealTestDevices() {
         Device device;
 
-        device = new Device();
-        device.setModel("Lorem");
-        device.setDeviceCategory(deviceCategoryService.loadByCode("X-RAY"));
-        deviceService.save(device);
-
-        device = new Device();
-        device.setModel("Ipsum");
-        device.setDeviceCategory(deviceCategoryService.loadByCode("X-RAY"));
-        deviceService.save(device);
-
-        device = new Device();
-        device.setModel("Etiam");
-        device.setDeviceCategory(deviceCategoryService.loadByCode("CT"));
-        deviceService.save(device);
-
-        device = new Device();
-        device.setModel("Suspendisse");
-        device.setDeviceCategory(deviceCategoryService.loadByCode("CT"));
-        deviceService.save(device);
-
-        device = new Device();
-        device.setModel("Curabitur");
-        device.setDeviceCategory(deviceCategoryService.loadByCode("MRI"));
-        deviceService.save(device);
-
-        device = new Device();
-        device.setModel("Vestibulum");
-        device.setDeviceCategory(deviceCategoryService.loadByCode("MRI"));
-        deviceService.save(device);
-
+        for (int i = 0; i < 5; i++) {
+            device = new Device();
+            device.setModel(LoremIpsum.getInstance().getTitle(1));
+            device.setDeviceCategory(deviceCategoryService.loadByCode("X-RAY"));
+            deviceService.save(device);			
+		}
+        for (int i = 0; i < 5; i++) {
+        	device = new Device();
+        	device.setModel(LoremIpsum.getInstance().getTitle(1));
+        	device.setDeviceCategory(deviceCategoryService.loadByCode("CT"));
+        	deviceService.save(device);			
+        }
+        for (int i = 0; i < 5; i++) {
+        	device = new Device();
+        	device.setModel(LoremIpsum.getInstance().getTitle(1));
+        	device.setDeviceCategory(deviceCategoryService.loadByCode("MRI"));
+        	deviceService.save(device);			
+        }
+        
     }
     
     public void initTestMilestonesToDB() {
@@ -543,6 +535,7 @@ public class HomePageService {
 					project.setProjectManager(userPm);
 					project.setStatus(projectStatus);
 					project.setInvestor(investorService.loadById((long) new Random().nextInt(investorService.loadAll().size())+1));
+					project.setSubcontractor(subcontractorService.loadById((long) new Random().nextInt(subcontractorService.loadAll().size())+1));
 					for(int i = 0; i <= new Random().nextInt(3); i++) {
 						project.addDevice(deviceService.loadById((long) new Random().nextInt(deviceService.loadAll().size())+1));					
 					}

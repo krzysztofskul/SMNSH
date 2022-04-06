@@ -57,7 +57,7 @@ public class HomePageController {
 			userService.createRealTestUsersAndSaveToDb();
 			stakeholderService.createDemoOuterCompanyStakeholderAndSaveToDb();
 			homePageService.createDeviceCategories();
-			homePageService.createDevices();
+			//homePageService.createDevices();
 			homePageService.createRealTestDevices();
 			homePageService.createParts();
 			homePageService.createConcepts();
