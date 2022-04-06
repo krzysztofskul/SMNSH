@@ -131,7 +131,6 @@ public class ProjectController {
             projectNew.setDeviceList(deviceList);
             projectService.save(projectNew);
             loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.PROJECT_CREATE, projectNew);
-            loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "PROJECT CREATED", httpSession.getAttribute("userLoggedIn"));
         } else {
             projectService.save(projectNew);
             loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.PROJECT_CREATE, projectNew);

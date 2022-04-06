@@ -3,12 +3,14 @@ TODO :
 ---------------------------------------
 
 #3.0-SNAPSHOT
-	- project logs to update
 
 	
 ---------------------------------------
 DONE :
 ---------------------------------------
+
+#3.0-SNAPSHOT
+	+ new project logs updated
 
 #3.0-SNAPSHOT
 	+ front-end updates for login guests functionality

@@ -16,6 +16,8 @@ import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserBusinessPosition;
 import pl.krzysztofskul.user.UserService;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -49,6 +51,7 @@ public class ProjectService {
 
     public void save(Project project) {
         if (project.getId() == null) {
+        	loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "PROJECT CREATED", project.getSls());
             for (Device device : project.getDeviceList()) {
                 Hibernate.initialize(device.getConfigurationList());
                 device.addConfiguration(configurationService.getStandardConfiguration(project, device));
