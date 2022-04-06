@@ -29,8 +29,20 @@ public class Comment {
 
     public Comment() {
     }
+    
+    
 
-    /**getters and setters*/
+    public Comment(Project project, User author, String message) {
+		super();
+		this.project = project;
+		this.author = author;
+		this.message = message;
+		this.dateOfCreation = LocalDateTime.now();
+	}
+
+
+
+	/**getters and setters*/
 
     public Long getId() {
         return id;

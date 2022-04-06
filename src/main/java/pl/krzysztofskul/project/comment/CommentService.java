@@ -41,16 +41,9 @@ public class CommentService {
 
     /** demo comments creator*/
     public void createDemoComments() {
-        for (Project project : projectService.loadAll()) {
-            int commentsAmount = new Random().nextInt(10)+1;
-            for (int i = 0; i < commentsAmount; i++) {
-                Comment comment = new Comment();
-                comment.setAuthor(project.getProjectManager());
-                comment.setProject(project);
-                comment.setDateOfCreation(LocalDateTime.now().minusDays(i));
-                comment.setMessage(LoremIpsum.getInstance().getWords(5,20));
-                save(comment);
-            }
+        for (Project project : projectService.loadAll()) {   	
+        	save(new Comment(project, project.getSls(), LoremIpsum.getInstance().getWords(5, 10)));
+        	save(new Comment(project, project.getProjectManager(), LoremIpsum.getInstance().getWords(5, 10)));
         }
     }
 

@@ -15,9 +15,15 @@ import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+
+import com.thedeanda.lorem.LoremIpsum;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Entity
 public class Project {
@@ -71,7 +77,7 @@ public class Project {
             joinColumns = @JoinColumn(name = "project_id"),
             inverseJoinColumns = @JoinColumn(name = "device_id")
     )
-    private List<Device> deviceList;
+    private List<Device> deviceList = new ArrayList<Device>();
 
     private String othersDeviceList;
 
@@ -81,7 +87,7 @@ public class Project {
     private Subcontractor subcontractor;
 
     private String trainings;
-
+    
     private String remarks;
 
     @OneToMany(mappedBy = "project", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
@@ -91,7 +97,7 @@ public class Project {
     private Attachment attachment;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE/*, orphanRemoval = true*/)
-    private List<LoggerProject> loggerProjectList;
+    private List<LoggerProject> loggerProjectList = new ArrayList<>();
 
     @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
     private List<Comment> commentList = new ArrayList<>();
@@ -106,7 +112,27 @@ public class Project {
         this.deadline = LocalDateTime.now().plusDays(Long.parseLong("1"));
     }
 
-    /** getters and setters */
+    public Project(String type) {
+		switch (type)  {
+			case "demo": {
+				this.agreementNo = "AGR-DEMO-NO-"+LocalDate.now().getYear()+"-"+LocalTime.now().getNano();
+				this.projectName = LoremIpsum.getInstance().getTitle(2, 3)+" demo project.";
+				break;
+			}
+			case "test": {
+				this.agreementNo = "AGR-TEST-NO-"+LocalDate.now().getYear()+"-"+LocalTime.now().getNano();
+				this.projectName = LoremIpsum.getInstance().getTitle(2, 3)+" test project.";
+				break;
+			}
+		}
+		this.recipient = "New department. Unknown room no.";
+		this.remarks = LoremIpsum.getInstance().getTitle(2, 10);
+		this.deadline = LocalDateTime.now().plusWeeks((long) new Random().nextInt(8)+9);
+		this.setOthersDeviceList(LoremIpsum.getInstance().getTitle(0, 5));
+		this.setProjectCharter(new ProjectCharter(this));	
+	}
+
+	/** getters and setters */
 
     public ProjectCharter getProjectCharter() {
         return projectCharter;
@@ -313,6 +339,10 @@ public class Project {
     public void addConcept(Concept concept) {
         this.conceptList.add(concept);
         concept.setProject(this);
+    }
+    
+    public void addDevice(Device device) {
+    	this.deviceList.add(device);
     }
 
     public void addConfiguration(Configuration configuration) {

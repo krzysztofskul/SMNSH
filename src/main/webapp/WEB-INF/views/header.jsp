@@ -69,12 +69,24 @@
                     );
                 } else {
                     out.print(
-                            "<div class='dropdown show'>"+
-                    		  "<a class='btn btn-secondary dropdown-toggle' href='#' role='button' id='dropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"+
+                    		
+                    		"<div class='d-inline block'>"+
+	                            "<a href='/register' class='btn btn-dark ml-1'>" +
+	                        	    "ZAREJESTRUJ" +
+	                            	"<p class='langEN'>REGISTER</p>"+
+	                            "</a>"+
+	                            "<a id='logInBtn' href='/login' class='btn btn-dark ml-1'>" +
+	                            	"ZALOGUJ" +
+	                            	"<p class='langEN'>LOG IN</p>"+
+	                            "</a>"+
+                            "</div>"+	
+                            
+                            "<div class='dropdown show d-inline-block ml-2 '>"+
+                    		  "<a class='btn btn-secondary-outline dropdown-toggle' href='#' role='button' id='dropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"+
                     		    "<p class='langPL'>ZALOGUJ JAKO GOŚĆ:</p>"+
                     		    "<p class='langEN'>LOGIN AS A GUEST:</p>"+
                     		  "</a>"+
-                    		  "<div class='dropdown-menu' aria-labelledby='dropdownMenuLink'>"+
+                    		  "<div class='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenuLink'>"+
                     		    "<a class='dropdown-item' href='/login?guest=salesRep-wg'>"+
                             		    "<p class='langPL'>PRZEDSTAWICIEL HANDLOWY WOJCIECH G.</p>"+
                             		    "<p class='langEN'>SALES REP. WOJCIECH G.</p>"+

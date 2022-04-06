@@ -155,9 +155,9 @@ public class HomePageService {
 			this.createParts();
 			this.createConcepts();
 			this.createGuidelines();
-			this.createInvestors();
+			//this.createInvestors();
 			this.createRealTestInvestors();
-			this.createRecipients();
+			//this.createRecipients();
 			this.createRealTestRecipients();
 			this.initTestMilestonesToDB();;
 			this.createProjects();
@@ -307,15 +307,23 @@ public class HomePageService {
         investor = new Investor();
         investor.setName("Szpital Kliniczny w Krakowie");
         investorService.save(investor);
+        
+        investor = new Investor();
+        investor.setName("Szpital Wielospecjalistyczny we Wrocławiu");
+        investorService.save(investor);        
+        
+        investor = new Investor();
+        investor.setName("Szpital Miejski w Poznaniu");
+        investorService.save(investor);
 
     }
 
     public void createRecipients() {
-        for (int i = 1; i <= 9; i++) {
+    	for (int i = 0; i < 9; i++) {
             Recipient recipient = new Recipient();
             recipient.setDepartment("Department "+i);
-            recipientService.save(recipient);
-        }
+            recipientService.save(recipient);			
+		}
     }
 
     public void createRealTestRecipients() {
@@ -524,105 +532,41 @@ public class HomePageService {
 
     public void createProjects() {
     	
-        List<MilestoneTemplate> milestoneTemplateList = milestoneService.loadAllMilestoneTemplateList();
-    	
-        for (int i = 1; i <= 2; i++) {
-            Project project = new Project();
-            project.setProjectName("Test project no. "+i);
-            project.setAgreementNo("AGR-NO-WAW-00"+i+"-2020");
-            project.setDeadline(LocalDateTime.now().plusDays(Long.parseLong("28")));
-            project.setStatus(StatusProject.STATUS_PROJECT_0);
-            List<Device> deviceList = new ArrayList<>();
-            deviceList.add(deviceService.loadById(Long.valueOf("1")+i));
-            deviceList.add(deviceService.loadById(Long.valueOf("4")+i));
-            project.setDeviceList(deviceList);
-            project.setBuildingContractor("BC GmbH & Co. KG");
-            project.setSubcontractor(subcontractorService.loadById(
-                    (long) new Random().nextInt(subcontractorService.loadAll().size())+1
-            ));
-//            project.setInvestor("MED Investor Sp. z o.o.");
-            project.setInvestor(investorService.loadById(Long.parseLong(String.valueOf(i))));
-            project.setRecipient("City Hospital, Diagnostic Dep., Room "+i+"00, Room "+i+"20");
-            //project.setSls("Sales Rep. name and surname");
-            project.setSls(userService.loadAllSalesReps().get(0));
-            project.setProjectManager(userService.loadById(Long.valueOf("1")+i));
-            project.setRemarks("Lorem ipsum. Lorem ipsum dolor sit amet leo. Suspendisse potenti. Suspend fringilla mi, viverra et, porttitor sem nec diam. Phasellus a mauris. Pellentesque scelerisque rhoncus tortor. In hac habitasse plate dictumst.");
-            projectService.save(project);
-            loggerUserService.log(project.getProjectManager(), LocalDateTime.now(), UserAction.PROJECT_CREATE, project);
-            loggerProjectService.log(project,LocalDateTime.now(ZoneId.of("Europe/Warsaw")), "PROJECT CREATED", project.getProjectManager().getNameFirst()+" "+project.getProjectManager().getNameLast());
-            project.setStatus(StatusProject.STATUS_PROJECT_9);
-            projectService.save(project);
-            loggerProjectService.log(project,LocalDateTime.now(ZoneId.of("Europe/Warsaw")), "PROJECT STATUS CHANGED", project.getProjectManager().getNameFirst()+" "+project.getProjectManager().getNameLast());
-            
-            for (MilestoneTemplate milestoneTemplate : milestoneTemplateList) {
-				projectCharterService.addMilestoneInstanceFromTemplates(project.getId(), milestoneTemplate.getId());
-			}
-            
-        }
-        for (int i = 0; i <= 19; i++) {
-            Project project = new Project();
-            
-            project.setProjectName("Test project no. "+i);
-            project.setAgreementNo("AGR-NO-WAW-00"+i+"-2020");
-            project.setDeadline(LocalDateTime.now().plusDays(new Random().nextInt(28)+1));
-            if (i == 0 || i == 10) {
-                project.setStatus(StatusProject.STATUS_PROJECT_0);
-            }
-            if (i == 1 || i == 11) {
-                project.setStatus(StatusProject.STATUS_PROJECT_1);
-            }
-            if (i == 2 || i == 12) {
-                project.setStatus(StatusProject.STATUS_PROJECT_2);
-            }
-            if (i == 3 || i == 13) {
-                project.setStatus(StatusProject.STATUS_PROJECT_3);
-            }
-            if (i == 4 || i == 14) {
-                project.setStatus(StatusProject.STATUS_PROJECT_4);
-            }
-            if (i == 5 || i == 15) {
-                project.setStatus(StatusProject.STATUS_PROJECT_5);
-            }
-            if (i == 6 || i == 16) {
-                project.setStatus(StatusProject.STATUS_PROJECT_6);
-            }
-            if (i == 7 || i == 17) {
-                project.setStatus(StatusProject.STATUS_PROJECT_7);
-            }
-            if (i == 8 || i == 18) {
-                project.setStatus(StatusProject.STATUS_PROJECT_8);
-            }
-            if (i == 9 || i == 19) {
-                project.setStatus(StatusProject.STATUS_PROJECT_9);
-            }
-            List<Device> deviceList = new ArrayList<>();
-            deviceList.add(deviceService.loadById((long) (new Random().nextInt(15) + 1)));
-            deviceList.add(deviceService.loadById((long) (new Random().nextInt(15) + 1)));
-            project.setDeviceList(deviceList);
-            project.setBuildingContractor("BC GmbH & Co. KG");
-            project.setSubcontractor(subcontractorService.loadById(
-                    (long) new Random().nextInt(subcontractorService.loadAll().size())+1
-            ));
-//            project.setInvestor("MED Investor Sp. z o.o.");
-            project.setInvestor(investorService.loadById(
-                    (long) new Random().nextInt(
-                        investorService.loadAll().size())+1
-                    )
-            );
-            project.setRecipient("City Hospital, Diagnostic Dep., Room "+i+"00, Room "+i+"20");
-            //project.setSls("Sales Rep. name and surname");
-            project.setSls(userService.loadAllSalesReps().get(0));
-            project.setProjectManager(userService.loadById(Long.valueOf("1")));
-            project.setRemarks("Lorem ipsum. Lorem ipsum dolor sit amet leo. Suspendisse potenti. Suspend fringilla mi, viverra et, porttitor sem nec diam. Phasellus a mauris. Pellentesque scelerisque rhoncus tortor. In hac habitasse plate dictumst.");
-            projectService.save(project);
-            loggerUserService.log(project.getProjectManager(), LocalDateTime.now(), UserAction.PROJECT_CREATE, project);
-            
-            for (MilestoneTemplate milestoneTemplate : milestoneTemplateList) {
-				projectCharterService.addMilestoneInstanceFromTemplates(project.getId(), milestoneTemplate.getId());
-			}
-            
-        }
+    	/*
+    	 * create demo projects for each sales rep., for each project manager and for each project status
+    	 */
+        for (User userSls : userService.loadAllSalesReps()) {
+        	for (User userPm : userService.loadAllProjectManagers()) {
+				for (StatusProject projectStatus : StatusProject.values()) {
+					Project project = new Project("demo");
+					project.setSls(userSls);
+					project.setProjectManager(userPm);
+					project.setStatus(projectStatus);
+					project.setInvestor(investorService.loadById((long) new Random().nextInt(investorService.loadAll().size())+1));
+					for(int i = 0; i <= new Random().nextInt(3); i++) {
+						project.addDevice(deviceService.loadById((long) new Random().nextInt(deviceService.loadAll().size())+1));					
+					}
+					projectService.save(project);
+					
+			        /*
+			         * add default milestones (from template) to the project
+			         */
+			        List<MilestoneTemplate> milestoneTemplateList = milestoneService.loadAllMilestoneTemplateList();
+			        for (MilestoneTemplate milestoneTemplate : milestoneTemplateList) {
+						projectCharterService.addMilestoneInstanceFromTemplates(project.getId(), milestoneTemplate.getId());
+					}
+				}
+        	}
+		}
+        
+        /*
+         *create demo comments 
+         */
         commentService.createDemoComments();
+        
+        /*
+         * add demo stakeholders to each project charter
+         */
         for (ProjectCharter projectCharter : projectCharterService.loadAll()) {
 			projectCharterService.setDemoStakeholders(projectCharter.getId());
 		}

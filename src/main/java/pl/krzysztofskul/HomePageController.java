@@ -62,9 +62,9 @@ public class HomePageController {
 			homePageService.createParts();
 			homePageService.createConcepts();
 			homePageService.createGuidelines();
-			homePageService.createInvestors();
+			//homePageService.createInvestors();
 			homePageService.createRealTestInvestors();
-			homePageService.createRecipients();
+			//homePageService.createRecipients();
 			homePageService.createRealTestRecipients();
 			homePageService.initTestMilestonesToDB();;
 			homePageService.createProjects();

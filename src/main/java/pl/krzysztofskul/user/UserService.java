@@ -126,7 +126,7 @@ public class UserService {
         		"henryk.s@test.test", "test"
         		));
         userTestList.add(new User(
-        		"Maciej", "W.", UserBusinessPosition.PLANNER, 
+        		"Maciej", "D.", UserBusinessPosition.PLANNER, 
         		"maciej.d@test.test", "test"
         		));
         userTestList.add(new User(
