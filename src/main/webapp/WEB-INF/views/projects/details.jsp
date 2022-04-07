@@ -22,6 +22,8 @@
 
     <jsp:include page="../header.jsp"/>
 
+    <jsp:include page="./project-menu.jsp"/>
+
     <div class="container">
 
         <form:form method="post" modelAttribute="project">
@@ -36,15 +38,6 @@
                                 </c:forEach>
                          </form:select>
                     </c:if>
-                    <div class="row smnshRow mb-2">
-                        <div class="col">
-                            <a class="btn btn-outline-primary" href="/project-charter/${project.projectCharter.id}">
-                                <p class="langPL">KARTA PROJEKTU</p>
-                                <p class="langEN">PROJECT CHARTER</p>
-                                <p class="langPL"> >>> </p>
-                            </a>
-                        </div>
-                    </div>
                     <div class="row border-bottom pb-1 pt-1 bg-lightgrey-75">
                         <div class="col-sm-4 ml-2 position-absolute d-inline-block p-0">
                             <div class="text-left position-relative d-inline-block mr-2">

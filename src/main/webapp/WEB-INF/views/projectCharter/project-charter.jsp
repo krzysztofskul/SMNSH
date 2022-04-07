@@ -27,6 +27,9 @@
 
     <header>
         <jsp:include page="../header.jsp"/>
+    	<jsp:include page="../projects/project-menu.jsp">
+    		<jsp:param value="${projectCharter}" name="projectCharter"/>
+    	</jsp:include>
     </header>
 
     <main>
@@ -48,12 +51,6 @@
 		        				<div class="d-inline-block">
 		        					<p class="langPL">SZCZEGÓŁY PROJEKTU</p>
 		        					<p class="langEN">PROJECT DETAILS</p>
-	        					</div>
-	        					<div class="d-inline-block float-right text-right">
-	        						<a href="/projects/details/${projectCharter.project.id}">
-			        					<p class="langPL text-primary fs-6 text">POWRÓT DO STRONY PROJEKTU</p>
-		        						<p class="langEN text-primary fs-6 text">BACK TO PROJECT PAGE</p>
-	        						</a> 
 	        					</div>
 	        				</div>
 	        				<div class="card-body">
