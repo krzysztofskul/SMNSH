@@ -34,6 +34,16 @@ public class ConfigurationService {
         return configurationRepo.findAll();
     }
 
+    public List<Configuration> loadAllByProjectIdWithParts(Long projectId) {
+    	
+    	List<Configuration> configurationList = configurationRepo.findAllByProjectId(projectId);
+    	for (Configuration configuration : configurationList) {
+			Hibernate.initialize(configuration.getPartList());
+		}
+    	
+    	return configurationList;
+    }
+    
     public Configuration loadByIdWithParts(Long id) {
         Configuration configuration = configurationRepo.findById(id).get();
         Hibernate.initialize(configuration.getPartList());

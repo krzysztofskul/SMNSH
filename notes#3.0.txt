@@ -3,13 +3,16 @@ TODO :
 ---------------------------------------
 
 #3.0-SNAPSHOT
-	- sub-menu for project views: device configurations ...
+	- sub-menu for project views: technical documentation ...
 	- user projects view (new cards)
 	
 ---------------------------------------
 DONE :
 ---------------------------------------
 
+#3.0-SNAPSHOT
+	+ sub-menu for project views: devices configuration
+	
 #3.0-SNAPSHOT
 	+ sub-menu for project views: project details and project charter
 

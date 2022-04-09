@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8">
 </head>
 <body>
 
@@ -18,7 +17,7 @@
 		<c:set var="projectCharterId" value="${project.projectCharter.id}"/>
 	</c:if>
 
-    <div class="container-fluid">
+    <div class="container-fluid mb-5">
         <ul class="nav nav-pills">
             <li class="nav-item">
                 <a class="nav-link btn btn-light" href="/projects/details/${projectId}">
@@ -33,9 +32,15 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link btn btn-light" href="#">
+                <a class="nav-link btn btn-light" href="/projects/${projectId}/configuration/">
                     <p class="langPL">WIDOK KONFIGURACJI URZĄDZEŃ</p>
                     <p class="langEN">DEVICES CONFIGURATION VIEW</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn btn-light" href="#">
+                    <p class="langPL">WIDOK DOKUMENTACJI TECHNICZNEJ</p>
+                    <p class="langEN">TECHNICAL DOCUMENTATION VIEW</p>
                 </a>
             </li>
 		</ul>

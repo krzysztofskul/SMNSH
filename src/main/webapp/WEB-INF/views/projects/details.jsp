@@ -296,7 +296,7 @@
                         <c:otherwise>
                             <c:forEach items="${project.deviceList}" var="device">
                                 <%--DEVICE NAME--%>
-                                <div class="row pt-1 pb-2 border-top border-bottom border-dark no-gutters">
+<%--                                 <div class="row pt-1 pb-2 border-top border-bottom border-dark no-gutters">
                                     <div class="col-6 font-weight-bold">
                                         <p style="top: 25%; position: absolute">
                                             ${device.deviceCategory.name}
@@ -321,8 +321,9 @@
                                             <p class="langEN">${btnConfTitleEN}</p>
                                         </button>
                                     </div>
-                                </div>
+                                </div> --%>
                                 <%--DEVICE CONFIGURATION--%>
+                                <!-- 
                                 <div class="configuration-details border-bottom mb-5">
                                     <div class="row p-2 text-center font-weight-bold">
                                         <div class="col-12 text-center">
@@ -383,7 +384,9 @@
                                     </div>
                                     </c:if>
                                 </div>
+  
                             </c:forEach>
+								 -->
                         </c:otherwise>
                     </c:choose>
                     <div class="row border-dark border-top bg-lightgrey-75 mt-5">
@@ -450,42 +453,6 @@
                         </c:choose>
                     </div>
                 </div>
-
-<%--                <div class="card-footer">--%>
-
-<%--                    <c:set var="backTo" value="/projects/all"/>--%>
-<%--                    <c:set var="forwardTo" value="/projects/details/${project.id}?edit=true"/>--%>
-<%--                    <c:set var="forwardBtnPL" value="EDYCJA"/>--%>
-<%--                    <c:set var="forwardBtnEN" value="EDIT"/>--%>
-<%--                    <c:set var="forwardClr" value="btn-primary"/>--%>
-<%--                    <c:if test="${edit eq true}">--%>
-<%--                        <c:set var="backTo" value="/projects/details/${project.id}"/>--%>
-<%--                        <c:set var="forwardTo" value="/projects/details/${project.id}"/>--%>
-<%--                        <c:set var="forwardBtnPL" value="ZAPISZ"/>--%>
-<%--                        <c:set var="forwardBtnEN" value="SAVE"/>--%>
-<%--                        <c:set var="forwardClr" value="btn-success"/>--%>
-<%--                    </c:if>--%>
-
-<%--                    <a href="${backTo}" class="btn btn-warning float-left">--%>
-<%--                        <p class="langPL">WSTECZ</p>--%>
-<%--                        <p class="langEN">BACK</p>--%>
-<%--                    </a>--%>
-
-<%--                    <c:if test="${edit ne true}">--%>
-<%--                        <a href="${forwardTo}" class="btn ${forwardClr} float-right">--%>
-<%--                            <p class="langPL">${forwardBtnPL}</p>--%>
-<%--                            <p class="langEN">${forwardBtnEN}</p>--%>
-<%--                        </a>--%>
-<%--                    </c:if>--%>
-<%--                    <c:if test="${edit eq true}">--%>
-<%--                        <form:button type="submit"--%>
-<%--                                     class="btn ${forwardClr} float-right"--%>
-<%--                        >--%>
-<%--                            <p class="langPL">${forwardBtnPL}</p>--%>
-<%--                            <p class="langEN">${forwardBtnEN}</p>--%>
-<%--                        </form:button>--%>
-<%--                    </c:if>--%>
-<%--                </div>--%>
 
             </div>
 
@@ -749,6 +716,7 @@
                     </c:choose>
                 </div>
             </div>
+
         </form:form>
     </div>
 
