@@ -43,7 +43,7 @@
         <div class="content container-fluid">
         	
         	<section>
-	        	<div class="row p-5">
+	        	<div class="row">
 	        		<!-- PROJECT DETAILS -->
 	        		<div class="col m-1">
 	        			<div class="card">

@@ -24,9 +24,45 @@
 
     <jsp:include page="./project-menu.jsp"/>
 
-    <div class="container">
+    <div class="container-fluid">
 
         <form:form method="post" modelAttribute="project">
+        
+        	<!-- NEW VERSION -->
+        	<div class="row text-center">
+	       		<div class="col align-top m-2 text-left" style="min-width: 500px; min-height: 250px">
+	       			<div class="card">
+	       				<div class="card-header">SZCZEGÓŁY PROJEKTU</div>
+	       				<div class="card-body" style="height: 150px">lorem ipsum</div>
+	       			</div>
+	       			<div class="card">
+	       				<div class="card-header">URZĄDZENIA DO INSTALACJI</div>
+	       				<div class="card-body" style="height: 150px">lorem ipsum</div>
+	       			</div>	       			
+	       			<div class="card">
+	       				<div class="card-header">ZAŁĄCZNIKI</div>
+	       				<div class="card-body" style="height: 150px">lorem ipsum</div>
+	       			</div>	       			
+	       		</div>
+	       		<div class="col align-top m-2" style="min-width: 500px; min-height: 250px">
+	       			<div class="card">
+	       				<div class="card-header">UWAGI</div>
+	       				<div class="card-body" style="height: 150px">lorem ipsum</div>
+	       			</div>
+	       			<div class="card">
+	       				<div class="card-header">KOMENTARZE</div>
+	       				<div class="card-body" style="height: 150px">lorem ipsum</div>
+	       			</div>
+	       		</div>
+	       		<div class="col align-top m-2" style="min-height: 250px">
+	       			<div class="card">
+	       				<div class="card-header">HISTORIA PROJEKTU</div>
+	       				<div class="card-body" style="height: 750px">lorem ipsum</div>
+	       			</div>
+	       		</div>
+        	</div>
+        
+        	<!-- OLD VERSION -->
             <div class="card border border-dark border-left-0 border-right-0 border-bottom-0 mb-5">
 
                 <div class="card-header">
