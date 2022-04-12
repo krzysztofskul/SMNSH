@@ -19,6 +19,8 @@
     <%--css--%>
     <link rel="stylesheet" type="text/css" href="/resources/css/card.css"/>
     <link rel="stylesheet" type="text/css" href="/resources/css/row.css"/>
+    <link rel="stylesheet" type="text/css" href="/resources/css/project-details.css"/>
+    
     <!--JS files-->
     <script src="<c:url value="/resources/js/projectCharter/projectCharter.js"/>" type="text/javascript"></script>
 
@@ -43,10 +45,12 @@
         <div class="content container-fluid">
         	
         	<section>
-	        	<div class="row">
-	        		<!-- PROJECT DETAILS -->
-	        		<div class="col m-1">
-	        			<div class="card">
+	        	<div class="row text-center">
+	        	
+	        		
+	        		<div class="col project-details-column text-left">
+	        			<!-- PROJECT DETAILS -->
+	        			<div class="card m-2">
 	        				<div class="card-header">
 		        				<div class="d-inline-block">
 		        					<p class="langPL">SZCZEGÓŁY PROJEKTU</p>
@@ -83,10 +87,157 @@
 	        					</div>
 	        				</div>
 	        			</div>
+
+		        		<!-- PROJECT BACKGROUND -->
+	        			<div class="card m-2">
+	        				<div class="card-header">
+	        				<div class="float-left">
+	        					<p class="langPL">GENEZA PROJEKTU</p>
+	        					<p class="langen">PROJECT BACKGROUND</p>
+        					</div>
+        					<div class="float-right d-inline">
+        						<button class="btn-sm btn-outline-primary">
+        							<p class="langPL">EDYTUJ</p>
+        							<p class="langEN">EDIT</p>
+        						</button>
+        					</div>
+	        				</div>
+	        				<div class="card-body">
+	        					<p>
+	        						${projectCharter.reasons }
+	        					</p>
+	        				</div>
+	        			</div>
+  
+		        		
+		        		<!-- PROJECT RISKS -->
+	        			<div class="card m-2">
+	        				<div class="card-header">
+	        				<div class="float-left">
+	        					<p class="langPL">RYZYKA PROJEKTU</p>
+	        					<p class="langen">PROJECT RISKS</p>
+        					</div>
+	        					<div class="float-right d-inline">
+        						<button class="btn-sm btn-outline-primary">
+        							<p class="langPL">EDYTUJ</p>
+        							<p class="langEN">EDIT</p>
+        						</button>
+        					</div>
+	        				</div>
+	        				<div class="card-body">
+	        					<p>
+	        						${projectCharter.risks }
+	        					</p>
+	        				</div>
+	        			</div>
+
+					
+						<!-- GOALS -->
+	        			<div class="card m-2">
+	        				<div class="card-header">
+		        				<div class="float-left">
+		        					<p class="langPL">CELE PROJEKTU</p>
+		        					<p class="langen">GOALS</p>
+	        					</div>
+	        					<div class="float-right d-inline">
+	        						<button class="btn-sm btn-outline-primary">
+	        							<p class="langPL">EDYTUJ</p>
+	        							<p class="langEN">EDIT</p>
+	        						</button>
+        						</div>
+	        				</div>
+	        				<div class="card-body">
+	        					<p>
+	        						${projectCharter.goals }
+	        					</p>
+	        				</div>
+	        			</div>
+		        	
+
 	        		</div>
+				
+					<!-- STAKEHOLDERS -->
+	        		<div class="col project-details-column text-left">
+	        			<div class="card m-2">
+	        				<div class="card-header">
+		        				<div class="float-left">
+		        					<p class="langPL">INTERESARIUSZE</p>
+		        					<p class="langen">STAKEHOLDERS</p>
+	        					</div>
+	        					<div class="float-right d-inline">
+	        						<a href="#">
+	        							<button class="btn-sm btn-outline-success">+</button>
+	        						</a>
+	        					</div>
+	        				</div>
+	        				<div class="card-body">
+	        					<c:choose>
+	        				
+	        					<c:when test="${null eq projectCharter.stakeholders || projectCharter.stakeholders.size() == 0}">
+	        						<p class="langPL">BRAK INTERESARIUSZY</p>
+	        						<p class="langEN">NO STAKEHOLDERS</p>
+	        					</c:when>
+	        					<c:otherwise>
+	        						<c:forEach items="${projectCharter.stakeholders}" var="stakeholder">
+		        						<div class="stakeholder-div m-1">
+			        						<div class="row border-top border-dark bg-light">
+			        							<div class="col-8">
+			        								<p class="langPL">${stakeholder.nameFirst} ${stakeholder.nameLast}</p>
+			        							</div>
+	
+			        							<div class="col-4 text-right">
+			        								<div class="dropdown">
+													  <button class="btn-sm btn-outline-secondary dropdown-toggle mt-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													    MENU
+													  </button>
+													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													    <a class="dropdown-item" href="#">
+				        									<p class="langPL text-primary">SZCZEGÓŁY</p>
+				        									<p class="langEN text-primary">DETAILS</p>
+													    </a>
+													    <a class="dropdown-item" href="#">
+				        									<p class="langPL text-primary">EDYTUJ</p>
+				        									<p class="langEN text-primary">EDIT</p>
+													    </a>
+													    <div class="dropdown-divider"></div>
+													    <a href="#" class="text-center">
+				        									<p class="langPL text-danger">USUŃ</p>
+				        									<p class="langEN text-danger">DELETE</p>
+			        									</a>
+													  </div>
+													</div>
+			        							</div>
+			        						</div>
+		        							<div class="row">
+		        								<div class="col-4">
+		        									<p class="langPL text-black-50">STANOWISKO:</p>
+		        									<p class="langEN text-black-50">BUSINESS POSITION:</p>
+		        								</div>
+			        							<div class="col-4">
+			        									${stakeholder.stakeholderBusinessPosition}
+			        							</div>
+		        							</div>
+		        							<div class="row border-bottom">
+		        								<div class="col-4">
+		        									<p class="langPL text-black-50">FIRMA/INSTYTUJCA:</p>
+		        									<p class="langEN text-black-50">COMPANY:</p>
+		        								</div>
+			        							<div class="col-4">
+		        									${stakeholder.company}
+			        							</div>
+		        							</div>
+	        							</div>
+	        						</c:forEach>
+	        					</c:otherwise>
+        					</c:choose>
+	        				</div>
+	        			</div>
+	        		</div>
+	      
+	        	      		
 	        		<!-- MILESTONES -->
-	        		<div class="col m-1">
-	        			<div class="card">
+	        		<div class="col project-details-column text-left">
+	        			<div class="card m-2">
 	        				<div class="card-header">
 		        				<div class="float-left">
 		        					<p class="langPL">KAMIENIE MILOWE</p>
@@ -174,152 +325,9 @@
 	        				</div>
 	        			</div>
 	        		</div>
-					<!-- STAKEHOLDERS -->
-	        		<div class="col m-1">
-	        			<div class="card">
-	        				<div class="card-header">
-		        				<div class="float-left">
-		        					<p class="langPL">INTERESARIUSZE</p>
-		        					<p class="langen">STAKEHOLDERS</p>
-	        					</div>
-	        					<div class="float-right d-inline">
-	        						<a href="#">
-	        							<button class="btn-sm btn-outline-success">+</button>
-	        						</a>
-	        					</div>
-	        				</div>
-	        				<div class="card-body">
-	        					<c:choose>
-	        				
-	        					<c:when test="${null eq projectCharter.stakeholders || projectCharter.stakeholders.size() == 0}">
-	        						<p class="langPL">BRAK INTERESARIUSZY</p>
-	        						<p class="langEN">NO STAKEHOLDERS</p>
-	        					</c:when>
-	        					<c:otherwise>
-	        						<c:forEach items="${projectCharter.stakeholders}" var="stakeholder">
-		        						<div class="stakeholder-div m-1">
-			        						<div class="row border-top border-dark bg-light">
-			        							<div class="col-8">
-			        								<p class="langPL">${stakeholder.nameFirst} ${stakeholder.nameLast}</p>
-			        							</div>
 	
-			        							<div class="col-4 text-right">
-			        								<div class="dropdown">
-													  <button class="btn-sm btn-outline-secondary dropdown-toggle mt-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-													    MENU
-													  </button>
-													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-													    <a class="dropdown-item" href="#">
-				        									<p class="langPL text-primary">SZCZEGÓŁY</p>
-				        									<p class="langEN text-primary">DETAILS</p>
-													    </a>
-													    <a class="dropdown-item" href="#">
-				        									<p class="langPL text-primary">EDYTUJ</p>
-				        									<p class="langEN text-primary">EDIT</p>
-													    </a>
-													    <div class="dropdown-divider"></div>
-													    <a href="#" class="text-center">
-				        									<p class="langPL text-danger">USUŃ</p>
-				        									<p class="langEN text-danger">DELETE</p>
-			        									</a>
-													  </div>
-													</div>
-			        							</div>
-			        						</div>
-		        							<div class="row">
-		        								<div class="col-4">
-		        									<p class="langPL text-black-50">STANOWISKO:</p>
-		        									<p class="langEN text-black-50">BUSINESS POSITION:</p>
-		        								</div>
-			        							<div class="col-4">
-			        									${stakeholder.stakeholderBusinessPosition}
-			        							</div>
-		        							</div>
-		        							<div class="row border-bottom">
-		        								<div class="col-4">
-		        									<p class="langPL text-black-50">FIRMA/INSTYTUJCA:</p>
-		        									<p class="langEN text-black-50">COMPANY:</p>
-		        								</div>
-			        							<div class="col-4">
-		        									${stakeholder.company}
-			        							</div>
-		        							</div>
-	        							</div>
-	        						</c:forEach>
-	        					</c:otherwise>
-        					</c:choose>
-	        				</div>
-	        			</div>
-	        		</div>
-	        	</div>
 	        	
-				<div class="row p-5">
-	        		<!-- PROJECT BACKGROUND -->
-	        		<div class="col m-1">
-	        			<div class="card">
-	        				<div class="card-header">
-	        				<div class="float-left">
-	        					<p class="langPL">GENEZA PROJEKTU</p>
-	        					<p class="langen">PROJECT BACKGROUND</p>
-        					</div>
-        					<div class="float-right d-inline">
-        						<button class="btn-sm btn-outline-primary">
-        							<p class="langPL">EDYTUJ</p>
-        							<p class="langEN">EDIT</p>
-        						</button>
-        					</div>
-	        				</div>
-	        				<div class="card-body">
-	        					<p>
-	        						${projectCharter.reasons }
-	        					</p>
-	        				</div>
-	        			</div>
-	        		</div>
-	        		<!-- PROJECT RISKS -->
-	        		<div class="col m-1">
-	        			<div class="card">
-	        				<div class="card-header">
-	        				<div class="float-left">
-	        					<p class="langPL">RYZYKA PROJEKTU</p>
-	        					<p class="langen">PROJECT RISKS</p>
-        					</div>
-	        					<div class="float-right d-inline">
-        						<button class="btn-sm btn-outline-primary">
-        							<p class="langPL">EDYTUJ</p>
-        							<p class="langEN">EDIT</p>
-        						</button>
-        					</div>
-	        				</div>
-	        				<div class="card-body">
-	        					<p>
-	        						${projectCharter.risks }
-	        					</p>
-	        				</div>
-	        			</div>
-	        		</div>
-					<!-- GOALS -->
-	        		<div class="col m-1">
-	        			<div class="card">
-	        				<div class="card-header">
-		        				<div class="float-left">
-		        					<p class="langPL">CELE PROJEKTU</p>
-		        					<p class="langen">GOALS</p>
-	        					</div>
-	        					<div class="float-right d-inline">
-	        						<button class="btn-sm btn-outline-primary">
-	        							<p class="langPL">EDYTUJ</p>
-	        							<p class="langEN">EDIT</p>
-	        						</button>
-        						</div>
-	        				</div>
-	        				<div class="card-body">
-	        					<p>
-	        						${projectCharter.goals }
-	        					</p>
-	        				</div>
-	        			</div>
-	        		</div>
+
 	        	</div>
 	        	
         	</section>
