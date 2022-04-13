@@ -2,3 +2,33 @@
     border-left: lightgray 1px solid;
     border-right: lightgray 1px solid;
 }
+
+/* ROWS INSIDE THE CARD, CARD-HEADER, CARD-BODY, CARD-FOOTER*/
+
+.card .row.first-row {
+	border-top: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+	height: 4em;
+}
+
+.card .row.middle-row {
+	border-bottom: 1px solid lightgray;
+	height: 4em;
+}
+
+.card .row.last-row {
+	border-bottom: 1px solid lightgray;
+	height: 4em;
+}
+
+.card .row .col-title {
+	text-align: right;
+	font-weight: bold;
+	padding-top: 1em;
+}
+
+.card .row .col-value {
+	text-align: left;
+	font-weight: normal;
+	padding-top: 1em;
+}

@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+/* CARDS PLACED IN COLUMNS */
+
+.row.cards-in-columns {
+	text-align: center;
+}
+
+.row.cards-in-columns .col {
+	text-align: left;
+	margin: 2px;
+	min-width: 500px; 
+	min-height: 250px;
+}
+
+.row.cards-in-columns .col .card {
+	text-align: left;
+	margin: 5px;
+	border: 1px solid lightgray;
+}

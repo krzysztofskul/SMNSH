@@ -51,7 +51,7 @@ public class ProjectService {
 
     public void save(Project project) {
         if (project.getId() == null) {
-        	loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "PROJECT CREATED", project.getSls());
+        	loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Project created.", "Utworozno projekt.", project.getSls());
             for (Device device : project.getDeviceList()) {
                 Hibernate.initialize(device.getConfigurationList());
                 device.addConfiguration(configurationService.getStandardConfiguration(project, device));
@@ -166,6 +166,7 @@ public class ProjectService {
     public Project loadByIdWithDeviceListAndConceptList(Long id) {
         Project project = projectRepo.findById(id).get();
         Hibernate.initialize(project.getDeviceList());
+        Hibernate.initialize(project.getLoggerProjectList());
         Hibernate.initialize(project.getConfigurationList());
         for (Device device : project.getDeviceList()) {
             Hibernate.initialize(device.getConfigurationList());

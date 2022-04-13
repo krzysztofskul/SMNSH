@@ -11,7 +11,7 @@
 <html>
 <head>
     <%--css--%>
-    <link rel="stylesheet" type="text/css" href="/resources/css/project-details.css"/>
+    <link rel="stylesheet" type="text/css" href="/resources/css/cards-in-columns.css"/>
     <!--jQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <%--JS--%>
@@ -37,9 +37,9 @@
 		    </c:if>
         
         	<!-- NEW VERSION -->
-        	<div class="row text-center">
-	       		<div class="col project-details-column text-left" >
-	       			<div class="card mb-2">
+        	<div class="row cards-in-columns">
+	       		<div class="col" >
+	       			<div class="card">
 	       				<div class="card-header">
 	       					<div class="row mb-1">
 	       						<div class="col-10">
@@ -104,12 +104,12 @@
 						    </div>
 	       				</div>
 	       				<div class="card-body" style="min-height: 150px">									    
-							    <div class="row project-details-first-row">
-							        <div class="col-4 text-right pt-2">
+							    <div class="row first-row">
+							        <div class="col-4 col-title">
 							            <p class="langPL">NAZWA PROJEKTU:</p>
 							            <p class="langEN">PROJECT NAME:</p>
 							        </div>
-							        <div class="col-8 text-left pt-2">
+							        <div class="col-8 col-value">
 							            <c:choose>
 							                <c:when test="${edit eq true}">
 							                    <form:input path="projectName"/>
@@ -120,12 +120,12 @@
 							            </c:choose>
 							        </div>
 						        </div>
-						        <div class="row project-details-row">
-							        <div class="col-4 text-right pt-2">
+						        <div class="row middle-row">
+							        <div class="col-4 col-title">
 							            <p class="langPL">NR UMOWY:</p>
 							            <p class="langEN">AGREEMENT NO.:</p>
 							        </div>
-							        <div class="col-8 text-left pt-2">
+							        <div class="col-8 col-value">
 							            <c:choose>
 							                <c:when test="${edit eq true}">
 							                    <form:input path="agreementNo" cssClass="w-100"/>
@@ -138,12 +138,12 @@
 							        </div>
 							    </div>
 							
-							    <div class="row project-details-row">
-							        <div class="col-4 text-right pt-2">
+							    <div class="row middle-row">
+							        <div class="col-4 col-title">
 							            <p class="langPL">INWESTOR:</p>
 							            <p class="langEN">INVESTOR.:</p>
 							        </div>
-							        <div class="col-8 text-left pt-2">
+							        <div class="col-8 col-value">
 							            <c:choose>
 							                <c:when test="${edit eq true}">
 							                    <form:select path="investor.id" cssClass="w-100">
@@ -159,12 +159,12 @@
 							            </c:choose>
 							        </div>
 						        </div>
-						        <div class="row project-details-row">
-							        <div class="col-4 text-right pt-2">
+						        <div class="row middle-row">
+							        <div class="col-4 col-title">
 							            <p class="langPL">MIEJSCE DOSTAWY:</p>
 							            <p class="langEN">CUSTOMER:</p>
 							        </div>
-							        <div class="col-8 text-left pt-2">
+							        <div class="col-8 col-value">
 							            <c:choose>
 							                <c:when test="${edit eq true}">
 							                    <form:input path="recipient" cssClass="w-100"/>
@@ -177,12 +177,12 @@
 							        </div>
 							    </div>
 							
-							    <div class="row project-details-row">
-							        <div class="col-3 text-right pt-2">
+							    <div class="row middle-row">
+							        <div class="col-3 col-title">
 							            <p class="langPL">HANDLOWIEC:</p>
 							            <p class="langEN">SALES REP.:</p>
 							        </div>
-							        <div class="col-3 text-left pt-2">
+							        <div class="col-3 col-value">
 							            <c:choose>
 							                <c:when test="${edit eq true}">
 							                    <form:input path="sls" disabled="true" value="${project.sls.nameFirst} ${project.sls.nameLast}"/>
@@ -193,11 +193,11 @@
 							                </c:otherwise>
 							            </c:choose>
 							        </div>
-							        <div class="col-3 text-right pt-2">
+							        <div class="col-3 col-title">
 							            <p class="langPL">KIEROWNIK PROJEKTU:</p>
 							            <p class="langEN">PROJECT MANAGER:</p>
 							        </div>
-							        <div class="col-3 text-left pt-2">
+							        <div class="col-3 col-value">
 							            <c:choose>
 							                <c:when test="${edit eq true}">
 							                    <form:select path="projectManager.id" cssClass="w-100">
@@ -219,12 +219,12 @@
 							        </div>
 							    </div>
 							
-							    <div class="row project-details-row">
-							        <div class="col-3 text-right pt-2">
+							    <div class="row middle-row">
+							        <div class="col-3 col-title">
 							            <p class="langPL">WYKONAWCA ADAPTACJI:</p>
 							            <p class="langEN">BUILDING CONTRACTOR:</p>
 							        </div>
-							        <div class="col-3 text-left pt-2">
+							        <div class="col-3 col-value">
 							            <c:choose>
 							                <c:when test="${edit eq true}">
 							                    <form:select path="subcontractor.id" cssClass="w-100">
@@ -238,11 +238,11 @@
 							                </c:otherwise>
 							            </c:choose>
 							        </div>
-							        <div class="col-3 text-right pt-2">
+							        <div class="col-3 col-title">
 							            <p class="langPL">TERMIN REALIZACJI:</p>
 							            <p class="langEN">DEADLINE:</p>
 							        </div>
-							        <div class="col-3 text-left pt-2">
+							        <div class="col-3 col-value">
 							            <c:choose>
 							                <c:when test="${edit eq true}">
 							                    <form:input type="date" path="deadline" cssClass="w-100"/>
@@ -255,13 +255,13 @@
 							            </c:choose>
 							        </div>
 							    </div>
-							    <div class="row project-details-last-row">
+							    <div class="row last-row">
 							        <div class="col-6"></div>
-							        <div class="col-3 text-right pt-2 float-right">
+							        <div class="col-3 col-title">
 							            <p class="langPL">STATUS PROJEKTU:</p>
 							            <p class="langEN">PROJECT STATUS:</p>
 							        </div>
-							        <div class="col-3 pt-2 float-right">
+							        <div class="col-3 col-value">
 							            <c:choose>
 							                <c:when test="${edit eq true}">
 							                    <form:select path="status" items="${allStatusesProject}" itemLabel="name" cssClass="w-100"/>
@@ -276,7 +276,7 @@
 							
 	       				</div>
 	       			</div>
-	       			<div class="card mb-2">
+	       			<div class="card">
 	       				<div class="card-header">URZĄDZENIA DO INSTALACJI</div>
 	       				<div class="card-body" style="min-height: 150px">
                         <c:if test="${edit eq true}">
@@ -299,7 +299,7 @@
                         </c:if>
                         <c:if test="${edit ne true}">
 							<c:forEach items="${project.deviceList}" var="device">
-								<div class="row project-details-first-row">
+								<div class="row first-row">
 									<div class="col-2 font-weight-bold">
 										${device.deviceCategory.code}
 									</div>
@@ -315,25 +315,43 @@
 						</c:if>
 	       				</div>
 	       			</div>	       			
-	       			<div class="card mb-2">
+	       			<div class="card">
 	       				<div class="card-header">ZAŁĄCZNIKI</div>
 	       				<div class="card-body" style="height: 150px">lorem ipsum</div>
 	       			</div>	       			
 	       		</div>
-	       		<div class="col project-details-column">
-	       			<div class="card mb-2">
+	       		<div class="col">
+	       			<div class="card">
 	       				<div class="card-header">UWAGI</div>
 	       				<div class="card-body" style="height: 150px">lorem ipsum</div>
 	       			</div>
-	       			<div class="card mb-2">
+	       			<div class="card">
 	       				<div class="card-header">KOMENTARZE</div>
 	       				<div class="card-body" style="height: 150px">lorem ipsum</div>
 	       			</div>
 	       		</div>
-	       		<div class="col project-details-column">
-	       			<div class="card mb-2">
-	       				<div class="card-header">HISTORIA PROJEKTU</div>
-	       				<div class="card-body" style="height: 750px">lorem ipsum</div>
+	       		<div class="col">
+	       			<div class="card">
+	       				<div class="card-header">
+	       					<p class="langPL">HISTORIA PROJEKTU</p>
+	       					<p class="langEN">PROJECT HISTORY</p>
+       					</div>
+	       				<div class="card-body" style="height: 750px">
+	       					<c:forEach items="${project.loggerProjectList}" var="logger">
+	       						<div class="row middle-row">
+	       							<div class="col-3">
+	       								<p>
+	       									${logger.localDateTime.toLocalDate()}
+	       									<br>
+	       									${logger.localDateTime.toLocalTime()}
+	       								</p>
+	       								
+	       							</div>
+	       							<div class="col-5">${logger.actionPL}</div>
+	       							<div class="col-3">${logger.actionBy}</div>
+	       						</div>
+	       					</c:forEach>
+	       				</div>
 	       			</div>
 	       		</div>
         	</div>

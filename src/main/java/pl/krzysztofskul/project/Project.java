@@ -96,7 +96,7 @@ public class Project {
     @OneToOne(mappedBy = "project", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Attachment attachment;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE/*, orphanRemoval = true*/)
+    @OneToMany(mappedBy = "project", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}/*, orphanRemoval = true*/)
     private List<LoggerProject> loggerProjectList = new ArrayList<>();
 
     @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
@@ -180,6 +180,7 @@ public class Project {
 
     public void setStatus(StatusProject status) {
         this.status = status;
+        this.addLogger(new LoggerProject(this, LocalDateTime.now(), "Status changed for", "Zmieniono status na: "+status.getName(), this.sls.getNameFirst()+this.sls.getNameLast()));
     }
 
     public LocalDateTime getDeadline() {
@@ -348,6 +349,11 @@ public class Project {
     public void addConfiguration(Configuration configuration) {
         this.configurationList.add(configuration);
         configuration.setProject(this);
+    }
+    
+    public void addLogger(LoggerProject logger) {
+    	this.loggerProjectList.add(logger);
+    	logger.setProject(this);
     }
 
     @Override

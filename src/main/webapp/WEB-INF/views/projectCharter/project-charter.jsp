@@ -19,7 +19,7 @@
     <%--css--%>
     <link rel="stylesheet" type="text/css" href="/resources/css/card.css"/>
     <link rel="stylesheet" type="text/css" href="/resources/css/row.css"/>
-    <link rel="stylesheet" type="text/css" href="/resources/css/project-details.css"/>
+    <link rel="stylesheet" type="text/css" href="/resources/css/cards-in-columns.css"/>
     
     <!--JS files-->
     <script src="<c:url value="/resources/js/projectCharter/projectCharter.js"/>" type="text/javascript"></script>
@@ -45,12 +45,12 @@
         <div class="content container-fluid">
         	
         	<section>
-	        	<div class="row text-center">
+	        	<div class="row cards-in-columns">
 	        	
 	        		
-	        		<div class="col project-details-column text-left">
+	        		<div class="col">
 	        			<!-- PROJECT DETAILS -->
-	        			<div class="card m-2">
+	        			<div class="card">
 	        				<div class="card-header">
 		        				<div class="d-inline-block">
 		        					<p class="langPL">SZCZEGÓŁY PROJEKTU</p>
@@ -58,30 +58,30 @@
 	        					</div>
 	        				</div>
 	        				<div class="card-body">
-	        					<div class="row mt-1 mb-1 border-bottom">
-	        						<div class="col-4 text-right border-right">
+	        					<div class="row middle-row">
+	        						<div class="col-4 col-title">
 	        							<p class="langPL">NAZWA PROJEKTU:</p>
 	        							<p class="langEN">PROJECT NAME:</p>
 	        						</div>
-	        						<div class="col-8">
+	        						<div class="col-8 col-value">
 	        							<p>${projectCharter.project.projectName}</p>
 	        						</div>
 	        					</div>
-	        					<div class="row mt-1 mb-1 border-bottom">
-	        						<div class="col-4 text-right border-right">
+	        					<div class="row middle-row">
+	        						<div class="col-4 col-title">
 	        							<p class="langPL">NR UMOWY:</p>
 	        							<p class="langEN">AGREEMENT NO:</p>
 	        						</div>
-	        						<div class="col-8">
+	        						<div class="col-8 col-value">
 	        							<p>${projectCharter.project.agreementNo}</p>
 	        						</div>
 	        					</div>
-	        					<div class="row mt-1 mb-1">
-	        						<div class="col-4 text-right border-right">
+	        					<div class="row middle-row">
+	        						<div class="col-4 col-title">
 	        							<p class="langPL">MIEJSCE DOSTAWY:</p>
 	        							<p class="langEN">INSTALLATION PLACE:</p>
 	        						</div>
-	        						<div class="col-8">
+	        						<div class="col-8 col-value">
 	        							<p>${projectCharter.project.recipient}</p>
 	        						</div>
 	        					</div>
@@ -89,7 +89,7 @@
 	        			</div>
 
 		        		<!-- PROJECT BACKGROUND -->
-	        			<div class="card m-2">
+	        			<div class="card">
 	        				<div class="card-header">
 	        				<div class="float-left">
 	        					<p class="langPL">GENEZA PROJEKTU</p>
@@ -111,7 +111,7 @@
   
 		        		
 		        		<!-- PROJECT RISKS -->
-	        			<div class="card m-2">
+	        			<div class="card">
 	        				<div class="card-header">
 	        				<div class="float-left">
 	        					<p class="langPL">RYZYKA PROJEKTU</p>
@@ -133,7 +133,7 @@
 
 					
 						<!-- GOALS -->
-	        			<div class="card m-2">
+	        			<div class="card">
 	        				<div class="card-header">
 		        				<div class="float-left">
 		        					<p class="langPL">CELE PROJEKTU</p>
@@ -157,8 +157,8 @@
 	        		</div>
 				
 					<!-- STAKEHOLDERS -->
-	        		<div class="col project-details-column text-left">
-	        			<div class="card m-2">
+	        		<div class="col">
+	        			<div class="card">
 	        				<div class="card-header">
 		        				<div class="float-left">
 		        					<p class="langPL">INTERESARIUSZE</p>
@@ -236,7 +236,7 @@
 	      
 	        	      		
 	        		<!-- MILESTONES -->
-	        		<div class="col project-details-column text-left">
+	        		<div class="col">
 	        			<div class="card m-2">
 	        				<div class="card-header">
 		        				<div class="float-left">

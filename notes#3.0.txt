@@ -4,12 +4,15 @@ TODO :
 
 #3.0-SNAPSHOT
 	- sub-menu for project views: technical documentation
-	- project history/notifications ... ...
-
+	- project changes notifications
 	
 ---------------------------------------
 DONE :
 ---------------------------------------
+
+#3.0-SNAPSHOT
+	+ project history and logs functionality updated
+	+ front-end (css) updates (cards in columns view)
 
 #3.0-SNAPSHOT
 	+ users projects view updated

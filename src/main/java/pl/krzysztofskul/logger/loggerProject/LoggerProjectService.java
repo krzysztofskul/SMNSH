@@ -23,12 +23,13 @@ public class LoggerProjectService<T> /*implements LoggerService<Project>*/ {
     }
 
 //    @Override
-    public void log(Project project, LocalDateTime localDateTime, String actionEN, T actionBy) {
+    public void log(Project project, LocalDateTime localDateTime, String actionEN, String actionPL, T actionBy) {
         LoggerProject loggerProject = new LoggerProject();
 
         loggerProject.setProject(project);
         loggerProject.setLocalDateTime(localDateTime);
         loggerProject.setActionEN(actionEN);
+        loggerProject.setActionPL(actionPL);
         if (actionBy == null) {
             loggerProject.setActionBy("n/a");
         }

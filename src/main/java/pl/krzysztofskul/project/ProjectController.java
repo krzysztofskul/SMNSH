@@ -134,11 +134,11 @@ public class ProjectController {
         } else {
             projectService.save(projectNew);
             loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.PROJECT_CREATE, projectNew);
-            loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "PROJECT UPDATED", httpSession.getAttribute("userLoggedIn"));
+            loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Project Updated.", "Project zaktualizowano.", httpSession.getAttribute("userLoggedIn"));
         }
         if (fileUpload != null && !fileUpload.isEmpty()) {
             attachmentService.saveToProject(fileUpload, projectNew);
-            loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "ATTACHMENT ADDED", httpSession.getAttribute("userLoggedIn"));
+            loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Attachement added.", "Dodano załącznik", httpSession.getAttribute("userLoggedIn"));
         }
         if (backToPage != null) {
             return "redirect:"+backToPage;
@@ -308,7 +308,7 @@ public class ProjectController {
             model.addAttribute("edit", false);
         }
         projectService.save(project);
-        loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "PROJECT UPDATED", httpSession.getAttribute("userLoggedIn"));
+        loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Project updaterd.", "Project zaktualizowano.", httpSession.getAttribute("userLoggedIn"));
         if (backToPage != null) {
             return "redirect:"+backToPage;
         }

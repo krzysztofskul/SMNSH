@@ -19,13 +19,32 @@ public class LoggerProject {
     private LocalDateTime localDateTime;
 
     private String actionEN;
+    private String actionPL;
 
     private String actionBy;
 
     public LoggerProject() {
     }
 
-    public Long getId() {
+    public LoggerProject(LocalDateTime localDateTime, String actionEN, String actionPL, String actionBy) {
+		super();
+		this.localDateTime = localDateTime;
+		this.actionEN = actionEN;
+		this.actionPL = actionPL;
+		this.actionBy = actionBy;
+	}
+
+	public LoggerProject(Project project, LocalDateTime localDateTime, String actionEN, String actionPL,
+			String actionBy) {
+		super();
+		this.project = project;
+		this.localDateTime = localDateTime;
+		this.actionEN = actionEN;
+		this.actionPL = actionPL;
+		this.actionBy = actionBy;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -57,7 +76,15 @@ public class LoggerProject {
         this.actionEN = actionEN;
     }
 
-    public String getActionBy() {
+    public String getActionPL() {
+		return actionPL;
+	}
+
+	public void setActionPL(String actionPL) {
+		this.actionPL = actionPL;
+	}
+
+	public String getActionBy() {
         return actionBy;
     }
 
