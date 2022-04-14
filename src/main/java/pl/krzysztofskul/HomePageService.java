@@ -156,14 +156,16 @@ public class HomePageService {
 			//this.createDevices();
 			this.createRealTestDevices();
 			this.createParts();
-			this.createConcepts();
-			this.createGuidelines();
+			//this.createConcepts();
+			//this.createGuidelines();
 			//this.createInvestors();
 			this.createRealTestInvestors();
 			//this.createRecipients();
 			this.createRealTestRecipients();
 			this.initTestMilestonesToDB();;
 			this.createProjects();
+			this.createConcepts();
+			//this.createGuidelines();
 		}
     }
     
@@ -343,14 +345,17 @@ public class HomePageService {
     }
 
     public void createConcepts() {
+
+			
         /** create one concept for first six users */
-        for (int i = 1; i <= 6; i++) {
+        //for (int i = 1; i <= 6; i++) {
+    	for (Project project : projectService.loadAllWithDeviceList()) {
             Concept concept = new Concept();
-            concept.setTitle("Concept title no. " + i);
-            concept.setAuthor(userService.loadById(Long.parseLong(String.valueOf(i))));
+            concept.setTitle("Concept demo title");
+            concept.setAuthor(userService.loadById(project.getProjectManager().getId()));
             concept.setDescription("Lorem ipsum dolor sit amet mi eget sapien. Aliquam quis tortor. Cras volutpat ligula enim.");
             concept.setRemarks("Phasellus vitae ante. Duis non.");
-            concept.setDevice(deviceService.loadById(Long.parseLong("1")));
+            concept.setDevice(deviceService.loadById(project.getDeviceList().get(0).getId()));
 
             QuestionForm questionForm = new QuestionForm();
             QuestionSetForXRAY questionSetForXRAY = new QuestionSetForXRAY();
@@ -361,6 +366,7 @@ public class HomePageService {
             concept.setQuestionForm(questionForm);
 
             concept.setPriority("!");
+            concept.setProject(project);
             conceptService.save(concept);
 
             questionSetForXRAY.setXrayProtectionToDesign(new Random().nextBoolean());
@@ -371,68 +377,69 @@ public class HomePageService {
             questionSetForXRAYService.save(questionSetForXRAY);
 
             /** change dates of creation */
-            concept = conceptService.loadById(Long.parseLong(String.valueOf(i)));
-            concept.setDateTimeCreated(LocalDateTime.now().minusDays(31-i));
-            concept.setDateTimeDeadline(LocalDateTime.now().plusDays(7+i));
-            concept.setStatus(Status.IN_PROGRESS);
-            concept.setPlanner(userService.loadById(Long.parseLong("1")));
-            conceptService.save(concept);
+            //concept = conceptService.loadById(Long.parseLong(String.valueOf(i)));
+            //concept.setDateTimeCreated(LocalDateTime.now().minusDays(31-i));
+            //concept.setDateTimeDeadline(LocalDateTime.now().plusDays(7+i));
+            //concept.setStatus(Status.IN_PROGRESS);
+            //concept.setPlanner(userService.loadById(Long.parseLong("1")));
+            //conceptService.save(concept);
         }
         /** create additional concepts to first two users */
-        for (int i = 7; i <= 8; i++) {
-            Concept concept = new Concept();
-            concept.setTitle("Concept title no. " + i);
-            concept.setAuthor(userService.loadById(Long.parseLong(String.valueOf(1))));
-            concept.setDescription("Drogi Marszałku, Wysoka Izbo. PKB rośnie. Różnorakie i rozwijanie struktur umożliwia w restrukturyzacji przedsiębiorstwa. Jednakże.");
-            concept.setRemarks("Izbo, inwestowanie w większym stopniu.");
-            concept.setDevice(deviceService.loadById(Long.parseLong("4")));
-
-            QuestionForm questionForm = new QuestionForm();
-            QuestionSetForCT questionSetForCT = new QuestionSetForCT();
-
-            questionForm.setQuestionSetForCT(questionSetForCT);
-            questionSetForCT.setQuestionForm(questionForm);
-            questionForm.setConcept(concept);
-            concept.setQuestionForm(questionForm);
-
-            concept.setPriority("!");
-            concept.setDateTimeDeadline(LocalDateTime.now().plusDays(7+i));
-            conceptService.save(concept);
-
-            questionSetForCT.setXrayProtectionToDesign(new Random().nextBoolean());
-
-            questionForm =questionFormService.loadById(questionSetForCT.getQuestionForm().getId());
-            questionSetForCT.setQuestionForm(questionForm);
-            questionSetForCTService.save(questionSetForCT);
-
-        }
-        for (int i = 9; i <= 9; i++) {
-            Concept concept = new Concept();
-            concept.setTitle("Concept title no. " + i);
-            concept.setAuthor(userService.loadById(Long.parseLong(String.valueOf(2))));
-            concept.setDescription("Początek traktatu czasu panowania Fryderyka Wielkiego, Króla Pruskiego żył w.");
-            concept.setRemarks("Na przykład w kolei przypadków.");
-            concept.setDevice(deviceService.loadById(Long.parseLong("7")));
-
-            QuestionForm questionForm = new QuestionForm();
-            QuestionSetForMRI questionSetForMRI = new QuestionSetForMRI();
-
-            questionForm.setQuestionSetForMRI(questionSetForMRI);
-            questionSetForMRI.setQuestionForm(questionForm);
-            questionForm.setConcept(concept);
-            concept.setQuestionForm(questionForm);
-
-            concept.setPriority("!");
-            concept.setDateTimeDeadline(LocalDateTime.now().plusDays(7+i));
-            conceptService.save(concept);
-
-            questionSetForMRI.setFaradayCageToDesign(new Random().nextBoolean());
-
-            questionForm =questionFormService.loadById(questionSetForMRI.getQuestionForm().getId());
-            questionSetForMRI.setQuestionForm(questionForm);
-            questionSetForMRIService.save(questionSetForMRI);
-
-        }
+		/*
+		 * for (int i = 7; i <= 8; i++) { Concept concept = new Concept();
+		 * concept.setTitle("Concept title no. " + i);
+		 * concept.setAuthor(userService.loadById(Long.parseLong(String.valueOf(1))));
+		 * concept.
+		 * setDescription("Drogi Marszałku, Wysoka Izbo. PKB rośnie. Różnorakie i rozwijanie struktur umożliwia w restrukturyzacji przedsiębiorstwa. Jednakże."
+		 * ); concept.setRemarks("Izbo, inwestowanie w większym stopniu.");
+		 * concept.setDevice(deviceService.loadById(Long.parseLong("4")));
+		 * 
+		 * QuestionForm questionForm = new QuestionForm(); QuestionSetForCT
+		 * questionSetForCT = new QuestionSetForCT();
+		 * 
+		 * questionForm.setQuestionSetForCT(questionSetForCT);
+		 * questionSetForCT.setQuestionForm(questionForm);
+		 * questionForm.setConcept(concept); concept.setQuestionForm(questionForm);
+		 * 
+		 * concept.setPriority("!");
+		 * concept.setDateTimeDeadline(LocalDateTime.now().plusDays(7+i));
+		 * conceptService.save(concept);
+		 * 
+		 * questionSetForCT.setXrayProtectionToDesign(new Random().nextBoolean());
+		 * 
+		 * questionForm
+		 * =questionFormService.loadById(questionSetForCT.getQuestionForm().getId());
+		 * questionSetForCT.setQuestionForm(questionForm);
+		 * questionSetForCTService.save(questionSetForCT);
+		 * 
+		 * } for (int i = 9; i <= 9; i++) { Concept concept = new Concept();
+		 * concept.setTitle("Concept title no. " + i);
+		 * concept.setAuthor(userService.loadById(Long.parseLong(String.valueOf(2))));
+		 * concept.
+		 * setDescription("Początek traktatu czasu panowania Fryderyka Wielkiego, Króla Pruskiego żył w."
+		 * ); concept.setRemarks("Na przykład w kolei przypadków.");
+		 * concept.setDevice(deviceService.loadById(Long.parseLong("7")));
+		 * 
+		 * QuestionForm questionForm = new QuestionForm(); QuestionSetForMRI
+		 * questionSetForMRI = new QuestionSetForMRI();
+		 * 
+		 * questionForm.setQuestionSetForMRI(questionSetForMRI);
+		 * questionSetForMRI.setQuestionForm(questionForm);
+		 * questionForm.setConcept(concept); concept.setQuestionForm(questionForm);
+		 * 
+		 * concept.setPriority("!");
+		 * concept.setDateTimeDeadline(LocalDateTime.now().plusDays(7+i));
+		 * conceptService.save(concept);
+		 * 
+		 * questionSetForMRI.setFaradayCageToDesign(new Random().nextBoolean());
+		 * 
+		 * questionForm
+		 * =questionFormService.loadById(questionSetForMRI.getQuestionForm().getId());
+		 * questionSetForMRI.setQuestionForm(questionForm);
+		 * questionSetForMRIService.save(questionSetForMRI);
+		 * 
+		 * }
+		 */
     }
 
     public void createGuidelines() {

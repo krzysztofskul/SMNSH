@@ -338,4 +338,15 @@ public class ProjectController {
         return "redirect:/projects/all";
     }
 
+    @GetMapping("/{projectId}/technical-documentation")
+    public String getProjectTechnicalDocumentation(
+    			@PathVariable Long projectId,
+    			Model model
+    		) {
+    	Project project = projectService.loadByIdWithDeviceListAndConceptList(projectId);
+    	model.addAttribute("project", project);
+    	model.addAttribute("conceptList", project.getConceptList());
+    	return "projects/technical-documentation";
+    }
+    
 }

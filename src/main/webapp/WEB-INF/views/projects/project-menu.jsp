@@ -39,7 +39,7 @@
                 </a>
             </li>
             <li class="nav-item  ml-auto mr-auto text-center">
-                <a class="nav-link btn btn-light" href="#">
+                <a class="nav-link btn btn-light" href="/projects/${projectId}/technical-documentation">
                     <p class="langPL">WIDOK DOKUMENTACJI TECHNICZNEJ</p>
                     <p class="langEN">TECHNICAL DOCUMENTATION VIEW</p>
                 </a>

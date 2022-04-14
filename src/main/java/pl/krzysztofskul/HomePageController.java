@@ -60,14 +60,16 @@ public class HomePageController {
 			//homePageService.createDevices();
 			homePageService.createRealTestDevices();
 			homePageService.createParts();
-			homePageService.createConcepts();
-			homePageService.createGuidelines();
+			//homePageService.createConcepts();
+			//homePageService.createGuidelines();
 			//homePageService.createInvestors();
 			homePageService.createRealTestInvestors();
 			//homePageService.createRecipients();
 			homePageService.createRealTestRecipients();
 			homePageService.initTestMilestonesToDB();;
 			homePageService.createProjects();
+			homePageService.createConcepts();
+			//homePageService.createGuidelines();
 		}
 		return "redirect:/home";
 	}
