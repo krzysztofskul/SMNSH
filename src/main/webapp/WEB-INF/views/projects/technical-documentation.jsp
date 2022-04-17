@@ -91,7 +91,7 @@
 												<p class="langEN">STATUS</p>
 											</div>
 											<div class="col-6 col-value">
-												${concept.status.toString()}
+												${concept.status.getNamePL()}
 											</div>
 										</div>
 									</div>

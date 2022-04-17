@@ -10,6 +10,9 @@ DONE :
 ---------------------------------------
 
 #3.0-SNAPSHOT
+	+ project status enum updates
+
+#3.0-SNAPSHOT
 	+ sub-menu for project views: technical documentation
 
 #3.0-SNAPSHOT
