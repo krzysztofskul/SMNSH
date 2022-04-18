@@ -268,7 +268,7 @@
 							                    <form:errors path="status" cssClass="error"/>
 							                </c:when>
 							                <c:otherwise>
-							                    ${project.status.toString()}
+							                    ${project.status.getNamePL()}
 							                </c:otherwise>
 							            </c:choose>
 							        </div>

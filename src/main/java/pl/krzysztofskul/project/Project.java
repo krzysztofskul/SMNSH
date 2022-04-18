@@ -180,7 +180,7 @@ public class Project {
 
     public void setStatus(StatusProject status) {
         this.status = status;
-        this.addLogger(new LoggerProject(this, LocalDateTime.now(), "Status changed for", "Zmieniono status na: "+status.getName(), this.sls.getNameFirst()+this.sls.getNameLast()));
+        this.addLogger(new LoggerProject(this, LocalDateTime.now(), "Status changed for: "+status.getNameEN(), "Zmieniono status na: "+status.getNamePL(), this.sls.getNameFirst()+this.sls.getNameLast()));
     }
 
     public LocalDateTime getDeadline() {

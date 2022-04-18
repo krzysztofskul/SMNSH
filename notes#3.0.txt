@@ -10,6 +10,9 @@ DONE :
 ---------------------------------------
 
 #3.0-SNAPSHOT
+	+ updates in project statuses functionality
+
+#3.0-SNAPSHOT
 	+ project status enum updates
 
 #3.0-SNAPSHOT
