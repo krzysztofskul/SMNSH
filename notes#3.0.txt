@@ -4,11 +4,18 @@ TODO :
 
 #3.0-SNAPSHOT
 	- project changes notifications
+	- set designer to the project functionality
+		- update a deisgner's page with orders for conceptual projects ...
+	- order guidelines functionality
 
 	
 ---------------------------------------
 DONE :
 ---------------------------------------
+
+#3.0-SNAPSHOT
+	+ front-end updates on technical-documentation page
+	+ order the conceptual project functionality from technical-documentation page updates	
 
 #3.0-SNAPSHOT
 	+ updates in project statuses functionality

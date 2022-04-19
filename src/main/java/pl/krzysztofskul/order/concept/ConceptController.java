@@ -125,6 +125,7 @@ public class ConceptController {
     public String conceptsNew(
             @RequestParam(name = "userId", required = false) Long userId,
             @RequestParam(name = "projectId", required = false) Long projectId,
+            @RequestParam(name = "deviceId", required = false) Long deviceId,
             @RequestParam(name = "backToPage", required = false) String backToPage,
             Model model
     ) {
@@ -135,6 +136,9 @@ public class ConceptController {
         }
         if (projectId != null) {
             conceptNew.setProject(projectService.loadByIdWithDeviceList(projectId));
+        }
+        if (deviceId != null) {
+        	conceptNew.setDevice(deviceService.loadById(deviceId));
         }
         if (backToPage != null) {
             model.addAttribute("backToPage", backToPage);

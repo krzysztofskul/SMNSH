@@ -39,8 +39,19 @@
 						<span class="font-weight-bold">${device.deviceCategory.code}</span> ${device.deviceCategory.name} <span class="font-weight-bold">${device.model}</span>
 					</div>
 					<div class="col-4 text-right">
-						<a href="/concepts/new?userId=${sessionScope.userLoggedIn.id}&projectId=${project.id}&backToPage=/projects/${project.id}/technical-documentation">
-							<button class="btn btn-outline-success">+</button>
+						<a href="/concepts/new?userId=${sessionScope.userLoggedIn.id}&projectId=${project.id}&deviceId=${device.id}&backToPage=/projects/${project.id}/technical-documentation">
+							<button class="btn btn-outline-success">
+								<div class="row">
+									<div class="col-2 border-right">
+										<span class="font-weight-bold" style="font-size: 2em; margin-top: auto; margin-bottom: auto">+</span>
+									</div>
+									<div class="col-10" style="margin-top: auto; margin-bottom: auto">
+										<p class="langPL">ZAMÓWIENIE NOWEGO PROJEKTU KONCEPCYJNEGO</p>
+										<p class="langEN">ORDER THE NEW CONCEPTUAL DESIGN</p>
+									</div>
+								</div>
+
+							</button>
 						</a>
 					</div>
 				</div>
@@ -75,9 +86,16 @@
 												<p class="langPL">PROJEKTANT</p>
 												<p class="langEN">DESIGNER</p>
 											</div>
-											<div class="col-6 col-value">
-												${concept.planner.nameFirst} ${concept.planner.nameLast}
-											</div>
+											<c:choose>
+												<c:when test="${concept.planner ne null}">
+													<div class="col-6 col-value">
+														${concept.planner.nameFirst} ${concept.planner.nameLast}
+													</div>
+												</c:when>
+												<c:otherwise>
+													<div class="col-6 col-value">-</div>
+												</c:otherwise>
+											</c:choose>
 										</div>
 										<div class="row middle-row">
 	
@@ -99,6 +117,24 @@
 											</div>
 										</div>
 									</div>
+									<div class="card-footer">
+										<div class="float-right">
+											<a href="#">
+												<button class="btn btn-outline-success disabled">
+													<div class="row">
+														<div class="col-2 border-right">
+															<span></span>
+														</div>
+														<div class="col-10" style="margin-top: auto; margin-bottom: auto">
+															<p class="langPL">ZAMÓWIENIE PROJEKTU WYTYCZNYCH</p>
+															<p class="langEN">ORDER THE GUIDELINES DESIGN</p>
+														</div>
+													</div>
+						
+												</button>
+											</a>
+										</div>
+									</div>
 								</div>						
 							</c:when>
 							<c:otherwise>
@@ -114,6 +150,8 @@
 		
 				</div>
 			</div>
+		
+		
 		</div>
 		</c:forEach>	
 	</div>

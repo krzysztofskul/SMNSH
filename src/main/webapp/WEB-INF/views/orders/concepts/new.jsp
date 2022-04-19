@@ -69,22 +69,32 @@
                         <div class="col-6">
                             <p class="langPL">SPRZĘT:</p>
                             <p class="langEN">DEVICE:</p>
-                        </div>
-                        <div class="col">
                             <jsp:useBean id="devicesAll" scope="request" type="java.util.List"/>
-                            <c:choose>
-                                <c:when test="${conceptNew.project eq null}">
-                                    <form:select cssClass="w-100" path="device.id" items="${devicesAll}" itemLabel="model" itemValue="id"/>
-                                </c:when>
-                                <c:otherwise>
-                                    <form:select cssClass="w-100" path="device.id">
-                                        <c:forEach items="${conceptNew.project.deviceList}" var="device">
-                                            <form:option value="${device.id}" label="${device.deviceCategory.code} ${device.model}"/>
-                                        </c:forEach>
-                                    </form:select>
-                                </c:otherwise>
-                            </c:choose>
                         </div>
+                        <c:choose>
+                        	<c:when test="${conceptNew.device ne null}">
+                        		<form:hidden path="device.id"/>
+                        		<div class="col">
+                        			<form:select path="device.id" cssClass="w-100" items="${devicesAll}" itemValue="id" itemLabel="model" disabled="true"/>
+                        		</div>
+                        	</c:when>
+                        	<c:otherwise>
+		                        <div class="col">
+		                            <c:choose>
+		                                <c:when test="${conceptNew.project eq null}">
+		                                    <form:select cssClass="w-100" path="device.id" items="${devicesAll}" itemLabel="model" itemValue="id"/>
+		                                </c:when>
+		                                <c:otherwise>
+		                                    <form:select cssClass="w-100" path="device.id">
+		                                        <c:forEach items="${conceptNew.project.deviceList}" var="device">
+		                                            <form:option value="${device.id}" label="${device.deviceCategory.code} ${device.model}"/>
+		                                        </c:forEach>
+		                                    </form:select>
+		                                </c:otherwise>
+		                            </c:choose>
+		                        </div>
+                        	</c:otherwise>
+                        </c:choose>
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
