@@ -173,8 +173,9 @@
 			                                                    <p class="langPL">Status projektu:</p>
 			                                                    <p class="langEN">Project status:</p>
 			                                                </div>
-			                                                <div class="col-4 pt-1 font-weight-bold" style="font-size: 12px">
-			                                                        ${project.status.toString()}
+			                                                <div class="col-4 font-weight-bold" style="font-size: 12px">
+			                                                        <p class="langPL">${project.status.getNamePL()}</p>
+			                                                        <p class="langEN">${project.status.getNameEN()}</p>
 			                                                </div>
 			                                            </div>
 			                                        </div>

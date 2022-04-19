@@ -31,14 +31,17 @@
 	<div class="content container-fluid">
 	
 		<c:forEach items="${project.deviceList}" var="device">
-		<div class="card">
+		<c:set var="matched" value="false"/>
+		<div class="card m-5">
 			<div class="card-header">
 				<div class="row">
 					<div class="col-8">
 						<span class="font-weight-bold">${device.deviceCategory.code}</span> ${device.deviceCategory.name} <span class="font-weight-bold">${device.model}</span>
 					</div>
 					<div class="col-4 text-right">
-						<button class="btn btn-outline-success">+</button>
+						<a href="/concepts/new?userId=${sessionScope.userLoggedIn.id}&projectId=${project.id}&backToPage=/projects/${project.id}/technical-documentation">
+							<button class="btn btn-outline-success">+</button>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -47,9 +50,10 @@
 				<div class="row cards-in-columns">
 				
 					<div class="col">
-						<c:forEach items="${conceptList}" var="concept">
+						<c:forEach items="${conceptList}" var="concept" varStatus="loopStatus">
 							<c:choose>
 							<c:when test="${concept.device.id eq device.id }">
+								<c:set var="matched" value="true"/>
 								<div class="card">
 									<div class="card-header">
 										<div class="col-12">
@@ -98,8 +102,10 @@
 								</div>						
 							</c:when>
 							<c:otherwise>
-								<p class="langPL">BRAK PROJEKTÓW KONCEPCJI</p>
-								<p class="langEN">NO CONCEPTUAL DESIGNS</p>
+								<c:if test="${matched eq false && loopStatus.isLast() eq true}">
+									<p class="langPL">BRAK PROJEKTÓW KONCEPCJI</p>
+									<p class="langEN">NO CONCEPTUAL DESIGNS</p>
+								</c:if>
 							</c:otherwise>
 							</c:choose>
 						</c:forEach>

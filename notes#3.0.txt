@@ -4,10 +4,16 @@ TODO :
 
 #3.0-SNAPSHOT
 	- project changes notifications
+
 	
 ---------------------------------------
 DONE :
 ---------------------------------------
+
+#3.0-SNAPSHOT
+	+ updates in project statuses functionality
+	+ updates in new concept functionality
+	+ fixes view of amount of concepts or no concepts in technical documentation view
 
 #3.0-SNAPSHOT
 	+ updates in project statuses functionality

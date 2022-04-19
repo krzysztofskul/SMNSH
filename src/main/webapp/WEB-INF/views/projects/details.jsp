@@ -268,7 +268,8 @@
 							                    <form:errors path="status" cssClass="error"/>
 							                </c:when>
 							                <c:otherwise>
-							                    ${project.status.getNamePL()}
+							                    <p class="langPL">${project.status.getNamePL()}</p>
+							                    <p class="langEN">${project.status.getNameEN()}</p>
 							                </c:otherwise>
 							            </c:choose>
 							        </div>
