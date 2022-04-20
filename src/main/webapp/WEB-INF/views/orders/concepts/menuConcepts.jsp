@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <div class="container text-center">
+    <div class="container-fluid text-center">
         <ul class="nav nav-pills border-top bg-light p-1 border-bottom mb-2 d-inline-block w-100">
             <li class="nav-item d-inline-block">
                 <a class="nav-link btn-light border ml-1 mr-1" href="/concepts/all?filter=all">

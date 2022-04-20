@@ -24,11 +24,13 @@
 .card .row .col-title {
 	text-align: right;
 	font-weight: bold;
-	padding-top: 1em;
+	margin-top: auto;
+	margin-bottom: auto;
 }
 
 .card .row .col-value {
 	text-align: left;
 	font-weight: normal;
-	padding-top: 1em;
+	margin-top: auto;
+	margin-bottom: auto;
 }

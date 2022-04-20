@@ -14,11 +14,9 @@
 <body>
 
     <jsp:include page="/WEB-INF/views/header.jsp"/>
-    <%--<jsp:include page="menuConcepts.jsp"/>--%>
 
-    <div class="container">
+    <div class="container-fluid">
 
-        <!-- *** NEW FRONT END *** -->
         <div class="row text-center mb-2">
             <div class="col-12">
                 <h1 class="langPL">LISTA ZAMÓWIONYCH KONCEPCJI</h1>
@@ -26,153 +24,124 @@
             </div>
         </div>
         <jsp:include page="menuConcepts.jsp"/>
+        
         <c:forEach items="${conceptsAll}" var="concept">
             <c:if test="${sessionScope.userLoggedIn.getId() eq concept.author.id || sessionScope.userLoggedIn.businessPosition ne 'PROJECT_MANAGER'}">
-            <div id="concept">
-                <div class="row border-top border-bottom bg-light font-weight-bold mb-2">
-                    <div class="col-2">${concept.id}</div>
-                    <div class="col-3">${concept.device.model}</div>
-                    <div class="col-3">DLA / FOR : <span class="text-black-50">${concept.project.projectName}</span></div>
-                    <div class="col-3">${concept.client}</div>
-                </div>
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col-10">
-                        <span class="font-weight-bold">UTWORZONO / CREATED:</span>
-                            ${concept.author.nameFirst} ${concept.author.nameLast}
-                            ${concept.dateTimeCreated.toLocalDate()} ${concept.dateTimeCreated.toLocalTime()}
+            <div class="card m-5">
+                <div class="card-header">
+                	<div class="row">
+	                    <div class="col-2 col-title">
+	                    	<p class="langPL">APARAT</p>
+	                    	<p class="langEN">DEVICE</p>
+                    	</div>
+	                    <div class="col-10 col-value">
+	                    	<span class="font-weight-bold"">
+	                    		${concept.device.deviceCategory.code}
+                    		</span>
+                    		<span>
+                    		 	${concept.device.deviceCategory.name}
+                    		 </span> 
+                    		 <span class="font-weight-bold"">
+                    		 	${concept.device.model}
+               		 		</span>
+                   		 </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col-10">
-                        <span class="font-weight-bold">PRIORITY / PRIORYTET:</span>
-                            ${concept.priority}
+                	<div class="row">
+	                    <div class="col-2 col-title">
+	                    	<p class="langPL">INWESTOR</p>
+	                    	<p class="langEN">INVESTOR</p>
+                    	</div>
+	                    <div class="col-10 col-value">${concept.project.investor.name} ${concept.project.investor.companyType.name}</div>
                     </div>
-                </div>
-                <div class="row text-right">
-                    <div class="col-2"></div>
-                    <div class="col-10">
-                        <span class="font-weight-bold">TERMIN REALIZACJI / DEADLINE:</span>
-                            ${concept.dateTimeDeadline.toLocalDate()} ${concept.dateTimeDeadline.toLocalTime()}
-                    </div>
-                </div>
-                <div class="row text-right">
-                    <div class="col-2"></div>
-                    <div class="col-10">
-                        <span class="font-weight-bold">PROJEKTANT/PLANISTA / DESIGNER/PLANNER:</span>
-                            ${concept.planner.nameFirst} ${concept.planner.nameLast}
-                    </div>
-                </div>
-                <div class="row text-right">
-                    <div class="col-2"></div>
-                    <div class="col-10">
-                        <span class="font-weight-bold">STATUS / STATUS:</span>
-                        <c:if test="${concept.status.toString() eq 'OCZEKUJE / WAITING'}">
-                            <div class="d-inline text-danger">${concept.status.toString()}</div>
-                        </c:if>
-                        <c:if test="${concept.status.toString() eq 'W TOKU / IN PROGRESS'}">
-                            <div class="d-inline text-warning">${concept.status.toString()}</div>
-                        </c:if>
-                        <c:if test="${concept.status.toString() eq 'ZAKOŃCZONY / FINISHED'}">
-                            <div class="d-inline text-success">${concept.status.toString()}</div>
-                        </c:if>
-                    </div>
-                </div>
-                <div class="row text-right border-top mb-5 mt-3 pt-2">
-                    <div class="col-12">
-                        <a href="/concepts/details/${concept.id}" class="d-block">SZCZEGÓŁY / DETAILS</a>
-                        <c:choose>
-                            <c:when test="${sessionScope.userLoggedIn.businessPosition eq 'PROJECT_MANAGER'}">
-                                <a href="/concepts/setDesigner/${concept.id}" class="d-block btn disabled text-right m-0 p-0">PRZYPISZ PROJEKTANTA/PLANISTĘ / ASSIGN DESIGNER/PLANNER</a>
-                                <a href="/concepts/setStatus/${concept.id}" class="d-block btn disabled text-right m-0 p-0">ZMIEŃ STATUS / CHANGE STATUS</a>
-                            </c:when>
-                            <c:otherwise>
-                                <a href="/concepts/setDesigner/${concept.id}" class="d-block">PRZYPISZ PROJEKTANTA/PLANISTĘ / ASSIGN DESIGNER/PLANNER</a>
-                                <a href="/concepts/setStatus/${concept.id}" class="d-block">ZMIEŃ STATUS / CHANGE STATUS</a>
-                            </c:otherwise>
-                        </c:choose>
 
-                        <a href="#" class="d-block">USUŃ / DEL</a>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+	                    <div class="col-2 col-title">
+	                        <p class="langPL">KIEROWNIK PROJEKTU</p>
+	                        <p class="langen">PROJECT MANAGER</p>
+	                    </div>
+	                    <div class="col-3 col-value">
+	                        ${concept.project.projectManager.nameFirst} ${concept.project.projectManager.nameLast}
+	                    </div>
+                    </div>
+                    <div class="row">
+	                    <div class="col-2 col-title">
+	                        <p class="langPL">DATA UTWORZENIA ZAMÓWIENIA</p>
+	                        <p class="langen">ORDER CREATED</p>
+	                    </div>
+	                    <div class="col-3 col-value">
+	                        ${concept.dateTimeCreated.toLocalDate()}
+                        </div>
+	                    <div class="col-2 col-title">
+	                        <p class="langPL">TERMIN REALIZACJI KONCEPCJI</p>
+	                        <p class="langen">DEADLINE OF CONCEPTUAL DESIGN</p>
+	                    </div>
+	                    <div class="col-3 col-value">
+	                        ${concept.dateTimeDeadline.toLocalDate()}
+	                    </div>
+                    </div>
+                    <div class="row">
+	                    <div class="col-2 col-title">
+	                    </div>
+	                    <div class="col-3 col-value">
+	                    </div>
+	                    <div class="col-2 col-title">
+	                        <p class="langPL">STATUS ZAMÓWIENIA KOCEPCJI</p>
+	                        <p class="langen">STATUS OF THE ORDER</p>
+	                    </div>
+	                    <div class="col-3 col-value">
+							<c:if test="${concept.status.toString() eq 'OCZEKUJE / WAITING'}">
+							    <div class="d-inline-block text-danger">${concept.status.getNamePL()}</div>
+							    <div class="d-inline-block float-right">
+	                    			<a href="/concepts/setDesigner/${concept.id}/${sessionScope.userLoggedIn.id}?backToPage=concepts/all?filter=inProgress">
+	                    				<button class="btn btn-sm btn-outline-success">
+	                    					<p class="langPL">ZACZNIJ PROJEKT</p>
+	                    					<p class="langEN">BEGIN DESIGNING</p>
+	                    				</button>
+	                    			</a>
+							    </div>
+							</c:if>
+							<c:if test="${concept.status.toString() eq 'W TOKU / IN PROGRESS'}">
+							    <div class="d-inline-block text-warning">${concept.status.getNamePL()}</div>
+							    <div class="d-inline-block float-right">
+	                    			<a href="/concepts/setStatusFinished/${concept.id}?backToPage=concepts/all?filter=finished">
+	                    				<button class="btn btn-sm btn-outline-success">
+	                    					<p class="langPL">ZAKOŃCZ PROJEKT</p>
+	                    					<p class="langEN">FINISH DESIGNING</p>
+	                    				</button>
+	                    			</a>
+							    </div>
+							</c:if>
+							<c:if test="${concept.status.toString() eq 'ZAKOŃCZONY / FINISHED'}">
+							    <div class="d-inline-block text-success">${concept.status.getNamePL()}</div>
+							</c:if>
+	                    </div>
+                    </div>
+                    <div class="row">
+	                    <div class="col-2 col-title">
+	                    </div>
+	                    <div class="col-3 col-value">
+	                    </div>
+	                    <div class="col-2 col-title">
+	                        <p class="langPL">PROJEKTANT</p>
+	                        <p class="langen">DESIGNER</p>
+	                    </div>
+	                    <div class="col-3 col-value">
+	                    	<c:if test="${concept.planner eq null}">
+	                    			-
+	                    	</c:if>
+	                    	<c:if test="${concept.planner ne null}">
+	                        	${concept.planner.nameFirst} ${concept.planner.nameLast}
+	                        </c:if>
+	                    </div>
                     </div>
                 </div>
+                
+            
             </div>
             </c:if>
         </c:forEach>
-
-        <!-- *** OLD FRONT END *** -->
-        <!--
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">DATE OF CREATION</th>
-                    <th scope="col">AUTHOR / DEVICE</th>
-                    <th scope="col">TITLE</th>
-                    <th scope="col">PRIORITY</th>
-                    <th scope="col">DEADLINE</th>
-                    <th scope="col">STATUS</th>
-                    <th scope="col">OPTIONS</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${conceptsAll}" var="concept">
-                    <tr>
-                        <th scope="row">${concept.id}</th>
-                        <th scope="row">
-                                ${concept.dateTimeCreated.year} -
-                                        ${concept.dateTimeCreated.month.name().substring(0,3)} -
-                                    <c:choose>
-                                        <c:when test="${concept.dateTimeCreated.dayOfMonth < 10}">
-                                            0${concept.dateTimeCreated.dayOfMonth}
-                                        </c:when>
-                                        <c:otherwise>
-                                            ${concept.dateTimeCreated.dayOfMonth}
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <br>
-                                    <c:choose>
-                                        <c:when test="${concept.dateTimeCreated.hour < 10}">
-                                            0${concept.dateTimeCreated.hour} :
-                                        </c:when>
-                                        <c:otherwise>
-                                            ${concept.dateTimeCreated.hour} :
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <c:choose>
-                                        <c:when test="${concept.dateTimeCreated.minute < 10}">
-                                            0${concept.dateTimeCreated.minute}
-                                        </c:when>
-                                        <c:otherwise>
-                                            ${concept.dateTimeCreated.minute}
-                                        </c:otherwise>
-                                    </c:choose>
-                        </th>
-                        <td>
-                            ${concept.author.nameFirst} ${concept.author.nameLast}
-                            <hr>
-                            ${concept.device.model}
-                        </td>
-                        <td>${concept.title}</td>
-                        <td>${concept.priority}</td>
-                        <td>${concept.dateTimeDeadline}</td>
-                        <td>${concept.status.toString()}</td>
-                        <td>
-                            <a href="/concepts/details/${concept.id}" class="btn btn-primary">DETAILS</a>
-                            <a href="/concepts/delete/${concept.id}" class="btn btn-danger">DEL</a>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-            <tfoot>
-                <tr class="text-right">
-                    <td colspan="8">
-                        <a href="/concepts/new" class="btn btn-success">NEW</a>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-        -->
     </div>
 
     <jsp:include page="/WEB-INF/views/footer.jsp"/>
