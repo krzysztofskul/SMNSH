@@ -48,6 +48,17 @@
                     </div>
                 	<div class="row">
 	                    <div class="col-2 col-title">
+	                    	<p class="langPL">NAZWA PROJEKTU</p>
+	                    	<p class="langEN">PROJECT NAME</p>
+                    	</div>
+	                    <div class="col-10 col-value">
+	                    	<span class="font-weight-bold"">
+	                    		${concept.project.projectName}
+                    		</span>
+                   		 </div>
+                    </div>
+                	<div class="row">
+	                    <div class="col-2 col-title">
 	                    	<p class="langPL">INWESTOR</p>
 	                    	<p class="langEN">INVESTOR</p>
                     	</div>

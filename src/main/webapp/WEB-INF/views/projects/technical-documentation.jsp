@@ -116,6 +116,33 @@
 												${concept.status.getNamePL()}
 											</div>
 										</div>
+										
+										
+										
+										<div class="row middle-row">
+	
+											<div class="col-2 col-title">
+												<p class="langPL">PLIK PDF</p>
+												<p class="langEN">PDG FILE</p>
+											</div>
+											<div class="col-2 col-value">
+												...
+											</div>
+	
+	
+											<div class="col-2 col-title">
+												<p class="langPL">PLIK DWG</p>
+												<p class="langEN">DWG FILE</p>
+											</div>
+											<div class="col-6 col-value">
+												...
+											</div>
+										</div>
+										
+										
+										
+										
+										
 									</div>
 									<div class="card-footer">
 										<div class="float-right">

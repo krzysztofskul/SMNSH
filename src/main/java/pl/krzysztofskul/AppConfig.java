@@ -99,7 +99,8 @@ public class AppConfig implements WebMvcConfigurer {
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 
         /* local DB*/
-        dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?useSSL=false");
+        //dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?useSSL=false");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?allowPublicKeyRetrieval=true&useSSL=false");
         dataSource.setUsername("root");
         dataSource.setPassword("@xDpo9Ec16N7&OP0"); // randomly generated password for tests at localhost
 
