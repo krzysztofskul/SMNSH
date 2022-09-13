@@ -126,7 +126,20 @@
 												<p class="langEN">PDG FILE</p>
 											</div>
 											<div class="col-2 col-value">
-												...
+												<c:choose>
+													<c:when test="${concept.status.getNamePL().contains('ZAKOŃCZONY')}">
+														<button class="btn btn-outline-success">
+															<p class="langPL">POBIERZ</p>
+															<p class="langEN">DOWNLOAD</p>
+														</button>
+													</c:when>
+													<c:otherwise>
+														<button class="btn btn-outline-danger ">
+															<p class="langPL">...</p>
+															<p class="langEN">...</p>
+														</button>
+													</c:otherwise>
+												</c:choose>
 											</div>
 	
 	
@@ -135,7 +148,20 @@
 												<p class="langEN">DWG FILE</p>
 											</div>
 											<div class="col-6 col-value">
-												...
+												<c:choose>
+													<c:when test="${concept.status.getNamePL().contains('ZAKOŃCZONY')}">
+														<button class="btn btn-outline-success">
+															<p class="langPL">POBIERZ</p>
+															<p class="langEN">DOWNLOAD</p>
+														</button>
+													</c:when>
+													<c:otherwise>
+														<button class="btn btn-outline-danger ">
+															<p class="langPL">...</p>
+															<p class="langEN">...</p>
+														</button>
+													</c:otherwise>
+												</c:choose>
 											</div>
 										</div>
 										
