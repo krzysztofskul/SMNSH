@@ -80,7 +80,7 @@ public class MilestoneController {
 			//dateFinishPlanned = LocalDate.now().toString();
 		} else {
 			try {
-				milestoneInstance.getMilestoneTimeline().setDateStartPlanned(LocalDate.parse(dateFinishPlanned));
+				milestoneInstance.getMilestoneTimeline().setDateFinishPlanned(LocalDate.parse(dateFinishPlanned));
 			} catch (java.time.format.DateTimeParseException e) {
 				dateFinishPlanned = null;
 			}
@@ -90,7 +90,7 @@ public class MilestoneController {
 			//dateStarted = LocalDate.now().toString();
 		} else {
 			try {
-				milestoneInstance.getMilestoneTimeline().setDateStartPlanned(LocalDate.parse(dateStarted));	
+				milestoneInstance.getMilestoneTimeline().setDateStarted(LocalDate.parse(dateStarted));	
 			} catch (java.time.format.DateTimeParseException e) {
 				dateStarted = null;
 			}
@@ -100,7 +100,7 @@ public class MilestoneController {
 			//dateFinished = LocalDate.now().toString();
 		} else {
 			try {
-				milestoneInstance.getMilestoneTimeline().setDateStartPlanned(LocalDate.parse(dateFinished));
+				milestoneInstance.getMilestoneTimeline().setDateFinished(LocalDate.parse(dateFinished));
 			} catch (java.time.format.DateTimeParseException e) {
 				dateFinished = null;
 			}
