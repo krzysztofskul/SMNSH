@@ -1,7 +1,8 @@
 $(document).ready(function() {
-    // alert("test projectCharter.js jquery!"); // ok
+    //alert("test projectCharter.js jquery!"); // ok
 
     let btnEdit = $("#btnEdit");
+    let btnEditProjectBackground = $("#btnEditProjectBackground");
     let btnCancel = $("#btnCancel");
     let btnSave = $("#btnSave");
 
@@ -83,9 +84,36 @@ $(document).ready(function() {
         });
 
     }
+    
+    function changeButtonToSaveButton(button) {
+        	button.removeClass("btn-outline-primary");
+        	button.addClass("btn-outline-success");
+        	button.children().first().text("ZAPISZ").next().text("SAVE");
+    	}
+    
+    function enableInputTagToEdit(inputTag) {
+    	inputTag.prop("disabled", false);
+    };
+    
+    function setButtonEditProjectBackgroundFunctionality() {
+    
+        btnEditProjectBackground.on("click", function (){
+        	//alert("test button edit project background!");
+        	let button = $(this);
+        	changeButtonToSaveButton(button);
+        	
+        	let inputTag = $("#textareatProjectBackground");
+        	enableInputTagToEdit(inputTag);
+        	
+        });
+    
+    }
+    
+    
     function init() {
         hideTestDivs();
         setButtonEditFunctionality();
+        setButtonEditProjectBackgroundFunctionality();
         setButtonCancelFunctionality();
         setButtonSaveFunctionality();
     }

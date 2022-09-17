@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: z0041nhm
@@ -88,6 +89,8 @@
 	        				</div>
 	        			</div>
 
+
+
 		        		<!-- PROJECT BACKGROUND -->
 	        			<div class="card">
 	        				<div class="card-header">
@@ -96,16 +99,16 @@
 	        					<p class="langen">PROJECT BACKGROUND</p>
         					</div>
         					<div class="float-right d-inline">
-        						<button class="btn-sm btn-outline-primary">
+        						<button class="btn-sm btn-outline-primary" id="btnEditProjectBackground">
         							<p class="langPL">EDYTUJ</p>
         							<p class="langEN">EDIT</p>
         						</button>
         					</div>
 	        				</div>
-	        				<div class="card-body">
-	        					<p>
+	        				<div class="card-bodyt">
+	        					<textarea cols=50 rows=10 disabled id="textareatProjectBackground">
 	        						${projectCharter.reasons }
-	        					</p>
+	        					</textarea>
 	        				</div>
 	        			</div>
   
