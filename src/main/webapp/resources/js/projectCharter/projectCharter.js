@@ -89,11 +89,49 @@ $(document).ready(function() {
         	button.removeClass("btn-outline-primary");
         	button.addClass("btn-outline-success");
         	button.children().first().text("ZAPISZ").next().text("SAVE");
+        	
+        	button.on("click", function() {
+        		alert("//TODO save function");
+        	});
+        	
     	}
     
     function enableInputTagToEdit(inputTag) {
     	inputTag.prop("disabled", false);
     };
+    
+    function hideCancelButton(button) {
+    	button.parent().removeClass("visible").addClass("invisible");
+    }
+    
+    function changeSaveButtonToEditButton(button) {
+        	button.removeClass("btn-outline-success");
+        	button.addClass("btn-outline-primary");
+        	button.children().first().text("EDYTUJ").next().text("EDIT");
+        	
+        	button.off();
+        	setButtonEditProjectBackgroundFunctionality();
+        	
+    }
+    
+    function disableInputTag(inputTag) {
+    	inputTag.prop("disabled", true);
+    }
+    
+    function showCancelButton(button) {
+    	button.parent().removeClass("invisible").addClass("visible");
+    	
+    	button.on("click", function() {
+    		hideCancelButton(button);
+    		
+    		let buttonSaveEdit = $("#btnEditProjectBackground");
+    		changeSaveButtonToEditButton(buttonSaveEdit);
+    		
+    		let inputTag = $("#textareatProjectBackground");
+    		disableInputTag(inputTag);
+    	});
+    	
+    }
     
     function setButtonEditProjectBackgroundFunctionality() {
     
@@ -104,6 +142,9 @@ $(document).ready(function() {
         	
         	let inputTag = $("#textareatProjectBackground");
         	enableInputTagToEdit(inputTag);
+        	
+        	let cancelButton = $("#btnCancelProjectBackground").children().first();
+        	showCancelButton(cancelButton);
         	
         });
     

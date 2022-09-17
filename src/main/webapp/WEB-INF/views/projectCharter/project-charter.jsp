@@ -94,19 +94,25 @@
 		        		<!-- PROJECT BACKGROUND -->
 	        			<div class="card">
 	        				<div class="card-header">
-	        				<div class="float-left">
-	        					<p class="langPL">GENEZA PROJEKTU</p>
-	        					<p class="langen">PROJECT BACKGROUND</p>
-        					</div>
-        					<div class="float-right d-inline">
-        						<button class="btn-sm btn-outline-primary" id="btnEditProjectBackground">
-        							<p class="langPL">EDYTUJ</p>
-        							<p class="langEN">EDIT</p>
-        						</button>
-        					</div>
+		        				<div class="float-left">
+		        					<p class="langPL">GENEZA PROJEKTU</p>
+		        					<p class="langen">PROJECT BACKGROUND</p>
+	        					</div>
+	        					<div class="float-right d-inline">
+	        						<button class="btn-sm btn-outline-primary" id="btnEditProjectBackground">
+	        							<p class="langPL">EDYTUJ</p>
+	        							<p class="langEN">EDIT</p>
+	        						</button>
+	        					</div>
+	        					<div class="float-right d-inline mr-2 invisible">
+	        						<button class="btn-sm btn-outline-warning" id="btnCancelProjectBackground">
+	        							<p class="langPL">ANULUJ</p>
+	        							<p class="langEN">CANCEL</p>
+	        						</button>
+	        					</div>
 	        				</div>
-	        				<div class="card-bodyt">
-	        					<textarea cols=50 rows=10 disabled id="textareatProjectBackground">
+	        				<div class="card-body">
+	        					<textarea cols=60 rows=10 disabled class="form-control" id="textareatProjectBackground">
 	        						${projectCharter.reasons }
 	        					</textarea>
 	        				</div>
