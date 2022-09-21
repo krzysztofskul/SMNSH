@@ -148,7 +148,8 @@ public class StakeholderService {
 							LoremIpsum.getInstance().getFirstName(),
 							LoremIpsum.getInstance().getLastName(),
 							LoremIpsum.getInstance().getName() + " Inc.",
-							"Unknown business position"
+							"Technik radiolog",
+							"radiologia@test.test"
 						)
 				);
 	}

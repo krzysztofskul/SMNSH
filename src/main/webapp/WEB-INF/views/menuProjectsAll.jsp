@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-
+<meta charset="UTF-8">
 </head>
 <body>
 
@@ -30,19 +30,19 @@
 		  </li>
 		  <li class="nav-item ml-auto mr-auto text-center">
 		    <a class="nav-link btn btn-outline" href="/projects/all/3?userId=${param.userId}">
-		   		<p class="langPL">ADAPTACJA POMIESZCZEŃ</p>
+		   		<p class="langPL">ADAPTACJA POMIESZCZEÅ</p>
 		   		<p class="langEN">ROOMS CONVERSION</p>
 			</a>
 		  </li>
 		  <li class="nav-item ml-auto mr-auto text-center">
 		    <a class="nav-link btn btn-outline" href="/projects/all/4?userId=${param.userId}">
-		   		<p class="langPL">DOSTAWA URZĄDZEŃ</p>
+		   		<p class="langPL">DOSTAWA URZÄDZEÅ</p>
 		   		<p class="langEN">DEVICES DELIVERY</p>
 			</a>
 		  </li>
 		  <li class="nav-item ml-auto mr-auto text-center">
 		    <a class="nav-link btn btn-outline" href="/projects/all/5?userId=${param.userId}">
-		   		<p class="langPL">INSTALACJA URZĄDZEŃ</p>
+		   		<p class="langPL">INSTALACJA URZÄDZEÅ</p>
 		   		<p class="langEN">DEVICES INSTALLATION</p>
 			</a>
 		  </li>
@@ -60,7 +60,7 @@
 		  </li>
 		  <li class="nav-item ml-auto mr-auto text-center">
 		    <a class="nav-link btn btn-outline" href="/projects/all/8?userId=${param.userId}">
-		   		<p class="langPL">ZAKOŃCZONY</p>
+		   		<p class="langPL">ZAKOÅCZONY</p>
 		   		<p class="langEN">FINISHED</p>
 			</a>
 		  </li>

@@ -174,7 +174,7 @@
 		        					<p class="langen">STAKEHOLDERS</p>
 	        					</div>
 	        					<div class="float-right d-inline">
-	        						<a href="#">
+	        						<a href="/stakeholders/instances/new?projectCharterId=${projectCharter.id}&backToPage=project-charter/${projectCharter.id}">
 	        							<button class="btn-sm btn-outline-success">+</button>
 	        						</a>
 	        					</div>
@@ -226,13 +226,22 @@
 			        									${stakeholder.stakeholderBusinessPosition}
 			        							</div>
 		        							</div>
-		        							<div class="row border-bottom">
+		        							<div class="row">
 		        								<div class="col-4">
 		        									<p class="langPL text-black-50">FIRMA/INSTYTUJCA:</p>
 		        									<p class="langEN text-black-50">COMPANY:</p>
 		        								</div>
 			        							<div class="col-4">
 		        									${stakeholder.company}
+			        							</div>
+		        							</div>
+		        							<div class="row border-bottom">
+		        								<div class="col-4">
+		        									<p class="langPL text-black-50">E-MAIL:</p>
+		        									<p class="langEN text-black-50">E-MAIL:</p>
+		        								</div>
+			        							<div class="col-4">
+		        									${stakeholder.email}
 			        							</div>
 		        							</div>
 	        							</div>

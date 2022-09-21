@@ -33,6 +33,8 @@ public class Stakeholder {
 	
 	private String company;
 	private String stakeholderBusinessPosition;
+	private String stakeholderBusinessPositionPL;
+	private String stakeholderBusinessPositionEN;
 	
 	@ManyToMany(mappedBy = "stakeholders")
 	private List<ProjectCharter> projectCharters = new ArrayList<>();
@@ -40,6 +42,7 @@ public class Stakeholder {
 	@OneToMany(mappedBy = "stakeholder")
 	private List<StakeholderInProjectDetails> stakeholderInProjectDetailsList = new ArrayList<>();
 
+	private String email;
 
 	/*
 	 * constructors
@@ -61,6 +64,15 @@ public class Stakeholder {
 		this.nameLast = nameLast;
 		this.company = company;
 		this.stakeholderBusinessPosition = stakeholderBusinessPosition;
+	}
+	
+	public Stakeholder(String nameFirst, String nameLast, String company, String stakeholderBusinessPosition, String email) {
+		super();
+		this.nameFirst = nameFirst;
+		this.nameLast = nameLast;
+		this.company = company;
+		this.stakeholderBusinessPosition = stakeholderBusinessPosition;
+		this.email = email;
 	}
 	
 	public Stakeholder(User user, String nameFirst, String nameLast, String company, String stakeholderBusinessPosition) {
@@ -128,6 +140,22 @@ public class Stakeholder {
 		this.stakeholderBusinessPosition = stakeholderBusinessPosition;
 	}
 
+	public String getStakeholderBusinessPositionPL() {
+		return stakeholderBusinessPositionPL;
+	}
+
+	public void setStakeholderBusinessPositionPL(String stakeholderBusinessPositionPL) {
+		this.stakeholderBusinessPositionPL = stakeholderBusinessPositionPL;
+	}
+
+	public String getStakeholderBusinessPositionEN() {
+		return stakeholderBusinessPositionEN;
+	}
+
+	public void setStakeholderBusinessPositionEN(String stakeholderBusinessPositionEN) {
+		this.stakeholderBusinessPositionEN = stakeholderBusinessPositionEN;
+	}
+
 	public List<ProjectCharter> getProjectCharters() {
 		return projectCharters;
 	}
@@ -144,7 +172,18 @@ public class Stakeholder {
 		this.stakeholderInProjectDetailsList = stakeholderInProjectDetailsList;
 	}
 
+	public String getEmail() {
+		return email;
+	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
+	//TODO: add methods addProjectCharter and removeProjectCahrer
+	public void addProjectCharter(ProjectCharter projectCharter) {
+		this.projectCharters.add(projectCharter);
+		projectCharter.addStakeholder(this);
+	}
 	
 }
