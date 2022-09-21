@@ -51,7 +51,7 @@ public class ProjectService {
 
     public void save(Project project) {
         if (project.getId() == null) {
-        	loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Project created.", "Utworozno projekt.", project.getSls());
+        	loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Projekt created.", "Utworzono projekt.", project.getSls());
             for (Device device : project.getDeviceList()) {
                 Hibernate.initialize(device.getConfigurationList());
                 device.addConfiguration(configurationService.getStandardConfiguration(project, device));

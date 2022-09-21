@@ -316,15 +316,15 @@
 		        									<p class="langEN text-black-50">DONE:</p>
 		        								</div>
 			        							<div class="col-4">
-			        								<c:choose>
-				        								<c:when test="${milestoneInstance.milestoneTimeline.dateFinishPlanned eq null}">
-				        									<p class="langPL text-warning">NIE ZREALIZOWANO</p>
+				        								<c:if test="${milestoneInstance.milestoneTimeline.dateFinished eq null}">
+				        									<p class="langPL text-warning">NIE WYKONANO</p>
 				        									<p class="langEN text-warning">NOT FINISHED</p>
-				        								</c:when>
-				        								<c:otherwise>
-				        									${milestoneInstance.milestoneTimeline.dateFinished}
-			        									</c:otherwise>
-		        									</c:choose>
+				        								</c:if>
+				        								<c:if test="${milestoneInstance.milestoneTimeline.dateFinished ne null}">
+				        									<span class="text-success">
+				        										${milestoneInstance.milestoneTimeline.dateFinished}
+				        									</span>
+			        									</c:if>
 			        							</div>
 		        							</div>
 	        							</div>

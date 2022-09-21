@@ -91,9 +91,14 @@ $(document).ready(function() {
         	button.children().first().text("ZAPISZ").next().text("SAVE");
         	
         	button.on("click", function() {
-        		alert("//TODO save function");
+        		alert("//TODO... save to database function");
+				changeSaveButtonToEditButton(button);
+				let cancelButton = $("#btnCancelProjectBackground").children().first();
+				hideCancelButton(cancelButton);
+				let inputTag = $("#textareatProjectBackground");
+				disableInputTag(inputTag);
         	});
-        	
+
     	}
     
     function enableInputTagToEdit(inputTag) {
@@ -134,7 +139,6 @@ $(document).ready(function() {
     }
     
     function setButtonEditProjectBackgroundFunctionality() {
-    
         btnEditProjectBackground.on("click", function (){
         	//alert("test button edit project background!");
         	let button = $(this);
@@ -144,13 +148,38 @@ $(document).ready(function() {
         	enableInputTagToEdit(inputTag);
         	
         	let cancelButton = $("#btnCancelProjectBackground").children().first();
-        	showCancelButton(cancelButton);
-        	
+        	showCancelButton(cancelButton);     	
         });
-    
     }
     
-    
+
+	//TODO 
+	function toggleButtonEditSave(button, input) {
+		//toggle button
+		
+		//toggle input
+		if (input != null) {
+			toggleInputEdition(input);
+		}
+	}
+	
+	//TODO
+	function toggleButtonCancel(button, input) {
+		
+		//toggle button
+
+		
+		//toggle input
+		if (input != null) {
+			toggleInputEdition(input);
+		}		
+	}
+	
+	//TODO
+	function toggleInputEdition(input) {
+		
+	}
+	
     function init() {
         hideTestDivs();
         setButtonEditFunctionality();
