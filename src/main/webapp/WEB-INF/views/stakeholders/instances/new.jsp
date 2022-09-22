@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +22,23 @@
         </div>
         
         <div class="content container-sm">
-		  	<form action="/stakeholders/instances/new" method="post">
-        		<input type="text" name="backToPage" value="${param.backToPage}") hidden/>
-        		<input type="text" name="projectCharterId" value="${param.projectCharterId}" hidden/>
+        
+		  	<form:form action="/stakeholders/instances/new?projectCharterId=${param.projectCharterId}&backToPage=project-charter/${param.projectCharterId}" method="post" modelAttribute="stakeholder">
+        		
+        		<form:hidden path="id"/>
+        		<%-- <form:hidden path="user.id"/> --%>
+        		
+        		<%-- <form:hidden path="projectCharters"/> --%>
+				<c:forEach items="${stakeholder.projectCharters}" var="projectCharter">
+				   <%-- ${projectCharter.id} <form:checkbox path="projectCharters" value="${projectCharter.id}" checked="checked"/> --%>
+				</c:forEach>
+        		
+        		<!-- TODO
+        		<form:hidden path="stakeholderInProjectDetailsList"/>
+        		-->
+        		
+        		<%-- <input type="text" name="backToPage" value="${param.backToPage}") hidden/> --%>
+        		<%-- <input type="text" name="projectCharterId" value="${param.projectCharterId}" hidden/> --%>
         		
         		<div class="card">
 
@@ -32,7 +47,6 @@
 	        			<p class="langEN">NEW STAKEHOLDER FORM</p>
 	        		</div>
 
-					<!-- **************************** -->
 	        		<div class="card-body">
 	        			
 	        			<div class="row">
@@ -41,7 +55,8 @@
 	        					<p class="langEN">PROJECT CHARTER ID:</p>
 	        				</div>
 	        				<div class="col">
-	        					<input type="text" disabled="disabled" name="projectCharterId" value="${param.projectCharterId}"/>
+	        					<%-- <input type="text" disabled="disabled" name="projectCharterId" value="${param.projectCharterId}"/> --%>
+	        					${param.projectCharterId}
 	        				</div>
 	        			</div>
 	        			
@@ -51,7 +66,8 @@
 	        					<p class="langEN">FIRST NAME:</p>
 	        				</div>
 	        				<div class="col">
-	        					<input type="text" name="nameFirst"/>
+	        					<!-- <input type="text" name="nameFirst"/> -->
+	        					<form:input path="nameFirst"/>
 	        				</div>
 	        			</div>
 
@@ -61,7 +77,8 @@
 	        					<p class="langEN">SURNAME:</p>
 	        				</div>
 	        				<div class="col">
-	        					<input type="text" name="nameLast"/>
+	        					<!-- <input type="text" name="nameLast"/> -->
+	        					<form:input path="nameLast"/>
 	        				</div>
 	        			</div>
 	        			<div class="row">
@@ -70,7 +87,8 @@
 	        					<p class="langEN">COMPANY:</p>
 	        				</div>
 	        				<div class="col">
-	        					<input type="text" name="company"/>
+	        					<!-- <input type="text" name="company"/> -->
+	        					<form:input path="company"/>
 	        				</div>
 	        			</div>
 	        			<div class="row">
@@ -79,7 +97,8 @@
 	        					<p class="langEN">BUSINESS POSITION:</p>
 	        				</div>
 	        				<div class="col">
-	        					<input type="text" name="stakeholderBusinessPosition"/>
+	        					<!-- <input type="text" name="stakeholderBusinessPosition"/> -->
+	        					<form:input path="stakeholderBusinessPosition"/>
 	        				</div>
 	        			</div>
 	        			<div class="row">
@@ -88,7 +107,8 @@
 	        					<p class="langEN">E-MAIL:</p>
 	        				</div>
 	        				<div class="col">
-	        					<input type="text" name="email"/>
+	        					<!-- <input type="text" name="email"/> -->
+	        					<form:input path="email"/>
 	        				</div>
 	        			</div>
 	        			
@@ -99,17 +119,15 @@
 	        				<p class="langPL">ANULUJ</p>
 	        				<p class="langEN">CANCEL</p>
 	        			</a>
-	        			<button class="btn btn-outline-success float-right" type="submit" disabled>
+	        			<button class="btn btn-outline-success float-right" type="submit">
 	        				<p class="langPL">ZAPISZ</p>
 	        				<p class="langEN">SAVE</p>
 	        			</button>
 	        		</div>
 	        		
 	        	</div>
-					<!-- *********************** -->
-
         		
-        	</form>
+        	</form:form>
         </div>
         
 	</main>
