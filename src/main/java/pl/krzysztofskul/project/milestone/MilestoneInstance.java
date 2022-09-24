@@ -31,7 +31,7 @@ public class MilestoneInstance extends Milestone {
 	private List<ProjectCharter> projectCharterList = new ArrayList<>();
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	private MilestoneTimeline milestoneTimeline = new MilestoneTimeline();
+	private MilestoneTimeline milestoneTimeline = new MilestoneTimeline("demo-init");
 	
 	/**
 	 * constructors

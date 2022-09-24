@@ -1,6 +1,8 @@
 package pl.krzysztofskul.projectCharter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -9,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
+
 import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.milestone.MilestoneInstance;
+import pl.krzysztofskul.project.milestone.MilestoneInstanceSortByDateFinishPlanned;
 import pl.krzysztofskul.project.milestone.MilestoneTemplate;
 import pl.krzysztofskul.project.milestone.service.MilestoneService;
 import pl.krzysztofskul.stakeholder.Stakeholder;
@@ -73,6 +78,8 @@ public class ProjectCharterService {
     public ProjectCharter loadByIdWithMilestoneInstanceList(Long id) {
     	ProjectCharter projectCharter = projectCharterRepo.findById(id).get();
     	Hibernate.initialize(projectCharter.getMilestoneInstanceList());
+    	List milestones = projectCharter.getMilestoneInstanceList();
+    	Collections.sort(milestones, new MilestoneInstanceSortByDateFinishPlanned());
     	return projectCharter;
     }
     

@@ -25,8 +25,22 @@ public class MilestoneTimeline {
 	private MilestoneInstance milestoneInstance;
 
 	public MilestoneTimeline() {
-		int x = LocalTime.now().getSecond() + LocalTime.now().getNano()/1000000;
-		this.setDateFinishPlanned(LocalDate.now().plusDays(x));
+		/**
+		 * TODO 2022-09-22:
+		 * milestones functionality updates
+		 * - demo updates with demo dates
+		 * - new milestone with set dates by user
+		 * - set as finished functionality
+		 * - sort by option?
+		 */
+	}
+	
+	public MilestoneTimeline(String demoType) {
+		if (demoType.equals("demo-init")) {
+			int x = LocalTime.now().getSecond() + LocalTime.now().getNano()/1000000;
+			this.setDateFinishPlanned(LocalDate.now().plusDays(x));	
+		}
+
 	}
 
 	public Long getId() {

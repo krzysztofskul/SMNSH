@@ -47,15 +47,16 @@ public class MilestoneSingleton {
 	}
 	
 	private void createMapWithMilestoneTemplates() {
+		milestoneTemplates.add(new MilestoneTemplate (null, null, "inwentaryzacja", "rooms' verification", null));
 		milestoneTemplates.add(new MilestoneTemplate (null, null, "zamówienie projektu koncepcyjnego", "conceptual design ordered", null));
 		milestoneTemplates.add(new MilestoneTemplate (null, null, "wykonanie projektu koncepcyjnego", "conceptual design received", null));
 		milestoneTemplates.add(new MilestoneTemplate (null, null, "akceptacja projektu koncepcyjnego", "conceptual design approved", null));
 		milestoneTemplates.add(new MilestoneTemplate (null, null, "zamówienie projektu wytycznych instalacyjnych", "installation guidelines design ordered", null));
 		milestoneTemplates.add(new MilestoneTemplate (null, null, "wykonanie projektu wytycznych instalacyjnych", "installation guidelines design received", null));
-		milestoneTemplates.add(new MilestoneTemplate (null, null, "akceptacja projektu wytycznych instalacyjnych", "installation guidelines design approved", null));
-		milestoneTemplates.add(new MilestoneTemplate (null, null, "zamówienie projektu konstrukcyjnego", "construction design ordered", null));
-		milestoneTemplates.add(new MilestoneTemplate (null, null, "wykonanie projektu konstrukcyjnego", "construction design received", null));
-		milestoneTemplates.add(new MilestoneTemplate (null, null, "akceptacja projektu konstrukcyjnego", "construction design approved", null));
+		milestoneTemplates.add(new MilestoneTemplate (null, null, "adaptacja pomieszczeń", "...", null));
+		milestoneTemplates.add(new MilestoneTemplate (null, null, "uruchomienie", "...", null));
+		milestoneTemplates.add(new MilestoneTemplate (null, null, "szkolenia", "...", null));
+		milestoneTemplates.add(new MilestoneTemplate (null, null, "odbiór", "...", null));
 	}
 	
 }

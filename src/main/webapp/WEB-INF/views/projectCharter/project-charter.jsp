@@ -321,8 +321,8 @@
 		        							</div>
 		        							<div class="row border-bottom">
 		        								<div class="col-4">
-		        									<p class="langPL text-black-50">ZREALIZOWANO:</p>
-		        									<p class="langEN text-black-50">DONE:</p>
+		        									<p class="langPL text-black-50">STATUS:</p>
+		        									<p class="langEN text-black-50">STATUS:</p>
 		        								</div>
 			        							<div class="col-4">
 				        								<c:if test="${milestoneInstance.milestoneTimeline.dateFinished eq null}">
