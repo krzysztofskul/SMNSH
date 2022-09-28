@@ -94,14 +94,13 @@
 			</a>
 		  </li>
 		  <li class="nav-item ml-auto mr-auto text-center">
-		    <a class="nav-link btn btn-outline disabled" href="#">
+		    <a class="nav-link btn btn-outline disabled" href="#" id="btnViewCards">
 		   		<p class="langPL">WIDOK SIATKI</p>
 		   		<p class="langEN">GRID VIEW</p>
 			</a>
 		  </li>
 		  <li class="nav-item ml-auto mr-auto text-center">
-		  	<c:set var="url" value="${requestScope['javax.servlet.forward.query_string']}"/>
-		    <a class="nav-link btn btn-outline" href="${url}">
+		    <a class="nav-link btn btn-outline disabled" href="#" id="btnViewList">
 		   		<p class="langPL">WIDOK LISTY</p>
 		   		<p class="langEN">LIST VIEW</p>
 			</a>
