@@ -106,14 +106,14 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/projects/all">
+                <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/projects/all?view=list">
                     <p class="langPL">PROJEKTY W FIRMIE</p>
                     <p class="langEN">PROJECTS IN THE COMPANY</p>
                 </a>
             </li>
             <li class="nav-item">
                 <c:set var="user" value="?userId=${sessionScope.userLoggedIn.id}"/>
-                <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/projects/all${user}">
+                <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/projects/all${user}&view=list">
                     <p class="langPL">MOJE PROJEKTY</p>
                     <p class="langEN">MY PROJECTS</p>
                 </a>

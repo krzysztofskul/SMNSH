@@ -150,6 +150,7 @@ public class ProjectController {
     public String projectsAll(
             @RequestParam(name = "status", required = false) String status,
             @RequestParam(name = "userId", required = false) Long userId,
+            @RequestParam(name = "view", required = false) String view,
             Model model,
             HttpSession httpSession
     ) {
@@ -227,14 +228,25 @@ public class ProjectController {
     @GetMapping("/all/{statusCode}")
     public String projectsAllByUserByStatus(
     		@RequestParam(name = "userId", required = false) Long userId,
+    		@RequestParam(name = "view", required = false) String view,
     		@PathVariable String statusCode,
     		Model model
     		
 	) {
+    	
     	List<Project> projectsAll = projectService.loadAllByUserId(userId);
     	projectsAll.removeIf(project -> !project.getStatus().getCode().equals(statusCode));
     	
     	model.addAttribute("projectsAll", projectsAll);
+    	
+//    	if (null != view) {
+//    		if (view.equals("list")) {
+//    			return "projects/all?view="+view;	
+//    		} else {
+//    			return "projects/all?view="+view+"&userId="+userId;
+//    		}
+//    	}
+    	
     	return "projects/all";
     }
     
