@@ -23,27 +23,7 @@
         
         <div class="content container-sm">
         	
-        	<form:form action="/milestones/instances/saveEdited" method="post" modelAttribute="milestoneInstance">
-        	
-        	
-        		<!-- TODO: -->
-        		
-        		<%-- <form:input type="text" name="backToPage" value="${param.backToPage}"/> --%>
-        		
-        		
-        		
-        		
-
-        		
-        		<!-- 
-        			private String codeName;
-	
-					private String namePL;
-					
-					private String nameEN;
-					
-					private String Description;
-        		 -->
+        	<form:form action="/milestones/instances/saveEdited?backToPage=${param.backToPage}" method="post" modelAttribute="milestoneInstance">
         	
 	        	<div class="card">
 	        	

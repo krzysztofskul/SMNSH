@@ -288,7 +288,7 @@
 													    MENU
 													  </button>
 													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-													    <a class="dropdown-item" href="/milestones/instances/edit/${projectCharter.id}/${milestoneInstance.id}">
+													    <a class="dropdown-item" href="/milestones/instances/edit/${projectCharter.id}/${milestoneInstance.id}?backToPage=project-charter/${projectCharter.id}">
 				        									<p class="langPL text-primary">EDYTUJ</p>
 				        									<p class="langEN text-primary">EDIT</p>
 													    </a>

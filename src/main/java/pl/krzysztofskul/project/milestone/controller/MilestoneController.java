@@ -120,10 +120,12 @@ public class MilestoneController {
 	public String editinstance(
 			@PathVariable Long milestoneInstanceId,
 			@RequestParam(name = "backToPage", required = false) String backToPage,
-			Model model
+			Model model,
+			HttpServletRequest httpServletRequest
 	) {
 		
 		model.addAttribute("milestoneInstance", milestoneService.loadMielestoneInstanceById(milestoneInstanceId));
+		httpServletRequest.setAttribute("backToPage", backToPage);
 		
 		return "/milestones/instances/edit";
 	}
@@ -134,11 +136,10 @@ public class MilestoneController {
 			@ModelAttribute MilestoneInstance milestoneInstance
 			) {
 		
-		// TODO 2022-10-09 back to page functionality to add
 		// TODO 2022-10-09 set status functionality to add
 		milestoneService.saveMilestoneInstance(milestoneInstance);
 		
-		return "redirect:/";
+		return "redirect:/"+backToPage;
 	}
 	
 	@GetMapping("/instances/delete/{projectCharterId}/{milestoneInstanceId}")
