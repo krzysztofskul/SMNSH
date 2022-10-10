@@ -19,6 +19,12 @@
 			</a>
 		  </li>
 		  <li class="nav-item ml-auto mr-auto text-center">
+		    <a class="nav-link btn btn-outline" href="/projects/all/0a?userId=${param.userId}&view=list">
+		   		<p class="langPL">UMOWA</p>
+		   		<p class="langEN">AGREEMENT</p>
+			</a>
+		  </li>
+		  <li class="nav-item ml-auto mr-auto text-center">
 		    <a class="nav-link btn btn-outline" href="/projects/all/1?userId=${param.userId}&view=list">
 		   		<p class="langPL">PLANOWANIE INSTALACJI</p>
 		   		<p class="langEN">PRELIMINARY PLANNING</p>

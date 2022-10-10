@@ -72,7 +72,11 @@ public class MilestoneService {
 	}
 
 	public MilestoneInstance loadMielestoneInstanceById(Long milestoneInstanceId) {
-		return milestoneInstanceRepo.findById(milestoneInstanceId).get();
+		
+		MilestoneInstance milestoneInstance = milestoneInstanceRepo.findById(milestoneInstanceId).get();
+		
+//		TODO 2022-10-08 save edited milestone instance... create post/put method...
+		return milestoneInstance;
 	}
 	
 	public MilestoneInstance loadMielestoneInstanceByIdWithProjectCharterList(Long milestoneInstaceId) {

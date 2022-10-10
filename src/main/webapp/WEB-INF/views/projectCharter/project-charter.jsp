@@ -268,8 +268,7 @@
 	        					</div>
 	        				</div>
 	        				<div class="card-body">
-	        				<c:choose>
-	        				
+	        				<c:choose>	        				
 	        					<c:when test="${null eq projectCharter.milestoneInstanceList || projectCharter.milestoneInstanceList.size() == 0}">
 	        						<p class="langPL">BRAK USTANOWIONYCH KAMIENI MILOWYCH</p>
 	        						<p class="langEN">NO MILESTONES SET</p>
@@ -289,7 +288,7 @@
 													    MENU
 													  </button>
 													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-													    <a class="dropdown-item" href="#">
+													    <a class="dropdown-item" href="/milestones/instances/edit/${projectCharter.id}/${milestoneInstance.id}">
 				        									<p class="langPL text-primary">EDYTUJ</p>
 				        									<p class="langEN text-primary">EDIT</p>
 													    </a>
@@ -336,6 +335,11 @@
 			        									</c:if>
 			        							</div>
 		        							</div>
+	        							</div>
+	        							<div class="milestone-status row border-bottom text-center pb-2" style="font-size:12px">
+	        								<div class="col-md-4 text-danger">OCZEKUJE</div>
+	        								<div class="col-md-4 text-warning" >W TOKU</div>
+	        								<div class="col-md-4 text-success">ZAKOŃCZONY</div>
 	        							</div>
 	        						</c:forEach>
 	        					</c:otherwise>

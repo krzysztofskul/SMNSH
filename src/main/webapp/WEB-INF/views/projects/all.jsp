@@ -231,7 +231,9 @@
 												</div>
 												<div class="col-md-2">
 													<div class="card-body">
-                                                        <button class="btn btn-outline-primary mb-1">SZCZEGÓŁY/EDYCJA}</button>
+														<a href="/projects/details/${project.id}">
+                                                        	<button class="btn btn-outline-primary mb-1">SZCZEGÓŁY</button>
+                                                        </a>
                                                         <button class="btn btn-outline-danger">USUŃ</button>
                                                        </div>
 												</div>

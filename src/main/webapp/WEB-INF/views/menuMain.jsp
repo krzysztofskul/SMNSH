@@ -67,6 +67,10 @@
                         <p class="langEN"></p>
                     </a>
                     <a class="dropdown-item" href="/projects/all?status=preliminaryPlanning">
+                        <p class="langPL">UMOWA</p>
+                        <p class="langEN"></p>
+                    </a>
+                    <a class="dropdown-item" href="/projects/all?status=preliminaryPlanning">
                         <p class="langPL">PROJEKT KONCEPCYJNY</p>
                         <p class="langEN"></p>
                     </a>

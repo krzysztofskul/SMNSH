@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -112,6 +114,31 @@ public class MilestoneController {
 		projectCharterService.addMilestoneInstance(projectCharterId, milestoneInstance.getId());
 
 		return "redirect:/"+backToPage;
+	}
+	
+	@GetMapping("/instances/edit/{projectCharterId}/{milestoneInstanceId}")
+	public String editinstance(
+			@PathVariable Long milestoneInstanceId,
+			@RequestParam(name = "backToPage", required = false) String backToPage,
+			Model model
+	) {
+		
+		model.addAttribute("milestoneInstance", milestoneService.loadMielestoneInstanceById(milestoneInstanceId));
+		
+		return "/milestones/instances/edit";
+	}
+	
+	@PostMapping("/instances/saveEdited")
+	public String putMilestoneInstance(
+			@RequestParam(name = "backToPage", required = false) String backToPage,
+			@ModelAttribute MilestoneInstance milestoneInstance
+			) {
+		
+		// TODO 2022-10-09 back to page functionality to add
+		// TODO 2022-10-09 set status functionality to add
+		milestoneService.saveMilestoneInstance(milestoneInstance);
+		
+		return "redirect:/";
 	}
 	
 	@GetMapping("/instances/delete/{projectCharterId}/{milestoneInstanceId}")
