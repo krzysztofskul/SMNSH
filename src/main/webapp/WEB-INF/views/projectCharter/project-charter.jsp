@@ -323,7 +323,7 @@
 		        									<p class="langPL text-black-50">STATUS:</p>
 		        									<p class="langEN text-black-50">STATUS:</p>
 		        								</div>
-			        							<div class="col-4">
+			        							<div class="col-4 invisible">
 				        								<c:if test="${milestoneInstance.milestoneTimeline.dateFinished eq null}">
 				        									<p class="langPL text-warning">NIE WYKONANO</p>
 				        									<p class="langEN text-warning">NOT FINISHED</p>
@@ -336,11 +336,67 @@
 			        							</div>
 		        							</div>
 	        							</div>
+	        							
 	        							<div class="milestone-status row border-bottom text-center pb-2" style="font-size:12px">
-	        								<div class="col-md-4 text-danger">OCZEKUJE</div>
-	        								<div class="col-md-4 text-warning" >W TOKU</div>
-	        								<div class="col-md-4 text-success">ZAKOŃCZONY</div>
+	        								<c:choose>
+	        									<c:when test="${milestoneInstance.statusWaiting eq true}">
+		        									<a class="col-2 border border-warning d-inline-block m-1" href="/milestones/instances/setStatus/${projectCharter.id}/${milestoneInstance.id}?newStatus=waitingFalse&backToPage=project-charter/${projectCharter.id}">
+			        									<p class="langPL text-warning">OCZEKUJE</p>
+			        									<p class="langEN text-warning">WAITING</p>
+		        									</a>
+	        									</c:when>
+	        									<c:otherwise>
+		        									<a class="col-2 border border d-inline-block m-1" href="/milestones/instances/setStatus/${projectCharter.id}/${milestoneInstance.id}?newStatus=waitingTrue&backToPage=project-charter/${projectCharter.id}">
+			        									<p class="langPL text-muted">OCZEKUJE</p>
+			        									<p class="langEN text-muted">WAITING</p>
+		        									</a>
+	        									</c:otherwise>
+											</c:choose>
+	        								<c:choose>
+	        									<c:when test="${milestoneInstance.statusInProgress eq true}">
+		        									<a class="col-3 border border-success d-inline-block m-1" href="/milestones/instances/setStatus/${projectCharter.id}/${milestoneInstance.id}?newStatus=inProgressFalse&backToPage=project-charter/${projectCharter.id}">
+			        									<p class="langPL text-success">W TOKU</p>
+			        									<p class="langEN text-success">IN PROGRESS</p>
+		        									</a>
+	        									</c:when>
+	        									<c:otherwise>
+		        									<a class="col-3 border border d-inline-block m-1" href="/milestones/instances/setStatus/${projectCharter.id}/${milestoneInstance.id}?newStatus=inProgressTrue&backToPage=project-charter/${projectCharter.id}">
+			        									<p class="langPL text-muted">W TOKU</p>
+			        									<p class="langEN text-muted">IN PROGRESS</p>
+		        									</a>
+	        									</c:otherwise>
+	        								</c:choose>
+	        								<c:choose>
+	        									<c:when test="${milestoneInstance.statusCanceled eq true}">
+		        									<a class="col-3 border border-success d-inline-block m-1 text-right" href="/milestones/instances/setStatus/${projectCharter.id}/${milestoneInstance.id}?newStatus=canceledFalse&backToPage=project-charter/${projectCharter.id}">
+			        									<p class="langPL text-muted">ANULOWANY</p>
+			        									<p class="langEN text-muted">NO-BID</p>
+		        									</a>
+	        									</c:when>
+	        									<c:otherwise>
+		        									<a class="col-3 border border d-inline-block m-1" href="/milestones/instances/setStatus/${projectCharter.id}/${milestoneInstance.id}?newStatus=canceledTrue&backToPage=project-charter/${projectCharter.id}">
+			        									<p class="langPL text-muted">ANULOWANY</p>
+			        									<p class="langEN text-muted">NO-BID</p>
+		        									</a>
+	        									</c:otherwise>
+	        								</c:choose>
+	        								<c:choose>
+	        									<c:when test="${milestoneInstance.statusFinnished eq true}">
+		        									<a class="col-3 border border-success d-inline-block m-1" href="/milestones/instances/setStatus/${projectCharter.id}/${milestoneInstance.id}?newStatus=finnishedFalse&backToPage=project-charter/${projectCharter.id}">
+			        									<p class="langPL text-success">ZAKOŃCZONY</p>
+			        									<p class="langEN text-success">FINNISHED</p>
+		        									</a>
+	        									</c:when>
+	        									<c:otherwise>
+		        									<a class="col-3 border border d-inline-block m-1" href="/milestones/instances/setStatus/${projectCharter.id}/${milestoneInstance.id}?newStatus=finnishedTrue&backToPage=project-charter/${projectCharter.id}">
+			        									<p class="langPL text-muted">ZAKOŃCZONY</p>
+			        									<p class="langEN text-muted">FINNISHED</p>
+		        									</a>
+	        									</c:otherwise>
+	        								</c:choose>
+
 	        							</div>
+	        							
 	        						</c:forEach>
 	        					</c:otherwise>
         					</c:choose>

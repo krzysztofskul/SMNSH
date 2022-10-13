@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pl.krzysztofskul.project.milestone.MilestoneInstance;
+import pl.krzysztofskul.project.milestone.repo.MilestoneInstanceRepo;
 import pl.krzysztofskul.project.milestone.service.MilestoneService;
 import pl.krzysztofskul.projectCharter.ProjectCharterService;
 
@@ -130,13 +131,76 @@ public class MilestoneController {
 		return "/milestones/instances/edit";
 	}
 	
+	@GetMapping("/instances/setStatus/{projectCharterId}/{milestoneInstanceId}")
+	public String setStatus(
+			@PathVariable Long milestoneInstanceId,
+			@RequestParam(name = "backToPage", required = false) String backToPage,
+			@RequestParam(name = "newStatus", required = true) String newStatus
+			) {
+		MilestoneInstance milestoneInstance = milestoneService.loadMielestoneInstanceById(milestoneInstanceId);
+		
+		switch (newStatus) {
+		case "waitingTrue": {
+			milestoneInstance.setStatusWaiting(true);
+			milestoneInstance.setStatusInProgress(false);
+			milestoneInstance.setStatusFinnished(false);
+			milestoneInstance.setStatusCanceled(false);
+			break;
+		}
+		case "waitingFalse": {
+			milestoneInstance.setStatusWaiting(false);
+			break;
+		}
+		case "inProgressTrue": {
+			milestoneInstance.setStatusInProgress(true);
+			milestoneInstance.setStatusWaiting(false);
+			milestoneInstance.setStatusFinnished(false);
+			milestoneInstance.setStatusCanceled(false);
+			break;
+		}
+		case "inProgressFalse": {
+			milestoneInstance.setStatusInProgress(false);
+			break;
+		}
+		case "finnishedTrue": {
+			milestoneInstance.setStatusFinnished(true);
+			milestoneInstance.setStatusWaiting(false);
+			milestoneInstance.setStatusInProgress(false);
+			milestoneInstance.setStatusCanceled(false);
+			break;
+		}
+		case "finnishedFalse": {
+			milestoneInstance.setStatusFinnished(false);
+			break;
+		}
+		case "canceledTrue": {
+			milestoneInstance.setStatusCanceled(true);
+			milestoneInstance.setStatusWaiting(false);
+			milestoneInstance.setStatusInProgress(false);
+			milestoneInstance.setStatusFinnished(true);
+			break;
+		}
+		case "canceledFalse": {
+			milestoneInstance.setStatusCanceled(false);
+			break;
+		}
+
+		//TODO error page and redirect to error page when @RequestParam newStatus is null or incorrect
+		default:
+			return "redirect:/"+backToPage;
+		}
+		
+		milestoneService.saveMilestoneInstance(milestoneInstance);
+		
+		return "redirect:/"+backToPage;
+	}
+	
 	@PostMapping("/instances/saveEdited")
 	public String putMilestoneInstance(
 			@RequestParam(name = "backToPage", required = false) String backToPage,
 			@ModelAttribute MilestoneInstance milestoneInstance
 			) {
 		
-		// TODO 2022-10-09 set status functionality to add
 		milestoneService.saveMilestoneInstance(milestoneInstance);
 		
 		return "redirect:/"+backToPage;

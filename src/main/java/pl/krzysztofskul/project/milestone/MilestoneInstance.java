@@ -32,6 +32,11 @@ public class MilestoneInstance extends Milestone {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private MilestoneTimeline milestoneTimeline = new MilestoneTimeline("demo-init");
+
+	private boolean statusWaiting = true;
+	private boolean statusInProgress = false;
+	private boolean statusFinnished = false;
+	private boolean statusCanceled = false;
 	
 	/**
 	 * constructors
@@ -71,6 +76,40 @@ public class MilestoneInstance extends Milestone {
 	public void setMilestoneTimeline(MilestoneTimeline milestoneTimeline) {
 		this.milestoneTimeline = milestoneTimeline;
 	}
+
+	
+	public boolean isStatusWaiting() {
+		return statusWaiting;
+	}
+
+	public void setStatusWaiting(boolean statusWaiting) {
+		this.statusWaiting = statusWaiting;
+	}
+
+	public boolean isStatusInProgress() {
+		return statusInProgress;
+	}
+
+	public void setStatusInProgress(boolean statusInProgress) {
+		this.statusInProgress = statusInProgress;
+	}
+
+	public boolean isStatusFinnished() {
+		return statusFinnished;
+	}
+
+	public void setStatusFinnished(boolean statusFinnished) {
+		this.statusFinnished = statusFinnished;
+	}
+
+	public boolean isStatusCanceled() {
+		return statusCanceled;
+	}
+
+	public void setStatusCanceled(boolean statusCanceled) {
+		this.statusCanceled = statusCanceled;
+	}
+	
 	
 	
 	/**
