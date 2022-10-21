@@ -1,0 +1,24 @@
+TODO:
+-----------------------------------
+
+#
+- readme.md file to update
+- new conceptual design order updates:
+	- customer should have placeholder
+	- deadline choose from calendar
+	- title: order a design project or sketch (?)
+- technical documentation view:
+	- add colors for status of the design order	
+- PUT method for project background edition
+- title for projects' list view
+- PL chars. at project menu
+- show attachments at project charter view
+
+- KPDS
+	- create a tab for KPDS
+	- create a class Kpds
+	- export KPDA to PDF function
+	- send generated PDF of KPDS by email
+
+TODO/DONE:
+-----------------------------------

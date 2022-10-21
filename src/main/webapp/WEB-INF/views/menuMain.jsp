@@ -26,18 +26,41 @@
                     <p class="langEN">DEMO MODE</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <div class="myTooltip">
-                    <a id="initDbBtn" class="nav-link btn btn-warning ml-1 mr-1" href="/initDB">
-                            <p class="langPL">INICJALIZACJA BAZY DANYCH</p>
-                            <p class="langEN">INIT.DB</p>
+            
+            <li class="nav-item dropdown border-left">
+                <a id="initDbBtn" class="bg-warning nav-link dropdown-toggle btn-light ml-1" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					<p class="langPL">INICJALIZACJA BAZY DANYCH</p>
+					<p class="langEN">INIT DATA BASE</p>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">
+						<p class="langPL">DANE PODSTAWOWE</p>
+						<p class="langEN">BASIC DATA</p>
                     </a>
-                    <%--<div>
-                        <p class="langPL">WSTĘPNA INICJALIZACJA TESTOWEJ BAZY DANYCH</p>
-                        <p class="langEN">TEST DATA BASE INITIALISATION</p>
-                    </div>--%>
-                </div>
+                   <a class="dropdown-item" href="/initDB">
+						<p class="langPL">DANE TESTOWE</p>
+						<p class="langEN">TEST DATA</p>
+                    </a>
+                </div>           
             </li>
+            
+            <li class="nav-item dropdown border-left">
+                <a class="bg-warning nav-link dropdown-toggle btn-light ml-1" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					<p class="langPL">IMPORT</p>
+					<p class="langEN">IMPORT</p>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">
+						<p class="langPL">IMPORTUJ KLIENTÓW</p>
+						<p class="langEN">IMPORT CUUSTOMERS</p>
+                    </a>
+                   <a class="dropdown-item" href="#">
+						<p class="langPL">IMPORTUJ KLIENTÓW (Z SZYFROWANIEM)</p>
+						<p class="langEN">IMPORT CUUSTOMERS (WITH ENCRYPTION)</p>
+                    </a>
+                </div>           
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link btn-light ml-1 mr-1" href="/home">
                     <svg class="bi bi-house-fill d-inline-block align-top" width="30px" height="30px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -50,6 +73,8 @@
                     </div>
                 </a>
             </li>
+            
+            
             <li class="nav-item dropdown border-left">
                 <a class="nav-link dropdown-toggle btn-light ml-1" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <svg class="bi bi-arrow-down-square-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -109,6 +134,10 @@
                     </a>
                 </div>
             </li>
+            
+            
+            
+            
             <li class="nav-item">
                 <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/projects/all?view=list">
                     <p class="langPL">PROJEKTY W FIRMIE</p>

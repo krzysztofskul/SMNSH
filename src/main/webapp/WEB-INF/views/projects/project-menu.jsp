@@ -44,6 +44,12 @@
                     <p class="langEN">TECHNICAL DOCUMENTATION VIEW</p>
                 </a>
             </li>
+            <li class="nav-item  ml-auto mr-auto text-center">
+                <a class="nav-link btn btn-light" href="#">
+                    <p class="langPL">KPDS</p>
+                    <p class="langEN">KPDS</p>
+                </a>
+            </li>
 		</ul>
 	</div>
 
