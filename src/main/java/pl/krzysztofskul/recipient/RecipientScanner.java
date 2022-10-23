@@ -2,13 +2,34 @@ package pl.krzysztofskul.recipient;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class RecipientScanner {
+import pl.krzysztofskul.SapCustomer.SapCustomer;
 
-	public void readCSV() {
+
+public class RecipientScanner implements Serializable{
+
+	private static RecipientScanner recipientScanner;
+		
+	private RecipientScanner() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public static RecipientScanner getRecipientScanner() {
+		if (null == recipientScanner) {
+			recipientScanner = new RecipientScanner();
+		}
+		return recipientScanner;
+	}
+
+
+	public List<SapCustomer> readCSV() {
+		
+		List<SapCustomer> sapCustomers = new ArrayList<SapCustomer>();
 		
 		Scanner scanner;
 		try {
@@ -46,23 +67,42 @@ public class RecipientScanner {
 			System.out.println("scanned rows: "+rows.size());
 			
 			//TODO 2022-10-22 : transfer scanned cells to customer class
-			System.out.println("splitting rows...");
+			//test
+			/*
+			 * System.out.println("splitting rows..."); for (String row : rows) {
+			 * System.out.print(row.split(";")[0]); System.out.print(" | ");
+			 * System.out.print(row.split(";")[1]); System.out.print(" | ");
+			 * System.out.print(row.split(";")[2]); System.out.print(" | ");
+			 * System.out.println(row.split(";")[3]); }
+			 */
+			rows.remove(0);
 			for (String row : rows) {
-				System.out.print(row.split(";")[0]);
-				System.out.print(" | ");
-				System.out.print(row.split(";")[1]);
-				System.out.print(" | ");
-				System.out.print(row.split(";")[2]);
-				System.out.print(" | ");
-				System.out.println(row.split(";")[3]);
+				SapCustomer sapCustomer = new SapCustomer(
+						Long.parseLong(row.split(",")[0]),
+						row.split(",")[1],
+						row.split(",")[2],
+						row.split(",")[3],
+						row.split(",")[4],
+						row.split(",")[5],
+						row.split(",")[6],
+						row.split(",")[7],
+						row.split(",")[8],
+						row.split(",")[9],
+						row.split(",")[10],
+						row.split(",")[11]
+				);
+				sapCustomers.add(sapCustomer);
 			}
+			
+			
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.print("Error while reading CSV file!");
 		}
-		
+		return sapCustomers;
 	}
+	
 	
 }
