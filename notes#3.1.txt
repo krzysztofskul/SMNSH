@@ -2,6 +2,8 @@ TODO:
 -----------------------------------
 
 #
++ import SAP customers
+	! convert CSV to ASCII for Scanner
 - readme.md file to update
 - new conceptual design order updates:
 	- customer should have placeholder
@@ -15,7 +17,8 @@ TODO:
 - show attachments at project charter view
 
 - KPDS
-	- create a tab for KPDS
+	+ create a tab for KPDS
+	+ POM update for PDF generator dependencies
 	- create a class Kpds
 	- export KPDA to PDF function
 	- send generated PDF of KPDS by email

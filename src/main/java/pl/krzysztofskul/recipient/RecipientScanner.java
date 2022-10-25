@@ -2,7 +2,11 @@ package pl.krzysztofskul.recipient;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -34,8 +38,17 @@ public class RecipientScanner implements Serializable{
 		Scanner scanner;
 		try {
 			//scanner and file configuration
-			scanner = new Scanner(new File("D://SMNSH/karta_projektu/Klienci_master_data_.csv"));
+			String path = "D://SMNSH/karta_projektu/Klienci_master_data_.csv";
+			File file = new File(path);
+			scanner = new Scanner(file);
 			scanner.useDelimiter("\n");
+			
+			
+			//test Files
+			/*
+			 * Path pathFiles = Path.of(path); Files.newBufferedReader(pathFiles,
+			 * StandardCharsets.US_ASCII);
+			 */
 			
 			//test
 			System.out.println("Start reading csv file...");
