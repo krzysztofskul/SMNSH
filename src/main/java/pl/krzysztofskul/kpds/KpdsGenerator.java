@@ -51,6 +51,25 @@ public class KpdsGenerator {
 			document.add(chunk);
 			document.close();
 			
+			/*
+			 * create and save a pdf using PdfBox
+			 */
+			PDDocument documentPdfBox = new PDDocument();
+			PDPage page = new PDPage();
+			documentPdfBox.addPage(page);
+
+			PDPageContentStream contentStream = new PDPageContentStream(documentPdfBox, page);
+
+			contentStream.setFont(PDType1Font.COURIER, 12);
+			contentStream.beginText();
+			contentStream.showText("Test title Lorem Ipsum by PdfBox");
+			contentStream.endText();
+			contentStream.close();
+
+			documentPdfBox.save("D://SMNSH/karta_projektu/kpds_byPdfBox.pdf");
+			documentPdfBox.close();
+			
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
