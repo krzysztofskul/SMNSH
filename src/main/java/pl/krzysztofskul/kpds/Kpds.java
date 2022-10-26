@@ -21,9 +21,6 @@ public class Kpds {
 	//test
 	private String testDescription;
 	
-	/*
-	 * TODO KPDS
-	 */
 	@OneToOne(mappedBy = "kpds")
 	private Project project;
 	

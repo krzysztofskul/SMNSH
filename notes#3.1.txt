@@ -19,8 +19,8 @@ TODO:
 - KPDS
 	+ create a tab for KPDS
 	+ POM update for PDF generator dependencies
-	- create a class Kpds
-	- export KPDA to PDF function
+	+ create a class Kpds
+	+ export KPDS to PDF function
 	- send generated PDF of KPDS by email
 
 TODO/DONE:

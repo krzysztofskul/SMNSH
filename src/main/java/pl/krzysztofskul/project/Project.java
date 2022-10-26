@@ -106,7 +106,6 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = {CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
     private List<Configuration> configurationList = new ArrayList<>();
 
-    // TODO kpds
     @OneToOne
     @JoinColumn(name = "kpds_id")
     private Kpds kpds;

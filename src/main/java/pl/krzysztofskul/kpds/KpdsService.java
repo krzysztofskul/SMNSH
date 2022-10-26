@@ -3,6 +3,8 @@ package pl.krzysztofskul.kpds;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -21,6 +23,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.ProjectService;
 
@@ -48,8 +51,15 @@ public class KpdsService {
 		Kpds kpds = new Kpds(project);
 		kpds = this.save(kpds);
 		
+		String inwestor = kpds.getProject().getInvestor().getName();
+		
+		List<String> devices = new ArrayList<String>();
+		for (Device device : kpds.getProject().getDeviceList()) {
+			devices.add(device.getDeviceCategory().getName() + " "+ device.getModel());
+		}
+		 
+		
 		// create and save new kpds.pdf document from kpds entity
-		// TODO KPDS
 		try {	
 			PDDocument document = new PDDocument();
 			PDPage page = new PDPage();
@@ -81,9 +91,35 @@ public class KpdsService {
 			
 			contentStream.beginText();
 			contentStream.setFont(PDType1Font.TIMES_ROMAN, 11);
+			contentStream.newLineAtOffset(25, 625);
+			contentStream.showText("Inwestor: " + inwestor);
+			contentStream.endText();
+			
+			contentStream.beginText();
+			contentStream.setFont(PDType1Font.TIMES_ROMAN, 11);
 			contentStream.newLineAtOffset(25, 600);
 			contentStream.showText("Numer umowy: " + kpds.getProject().getAgreementNo());
 			contentStream.endText();
+			
+			contentStream.beginText();
+			contentStream.setFont(PDType1Font.TIMES_BOLD, 12);
+			contentStream.newLineAtOffset(25, 555);
+			contentStream.showText("URZADZENIA SIEMENS");
+			contentStream.endText();
+			
+			contentStream.moveTo(10, 550);
+			contentStream.lineTo(400, 550);
+			contentStream.stroke();
+			
+			int y = 540;
+			for (String device : devices) {
+				contentStream.beginText();
+				contentStream.setFont(PDType1Font.TIMES_ROMAN, 11);
+				contentStream.newLineAtOffset(25, y);
+				contentStream.showText(device);
+				contentStream.endText();
+				y = y - 15;
+			}
 			
 			contentStream.close();
 
