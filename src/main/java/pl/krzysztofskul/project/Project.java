@@ -3,6 +3,7 @@ package pl.krzysztofskul.project;
 import pl.krzysztofskul.attachment.Attachment;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.investor.Investor;
+import pl.krzysztofskul.kpds.Kpds;
 import pl.krzysztofskul.logger.loggerProject.LoggerProject;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.project.comment.Comment;
@@ -105,6 +106,11 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = {CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
     private List<Configuration> configurationList = new ArrayList<>();
 
+    // TODO kpds
+    @OneToOne
+    @JoinColumn(name = "kpds_id")
+    private Kpds kpds;
+    
     /** constructors */
 
     public Project() {
@@ -334,8 +340,16 @@ public class Project {
     public void setConfigurationList(List<Configuration> configurationList) {
         this.configurationList = configurationList;
     }
+    
+    public Kpds getKpds() {
+		return kpds;
+	}
 
-    /** mmethods */
+	public void setKpds(Kpds kpds) {
+		this.kpds = kpds;
+	}
+
+	/** mmethods */
 
     public void addConcept(Concept concept) {
         this.conceptList.add(concept);

@@ -14,9 +14,11 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itextpdf.text.BaseColor;
@@ -30,10 +32,18 @@ import com.itextpdf.text.pdf.PdfWriter;
 import pl.krzysztofskul.project.Project;
 
 @Controller
-public class KpdsGenerator {
+public class KpdsController {
 	
+	private KpdsService kpdsService;
+	
+	@Autowired
+	private KpdsController(KpdsService kpdsService) {
+		super();
+		this.kpdsService = kpdsService;
+	}
+
 	@GetMapping("/downloadTestKpds")
-	public String generateKpdsPdf() throws IOException {
+	public String generateTestKpdsPdf() throws IOException {
 		
 
 		Document document = new Document();
@@ -81,5 +91,20 @@ public class KpdsGenerator {
 		return "redirect:/home";
 		
 	}
-	
+
+	@GetMapping("/generate-kpds/{projectId}")
+	public String generateKpds(
+				@PathVariable Long projectId
+			) {
+		kpdsService.generateKpds(projectId);
+		return "redirect:/home";
+	}
+
+	// test
+	@GetMapping("/kpds/{kpdsId}")
+	public void getKpdsById(
+				@PathVariable Long kpdsId
+			) {
+		Kpds kpds = kpdsService.loadById(kpdsId);
+	}
 }
