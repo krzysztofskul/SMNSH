@@ -23,5 +23,14 @@ TODO:
 	+ export KPDS to PDF function
 	- send generated PDF of KPDS by email
 
+#3.1.1	
+- app. architecture updates:
+	- project and project info classes
+	- device instance with serial number
+	- company - customer - consumer
+
+#3.1.2
+	- import functionality
+
 TODO/DONE:
 -----------------------------------
