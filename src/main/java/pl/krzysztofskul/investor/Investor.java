@@ -60,7 +60,7 @@ public class Investor {
     	this.postalCode = sapCustomer.getPostalCode();
     	this.city = sapCustomer.getLocation();
     	this.street = sapCustomer.getStreetName();
-    	this.contact = "Tel.: " + sapCustomer.getTelephone1() + "/n Fax: " + sapCustomer.getFaxNumber();
+    	this.contact = "Tel.: " + sapCustomer.getTelephone1() + "\\n Fax: " + sapCustomer.getFaxNumber();
     	this.sapInfo = new SapInfo(
     				sapCustomer.getNumberSap(),
     				sapCustomer.getNip(),

@@ -25,11 +25,12 @@ public class SapCustomerController {
 	 * import from csv file located od hdd
 	 */
 	@GetMapping("import")
-	public void importSapCustomers() {
+	public String importSapCustomers() {
 		List<SapCustomer> sapCustomers = RecipientScanner.getRecipientScanner().readCSV();
 		for (SapCustomer sapCustomer : sapCustomers) {
 			sapCustomerService.save(sapCustomer);
 		}
+		return "redirect:/create-investors-from-sap-import";
 	}
 	
 }

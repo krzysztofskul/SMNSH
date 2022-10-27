@@ -50,7 +50,7 @@
 					<p class="langEN">IMPORT</p>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="/sapcustomers/import">
 						<p class="langPL">IMPORTUJ KLIENTÓW</p>
 						<p class="langEN">IMPORT CUUSTOMERS</p>
                     </a>
@@ -136,7 +136,12 @@
             </li>
             
             
-            
+            <li class="nav-item">
+                <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/investors/allwithprojects">
+                    <p class="langPL">KLIENCI</p>
+                    <p class="langEN">CUSTOMERS</p>
+                </a>
+            </li>
             
             <li class="nav-item">
                 <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/projects/all?view=list">

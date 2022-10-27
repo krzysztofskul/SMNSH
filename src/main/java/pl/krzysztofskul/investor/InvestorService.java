@@ -1,6 +1,8 @@
 package pl.krzysztofskul.investor;
 
 import com.thedeanda.lorem.LoremIpsum;
+
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,7 +49,15 @@ public class InvestorService {
     public List<Investor> loadAll() {
         return investorRepo.findAll();
     }
-
+    
+	public List<Investor> loadAllWithProjects() {
+		List<Investor> investorList = this.loadAll();
+		for (Investor investor : investorList) {
+			Hibernate.initialize(investor.getProjectList());
+		}
+		return investorList;
+	}
+	
     public Investor loadById(Long id) {
         return investorRepo.findById(id).get();
     }
@@ -77,5 +87,7 @@ public class InvestorService {
             this.save(investor);
         }
     }
+
+
 
 }
