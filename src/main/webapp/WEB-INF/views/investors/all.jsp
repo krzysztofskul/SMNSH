@@ -11,6 +11,21 @@
     <div class="container-fluid">
     	<!-- TEST -->
     	<section class="test">
+    		<div class="row">
+    			<div class="col-3">
+    				<a href="/investors/allwithprojects?sortBy=nameAsc">Sortuj wg nazwy rosnąco</a>
+    			</div>
+    			<div class="col-3">
+    				<a href="/investors/allwithprojects?sortBy=nameDesc">Sortuj wg nazwy malejąco</a>
+    			</div>
+    			<div class="col-3">
+    				<a href="/investors/allwithprojects?sortBy=sapNoAsc">Sortuj wg numeru SAP rosnąco</a>
+    			</div>
+    			<div class="col-3">
+    				<a href="/investors/allwithprojects?sortBy=sapNoDesc">Sortuj wg numeru SAP malejąco</a>
+    			</div>
+    		</div>
+    	
     		<c:forEach items="${investors}" var="investor">
     			<div class="bg-light border m-2 p-2">
 	    			<p>

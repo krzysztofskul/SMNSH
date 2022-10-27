@@ -1,5 +1,7 @@
 package pl.krzysztofskul.investor;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,10 +47,59 @@ public class InvestorController {
 	
 	@GetMapping("/investors/allwithprojects")
 	public String getInvestorsAllWithProjects(
-			@RequestParam(required = false, name = "srotBy")
+			@RequestParam(required = false, name = "sortBy") String sortBy,
 			Model model
 			) {
 		List<Investor> investorList = investorService.loadAllWithProjects();
+		
+		if (null != sortBy) {
+			switch (sortBy) {
+			case "nameAsc": {
+				Collections.sort(investorList, new Comparator<Investor>() {
+	
+					@Override
+					public int compare(Investor i1, Investor i2) {
+						return i1.getName().compareTo(i2.getName());
+					}
+				});
+				break;
+				}
+			case "nameDesc": {
+				Collections.sort(investorList, new Comparator<Investor>() {
+	
+					@Override
+					public int compare(Investor i1, Investor i2) {
+						return i2.getName().compareTo(i1.getName());
+					}
+				});
+				break;
+				}
+			case "sapNoASC": {
+				Collections.sort(investorList, new Comparator<Investor>() {
+					
+					@Override
+					public int compare(Investor i1, Investor i2) {
+						return i1.getSapInfo().getSapNo().compareTo(i2.getSapInfo().getSapNo());
+					}
+				});
+				break;
+			}
+			case "sapNoDesc": {
+				Collections.sort(investorList, new Comparator<Investor>() {
+					
+					@Override
+					public int compare(Investor i1, Investor i2) {
+						return i2.getSapInfo().getSapNo().compareTo(i1.getSapInfo().getSapNo());
+					}
+				});
+				break;
+			}
+	
+			default:
+				break;
+			}
+		}
+		
 		model.addAttribute("investors", investorList);
 		return "investors/all";
 	}
