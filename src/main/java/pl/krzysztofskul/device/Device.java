@@ -1,6 +1,7 @@
 package pl.krzysztofskul.device;
 
 import pl.krzysztofskul.device.category.DeviceCategory;
+import pl.krzysztofskul.device.instance.Instance;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.order.guideline.Guideline;
 import pl.krzysztofskul.project.Project;
@@ -37,6 +38,9 @@ public class Device {
     @OneToMany(mappedBy = "device")
     private List<Configuration> configurationList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "device")
+    private List<Instance> instances = new ArrayList<Instance>();
+    
     /**
      * constr.
      */
@@ -102,7 +106,15 @@ public class Device {
         this.configurationList = configurationList;
     }
 
-    /**
+    public List<Instance> getInstances() {
+		return instances;
+	}
+
+	public void setInstances(List<Instance> instances) {
+		this.instances = instances;
+	}
+
+	/**
      * methods
      */
 
@@ -111,4 +123,9 @@ public class Device {
         configuration.setDevice(this);
     }
 
+    public void addInstance(Instance instance) {
+    	this.instances.add(instance);
+    	instance.setDevice(this);
+    }
+    
 }

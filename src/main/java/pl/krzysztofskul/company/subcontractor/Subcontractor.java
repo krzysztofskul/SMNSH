@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 
 import pl.krzysztofskul.company.Company;
 
-@Entity
+//@Entity
 public class Subcontractor extends Company {
 
 	

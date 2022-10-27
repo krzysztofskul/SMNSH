@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 import pl.krzysztofskul.SapCustomer.SapCustomer;
 
-
+//Singleton
 public class RecipientScanner implements Serializable{
 
 	private static RecipientScanner recipientScanner;

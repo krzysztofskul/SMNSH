@@ -1,5 +1,6 @@
 package pl.krzysztofskul.investor;
 
+import pl.krzysztofskul.SapCustomer.SapCustomer;
 import pl.krzysztofskul.company.type.CompanyType;
 import pl.krzysztofskul.project.Project;
 
@@ -32,17 +33,41 @@ public class Investor {
     private String street;
 
     private int number;
+    
+    private String contact;
 
     @OneToMany(mappedBy = "investor")
     private List<Project> projectList = new ArrayList<>();
+   
+    @OneToOne(cascade = CascadeType.ALL)
+    private SapInfo sapInfo;
 
-    /**
+	/**
      * constr.
      */
 
     public Investor() {
     }
 
+    public Investor(SapCustomer sapCustomer) {
+    	this.id = Long.valueOf(0);
+    	this.name = sapCustomer.getName() + " " +
+    			sapCustomer.getName2() + " " +
+    			sapCustomer.getName3() + " " +
+    			sapCustomer.getName4();
+    	this.companyType = null;
+    	this.country = "Poland";
+    	this.postalCode = sapCustomer.getPostalCode();
+    	this.city = sapCustomer.getLocation();
+    	this.street = sapCustomer.getStreetName();
+    	this.contact = "Tel.: " + sapCustomer.getTelephone1() + "/n Fax: " + sapCustomer.getFaxNumber();
+    	this.sapInfo = new SapInfo(
+    				sapCustomer.getNumberSap(),
+    				sapCustomer.getNip(),
+    				sapCustomer.getIfa()
+    			);
+    }
+    
     /**
      * getters and setters
      */
@@ -111,7 +136,15 @@ public class Investor {
         this.number = number;
     }
 
-    public List<Project> getProjectList() {
+    public String getContact() {
+		return contact;
+	}
+
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+
+	public List<Project> getProjectList() {
         return projectList;
     }
 
@@ -119,7 +152,15 @@ public class Investor {
         this.projectList = projects;
     }
 
-    /** methods */
+    public SapInfo getSapInfo() {
+		return sapInfo;
+	}
+
+	public void setSapInfo(SapInfo sapInfo) {
+		this.sapInfo = sapInfo;
+	}
+
+	/** methods */
 
     public void addProject(Project project) {
         this.projectList.add(project);

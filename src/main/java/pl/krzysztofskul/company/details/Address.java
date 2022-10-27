@@ -5,7 +5,7 @@ import javax.persistence.ManyToOne;
 
 import pl.krzysztofskul.company.type.CompanyType;
 
-@Entity
+//@Entity
 public class Address {
 
     private String country;

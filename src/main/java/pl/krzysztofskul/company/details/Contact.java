@@ -2,7 +2,7 @@ package pl.krzysztofskul.company.details;
 
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class Contact {
 
 	private String telephone;

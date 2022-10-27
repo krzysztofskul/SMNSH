@@ -28,6 +28,7 @@ TODO:
 	- project and project info classes
 	- device instance with serial number
 	- company - customer - consumer
+	+ created investors from imported sap customers
 
 #3.1.2
 	- import functionality

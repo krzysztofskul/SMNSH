@@ -9,7 +9,7 @@ import pl.krzysztofskul.company.details.Address;
 import pl.krzysztofskul.company.details.Contact;
 import pl.krzysztofskul.company.type.CompanyType;
 
-@Entity
+//@Entity
 public class Company {
 
 	@Id
