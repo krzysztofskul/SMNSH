@@ -30,6 +30,7 @@ TODO:
 	- company - customer - consumer
 	+ created investors from imported sap customers
 	+ created all investors page
+		+ created sort functionality at all investors page
 
 #3.1.2
 	- import functionality
