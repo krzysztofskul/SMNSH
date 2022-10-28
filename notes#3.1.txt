@@ -32,6 +32,7 @@ TODO:
 #3.1.2
 	- import functionality
 		+ import file and folder name list from hdd location @Test
+		+ import calculation files
 
 TODO/DONE:
 -----------------------------------
