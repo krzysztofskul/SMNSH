@@ -2,6 +2,8 @@ package pl.krzysztofskul.importdata;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import org.junit.Test;
 
 public class ImportDataTest {
@@ -32,4 +34,9 @@ public class ImportDataTest {
 		System.out.println(ImportData.getImportDataSingleton().getCalculationFilesFullPath().toString());
 	}
 
+	@Test
+	public void test04() throws IOException {
+		System.out.println(ImportData.getImportDataSingleton().getMapWithProjectsSlsCodes().toString());
+	}
+	
 }
