@@ -144,8 +144,8 @@ public class ImportData {
 	}
 
 	
-	public List<Map<String, String>> importProjectDataFromXls (String calculationFilePath) {
-		List<Map<String, String>> dataImported = new ArrayList<Map<String,String>>();
+	public Map<String, String> importProjectDataFromXls (String calculationFilePath) {
+		Map<String, String> dataImported = new HashMap<String,String>();
 		// data imported from xls
 		Map<String, String> mapData = new HashMap<String, String>();
 		FileInputStream fis;
@@ -154,20 +154,15 @@ public class ImportData {
 			Workbook wb = new XSSFWorkbook(fis);
 			
 			
-			mapData.put("slsCodeShort", getSlsCodeShort(wb));
-			dataImported.add(mapData);
+			dataImported.put("slsCodeShort", getSlsCodeShort(wb));
 			
-			mapData.put("deviceCategory", getCellValue(wb, "SRF", 2, 6));
-			dataImported.add(mapData);
+			dataImported.put("deviceCategory", getCellValue(wb, "SRF", 2, 6));
 			
-			mapData.put("deviceModelName", getCellValue(wb, "SRF", 2, 7));
-			dataImported.add(mapData);
+			dataImported.put("deviceModelName", getCellValue(wb, "SRF", 2, 7));
 			
-			mapData.put("projectManager", getCellValue(wb, "SRF", 3, 11));
-			dataImported.add(mapData);
+			dataImported.put("projectManager", getCellValue(wb, "SRF", 3, 11));
 			
-			mapData.put("investor", getCellValue(wb, "HCALC-1", 4, 9));
-			dataImported.add(mapData);
+			dataImported.put("investor", getCellValue(wb, "HCALC-1", 4, 9));
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

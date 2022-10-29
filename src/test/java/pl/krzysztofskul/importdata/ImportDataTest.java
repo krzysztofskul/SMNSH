@@ -44,7 +44,7 @@ public class ImportDataTest {
 	@Test
 	public void test05() {
 		List<String> calculationFiles = ImportData.getImportDataSingleton().getCalculationFilesFullPath();
-		List<Map<String, String>> dataImportedFromXls = ImportData.getImportDataSingleton().importProjectDataFromXls(calculationFiles.get(0));
+		Map<String, String> dataImportedFromXls = ImportData.getImportDataSingleton().importProjectDataFromXls(calculationFiles.get(0));
 		System.out.println(dataImportedFromXls);
 	}
 	
