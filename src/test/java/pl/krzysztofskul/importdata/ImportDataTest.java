@@ -3,6 +3,8 @@ package pl.krzysztofskul.importdata;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -37,6 +39,13 @@ public class ImportDataTest {
 	@Test
 	public void test04() throws IOException {
 		System.out.println(ImportData.getImportDataSingleton().getMapWithProjectsSlsCodes().toString());
+	}
+
+	@Test
+	public void test05() {
+		List<String> calculationFiles = ImportData.getImportDataSingleton().getCalculationFilesFullPath();
+		List<Map<String, String>> dataImportedFromXls = ImportData.getImportDataSingleton().importProjectDataFromXls(calculationFiles.get(0));
+		System.out.println(dataImportedFromXls);
 	}
 	
 }

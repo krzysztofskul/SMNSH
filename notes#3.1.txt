@@ -37,6 +37,7 @@ TODO:
 		+ import file and folder name list from hdd location @Test
 		+ import calculation files
 		+ import slsProjectCode from xls file
+		+ created importProjectDataFromXls (String calculationFilePath) method id ImportData class
 
 TODO/DONE:
 -----------------------------------

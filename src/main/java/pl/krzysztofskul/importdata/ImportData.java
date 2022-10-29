@@ -15,6 +15,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import pl.krzysztofskul.project.Project;
+
 //Singleton
 public class ImportData {
 	
@@ -139,6 +141,59 @@ public class ImportData {
 		}
 		
 		return projectsSlsCodes;
+	}
+
+	
+	public List<Map<String, String>> importProjectDataFromXls (String calculationFilePath) {
+		List<Map<String, String>> dataImported = new ArrayList<Map<String,String>>();
+		// data imported from xls
+		Map<String, String> mapData = new HashMap<String, String>();
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream(calculationFilePath);
+			Workbook wb = new XSSFWorkbook(fis);
+			
+			
+			mapData.put("slsCodeShort", getSlsCodeShort(wb));
+			dataImported.add(mapData);
+			
+			mapData.put("deviceCategory", getCellValue(wb, "SRF", 2, 6));
+			dataImported.add(mapData);
+			
+			mapData.put("deviceModelName", getCellValue(wb, "SRF", 2, 7));
+			dataImported.add(mapData);
+			
+			mapData.put("projectManager", getCellValue(wb, "SRF", 3, 11));
+			dataImported.add(mapData);
+			
+			mapData.put("investor", getCellValue(wb, "HCALC-1", 4, 9));
+			dataImported.add(mapData);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		return dataImported;
+	}
+
+	private String getCellValue(Workbook wb, String sheetName, int rowNo, int colNo) {
+		Sheet sheet=wb.getSheet(sheetName);   //getting the XSSFSheet object at given index  
+		Row row=sheet.getRow(rowNo); //returns the logical row  
+		Cell cell=row.getCell(colNo); //getting the cell representing the given column  
+		String cellValue=cell.getStringCellValue();    //getting cell value  
+
+		return cellValue;
+	}
+
+	private String getSlsCodeShort(Workbook wb) {
+		Sheet sheet=wb.getSheet("Kontrolka Umowy");   //getting the XSSFSheet object at given index  
+		Row row=sheet.getRow(2); //returns the logical row  
+		Cell cell=row.getCell(2); //getting the cell representing the given column  
+		String slsCodeFull=cell.getStringCellValue();    //getting cell value  
+
+		//String slsCodeShort=slsCodeFull.substring(0, 7);
+		String slsCodeShort=slsCodeFull.substring(0, slsCodeFull.indexOf("/"));
+		return slsCodeShort;
 	}
 	
 }
