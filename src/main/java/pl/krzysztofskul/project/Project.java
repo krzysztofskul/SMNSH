@@ -8,6 +8,7 @@ import pl.krzysztofskul.logger.loggerProject.LoggerProject;
 import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.project.comment.Comment;
 import pl.krzysztofskul.project.configuration.Configuration;
+import pl.krzysztofskul.project.details.DetailsSls;
 import pl.krzysztofskul.projectCharter.ProjectCharter;
 import pl.krzysztofskul.subcontractor.Subcontractor;
 import pl.krzysztofskul.user.User;
@@ -109,6 +110,9 @@ public class Project {
     @OneToOne
     @JoinColumn(name = "kpds_id")
     private Kpds kpds;
+    
+    @OneToOne
+    private DetailsSls detailsSls;
     
     /** constructors */
 
@@ -348,6 +352,14 @@ public class Project {
 		this.kpds = kpds;
 	}
 
+    public DetailsSls getDetailsSls() {
+		return detailsSls;
+	}
+
+	public void setDetailsSls(DetailsSls detailsSls) {
+		this.detailsSls = detailsSls;
+	}
+	
 	/** mmethods */
 
     public void addConcept(Concept concept) {
@@ -369,7 +381,7 @@ public class Project {
     	logger.setProject(this);
     }
 
-    @Override
+	@Override
     public String toString() {
         return "Project{" +
                 "id=" + id +

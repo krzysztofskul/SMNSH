@@ -38,6 +38,10 @@ TODO:
 		+ import calculation files
 		+ import slsProjectCode from xls file
 		+ created importProjectDataFromXls (String calculationFilePath) method id ImportData class
+		
+		+ updated DetailsSls class and project class with OneToOne relation
+		+ import data class updated
+		+ created import logs functionality
 
 TODO/DONE:
 -----------------------------------

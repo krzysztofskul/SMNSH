@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +28,7 @@ public class ImportData {
 	
 	private static ImportData importData;
 	private String pathProjectsToImport = "D:\\SMNSH\\karta_projektu\\Projekty";
+	private Map<LocalDateTime, String> logs = new HashMap<LocalDateTime, String>();
 	
 	/*
 	 * CONSTR.
@@ -60,6 +63,11 @@ public class ImportData {
 	 * METHODS
 	 */
 	
+	/**
+	 * 
+	 * @param path: path to the folder with projects created by sales rep. (or copy of them)
+	 * @return: list of all project codes using by sales rep.
+	 */
 	public List<String> importProjectsFolderNames(String path) {
 		List<String> folderNameList = new ArrayList<String>();
 		
@@ -74,33 +82,84 @@ public class ImportData {
 		return folderNameList;
 	}
 	
-	public List<String> getCalculationFilesFullPath() /* throws FileNotFoundException */ {
+	/**
+	 * 
+	 * @return list of all paths to calculation files from default location
+	 */
+	public List<String> getCalculationFilesFullPath() {
 		
 		List<String> pathsToCalculationFiles = new ArrayList<String>();
 		
-			for (String pathToProjectFolder : this.importProjectsFolderNames(ImportData.getImportDataSingleton().pathProjectsToImport)) {
+			for (String projectFolder : this.importProjectsFolderNames(ImportData.getImportDataSingleton().pathProjectsToImport)) {
 				
 				/*
 				 * declaring folder with sls documentation
 				 */
-				File folderSlsDoc = new File(ImportData.getImportDataSingleton().pathProjectsToImport+"//"+pathToProjectFolder+"//01. Dokumenty_SLS KFP"); // project folder
-				File[] files = folderSlsDoc.listFiles();
-				
-				/*
-				 * searching calculation file
-				 */
-				for (File file : files) {
-					if (file.getName().contains("Kalkulacja") && file.getName().contains(".xls")) {
-						pathsToCalculationFiles.add(file.getPath());
-						break;
-					}
+				String folder01name;
+				try {
+					File folder01 = new File(
+							ImportData.getImportDataSingleton().pathProjectsToImport+"//"+projectFolder+"//01. Dokumenty_SLS KFP"
+							); // project folder
+					File[] files = folder01.listFiles();
+					
+					/*
+					 * search and get calculation file for array files
+					 */
+					
+					 for (int i = 0; i < files.length; i++) { 
+						 if (files[i].getName().contains("Kalkulacja") && files[i].getName().contains(".xls")) {
+							 pathsToCalculationFiles.add(files[i].getPath());
+							 logs.put(LocalDateTime.now(), "imported calculation file for:" + projectFolder);
+							 break; 
+						 }
+						 if (i == files.length - 1) {
+							 System.err.println("Not found calculation XLS file for: " + projectFolder);
+							 logs.put(LocalDateTime.now(), "Not found calculation XLS file for:" + projectFolder);
+						 }
+					 }					 
+					
+				} catch (Exception e){
+					System.err.println("Not found folder: 01. Dokumenty_SLS KFP for: " + projectFolder);
+					logs.put(LocalDateTime.now(), "Not found folder: 01. Dokumenty_SLS KFP for: " + projectFolder);
 				}
+
 				
 			}
+		
+		System.out.println("************** LOGS FROM IMPORTS *********************");
+		System.out.println(logs);
+		
 		return pathsToCalculationFiles;
 
 	}
 	
+	/**
+	 * 
+	 * @param projectSlsCode: specific project code / folder name created by sls 
+	 * @return path to calculation xls file (first found)
+	 */
+	public String getCalculationFileFullPath(String projectSlsCode) {
+		String calculationFileFullPath = null;
+		File folderSlsDoc = new File(ImportData.getImportDataSingleton().getPathProjectsToImport()+"//"+projectSlsCode+"//01. Dokumenty_SLS KFP");
+		
+		File[] files = folderSlsDoc.listFiles();
+		
+		/*
+		 * searching calculation file
+		 */
+		for (File file : files) {
+			if (file.getName().contains("Kalkulacja") && file.getName().contains(".xls")) {
+				calculationFileFullPath = file.getPath();
+				break;
+			}
+		}
+		
+		return calculationFileFullPath;
+	}
+	/**
+	 * 
+	 * @return map of projects' codes (long and short) from default location for all of project folders
+	 */
 	public Map<String, String> getMapWithProjectsSlsCodes() {
 		Map<String, String> projectsSlsCodes = new HashMap<String, String>();
 
@@ -109,8 +168,6 @@ public class ImportData {
 		
 		for (String calculationFilePath : this.getCalculationFilesFullPath()) {
 			
-			
-		
 			try {
 				FileInputStream fis=new FileInputStream(calculationFilePath);  
 				Workbook wb = new XSSFWorkbook(fis);
@@ -126,9 +183,7 @@ public class ImportData {
 
 				slsCodeShort=slsCodeFull.substring(0, 7);
 				slsCodeShort=slsCodeFull.substring(0, slsCodeFull.indexOf("/"));
-
-				
-				
+		
 			} catch (Exception e) {
 				//e.printStackTrace();
 				System.out.println("Błąd odczytu danych z pliku: "+calculationFilePath);
@@ -143,7 +198,11 @@ public class ImportData {
 		return projectsSlsCodes;
 	}
 
-	
+	/**
+	 * 
+	 * @param calculationFilePath to specific xls file
+	 * @return map of parameters imported from given path to xls file
+	 */
 	public Map<String, String> importProjectDataFromXls (String calculationFilePath) {
 		Map<String, String> dataImported = new HashMap<String,String>();
 		// data imported from xls
@@ -184,6 +243,7 @@ public class ImportData {
 		Sheet sheet=wb.getSheet("Kontrolka Umowy");   //getting the XSSFSheet object at given index  
 		Row row=sheet.getRow(2); //returns the logical row  
 		Cell cell=row.getCell(2); //getting the cell representing the given column  
+		
 		String slsCodeFull=cell.getStringCellValue();    //getting cell value  
 
 		//String slsCodeShort=slsCodeFull.substring(0, 7);
