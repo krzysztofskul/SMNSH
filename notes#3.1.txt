@@ -42,6 +42,9 @@ TODO:
 		+ updated DetailsSls class and project class with OneToOne relation
 		+ import data class updated
 		+ created import logs functionality
+		
+		+ create projects imported from sls default path
+		- save imported projects ...
 
 TODO/DONE:
 -----------------------------------

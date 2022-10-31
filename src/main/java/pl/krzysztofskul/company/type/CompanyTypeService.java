@@ -11,6 +11,7 @@ import java.util.List;
 public class CompanyTypeService {
 
     private CompanyTypeRepo companyTypeRepo;
+    private boolean isCompanyTypesCreated = false;
 
     @Autowired
     public CompanyTypeService(CompanyTypeRepo companyTypeRepo) {
@@ -32,12 +33,15 @@ public class CompanyTypeService {
 
     /** NO-CRUD */
     public void createCompanyTypesAndSaveToDB() {
-        for (CompanyTypeEnum companyTypeEnum : CompanyTypeEnum.values()) {
-            CompanyType companyType = new CompanyType();
-            companyType.setCode(companyTypeEnum.getCode());
-            companyType.setName(companyTypeEnum.getName());
-            this.save(companyType);
-        }
+    	if (isCompanyTypesCreated == false) {
+	        for (CompanyTypeEnum companyTypeEnum : CompanyTypeEnum.values()) {
+	            CompanyType companyType = new CompanyType();
+	            companyType.setCode(companyTypeEnum.getCode());
+	            companyType.setName(companyTypeEnum.getName());
+	            this.save(companyType);
+	            this.isCompanyTypesCreated = true;
+	        }
+    	}
     }
 
 

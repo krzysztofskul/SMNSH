@@ -48,4 +48,8 @@ public class ImportDataTest {
 		System.out.println(dataImportedFromXls);
 	}
 	
+	@Test
+	public void test06() {
+		ImportData.getImportDataSingleton().importSlsProjects();
+	}
 }

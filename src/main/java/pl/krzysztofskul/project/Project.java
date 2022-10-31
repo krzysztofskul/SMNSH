@@ -46,7 +46,7 @@ public class Project {
     @NotBlank
     private String recipient;
 
-    @NotBlank
+    //@NotBlank
     private String agreementNo;
 
 //    @NotBlank
@@ -119,6 +119,7 @@ public class Project {
     public Project() {
         this.setProjectCharter(new ProjectCharter(this));
         this.deadline = LocalDateTime.now().plusDays(Long.parseLong("1"));
+        this.detailsSls = new DetailsSls();
     }
 
     public Project(String type) {
@@ -140,6 +141,16 @@ public class Project {
 		this.setOthersDeviceList(LoremIpsum.getInstance().getTitle(0, 5));
 		this.setProjectCharter(new ProjectCharter(this));	
 	}
+
+//	public Project(
+//			String slsCodeShort, 
+//			String deviceCategory, 
+//			String deviceModelName, 
+//			String projectManager, 
+//			String investorSapNo
+//		) {
+//		// TODO Auto-generated constructor stub
+//	}
 
 	/** getters and setters */
 

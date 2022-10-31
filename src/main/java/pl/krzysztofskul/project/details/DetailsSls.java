@@ -25,7 +25,7 @@ public class DetailsSls {
 	
 	private String importedCostumer;
 
-	private DetailsSls() {
+	public DetailsSls() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

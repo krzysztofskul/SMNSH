@@ -14,6 +14,7 @@ import pl.krzysztofskul.device.category.DeviceCategoryService;
 import pl.krzysztofskul.device.part.Part;
 import pl.krzysztofskul.device.part.PartDemoGenerator;
 import pl.krzysztofskul.device.part.PartService;
+import pl.krzysztofskul.importdata.ImportData;
 import pl.krzysztofskul.initDB.InitDB;
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.investor.InvestorService;
@@ -64,6 +65,8 @@ public class HomePageService {
     /**
      * params.
      */
+	private boolean isDeviceCategoriesCreated = false;
+	
     private UserService userService;
     private DeviceCategoryService deviceCategoryService;
     private DeviceService deviceService;
@@ -459,22 +462,27 @@ public class HomePageService {
     }
 
     public void createDeviceCategories() {
-        DeviceCategory deviceCategory;
-
-        deviceCategory = new DeviceCategory();
-        deviceCategory.setCode("MRI");
-        deviceCategory.setName("Magnetic resonance imaging system");
-        deviceCategoryService.save(deviceCategory);
-
-        deviceCategory = new DeviceCategory();
-        deviceCategory.setCode("X-RAY");
-        deviceCategory.setName("X-Ray imaging system");
-        deviceCategoryService.save(deviceCategory);
-
-        deviceCategory = new DeviceCategory();
-        deviceCategory.setCode("CT");
-        deviceCategory.setName("Computed tomography system");
-        deviceCategoryService.save(deviceCategory);
+    	
+    	if (isDeviceCategoriesCreated == false) {    	
+	        DeviceCategory deviceCategory;
+	
+	        deviceCategory = new DeviceCategory();
+	        deviceCategory.setCode("MRI");
+	        deviceCategory.setName("Magnetic resonance imaging system");
+	        deviceCategoryService.save(deviceCategory);
+	
+	        deviceCategory = new DeviceCategory();
+	        deviceCategory.setCode("X-RAY");
+	        deviceCategory.setName("X-Ray imaging system");
+	        deviceCategoryService.save(deviceCategory);
+	
+	        deviceCategory = new DeviceCategory();
+	        deviceCategory.setCode("CT");
+	        deviceCategory.setName("Computed tomography system");
+	        deviceCategoryService.save(deviceCategory);
+	        
+	        isDeviceCategoriesCreated = true;
+    	}
 
     }
 
@@ -577,5 +585,13 @@ public class HomePageService {
             partService.save(part);
         }
     }
+
+	public void importSlsProjects() {
+		/**
+		 * list of projects imported from defauls location
+		 */
+		List<Project> projectList = ImportData.getImportDataSingleton().importSlsProjects();
+		
+	}
 
 }

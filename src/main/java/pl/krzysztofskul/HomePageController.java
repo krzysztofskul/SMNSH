@@ -14,6 +14,8 @@ import pl.krzysztofskul.user.UserService;
 public class HomePageController {
 
 	/** params. */
+	private int initEssentialDBCounter = 0;
+	
 	private HomePageService homePageService;
 	private UserService userService;
 	private CompanyTypeService companyTypeService;
@@ -74,4 +76,23 @@ public class HomePageController {
 		return "redirect:/home";
 	}
 
+
+	@GetMapping("/initEssentialDB")
+	public String initEssentialDB() {
+		if (initEssentialDBCounter == 0) {
+			
+			companyTypeService.createCompanyTypesAndSaveToDB();
+			homePageService.createDeviceCategories();
+			
+			initEssentialDBCounter++;
+		}
+		return "/home";
+	}
+	
+	@GetMapping("/importSlsProjects")
+	public String importSlsProjects() {
+		homePageService.importSlsProjects();
+		return "/home";
+	}
+	
 }

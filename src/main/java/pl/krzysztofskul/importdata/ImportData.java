@@ -109,6 +109,7 @@ public class ImportData {
 					 for (int i = 0; i < files.length; i++) { 
 						 if (files[i].getName().contains("Kalkulacja") && files[i].getName().contains(".xls")) {
 							 pathsToCalculationFiles.add(files[i].getPath());
+							 System.out.println("Imported "+projectFolder+" succesfully!");
 							 logs.put(LocalDateTime.now(), "imported calculation file for:" + projectFolder);
 							 break; 
 						 }
@@ -126,8 +127,8 @@ public class ImportData {
 				
 			}
 		
-		System.out.println("************** LOGS FROM IMPORTS *********************");
-		System.out.println(logs);
+		//System.out.println("************** LOGS FROM IMPORTS *********************");
+		//System.out.println(logs);
 		
 		return pathsToCalculationFiles;
 
@@ -205,37 +206,43 @@ public class ImportData {
 	 */
 	public Map<String, String> importProjectDataFromXls (String calculationFilePath) {
 		Map<String, String> dataImported = new HashMap<String,String>();
-		// data imported from xls
-		Map<String, String> mapData = new HashMap<String, String>();
 		FileInputStream fis;
 		try {
 			fis = new FileInputStream(calculationFilePath);
 			Workbook wb = new XSSFWorkbook(fis);
 			
-			
 			dataImported.put("slsCodeShort", getSlsCodeShort(wb));
 			
-			dataImported.put("deviceCategory", getCellValue(wb, "SRF", 2, 6));
+			dataImported.put("deviceCategory", getCellValue(wb, "SRF", 2, 6, calculationFilePath));
 			
-			dataImported.put("deviceModelName", getCellValue(wb, "SRF", 2, 7));
+			dataImported.put("deviceModelName", getCellValue(wb, "SRF", 2, 7, calculationFilePath));
 			
-			dataImported.put("projectManager", getCellValue(wb, "SRF", 3, 11));
+			dataImported.put("projectManager", getCellValue(wb, "SRF", 3, 11, calculationFilePath));
 			
-			dataImported.put("investor", getCellValue(wb, "HCALC-1", 4, 9));
+			dataImported.put("investorSapNo", getCellValue(wb, "HCALC-1", 4, 9, calculationFilePath));
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  
+			//e.printStackTrace();
+		} catch (Exception e) {
+			System.err.println("ERROR: "+calculationFilePath);
+			dataImported = null;
+		}
 		return dataImported;
 	}
 
-	private String getCellValue(Workbook wb, String sheetName, int rowNo, int colNo) {
-		Sheet sheet=wb.getSheet(sheetName);   //getting the XSSFSheet object at given index  
-		Row row=sheet.getRow(rowNo); //returns the logical row  
-		Cell cell=row.getCell(colNo); //getting the cell representing the given column  
-		String cellValue=cell.getStringCellValue();    //getting cell value  
-
+	private String getCellValue(Workbook wb, String sheetName, int rowNo, int colNo, String calculationFilePath) {
+		String cellValue = null;
+		try {
+			Sheet sheet=wb.getSheet(sheetName);   //getting the XSSFSheet object at given index  
+			Row row=sheet.getRow(rowNo); //returns the logical row  
+			Cell cell=row.getCell(colNo); //getting the cell representing the given column  
+			cellValue=cell.getStringCellValue();    //getting cell value  
+		} catch (NullPointerException e) {
+			System.err.println("Not found sheet/row/col/cell for specified calculation xls file! "+ calculationFilePath);
+			return null;
+		}
+		
 		return cellValue;
 	}
 
@@ -249,6 +256,55 @@ public class ImportData {
 		//String slsCodeShort=slsCodeFull.substring(0, 7);
 		String slsCodeShort=slsCodeFull.substring(0, slsCodeFull.indexOf("/"));
 		return slsCodeShort;
+	}
+
+	/**
+	 * list of projects imported from default location
+	 */
+	public List<Project> importSlsProjects() {
+		List<Project> projectList = new ArrayList<Project>();
+		
+		/**
+		 * get the default path to the folder with projects created by SLS
+		 */
+		String defaultPath = this.getPathProjectsToImport();
+		
+		/**
+		 * get the list of calculation files for SLS projects
+		 */
+		List<String> calculationXlsFiles = this.getCalculationFilesFullPath();
+		
+		/**
+		 * get the Map of projects' data imported from SLS
+		 */
+		List<Map<String, String>> dataImported = new ArrayList<Map<String,String>>();
+		
+		for (String caluclationFile : calculationXlsFiles) {
+			if (null != importProjectDataFromXls(caluclationFile)) {
+				dataImported.add(importProjectDataFromXls(caluclationFile));
+			}
+		}
+		
+		for (Map<String, String> di : dataImported) {
+			/*projectList.add(new Project(
+						di.get("slsCodeShort"),
+						di.get("deviceCategory"),
+						di.get("deviceModelName"),
+						di.get("projectManager"),
+						di.get("investorSapNo")
+					));*/
+			if (di != null) {
+				Project project = new Project();
+				project.getDetailsSls().setSlsCodeShort(di.get("slsCodeShort"));
+				project.getDetailsSls().setImportedDeviceModality(di.get("deviceCategory"));
+				project.getDetailsSls().setImportedDeviceModelName(di.get("deviceModelName"));
+				project.getDetailsSls().setImportedProjectManager(di.get("projectManager"));
+				project.getDetailsSls().setImportedCostumer(di.get("investorSapNo"));
+				projectList.add(project);
+			}
+		}
+		
+		return projectList;
 	}
 	
 }
