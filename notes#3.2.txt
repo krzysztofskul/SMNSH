@@ -1,0 +1,30 @@
+TODO:
+-----------------------------------
+
+- readme.md file to update
+- new conceptual design order updates:
+	- customer should have placeholder
+	- deadline choose from calendar
+	- title: order a design project or sketch (?)
+- technical documentation view:
+	- add colors for status of the design order	
+- PUT method for project background edition
+- title for projects' list view
+- PL chars. at project menu
+- show attachments at project charter view
+
+- KPDS
+	- update kpds page
+	- update kpds pdf file
+	- send generated PDF of KPDS by email
+	
+- app. architecture updates:
+	- project and project info classes
+	- device instance with serial number
+	- company - customer - consumer
+	- create default milestone (template) from milestone (instance)
+	- add milestone to the project from template
+	- default stakeholders functionality to add
+
+- import functionality
+	- convert imported sls data to the project class
