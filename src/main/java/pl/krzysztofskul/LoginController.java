@@ -83,6 +83,10 @@ public class LoginController {
                     user = userService.loadByEmail("piotr.w@test.test");
                     break;
                 }
+                case "admin-ms": {
+                	user = userService.loadByEmail("magdalena.s@test.test");
+                	break;
+                }
                 case "designer-md": {
                     user = userService.loadByEmail("maciej.d@test.test");
                     break;
@@ -107,6 +111,50 @@ public class LoginController {
                 	user = userService.loadByEmail("henryk.s@test.test");
                 	break;
                 }
+                case "projectManager-sr": {
+                	user = userService.loadByEmail("sebastian.r@test.test");
+                	break;
+                }
+                case "projectManager-sS": {
+                	user = userService.loadByEmail("sebastian.s@test.test");
+                	break;
+                }
+                case "projectManager-ks": {
+                	user = userService.loadByEmail("kamil.s@test.test");
+                	break;
+                }
+                case "projectManager-wp": {
+                	user = userService.loadByEmail("wojciech.p@test.test");
+                	break;
+                }
+                case "projectManager-ao": {
+                	user = userService.loadByEmail("arkadiusz.o@test.test");
+                	break;
+                }
+                case "projectManager-ps": {
+                	user = userService.loadByEmail("piotr.s@test.test");
+                	break;
+                }
+                case "projectManager-ks2": {
+                	user = userService.loadByEmail("krzysztof.s@test.test");
+                	break;
+                }
+                case "projectManager-mjb": {
+                	user = userService.loadByEmail("marika.j-b@test.test");
+                	break;
+                }
+                case "projectManager-mc": {
+                	user = userService.loadByEmail("mateusz.c@test.test");
+                	break;
+                }
+                case "projectManager-jn": {
+                	user = userService.loadByEmail("jaroslaw.n@test.test");
+                	break;
+                }
+                case "projectManager-eb": {
+                	user = userService.loadByEmail("emilia.b@test.test");
+                	break;
+                }                
                 case "salesRep-wg": {
                     user = userService.loadByEmail("wojciech.g@test.test");
                     break;

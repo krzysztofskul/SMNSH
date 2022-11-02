@@ -43,7 +43,7 @@ public class Project {
     @ManyToOne
     private Investor investor;
 
-    @NotBlank
+    //@NotBlank
     private String recipient;
 
     //@NotBlank
@@ -52,7 +52,7 @@ public class Project {
 //    @NotBlank
     private StatusProject status;
 
-    @Future
+    //@Future
     private LocalDateTime deadline;
 
     private String projectName;
@@ -72,7 +72,7 @@ public class Project {
 
     private String pfc;
 
-    @NotEmpty
+    //@NotEmpty
     @ManyToMany
     @JoinTable(
             name = "projects_devices",
@@ -111,7 +111,7 @@ public class Project {
     @JoinColumn(name = "kpds_id")
     private Kpds kpds;
     
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private DetailsSls detailsSls;
     
     /** constructors */
@@ -142,15 +142,11 @@ public class Project {
 		this.setProjectCharter(new ProjectCharter(this));	
 	}
 
-//	public Project(
-//			String slsCodeShort, 
-//			String deviceCategory, 
-//			String deviceModelName, 
-//			String projectManager, 
-//			String investorSapNo
-//		) {
-//		// TODO Auto-generated constructor stub
-//	}
+	public Project(DetailsSls detailsSls
+		) {
+		// TODO Auto-generated constructor stub
+		this.detailsSls = detailsSls;
+	}
 
 	/** getters and setters */
 

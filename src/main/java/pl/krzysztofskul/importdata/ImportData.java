@@ -299,7 +299,10 @@ public class ImportData {
 				project.getDetailsSls().setImportedDeviceModality(di.get("deviceCategory"));
 				project.getDetailsSls().setImportedDeviceModelName(di.get("deviceModelName"));
 				project.getDetailsSls().setImportedProjectManager(di.get("projectManager"));
-				project.getDetailsSls().setImportedCostumer(di.get("investorSapNo"));
+				project.getDetailsSls().setImportedCustomer(di.get("investorSapNo"));
+				/*
+				 * transfer data from DetialsSls (String) class to Project class (Objects)
+				 */
 				projectList.add(project);
 			}
 		}

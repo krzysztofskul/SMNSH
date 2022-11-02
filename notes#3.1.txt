@@ -44,7 +44,7 @@ TODO:
 		+ created import logs functionality
 		
 		+ create projects imported from sls default path
-		- save imported projects ...
+		+ save imported sls projects to DB
 
 TODO/DONE:
 -----------------------------------

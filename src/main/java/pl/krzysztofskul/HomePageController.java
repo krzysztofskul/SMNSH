@@ -81,18 +81,20 @@ public class HomePageController {
 	public String initEssentialDB() {
 		if (initEssentialDBCounter == 0) {
 			
+			userService.createRealTestUsersAndSaveToDb();
 			companyTypeService.createCompanyTypesAndSaveToDB();
 			homePageService.createDeviceCategories();
+			homePageService.initTestMilestonesToDB();;
 			
 			initEssentialDBCounter++;
 		}
-		return "/home";
+		return "redirect:/home";
 	}
 	
 	@GetMapping("/importSlsProjects")
 	public String importSlsProjects() {
 		homePageService.importSlsProjects();
-		return "/home";
+		return "redirect:/home";
 	}
 	
 }

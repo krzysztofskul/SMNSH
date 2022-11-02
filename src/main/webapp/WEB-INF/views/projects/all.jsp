@@ -203,6 +203,17 @@
 														${project.id}
 													</div>
 												</div>
+												<div class="col-md-1">
+													<div class="card-body">
+														${project.detailsSls.slsCodeShort}
+														<br>
+														${project.detailsSls.importedProjectManager}
+														<br>
+														${project.detailsSls.importedDeviceModality} ${project.detailsSls.importedDeviceModelName}
+														<br>
+														${project.detailsSls.importedCustomer}
+													</div>
+												</div>
 												<div class="col-md-2">
 													<div class="card-body">
 														${project.agreementNo}
@@ -223,7 +234,7 @@
                                                         <p class="langPL">${project.deadline.toLocalDate()}</p>
                                                     </div>
 												</div>
-												<div class="col-md-3">
+												<div class="col-md-2">
 													<div class="card-body">
                                                         <p class="langPL">${project.status.getNamePL()}</p>
                                                         <p class="langEN">${project.status.getNameEN()}</p>

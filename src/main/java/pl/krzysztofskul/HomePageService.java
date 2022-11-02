@@ -588,10 +588,12 @@ public class HomePageService {
 
 	public void importSlsProjects() {
 		/**
-		 * list of projects imported from defauls location
+		 * list of projects imported from default location
 		 */
 		List<Project> projectList = ImportData.getImportDataSingleton().importSlsProjects();
-		
+		for (Project project : projectList) {	
+			projectService.save(project);
+		}
 	}
 
 }

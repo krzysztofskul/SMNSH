@@ -104,6 +104,18 @@
 						    </div>
 	       				</div>
 	       				<div class="card-body" style="min-height: 150px">									    
+
+
+							    <div class="row first-row">
+							        <div class="col-4 col-title">
+							            <p class="langPL">NR PROJEKTU:</p>
+							            <p class="langEN">PROJECT NO.:</p>
+							        </div>
+							        <div class="col-8 col-value">
+					                    ${project.detailsSls.slsCodeShort}
+							        </div>
+						        </div>
+
 							    <div class="row first-row">
 							        <div class="col-4 col-title">
 							            <p class="langPL">NAZWA PROJEKTU:</p>

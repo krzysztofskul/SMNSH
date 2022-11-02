@@ -33,7 +33,7 @@
 					<p class="langEN">INIT DATA BASE</p>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="/initEssentialDB">
 						<p class="langPL">DANE PODSTAWOWE</p>
 						<p class="langEN">BASIC DATA</p>
                     </a>
@@ -57,6 +57,10 @@
                    <a class="dropdown-item" href="#">
 						<p class="langPL">IMPORTUJ KLIENTÓW (Z SZYFROWANIEM)</p>
 						<p class="langEN">IMPORT CUUSTOMERS (WITH ENCRYPTION)</p>
+                    </a>
+                   <a class="dropdown-item" href="/importSlsProjects">
+						<p class="langPL">IMPORTUJ PROJEKTY SLS</p>
+						<p class="langEN">IMPORT SLS PROJECTS</p>
                     </a>
                 </div>           
             </li>

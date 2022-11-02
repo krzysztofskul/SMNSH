@@ -110,6 +110,56 @@
                             		    "<p class='langPL'>KIEROWNIK PROJEKTU HENRYK S.</p>"+
                             		    "<p class='langEN'>PROJECT MANAGER HENRYK S.</p>"+
                     		  	"</a>"+
+                            		    		
+                    		  	"<a class='dropdown-item' href='/login?guest=projectManager-sr'>"+
+                            		    "<p class='langPL'>KIEROWNIK PROJEKTU SEBASTIAN R.</p>"+
+                            		    "<p class='langEN'>PROJECT MANAGER SEBASTIAN R.</p>"+
+                    		  	"</a>"+
+                    		  	"<a class='dropdown-item' href='/login?guest=projectManager-ss'>"+
+                            		    "<p class='langPL'>KIEROWNIK PROJEKTU SEBASTIAN S.</p>"+
+                            		    "<p class='langEN'>PROJECT MANAGER SEBASTIAN S.</p>"+
+                    		  	"</a>"+
+                    		  	"<a class='dropdown-item' href='/login?guest=projectManager-ks'>"+
+                            		    "<p class='langPL'>KIEROWNIK PROJEKTU KAMIL S.</p>"+
+                            		    "<p class='langEN'>PROJECT MANAGER KAMIL S.</p>"+
+                    		  	"</a>"+
+                    		  	"<a class='dropdown-item' href='/login?guest=projectManager-wp'>"+
+                            		    "<p class='langPL'>KIEROWNIK PROJEKTU WOJCIECH P.</p>"+
+                            		    "<p class='langEN'>PROJECT MANAGER WOJCIECH P.</p>"+
+                    		  	"</a>"+
+                    		  	"<a class='dropdown-item' href='/login?guest=projectManager-ao'>"+
+                            		    "<p class='langPL'>KIEROWNIK PROJEKTU ARKADIUSZ O.</p>"+
+                            		    "<p class='langEN'>PROJECT MANAGER ARKADIUSZ O.</p>"+
+                    		  	"</a>"+
+                    		  	"<a class='dropdown-item' href='/login?guest=projectManager-ps'>"+
+                            		    "<p class='langPL'>KIEROWNIK PROJEKTU PIOTR S.</p>"+
+                            		    "<p class='langEN'>PROJECT MANAGER PIOTR S.</p>"+
+                    		  	"</a>"+
+                    		  	"<a class='dropdown-item' href='/login?guest=projectManager-ks2'>"+
+                            		    "<p class='langPL'>KIEROWNIK PROJEKTU KRZYSZTOF S.</p>"+
+                            		    "<p class='langEN'>PROJECT MANAGER KRZYSZTOF S.</p>"+
+                    		  	"</a>"+
+                    		  	"<a class='dropdown-item' href='/login?guest=projectManager-mjb'>"+
+                            		    "<p class='langPL'>KIEROWNIK PROJEKTU MARIKA J.-B.</p>"+
+                            		    "<p class='langEN'>PROJECT MANAGER MARIKA J.-B.</p>"+
+                    		  	"</a>"+
+                    		  	"<a class='dropdown-item' href='/login?guest=projectManager-mc'>"+
+                            		    "<p class='langPL'>KIEROWNIK PROJEKTU MATEUSZ C.</p>"+
+                            		    "<p class='langEN'>PROJECT MANAGER MATEUSZ C.</p>"+
+                    		  	"</a>"+
+                    		  	"<a class='dropdown-item' href='/login?guest=projectManager-ps'>"+
+                            		    "<p class='langPL'>KIEROWNIK PROJEKTU PIOTR S.</p>"+
+                            		    "<p class='langEN'>PROJECT MANAGER PIOTR S.</p>"+
+                    		  	"</a>"+
+                    		  	"<a class='dropdown-item' href='/login?guest=projectManager-jn'>"+
+                            		    "<p class='langPL'>KIEROWNIK PROJEKTU JAROSŁAW N.</p>"+
+                            		    "<p class='langEN'>PROJECT MANAGER JAROSŁAW N.</p>"+
+                    		  	"</a>"+
+                    		  	"<a class='dropdown-item' href='/login?guest=projectManager-eb'>"+
+                            		    "<p class='langPL'>KIEROWNIK PROJEKTU EMILIA B.</p>"+
+                            		    "<p class='langEN'>PROJECT MANAGER EMILIA B.</p>"+
+                    		  	"</a>"+
+
                     		  	"<div class='dropdown-divider'></div>"+
 								"<a class='dropdown-item' href='/login?guest=designer-md'>"+
                             		    "<p class='langPL'>PROJEKTANT MACIEJ D.</p>"+

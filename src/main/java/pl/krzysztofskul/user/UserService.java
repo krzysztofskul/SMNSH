@@ -114,16 +114,64 @@ public class UserService {
         		"piotr.w@test.test", "test"
         		));
         userTestList.add(new User(
+        		"Magdalena", "S.", UserBusinessPosition.ADMIN, 
+        		"magdalena.s@test.test", "test"
+        		));
+        userTestList.add(new User(
         		"Sebastian", "K.", UserBusinessPosition.PROJECT_MANAGER, 
         		"sebastian.k@test.test", "test"
         		));
         userTestList.add(new User(
-        		"Ewa", "W-M.", UserBusinessPosition.PROJECT_MANAGER, 
+        		"Ewa", "W.-M.", UserBusinessPosition.PROJECT_MANAGER, 
         		"ewa.w-m@test.test", "test"
         		));
         userTestList.add(new User(
         		"Henryk", "S.", UserBusinessPosition.PROJECT_MANAGER, 
         		"henryk.s@test.test", "test"
+        		));
+        userTestList.add(new User(
+        		"Sebastian", "S.", UserBusinessPosition.PROJECT_MANAGER, 
+        		"sebastian.s@test.test", "test"
+        		));
+        userTestList.add(new User(
+        		"Sebastian", "R.", UserBusinessPosition.PROJECT_MANAGER, 
+        		"sebastian.r@test.test", "test"
+        		));
+        userTestList.add(new User(
+        		"Kamil", "S.", UserBusinessPosition.PROJECT_MANAGER, 
+        		"kamil.s@test.test", "test"
+        		));
+        userTestList.add(new User(
+        		"Wojciech", "P.", UserBusinessPosition.PROJECT_MANAGER, 
+        		"wojciech.p@test.test", "test"
+        		));
+        userTestList.add(new User(
+        		"Arkadiusz", "O.", UserBusinessPosition.PROJECT_MANAGER, 
+        		"arkadiusz.o@test.test", "test"
+        		));
+        userTestList.add(new User(
+        		"Piotr", "S.", UserBusinessPosition.PROJECT_MANAGER, 
+        		"piotr.s@test.test", "test"
+        		));
+        userTestList.add(new User(
+        		"Krzysztof", "S.", UserBusinessPosition.PROJECT_MANAGER, 
+        		"krzysztof.s@test.test", "test"
+        		));
+        userTestList.add(new User(
+        		"Marika", "J.-B.", UserBusinessPosition.PROJECT_MANAGER, 
+        		"marika.j-b@test.test", "test"
+        		));
+        userTestList.add(new User(
+        		"Mateusz", "C.", UserBusinessPosition.PROJECT_MANAGER, 
+        		"mateusz.c@test.test", "test"
+        		));
+        userTestList.add(new User(
+        		"Jarosław", "N.", UserBusinessPosition.PROJECT_MANAGER, 
+        		"jaroslaw.n@test.test", "test"
+        		));
+        userTestList.add(new User(
+        		"Emilia", "B.", UserBusinessPosition.PROJECT_MANAGER, 
+        		"emialia.b@test.test", "test"
         		));
         userTestList.add(new User(
         		"Maciej", "D.", UserBusinessPosition.PLANNER, 
