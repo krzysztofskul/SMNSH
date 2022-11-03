@@ -27,6 +27,12 @@ public class ImportData {
 	 */
 	
 	private static ImportData importData;
+	
+	/**
+	 * Map<String, String[]> (sheetName, {rowNo, colNo})
+	 */
+	private Map<String, String[]> cellsToImportFromCalculationXlsFile = new HashMap<String, String[]>();
+	
 	private String pathProjectsToImport = "D:\\SMNSH\\karta_projektu\\Projekty";
 	private Map<LocalDateTime, String> logs = new HashMap<LocalDateTime, String>();
 	
@@ -36,7 +42,7 @@ public class ImportData {
 	
 	private ImportData() {
 		super();
-		// TODO Auto-generated constructor stub
+		cellsToImportFromCalculationXlsFile.put("slsCodeFull", new String[] {"Kontrolka Umowy", "2", "2"});
 	}
 
 	public static ImportData getImportDataSingleton() {
@@ -177,9 +183,9 @@ public class ImportData {
 				Cell cell;
 
 //				sheet=wb.getSheetAt(1);   //getting the XSSFSheet object at given index  
-				sheet=wb.getSheet("Kontrolka Umowy");   //getting the XSSFSheet object at given index  
-				row=sheet.getRow(2); //returns the logical row  
-				cell=row.getCell(2); //getting the cell representing the given column  
+				sheet=wb.getSheet(cellsToImportFromCalculationXlsFile.get("slsCodeFull")[0]);   //getting the XSSFSheet object at given index  
+				row=sheet.getRow((Integer.parseInt(cellsToImportFromCalculationXlsFile.get("slsCodeFull")[1]))); //returns the logical row  
+				cell=row.getCell((Integer.parseInt(cellsToImportFromCalculationXlsFile.get("slsCodeFull")[2]))); //getting the cell representing the given column  
 				slsCodeFull=cell.getStringCellValue();    //getting cell value  
 
 				slsCodeShort=slsCodeFull.substring(0, 7);
@@ -247,9 +253,13 @@ public class ImportData {
 	}
 
 	private String getSlsCodeShort(Workbook wb) {
-		Sheet sheet=wb.getSheet("Kontrolka Umowy");   //getting the XSSFSheet object at given index  
-		Row row=sheet.getRow(2); //returns the logical row  
-		Cell cell=row.getCell(2); //getting the cell representing the given column  
+//		Sheet sheet=wb.getSheet(cell);   //getting the XSSFSheet object at given index  
+//		Row row=sheet.getRow(2); //returns the logical row  
+//		Cell cell=row.getCell(2); //getting the cell representing the given column  
+		Sheet sheet=wb.getSheet(cellsToImportFromCalculationXlsFile.get("slsCodeFull")[0]);   //getting the XSSFSheet object at given index  
+		Row row=sheet.getRow((Integer.parseInt(cellsToImportFromCalculationXlsFile.get("slsCodeFull")[1]))); //returns the logical row  
+		Cell cell=row.getCell((Integer.parseInt(cellsToImportFromCalculationXlsFile.get("slsCodeFull")[2]))); //getting the cell representing the given column  
+
 		
 		String slsCodeFull=cell.getStringCellValue();    //getting cell value  
 
