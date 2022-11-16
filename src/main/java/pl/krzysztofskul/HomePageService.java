@@ -14,6 +14,8 @@ import pl.krzysztofskul.device.category.DeviceCategoryService;
 import pl.krzysztofskul.device.part.Part;
 import pl.krzysztofskul.device.part.PartDemoGenerator;
 import pl.krzysztofskul.device.part.PartService;
+import pl.krzysztofskul.device.prototype.Prototype;
+import pl.krzysztofskul.device.prototype.PrototypeService;
 import pl.krzysztofskul.importdata.ImportData;
 import pl.krzysztofskul.initDB.InitDB;
 import pl.krzysztofskul.investor.Investor;
@@ -90,6 +92,7 @@ public class HomePageService {
     private ProjectCharterService projectCharterService;
     private CompanyTypeService companyTypeService;
     private StakeholderService stakeholderService;
+    private PrototypeService prototypeService;
 
     /** constr.
      *
@@ -115,7 +118,8 @@ public class HomePageService {
             MilestoneService milestoneService,
             ProjectCharterService projectCharterService,
             CompanyTypeService companyTypeService,
-            StakeholderService stakeholderService
+            StakeholderService stakeholderService,
+            PrototypeService prototypeService
     		) {
         this.userService = userService;
         this.deviceCategoryService = deviceCategoryService;
@@ -140,6 +144,7 @@ public class HomePageService {
         this.projectCharterService = projectCharterService;
         this.companyTypeService = companyTypeService;
         this.stakeholderService = stakeholderService;
+        this.prototypeService = prototypeService;
     }
 
     /** methods
@@ -592,8 +597,22 @@ public class HomePageService {
 		 */
 		List<Project> projectList = ImportData.getImportDataSingleton().importSlsProjects();
 		for (Project project : projectList) {	
+			project = projectService.convertDataSlsToProject(project);
+			//project = projectService.convertModalitySlsToProject(project);
+			//TODO 2022-11-16
+			savePrototypeToDbIfNotExist(project.getDetailsSls().getImportedDeviceModelName());
+			project.addPrototype(prototypeService.loadByModelName(project.getDetailsSls().getImportedDeviceModelName()));
+			//TODO 2022-11-16
+			//project = projectService.convertDeviceSlsToPrototypeInProject(project);
 			projectService.save(project);
 		}
+	}
+
+	private void savePrototypeToDbIfNotExist(String importedDeviceModelName) {
+		if (null == prototypeService.loadByModelName(importedDeviceModelName)) {
+			prototypeService.save(new Prototype("Smnsh", importedDeviceModelName));
+		}
+		
 	}
 
 }

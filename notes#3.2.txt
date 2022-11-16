@@ -17,6 +17,11 @@ TODO:
 	- update kpds page
 	- update kpds pdf file
 	- send generated PDF of KPDS by email
+
+- new Device class idea
+	- modality
+	- prototype
+	- instance
 	
 - app. architecture updates:
 	- project and project info classes
@@ -27,4 +32,11 @@ TODO:
 	- default stakeholders functionality to add
 
 - import functionality
-	- convert imported sls data to the project class
+	- convert imported sls data to the project class ...
+		+ project manager.
+		+ device model name.
+		- update front end for devices planned to deliver (prototypes)
+		- 3rd devices
+		- modality
+		- deadline
+		- investor

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import pl.krzysztofskul.company.type.CompanyTypeService;
+import pl.krzysztofskul.device.modality.ModalityGenerator;
 import pl.krzysztofskul.initDB.InitDB;
 import pl.krzysztofskul.investor.InvestorService;
 import pl.krzysztofskul.stakeholder.StakeholderService;
@@ -22,6 +23,7 @@ public class HomePageController {
 	private SubcontractorService subcontractorService;
 	private InvestorService investorService;
 	private StakeholderService stakeholderService; 
+	private ModalityGenerator modalityGenerator;
 
 	/** constr. */
 	@Autowired
@@ -31,7 +33,8 @@ public class HomePageController {
 			CompanyTypeService companyTypeService,
 			SubcontractorService subcontractorService,
 			InvestorService investorService,
-			StakeholderService stakeholderService
+			StakeholderService stakeholderService,
+			ModalityGenerator modalityGenerator
 	) {
 		this.homePageService = homePageService;
 		this.userService = userService;
@@ -39,6 +42,7 @@ public class HomePageController {
 		this.subcontractorService = subcontractorService;
 		this.investorService = investorService;
 		this.stakeholderService = stakeholderService;
+		this.modalityGenerator = modalityGenerator;
 	}
 
 	/** methods */
@@ -83,7 +87,8 @@ public class HomePageController {
 			
 			userService.createRealTestUsersAndSaveToDb();
 			companyTypeService.createCompanyTypesAndSaveToDB();
-			homePageService.createDeviceCategories();
+			//homePageService.createDeviceCategories();
+			this.modalityGenerator.initModalityDb();
 			homePageService.initTestMilestonesToDB();;
 			
 			initEssentialDBCounter++;

@@ -16,8 +16,11 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import pl.krzysztofskul.project.Project;
+import pl.krzysztofskul.user.UserService;
 
 //Singleton
 public class ImportData {
@@ -43,6 +46,11 @@ public class ImportData {
 	private ImportData() {
 		super();
 		cellsToImportFromCalculationXlsFile.put("slsCodeFull", new String[] {"Kontrolka Umowy", "2", "2"});
+		cellsToImportFromCalculationXlsFile.put("slsModalityCode", new String[] {"HCALC-1", "11", "2"});
+		cellsToImportFromCalculationXlsFile.put("slsDevicePrototypeModelName", new String[] {"HCALC-1", "11", "1"});
+		cellsToImportFromCalculationXlsFile.put("slsDevicePrototypeCpqNo", new String[] {"SCON-1-1", "4", "2"});
+		cellsToImportFromCalculationXlsFile.put("slsProjectManager", new String[] {"SRF", "3", "11"});
+		cellsToImportFromCalculationXlsFile.put("slsDeadline", new String[] {"Kontrolka Umowy", "3", "11"});
 	}
 
 	public static ImportData getImportDataSingleton() {
@@ -221,7 +229,17 @@ public class ImportData {
 			
 			dataImported.put("deviceCategory", getCellValue(wb, "SRF", 2, 6, calculationFilePath));
 			
-			dataImported.put("deviceModelName", getCellValue(wb, "SRF", 2, 7, calculationFilePath));
+			//dataImported.put("deviceModelName", getCellValue(wb, "SRF", 2, 7, calculationFilePath));
+			dataImported.put("deviceModelName", 
+					getCellValue(
+							wb, 
+							cellsToImportFromCalculationXlsFile.get("slsDevicePrototypeModelName")[0], 
+							Integer.parseInt(cellsToImportFromCalculationXlsFile.get("slsDevicePrototypeModelName")[1]), 
+							Integer.parseInt(cellsToImportFromCalculationXlsFile.get("slsDevicePrototypeModelName")[2]), 
+
+							calculationFilePath)
+					
+					);
 			
 			dataImported.put("projectManager", getCellValue(wb, "SRF", 3, 11, calculationFilePath));
 			
@@ -310,14 +328,18 @@ public class ImportData {
 				project.getDetailsSls().setImportedDeviceModelName(di.get("deviceModelName"));
 				project.getDetailsSls().setImportedProjectManager(di.get("projectManager"));
 				project.getDetailsSls().setImportedCustomer(di.get("investorSapNo"));
-				/*
-				 * transfer data from DetialsSls (String) class to Project class (Objects)
-				 */
+				
 				projectList.add(project);
 			}
 		}
 		
 		return projectList;
 	}
+
+
+
+
+
+	
 	
 }

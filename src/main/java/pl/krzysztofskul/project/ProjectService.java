@@ -228,7 +228,64 @@ public class ProjectService {
         }
     }
 
+	public Project convertDataSlsToProject(Project project) {
 
+		project = convertProjectManager(project);
+		
+		return project;
+	}
+    
+	/**
+	 * Converts project manager (String) imported from sls data to project class
+	 * @param Project 
+	 * @return Project
+	 */
+	private Project convertProjectManager(Project project) {
+		
+		if (project.getDetailsSls().getImportedProjectManager().contains("Kra")) {
+			project.setProjectManager(userService.loadByEmail("sebastian.k@test.test"));
+		}
+		if (project.getDetailsSls().getImportedProjectManager().contains("Wil")) {
+			project.setProjectManager(userService.loadByEmail("ewa.w-m@test.test"));
+		}
+		if (project.getDetailsSls().getImportedProjectManager().contains("Sil")) {
+			project.setProjectManager(userService.loadByEmail("henryk.s@test.test"));
+		}
+		if (project.getDetailsSls().getImportedProjectManager().contains("Szp")) {
+			project.setProjectManager(userService.loadByEmail("sebastian.s@test.test"));
+		}
+		if (project.getDetailsSls().getImportedProjectManager().contains("Rel")) {
+			project.setProjectManager(userService.loadByEmail("sebastian.r@test.test"));
+		}
+		if (project.getDetailsSls().getImportedProjectManager().contains("Szo")) {
+			project.setProjectManager(userService.loadByEmail("kamil.s@test.test"));
+		}
+		if (project.getDetailsSls().getImportedProjectManager().contains("Pon")) {
+			project.setProjectManager(userService.loadByEmail("wojciech.p@test.test"));
+		}
+		if (project.getDetailsSls().getImportedProjectManager().contains("Ols")) {
+			project.setProjectManager(userService.loadByEmail("arkadiusz.o@test.test"));
+		}
+		if (project.getDetailsSls().getImportedProjectManager().contains("Saw")) {
+			project.setProjectManager(userService.loadByEmail("piotr.s@test.test"));
+		}
+		if (project.getDetailsSls().getImportedProjectManager().contains("San")) {
+			project.setProjectManager(userService.loadByEmail("krzysztof.s@test.test"));
+		}
+		if (project.getDetailsSls().getImportedProjectManager().contains("Jag")) {
+			project.setProjectManager(userService.loadByEmail("marika.j-b@test.test"));
+		}
+		if (project.getDetailsSls().getImportedProjectManager().contains("Chr")) {
+			project.setProjectManager(userService.loadByEmail("mateusz.c@test.test"));
+		}
+		if (project.getDetailsSls().getImportedProjectManager().contains("Neu")) {
+			project.setProjectManager(userService.loadByEmail("jaroslaw.n@test.test"));
+		}
+		if (project.getDetailsSls().getImportedProjectManager().contains("Bar")) {		
+			project.setProjectManager(userService.loadByEmail("emilia.b@test.test"));
+		}
+		return project;
+	}
 
 
 

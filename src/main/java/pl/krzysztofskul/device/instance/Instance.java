@@ -22,6 +22,11 @@ public class Instance {
 	private String serialNo;
 	
 	private int warranty;
+	
+	private Instance() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Device getDevice() {
 		return device;

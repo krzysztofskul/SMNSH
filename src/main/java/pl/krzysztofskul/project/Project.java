@@ -2,6 +2,7 @@ package pl.krzysztofskul.project;
 
 import pl.krzysztofskul.attachment.Attachment;
 import pl.krzysztofskul.device.Device;
+import pl.krzysztofskul.device.prototype.Prototype;
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.kpds.Kpds;
 import pl.krzysztofskul.logger.loggerProject.LoggerProject;
@@ -81,6 +82,13 @@ public class Project {
     )
     private List<Device> deviceList = new ArrayList<Device>();
 
+    @ManyToMany
+	@JoinTable(name = "projects_prototypes",
+		joinColumns = @JoinColumn(name = "project_id"),
+		inverseJoinColumns = @JoinColumn(name = "prototype_id")
+	)
+    private List<Prototype> prototypeList = new ArrayList<>();
+    
     private String othersDeviceList;
 
     private String buildingContractor;
@@ -271,7 +279,15 @@ public class Project {
         this.deviceList = deviceList;
     }
 
-    public String getOthersDeviceList() {
+    public List<Prototype> getPrototypeList() {
+		return prototypeList;
+	}
+
+	public void setProtypeList(List<Prototype> prototypeList) {
+		this.prototypeList = prototypeList;
+	}
+
+	public String getOthersDeviceList() {
         return othersDeviceList;
     }
 
@@ -388,6 +404,10 @@ public class Project {
     	logger.setProject(this);
     }
 
+    public void addPrototype(Prototype prototype) {
+    	this.prototypeList.add(prototype);
+    }
+    
 	@Override
     public String toString() {
         return "Project{" +
