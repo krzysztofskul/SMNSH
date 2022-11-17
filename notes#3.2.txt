@@ -33,10 +33,10 @@ TODO:
 
 - import functionality
 	- convert imported sls data to the project class ...
-		+ project manager.
-		+ device model name.
-		- update front end for devices planned to deliver (prototypes)
+		. project manager
+		. device model name
+		+ devices planned to deliver (prototypes) / front-end updates details.jsp
 		- 3rd devices
 		- modality
 		- deadline
-		- investor
+		- investor ...

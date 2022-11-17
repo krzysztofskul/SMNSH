@@ -293,6 +293,7 @@
 	       				<div class="card-header">URZĄDZENIA DO INSTALACJI</div>
 	       				<div class="card-body" style="min-height: 150px">
                         <c:if test="${edit eq true}">
+                        <%--
                             <form:select path="deviceList" multiple="true" cssClass="w-100">
                                 <c:forEach items="${allDeviceList}" var="device">
                                     <c:set var="marked" value="false"/>
@@ -309,18 +310,19 @@
                                 </c:forEach>
                             </form:select>
                             <form:errors path="deviceList" cssClass="error"/>
+                          --%>
                         </c:if>
                         <c:if test="${edit ne true}">
-							<c:forEach items="${project.deviceList}" var="device">
+							<c:forEach items="${project.prototypeList}" var="devicePrototype">
 								<div class="row first-row">
+									<div class="col-8 font-weight-bold">
+										${devicePrototype.modelName}
+									</div>
+									<div class="col-2">
+										
+									</div>
 									<div class="col-2 font-weight-bold">
-										${device.deviceCategory.code}
-									</div>
-									<div class="col-6">
-										${device.deviceCategory.name}
-									</div>
-									<div class="col-4 font-weight-bold">
-										${device.model}
+										
 									</div>
 									 
 								</div>

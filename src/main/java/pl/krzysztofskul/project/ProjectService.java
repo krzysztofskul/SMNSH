@@ -168,6 +168,7 @@ public class ProjectService {
         Hibernate.initialize(project.getDeviceList());
         Hibernate.initialize(project.getLoggerProjectList());
         Hibernate.initialize(project.getConfigurationList());
+        Hibernate.initialize(project.getPrototypeList());
         for (Device device : project.getDeviceList()) {
             Hibernate.initialize(device.getConfigurationList());
             for (Configuration configuration : device.getConfigurationList()) {
