@@ -91,7 +91,7 @@ public class RecipientScanner implements Serializable{
 			rows.remove(0);
 			for (String row : rows) {
 				SapCustomer sapCustomer = new SapCustomer(
-						Long.parseLong(row.split(",")[0]),
+						row.split(",")[0],
 						row.split(",")[1],
 						row.split(",")[2],
 						row.split(",")[3],

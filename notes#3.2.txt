@@ -35,8 +35,8 @@ TODO:
 	- convert imported sls data to the project class ...
 		. project manager
 		. device model name
-		+ devices planned to deliver (prototypes) / front-end updates details.jsp
+		. devices planned to deliver (prototypes) / front-end updates details.jsp
 		- 3rd devices
 		- modality
 		- deadline
-		- investor ...
+		. convert Investor from SLS data to the Project class

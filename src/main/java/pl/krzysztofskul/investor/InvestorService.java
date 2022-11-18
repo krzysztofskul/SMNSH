@@ -21,6 +21,7 @@ public class InvestorService {
      */
 
     private InvestorRepo investorRepo;
+    private SapInfoRepo sapInfoRepo;
     private CompanyTypeService companyTypeService;
 
     /**
@@ -29,9 +30,10 @@ public class InvestorService {
      * @param companyTypeService
      */
     @Autowired
-    public InvestorService(InvestorRepo investorRepo, CompanyTypeService companyTypeService) {
+    public InvestorService(InvestorRepo investorRepo, CompanyTypeService companyTypeService, SapInfoRepo sapInfoRepo) {
         this.investorRepo = investorRepo;
         this.companyTypeService = companyTypeService;
+        this.sapInfoRepo = sapInfoRepo;
     }
 
     /**
@@ -87,6 +89,24 @@ public class InvestorService {
             this.save(investor);
         }
     }
+
+	@SuppressWarnings("finally")
+	public Investor loadBySapNo(String investorSapNo) {
+		//TODO 2022-11-17
+		
+		Investor investor = null;
+		try {
+			investor = sapInfoRepo.findBySapNo(investorSapNo).getInvestor();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.err.println("App. ERROR: Not found Investor for given SAP no. !!!");
+		} finally {
+			return investor;	
+		}
+		
+		
+	}
 
 
 

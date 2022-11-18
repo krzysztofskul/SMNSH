@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.device.part.PartService;
+import pl.krzysztofskul.investor.Investor;
+import pl.krzysztofskul.investor.InvestorService;
 import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 import pl.krzysztofskul.project.comment.Comment;
 import pl.krzysztofskul.project.configuration.Configuration;
@@ -33,18 +35,20 @@ public class ProjectService {
     private LoggerProjectService loggerProjectService;
     private DeviceService deviceService;
     private UserService userService;
+    private InvestorService investorService;
 
     @Autowired
     public ProjectService(
             ProjectRepo projectRepo,
             PartService partService, ConfigurationService configurationService, LoggerProjectService loggerProjectService,
-            DeviceService deviceService, UserService userService) {
+            DeviceService deviceService, UserService userService, InvestorService investorService) {
         this.projectRepo = projectRepo;
         this.partService = partService;
         this.configurationService = configurationService;
         this.loggerProjectService = loggerProjectService;
         this.deviceService = deviceService;
         this.userService = userService;
+        this.investorService = investorService;
     }
 
     /** CRUD METHODS */
@@ -232,10 +236,23 @@ public class ProjectService {
 	public Project convertDataSlsToProject(Project project) {
 
 		project = convertProjectManager(project);
+		project = convertInvestor(project);
 		
 		return project;
 	}
     
+	private Project convertInvestor(Project project) {
+		//TODO 2022-11-17
+		if (null != project.getDetailsSls().getImportedCustomer()) {
+			String investorSapNo = project.getDetailsSls().getImportedCustomer();
+			if (null != investorService.loadBySapNo(investorSapNo)) {
+				Investor investor = investorService.loadBySapNo(investorSapNo);	
+				project.setInvestor(investor);
+			}
+		}
+		return project;
+	}
+
 	/**
 	 * Converts project manager (String) imported from sls data to project class
 	 * @param Project 

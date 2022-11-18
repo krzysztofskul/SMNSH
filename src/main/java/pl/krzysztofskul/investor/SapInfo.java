@@ -14,14 +14,14 @@ public class SapInfo {
 	private Long id;
 	@OneToOne(mappedBy = "sapInfo")
 	private Investor investor;
-	private Long sapNo;
+	private String sapNo;
 	private String nipNo;
 	private String ifaNo;
 
 	public SapInfo() {
 	}
 
-	public SapInfo(Long sapNo, String nipNo, String ifaNo) {
+	public SapInfo(String sapNo, String nipNo, String ifaNo) {
 		super();
 		this.sapNo = sapNo;
 		this.nipNo = nipNo;
@@ -42,11 +42,11 @@ public class SapInfo {
 		this.investor = investor;
 	}
 
-	public Long getSapNo() {
+	public String getSapNo() {
 		return sapNo;
 	}
 
-	public void setSapNo(Long sapNo) {
+	public void setSapNo(String sapNo) {
 		this.sapNo = sapNo;
 	}
 

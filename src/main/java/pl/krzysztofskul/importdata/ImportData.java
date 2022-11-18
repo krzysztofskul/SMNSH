@@ -51,6 +51,7 @@ public class ImportData {
 		cellsToImportFromCalculationXlsFile.put("slsDevicePrototypeCpqNo", new String[] {"SCON-1-1", "4", "2"});
 		cellsToImportFromCalculationXlsFile.put("slsProjectManager", new String[] {"SRF", "3", "11"});
 		cellsToImportFromCalculationXlsFile.put("slsDeadline", new String[] {"Kontrolka Umowy", "3", "11"});
+		cellsToImportFromCalculationXlsFile.put("slsInvestorSapNo", new String[] {"HCALC-1", "4", "9"});
 	}
 
 	public static ImportData getImportDataSingleton() {
@@ -241,9 +242,30 @@ public class ImportData {
 					
 					);
 			
+//			dataImported.put("slsCustomer", 
+//					getCellValue(
+//							wb, 
+//							cellsToImportFromCalculationXlsFile.get("slsCustomer")[0], 
+//							Integer.parseInt(cellsToImportFromCalculationXlsFile.get("slsCustomer")[1]), 
+//							Integer.parseInt(cellsToImportFromCalculationXlsFile.get("slsCustomer")[2]), 
+//
+//							calculationFilePath)
+//					
+//					);
+			
 			dataImported.put("projectManager", getCellValue(wb, "SRF", 3, 11, calculationFilePath));
 			
-			dataImported.put("investorSapNo", getCellValue(wb, "HCALC-1", 4, 9, calculationFilePath));
+			//dataImported.put("investorSapNo", getCellValue(wb, "HCALC-1", 4, 9, calculationFilePath));
+			dataImported.put("slsInvestorSapNo", 
+					getCellValue(
+							wb, 
+							cellsToImportFromCalculationXlsFile.get("slsInvestorSapNo")[0], 
+							Integer.parseInt(cellsToImportFromCalculationXlsFile.get("slsInvestorSapNo")[1]), 
+							Integer.parseInt(cellsToImportFromCalculationXlsFile.get("slsInvestorSapNo")[2]), 
+
+							calculationFilePath)
+					
+					);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -327,7 +349,7 @@ public class ImportData {
 				project.getDetailsSls().setImportedDeviceModality(di.get("deviceCategory"));
 				project.getDetailsSls().setImportedDeviceModelName(di.get("deviceModelName"));
 				project.getDetailsSls().setImportedProjectManager(di.get("projectManager"));
-				project.getDetailsSls().setImportedCustomer(di.get("investorSapNo"));
+				project.getDetailsSls().setImportedCustomer(di.get("slsInvestorSapNo"));
 				
 				projectList.add(project);
 			}

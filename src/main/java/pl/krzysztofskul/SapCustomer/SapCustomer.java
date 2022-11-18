@@ -7,7 +7,7 @@ import javax.persistence.Id;
 public class SapCustomer {
 
 	@Id
-	private Long numberSap;
+	private String numberSap;
 	
 	private String name;
 	
@@ -36,7 +36,7 @@ public class SapCustomer {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SapCustomer(Long numberSap, String name, String postalCode, String location, String streetName, String name2,
+	public SapCustomer(String numberSap, String name, String postalCode, String location, String streetName, String name2,
 			String name3, String name4, String nip, String ifa, String telephone1, String faxNumber) {
 		super();
 		this.numberSap = numberSap;
@@ -55,11 +55,11 @@ public class SapCustomer {
 
 
 
-	public Long getNumberSap() {
+	public String getNumberSap() {
 		return numberSap;
 	}
 
-	public void setNumberSap(Long numberSap) {
+	public void setNumberSap(String numberSap) {
 		this.numberSap = numberSap;
 	}
 

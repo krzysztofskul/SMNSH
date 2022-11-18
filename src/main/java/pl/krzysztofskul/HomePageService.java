@@ -593,17 +593,23 @@ public class HomePageService {
 
 	public void importSlsProjects() {
 		/**
-		 * list of projects imported from default location
+		 * list of projects imported from default location on hdd
 		 */
 		List<Project> projectList = ImportData.getImportDataSingleton().importSlsProjects();
+		
+		/**
+		 * converting imported sls data to project class
+		 */
 		for (Project project : projectList) {	
 			project = projectService.convertDataSlsToProject(project);
 			//project = projectService.convertModalitySlsToProject(project);
-			//TODO 2022-11-16
+		
 			savePrototypeToDbIfNotExist(project.getDetailsSls().getImportedDeviceModelName());
 			project.addPrototype(prototypeService.loadByModelName(project.getDetailsSls().getImportedDeviceModelName()));
+			//
 			//TODO 2022-11-16
 			//project = projectService.convertDeviceSlsToPrototypeInProject(project);
+			
 			projectService.save(project);
 		}
 	}
