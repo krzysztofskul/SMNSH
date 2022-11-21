@@ -32,6 +32,7 @@ TODO:
 	- default stakeholders functionality to add
 
 - import functionality
+	. FileSelector class for choosing a file or folder
 	- convert imported sls data to the project class
 		. project manager
 		. device model name
