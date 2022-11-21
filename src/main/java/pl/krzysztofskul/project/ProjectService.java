@@ -7,8 +7,10 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.device.part.PartService;
+import pl.krzysztofskul.importdata.ImportData;
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.investor.InvestorService;
+import pl.krzysztofskul.investor.SapInfo;
 import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 import pl.krzysztofskul.project.comment.Comment;
 import pl.krzysztofskul.project.configuration.Configuration;
@@ -24,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -242,12 +245,28 @@ public class ProjectService {
 	}
     
 	private Project convertInvestor(Project project) {
-		//TODO 2022-11-17
+		//TODO 2022-11-18
+		int counter = 0;
 		if (null != project.getDetailsSls().getImportedCustomer()) {
 			String investorSapNo = project.getDetailsSls().getImportedCustomer();
 			if (null != investorService.loadBySapNo(investorSapNo)) {
 				Investor investor = investorService.loadBySapNo(investorSapNo);	
 				project.setInvestor(investor);
+			} else {
+				// TODO 2022-11-18 try to add new investor to db if not found and try to convert again
+					// save path to Xls file in DetailsSls while importing ne project first ...
+				if (counter == 0) { // try to import and save new investor only once
+					Map<String,String> dataImported = ImportData.getImportDataSingleton().importInvestorFromXls(project.getDetailsSls().getPathToXls());
+					Investor investor = new Investor();
+					investor.setSapInfo(new SapInfo(dataImported.get("sapNo"), null, null));
+					investor.setName(dataImported.get("customer"));
+					
+					project.setInvestor(investor);
+					
+					counter++;
+				}
+			} {
+				
 			}
 		}
 		return project;

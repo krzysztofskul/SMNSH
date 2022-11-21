@@ -31,7 +31,10 @@ public class DetailsSls {
 	private String importedProjectManager;
 	
 	private String importedCustomer;
-
+	
+	private String pathToXls;
+	
+	
 	public DetailsSls() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -103,8 +106,12 @@ public class DetailsSls {
 		this.importedCustomer = importedCustomer;
 	}
 
+	public String getPathToXls() {
+		return pathToXls;
+	}
 
-	
-	
+	public void setPathToXls(String pathToXls) {
+		this.pathToXls = pathToXls;
+	}
 	
 }

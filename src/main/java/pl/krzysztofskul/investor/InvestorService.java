@@ -90,22 +90,24 @@ public class InvestorService {
         }
     }
 
+    /***
+     * Methods search investor in the database by given SAP no.;
+     * @param investorSapNo;
+     * @return investor if found;
+     * @return null if not found or other exception;
+     */
 	@SuppressWarnings("finally")
 	public Investor loadBySapNo(String investorSapNo) {
-		//TODO 2022-11-17
-		
 		Investor investor = null;
 		try {
 			investor = sapInfoRepo.findBySapNo(investorSapNo).getInvestor();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-			System.err.println("App. ERROR: Not found Investor for given SAP no. !!!");
+		} catch (NullPointerException e) {
+			System.err.println("App. ERROR: Not found Investor for given SAP no. in the Database !!!");
+		}  catch (Exception e) {
+			System.err.println("App. ERROR while searching Investor by given SAP no. !!!");
 		} finally {
 			return investor;	
 		}
-		
-		
 	}
 
 

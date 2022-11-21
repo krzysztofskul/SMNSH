@@ -45,7 +45,7 @@
                 </a>
             </li>
             <li class="nav-item  ml-auto mr-auto text-center">
-                <a class="nav-link btn btn-light" href="#">
+                <a class="nav-link btn btn-light" href="/generate-kpds/${projectId}">
                     <p class="langPL">KPDS</p>
                     <p class="langEN">KPDS</p>
                 </a>

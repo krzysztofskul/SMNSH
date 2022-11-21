@@ -52,6 +52,7 @@ public class ImportData {
 		cellsToImportFromCalculationXlsFile.put("slsProjectManager", new String[] {"SRF", "3", "11"});
 		cellsToImportFromCalculationXlsFile.put("slsDeadline", new String[] {"Kontrolka Umowy", "3", "11"});
 		cellsToImportFromCalculationXlsFile.put("slsInvestorSapNo", new String[] {"HCALC-1", "4", "9"});
+		cellsToImportFromCalculationXlsFile.put("slsCustomer", new String[] {"HCALC-1", "2", "2"});
 	}
 
 	public static ImportData getImportDataSingleton() {
@@ -226,6 +227,8 @@ public class ImportData {
 			fis = new FileInputStream(calculationFilePath);
 			Workbook wb = new XSSFWorkbook(fis);
 			
+			dataImported.put("calculationFilePath", calculationFilePath);
+			
 			dataImported.put("slsCodeShort", getSlsCodeShort(wb));
 			
 			dataImported.put("deviceCategory", getCellValue(wb, "SRF", 2, 6, calculationFilePath));
@@ -350,6 +353,7 @@ public class ImportData {
 				project.getDetailsSls().setImportedDeviceModelName(di.get("deviceModelName"));
 				project.getDetailsSls().setImportedProjectManager(di.get("projectManager"));
 				project.getDetailsSls().setImportedCustomer(di.get("slsInvestorSapNo"));
+				project.getDetailsSls().setPathToXls(di.get("calculationFilePath"));
 				
 				projectList.add(project);
 			}
@@ -358,10 +362,53 @@ public class ImportData {
 		return projectList;
 	}
 
-
-
-
-
+	/**
+	 * Imports data about Investor from given path to xls file
+	 * @param path to xls file
+	 * @return Map of data about Investor (sapNo, customer - full data name and address)
+	 */
+	public Map<String, String> importInvestorFromXls(String path) {
+		Map<String, String> investorData = new HashMap<String, String>();
+		//import SAP no
+		investorData.put("sapNo", this.importCellFromXls(path, "HCALC-1", 4, 9));
+		//import NIP no
+		//import investor name
+		investorData.put("customer", this.importCellFromXls(path, "HCALC-1", 2, 2));
+		//import investor address
+		//import investor contact details
+		return investorData;
+	}
 	
+	/**
+	 * Imports cell value from XLS file specified by path, sheet name, row number and col number
+	 * @param path
+	 * @param sheetName
+	 * @param row
+	 * @param col
+	 * @return (String) imported value from given cell
+	 */
+	@SuppressWarnings("finally")
+	private String importCellFromXls(String path, String sheetName, int rowNo, int colNo) {
+		String cellValue = null;
+		
+		try {
+			FileInputStream fis = new FileInputStream(path);
+			Workbook wb = new XSSFWorkbook(fis);
+			Sheet sheet = wb.getSheet(sheetName);   //getting the XSSFSheet object at given index  
+			Row row = sheet.getRow(rowNo); //returns the logical row  
+			Cell cell = row.getCell(colNo); //getting the cell representing the given column  
+			cellValue = cell.getStringCellValue();    //getting cell value  
+		} catch (FileNotFoundException e) {
+			//e.printStackTrace();
+			System.err.println("App. ERROR! FileNotFoundException while trying to import cell from xls file: "+ path);
+		} catch (IOException e) {
+			//e.printStackTrace();
+			System.err.println("App. ERROR! IOException while trying to import cell from xls file: "+ path);
+		} finally {
+			return cellValue;
+		}
+		
+		
+	}
 	
 }
