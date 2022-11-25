@@ -11,16 +11,20 @@ public class ImportProjectTest {
 	
 	@Test
 	public void testImportProjectBySlsCode() {
-		importProject.importProjectBySlsCode("TEST", null);
+		//importProject.importProjectBySlsCode("TEST", null);
 		
 		assertTrue(
 				
-				importProject.importProjectBySlsCode("BIE1524", null).getDetailsSls().getPathToXls() != null
+				importProject.importProjectBySlsCode("KAT1215", null).getDetailsSls().getPathToXls() != null
 				&&
-				importProject.importProjectBySlsCode("BIE1524", null).getDetailsSls().getPathToXls().length() > 0
-				);
+				importProject.importProjectBySlsCode("KAT1215", null).getDetailsSls().getPathToXls().length() > 0
+		);
 		
-	
+		assertTrue(
+				importProject.importProjectBySlsCode("KAT1215", null).getDetailsSls().getSlsCodeShort().toLowerCase().contains("kat1215")
+				
+		);
+		
 	
 	}
 

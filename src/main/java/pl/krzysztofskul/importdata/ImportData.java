@@ -46,6 +46,7 @@ public class ImportData {
 	private ImportData() {
 		super();
 		cellsToImportFromCalculationXlsFile.put("slsCodeFull", new String[] {"Kontrolka Umowy", "2", "2"});
+//		cellsToImportFromCalculationXlsFile.put("slsCodeFull", new String[] {"HCALC-1", "4", "11"});
 		cellsToImportFromCalculationXlsFile.put("slsModalityCode", new String[] {"HCALC-1", "11", "2"});
 		cellsToImportFromCalculationXlsFile.put("slsDevicePrototypeModelName", new String[] {"HCALC-1", "11", "1"});
 		cellsToImportFromCalculationXlsFile.put("slsDevicePrototypeCpqNo", new String[] {"SCON-1-1", "4", "2"});

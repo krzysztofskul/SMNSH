@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -49,6 +50,7 @@ public class ImportProject {
 				// import and convert data from directory to the Project
 				String calculationFilePath = this.getCalculationFilePath(slsCode, pathToprojectsDirectory);
 				project.getDetailsSls().setPathToXls(calculationFilePath);
+				project = this.importDataFromXlsCalc(project);
 				//TODO 2022-11-25
 			
 			} else if (!slsProjectFolderName.equals(slsCode) && slsProjectFolderName.contains(slsCode)) {
@@ -116,6 +118,14 @@ public class ImportProject {
 		}
 		
 		return calculationFilePath;
+	}
+	
+	private Project importDataFromXlsCalc(Project project) {
+		Map<String, String> mapDataFromXls = importData.importProjectDataFromXls(project.getDetailsSls().getPathToXls());
+		
+		project.getDetailsSls().setSlsCodeShort(mapDataFromXls.get("slsCodeShort"));
+		
+		return project;
 	}
 	
 }
