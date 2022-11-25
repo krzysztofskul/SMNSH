@@ -42,3 +42,5 @@ TODO:
 		- deadline
 		. convert Investor from SLS data to the Project class
 			. add investor do DB if is not present
+	- import project by sls code
+		+ import calculation file path to the project

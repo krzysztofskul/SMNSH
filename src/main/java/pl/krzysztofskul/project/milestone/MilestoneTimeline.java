@@ -26,7 +26,7 @@ public class MilestoneTimeline {
 
 	public MilestoneTimeline() {
 		/**
-		 * TODO 2022-09-22:
+		 * TODO 2022-09-22
 		 * milestones functionality updates
 		 * - demo updates with demo dates
 		 * - new milestone with set dates by user
