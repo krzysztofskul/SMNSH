@@ -39,7 +39,7 @@ public class ProjectCharter implements Serializable {
     private List<MilestoneInstance> milestoneInstanceList = new ArrayList<>();
     
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
     			name = "projectcharter_stakeholder",
     			joinColumns = @JoinColumn(name = "projectCharter_id"),

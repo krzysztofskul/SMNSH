@@ -1,6 +1,9 @@
 package pl.krzysztofskul.importdata;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -9,6 +12,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import pl.krzysztofskul.project.Project;
+import pl.krzysztofskul.stakeholder.Stakeholder;
 
 @Service
 public class ImportProject {
@@ -42,7 +46,6 @@ public class ImportProject {
 		for (String slsProjectFolderName : slsProjectFolders) {
 			// if found slsCode directory create new Project
 			if (slsProjectFolderName.equals(slsCode)) {
-				// get calculation file
 				
 				//create new project
 				project = new Project();
@@ -122,8 +125,24 @@ public class ImportProject {
 	
 	private Project importDataFromXlsCalc(Project project) {
 		Map<String, String> mapDataFromXls = importData.importProjectDataFromXls(project.getDetailsSls().getPathToXls());
+		String calculationFilePath = project.getDetailsSls().getPathToXls();
+		
 		
 		project.getDetailsSls().setSlsCodeShort(mapDataFromXls.get("slsCodeShort"));
+		project.getProjectCharter().addStakeholder(
+				new Stakeholder(
+						importData.importSlsStakeholderContactPerson(project.getDetailsSls().getPathToXls()),
+						null,null,null
+				)
+		);
+
+		String dateImported = importData.importSlsDeadline(calculationFilePath);
+		project.setDeadline(
+			LocalDateTime.of(
+					LocalDate.parse(dateImported), 
+					LocalTime.of(0, 0))
+			);
+			
 		
 		return project;
 	}

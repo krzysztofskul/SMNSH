@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,9 +52,13 @@ public class ImportData {
 		cellsToImportFromCalculationXlsFile.put("slsDevicePrototypeModelName", new String[] {"HCALC-1", "11", "1"});
 		cellsToImportFromCalculationXlsFile.put("slsDevicePrototypeCpqNo", new String[] {"SCON-1-1", "4", "2"});
 		cellsToImportFromCalculationXlsFile.put("slsProjectManager", new String[] {"SRF", "3", "11"});
-		cellsToImportFromCalculationXlsFile.put("slsDeadline", new String[] {"Kontrolka Umowy", "3", "11"});
+		cellsToImportFromCalculationXlsFile.put("slsDeadline", new String[] {"Kontrolka Umowy", "8", "5"});
 		cellsToImportFromCalculationXlsFile.put("slsInvestorSapNo", new String[] {"HCALC-1", "4", "9"});
 		cellsToImportFromCalculationXlsFile.put("slsCustomer", new String[] {"HCALC-1", "2", "2"});
+		cellsToImportFromCalculationXlsFile.put("slsCosts", new String[] {"SRF", "6", "3"});
+		cellsToImportFromCalculationXlsFile.put("slsTrainingsOther", new String[] {"Szkolenia", "9", "2"});
+		cellsToImportFromCalculationXlsFile.put("slsAdditionalsSIWZ", new String[] {"rekomendacja PUR", "2", "1"});
+		cellsToImportFromCalculationXlsFile.put("slsStakeholderContactPerson", new String[] {"Kontrolka Umowy", "16", "3"});
 	}
 
 	public static ImportData getImportDataSingleton() {
@@ -295,6 +300,34 @@ public class ImportData {
 		
 		return cellValue;
 	}
+	
+	private String getCellValue(String calculationFilePath, String[] sheetRowCol) {
+		String cellValue = null;
+
+		try {
+			FileInputStream fis=new FileInputStream(calculationFilePath);  
+			Workbook wb = new XSSFWorkbook(fis);
+			String sheetName = sheetRowCol[0];
+			int rowNo = Integer.parseInt(sheetRowCol[1]);
+			int colNo = Integer.parseInt(sheetRowCol[2]);
+			Sheet sheet=wb.getSheet(sheetName);   //getting the XSSFSheet object at given index  
+			Row row=sheet.getRow(rowNo); //returns the logical row  
+			Cell cell=row.getCell(colNo); //getting the cell representing the given column  
+			try {
+				cellValue=cell.getStringCellValue();    //getting cell value
+			} catch (IllegalStateException e) {
+				double x1 = cell.getNumericCellValue();
+				long x2 = Double.valueOf(x1).longValue();
+				cellValue = LocalDate.of(2008, 1, 1).plusDays(x2-39448).toString();
+				return cellValue;
+			}
+		} catch (NullPointerException | IOException e) {
+			System.err.println("App. ERROR! Not found file/sheet/row/col/cell for specified calculation xls file! "+ calculationFilePath);
+			return null;
+		}
+		
+		return cellValue;
+	}
 
 	private String getSlsCodeShort(Workbook wb) {
 //		Sheet sheet=wb.getSheet(cell);   //getting the XSSFSheet object at given index  
@@ -412,6 +445,16 @@ public class ImportData {
 		
 	}
 	
+	public String importSlsStakeholderContactPerson(String calculationFilePath) {
+		String slsStakeholderContactPerson = null;
+		slsStakeholderContactPerson = getCellValue(calculationFilePath, cellsToImportFromCalculationXlsFile.get("slsStakeholderContactPerson"));
+		return slsStakeholderContactPerson;
+	}
 	
+	public String importSlsDeadline(String calculationFilePath) {
+		String slsDeadline = null;
+		slsDeadline = getCellValue(calculationFilePath, cellsToImportFromCalculationXlsFile.get("slsDeadline"));
+		return slsDeadline;		
+	}
 	
 }

@@ -44,5 +44,6 @@ TODO:
 			. add investor do DB if is not present
 	- import project by sls code
 		. import calculation file path to the project
-		+ import data from calculation file
-		+ created controller for import project by sls code
+		. import data from calculation file
+		. created controller for import project by sls code
+		- import deadline, project manager etc.
