@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class ImportProjectTest {
 
-	ImportProject importProject = new ImportProject();
+	@Autowired
+	ImportProject importProject;
 	
 	@Test
 	public void testImportProjectBySlsCode() {

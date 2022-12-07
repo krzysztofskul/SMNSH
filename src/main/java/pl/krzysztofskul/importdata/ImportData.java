@@ -456,5 +456,23 @@ public class ImportData {
 		slsDeadline = getCellValue(calculationFilePath, cellsToImportFromCalculationXlsFile.get("slsDeadline"));
 		return slsDeadline;		
 	}
+
+	public String importSlsProjectManager(String calculationFilePath) {
+		String slsProjectManager = null;
+		slsProjectManager = getCellValue(calculationFilePath, cellsToImportFromCalculationXlsFile.get("slsProjectManager"));
+		return slsProjectManager;
+	}
+	
+	public String importSlsDevicePrototypeModelName(String calculationFilePath) {
+		String slsDevicePrototypeModelName = null;
+		slsDevicePrototypeModelName = getCellValue(calculationFilePath, cellsToImportFromCalculationXlsFile.get("slsDevicePrototypeModelName"));
+		return slsDevicePrototypeModelName;
+	}
+	
+	public String importSlsInvestorSapNo(String calculationFilePath) {
+		String slsInvestorSapNo = null;
+		slsInvestorSapNo = getCellValue(calculationFilePath, cellsToImportFromCalculationXlsFile.get("slsInvestorSapNo"));
+		return slsInvestorSapNo;
+	}
 	
 }

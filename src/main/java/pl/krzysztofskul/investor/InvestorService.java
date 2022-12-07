@@ -45,6 +45,10 @@ public class InvestorService {
     public void save(Investor investor) {
         investorRepo.save(investor);
     }
+    
+	public Investor saveAndReturn(Investor investor) {
+		return investorRepo.save(investor);
+	}
 
     /*** Read */
 
@@ -109,6 +113,8 @@ public class InvestorService {
 			return investor;	
 		}
 	}
+
+
 
 
 

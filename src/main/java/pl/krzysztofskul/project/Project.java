@@ -41,7 +41,7 @@ public class Project {
     private ProjectCharter projectCharter;
 
 //    @NotBlank
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private Investor investor;
 
     //@NotBlank

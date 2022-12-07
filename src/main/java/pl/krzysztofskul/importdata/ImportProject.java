@@ -9,9 +9,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pl.krzysztofskul.HomePageService;
+import pl.krzysztofskul.device.prototype.PrototypeService;
 import pl.krzysztofskul.project.Project;
+import pl.krzysztofskul.project.ProjectService;
 import pl.krzysztofskul.stakeholder.Stakeholder;
 
 @Service
@@ -19,6 +23,24 @@ public class ImportProject {
 
 	ImportData importData = ImportData.getImportDataSingleton().getImportDataSingleton();
 	
+	ProjectService projectService;
+	HomePageService homePageService;
+	PrototypeService prototypeService;
+	
+	@Autowired
+	private ImportProject(
+			ProjectService projectService, 
+			HomePageService homePageService,
+			PrototypeService prototypeService
+			) {
+		super();
+		this.projectService = projectService;
+		this.homePageService = homePageService;
+		this.prototypeService = prototypeService;
+	}
+
+
+
 	/**
 	 * Searches the directory for the project folder specified by the SLS project code;
 	 * Converts data found to the Project class;
@@ -127,7 +149,7 @@ public class ImportProject {
 		Map<String, String> mapDataFromXls = importData.importProjectDataFromXls(project.getDetailsSls().getPathToXls());
 		String calculationFilePath = project.getDetailsSls().getPathToXls();
 		
-		
+		// import and set stakeholder
 		project.getDetailsSls().setSlsCodeShort(mapDataFromXls.get("slsCodeShort"));
 		project.getProjectCharter().addStakeholder(
 				new Stakeholder(
@@ -136,6 +158,7 @@ public class ImportProject {
 				)
 		);
 
+		// import and set deadline
 		String dateImported = importData.importSlsDeadline(calculationFilePath);
 		project.setDeadline(
 			LocalDateTime.of(
@@ -143,7 +166,23 @@ public class ImportProject {
 					LocalTime.of(0, 0))
 			);
 			
+		//import and set project manager
+		String pmImported = importData.importSlsProjectManager(calculationFilePath);
+		project.getDetailsSls().setImportedProjectManager(pmImported);
+
 		
+		//import and set device prototype name
+		String device = importData.importSlsDevicePrototypeModelName(calculationFilePath);
+		project.getDetailsSls().setImportedDeviceModelName(device);
+		homePageService.savePrototypeToDbIfNotExist(device);
+		project.addPrototype(prototypeService.loadByModelName(device));
+		
+		//import and set investor
+		String slsInvestorSapNo = importData.importSlsInvestorSapNo(calculationFilePath);
+		project.getDetailsSls().setImportedCustomer(slsInvestorSapNo);
+
+		
+		projectService.convertDataSlsToProject(project);		
 		return project;
 	}
 	

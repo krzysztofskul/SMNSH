@@ -614,7 +614,7 @@ public class HomePageService {
 		}
 	}
 
-	private void savePrototypeToDbIfNotExist(String importedDeviceModelName) {
+	public void savePrototypeToDbIfNotExist(String importedDeviceModelName) {
 		if (null == prototypeService.loadByModelName(importedDeviceModelName)) {
 			prototypeService.save(new Prototype("Smnsh", importedDeviceModelName));
 		}

@@ -261,6 +261,8 @@ public class ProjectService {
 					investor.setSapInfo(new SapInfo(dataImported.get("sapNo"), null, null));
 					investor.setName(dataImported.get("customer"));
 					
+					investor = investorService.saveAndReturn(investor);
+					
 					project.setInvestor(investor);
 					
 					counter++;
