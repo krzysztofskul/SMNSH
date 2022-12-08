@@ -31,6 +31,8 @@ public class ImportData {
 	 */
 	
 	private static ImportData importData;
+	private static FileInputStream fileInputStream = null;
+	private static Workbook workbook = null;
 	
 	/**
 	 * Map<String, String[]> (sheetName, {rowNo, colNo})
@@ -80,6 +82,23 @@ public class ImportData {
 	public void setPathProjectsToImport(String pathProjectsToImport) {
 		this.pathProjectsToImport = pathProjectsToImport;
 	}
+	
+	public static FileInputStream getFileInputStream() {
+		return fileInputStream;
+	}
+
+	public static void setFileInputStream(FileInputStream fileInputStream) {
+		ImportData.fileInputStream = fileInputStream;
+	}
+
+	public static Workbook getWorkbook() {
+		return workbook;
+	}
+
+	public static void setWorkbook(Workbook workbook) {
+		ImportData.workbook = workbook;
+	}
+
 
 	/*
 	 * METHODS
@@ -301,12 +320,36 @@ public class ImportData {
 		return cellValue;
 	}
 	
+	private String getCellsValuesInRow(String calculationFilePath, String[] sheetRowCol) {
+		String cellsVallues = null;
+		
+		while (null != getCellValue(calculationFilePath, sheetRowCol) && getCellValue(calculationFilePath, sheetRowCol) != "") {
+			if (null == cellsVallues) {
+				cellsVallues = getCellValue(calculationFilePath, sheetRowCol)+";";
+			} else {
+				cellsVallues = cellsVallues + getCellValue(calculationFilePath, sheetRowCol)+";";
+			}
+			
+			
+			sheetRowCol[1] = String.valueOf(Integer.parseInt(sheetRowCol[1])+1);
+		}
+		
+		return cellsVallues;
+	}
+	
 	private String getCellValue(String calculationFilePath, String[] sheetRowCol) {
 		String cellValue = null;
 
 		try {
-			FileInputStream fis=new FileInputStream(calculationFilePath);  
-			Workbook wb = new XSSFWorkbook(fis);
+			FileInputStream fis = fileInputStream;
+			if (null == fis) {
+				fis = new FileInputStream(calculationFilePath);				
+			}
+			Workbook wb = workbook;
+			if (null == wb) {
+				wb = new XSSFWorkbook(fis);	
+			}
+			
 			String sheetName = sheetRowCol[0];
 			int rowNo = Integer.parseInt(sheetRowCol[1]);
 			int colNo = Integer.parseInt(sheetRowCol[2]);
@@ -445,34 +488,50 @@ public class ImportData {
 		
 	}
 	
+	public String importSlsData(String calculationFilePath, String dataToImport) {
+		String dataImported = null;
+		
+		switch (dataToImport) {
+		
+		case "slsTrainingsOther": {
+			dataImported = getCellsValuesInRow(calculationFilePath, cellsToImportFromCalculationXlsFile.get(dataToImport));
+			System.out.println("Zaimportowano szkolenia do ImportData:" + dataImported);
+			return dataImported;
+		}
+		
+			default: {
+				dataImported = getCellValue(calculationFilePath, cellsToImportFromCalculationXlsFile.get(dataToImport));
+				return dataImported;	
+			}
+		}
+		
+	}	
 	public String importSlsStakeholderContactPerson(String calculationFilePath) {
 		String slsStakeholderContactPerson = null;
 		slsStakeholderContactPerson = getCellValue(calculationFilePath, cellsToImportFromCalculationXlsFile.get("slsStakeholderContactPerson"));
 		return slsStakeholderContactPerson;
-	}
-	
+	}	
 	public String importSlsDeadline(String calculationFilePath) {
 		String slsDeadline = null;
 		slsDeadline = getCellValue(calculationFilePath, cellsToImportFromCalculationXlsFile.get("slsDeadline"));
 		return slsDeadline;		
 	}
-
 	public String importSlsProjectManager(String calculationFilePath) {
 		String slsProjectManager = null;
 		slsProjectManager = getCellValue(calculationFilePath, cellsToImportFromCalculationXlsFile.get("slsProjectManager"));
 		return slsProjectManager;
 	}
-	
 	public String importSlsDevicePrototypeModelName(String calculationFilePath) {
 		String slsDevicePrototypeModelName = null;
 		slsDevicePrototypeModelName = getCellValue(calculationFilePath, cellsToImportFromCalculationXlsFile.get("slsDevicePrototypeModelName"));
 		return slsDevicePrototypeModelName;
 	}
-	
 	public String importSlsInvestorSapNo(String calculationFilePath) {
 		String slsInvestorSapNo = null;
 		slsInvestorSapNo = getCellValue(calculationFilePath, cellsToImportFromCalculationXlsFile.get("slsInvestorSapNo"));
 		return slsInvestorSapNo;
 	}
+	
+	
 	
 }

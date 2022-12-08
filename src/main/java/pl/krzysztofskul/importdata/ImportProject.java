@@ -1,6 +1,9 @@
 package pl.krzysztofskul.importdata;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -9,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -149,40 +153,61 @@ public class ImportProject {
 		Map<String, String> mapDataFromXls = importData.importProjectDataFromXls(project.getDetailsSls().getPathToXls());
 		String calculationFilePath = project.getDetailsSls().getPathToXls();
 		
-		// import and set stakeholder
-		project.getDetailsSls().setSlsCodeShort(mapDataFromXls.get("slsCodeShort"));
-		project.getProjectCharter().addStakeholder(
-				new Stakeholder(
-						importData.importSlsStakeholderContactPerson(project.getDetailsSls().getPathToXls()),
-						null,null,null
-				)
-		);
-
-		// import and set deadline
-		String dateImported = importData.importSlsDeadline(calculationFilePath);
-		project.setDeadline(
-			LocalDateTime.of(
-					LocalDate.parse(dateImported), 
-					LocalTime.of(0, 0))
+		//set up fileInputStream and workbook
+		try {
+			ImportData.setFileInputStream(new FileInputStream(calculationFilePath));
+			ImportData.setWorkbook(new XSSFWorkbook(ImportData.getFileInputStream()));
+		
+			// import and set stakeholder
+			project.getDetailsSls().setSlsCodeShort(mapDataFromXls.get("slsCodeShort"));
+			project.getProjectCharter().addStakeholder(
+					new Stakeholder(
+							importData.importSlsStakeholderContactPerson(project.getDetailsSls().getPathToXls()),
+							null,null,null
+					)
 			);
+
+			// import and set deadline
+			String dateImported = importData.importSlsDeadline(calculationFilePath);
+			project.setDeadline(
+				LocalDateTime.of(
+						LocalDate.parse(dateImported), 
+						LocalTime.of(0, 0))
+				);
+				
+			//import and set project manager
+			String pmImported = importData.importSlsProjectManager(calculationFilePath);
+			project.getDetailsSls().setImportedProjectManager(pmImported);
+
 			
-		//import and set project manager
-		String pmImported = importData.importSlsProjectManager(calculationFilePath);
-		project.getDetailsSls().setImportedProjectManager(pmImported);
+			//import and set device prototype name
+			String device = importData.importSlsDevicePrototypeModelName(calculationFilePath);
+			project.getDetailsSls().setImportedDeviceModelName(device);
+			homePageService.savePrototypeToDbIfNotExist(device);
+			project.addPrototype(prototypeService.loadByModelName(device));
+			
+			//import and set investor
+			String slsInvestorSapNo = importData.importSlsInvestorSapNo(calculationFilePath);
+			project.getDetailsSls().setImportedCustomer(slsInvestorSapNo);
+
+			//import slsTrainingsOther
+			String slsTrainingOther = importData.importSlsData(calculationFilePath, "slsTrainingsOther");
+			System.out.println("Zaimportowano szkolenia do ImportProject:" + slsTrainingOther);
+			
+			projectService.convertDataSlsToProject(project);
+			
+			//disable fileInputStream and workbook
+			ImportData.setFileInputStream(null);
+			ImportData.setWorkbook(null);
+		
+		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.err.println("App. ERROR!!! while trying to set up file input stream and workbook!");
+		}
 
 		
-		//import and set device prototype name
-		String device = importData.importSlsDevicePrototypeModelName(calculationFilePath);
-		project.getDetailsSls().setImportedDeviceModelName(device);
-		homePageService.savePrototypeToDbIfNotExist(device);
-		project.addPrototype(prototypeService.loadByModelName(device));
-		
-		//import and set investor
-		String slsInvestorSapNo = importData.importSlsInvestorSapNo(calculationFilePath);
-		project.getDetailsSls().setImportedCustomer(slsInvestorSapNo);
-
-		
-		projectService.convertDataSlsToProject(project);		
 		return project;
 	}
 	
