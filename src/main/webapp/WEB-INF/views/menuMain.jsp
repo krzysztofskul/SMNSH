@@ -62,6 +62,18 @@
 						<p class="langPL">IMPORTUJ PROJEKTY SLS</p>
 						<p class="langEN">IMPORT SLS PROJECTS</p>
                     </a>
+                   <a class="dropdown-item" href="/import/project-by-sls-code/ZZX0000">
+						<p class="langPL">IMPORTUJ PROJEKT TESTOWY ZZX0000</p>
+						<p class="langEN">IMPORT TEST PROJECT ZZX0000</p>
+                    </a>
+                   <a class="dropdown-item" href="/import/project-by-sls-directory">
+						<p class="langPL">IMPORTUJ PROJEKT WG KATALOGU</p>
+						<p class="langEN">IMPORT PROJECT BY FOLDER</p>
+                    </a>
+                   <a class="dropdown-item" href="/import/set-default-sls-projects-path">
+						<p class="langPL">USTAW DOMYŚLNĄ ŚCIEŻKĘ KATALOGU PROJEKTÓW SLS</p>
+						<p class="langEN">SET THE DEFAULT PATH TO SLS PROJECTS FOLDER</p>
+                    </a>
                 </div>           
             </li>
 

@@ -48,7 +48,6 @@ public class FileSelector {
 		    
 	    }
 
-
 	    chooser.setAcceptAllFileFilterUsed(true);
 
 	    //chooser.setSelectedFile(new java.io.File("."));
@@ -58,9 +57,11 @@ public class FileSelector {
 	    File x = chooser.getSelectedFile();
 
 	    if (x != null) {
-	        System.out.println(x.toPath());
+	        //System.out.println(x.toPath());
 	    	return x.toString();
 	    }
+	    
+	
 	    return null;
 	}
 	
