@@ -279,12 +279,12 @@ public class Project {
         this.deviceList = deviceList;
     }
 
-    public List<Prototype> getPrototypeList() {
-		return prototypeList;
+    public void setPrototypeList(List<Prototype> prototypeList) {
+		this.prototypeList = prototypeList;
 	}
 
-	public void setProtypeList(List<Prototype> prototypeList) {
-		this.prototypeList = prototypeList;
+	public List<Prototype> getPrototypeList() {
+		return prototypeList;
 	}
 
 	public String getOthersDeviceList() {

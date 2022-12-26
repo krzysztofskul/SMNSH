@@ -243,7 +243,7 @@ public class ProjectService {
 		
 		return project;
 	}
-    
+
 	private Project convertInvestor(Project project) {
 		//TODO 2022-11-18
 		int counter = 0;

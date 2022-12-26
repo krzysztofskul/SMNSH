@@ -489,7 +489,7 @@ public class ImportData {
 	}
 	
 	public String importSlsData(String calculationFilePath, String dataToImport) {
-		String dataImported = null;
+		String dataImported;
 		
 		switch (dataToImport) {
 		

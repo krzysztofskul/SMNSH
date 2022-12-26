@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -82,7 +83,7 @@ public class KpdsService {
 			
 			contentStream.beginText();
 			contentStream.setFont(fontBold, 24);
-			contentStream.newLineAtOffset(175, 750);
+			contentStream.newLineAtOffset(125, 750);
 			contentStream.showText("Dokument KPDS");
 			contentStream.endText();
 			
@@ -92,19 +93,19 @@ public class KpdsService {
 			
 			contentStream.beginText();
 			contentStream.setFont(fontItalic, 11);
-			contentStream.newLineAtOffset(450, 725);
-			contentStream.showText("Data utworzenia: " + kpds.getDateTimeGenerated().toLocalDate().toString());
+			contentStream.newLineAtOffset(500, 725);
+			contentStream.showText(kpds.getDateTimeGenerated().toLocalDate().toString());
 			contentStream.endText();
 			
 			contentStream.beginText();
 			contentStream.setFont(font, 11);
-			contentStream.newLineAtOffset(25, 675);
+			contentStream.newLineAtOffset(25, 700);
 			contentStream.showText("Kierownik projektu: " + kpds.getProject().getDetailsSls().getImportedProjectManager());
 			contentStream.endText();
 			
 			contentStream.beginText();
 			contentStream.setFont(font, 11);
-			contentStream.newLineAtOffset(25, 650);
+			contentStream.newLineAtOffset(25, 675);
 			contentStream.showText("Nr projektu: " + kpds.getProject().getDetailsSls().getSlsCodeShort());
 			contentStream.endText();
 			
@@ -132,7 +133,7 @@ public class KpdsService {
 			contentStream.endText();
 			
 			contentStream.moveTo(10, 540);
-			contentStream.lineTo(400, 540);
+			contentStream.lineTo(150, 540);
 			contentStream.stroke();
 			
 			int y = 520;
@@ -143,11 +144,23 @@ public class KpdsService {
 				contentStream.newLineAtOffset(30, y);
 				contentStream.showText(prototypeDevice.getModelName());
 				contentStream.endText();
+
+				contentStream.beginText();
+				contentStream.setFont(font, 10);
+				contentStream.newLineAtOffset(200, y);
+				contentStream.showText("nr seryjny: ");
+				contentStream.endText();
 				
 				contentStream.beginText();
-				contentStream.setFont(fontItalic, 11);
-				contentStream.newLineAtOffset(200, y);
-				contentStream.showText("gwarancja: ......... m-cy");
+				contentStream.setFont(font, 10);
+				contentStream.newLineAtOffset(300, y);
+				contentStream.showText("gwarancja: ");
+				contentStream.endText();
+				
+				contentStream.beginText();
+				contentStream.setFont(font, 10);
+				contentStream.newLineAtOffset(400, y);
+				contentStream.showText("data przekazania: ");
 				contentStream.endText();
 				
 				y = y - 20;
@@ -161,9 +174,29 @@ public class KpdsService {
 			contentStream.showText("SZKOLENIA:");
 			contentStream.endText();
 			
-			contentStream.moveTo(10, y-10);
-			contentStream.lineTo(400, y-10);
+			y = y - 10;
+			
+			contentStream.moveTo(10, y);
+			contentStream.lineTo(150, y);
 			contentStream.stroke();
+			
+			y = y - 15;
+			
+			for (String training : Arrays.asList(kpds.getProject().getTrainings().split(";"))) {
+				contentStream.beginText();
+				contentStream.setFont(font, 11);
+				contentStream.newLineAtOffset(30, y);
+				contentStream.showText(training);
+				contentStream.endText();
+				
+				contentStream.beginText();
+				contentStream.setFont(font, 11);
+				contentStream.newLineAtOffset(375, y);
+				contentStream.showText("przeprowadzono w dn: ");
+				contentStream.endText();
+				
+				y = y- 15;
+			}
 			
 			contentStream.close();
 
