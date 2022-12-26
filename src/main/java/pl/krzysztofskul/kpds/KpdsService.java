@@ -1,5 +1,6 @@
 package pl.krzysztofskul.kpds;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,7 +10,10 @@ import java.util.List;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +28,7 @@ import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import pl.krzysztofskul.device.Device;
+import pl.krzysztofskul.device.prototype.Prototype;
 import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.ProjectService;
 
@@ -66,60 +71,99 @@ public class KpdsService {
 			document.addPage(page);
 
 			PDPageContentStream contentStream = new PDPageContentStream(document, page);
+//			PDType0Font font = PDType0Font.load(document, new File("c:/windows/fonts/times.ttf"));
+			PDType0Font font = PDType0Font.load(document, new File("c:/windows/fonts/SiemensSans_Prof_Roman.ttf"));
+			PDType0Font fontItalic = PDType0Font.load(document, new File("c:/windows/fonts/SiemensSans_Prof_Italic.ttf"));
+			PDType0Font fontBold = PDType0Font.load(document, new File("c:/windows/fonts/SiemensSans_Prof_Bold.ttf"));
+			PDType0Font fontBoldItalic = PDType0Font.load(document, new File("c:/windows/fonts/SiemensSans_Prof_BoldItalic.ttf"));
 
+			PDImageXObject logo = PDImageXObject.createFromFile("D://SMNSH/karta_projektu//AppData//logo//logo_smnsh.png", document);
+			contentStream.drawImage(logo, 475, 750);
+			
 			contentStream.beginText();
-			contentStream.setFont(PDType1Font.TIMES_BOLD, 24);
-			contentStream.newLineAtOffset(150, 750);
-			contentStream.showText("KPDS");
+			contentStream.setFont(fontBold, 24);
+			contentStream.newLineAtOffset(175, 750);
+			contentStream.showText("Dokument KPDS");
 			contentStream.endText();
 			
 			contentStream.moveTo(10, 740);
-			contentStream.lineTo(400, 740);
+			contentStream.lineTo(595, 740);
 			contentStream.stroke();
 			
 			contentStream.beginText();
-			contentStream.setFont(PDType1Font.TIMES_ITALIC, 11);
+			contentStream.setFont(fontItalic, 11);
+			contentStream.newLineAtOffset(450, 725);
+			contentStream.showText("Data utworzenia: " + kpds.getDateTimeGenerated().toLocalDate().toString());
+			contentStream.endText();
+			
+			contentStream.beginText();
+			contentStream.setFont(font, 11);
 			contentStream.newLineAtOffset(25, 675);
-			contentStream.showText("Data utworzenia: " + kpds.getDateTimeGenerated().toString());
+			contentStream.showText("Kierownik projektu: " + kpds.getProject().getDetailsSls().getImportedProjectManager());
 			contentStream.endText();
 			
 			contentStream.beginText();
-			contentStream.setFont(PDType1Font.TIMES_ROMAN, 11);
+			contentStream.setFont(font, 11);
 			contentStream.newLineAtOffset(25, 650);
-			contentStream.showText("Project ID: " + kpds.getProject().getId());
+			contentStream.showText("Nr projektu: " + kpds.getProject().getDetailsSls().getSlsCodeShort());
 			contentStream.endText();
 			
 			contentStream.beginText();
-			contentStream.setFont(PDType1Font.TIMES_ROMAN, 11);
+			contentStream.setFont(font, 11);
 			contentStream.newLineAtOffset(25, 625);
+			inwestor = inwestor.replace("\n", " ").replace("\r", " ");
 			contentStream.showText("Inwestor: " + inwestor);
 			contentStream.endText();
 			
 			contentStream.beginText();
-			contentStream.setFont(PDType1Font.TIMES_ROMAN, 11);
+			contentStream.setFont(font, 11);
 			contentStream.newLineAtOffset(25, 600);
-			contentStream.showText("Numer umowy: " + kpds.getProject().getAgreementNo());
+			if (kpds.getProject().getAgreementNo() == null ) {
+				contentStream.showText("Numer umowy: B/D");
+			} else {
+				contentStream.showText("Numer umowy: " + kpds.getProject().getAgreementNo());	
+			}
 			contentStream.endText();
 			
 			contentStream.beginText();
-			contentStream.setFont(PDType1Font.TIMES_BOLD, 12);
-			contentStream.newLineAtOffset(25, 555);
-			contentStream.showText("URZADZENIA SIEMENS");
+			contentStream.setFont(fontBold, 12);
+			contentStream.newLineAtOffset(25, 550);
+			contentStream.showText("WYKAZ URZĄDZEŃ:");
 			contentStream.endText();
 			
-			contentStream.moveTo(10, 550);
-			contentStream.lineTo(400, 550);
+			contentStream.moveTo(10, 540);
+			contentStream.lineTo(400, 540);
 			contentStream.stroke();
 			
-			int y = 540;
-			for (String device : devices) {
+			int y = 520;
+			for (Prototype prototypeDevice : kpds.getProject().getPrototypeList()) {
+
 				contentStream.beginText();
-				contentStream.setFont(PDType1Font.TIMES_ROMAN, 11);
-				contentStream.newLineAtOffset(25, y);
-				contentStream.showText(device);
+				contentStream.setFont(font, 11);
+				contentStream.newLineAtOffset(30, y);
+				contentStream.showText(prototypeDevice.getModelName());
 				contentStream.endText();
-				y = y - 15;
+				
+				contentStream.beginText();
+				contentStream.setFont(fontItalic, 11);
+				contentStream.newLineAtOffset(200, y);
+				contentStream.showText("gwarancja: ......... m-cy");
+				contentStream.endText();
+				
+				y = y - 20;
 			}
+			
+			y = y - 100;
+			
+			contentStream.beginText();
+			contentStream.setFont(fontBold, 12);
+			contentStream.newLineAtOffset(25, y);
+			contentStream.showText("SZKOLENIA:");
+			contentStream.endText();
+			
+			contentStream.moveTo(10, y-10);
+			contentStream.lineTo(400, y-10);
+			contentStream.stroke();
 			
 			contentStream.close();
 

@@ -14,8 +14,10 @@ TODO:
 - show attachments at project charter view
 
 - KPDS
-	- update kpds page
-	- update kpds pdf file
+	- updat kpds page
+		. add logo to KPDS from HDD or logo ipsum from class path
+		- create save/load logo functionality
+	. updated kpds pdf file
 	- send generated PDF of KPDS by email
 
 - new Device class idea
