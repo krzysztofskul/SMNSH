@@ -54,6 +54,7 @@ public class ImportProjectController {
 		System.out.println("App. INFO! SLS project coed to import: *"+slsCode+"*");
 		Project project = importProject.importProjectBySlsCode(slsCode, null); 
 		projectService.save(project);
+
 		return "redirect:/";
 	}
 	

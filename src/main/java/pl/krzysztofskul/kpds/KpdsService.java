@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,6 +33,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.prototype.Prototype;
+import pl.krzysztofskul.logger.loggerProject.LoggerProject;
+import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.ProjectService;
 
@@ -41,12 +46,14 @@ public class KpdsService {
 	
 	private ProjectService projectService;
 	private KpdsRepo kpdsRepo;
+	private LoggerProjectService loggerProjectService;
 	
 	@Autowired
-	public KpdsService(ProjectService projectService, KpdsRepo kpdsRepo) {
+	public KpdsService(ProjectService projectService, KpdsRepo kpdsRepo, LoggerProjectService loggerProjectService) {
 		super();
 		this.projectService = projectService;
 		this.kpdsRepo = kpdsRepo;
+		this.loggerProjectService = loggerProjectService;
 	}
 
 	public void generateKpds(Long projectId) {
@@ -202,6 +209,8 @@ public class KpdsService {
 
 			document.save(path_kpds_generated+"/kpds-projectId_"+kpds.getProject().getId()+".pdf");
 			document.close();
+			
+			loggerProjectService.log(project, LocalDateTime.now(ZoneId.of("Europe/Warsaw")), "KPDS created", "Utworzono KPDS", null);
 			
 			
 		} catch (FileNotFoundException e) {
