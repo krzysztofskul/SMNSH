@@ -37,18 +37,21 @@ public class LoginController {
     private EmailSMNSHService emailSMNSHService;
     private AvatarService avatarService;
     private LoggerUserService<Object> loggerUserService;
+    private EmailCredentials emailCredentials;
 
     /**
      * constr.
      */
     @Autowired
     public LoginController(
+    		EmailCredentials emailCredentials,
             UserService userService,
             EmailServiceImpl emailService,
             EmailSMNSHService emailSMNSHService,
             AvatarService avatarService,
             LoggerUserService<Object> loggerUserService
-    ) {
+    ) {    	
+    	this.emailCredentials = emailCredentials;
         this.userService = userService;
         this.emailService = emailService;
         this.emailSMNSHService = emailSMNSHService;
@@ -217,7 +220,7 @@ public class LoginController {
 //            user.setAvatar(avatar);
 //        }
         userService.save(user);
-        emailService.sendHtmlMessage(user.getEmail(), "REGISTRATION ACCEPTED", "LOREM IPSUM SMSNSH APP.");
+        emailService.sendHtmlMessage(user.getEmail(), "REGISTRATION ACCEPTED", "LOREM IPSUM SMNSH APP.");
         loggerUserService.log(user, LocalDateTime.now(), UserAction.REGISTER, null);
         return "redirect:/";
     }
@@ -231,9 +234,9 @@ public class LoginController {
     public String adminControlPanel(
             Model model
     ) {
-        if (EmailCredentials.getPassPlain() == null) {
+        if (emailCredentials.getPassPlain() == null) {
             EmailSMNSH emailSMNSH = new EmailSMNSH();
-            emailSMNSH.setEmail("smnshapp@gmail.com");
+            emailSMNSH.setEmail(emailCredentials.getLogin());
             model.addAttribute("listEmailSMNSH", emailSMNSHService.getAllEmailSMNSHEntity());
             model.addAttribute("emailSMNSH", emailSMNSH);
             return "admin/controlpanel";
@@ -246,7 +249,7 @@ public class LoginController {
             @ModelAttribute("emailSMNSH") EmailSMNSH emailSMNSH,
             HttpSession httpSession
     ) {
-        EmailCredentials.getEmailCredentialsInstance().setPassPlain(emailSMNSH.getPassword());
+        emailCredentials.setPassPlain(emailSMNSH.getPassword());
         String passBcrypted = BCrypt.hashpw(emailSMNSH.getPassword(), BCrypt.gensalt());
         emailSMNSH.setPassword(passBcrypted);
         emailSMNSHService.save(emailSMNSH);

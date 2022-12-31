@@ -1,5 +1,6 @@
 package pl.krzysztofskul;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -42,6 +43,9 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class AppConfig implements WebMvcConfigurer {
 
+	@Autowired
+	EmailCredentials credentials;
+	
     @Bean
     public ViewResolver internalResourceViewResolver() {
         InternalResourceViewResolver bean = new InternalResourceViewResolver();
@@ -147,20 +151,20 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        EmailCredentials credentials = EmailCredentials.getEmailCredentialsInstance(); //This file is not added to Git. It contains login and password to the email client.
+        //EmailCredentials credentials = EmailCredentials.getEmailCredentialsInstance(); //This file is not added to Git. It contains login and password to the email client.
 
-        mailSender.setHost("smtp.gmail.com");
-        mailSender.setPort(587);
+        mailSender.setHost("127.0.0.1");
+        mailSender.setPort(1025);
         mailSender.setUsername(credentials.getLogin());
-//        mailSender.setPassword(credentials.getPass());
-        mailSender.setPassword(EmailCredentials.getPassPlain());
+        mailSender.setPassword(credentials.getPass());
 
         Properties javaMailProperties = new Properties();
-        javaMailProperties.put("mail.smtp.from", "smnshapp@gmail.com");
+        javaMailProperties.put("mail.smtp.from", credentials.getLogin());
         javaMailProperties.put("mail.smtp.starttls.enable", "true");
         javaMailProperties.put("mail.smtp.auth", "true");
         javaMailProperties.put("mail.transport.protocol", "smtp");
         javaMailProperties.put("mail.debug", "true");//Prints out the log on the screen
+        javaMailProperties.put("mail.smtp.ssl.trust", "*");
 
         mailSender.setJavaMailProperties(javaMailProperties);
         return mailSender;

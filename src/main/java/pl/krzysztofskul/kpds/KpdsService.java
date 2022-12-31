@@ -33,6 +33,9 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.prototype.Prototype;
+import pl.krzysztofskul.email.EmailCredentials;
+import pl.krzysztofskul.email.EmailServiceImpl;
+import pl.krzysztofskul.importdata.ImportData;
 import pl.krzysztofskul.logger.loggerProject.LoggerProject;
 import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 import pl.krzysztofskul.project.Project;
@@ -41,19 +44,32 @@ import pl.krzysztofskul.project.ProjectService;
 @Service
 @Transactional
 public class KpdsService {
-
-	private static String path_kpds_generated = "D://SMNSH/karta_projektu//kpds_generated";
 	
+	private static String path_kpds_generated = "D://SMNSH/karta_projektu//kpds_generated";
+	//private String kpdsEmailSendTo = EmailCredentials.getKpdsEmailSendTo();
+	private String kpdsEmailSendTo;
+	
+	private EmailCredentials emailCredentials;
 	private ProjectService projectService;
 	private KpdsRepo kpdsRepo;
 	private LoggerProjectService loggerProjectService;
+	private EmailServiceImpl emailServiceImpl;
 	
 	@Autowired
-	public KpdsService(ProjectService projectService, KpdsRepo kpdsRepo, LoggerProjectService loggerProjectService) {
-		super();
+	public KpdsService(
+			EmailCredentials emailCredentials,
+			ProjectService projectService, 
+			KpdsRepo kpdsRepo, 
+			LoggerProjectService loggerProjectService,
+			EmailServiceImpl emailServiceImpl
+			) {
+		super();		
+		this.emailCredentials = emailCredentials;
 		this.projectService = projectService;
 		this.kpdsRepo = kpdsRepo;
 		this.loggerProjectService = loggerProjectService;
+		this.emailServiceImpl = emailServiceImpl;
+		this.kpdsEmailSendTo = emailCredentials.getKpdsEmailSendTo();
 	}
 
 	public void generateKpds(Long projectId) {
@@ -212,6 +228,7 @@ public class KpdsService {
 			
 			loggerProjectService.log(project, LocalDateTime.now(ZoneId.of("Europe/Warsaw")), "KPDS created", "Utworzono KPDS", null);
 			
+			emailServiceImpl.sendHtmlMessageWithAttachment(kpdsEmailSendTo, "KPDS", "Test kpds email.", "kpds-projectId_"+kpds.getProject().getId()+".pdf", new java.io.File(path_kpds_generated+"/kpds-projectId_"+kpds.getProject().getId()+".pdf"));
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
