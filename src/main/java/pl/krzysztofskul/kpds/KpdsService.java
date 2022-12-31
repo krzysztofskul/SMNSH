@@ -104,15 +104,9 @@ public class KpdsService {
 			PDImageXObject logo = PDImageXObject.createFromFile("D://SMNSH/karta_projektu//AppData//logo//logo_smnsh.png", document);
 			contentStream.drawImage(logo, 475, 750);
 			
-			contentStream.beginText();
-			contentStream.setFont(fontBold, 24);
-			contentStream.newLineAtOffset(125, 750);
-			contentStream.showText("Dokument KPDS");
-			contentStream.endText();
+			writeText(contentStream, fontBold, 24, 125, 750, "Karta przekazania do Serwisu");
 			
-			contentStream.moveTo(10, 740);
-			contentStream.lineTo(595, 740);
-			contentStream.stroke();
+			drawLine(contentStream, 10, 740, 595, 740);
 			
 			contentStream.beginText();
 			contentStream.setFont(fontItalic, 11);
@@ -238,6 +232,27 @@ public class KpdsService {
 			e.printStackTrace();
 		}
 
+	}
+
+	private void writeText(
+			PDPageContentStream contentStream, 
+			PDType0Font fontType,
+			int fontSize,
+			int xStart,
+			int yStart,
+			String text
+			) throws IOException {
+		contentStream.beginText();
+		contentStream.setFont(fontType, fontSize);
+		contentStream.newLineAtOffset(xStart, yStart);
+		contentStream.showText(text);
+		contentStream.endText();
+	}
+
+	private void drawLine(PDPageContentStream contentStream, int xStart, int yStart, int xEnd, int yEnd) throws IOException {
+		contentStream.moveTo(xStart, yStart);
+		contentStream.lineTo(xEnd, yEnd);
+		contentStream.stroke();
 	}
 
 	public Kpds save(Kpds kpds) {
