@@ -104,56 +104,82 @@ public class KpdsService {
 			PDImageXObject logo = PDImageXObject.createFromFile("D://SMNSH/karta_projektu//AppData//logo//logo_smnsh.png", document);
 			contentStream.drawImage(logo, 475, 750);
 			
-			writeText(contentStream, fontBold, 24, 125, 750, "Karta przekazania do Serwisu");
+			writeText(contentStream, fontBold, 24, 125, 750, "Karta przekazania do Serwisu");			
+
 			
-			drawLine(contentStream, 10, 740, 595, 740);
+			/*
+			 * section 1
+			 */
+			drawLine(contentStream, 10, 730, 595, 730);
+			writeText(contentStream, fontBold, 14, 150, 710, "1. INFORMACJE OGÓLNE");
+			drawLine(contentStream, 10, 700, 595, 700);
 			
-			contentStream.beginText();
-			contentStream.setFont(fontItalic, 11);
-			contentStream.newLineAtOffset(500, 725);
-			contentStream.showText(kpds.getDateTimeGenerated().toLocalDate().toString());
-			contentStream.endText();
+			/*
+			 * section 1a
+			 */		
+			this.writeText(contentStream, fontBold, 10, 20, 680, "Nazwa użytownika: ");
+			this.writeText(contentStream, font, 10, 170, 680, "b.d.");
 			
-			contentStream.beginText();
-			contentStream.setFont(font, 11);
-			contentStream.newLineAtOffset(25, 700);
-			contentStream.showText("Kierownik projektu: " + kpds.getProject().getDetailsSls().getImportedProjectManager());
-			contentStream.endText();
+			this.writeText(contentStream, fontBold, 10, 20, 660, "Ulica: ");
+			this.writeText(contentStream, font, 10, 170, 660, "b.d.");
 			
-			contentStream.beginText();
-			contentStream.setFont(font, 11);
-			contentStream.newLineAtOffset(25, 675);
-			contentStream.showText("Nr projektu: " + kpds.getProject().getDetailsSls().getSlsCodeShort());
-			contentStream.endText();
+			this.writeText(contentStream, fontBold, 10, 20, 640, "Adres cd. (kod, miejscowość): ");
+			this.writeText(contentStream, font, 10, 170, 640, "b.d.");
 			
-			contentStream.beginText();
-			contentStream.setFont(font, 11);
-			contentStream.newLineAtOffset(25, 625);
+			this.writeText(contentStream, fontBold, 10, 20, 620, "Płatnik (inwestor): ");
 			inwestor = inwestor.replace("\n", " ").replace("\r", " ");
-			contentStream.showText("Inwestor: " + inwestor);
-			contentStream.endText();
+			this.writeText(contentStream, font, 10, 170, 620, inwestor);
 			
-			contentStream.beginText();
-			contentStream.setFont(font, 11);
-			contentStream.newLineAtOffset(25, 600);
-			if (kpds.getProject().getAgreementNo() == null ) {
-				contentStream.showText("Numer umowy: B/D");
-			} else {
-				contentStream.showText("Numer umowy: " + kpds.getProject().getAgreementNo());	
-			}
-			contentStream.endText();
+			/*
+			 * section 1b
+			 */
+			this.writeText(contentStream, fontBold, 10, 325, 680, "Nr projektu: ");
+			this.writeText(contentStream, font, 10, 435, 680, kpds.getProject().getDetailsSls().getSlsCodeShort());
+
+			this.writeText(contentStream, fontBold, 10, 325, 660, "Kierownik projektu: ");
+			this.writeText(contentStream, font, 10, 435, 660, kpds.getProject().getDetailsSls().getImportedProjectManager());
+			
+			this.writeText(contentStream, fontBold, 10, 325, 640, "SAP: ");
+			this.writeText(contentStream, font, 10, 435, 640, kpds.getProject().getInvestor().getSapInfo().getSapNo());
+			
+			this.writeText(contentStream, fontBold, 10, 325, 620, "Gwarancja: ");
+			this.writeText(contentStream, font, 10, 435, 620, "b.d.");
+
+			this.writeText(contentStream, fontBold, 10, 325, 600, "Data odbioru: ");
+			this.writeText(contentStream, font, 10, 435, 600, "b.d.");
+			
+			this.writeText(contentStream, fontBold, 10, 325, 580, "Czas reakcji/naprawy: ");
+			this.writeText(contentStream, font, 10, 435, 580, "b.d.");
+			
+			
+//			contentStream.beginText();
+//			contentStream.setFont(font, 11);
+//			contentStream.newLineAtOffset(25, 600);
+//			if (kpds.getProject().getAgreementNo() == null ) {
+//				contentStream.showText("Numer umowy: B/D");
+//			} else {
+//				contentStream.showText("Numer umowy: " + kpds.getProject().getAgreementNo());	
+//			}
+//			contentStream.endText();
+
+			/*
+			 * section 2
+			 */
+			drawLine(contentStream, 10, 560, 595, 560);
+			writeText(contentStream, fontBold, 14, 150, 540, "2. NUMERY SERYJNE APARATÓW/URZĄDZEŃ");
+			drawLine(contentStream, 10, 530, 595, 530);
 			
 			contentStream.beginText();
 			contentStream.setFont(fontBold, 12);
-			contentStream.newLineAtOffset(25, 550);
+			contentStream.newLineAtOffset(25, 510);
 			contentStream.showText("WYKAZ URZĄDZEŃ:");
 			contentStream.endText();
 			
-			contentStream.moveTo(10, 540);
-			contentStream.lineTo(150, 540);
+			contentStream.moveTo(10, 500);
+			contentStream.lineTo(150, 500);
 			contentStream.stroke();
 			
-			int y = 520;
+			int y = 480;
 			for (Prototype prototypeDevice : kpds.getProject().getPrototypeList()) {
 
 				contentStream.beginText();
@@ -183,6 +209,30 @@ public class KpdsService {
 				y = y - 20;
 			}
 			
+			/*
+			 * section 3
+			 */
+			drawLine(contentStream, 10, 450, 595, 450);
+			writeText(contentStream, fontBold, 14, 150, 430, "3. SPRZĘT OBCY");
+			drawLine(contentStream, 10, 420, 595, 420);
+			
+			
+			/*
+			 * section 4
+			 */
+			drawLine(contentStream, 10, 350, 595, 350);
+			writeText(contentStream, fontBold, 14, 150, 330, "4. WYKONAWCY ADAPTACJI");
+			drawLine(contentStream, 10, 320, 595, 320);
+			
+
+			/*
+			 * section 5
+			 */
+			drawLine(contentStream, 10, 260, 595, 260);
+			writeText(contentStream, fontBold, 14, 150, 240, "5. INFORMACJE DODATKOWE");
+			drawLine(contentStream, 10, 230, 595, 230);
+			
+			y= 210;
 			y = y - 100;
 			
 			contentStream.beginText();
@@ -214,6 +264,17 @@ public class KpdsService {
 				
 				y = y- 15;
 			}
+			
+			/*
+			 * footer of the page
+			 */
+			drawLine(contentStream, 10, 50, 595, 50);
+			
+			contentStream.beginText();
+			contentStream.setFont(fontItalic, 11);
+			contentStream.newLineAtOffset(475, 35);
+			contentStream.showText(kpds.getDateTimeGenerated().toLocalDate().toString());
+			contentStream.endText();
 			
 			contentStream.close();
 

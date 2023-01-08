@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,11 +20,14 @@ import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserAction;
 import pl.krzysztofskul.user.UserBusinessPosition;
 import pl.krzysztofskul.user.UserService;
+import pl.krzysztofskul.user.avatar.Avatar;
 import pl.krzysztofskul.user.avatar.AvatarService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
+import java.net.http.HttpRequest;
 import java.time.LocalDateTime;
 
 @Controller
@@ -207,24 +211,51 @@ public class LoginController {
     }
     @PostMapping("/register")
     public String register(
-            @RequestParam(name = "avatarUpload") MultipartFile avatarUpload,
+            //@RequestParam(name = "avatarUpload") MultipartFile avatarUpload,
             @ModelAttribute("user") @Valid User user, BindingResult result
     ) {
-        if (result.hasErrors()) {
-            return "/users/new";
-        }
+//        if (result.hasErrors()) {
+//            return "/users/new";
+//        }
         // TEST
 //        if (avatarUpload != null) {
 //            avatarService.save(avatarUpload);
 //            Avatar avatar = avatarService.loadById(Long.parseLong("2"));
 //            user.setAvatar(avatar);
 //        }
-        userService.save(user);
+        User userSaved = userService.saveAndReturn(user);
         emailService.sendHtmlMessage(user.getEmail(), "REGISTRATION ACCEPTED", "LOREM IPSUM SMNSH APP.");
         loggerUserService.log(user, LocalDateTime.now(), UserAction.REGISTER, null);
-        return "redirect:/";
+        return "redirect:/add-avatar?userId="+userSaved.getId();
     }
 
+    @GetMapping("/add-avatar")
+    public String addAvatar(
+    		//@PathVariable Long userId,
+    		@RequestParam (name = "userId") Long userId,
+    		HttpServletRequest httpServletRequest
+    		) {
+    	httpServletRequest.setAttribute("userId", userId);
+    	return "/users/addAvatar";
+    }
+    
+    @PostMapping("/add-avatar")
+    public String addAvatar(
+    		//@PathVariable Long userId,
+    		@RequestParam (name = "userId") Long userId,
+    			@RequestParam(name = "avatarUpload") MultipartFile avatarUpload
+    		) {
+    	
+    	System.out.println("Avatar for userId "+ userId +" has been uploaded sucessfully.."+avatarUpload.getOriginalFilename());
+    	Avatar avatar = avatarService.save(avatarUpload);
+    	User user = userService.loadById(userId);
+    	user.setAvatar(avatar);
+    	userService.save(user);
+    	System.out.println("User's avatar has been uptaded!");
+    	
+    	return "redirect:/";
+    }
+    
     @GetMapping("/permissionDenied")
     public String permissionDenied() {
         return "permissionDenied";

@@ -118,7 +118,8 @@
 
                         </div>
                     </div>
-                    <!-- INPUT ROW -->
+                    
+                    <%--<!-- INPUT ROW -->
                     <div class="row mt-2">
                         <div class="col-6">
                             <p class="langPL">ZDJĘCIE PROFILOWE:</p>
@@ -127,7 +128,8 @@
                         <div class="col-6">
                             <input type="file" name="avatarUpload">
                         </div>
-                    </div>
+                    </div>--%>
+                    
                 </div>
                 <div class="card-footer">
                     <a href="/users/all" class="btn btn-warning float-left">
