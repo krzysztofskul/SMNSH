@@ -335,7 +335,13 @@
  					    <div class="card-body" style="height: 150px">
 		       				<c:forEach items="${allAttachemnts}" var="attachment">
 		       					<c:if test="${attachment.getProject().getId() eq project.getId()}">
-	       							<div class="btn btn-outline-info" style="width:100px;height: 100px">${attachment.fileName}</div>
+	       							<a href="/attachments/download/${attachment.getId()}">
+	       							<div class="btn btn-outline-info" style="width:100px;height: 100px">
+	       								
+	       									${attachment.fileName}
+	       								
+       								</div>
+       								</a>
 		       					</c:if>
 		       				</c:forEach>
 	       				</div>
