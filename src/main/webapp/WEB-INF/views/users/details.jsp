@@ -58,7 +58,7 @@
                         </div>
                         <div class="col">
                                 <%--<form:hidden path="avatar"/>--%>
-                            <img class="img-thumbnail" src="/resources/img/avatars/img_avatar_someone.png" width="75" height="75" alt="AVATAR ICO">
+                            <img class="img-thumbnail" src="/avatars/${sessionScope.userLoggedIn.getId()}" width="75" height="75" alt="AVATAR ICO">
                             <input type="file" name="file" id="file" disabled>
                         </div>
                     </div>

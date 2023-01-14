@@ -27,7 +27,7 @@
                         <p class="langEN">E-MAIL</p>
                     </div>
                     <div class="col-6">
-                        <input type="email" name="email">
+                        <input type="email" name="email" value="jan.testowy@test.test">
                     </div>
                 </div>
                 <div class="row">
@@ -36,7 +36,7 @@
                         <p class="langEN">PASSWORD</p>
                     </div>
                     <div class="col-6">
-                        <input type="password" name="password">
+                        <input type="password" name="password" value="test">
                     </div>
                 </div>
             </div>

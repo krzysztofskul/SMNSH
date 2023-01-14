@@ -40,7 +40,7 @@
                             <p class="langEN">FIRST NAME:</p>
                         </div>
                         <div class="col-6">
-                            <form:input cssClass="w-100" path="nameFirst"/>
+                            <form:input cssClass="w-100" path="nameFirst" value="Jan"/>
                             <div class="error">
                                 <form:errors path="nameFirst" cssClass="error"/>
                             </div>
@@ -53,7 +53,7 @@
                             <p class="langEN">LAST NAME:</p>
                         </div>
                         <div class="col-6">
-                            <form:input cssClass="w-100" path="nameLast"/>
+                            <form:input cssClass="w-100" path="nameLast" value="Testowy"/>
                             <div>
                                 <form:errors path="nameLast" cssClass="error"/>
                             </div>
@@ -82,7 +82,7 @@
                             <p class="langEN">E-MAIL:</p>
                         </div>
                         <div class="col-6">
-                            <form:input cssClass="w-100" path="email"/>
+                            <form:input cssClass="w-100" path="email" value="jan.testowy@test.test"/>
                             <div>
                                 <form:errors path="email" cssClass="error"/>
                             </div>
@@ -95,7 +95,7 @@
                             <p class="langEN">PASSWORD:</p>
                         </div>
                         <div class="col-6">
-                            <form:password cssClass="w-100" path="password"/>
+                            <form:password cssClass="w-100" path="password" value="test"/>
                             <%--<div>
                                 <form:errors cssClass="error" path="password"/>
                             </div>--%>
@@ -108,7 +108,7 @@
                             <p class="langEN">CONFIRM PASSWORD:</p>
                         </div>
                         <div class="col-6">
-                            <form:password cssClass="w-100" path="passwordConfirmation"/>
+                            <form:password cssClass="w-100" path="passwordConfirmation" value="test"/>
                             <div>
                                 <%--<form:errors path="passwordConfirmation" cssClass="error"/>--%>
                                 <c:if test="${errorPasswordConfirm eq true}">
