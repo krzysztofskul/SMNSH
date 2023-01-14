@@ -332,7 +332,14 @@
 	       			</div>	       			
 	       			<div class="card">
 	       				<div class="card-header">ZAŁĄCZNIKI</div>
-	       				<div class="card-body" style="height: 150px">lorem ipsum</div>
+ 					    <div class="card-body" style="height: 150px">
+		       				<c:forEach items="${allAttachemnts}" var="attachment">
+		       					<c:if test="${attachment.getProject().getId() eq project.getId()}">
+	       							<div class="btn btn-outline-info" style="width:100px;height: 100px">${attachment.fileName}</div>
+		       					</c:if>
+		       				</c:forEach>
+	       				</div>
+		       			
 	       			</div>	       			
 	       		</div>
 	       		<div class="col">

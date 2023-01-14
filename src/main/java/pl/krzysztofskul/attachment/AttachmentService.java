@@ -9,6 +9,7 @@ import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.ProjectService;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 @Transactional
@@ -51,5 +52,9 @@ public class AttachmentService {
 
     public Attachment loadById(Long attachmentId) {
         return attachmentRepo.findById(attachmentId).get();
+    }
+    
+    public List<Attachment> loadAll() {
+    	return attachmentRepo.findAll();
     }
 }

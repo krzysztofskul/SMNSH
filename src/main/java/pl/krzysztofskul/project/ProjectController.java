@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.krzysztofskul.attachment.Attachment;
+import pl.krzysztofskul.attachment.AttachmentRepo;
 import pl.krzysztofskul.attachment.AttachmentService;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
@@ -100,6 +101,11 @@ public class ProjectController {
     public List<Subcontractor> getAllSubcontractorList() {
         return subcontractorService.loadAll();
     }
+    
+    @ModelAttribute("allAttachemnts")
+    public List<Attachment> getAllAttachments() {
+    	return attachmentService.loadAll();
+    }
 
     @GetMapping("/new")
     public String projectNew(
@@ -138,9 +144,13 @@ public class ProjectController {
             loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.PROJECT_CREATE, projectNew);
             loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Project Updated.", "Projekt zaktualizowano.", httpSession.getAttribute("userLoggedIn"));
         }
-        if (fileUpload != null && !fileUpload.isEmpty()) {
-            attachmentService.saveToProject(fileUpload, projectNew);
-            loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Attachement added.", "Dodano załącznik", httpSession.getAttribute("userLoggedIn"));
+        if (fileUpload != null) {
+        	if (fileUpload.getOriginalFilename() != "") {
+            	System.out.println("Attachment to upload... "+fileUpload.getOriginalFilename());
+                attachmentService.saveToProject(fileUpload, projectNew);
+                loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Attachement added.", "Dodano załącznik", httpSession.getAttribute("userLoggedIn"));        		
+        	}
+
         }
         if (backToPage != null) {
             return "redirect:"+backToPage+"&view=list";
