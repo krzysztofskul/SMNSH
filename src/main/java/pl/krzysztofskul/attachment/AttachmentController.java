@@ -6,7 +6,10 @@ import java.io.IOException;
 import java.net.URL;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,11 +28,26 @@ public class AttachmentController {
 		this.attachmentService = attachmentService;
 	}
 
-	@GetMapping(value = "/attachments/download/{attachmentId}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-	public @ResponseBody byte[] getDownloadAttachment(
+	/*
+	 * Obsolete; no file name set when save on hdd.
+	 */
+//	@GetMapping(value = "/attachments/download/{attachmentId}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+//	public @ResponseBody byte[] getDownloadAttachment(
+//				@PathVariable Long attachmentId
+//			) {
+//		return attachmentService.loadById(attachmentId).getData();
+//		
+//	}
+	
+	@GetMapping(value = "/attachments/download/{attachmentId}")
+	public ResponseEntity<ByteArrayResource> getDownloadAttachment(
 				@PathVariable Long attachmentId
 			) {
-		return attachmentService.loadById(attachmentId).getData();
+		Attachment attachment = attachmentService.loadById(attachmentId);
+		return ResponseEntity.ok()
+				.contentType(MediaType.parseMediaType(attachment.getFileType()))
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename="+attachment.getFileName())
+				.body(new ByteArrayResource(attachment.getData()));
 		
 	}
 	
