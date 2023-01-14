@@ -48,7 +48,7 @@
 			            <div class="col position-absolute">
 			                <c:choose>
 			                    <c:when test="${param.userId ne null}">
-			                        <c:set var="link" value="/projects/new?userId=${param.userId}&backToPage=/projects/all?userId=${param.userId}"/>
+			                        <c:set var="link" value="/projects/new?userId=${param.userId}&backToPage=/projects/all?userId=${param.userId}&view=list"/>
 			                    </c:when>
 			                    <c:otherwise>
 			                        <c:set var="link" value="/projects/new"/>

@@ -45,7 +45,7 @@
                         <div class="col-8">
                             <c:choose>
                                 <c:when test="${sessionScope.demoSession == null}">
-                                    <form:input path="projectName" cssClass="w-100"/>
+                                    <form:input path="projectName" cssClass="w-100" value="Projekt testowy"/>
                                 </c:when>
                                 <c:otherwise>
                                     <form:input  path="projectName" value="DEMO PROJECT NAME" disabled="true" cssClass="w-100"/>
@@ -77,7 +77,7 @@
                             <p class="langEN">INSTALLATION PLACE:</p>
                         </div>
                         <div class="col-8">
-                            <form:input path="recipient" cssClass="w-100"/>
+                            <form:input path="recipient" cssClass="w-100" value="ul. Testowa"/>
                             <form:errors path="recipient" cssClass="error"/>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                             <p class="langEN">AGREEMENT NO:</p>
                         </div>
                         <div class="col-8">
-                            <form:input path="agreementNo" cssClass="w-100"/>
+                            <form:input path="agreementNo" cssClass="w-100" value="TEST-2023-00-00"/>
                             <form:errors path="agreementNo" cssClass="error"/>
                         </div>
                     </div>
@@ -226,7 +226,7 @@
                             <p class="langEN">3rd PARTY DEVICES:</p>
                         </div>
                         <div class="col-8">
-                            <form:input path="othersDeviceList" cssClass="w-100"/>
+                            <form:input path="othersDeviceList" cssClass="w-100" value="Aparat anestezjologiczny; Wstrzykiwacz;"/>
                         </div>
                     </div>
 
@@ -248,7 +248,7 @@
                             <p class="langEN">REMARKS:</p>
                         </div>
                         <div class="col-8">
-                            <form:textarea path="remarks" cssClass="myTextarea"/>
+                            <form:textarea path="remarks" cssClass="myTextarea" value="Projekt trudny; po przetargu publicznym;"/>
                         </div>
                     </div>
 

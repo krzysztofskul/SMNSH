@@ -114,6 +114,8 @@ public class ProjectController {
             @RequestParam(name = "fileUpload", required = false) MultipartFile fileUpload,
             @ModelAttribute("projectNew") @Valid Project projectNew, BindingResult result,
             @RequestParam(name = "backToPage", required = false) String backToPage,
+            @RequestParam(name = "userId", required = false) String userId,
+            @RequestParam(name = "view", required = false) String view,
             HttpSession httpSession
     ) throws IOException {
 
@@ -141,9 +143,9 @@ public class ProjectController {
             loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Attachement added.", "Dodano załącznik", httpSession.getAttribute("userLoggedIn"));
         }
         if (backToPage != null) {
-            return "redirect:"+backToPage;
+            return "redirect:"+backToPage+"&view=list";
         }
-        return "redirect:/projects/all";
+        return "redirect:/projects/all?view=list";
     }
 
     @GetMapping("/all")

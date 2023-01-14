@@ -75,6 +75,8 @@ public class User {
 
     @OneToOne
     private Avatar avatar;
+    
+    private boolean avatarInfo = false;
 
     @OneToMany(mappedBy = "user")
     private List<LoggerUser> loggerUserList = new ArrayList<>();
@@ -237,7 +239,20 @@ public class User {
         this.avatar = avatar;
     }
 
-    public List<LoggerUser> getLoggerUserList() {
+
+	public boolean isAvatarInfo() {
+		return avatarInfo;
+	}
+
+
+
+	public void setAvatarInfo(boolean avatarInfo) {
+		this.avatarInfo = avatarInfo;
+	}
+
+
+
+	public List<LoggerUser> getLoggerUserList() {
         return loggerUserList;
     }
 

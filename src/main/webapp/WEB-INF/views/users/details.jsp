@@ -58,7 +58,12 @@
                         </div>
                         <div class="col">
                                 <%--<form:hidden path="avatar"/>--%>
-                            <img class="img-thumbnail" src="/avatars/${sessionScope.userLoggedIn.getId()}" width="75" height="75" alt="AVATAR ICO">
+                            <c:if test="${sessionScope.userLoggedIn.getAvatar() ne null}">
+                            	<img class="img-thumbnail" src="/avatars/${sessionScope.userLoggedIn.getAvatar().getId()}" width="75" height="75" alt="AVATAR ICO">
+                            </c:if>
+                            <c:if test="${sessionScope.userLoggedIn.getAvatar() eq null}">
+                            	<img class="img-thumbnail" src="/resources/img/avatars/img_avatar_someone.png" width="75" height="75" alt="AVATAR ICO">
+                            </c:if>
                             <input type="file" name="file" id="file" disabled>
                         </div>
                     </div>
