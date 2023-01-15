@@ -117,7 +117,7 @@ public class ProjectController {
 
     @PostMapping("/new")
     public String projectNew(
-            @RequestParam(name = "fileUpload", required = false) MultipartFile fileUpload,
+            @RequestParam(name = "fileUpload", required = false) List<MultipartFile> filesUpload,
             @ModelAttribute("projectNew") @Valid Project projectNew, BindingResult result,
             @RequestParam(name = "backToPage", required = false) String backToPage,
             @RequestParam(name = "userId", required = false) String userId,
@@ -144,11 +144,14 @@ public class ProjectController {
             loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.PROJECT_CREATE, projectNew);
             loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Project Updated.", "Projekt zaktualizowano.", httpSession.getAttribute("userLoggedIn"));
         }
-        if (fileUpload != null) {
-        	if (fileUpload.getOriginalFilename() != "") {
-            	System.out.println("Attachment to upload... "+fileUpload.getOriginalFilename());
-                attachmentService.saveToProject(fileUpload, projectNew);
-                loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Attachement added.", "Dodano załącznik", httpSession.getAttribute("userLoggedIn"));        		
+        if (filesUpload != null & filesUpload.size() > 0) {
+        	for (MultipartFile fileUpload: filesUpload) {
+				
+	        	if (fileUpload.getOriginalFilename() != "") {
+	            	System.out.println("Attachment to upload... "+fileUpload.getOriginalFilename());
+	                attachmentService.saveToProject(fileUpload, projectNew);
+	                loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Attachement added.", "Dodano załącznik", httpSession.getAttribute("userLoggedIn"));        		
+	        	}
         	}
 
         }

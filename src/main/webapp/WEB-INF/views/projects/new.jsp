@@ -258,7 +258,7 @@
                             <p class="langEN">ATTACHMENT:</p>
                         </div>
                         <div class="col-8">
-                            <input type="file" name="fileUpload"/>
+                            <input type="file" name="fileUpload" multiple="multiple"/>
 <%--                            <form:input path="attachment.id" type="file"/>--%>
 <%--                            <form:errors path="attachment" cssClass="error"/>--%>
                         </div>
