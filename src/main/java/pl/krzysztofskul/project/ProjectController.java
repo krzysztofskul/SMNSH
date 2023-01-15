@@ -109,9 +109,15 @@ public class ProjectController {
 
     @GetMapping("/new")
     public String projectNew(
+    		@RequestParam(name = "userId", required = false) Long userId,
             Model model
     ) {
-        model.addAttribute("projectNew", new Project());
+    	Project project = new Project();
+    	if (userId != null) {
+    		project.setProjectManager(userService.loadById(userId));
+    	}
+    	model.addAttribute("projectNew", project);
+
         return "projects/new";
     }
 
