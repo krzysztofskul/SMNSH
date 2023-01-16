@@ -26,6 +26,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import pl.krzysztofskul.device.DeviceConverter;
+import pl.krzysztofskul.device.prototype.PrototypeConverter;
 import pl.krzysztofskul.email.EmailCredentials;
 import pl.krzysztofskul.localDateTime.LocalDateTimeConverter;
 import pl.krzysztofskul.localDateTime.LocalDateTimeConverterToString;
@@ -139,6 +140,10 @@ public class AppConfig implements WebMvcConfigurer {
     public ConfigurationConverter getConfigurationConverter() {
     	return new ConfigurationConverter();
     }
+    @Bean
+    public PrototypeConverter getPrototypeConverter() {
+    	return new PrototypeConverter();
+    }
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
@@ -146,6 +151,7 @@ public class AppConfig implements WebMvcConfigurer {
         registry.addConverter(getLocalDateTimeConverter());
         registry.addConverter(getLocalDateTimeConverterToString());
         registry.addConverter(getConfigurationConverter());
+        registry.addConverter(getPrototypeConverter());
     }
 
     @Bean

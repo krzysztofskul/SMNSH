@@ -211,9 +211,11 @@
                             <p class="langEN">DEVICE LIST:</p>
                         </div>
                         <div class="col-8">
-                            <form:select path="deviceList" cssClass="w-100" multiple="true">
-                                <c:forEach items="${allDeviceList}" var="device">
-                                    <form:option label="${device.deviceCategory.name} ${device.model}" value="${device.id}"/>
+                            <form:select path="prototypeList" cssClass="w-100" multiple="true">
+                                <%-- <c:forEach items="${allDeviceList}" var="device"> --%>
+                                <c:forEach items="${allProtopyteDeviceList}" var="device">
+                                    <%-- <form:option label="${device.deviceCategory.name} ${device.model}" value="${device.id}"/> --%>
+                                    <form:option label="${device.modelName}" value="${device.id}"/>
                                 </c:forEach>
                             </form:select>
                             <form:errors path="deviceList" cssClass="error"/>

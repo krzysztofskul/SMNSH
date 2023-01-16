@@ -13,6 +13,8 @@ import pl.krzysztofskul.attachment.AttachmentService;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.device.part.PartService;
+import pl.krzysztofskul.device.prototype.Prototype;
+import pl.krzysztofskul.device.prototype.PrototypeService;
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.investor.InvestorService;
 import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
@@ -48,36 +50,39 @@ public class ProjectController {
     private LoggerProjectService<Object> loggerProjectService;
     private CommentService commentService;
     private PartService partService;
+    private PrototypeService prototypeService;
 
     @Autowired
-    public ProjectController(
-            ProjectService projectService,
-            InvestorService investorService,
-            SubcontractorService subcontractorService,
-            DeviceService deviceService,
-            UserService userService,
-            AttachmentService attachmentService,
-            LoggerUserService<Object> loggerUserService,
-            LoggerProjectService<Object> loggerProjectService,
-            CommentService commentService, PartService partService) {
-        this.projectService = projectService;
-        this.investorService = investorService;
-        this.subcontractorService = subcontractorService;
-        this.deviceService = deviceService;
-        this.userService = userService;
-        this.attachmentService = attachmentService;
-        this.loggerUserService = loggerUserService;
-        this.loggerProjectService = loggerProjectService;
-        this.commentService = commentService;
-        this.partService = partService;
-    }
+    public ProjectController(ProjectService projectService, InvestorService investorService,
+			SubcontractorService subcontractorService, DeviceService deviceService, UserService userService,
+			AttachmentService attachmentService, LoggerUserService<Object> loggerUserService,
+			LoggerProjectService<Object> loggerProjectService, CommentService commentService, PartService partService,
+			PrototypeService prototypeService) {
+		super();
+		this.projectService = projectService;
+		this.investorService = investorService;
+		this.subcontractorService = subcontractorService;
+		this.deviceService = deviceService;
+		this.userService = userService;
+		this.attachmentService = attachmentService;
+		this.loggerUserService = loggerUserService;
+		this.loggerProjectService = loggerProjectService;
+		this.commentService = commentService;
+		this.partService = partService;
+		this.prototypeService = prototypeService;
+	}
 
     @ModelAttribute("allDeviceList")
     public List<Device> getAllDeviceList() {
         return deviceService.loadAll();
     }
-
-    @ModelAttribute("allProjectManagerList")
+    
+    @ModelAttribute("allProtopyteDeviceList")
+    public List<Prototype> getAllProtopyteDeviceList() {
+    	return prototypeService.loadAll();
+    }
+    
+	@ModelAttribute("allProjectManagerList")
     public List<User> getAllUserList() {
         return userService.loadAllProjectManagers();
     }
@@ -138,11 +143,16 @@ public class ProjectController {
         }
 
         if (projectNew.getId() == null) {
-            List<Device> deviceList = new ArrayList<>();
-            for (Device device : projectNew.getDeviceList()) {
-                deviceList.add(deviceService.loadByIdWithConfigurationList(device.getId()));
-            }
-            projectNew.setDeviceList(deviceList);
+//            List<Device> deviceList = new ArrayList<>();
+//            for (Device device : projectNew.getDeviceList()) {
+//                deviceList.add(deviceService.loadByIdWithConfigurationList(device.getId()));
+//            }
+//            projectNew.setDeviceList(deviceList);
+          List<Prototype> deviceList = new ArrayList<>();
+          for (Prototype device : projectNew.getPrototypeList()) {
+              deviceList.add(prototypeService.loadById(device.getId()));
+          }
+          projectNew.setPrototypeList(deviceList);
             projectService.save(projectNew);
             loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.PROJECT_CREATE, projectNew);
         } else {
