@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -38,8 +39,10 @@ public class ImportData {
 	 * Map<String, String[]> (sheetName, {rowNo, colNo})
 	 */
 	private Map<String, String[]> cellsToImportFromCalculationXlsFile = new HashMap<String, String[]>();
+	private Map<String, String[]> cellsToImportFromDeviceTestPortfolio= new HashMap<String, String[]>();
 	
 	private String pathProjectsToImport = "D:\\SMNSH\\karta_projektu\\Projekty";
+	private String pathInitDataDevices = "D:\\SMNSH\\karta_projektu\\Init\\device_test_portfolio.xlsm";
 	private Map<LocalDateTime, String> logs = new HashMap<LocalDateTime, String>();
 	
 	/*
@@ -48,19 +51,10 @@ public class ImportData {
 	
 	private ImportData() {
 		super();
-		cellsToImportFromCalculationXlsFile.put("slsCodeFull", new String[] {"Kontrolka Umowy", "2", "2"});
-//		cellsToImportFromCalculationXlsFile.put("slsCodeFull", new String[] {"HCALC-1", "4", "11"});
-		cellsToImportFromCalculationXlsFile.put("slsModalityCode", new String[] {"HCALC-1", "11", "2"});
-		cellsToImportFromCalculationXlsFile.put("slsDevicePrototypeModelName", new String[] {"HCALC-1", "11", "1"});
-		cellsToImportFromCalculationXlsFile.put("slsDevicePrototypeCpqNo", new String[] {"SCON-1-1", "4", "2"});
-		cellsToImportFromCalculationXlsFile.put("slsProjectManager", new String[] {"SRF", "3", "11"});
-		cellsToImportFromCalculationXlsFile.put("slsDeadline", new String[] {"Kontrolka Umowy", "8", "5"});
-		cellsToImportFromCalculationXlsFile.put("slsInvestorSapNo", new String[] {"HCALC-1", "4", "9"});
-		cellsToImportFromCalculationXlsFile.put("slsCustomer", new String[] {"HCALC-1", "2", "2"});
-		cellsToImportFromCalculationXlsFile.put("slsCosts", new String[] {"SRF", "6", "3"});
-		cellsToImportFromCalculationXlsFile.put("slsTrainingsOther", new String[] {"Szkolenia", "9", "2"});
-		cellsToImportFromCalculationXlsFile.put("slsAdditionalsSIWZ", new String[] {"rekomendacja PUR", "2", "1"});
-		cellsToImportFromCalculationXlsFile.put("slsStakeholderContactPerson", new String[] {"Kontrolka Umowy", "16", "3"});
+		
+		setCellsToImportFromCalculationXlsFile();		
+		setCellsToImportFromDeviceTestPortfolio();		
+		
 	}
 
 	public static ImportData getImportDataSingleton() {
@@ -320,14 +314,14 @@ public class ImportData {
 		return cellValue;
 	}
 	
-	private String getCellsValuesInRow(String calculationFilePath, String[] sheetRowCol) {
+	private String getCellsValuesInRow(String filePath, String[] sheetRowCol) {
 		String cellsVallues = null;
 		
-		while (null != getCellValue(calculationFilePath, sheetRowCol) && getCellValue(calculationFilePath, sheetRowCol) != "") {
+		while (null != getCellValue(filePath, sheetRowCol) && getCellValue(filePath, sheetRowCol) != "") {
 			if (null == cellsVallues) {
-				cellsVallues = getCellValue(calculationFilePath, sheetRowCol)+";";
+				cellsVallues = getCellValue(filePath, sheetRowCol)+";";
 			} else {
-				cellsVallues = cellsVallues + getCellValue(calculationFilePath, sheetRowCol)+";";
+				cellsVallues = cellsVallues + getCellValue(filePath, sheetRowCol)+";";
 			}
 			
 			
@@ -337,13 +331,13 @@ public class ImportData {
 		return cellsVallues;
 	}
 	
-	private String getCellValue(String calculationFilePath, String[] sheetRowCol) {
+	private String getCellValue(String filePath, String[] sheetRowCol) {
 		String cellValue = null;
 
 		try {
 			FileInputStream fis = fileInputStream;
 			if (null == fis) {
-				fis = new FileInputStream(calculationFilePath);				
+				fis = new FileInputStream(filePath);				
 			}
 			Workbook wb = workbook;
 			if (null == wb) {
@@ -364,8 +358,11 @@ public class ImportData {
 				cellValue = LocalDate.of(2008, 1, 1).plusDays(x2-39448).toString();
 				return cellValue;
 			}
-		} catch (NullPointerException | IOException e) {
-			System.err.println("App. ERROR! Not found file/sheet/row/col/cell for specified calculation xls file! "+ calculationFilePath);
+		} catch (IOException e) {
+			System.err.println("App. ERROR! Not found file for specified xls file! "+ filePath);
+			return null;
+		} catch (NullPointerException e) {
+			System.err.println("App. ERROR! Not found sheet/row/col/cell for specified xls file! "+ filePath);
 			return null;
 		}
 		
@@ -532,6 +529,40 @@ public class ImportData {
 		return slsInvestorSapNo;
 	}
 	
+	public List<String> importInitDevicesNames() {
+		String initDevicesNames = null;
+		initDevicesNames = this.getCellsValuesInRow(pathInitDataDevices, this.cellsToImportFromDeviceTestPortfolio.get("deviceListStart"));
+		
+		List<String> listOfInitDeviceNames = Arrays.asList(initDevicesNames.split(";"));
+		
+		return listOfInitDeviceNames;
+	}
 	
+	/**
+	 * Initially set cells to import data from xls calculation file
+	 */
+	private void setCellsToImportFromCalculationXlsFile() {
+		cellsToImportFromCalculationXlsFile.put("slsCodeFull", new String[] {"Kontrolka Umowy", "2", "2"});
+//		cellsToImportFromCalculationXlsFile.put("slsCodeFull", new String[] {"HCALC-1", "4", "11"});
+		cellsToImportFromCalculationXlsFile.put("slsModalityCode", new String[] {"HCALC-1", "11", "2"});
+		cellsToImportFromCalculationXlsFile.put("slsDevicePrototypeModelName", new String[] {"HCALC-1", "11", "1"});
+		cellsToImportFromCalculationXlsFile.put("slsDevicePrototypeCpqNo", new String[] {"SCON-1-1", "4", "2"});
+		cellsToImportFromCalculationXlsFile.put("slsProjectManager", new String[] {"SRF", "3", "11"});
+		cellsToImportFromCalculationXlsFile.put("slsDeadline", new String[] {"Kontrolka Umowy", "8", "5"});
+		cellsToImportFromCalculationXlsFile.put("slsInvestorSapNo", new String[] {"HCALC-1", "4", "9"});
+		cellsToImportFromCalculationXlsFile.put("slsCustomer", new String[] {"HCALC-1", "2", "2"});
+		cellsToImportFromCalculationXlsFile.put("slsCosts", new String[] {"SRF", "6", "3"});
+		cellsToImportFromCalculationXlsFile.put("slsTrainingsOther", new String[] {"Szkolenia", "9", "2"});
+		cellsToImportFromCalculationXlsFile.put("slsAdditionalsSIWZ", new String[] {"rekomendacja PUR", "2", "1"});
+		cellsToImportFromCalculationXlsFile.put("slsStakeholderContactPerson", new String[] {"Kontrolka Umowy", "16", "3"});
+	}
+	
+	/**
+	 * Initially set cells to import data from the xls file containing test device portfolio
+	 */
+	private void setCellsToImportFromDeviceTestPortfolio() {
+		cellsToImportFromDeviceTestPortfolio.put("deviceListStart", new String[] {"Sheet-01", "0", "0"});
+		
+	}
 	
 }

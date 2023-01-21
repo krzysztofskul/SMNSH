@@ -621,4 +621,14 @@ public class HomePageService {
 		
 	}
 
+	public void importInitDevicesPortfolio() {
+		List<String> initDeviceNames = ImportData.getImportDataSingleton().importInitDevicesNames();
+		
+		for (String deviceName : initDeviceNames) {
+			Prototype prototype = new Prototype("SMNSH", deviceName);
+			prototypeService.save(prototype);
+		}
+		
+	}
+
 }

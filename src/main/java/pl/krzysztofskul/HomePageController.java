@@ -89,7 +89,13 @@ public class HomePageController {
 			companyTypeService.createCompanyTypesAndSaveToDB();
 			//homePageService.createDeviceCategories();
 			this.modalityGenerator.initModalityDb();
-			homePageService.initTestMilestonesToDB();;
+			homePageService.initTestMilestonesToDB();
+			
+			try {
+				homePageService.importInitDevicesPortfolio();
+			} catch (Exception e) {
+				System.err.println("ERORR! Can't init devices portfolio!");
+			}
 			
 			initEssentialDBCounter++;
 		}
@@ -99,6 +105,12 @@ public class HomePageController {
 	@GetMapping("/importSlsProjects")
 	public String importSlsProjects() {
 		homePageService.importSlsProjects();
+		return "redirect:/home";
+	}
+	
+	@GetMapping("/importInitDevicesPortfolio")
+	public String importInitDevicesPortfolio() {
+		homePageService.importInitDevicesPortfolio();
 		return "redirect:/home";
 	}
 	

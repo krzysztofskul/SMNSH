@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -170,11 +171,16 @@ public class ImportProject {
 
 			// import and set deadline
 			String dateImported = importData.importSlsDeadline(calculationFilePath);
-			project.setDeadline(
-				LocalDateTime.of(
-						LocalDate.parse(dateImported), 
-						LocalTime.of(0, 0))
-				);
+			
+			try {
+				project.setDeadline(
+					LocalDateTime.of(
+							LocalDate.parse(dateImported), 
+							LocalTime.of(0, 0))
+					);
+			} catch (DateTimeParseException e) {
+				System.err.println("Error while trying to convert date from xls file! "+calculationFilePath);
+			}
 				
 			//import and set project manager
 			String pmImported = importData.importSlsProjectManager(calculationFilePath);
