@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.part.Part;
 import pl.krzysztofskul.device.part.PartService;
+import pl.krzysztofskul.device.prototype.Prototype;
 import pl.krzysztofskul.project.Project;
 
 import java.util.ArrayList;
@@ -96,6 +97,18 @@ public class ConfigurationService {
         project.addConfiguration(configuration);
 
         return configuration;
+    }
+    
+    public Configuration getStandardConfiguration(Project project, Prototype prototype) {
+
+        //Configuration configuration = new Configuration();
+        //prototype.addConfiguration(configuration);
+
+        return this.getTestConfiguration(project);
+
+        //project.addConfiguration(configuration);
+
+        //return configuration;
     }
 
 }

@@ -2,6 +2,7 @@ package pl.krzysztofskul.project.configuration;
 
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.part.Part;
+import pl.krzysztofskul.device.prototype.Prototype;
 import pl.krzysztofskul.project.Project;
 
 import javax.persistence.*;
@@ -24,6 +25,9 @@ public class Configuration {
 
     @ManyToOne
     private Device device;
+    
+    @ManyToOne
+    private Prototype prototype;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
@@ -43,6 +47,11 @@ public class Configuration {
     public Configuration(Project project, Device device) {
         this.project = project;
         this.device = device;
+    }
+    
+    public Configuration(Project project, Prototype prototype) {
+        this.project = project;
+        this.prototype = prototype;
     }
 
     public Configuration(Project project) {
@@ -84,8 +93,16 @@ public class Configuration {
     public void setPartList(List<Part> partList) {
         this.partList = partList;
     }
+    
+    public Prototype getPrototype() {
+		return prototype;
+	}
 
-    /**
+	public void setPrototype(Prototype prototype) {
+		this.prototype = prototype;
+	}
+
+	/**
      * methods
      * */
 

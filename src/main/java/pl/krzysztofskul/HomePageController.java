@@ -96,7 +96,7 @@ public class HomePageController {
 			} catch (Exception e) {
 				System.err.println("ERORR! Can't init devices portfolio!");
 			}
-			
+			homePageService.createParts();
 			initEssentialDBCounter++;
 		}
 		return "redirect:/home";

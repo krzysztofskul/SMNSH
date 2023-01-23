@@ -150,7 +150,7 @@ public class ProjectController {
 //            projectNew.setDeviceList(deviceList);
           List<Prototype> deviceList = new ArrayList<>();
           for (Prototype device : projectNew.getPrototypeList()) {
-              deviceList.add(prototypeService.loadById(device.getId()));
+              deviceList.add(prototypeService.loadByIdWithConfigurationList(device.getId()));
           }
           projectNew.setPrototypeList(deviceList);
             projectService.save(projectNew);

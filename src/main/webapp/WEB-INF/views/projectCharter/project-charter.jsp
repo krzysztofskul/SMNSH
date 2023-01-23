@@ -61,6 +61,15 @@
 	        				<div class="card-body">
 	        					<div class="row middle-row">
 	        						<div class="col-4 col-title">
+	        							<p class="langPL">NUMER PROJEKTU:</p>
+	        							<p class="langEN">PROJECT NO.:</p>
+	        						</div>
+	        						<div class="col-8 col-value">
+	        							<p>${projectCharter.project.detailsSls.slsCodeShort}</p>
+	        						</div>
+	        					</div>
+	        					<div class="row middle-row">
+	        						<div class="col-4 col-title">
 	        							<p class="langPL">NAZWA PROJEKTU:</p>
 	        							<p class="langEN">PROJECT NAME:</p>
 	        						</div>

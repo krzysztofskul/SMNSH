@@ -30,13 +30,13 @@
 
 	<div class="content container-fluid">
 	
-		<c:forEach items="${project.deviceList}" var="device">
+		<c:forEach items="${project.prototypeList}" var="device">
 		<c:set var="matched" value="false"/>
 		<div class="card m-5">
 			<div class="card-header">
 				<div class="row">
 					<div class="col-8">
-						<span class="font-weight-bold">${device.deviceCategory.code}</span> ${device.deviceCategory.name} <span class="font-weight-bold">${device.model}</span>
+						<span class="font-weight-bold">${device.modality}</span> <span class="font-weight-bold">${device.modelName}</span>
 					</div>
 					<div class="col-4 text-right">
 						<a href="/concepts/new?userId=${sessionScope.userLoggedIn.id}&projectId=${project.id}&deviceId=${device.id}&backToPage=/projects/${project.id}/technical-documentation">
@@ -63,7 +63,7 @@
 					<div class="col">
 						<c:forEach items="${conceptList}" var="concept" varStatus="loopStatus">
 							<c:choose>
-							<c:when test="${concept.device.id eq device.id }">
+							<c:when test="${concept.prototype.id eq device.id }">
 								<c:set var="matched" value="true"/>
 								<div class="card">
 									<div class="card-header">
@@ -151,8 +151,8 @@
 												<c:choose>
 													<c:when test="${concept.status.getNamePL().contains('ZAKOŃCZONY')}">
 														<button class="btn btn-outline-success">
-															<p class="langPL">POBIERZ</p>
-															<p class="langEN">DOWNLOAD</p>
+															<p class="langPL">POPROŚ O</p>
+															<p class="langEN">ASK FOR</p>
 														</button>
 													</c:when>
 													<c:otherwise>
@@ -164,10 +164,6 @@
 												</c:choose>
 											</div>
 										</div>
-										
-										
-										
-										
 										
 									</div>
 									<div class="card-footer">
@@ -190,14 +186,21 @@
 									</div>
 								</div>						
 							</c:when>
+							<%-- 
 							<c:otherwise>
-								<c:if test="${matched eq false && loopStatus.isLast() eq true}">
+								<c:if test="${matched eq false && loopStatus.isLast() eq true || matched eq false}">
 									<p class="langPL">BRAK PROJEKTÓW KONCEPCJI</p>
 									<p class="langEN">NO CONCEPTUAL DESIGNS</p>
 								</c:if>
 							</c:otherwise>
+							--%>
+
 							</c:choose>
 						</c:forEach>
+						<div class="m-4">
+							<p class="langPL">BRAK WIĘCEJ PROJEKTÓW KONCEPCJI</p>
+							<p class="langEN">NO MORE CONCEPTUAL DESIGNS</p>
+						</div>
 					</div>
 	
 		

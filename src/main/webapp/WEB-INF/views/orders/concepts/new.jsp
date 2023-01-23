@@ -72,10 +72,10 @@
                             <jsp:useBean id="devicesAll" scope="request" type="java.util.List"/>
                         </div>
                         <c:choose>
-                        	<c:when test="${conceptNew.device ne null}">
-                        		<form:hidden path="device.id"/>
+                        	<c:when test="${conceptNew.prototype ne null}">
+                        		<form:hidden path="prototype.id"/>
                         		<div class="col">
-                        			<form:select path="device.id" cssClass="w-100" items="${devicesAll}" itemValue="id" itemLabel="model" disabled="true"/>
+                        			<form:select path="prototype.id" cssClass="w-100" items="${prototypesAll}" itemValue="id" itemLabel="modelName" disabled="true"/>
                         		</div>
                         	</c:when>
                         	<c:otherwise>

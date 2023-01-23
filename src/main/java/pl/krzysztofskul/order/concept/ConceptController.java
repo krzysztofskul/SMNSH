@@ -10,6 +10,8 @@ import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.device.category.DeviceCategory;
 import pl.krzysztofskul.device.category.DeviceCategoryService;
+import pl.krzysztofskul.device.prototype.Prototype;
+import pl.krzysztofskul.device.prototype.PrototypeService;
 import pl.krzysztofskul.order.Status;
 import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.ProjectService;
@@ -34,6 +36,7 @@ public class ConceptController {
 
     private ConceptService conceptService;
     private DeviceService deviceService;
+    private PrototypeService prototypeService;
     private DeviceCategoryService deviceCategoryService;
     private UserService userService;
     private ProjectService projectService;
@@ -45,6 +48,7 @@ public class ConceptController {
     public ConceptController(
             ConceptService conceptService,
             DeviceService deviceService,
+            PrototypeService prototypeService,
             DeviceCategoryService deviceCategoryService,
             UserService userService,
 //            QuestionFormService questionFormService,
@@ -52,6 +56,7 @@ public class ConceptController {
     ) {
         this.conceptService = conceptService;
         this.deviceService = deviceService;
+        this.prototypeService = prototypeService;
         this.deviceCategoryService = deviceCategoryService;
         this.userService = userService;
 //        this.questionFormService = questionFormService;
@@ -75,6 +80,12 @@ public class ConceptController {
     public List<Device> getDevicesAll() {
         return deviceService.loadAll();
     }
+    
+    @ModelAttribute("prototypesAll")
+    public List<Prototype> getPrototypesAll() {
+        return prototypeService.loadAll();
+    }
+    
     public List<DeviceCategory> getDeviceCategoryAll() {
         return deviceCategoryService.loadAll();
     }
@@ -138,7 +149,8 @@ public class ConceptController {
             conceptNew.setProject(projectService.loadByIdWithDeviceList(projectId));
         }
         if (deviceId != null) {
-        	conceptNew.setDevice(deviceService.loadById(deviceId));
+        	//conceptNew.setDevice(deviceService.loadById(deviceId));
+        	conceptNew.setPrototype(prototypeService.loadById(deviceId));
         }
         if (backToPage != null) {
             model.addAttribute("backToPage", backToPage);
@@ -163,9 +175,10 @@ public class ConceptController {
             /****************************
              * ADDITION QUESTION SET REDIRECT (DEPENDS ON DEVICE CATEGORY)
              */
-            Device device = deviceService.loadById(conceptNew.getDevice().getId());
-            Hibernate.initialize(device.getDeviceCategory());
-            switch (device.getDeviceCategory().getCode()) {
+            Prototype device = prototypeService.loadById(conceptNew.getPrototype().getId());
+            //Hibernate.initialize(device.getDeviceCategory());
+            /*
+            switch (device.getModality()) {
                 case "MRI": {
                     QuestionForm questionForm = new QuestionForm();
                     if (backToPage != null) {
@@ -215,8 +228,42 @@ public class ConceptController {
                     //model.addAttribute("conceptNew", conceptNew);
                     return "questionSets/questionSetXRAY";
                 }
+                default: {
+                    QuestionForm questionForm = new QuestionForm();
+                    if (backToPage != null) {
+                        questionForm.setBackToPage(backToPage);
+                    }
+                    QuestionSetForXRAY questionSetForXRAY = new QuestionSetForXRAY();
+
+                    questionForm.setQuestionSetForXRAY(questionSetForXRAY);
+                    questionSetForXRAY.setQuestionForm(questionForm);
+                    questionForm.setConcept(conceptNew);
+                    conceptNew.setQuestionForm(questionForm);
+
+                    conceptService.save(conceptNew);
+                    model.addAttribute("questionSetForXRAY", questionSetForXRAY);
+                    //model.addAttribute("conceptNew", conceptNew);
+                    return "questionSets/questionSetXRAY";
+                }
+               
             }
+            /*
             /******************************/
+            QuestionForm questionForm = new QuestionForm();
+            if (backToPage != null) {
+                questionForm.setBackToPage(backToPage);
+            }
+            QuestionSetForXRAY questionSetForXRAY = new QuestionSetForXRAY();
+
+            questionForm.setQuestionSetForXRAY(questionSetForXRAY);
+            questionSetForXRAY.setQuestionForm(questionForm);
+            questionForm.setConcept(conceptNew);
+            conceptNew.setQuestionForm(questionForm);
+
+            conceptService.save(conceptNew);
+            model.addAttribute("questionSetForXRAY", questionSetForXRAY);
+            //model.addAttribute("conceptNew", conceptNew);
+            return "questionSets/questionSetXRAY";
         }
 
         conceptService.save(conceptNew);

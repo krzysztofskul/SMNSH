@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.device.part.PartService;
+import pl.krzysztofskul.device.prototype.Prototype;
 import pl.krzysztofskul.importdata.ImportData;
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.investor.InvestorService;
@@ -58,15 +59,22 @@ public class ProjectService {
 
     public void save(Project project) {
         if (project.getId() == null) {
-        	loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Projekt created/imported.", "Utworzono/zaimportowano projekt.", project.getSls());
-            for (Device device : project.getDeviceList()) {
-                Hibernate.initialize(device.getConfigurationList());
-                device.addConfiguration(configurationService.getStandardConfiguration(project, device));
-                //deviceService.save(device);
+        	//loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Projekt created/imported.", "Utworzono/zaimportowano projekt.", project.getSls());
+            project = this.saveAndReturn(project);
+//        	for (Device device : project.getDeviceList()) {
+//                Hibernate.initialize(device.getConfigurationList());
+//                device.addConfiguration(configurationService.getStandardConfiguration(project, device));
+//                //deviceService.save(device);
+//            }
+            for (Prototype prototype : project.getPrototypeList()) {
+            	//Hibernate.initialize(prototype.getConfigurationList());
+            	prototype.addConfiguration(configurationService.getStandardConfiguration(project, prototype));
+            	//deviceService.save(device);
             }
         }
 
         projectRepo.save(project);
+        loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Projekt created/imported.", "Utworzono/zaimportowano projekt.", project.getSls());
     }
     
     public Project saveAndReturn(Project project) {
@@ -172,7 +180,6 @@ public class ProjectService {
 
     public Project loadByIdWithDeviceListAndConceptList(Long id) {
         Project project = projectRepo.findById(id).get();
-        Hibernate.initialize(project.getDeviceList());
         Hibernate.initialize(project.getLoggerProjectList());
         Hibernate.initialize(project.getConfigurationList());
         Hibernate.initialize(project.getPrototypeList());

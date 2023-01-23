@@ -3,16 +3,21 @@ package pl.krzysztofskul.device.prototype;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import pl.krzysztofskul.device.modality.Modality;
+import pl.krzysztofskul.order.concept.Concept;
 import pl.krzysztofskul.project.Project;
+import pl.krzysztofskul.project.configuration.Configuration;
 
 @Entity
 public class Prototype {
@@ -33,7 +38,13 @@ public class Prototype {
     @ManyToMany(mappedBy = "prototypeList")
 	private List<Project> projectList = new ArrayList<>();
 	
-	private Prototype() {
+    @OneToMany(mappedBy = "prototype", cascade = CascadeType.REMOVE)
+    private List<Concept> conceptList = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "prototype", fetch = FetchType.EAGER)
+    private List<Configuration> configurationList = new ArrayList<>();
+    
+	public Prototype() {
 		super();
 	}
 	
@@ -99,6 +110,25 @@ public class Prototype {
 		this.projectList = projectList;
 	}
 	
-	
+    public List<Concept> getConceptList() {
+		return conceptList;
+	}
+
+	public void setConceptList(List<Concept> conceptList) {
+		this.conceptList = conceptList;
+	}
+
+	public List<Configuration> getConfigurationList() {
+		return configurationList;
+	}
+
+	public void setConfigurationList(List<Configuration> configurationList) {
+		this.configurationList = configurationList;
+	}
+
+	public void addConfiguration(Configuration configuration) {
+        this.configurationList.add(configuration);
+        configuration.setPrototype(this);
+    }
 	
 }

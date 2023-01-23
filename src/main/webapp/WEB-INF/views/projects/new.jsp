@@ -39,6 +39,25 @@
 
                     <div class="row mb-1">
                         <div class="col-4 text-right">
+                            <p class="langPL">NR PROJEKTU:</p>
+                            <p class="langEN">PROJECT NO.:</p>
+                        </div>
+                        <div class="col-8">
+                            <c:choose>
+                                <c:when test="${sessionScope.demoSession == null}">
+                                    <form:input path="detailsSls.slsCodeShort" cssClass="w-100" value="TST0000"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <form:input  path="detailsSls.slsCodeShort" value="TST0000" disabled="true" cssClass="w-100"/>
+                                    <form:hidden path="detailsSls.slsCodeShort" value="TST0000"/>
+                                </c:otherwise>
+
+                            </c:choose>
+                        </div>
+                    </div>
+
+                    <div class="row mb-1">
+                        <div class="col-4 text-right">
                             <p class="langPL">NAZWA PROJEKTU:</p>
                             <p class="langEN">PROJECT NAME:</p>
                         </div>

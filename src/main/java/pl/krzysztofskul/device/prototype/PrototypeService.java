@@ -4,8 +4,11 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import pl.krzysztofskul.device.Device;
 
 @Service
 @Transactional
@@ -33,6 +36,13 @@ public class PrototypeService {
 	
 	public Prototype save(Prototype prototype) {
 		return prototypeRepo.save(prototype);
+	}
+
+	public Prototype loadByIdWithConfigurationList(Long id) {
+		// TODO Auto-generated method stub
+        Prototype prototype = this.loadById(id);
+		Hibernate.initialize(prototype.getConfigurationList());
+		return prototype;
 	}
 	
 }

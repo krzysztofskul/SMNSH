@@ -1,6 +1,7 @@
 package pl.krzysztofskul.order.concept;
 
 import pl.krzysztofskul.device.Device;
+import pl.krzysztofskul.device.prototype.Prototype;
 import pl.krzysztofskul.order.Order;
 import pl.krzysztofskul.order.Status;
 import pl.krzysztofskul.order.guideline.Guideline;
@@ -46,6 +47,9 @@ public class Concept extends Order {
 
     @ManyToOne
     private Device device;
+    
+    @ManyToOne
+    private Prototype prototype;
 
     @ManyToOne
     private User planner;
@@ -146,8 +150,16 @@ public class Concept extends Order {
     public void setDevice(Device device) {
         this.device = device;
     }
+    
+    public Prototype getPrototype() {
+		return prototype;
+	}
 
-    public User getPlanner() {
+	public void setPrototype(Prototype prototype) {
+		this.prototype = prototype;
+	}
+
+	public User getPlanner() {
         return planner;
     }
 
