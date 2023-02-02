@@ -119,7 +119,7 @@ public class Project {
     @JoinColumn(name = "kpds_id")
     private Kpds kpds;
     
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     private DetailsSls detailsSls;
     
     /** constructors */

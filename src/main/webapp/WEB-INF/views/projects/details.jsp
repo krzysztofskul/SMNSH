@@ -36,6 +36,21 @@
 		         </form:select>
 		    </c:if>
         
+        	<form:hidden path="detailsSls.id"/>
+        	<%-- <form:hidden path="detailsSls.project"/> --%>
+        	<form:hidden path="detailsSls.slsCodeFull"/>
+        	
+        	<form:hidden path="detailsSls.importedDeviceModality"/>
+        	<form:hidden path="detailsSls.importedDeviceModelName"/>
+        	
+        	<form:hidden path="detailsSls.importedProjectManager"/>
+        	
+        	<form:hidden path="detailsSls.importedCustomer"/>
+        	
+        	<form:hidden path="detailsSls.pathToXls"/>
+        	
+        	<form:hidden path="trainings"/>
+        
         	<!-- NEW VERSION -->
         	<div class="row cards-in-columns">
 	       		<div class="col" >
@@ -112,7 +127,15 @@
 							            <p class="langEN">PROJECT NO.:</p>
 							        </div>
 							        <div class="col-8 col-value">
-					                    ${project.detailsSls.slsCodeShort}
+							        <c:choose>
+							                <c:when test="${edit eq true}">
+							                    <form:input path="detailsSls.slsCodeShort"/>
+							                </c:when>
+							                <c:otherwise>
+							                    ${project.detailsSls.slsCodeShort}
+							                </c:otherwise>
+							            </c:choose>
+					                    
 							        </div>
 						        </div>
 
@@ -293,24 +316,24 @@
 	       				<div class="card-header">URZĄDZENIA DO INSTALACJI</div>
 	       				<div class="card-body" style="min-height: 150px">
                         <c:if test="${edit eq true}">
-                        <%--
-                            <form:select path="deviceList" multiple="true" cssClass="w-100">
-                                <c:forEach items="${allDeviceList}" var="device">
+                        
+                            <form:select path="prototypeList" multiple="true" cssClass="w-100">
+                                <c:forEach items="${allProtopyteDeviceList}" var="device">
                                     <c:set var="marked" value="false"/>
-                                    <c:forEach items="${project.deviceList}" var="deviceInProject">
+                                    <c:forEach items="${project.prototypeList}" var="deviceInProject">
                                         <c:if test="${device.id.toString() eq deviceInProject.id.toString()}">
-                                            <form:option value="${device.id}" label="${device.model}" selected="true"/>
+                                            <form:option value="${device.id}" label="${device.modelName}" selected="true"/>
                                             <c:set var="marked" value="true"/>
                                         </c:if>
                                         <c:if test="${device.id.toString() ne deviceInProject.id.toString() && marked eq false}">
-                                            <form:option value="${device.id}" label="${device.model}"/>
+                                            <form:option value="${device.id}" label="${device.modelName}"/>
                                             <c:set var="marked" value="true"/>
                                         </c:if>
                                     </c:forEach>
                                 </c:forEach>
                             </form:select>
-                            <form:errors path="deviceList" cssClass="error"/>
-                          --%>
+                            <form:errors path="prototypeList" cssClass="error"/>
+
                         </c:if>
                         <c:if test="${edit ne true}">
 							<c:forEach items="${project.prototypeList}" var="devicePrototype">

@@ -61,6 +61,7 @@ public class ProjectService {
         if (project.getId() == null) {
         	//loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Projekt created/imported.", "Utworzono/zaimportowano projekt.", project.getSls());
             project = this.saveAndReturn(project);
+            loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Project has been created/imported.", "Projekt został utworzony/zaimportowany.", project.getSls());
 //        	for (Device device : project.getDeviceList()) {
 //                Hibernate.initialize(device.getConfigurationList());
 //                device.addConfiguration(configurationService.getStandardConfiguration(project, device));
@@ -73,8 +74,12 @@ public class ProjectService {
             }
         }
 
+        if (null == project.getSls()) {
+        	project.setSls(userService.loadByEmail("wojciech.g@test.test"));
+        }
+        
         projectRepo.save(project);
-        loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Projekt created/imported.", "Utworzono/zaimportowano projekt.", project.getSls());
+        loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Project has been updated.", "Projekt został zaktualizowany.", project.getSls());
     }
     
     public Project saveAndReturn(Project project) {

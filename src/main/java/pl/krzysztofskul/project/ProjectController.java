@@ -154,11 +154,11 @@ public class ProjectController {
           }
           projectNew.setPrototypeList(deviceList);
             projectService.save(projectNew);
-            loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.PROJECT_CREATE, projectNew);
+            //loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.PROJECT_CREATE, projectNew);
         } else {
             projectService.save(projectNew);
-            loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.PROJECT_CREATE, projectNew);
-            loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Project Updated.", "Projekt zaktualizowano.", httpSession.getAttribute("userLoggedIn"));
+            //loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.PROJECT_CREATE, projectNew);
+            //loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Project Updated.", "Projekt zaktualizowano.", httpSession.getAttribute("userLoggedIn"));
         }
         if (filesUpload != null & filesUpload.size() > 0) {
         	for (MultipartFile fileUpload: filesUpload) {

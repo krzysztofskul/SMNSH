@@ -121,7 +121,12 @@ public class KpdsService {
 			this.writeText(contentStream, font, 10, 170, 680, "b.d.");
 			
 			this.writeText(contentStream, fontBold, 10, 20, 660, "Ulica: ");
-			this.writeText(contentStream, font, 10, 170, 660, "b.d.");
+			if (project.getRecipient() != null) {
+				this.writeText(contentStream, font, 10, 170, 660, project.getRecipient());				
+			} else {
+				this.writeText(contentStream, font, 10, 170, 660, "b.d.");	
+			}
+			
 			
 			this.writeText(contentStream, fontBold, 10, 20, 640, "Adres cd. (kod, miejscowość): ");
 			this.writeText(contentStream, font, 10, 170, 640, "b.d.");
@@ -249,21 +254,25 @@ public class KpdsService {
 			
 			y = y - 15;
 			
-			for (String training : Arrays.asList(kpds.getProject().getTrainings().split(";"))) {
-				contentStream.beginText();
-				contentStream.setFont(font, 11);
-				contentStream.newLineAtOffset(30, y);
-				contentStream.showText(training);
-				contentStream.endText();
-				
-				contentStream.beginText();
-				contentStream.setFont(font, 11);
-				contentStream.newLineAtOffset(375, y);
-				contentStream.showText("przeprowadzono w dn: ");
-				contentStream.endText();
-				
-				y = y- 15;
+			if (null != kpds.getProject().getTrainings()) {
+				for (String training : Arrays.asList(kpds.getProject().getTrainings().split(";"))) {
+					contentStream.beginText();
+					contentStream.setFont(font, 11);
+					contentStream.newLineAtOffset(30, y);
+					contentStream.showText(training);
+					contentStream.endText();
+					
+					contentStream.beginText();
+					contentStream.setFont(font, 11);
+					contentStream.newLineAtOffset(375, y);
+					contentStream.showText("przeprowadzono w dn: ");
+					contentStream.endText();
+					
+					y = y- 15;
+				}	
 			}
+			
+			
 			
 			/*
 			 * footer of the page
