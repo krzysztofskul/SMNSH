@@ -17,7 +17,7 @@ public class Attachment {
     @Lob
     private byte[] data;
 
-    @OneToOne
+    @ManyToOne
     private Project project;
 
     public Attachment() {

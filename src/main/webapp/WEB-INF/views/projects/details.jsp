@@ -26,7 +26,7 @@
 
     <div class="container-fluid">
 
-        <form:form method="post" modelAttribute="project">
+        <form:form method="post" modelAttribute="project" enctype="multipart/form-data">
 		    <c:if test="${edit eq true}">
 		        <form:hidden path="id"/>
 		        <form:select path="configurationList" multiple="true" hidden="true">
@@ -360,13 +360,16 @@
 		       					<c:if test="${attachment.getProject().getId() eq project.getId()}">
 	       							<a href="/attachments/download/${attachment.getId()}">
 	       							<div class="btn btn-outline-info" style="width:100px;height: 100px">
-	       								
 	       									${attachment.fileName}
-	       								
        								</div>
        								</a>
 		       					</c:if>
 		       				</c:forEach>
+		       				<c:if test="${edit eq true}">
+			       				<div class="row float-right border-top pt-1">
+			       					<input type="file" name="fileUpload" multiple="multiple"/>
+			       				</div>
+		       				</c:if>
 	       				</div>
 		       			
 	       			</div>	       			

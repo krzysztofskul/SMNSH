@@ -103,8 +103,8 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
     private List<Concept> conceptList = new ArrayList<>();
 
-    @OneToOne(mappedBy = "project", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private Attachment attachment;
+    @OneToMany(mappedBy = "project")
+    private List<Attachment> attachmentList = new ArrayList<>();
 
     @OneToMany(mappedBy = "project", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}/*, orphanRemoval = true*/)
     private List<LoggerProject> loggerProjectList = new ArrayList<>();
@@ -335,15 +335,15 @@ public class Project {
         this.conceptList = conceptList;
     }
 
-    public Attachment getAttachment() {
-        return attachment;
-    }
+    public List<Attachment> getAttachmentList() {
+		return attachmentList;
+	}
 
-    public void setAttachment(Attachment attachment) {
-        this.attachment = attachment;
-    }
+	public void setAttachmentList(List<Attachment> attachmentList) {
+		this.attachmentList = attachmentList;
+	}
 
-    public List<LoggerProject> getLoggerProjectList() {
+	public List<LoggerProject> getLoggerProjectList() {
         return loggerProjectList;
     }
 

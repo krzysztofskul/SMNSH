@@ -336,13 +336,14 @@ public class ProjectController {
 
     @PostMapping("/details/{id}")
     public String projectDetails(
+    		@RequestParam(name = "fileUpload", required = false) List<MultipartFile> filesUpload,
             @PathVariable("id") Long id,
             @ModelAttribute("project") @Valid Project project, BindingResult result,
             @ModelAttribute("backToPage") String backToPage,
             @RequestParam(name = "edit", required = false) boolean edit,
             Model model,
             HttpSession httpSession
-    ) {
+    ) throws IOException {
         if (result.hasErrors()) {
             return "/projects/details/"+id.toString()+"?edit=true";
         }
@@ -350,8 +351,24 @@ public class ProjectController {
         if (model.containsAttribute("edit")) {
             model.addAttribute("edit", false);
         }
+        
+
+        
         projectService.save(project);
         loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Project updated.", "Project zaktualizowano.", httpSession.getAttribute("userLoggedIn"));
+        
+        if (filesUpload != null & filesUpload.size() > 0) {
+        	for (MultipartFile fileUpload: filesUpload) {
+				
+	        	if (fileUpload.getOriginalFilename() != "") {
+	            	System.out.println("Attachment to upload... "+fileUpload.getOriginalFilename());
+	                attachmentService.saveToProject(fileUpload, project);
+	                loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Attachement added.", "Dodano załącznik", httpSession.getAttribute("userLoggedIn"));        		
+	        	}
+        	}
+
+        }
+        
         if (backToPage != null) {
             return "redirect:"+backToPage;
         }
