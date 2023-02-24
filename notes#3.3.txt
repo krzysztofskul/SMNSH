@@ -1,5 +1,0 @@
-TODO:
------------------------------------
-
-- KPDS functionality to update
-- app. functionality do update
