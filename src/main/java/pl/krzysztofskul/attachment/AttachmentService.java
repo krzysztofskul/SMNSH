@@ -17,13 +17,16 @@ public class AttachmentService {
 
     private AttachmentRepo attachmentRepo;
     private ProjectService projectService;
+    private AttachmentCategoryService attachmentCategoryService;
 
     @Autowired
     public AttachmentService(
-            AttachmentRepo attachmentRepo, ProjectService projectService
+            AttachmentRepo attachmentRepo, ProjectService projectService,
+            AttachmentCategoryService attachmentCategoryService
     ) {
         this.attachmentRepo = attachmentRepo;
         this.projectService = projectService;
+        this.attachmentCategoryService = attachmentCategoryService;
     }
 
     public void save(MultipartFile multipartFile) throws IOException {
@@ -47,6 +50,10 @@ public class AttachmentService {
 
         attachment.setProject(project);
 
+        if (attachment.getAttachmentCategory() == null) {
+        	attachment.setAttachmentCategory(attachmentCategoryService.loadByCode("DOC-GENERAL"));
+        }
+        
         attachmentRepo.save(attachment);
 
     }

@@ -11,7 +11,6 @@ public class AttachmentCategory {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ATTACHMENT_ID")
 	private Long id;
 	
 	private String attCategoryCode;
@@ -24,13 +23,16 @@ public class AttachmentCategory {
 	 * CONSTR.
 	 */
 	
+	 public AttachmentCategory() {
+	
+	}
+	
 	public AttachmentCategory(String attCategoryCode, String attCategoryNamePL, String attCategoryNameEn) {
 		super();
 		this.attCategoryCode = attCategoryCode;
 		this.attCategoryNamePL = attCategoryNamePL;
 		this.attCategoryNameEn = attCategoryNameEn;
 	}
-
 	
 	/*
 	 * GETTERS AND SETTERS
@@ -44,11 +46,11 @@ public class AttachmentCategory {
 		this.id = id;
 	}
 
-	public String getAttVategoryCode() {
+	public String getAttCategoryCode() {
 		return attCategoryCode;
 	}
 
-	public void setAttVategoryCode(String attCategoryCode) {
+	public void setAttCategoryCode(String attCategoryCode) {
 		this.attCategoryCode = attCategoryCode;
 	}
 
@@ -67,9 +69,6 @@ public class AttachmentCategory {
 	public void setAttCategoryNameEn(String attCategoryNameEn) {
 		this.attCategoryNameEn = attCategoryNameEn;
 	}
-	
-
-	
 	
 	
 }

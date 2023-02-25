@@ -19,5 +19,10 @@ public class AttachmentCategoryService {
 	public AttachmentCategory save(AttachmentCategory ac) {
 		return attachmentCategoryRepo.save(ac);
 	}
+
+	public AttachmentCategory loadByCode(String code) {
+		return attachmentCategoryRepo.findByAttCategoryCode(code);
+		
+	}
 	
 }

@@ -21,7 +21,7 @@ public class AttachmentCategoryDefaultGenerator implements InitDataGenerator<Att
 		
 		List<AttachmentCategory> acList = new ArrayList<AttachmentCategory>();
 		
-		acList.add(new AttachmentCategory("DOC", "DOKUMENT", "DOCUMENT"));
+		acList.add(new AttachmentCategory("DOC-GENERAL", "DOKUMENT OGÓLNY", "GENERAL DOCUMENT"));
 		acList.add(new AttachmentCategory("CONTRACT", "UMOWA", "CONTRACT"));
 		acList.add(new AttachmentCategory("PROJ", "PROJEKT", "PROJECT"));
 		acList.add(new AttachmentCategory("PROTOCOL ACCEPT", "PROTOKÓŁ ODBIORU", "ACCEPTANCE PROTOCOL"));

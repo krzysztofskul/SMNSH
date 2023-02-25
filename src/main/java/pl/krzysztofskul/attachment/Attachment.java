@@ -15,7 +15,7 @@ public class Attachment {
     private String fileType;
     
     @ManyToOne(optional = false)
-    @JoinColumn(name = "ATTACHMENT_ID")
+    @JoinColumn(name = "attachmentCategory_id")
     private AttachmentCategory attachmentCategory;
 
     @Lob
@@ -66,4 +66,14 @@ public class Attachment {
     public void setProject(Project project) {
         this.project = project;
     }
+
+	public AttachmentCategory getAttachmentCategory() {
+		return attachmentCategory;
+	}
+
+	public void setAttachmentCategory(AttachmentCategory attachmentCategory) {
+		this.attachmentCategory = attachmentCategory;
+	}
+    
+    
 }
