@@ -44,6 +44,7 @@ public class AttachmentService {
         attachment.setFileName(fileName);
         attachment.setFileType(multipartFile.getContentType());
         attachment.setData(multipartFile.getBytes());
+
         attachment.setProject(project);
 
         attachmentRepo.save(attachment);

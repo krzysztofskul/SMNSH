@@ -6,6 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.thedeanda.lorem.LoremIpsum;
 
+import pl.krzysztofskul.attachment.AttachmentCategory;
+import pl.krzysztofskul.attachment.AttachmentCategoryDefaultGenerator;
+import pl.krzysztofskul.attachment.AttachmentCategoryService;
+import pl.krzysztofskul.attachment.AttachmentService;
 import pl.krzysztofskul.company.type.CompanyTypeService;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
@@ -93,6 +97,8 @@ public class HomePageService {
     private CompanyTypeService companyTypeService;
     private StakeholderService stakeholderService;
     private PrototypeService prototypeService;
+    private AttachmentCategoryDefaultGenerator attachmentCategoryDefaultGenerator;
+    private AttachmentCategoryService attachmentCategoryService;
 
     /** constr.
      *
@@ -119,7 +125,9 @@ public class HomePageService {
             ProjectCharterService projectCharterService,
             CompanyTypeService companyTypeService,
             StakeholderService stakeholderService,
-            PrototypeService prototypeService
+            PrototypeService prototypeService,
+            AttachmentCategoryDefaultGenerator attachmentCategoryDefaultGenerator,
+            AttachmentCategoryService attachmentCategoryService
     		) {
         this.userService = userService;
         this.deviceCategoryService = deviceCategoryService;
@@ -145,6 +153,8 @@ public class HomePageService {
         this.companyTypeService = companyTypeService;
         this.stakeholderService = stakeholderService;
         this.prototypeService = prototypeService;
+        this.attachmentCategoryDefaultGenerator = attachmentCategoryDefaultGenerator;
+        this.attachmentCategoryService = attachmentCategoryService;
     }
 
     /** methods
@@ -630,5 +640,13 @@ public class HomePageService {
 		}
 		
 	}
+	
+	public void createAttachmentCategories() {
+		for (AttachmentCategory ac: attachmentCategoryDefaultGenerator.initDataAndReturn()) {
+			attachmentCategoryService.save(ac);
+		}
+		
+	}
+
 
 }

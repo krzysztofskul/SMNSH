@@ -13,6 +13,10 @@ public class Attachment {
 
     private String fileName;
     private String fileType;
+    
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "ATTACHMENT_ID")
+    private AttachmentCategory attachmentCategory;
 
     @Lob
     private byte[] data;
