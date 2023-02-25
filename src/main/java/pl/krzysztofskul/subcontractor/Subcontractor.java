@@ -37,6 +37,10 @@ public class Subcontractor {
     private int streetNumber;
     
     private String email;
+    
+    private String website;
+    
+    private String phoneNo;
 
     private QualityTypeEnum qualityTypeEnum;
 
@@ -48,7 +52,23 @@ public class Subcontractor {
     public Subcontractor() {
     }
 
-    /** getters and setters */
+    public Subcontractor(String name, String country, String city, String postalCode, String street, int streetNumber,
+			String email, String website, String phoneNo) {
+		super();
+		this.name = name;
+		this.country = country;
+		this.city = city;
+		this.postalCode = postalCode;
+		this.street = street;
+		this.streetNumber = streetNumber;
+		this.email = email;
+		this.website = website;
+		this.phoneNo = phoneNo;
+	}
+
+
+
+	/** getters and setters */
 
     public Long getId() {
         return id;
@@ -137,4 +157,20 @@ public class Subcontractor {
     public void setQualityTypeEnum(QualityTypeEnum qualityTypeEnum) {
         this.qualityTypeEnum = qualityTypeEnum;
     }
+    
+    public String getWebsite() {
+		return website;
+	}
+    
+    public void setWebsite(String website) {
+		this.website = website;
+	}
+    
+    public String getPhoneNo() {
+		return phoneNo;
+	}
+    
+    public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
+	}
 }

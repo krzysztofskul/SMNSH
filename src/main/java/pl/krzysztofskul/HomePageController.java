@@ -94,10 +94,11 @@ public class HomePageController {
 			try {
 				homePageService.importInitDevicesPortfolio();
 			} catch (Exception e) {
-				System.err.println("ERORR! Can't init devices portfolio!");
+				System.err.println("ERROR! Can't init devices portfolio!");
 			}
 			homePageService.createParts();
 			homePageService.createAttachmentCategories();
+			//homePageService.createDemoSubcontractors();
 			initEssentialDBCounter++;
 		}
 		return "redirect:/home";

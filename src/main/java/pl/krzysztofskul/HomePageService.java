@@ -49,6 +49,8 @@ import pl.krzysztofskul.questionnaire.questionSet.*;
 import pl.krzysztofskul.recipient.Recipient;
 import pl.krzysztofskul.recipient.RecipientService;
 import pl.krzysztofskul.stakeholder.StakeholderService;
+import pl.krzysztofskul.subcontractor.Subcontractor;
+import pl.krzysztofskul.subcontractor.SubcontractorDemoGenerator;
 import pl.krzysztofskul.subcontractor.SubcontractorService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserAction;
@@ -99,6 +101,7 @@ public class HomePageService {
     private PrototypeService prototypeService;
     private AttachmentCategoryDefaultGenerator attachmentCategoryDefaultGenerator;
     private AttachmentCategoryService attachmentCategoryService;
+    private SubcontractorDemoGenerator subcontractorDemoGenerator;
 
     /** constr.
      *
@@ -127,7 +130,8 @@ public class HomePageService {
             StakeholderService stakeholderService,
             PrototypeService prototypeService,
             AttachmentCategoryDefaultGenerator attachmentCategoryDefaultGenerator,
-            AttachmentCategoryService attachmentCategoryService
+            AttachmentCategoryService attachmentCategoryService,
+            SubcontractorDemoGenerator subcontractorDemoGenerator
     		) {
         this.userService = userService;
         this.deviceCategoryService = deviceCategoryService;
@@ -155,6 +159,7 @@ public class HomePageService {
         this.prototypeService = prototypeService;
         this.attachmentCategoryDefaultGenerator = attachmentCategoryDefaultGenerator;
         this.attachmentCategoryService = attachmentCategoryService;
+        this.subcontractorDemoGenerator = subcontractorDemoGenerator;
     }
 
     /** methods
@@ -644,6 +649,13 @@ public class HomePageService {
 	public void createAttachmentCategories() {
 		for (AttachmentCategory ac: attachmentCategoryDefaultGenerator.initDataAndReturn()) {
 			attachmentCategoryService.save(ac);
+		}
+		
+	}
+
+	public void createDemoSubcontractors() {
+		for (Subcontractor subcontractor: subcontractorDemoGenerator.initDataAndReturn()) {
+			subcontractorService.save(subcontractor);
 		}
 		
 	}
