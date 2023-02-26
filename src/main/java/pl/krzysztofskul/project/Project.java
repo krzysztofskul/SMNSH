@@ -103,7 +103,7 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
     private List<Concept> conceptList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.PERSIST)
     private List<Attachment> attachmentList = new ArrayList<>();
 
     @OneToMany(mappedBy = "project", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}/*, orphanRemoval = true*/)
@@ -383,7 +383,7 @@ public class Project {
 		this.detailsSls = detailsSls;
 	}
 	
-	/** mmethods */
+	/** methods */
 
     public void addConcept(Concept concept) {
         this.conceptList.add(concept);
@@ -406,6 +406,11 @@ public class Project {
 
     public void addPrototype(Prototype prototype) {
     	this.prototypeList.add(prototype);
+    }
+    
+    public void addAttachment(Attachment attachmnet) {
+    	this.attachmentList.add(attachmnet);
+    	attachmnet.setProject(this);
     }
     
 	@Override

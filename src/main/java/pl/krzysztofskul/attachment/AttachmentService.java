@@ -8,6 +8,8 @@ import org.springframework.web.multipart.MultipartFile;
 import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.ProjectService;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -55,6 +57,32 @@ public class AttachmentService {
         }
         
         attachmentRepo.save(attachment);
+
+    }
+    
+    public Project setToProject(File file, Project project) throws IOException {
+    	
+		FileInputStream fis = new FileInputStream(file);
+		byte[] fileDataByte  = fis.readAllBytes();
+		
+        String fileName = file.getName().substring(0, file.getName().indexOf("."));
+        String fileType = file.getName().substring(file.getName().indexOf("."));
+
+        Attachment attachment = new Attachment();
+        attachment.setFileName(fileName);
+        attachment.setFileType(fileType);
+        attachment.setData(fileDataByte);
+
+        //attachment.setProject(project);
+
+        
+        
+        if (attachment.getAttachmentCategory() == null) {
+        	attachment.setAttachmentCategory(attachmentCategoryService.loadByCode("DOC-GENERAL"));
+        }
+        project.addAttachment(attachment);
+        
+        return project;
 
     }
 

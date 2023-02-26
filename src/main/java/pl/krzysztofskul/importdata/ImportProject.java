@@ -19,6 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pl.krzysztofskul.HomePageService;
+import pl.krzysztofskul.attachment.Attachment;
+import pl.krzysztofskul.attachment.AttachmentService;
 import pl.krzysztofskul.device.prototype.PrototypeService;
 import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.project.ProjectService;
@@ -32,17 +34,20 @@ public class ImportProject {
 	ProjectService projectService;
 	HomePageService homePageService;
 	PrototypeService prototypeService;
+	AttachmentService attachmentsService;
 	
 	@Autowired
 	private ImportProject(
 			ProjectService projectService, 
 			HomePageService homePageService,
-			PrototypeService prototypeService
+			PrototypeService prototypeService,
+			AttachmentService attachmentService
 			) {
 		super();
 		this.projectService = projectService;
 		this.homePageService = homePageService;
 		this.prototypeService = prototypeService;
+		this.attachmentsService = attachmentService;
 	}
 
 
@@ -54,8 +59,9 @@ public class ImportProject {
 	 * @param String slsCode - the code of the SLS project;
 	 * @param String pathToprojectsDirectory - the path to the projects directory; if null default path from ImportData.class is used;
 	 * @return Project with imported and converted data from SLS directory;
+	 * @throws IOException 
 	 */
-	public Project importProjectBySlsCode (String slsCode, String pathToprojectsDirectory) {
+	public Project importProjectBySlsCode (String slsCode, String pathToprojectsDirectory) throws IOException {
 		Project project = null;
 		
 		if (null == slsCode) {
@@ -82,7 +88,9 @@ public class ImportProject {
 				String calculationFilePath = this.getCalculationFilePath(slsCode, pathToprojectsDirectory);
 				project.getDetailsSls().setPathToXls(calculationFilePath);
 				project = this.importDataFromXlsCalc(project);
-				//TODO 2022-11-25
+				//import attachments - offers
+				project = importAttachments(project, calculationFilePath, "offers");
+
 			
 			} else if (!slsProjectFolderName.equals(slsCode) && slsProjectFolderName.contains(slsCode)) {
 				System.out.println("App. WARNING! Found non-standard folder name for sls project code in selected projects path.");
@@ -96,6 +104,36 @@ public class ImportProject {
 		return project;
 	}
 	
+	private Project importAttachments(Project project, String calculationFilePath, String attachemntsType) throws IOException {
+		switch (attachemntsType) {
+			case "offers": {
+				/*
+				 * import offers
+				 */
+//				int x = calculationFilePath.lastIndexOf("\\");
+				String calculationFilePathParent = calculationFilePath.substring(0, calculationFilePath.lastIndexOf("\\"));
+				List<String> folderNames = this.getAllFolderNames(calculationFilePathParent);
+				for (String folderName : folderNames) {
+					if (folderName.contains("Oferty")) {
+						String attachemntsFolderPath = calculationFilePathParent+"\\"+folderName+"\\";
+						File folder = new File(attachemntsFolderPath);
+						File[] fileList = folder.listFiles(); //TODO 2023-02-26  the problem is null returned from listFiles()
+						for (File file : fileList) {
+							if (file.isFile()) {
+								project = attachmentsService.setToProject(file, project);
+							}
+						}
+					}
+				}
+				break;
+			}
+		}
+		
+		return project;
+	}
+
+
+
 	/**
 	 * Gets all folder names from specified directory path
 	 * @param String directoryPath

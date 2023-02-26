@@ -1,5 +1,7 @@
 package pl.krzysztofskul.importdata;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +33,7 @@ public class ImportProjectController {
 	@GetMapping("/project-by-sls-code/{slsCode}")
 	public String importProjectBySlsCode(
 			@PathVariable String slsCode
-		) {
+		) throws IOException {
 		Project project = importProject.importProjectBySlsCode(slsCode, null);
 		projectService.save(project);
 		return "redirect:/";
@@ -47,7 +49,7 @@ public class ImportProjectController {
 	}
 	
 	@GetMapping("/project-by-sls-directory")
-	public String importProjectBySlsDirectory() {
+	public String importProjectBySlsDirectory() throws IOException {
 		String path = fileSelector.select("folder");
 		int index = path.lastIndexOf("\\");
 		String slsCode = path.substring(index+1, path.length());

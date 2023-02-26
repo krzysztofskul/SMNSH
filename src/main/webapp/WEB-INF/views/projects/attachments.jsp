@@ -27,7 +27,7 @@
 			<c:forEach items="${project.attachmentList}" var="attachment">
 				<a href="/attachments/download/${attachment.getId()}">
 				<div class="btn btn-outline-info" style="width:100px;height: 100px">
-						${attachment.fileName} ${attachment.attachmentCategory.attCategoryNamePL }
+						${attachment.fileName} ${attachment.attachmentCategory.attCategoryNamePL}
 				</div>
 				</a>
 			</c:forEach>
