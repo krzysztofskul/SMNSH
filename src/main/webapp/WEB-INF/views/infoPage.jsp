@@ -14,7 +14,8 @@
     <jsp:include page="header.jsp"/>
 
     <div class="container text-center">
-        <h1>INFO</h1>
+        <h1>BRAK DOSTĘPU DLA TEGO UŻYTKOWNIKA</h1>
+        <h2>PERMISSION DENIED FOR THIS USER</h2>
     </div>
 
     <jsp:include page="footer.jsp"/>

@@ -44,10 +44,16 @@
                     <p class="langEN">TECHNICAL DOCUMENTATION VIEW</p>
                 </a>
             </li>
+			<li class="nav-item  ml-auto mr-auto text-center">
+                <a class="nav-link btn btn-light" href="/projects/${projectId}/attachments">
+                    <p class="langPL">ZAŁĄCZNIKI</p>
+                    <p class="langEN">ATTACHMENTS</p>
+                </a>
+            </li>
             <li class="nav-item  ml-auto mr-auto text-center">
                 <a class="nav-link btn btn-light" href="/generate-kpds/${projectId}">
-                    <p class="langPL">KPDS</p>
-                    <p class="langEN">KPDS</p>
+                    <p class="langPL">GENERUJ I WYŚLIJ KPDS</p>
+                    <p class="langEN">GENERATE AND SEND KPDS</p>
                 </a>
             </li>
 		</ul>

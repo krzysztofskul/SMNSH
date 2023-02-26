@@ -338,6 +338,12 @@ public class ProjectService {
 		return project;
 	}
 
+	public Project loadByIdWithAttachments(Long projectId) {
+        Project project = projectRepo.findById(projectId).get();
+        Hibernate.initialize(project.getAttachmentList());
+        return project;
+	}
+
 
 
 

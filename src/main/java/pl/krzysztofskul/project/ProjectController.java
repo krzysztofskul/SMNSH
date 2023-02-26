@@ -409,4 +409,16 @@ public class ProjectController {
     	return "projects/technical-documentation";
     }
     
+    @GetMapping("/{projectId}/attachments")
+    public String getProjectAttachments(
+				@PathVariable Long projectId,
+				Model model
+    		) {
+    	Project project = projectService.loadByIdWithAttachments(projectId);
+    	model.addAttribute("project", project);
+    	return "projects/attachments";
+    }
+    
+    
+    
 }
