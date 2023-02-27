@@ -20,17 +20,49 @@
 
 	<div class="content container-fluid">
 		<div class="test">
-			<p>
-				Amount of attachments: ${project.attachmentList.size()}
-			</p>
-			
-			<c:forEach items="${project.attachmentList}" var="attachment">
-				<a href="/attachments/download/${attachment.getId()}">
-				<div class="btn btn-outline-info" style="width:100px;height: 100px">
-						${attachment.fileName} ${attachment.attachmentCategory.attCategoryNamePL}
+			<div class="row cards-in-columns">
+				<div class="col">
+				
+					<div class="card">
+						<div class="card-header">
+							<p class="langPL">
+								OFERTY
+							</p>
+							<p class="langEN">
+								OFFERS
+							</p>		
+						</div>
+						<div class="card-body">					
+							<c:forEach items="${project.attachmentList}" var="attachment">
+								<c:if test="${attachment.attachmentCategory.attCategoryCode eq 'DOC-OFFER'}">
+									<a href="/attachments/download/${attachment.getId()}">
+									<div class="btn btn-outline-info" style="width:100px;height: 100px">
+											${attachment.fileName} ${attachment.attachmentCategory.attCategoryNamePL}
+									</div>
+									</a>
+								</c:if>
+							</c:forEach>
+						</div>
+					</div>
 				</div>
-				</a>
-			</c:forEach>
+
+				<div class="col">
+				
+					<div class="card">
+						<div class="card-header">
+							<p class="langPL">
+								ZAMÓWIENIA
+							</p>
+							<p class="langEN">
+								ORDERS
+							</p>		
+						</div>
+						<div class="card-body">
+							...
+						</div>
+					</div>
+				</div>
+			</div>	
 			
 			
 		</div>

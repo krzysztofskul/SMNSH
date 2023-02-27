@@ -11,6 +11,7 @@ import pl.krzysztofskul.project.ProjectService;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 @Service
@@ -60,26 +61,31 @@ public class AttachmentService {
 
     }
     
-    public Project setToProject(File file, Project project) throws IOException {
+    public Project setToProject(File file, Project project, String attachmentType) throws IOException {
     	
 		FileInputStream fis = new FileInputStream(file);
 		byte[] fileDataByte  = fis.readAllBytes();
 		
         String fileName = file.getName().substring(0, file.getName().indexOf("."));
-        String fileType = file.getName().substring(file.getName().indexOf("."));
+        String fileType = file.getName().substring(file.getName().indexOf(".")+1);
+        fileType = Files.probeContentType(file.toPath());
 
         Attachment attachment = new Attachment();
         attachment.setFileName(fileName);
         attachment.setFileType(fileType);
         attachment.setData(fileDataByte);
 
+        
         //attachment.setProject(project);
 
-        
-        
         if (attachment.getAttachmentCategory() == null) {
         	attachment.setAttachmentCategory(attachmentCategoryService.loadByCode("DOC-GENERAL"));
         }
+        
+        if (attachmentType.equals("offers")) {
+        	attachment.setAttachmentCategory(attachmentCategoryService.loadByCode("DOC-OFFER"));
+        }
+        
         project.addAttachment(attachment);
         
         return project;

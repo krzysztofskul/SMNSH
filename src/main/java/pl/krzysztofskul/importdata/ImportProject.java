@@ -120,7 +120,7 @@ public class ImportProject {
 						File[] fileList = folder.listFiles(); //TODO 2023-02-26  the problem is null returned from listFiles()
 						for (File file : fileList) {
 							if (file.isFile()) {
-								project = attachmentsService.setToProject(file, project);
+								project = attachmentsService.setToProject(file, project, "offers");
 							}
 						}
 					}

@@ -22,11 +22,12 @@ public class AttachmentCategoryDefaultGenerator implements InitDataGenerator<Att
 		List<AttachmentCategory> acList = new ArrayList<AttachmentCategory>();
 		
 		acList.add(new AttachmentCategory("DOC-GENERAL", "DOKUMENT OGÓLNY", "GENERAL DOCUMENT"));
-		acList.add(new AttachmentCategory("CONTRACT", "UMOWA", "CONTRACT"));
-		acList.add(new AttachmentCategory("PROJ", "PROJEKT", "PROJECT"));
-		acList.add(new AttachmentCategory("PROTOCOL ACCEPT", "PROTOKÓŁ ODBIORU", "ACCEPTANCE PROTOCOL"));
-		acList.add(new AttachmentCategory("INVOICE", "FAKTURA", "INVOICE"));
-		acList.add(new AttachmentCategory("ORDER", "ZAMÓWIENIE", "ORDER"));
+		acList.add(new AttachmentCategory("DOC-OFFER", "OFERTA", "OFFER"));
+		acList.add(new AttachmentCategory("DOC-CONTRACT", "UMOWA", "CONTRACT"));
+		acList.add(new AttachmentCategory("PROJECT", "PROJEKT", "PROJECT"));
+		acList.add(new AttachmentCategory("DOC-PROTOCOL-ACCEPT", "PROTOKÓŁ ODBIORU", "ACCEPTANCE PROTOCOL"));
+		acList.add(new AttachmentCategory("DOC-INVOICE", "FAKTURA", "INVOICE"));
+		acList.add(new AttachmentCategory("DOC-ORDER", "ZAMÓWIENIE", "ORDER"));
 		acList.add(new AttachmentCategory("KPDS", "KPDS", "KPDS"));
 		
 		defaultAttachemntCategories = acList;
