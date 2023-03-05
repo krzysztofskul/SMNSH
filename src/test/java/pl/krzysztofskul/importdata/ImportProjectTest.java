@@ -2,6 +2,8 @@ package pl.krzysztofskul.importdata;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,7 +13,7 @@ public class ImportProjectTest {
 	ImportProject importProject;
 	
 	@Test
-	public void testImportProjectBySlsCode() {
+	public void testImportProjectBySlsCode() throws IOException {
 		//importProject.importProjectBySlsCode("TEST", null);
 		
 		assertTrue(

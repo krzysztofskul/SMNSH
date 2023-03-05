@@ -81,6 +81,7 @@ public class KpdsService {
 		kpds = this.save(kpds);
 		
 		String inwestor = kpds.getProject().getInvestor().getName();
+		inwestor = inwestor.replace("\n", " ").replace("\r", " ");
 		
 		List<String> devices = new ArrayList<String>();
 		for (Device device : kpds.getProject().getDeviceList()) {
@@ -132,8 +133,7 @@ public class KpdsService {
 			this.writeText(contentStream, font, 10, 170, 640, "b.d.");
 			
 			this.writeText(contentStream, fontBold, 10, 20, 620, "Płatnik (inwestor): ");
-			inwestor = inwestor.replace("\n", " ").replace("\r", " ");
-			this.writeText(contentStream, font, 10, 170, 620, inwestor);
+			this.writeTextWithMaxLength(contentStream, font, 10, 170, 620, inwestor, 36);
 			
 			/*
 			 * section 1b
@@ -304,6 +304,29 @@ public class KpdsService {
 
 	}
 
+	private void writeTextWithMaxLength(
+			PDPageContentStream contentStream, 
+			PDType0Font fontType,
+			int fontSize,
+			int xStart,
+			int yStart,
+			String text,
+			int maxLength
+			) throws IOException 
+		{		
+		String textMaxLength = null;
+//		String textLeft = null;
+		if (text.length() > maxLength) {
+			textMaxLength = text.substring(0, maxLength);
+			text = text.substring(maxLength);
+			writeText(contentStream, fontType, fontSize, xStart, yStart, textMaxLength);	
+			writeTextWithMaxLength(contentStream, fontType, fontSize, xStart, yStart-15, text, maxLength);
+		} else {
+			writeText(contentStream, fontType, fontSize, xStart, yStart, text);	
+		}
+		
+	}
+	
 	private void writeText(
 			PDPageContentStream contentStream, 
 			PDType0Font fontType,
