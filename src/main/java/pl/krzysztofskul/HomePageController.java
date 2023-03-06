@@ -85,6 +85,9 @@ public class HomePageController {
 	public String initEssentialDB() {
 		if (initEssentialDBCounter == 0) {
 			
+			homePageService.createAndSaveCompanyCategoriesToDb();
+		
+			
 			userService.createRealTestUsersAndSaveToDb();
 			companyTypeService.createCompanyTypesAndSaveToDB();
 			//homePageService.createDeviceCategories();

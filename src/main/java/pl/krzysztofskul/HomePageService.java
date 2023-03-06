@@ -48,6 +48,10 @@ import pl.krzysztofskul.questionnaire.QuestionFormService;
 import pl.krzysztofskul.questionnaire.questionSet.*;
 import pl.krzysztofskul.recipient.Recipient;
 import pl.krzysztofskul.recipient.RecipientService;
+import pl.krzysztofskul.smnsh4.Company.CompanyCategory;
+import pl.krzysztofskul.smnsh4.Company.CompanyCategoryEnum;
+import pl.krzysztofskul.smnsh4.Company.CompanyCategoryRepo;
+import pl.krzysztofskul.smnsh4.Company.CompanyCategoryService;
 import pl.krzysztofskul.stakeholder.StakeholderService;
 import pl.krzysztofskul.subcontractor.Subcontractor;
 import pl.krzysztofskul.subcontractor.SubcontractorDemoGenerator;
@@ -102,6 +106,7 @@ public class HomePageService {
     private AttachmentCategoryDefaultGenerator attachmentCategoryDefaultGenerator;
     private AttachmentCategoryService attachmentCategoryService;
     private SubcontractorDemoGenerator subcontractorDemoGenerator;
+    private CompanyCategoryService companyCategoryService;
 
     /** constr.
      *
@@ -131,7 +136,8 @@ public class HomePageService {
             PrototypeService prototypeService,
             AttachmentCategoryDefaultGenerator attachmentCategoryDefaultGenerator,
             AttachmentCategoryService attachmentCategoryService,
-            SubcontractorDemoGenerator subcontractorDemoGenerator
+            SubcontractorDemoGenerator subcontractorDemoGenerator,
+            CompanyCategoryService companyCategoryService
     		) {
         this.userService = userService;
         this.deviceCategoryService = deviceCategoryService;
@@ -160,6 +166,7 @@ public class HomePageService {
         this.attachmentCategoryDefaultGenerator = attachmentCategoryDefaultGenerator;
         this.attachmentCategoryService = attachmentCategoryService;
         this.subcontractorDemoGenerator = subcontractorDemoGenerator;
+        this.companyCategoryService = companyCategoryService;
     }
 
     /** methods
@@ -660,5 +667,12 @@ public class HomePageService {
 		
 	}
 
+	public void createAndSaveCompanyCategoriesToDb() {
+		for (CompanyCategoryEnum comCatEnum : CompanyCategoryEnum.values()) {
+			CompanyCategory comCat = new CompanyCategory(comCatEnum);
+			System.out.println("App. INFO: saving company category to database: " + companyCategoryService.save(comCat).getCompanyCategoryEnum().toString());
+		}
+		
+	}
 
 }
