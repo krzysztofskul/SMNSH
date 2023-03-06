@@ -52,57 +52,38 @@ public class HomePageController {
 		return "index";
 	}
 
-	@GetMapping("/initDB")
-	public String initDB() {
-		InitDB.getInstanceInitDB();
-		if (InitDB.getCounter() == 0) {
-			InitDB.increaseCounter();
-			companyTypeService.createCompanyTypesAndSaveToDB();
-			subcontractorService.createTestSubcontractors();
-			investorService.createTestInvestors(15);
-			userService.createRealTestUsersAndSaveToDb();
-			stakeholderService.createDemoOuterCompanyStakeholderAndSaveToDb();
-			homePageService.createDeviceCategories();
-			//homePageService.createDevices();
-			homePageService.createRealTestDevices();
-			homePageService.createParts();
-			//homePageService.createConcepts();
-			//homePageService.createGuidelines();
-			//homePageService.createInvestors();
-			homePageService.createRealTestInvestors();
-			//homePageService.createRecipients();
-			homePageService.createRealTestRecipients();
-			homePageService.initTestMilestonesToDB();;
-			homePageService.createProjects();
-			homePageService.createConcepts();
-			//homePageService.createGuidelines();
-		}
-		return "redirect:/home";
-	}
-
-
 	@GetMapping("/initEssentialDB")
 	public String initEssentialDB() {
 		if (initEssentialDBCounter == 0) {
 			
-			homePageService.createAndSaveCompanyCategoriesToDb();
-		
-			
 			userService.createRealTestUsersAndSaveToDb();
-			companyTypeService.createCompanyTypesAndSaveToDB();
-			//homePageService.createDeviceCategories();
-			this.modalityGenerator.initModalityDb();
-			homePageService.initTestMilestonesToDB();
-			
-			try {
-				homePageService.importInitDevicesPortfolio();
-			} catch (Exception e) {
-				System.err.println("ERROR! Can't init devices portfolio!");
-			}
-			homePageService.createParts();
+			homePageService.createAndSaveCompanyCategoriesToDb();
 			homePageService.createAttachmentCategories();
-			//homePageService.createDemoSubcontractors();
+			modalityGenerator.initModalityDb();
+		
 			initEssentialDBCounter++;
+		}
+		return "redirect:/home";
+	}
+	
+	@GetMapping("/initDemoDB")
+	public String initDB() {
+		if (this.initEssentialDBCounter > 0) {
+			InitDB.getInstanceInitDB();
+			if (InitDB.getCounter() == 0) {
+				InitDB.increaseCounter();
+
+				homePageService.createAndSaveDemoCompaniesToDb();
+				homePageService.initTestMilestonesToDB();
+				
+				try {
+					homePageService.importInitDevicesPortfolio();
+				} catch (Exception e) {
+					System.err.println("ERROR! Can't init devices portfolio!");
+				}
+				homePageService.createParts();
+			
+			}
 		}
 		return "redirect:/home";
 	}

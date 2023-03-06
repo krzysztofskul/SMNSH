@@ -11,8 +11,10 @@ import com.thedeanda.lorem.LoremIpsum;
 
 import pl.krzysztofskul.SapCustomer.SapCustomer;
 import pl.krzysztofskul.initDB.InitDataGenerator;
-import pl.krzysztofskul.smnsh4.ContactDetailsDemoGenerator;
+import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategory;
+import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategoryEnum;
 import pl.krzysztofskul.smnsh4.Company.Employee.Employee;
+import pl.krzysztofskul.smnsh4.ContactDetails.ContactDetailsDemoGenerator;
 
 @Service
 public class CompanyDemoGenerator implements InitDataGenerator<Company> {

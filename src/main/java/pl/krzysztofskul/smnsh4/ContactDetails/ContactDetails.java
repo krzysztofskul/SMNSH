@@ -1,17 +1,23 @@
-package pl.krzysztofskul.smnsh4;
+package pl.krzysztofskul.smnsh4.ContactDetails;
 
 import java.util.Map;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToOne;
 
 import pl.krzysztofskul.smnsh4.Company.Company;
+import pl.krzysztofskul.smnsh4.ContactDetails.Address.Address;
 
-//@Entity
+@Entity
 public class ContactDetails {
 
 	@Id
@@ -19,13 +25,27 @@ public class ContactDetails {
 	private Long id;
 	
 	@ManyToOne
+	@JoinColumn(name = "address_id")
 	private Address address;
 	
+    @ElementCollection
+    @CollectionTable(name = "contactdetails_phonename_phonenumber", 
+      joinColumns = {@JoinColumn(name = "contactDetails_id", referencedColumnName = "id")})
+    @MapKeyColumn(name = "phone_name")
+    @Column(name = "phone_number")
 	private Map<String, String> phoneNumbers;
-	
+
+    @ElementCollection
+    @CollectionTable(name = "contactdetails_emailname_emailaddress", 
+      joinColumns = {@JoinColumn(name = "contactDetails_id", referencedColumnName = "id")})
+    @MapKeyColumn(name = "email_name")
+    @Column(name = "email_address")
 	private Map<String, String> emailAdresses;
 	
 	private String website;
+	
+	@OneToOne(mappedBy = "contactDetails")
+	private Company company;
 	
 	/*
 	 * CONSTRUCTORS
@@ -110,6 +130,12 @@ public class ContactDetails {
 		this.website = website;
 	}	
 	
+	public Company getCompany() {
+		return company;
+	}
 	
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 	
 }

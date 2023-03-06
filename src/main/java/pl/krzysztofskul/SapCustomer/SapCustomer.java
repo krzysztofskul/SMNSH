@@ -2,6 +2,9 @@ package pl.krzysztofskul.SapCustomer;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import pl.krzysztofskul.smnsh4.Company.Company;
 
 @Entity
 public class SapCustomer {
@@ -30,6 +33,9 @@ public class SapCustomer {
 	private String telephone1;
 	
 	private String faxNumber;
+	
+	@OneToOne(mappedBy = "sapCustomer")
+	private Company company;
 
 	public SapCustomer() {
 		super();
@@ -151,5 +157,12 @@ public class SapCustomer {
 		this.faxNumber = faxNumber;
 	}
 		
+	public Company getCompany() {
+		return company;
+	}
+	
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 	
 }

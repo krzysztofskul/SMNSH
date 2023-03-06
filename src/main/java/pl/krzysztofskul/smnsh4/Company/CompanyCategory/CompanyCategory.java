@@ -1,9 +1,15 @@
-package pl.krzysztofskul.smnsh4.Company;
+package pl.krzysztofskul.smnsh4.Company.CompanyCategory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import pl.krzysztofskul.smnsh4.Company.Company;
 
 @Entity
 public class CompanyCategory {
@@ -14,6 +20,9 @@ public class CompanyCategory {
 	
 	private CompanyCategoryEnum companyCategoryEnum;
 
+	@ManyToMany(mappedBy = "companyCategoryList")
+	private List<Company> companyList = new ArrayList<Company>();
+	
 	/*
 	 * constr.
 	 */
@@ -47,6 +56,12 @@ public class CompanyCategory {
 		this.companyCategoryEnum = companyCategoryEnum;
 	}
 	
+	public List<Company> getCompanyList() {
+		return companyList;
+	}
 	
+	public void setCompanyList(List<Company> companyList) {
+		this.companyList = companyList;
+	}
 	
 }

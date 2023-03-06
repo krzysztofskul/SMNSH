@@ -1,4 +1,4 @@
-package pl.krzysztofskul.smnsh4;
+package pl.krzysztofskul.smnsh4.ContactDetails;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.thedeanda.lorem.LoremIpsum;
 
 import pl.krzysztofskul.initDB.InitDataGenerator;
+import pl.krzysztofskul.smnsh4.ContactDetails.Address.Address;
 
 @Service
 public class ContactDetailsDemoGenerator implements InitDataGenerator<ContactDetails> {

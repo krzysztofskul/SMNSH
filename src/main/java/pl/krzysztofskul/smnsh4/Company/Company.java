@@ -7,14 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 import pl.krzysztofskul.SapCustomer.SapCustomer;
-import pl.krzysztofskul.smnsh4.ContactDetails;
+import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategory;
 import pl.krzysztofskul.smnsh4.Company.Employee.Employee;
+import pl.krzysztofskul.smnsh4.ContactDetails.ContactDetails;
 
-//@Entity
+@Entity
 public class Company {
 
 	@Id
@@ -30,9 +33,19 @@ public class Company {
 	private ContactDetails contactDetails;
 	
 	@ManyToMany
+	@JoinTable(
+			name = "company_category",
+			joinColumns = @JoinColumn(name  = "company_id"),
+			inverseJoinColumns = @JoinColumn(name = "comapnyCategory_id")
+	)
 	private List<CompanyCategory> companyCategoryList = new ArrayList<CompanyCategory>();
 	
 	@ManyToMany
+	@JoinTable(
+			name = "company_employee",
+			joinColumns = @JoinColumn(name  = "company_id"),
+			inverseJoinColumns = @JoinColumn(name = "employee_id")
+	)
 	private List<Employee> employeeList = new ArrayList<Employee>();
 	
 	/**

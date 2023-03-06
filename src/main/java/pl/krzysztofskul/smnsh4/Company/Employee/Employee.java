@@ -12,29 +12,29 @@ import javax.persistence.OneToOne;
 
 import org.apache.poi.hpsf.Array;
 
-import pl.krzysztofskul.smnsh4.ContactDetails;
-import pl.krzysztofskul.smnsh4.Person;
 import pl.krzysztofskul.smnsh4.Company.Company;
+import pl.krzysztofskul.smnsh4.ContactDetails.ContactDetails;
+import pl.krzysztofskul.smnsh4.Person.Person;
 
-//@Entity
+@Entity
 public class Employee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy = "employeeList")
 	private List<Company> company = new ArrayList<Company>();
 	
-	@OneToOne
-	private Person person;
+//	//@OneToOne
+//	private Person person;
 	
 	private String department;
 	
 	private String businessPosition;
 	
-	@OneToOne
-	private ContactDetails contactDetails;
+//	//@OneToOne
+//	private ContactDetails contactDetails;
 
 	/**
 	 * CONSTRUCTOR
@@ -52,13 +52,16 @@ public class Employee {
 	 * @param businessPosition
 	 * @param contactDetails
 	 */
-	public Employee(List<Company> company, Person person, String department, String businessPosition,
-			ContactDetails contactDetails) {
+	public Employee(List<Company> company, 
+//			Person person, 
+			String department, String businessPosition
+//			ContactDetails contactDetails
+			) {
 		this.company = company;
-		this.person = person;
+//		this.person = person;
 		this.department = department;
 		this.businessPosition = businessPosition;
-		this.contactDetails = contactDetails;
+//		this.contactDetails = contactDetails;
 	}
 
 	/**
@@ -89,19 +92,19 @@ public class Employee {
 		this.company = company;
 	}
 
-	/**
-	 * @return the person
-	 */
-	public Person getPerson() {
-		return person;
-	}
-
-	/**
-	 * @param person the person to set
-	 */
-	public void setPerson(Person person) {
-		this.person = person;
-	}
+//	/**
+//	 * @return the person
+//	 */
+//	public Person getPerson() {
+//		return person;
+//	}
+//
+//	/**
+//	 * @param person the person to set
+//	 */
+//	public void setPerson(Person person) {
+//		this.person = person;
+//	}
 
 	/**
 	 * @return the department
@@ -131,19 +134,19 @@ public class Employee {
 		this.businessPosition = businessPosition;
 	}
 
-	/**
-	 * @return the contactDetails
-	 */
-	public ContactDetails getContactDetails() {
-		return contactDetails;
-	}
-
-	/**
-	 * @param contactDetails the contactDetails to set
-	 */
-	public void setContactDetails(ContactDetails contactDetails) {
-		this.contactDetails = contactDetails;
-	}
+//	/**
+//	 * @return the contactDetails
+//	 */
+//	public ContactDetails getContactDetails() {
+//		return contactDetails;
+//	}
+//
+//	/**
+//	 * @param contactDetails the contactDetails to set
+//	 */
+//	public void setContactDetails(ContactDetails contactDetails) {
+//		this.contactDetails = contactDetails;
+//	}
 	
 	
 	

@@ -48,10 +48,12 @@ import pl.krzysztofskul.questionnaire.QuestionFormService;
 import pl.krzysztofskul.questionnaire.questionSet.*;
 import pl.krzysztofskul.recipient.Recipient;
 import pl.krzysztofskul.recipient.RecipientService;
-import pl.krzysztofskul.smnsh4.Company.CompanyCategory;
-import pl.krzysztofskul.smnsh4.Company.CompanyCategoryEnum;
-import pl.krzysztofskul.smnsh4.Company.CompanyCategoryRepo;
-import pl.krzysztofskul.smnsh4.Company.CompanyCategoryService;
+import pl.krzysztofskul.smnsh4.Company.Company;
+import pl.krzysztofskul.smnsh4.Company.CompanyService;
+import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategory;
+import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategoryEnum;
+import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategoryRepo;
+import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategoryService;
 import pl.krzysztofskul.stakeholder.StakeholderService;
 import pl.krzysztofskul.subcontractor.Subcontractor;
 import pl.krzysztofskul.subcontractor.SubcontractorDemoGenerator;
@@ -107,6 +109,7 @@ public class HomePageService {
     private AttachmentCategoryService attachmentCategoryService;
     private SubcontractorDemoGenerator subcontractorDemoGenerator;
     private CompanyCategoryService companyCategoryService;
+    private CompanyService companyService;
 
     /** constr.
      *
@@ -137,7 +140,8 @@ public class HomePageService {
             AttachmentCategoryDefaultGenerator attachmentCategoryDefaultGenerator,
             AttachmentCategoryService attachmentCategoryService,
             SubcontractorDemoGenerator subcontractorDemoGenerator,
-            CompanyCategoryService companyCategoryService
+            CompanyCategoryService companyCategoryService,
+            CompanyService companyService
     		) {
         this.userService = userService;
         this.deviceCategoryService = deviceCategoryService;
@@ -167,6 +171,7 @@ public class HomePageService {
         this.attachmentCategoryService = attachmentCategoryService;
         this.subcontractorDemoGenerator = subcontractorDemoGenerator;
         this.companyCategoryService = companyCategoryService;
+        this.companyService = companyService;
     }
 
     /** methods
@@ -673,6 +678,25 @@ public class HomePageService {
 			System.out.println("App. INFO: saving company category to database: " + companyCategoryService.save(comCat).getCompanyCategoryEnum().toString());
 		}
 		
+	}
+	
+	/**
+	 * Creates and save to database demo companies for smnsh4 package
+	 */
+	public void createAndSaveDemoCompaniesToDb() {
+		for (CompanyCategoryEnum comCatEnum : CompanyCategoryEnum.values()) {
+			Company company = new Company();
+			
+			List<CompanyCategory> ccel = new ArrayList<CompanyCategory>();
+			ccel.add(companyCategoryService.loadByCompanyCategoryEnum(comCatEnum));
+			if (comCatEnum.equals(CompanyCategoryEnum.INVESTOR)) {
+				ccel.add(companyCategoryService.loadByCompanyCategoryEnum(CompanyCategoryEnum.USER));	
+			}
+			
+			company.setCompanyCategoryList(ccel);
+			company.setName(LoremIpsum.getInstance().getTitle(new Random().nextInt(2)+1) + "Sp. z o.o.");
+			companyService.saveAndReturn(company);
+		}
 	}
 
 }

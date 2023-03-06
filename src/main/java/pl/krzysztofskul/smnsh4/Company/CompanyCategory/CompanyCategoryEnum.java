@@ -1,4 +1,4 @@
-package pl.krzysztofskul.smnsh4.Company;
+package pl.krzysztofskul.smnsh4.Company.CompanyCategory;
 
 public enum CompanyCategoryEnum {
 

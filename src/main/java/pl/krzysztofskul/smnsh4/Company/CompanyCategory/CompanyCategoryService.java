@@ -1,4 +1,4 @@
-package pl.krzysztofskul.smnsh4.Company;
+package pl.krzysztofskul.smnsh4.Company.CompanyCategory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

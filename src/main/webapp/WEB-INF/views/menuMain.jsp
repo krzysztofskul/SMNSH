@@ -37,7 +37,7 @@
 						<p class="langPL">DANE PODSTAWOWE</p>
 						<p class="langEN">BASIC DATA</p>
                     </a>
-                   <a class="dropdown-item" href="/initDB">
+                   <a class="dropdown-item" href="/initDemoDB">
 						<p class="langPL">DANE TESTOWE</p>
 						<p class="langEN">TEST DATA</p>
                     </a>

@@ -5,8 +5,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ModalityGenerator {
-
-	private static String[] modalityTypes = {"AT", "CT", "MI", "MR", "XPF", "XPR", "XPM", "XPU", "US", "RO", "LD", "SY", "SU"};
 	
 	private ModalityRepo modalityRepo;
 

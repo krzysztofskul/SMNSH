@@ -1,4 +1,4 @@
-package pl.krzysztofskul.smnsh4;
+package pl.krzysztofskul.smnsh4.Person;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

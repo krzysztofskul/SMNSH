@@ -1,11 +1,11 @@
-package pl.krzysztofskul.smnsh4;
+package pl.krzysztofskul.smnsh4.ContactDetails.Address;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-//@Entity
+@Entity
 public class Address {
 
 	@Id
