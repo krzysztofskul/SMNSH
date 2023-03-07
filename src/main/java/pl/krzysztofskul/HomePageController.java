@@ -74,7 +74,7 @@ public class HomePageController {
 				InitDB.increaseCounter();
 
 				homePageService.createAndSaveDemoCompaniesToDb();
-				homePageService.initTestMilestonesToDB();
+				homePageService.initializeMilestoneTemplatesToDb();
 				
 				try {
 					homePageService.importInitDevicesPortfolio();

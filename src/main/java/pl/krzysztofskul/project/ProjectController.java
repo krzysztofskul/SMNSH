@@ -21,6 +21,9 @@ import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 import pl.krzysztofskul.logger.loggerUser.LoggerUserService;
 import pl.krzysztofskul.project.comment.Comment;
 import pl.krzysztofskul.project.comment.CommentService;
+import pl.krzysztofskul.smnsh4.Company.Company;
+import pl.krzysztofskul.smnsh4.Company.CompanyService;
+import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategoryEnum;
 import pl.krzysztofskul.subcontractor.Subcontractor;
 import pl.krzysztofskul.subcontractor.SubcontractorService;
 import pl.krzysztofskul.user.User;
@@ -51,13 +54,16 @@ public class ProjectController {
     private CommentService commentService;
     private PartService partService;
     private PrototypeService prototypeService;
+    private CompanyService companyService;
 
     @Autowired
     public ProjectController(ProjectService projectService, InvestorService investorService,
 			SubcontractorService subcontractorService, DeviceService deviceService, UserService userService,
 			AttachmentService attachmentService, LoggerUserService<Object> loggerUserService,
 			LoggerProjectService<Object> loggerProjectService, CommentService commentService, PartService partService,
-			PrototypeService prototypeService) {
+			PrototypeService prototypeService,
+			CompanyService companyService
+			) {
 		super();
 		this.projectService = projectService;
 		this.investorService = investorService;
@@ -70,6 +76,7 @@ public class ProjectController {
 		this.commentService = commentService;
 		this.partService = partService;
 		this.prototypeService = prototypeService;
+		this.companyService = companyService;
 	}
 
     @ModelAttribute("allDeviceList")
@@ -111,6 +118,11 @@ public class ProjectController {
     public List<Attachment> getAllAttachments() {
     	return attachmentService.loadAll();
     }
+    
+	@ModelAttribute("subcontractorsForRoomAdaptation")
+	public List<Company> getAllSubcontractorsForRoomAdaptations() {
+		return companyService.loadAllByCompanyCategoryEnum(CompanyCategoryEnum.SUBCONTRACTOR_ROOM_ADAPTATION);
+	}
 
     @GetMapping("/new")
     public String projectNew(

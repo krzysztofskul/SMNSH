@@ -263,13 +263,13 @@
 							            <c:choose>
 							                <c:when test="${edit eq true}">
 							                    <form:select path="subcontractor.id" cssClass="w-100">
-							                        <c:forEach items="${allSubcontractorList}" var="subcontractor">
-							                            <form:option value="${subcontractor.id}" label="${subcontractor.name} ${subcontractor.type.name}"/>
+							                        <c:forEach items="${subcontractorsForRoomAdaptation}" var="subcontractor">
+							                            <form:option value="${subcontractor.id}" label="${subcontractor.name}"/>
 							                        </c:forEach>
 							                    </form:select>
 							                </c:when>
 							                <c:otherwise>
-							                    ${project.subcontractor.name} ${project.subcontractor.type.name}
+							                    ${project.subcontractor.name}
 							                </c:otherwise>
 							            </c:choose>
 							        </div>

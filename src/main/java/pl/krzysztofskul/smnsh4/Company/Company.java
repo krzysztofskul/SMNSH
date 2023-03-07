@@ -10,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import pl.krzysztofskul.SapCustomer.SapCustomer;
+import pl.krzysztofskul.project.Project;
 import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategory;
 import pl.krzysztofskul.smnsh4.Company.Employee.Employee;
 import pl.krzysztofskul.smnsh4.ContactDetails.ContactDetails;
@@ -26,6 +28,9 @@ public class Company {
 	
 	private String name;
 	
+	@OneToMany(mappedBy = "subcontractor")
+	private List<Project> projects = new ArrayList<Project>();
+	
 	@OneToOne
 	private SapCustomer sapCustomer;
 	
@@ -36,7 +41,7 @@ public class Company {
 	@JoinTable(
 			name = "company_category",
 			joinColumns = @JoinColumn(name  = "company_id"),
-			inverseJoinColumns = @JoinColumn(name = "comapnyCategory_id")
+			inverseJoinColumns = @JoinColumn(name = "companyCategory_id")
 	)
 	private List<CompanyCategory> companyCategoryList = new ArrayList<CompanyCategory>();
 	
@@ -82,6 +87,14 @@ public class Company {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
 	}
 
 	public SapCustomer getSapCustomer() {

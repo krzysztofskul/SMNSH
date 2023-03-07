@@ -11,6 +11,7 @@ import pl.krzysztofskul.project.comment.Comment;
 import pl.krzysztofskul.project.configuration.Configuration;
 import pl.krzysztofskul.project.details.DetailsSls;
 import pl.krzysztofskul.projectCharter.ProjectCharter;
+import pl.krzysztofskul.smnsh4.Company.Company;
 import pl.krzysztofskul.subcontractor.Subcontractor;
 import pl.krzysztofskul.user.User;
 
@@ -94,7 +95,7 @@ public class Project {
     private String buildingContractor;
 
     @ManyToOne
-    private Subcontractor subcontractor;
+    private Company subcontractor;
 
     private String trainings;
     
@@ -303,13 +304,13 @@ public class Project {
         this.buildingContractor = buildingContractor;
     }
 
-    public Subcontractor getSubcontractor() {
-        return subcontractor;
-    }
-
-    public void setSubcontractor(Subcontractor subcontractor) {
-        this.subcontractor = subcontractor;
-    }
+    public Company getSubcontractor() {
+		return subcontractor;
+	}
+    
+    public void setSubcontractor(Company subcontractor) {
+		this.subcontractor = subcontractor;
+	}
 
     public String getTrainings() {
         return trainings;

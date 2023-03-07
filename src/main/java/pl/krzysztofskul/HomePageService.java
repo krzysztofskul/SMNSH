@@ -197,7 +197,7 @@ public class HomePageService {
 			this.createRealTestInvestors();
 			//this.createRecipients();
 			this.createRealTestRecipients();
-			this.initTestMilestonesToDB();;
+			this.initializeMilestoneTemplatesToDb();;
 			this.createProjects();
 			this.createConcepts();
 			//this.createGuidelines();
@@ -563,7 +563,7 @@ public class HomePageService {
         
     }
     
-    public void initTestMilestonesToDB() {
+    public void initializeMilestoneTemplatesToDb() {
         for (MilestoneTemplate milestoneTemplate : MilestoneSingleton.getMilestoneSingleton().getMilestoneTemplates()) {
     			milestoneService.saveMilestone(milestoneTemplate);
 		}
@@ -582,7 +582,7 @@ public class HomePageService {
 					project.setProjectManager(userPm);
 					project.setStatus(projectStatus);
 					project.setInvestor(investorService.loadById((long) new Random().nextInt(investorService.loadAll().size())+1));
-					project.setSubcontractor(subcontractorService.loadById((long) new Random().nextInt(subcontractorService.loadAll().size())+1));
+					//project.setSubcontractor(subcontractorService.loadById((long) new Random().nextInt(subcontractorService.loadAll().size())+1));
 					for(int i = 0; i <= new Random().nextInt(3); i++) {
 						project.addDevice(deviceService.loadById((long) new Random().nextInt(deviceService.loadAll().size())+1));					
 					}
@@ -685,17 +685,20 @@ public class HomePageService {
 	 */
 	public void createAndSaveDemoCompaniesToDb() {
 		for (CompanyCategoryEnum comCatEnum : CompanyCategoryEnum.values()) {
-			Company company = new Company();
-			
-			List<CompanyCategory> ccel = new ArrayList<CompanyCategory>();
-			ccel.add(companyCategoryService.loadByCompanyCategoryEnum(comCatEnum));
-			if (comCatEnum.equals(CompanyCategoryEnum.INVESTOR)) {
-				ccel.add(companyCategoryService.loadByCompanyCategoryEnum(CompanyCategoryEnum.USER));	
+			for (int i = 0; i < 5; i++) {
+				
+				Company company = new Company();
+				
+				List<CompanyCategory> ccel = new ArrayList<CompanyCategory>();
+				ccel.add(companyCategoryService.loadByCompanyCategoryEnum(comCatEnum));
+				if (comCatEnum.equals(CompanyCategoryEnum.INVESTOR)) {
+					ccel.add(companyCategoryService.loadByCompanyCategoryEnum(CompanyCategoryEnum.USER));	
+				}
+				
+				company.setCompanyCategoryList(ccel);
+				company.setName(LoremIpsum.getInstance().getTitle(new Random().nextInt(2)+1) + " Sp. z o.o.");
+				companyService.saveAndReturn(company);
 			}
-			
-			company.setCompanyCategoryList(ccel);
-			company.setName(LoremIpsum.getInstance().getTitle(new Random().nextInt(2)+1) + "Sp. z o.o.");
-			companyService.saveAndReturn(company);
 		}
 	}
 
