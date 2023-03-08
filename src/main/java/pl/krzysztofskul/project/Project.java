@@ -38,7 +38,7 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy = "project", cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "project", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private ProjectCharter projectCharter;
 
 //    @NotBlank
@@ -104,7 +104,7 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
     private List<Concept> conceptList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "project", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Attachment> attachmentList = new ArrayList<>();
 
     @OneToMany(mappedBy = "project", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}/*, orphanRemoval = true*/)

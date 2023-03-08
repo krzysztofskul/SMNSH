@@ -148,44 +148,39 @@ public class ProjectController {
             HttpSession httpSession
     ) throws IOException {
 
-//        attachmentService.save(fileUpload);
-
         if (result.hasErrors()) {
             return "/projects/new";
         }
-
+        
+        if (projectNew.getSubcontractor().getId() == null) {
+        	projectNew.setSubcontractor(null);
+        }
+        
         if (projectNew.getId() == null) {
-//            List<Device> deviceList = new ArrayList<>();
-//            for (Device device : projectNew.getDeviceList()) {
-//                deviceList.add(deviceService.loadByIdWithConfigurationList(device.getId()));
-//            }
-//            projectNew.setDeviceList(deviceList);
           List<Prototype> deviceList = new ArrayList<>();
           for (Prototype device : projectNew.getPrototypeList()) {
               deviceList.add(prototypeService.loadByIdWithConfigurationList(device.getId()));
           }
           projectNew.setPrototypeList(deviceList);
             projectService.save(projectNew);
-            //loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.PROJECT_CREATE, projectNew);
         } else {
             projectService.save(projectNew);
-            //loggerUserService.log((User) httpSession.getAttribute("userLoggedIn"), LocalDateTime.now(), UserAction.PROJECT_CREATE, projectNew);
-            //loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Project Updated.", "Projekt zaktualizowano.", httpSession.getAttribute("userLoggedIn"));
         }
+        
         if (filesUpload != null & filesUpload.size() > 0) {
         	for (MultipartFile fileUpload: filesUpload) {
-				
 	        	if (fileUpload.getOriginalFilename() != "") {
 	            	System.out.println("Attachment to upload... "+fileUpload.getOriginalFilename());
 	                attachmentService.saveToProject(fileUpload, projectNew);
 	                loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Attachement added.", "Dodano załącznik", httpSession.getAttribute("userLoggedIn"));        		
 	        	}
         	}
-
         }
+        
         if (backToPage != null) {
             return "redirect:"+backToPage+"&view=list";
         }
+        
         return "redirect:/projects/all?view=list";
     }
 

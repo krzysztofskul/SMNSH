@@ -63,7 +63,7 @@
 		            
 		            
 		            <c:choose>
-		                <c:when test="${projectsAll ne null}">
+		                <c:when test="${projectsAll ne null && projectsAll.size() > 0}">
 		                <div class="mr-auto ml-auto text-center">
 		                    <c:forEach items="${projectsAll}" var="project">
 		                    	
@@ -211,7 +211,6 @@
 														<br>
 														${project.detailsSls.importedDeviceModality} ${project.detailsSls.importedDeviceModelName}
 														<br>
-														${project.detailsSls.importedCustomer}
 													</div>
 												</div>
 												<div class="col-md-2">
@@ -242,10 +241,15 @@
 												</div>
 												<div class="col-md-2">
 													<div class="card-body">
-														<a href="/projects/details/${project.id}">
-                                                        	<button class="btn btn-outline-primary mb-1">SZCZEGÓŁY</button>
-                                                        </a>
-                                                        <button class="btn btn-outline-danger">USUŃ</button>
+                                            			<a href="/projects/delete/${project.id}" class="btn btn-outline-danger float-right ml-1">
+			                                                <p class="langPL">USUŃ</p>
+			                                                <p class="langEN">DEL</p>
+			                                            </a>
+														<a href="/projects/details/${project.id}" class="projectDetailsBtn btn btn-outline-primary float-right">
+				                                                <p class="langPL">SZCZEGÓŁY</p>
+				                                                <p class="langEN">DETAILS</p>
+			                                            </a>
+                                                        
                                                        </div>
 												</div>
 												
@@ -264,9 +268,11 @@
 		                </div>
 		                </c:when>
 		                <c:otherwise>
-		                    <div>
-		                        <p class="langPL">BRAK PROJEKTÓW DLA TEGO UŻYTKOWNIKA</p>
-		                        <p class="langPL">NO PROJECTS FOR THIS USER</p>
+		                    <div class="row m-5">
+			                    <div class="col-12">
+			                        <p class="langPL">BRAK PROJEKTÓW DLA TEGO UŻYTKOWNIKA</p>
+			                        <p class="langEN">NO PROJECTS FOR THIS USER</p>
+			                    </div>
 		                    </div>
 		                </c:otherwise>
 		            </c:choose>

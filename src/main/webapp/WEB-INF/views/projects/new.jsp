@@ -119,6 +119,7 @@
                         </div>
                         <div class="col-8">
                             <form:select path="subcontractor.id" cssClass="w-100">
+                            <form:option value="null">---</form:option> 
                                 <c:forEach items="${subcontractorsForRoomAdaptation}" var="subcontractor">
                                         <form:option value="${subcontractor.id}" label="${subcontractor.name}"/>
                                 </c:forEach>
