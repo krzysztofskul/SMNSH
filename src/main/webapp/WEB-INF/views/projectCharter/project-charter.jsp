@@ -38,7 +38,7 @@
     <main>
         <div class="test">
             <h1>Test:</h1>
-            <h2>Project charter id: ${projectCharter.id}</h2>
+            <h2>Project charter id: <span id="projectCharterId">${projectCharter.id}</span></h2>
             <h2>For project id: ${projectCharter.project.id} <a href="/projects/details/${projectCharter.project.id}"> >>> </a> </h2>
             <h2>And project name: ${projectCharter.project.projectName}</h2>
             <h3>And project manager name: ${projectCharter.project.projectManager.nameFirst}</h3>
@@ -114,14 +114,14 @@
 	        						</button>
 	        					</div>
 	        					<div class="float-right d-inline mr-2 invisible">
-	        						<button class="btn-sm btn-outline-warning" id="btnCancelProjectBackground">
+	        						<button class="btn-sm btn-outline-warning btnCancel" id="btnCancelProjectBackground">
 	        							<p class="langPL">ANULUJ</p>
 	        							<p class="langEN">CANCEL</p>
 	        						</button>
 	        					</div>
 	        				</div>
 	        				<div class="card-body">
-	        					<textarea cols=60 rows=10 disabled class="form-control" id="textareatProjectBackground">
+	        					<textarea cols=60 rows=5 disabled class="form-control" id="textareaProjectBackground">
 	        						${projectCharter.reasons }
 	        					</textarea>
 	        				</div>
@@ -131,21 +131,27 @@
 		        		<!-- PROJECT RISKS -->
 	        			<div class="card">
 	        				<div class="card-header">
-	        				<div class="float-left">
-	        					<p class="langPL">RYZYKA PROJEKTU</p>
-	        					<p class="langen">PROJECT RISKS</p>
-        					</div>
+		        				<div class="float-left">
+		        					<p class="langPL">RYZYKA PROJEKTU</p>
+		        					<p class="langen">PROJECT RISKS</p>
+	        					</div>
 	        					<div class="float-right d-inline">
-        						<button class="btn-sm btn-outline-primary">
+        						<button class="btn-sm btn-outline-primary" id="btnEditRisks">
         							<p class="langPL">EDYTUJ</p>
         							<p class="langEN">EDIT</p>
         						</button>
-        					</div>
+        						</div>
+	        					<div class="float-right d-inline mr-2 invisible">
+	        						<button class="btn-sm btn-outline-warning btnCancel" id="btnCancelRisks">
+	        							<p class="langPL">ANULUJ</p>
+	        							<p class="langEN">CANCEL</p>
+	        						</button>
+	        					</div>
 	        				</div>
 	        				<div class="card-body">
-	        					<p>
+	        					<textarea cols=60 rows=5 disabled class="form-control" id="textareaRisks">
 	        						${projectCharter.risks }
-	        					</p>
+	        					</textarea>
 	        				</div>
 	        			</div>
 
@@ -158,16 +164,22 @@
 		        					<p class="langen">GOALS</p>
 	        					</div>
 	        					<div class="float-right d-inline">
-	        						<button class="btn-sm btn-outline-primary">
+	        						<button class="btn-sm btn-outline-primary" id="btnEditGoals">
 	        							<p class="langPL">EDYTUJ</p>
 	        							<p class="langEN">EDIT</p>
 	        						</button>
         						</div>
+	        					<div class="float-right d-inline mr-2 invisible">
+	        						<button class="btn-sm btn-outline-warning btnCancel" id="btnCancelGoals">
+	        							<p class="langPL">ANULUJ</p>
+	        							<p class="langEN">CANCEL</p>
+	        						</button>
+	        					</div>
 	        				</div>
 	        				<div class="card-body">
-	        					<p>
+	        					<textarea cols=60 rows=5 disabled class="form-control" id="textareaGoals">
 	        						${projectCharter.goals }
-	        					</p>
+	        					</textarea>
 	        				</div>
 	        			</div>
 		        	

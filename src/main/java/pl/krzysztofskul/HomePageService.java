@@ -696,7 +696,30 @@ public class HomePageService {
 				}
 				
 				company.setCompanyCategoryList(ccel);
-				company.setName(LoremIpsum.getInstance().getTitle(new Random().nextInt(2)+1) + " Sp. z o.o.");
+				switch (comCatEnum) {
+				case INVESTOR:
+					company.setName(LoremIpsum.getInstance().getTitle(2) + " Investments GmbH");
+					break;
+				case SUBCONTRACTOR:
+					company.setName(LoremIpsum.getInstance().getTitle(1) + "-BUD Sp. z o.o.");
+					break;
+				case SUBCONTRACTOR_GENERAL:
+					company.setName(LoremIpsum.getInstance().getTitle(1) + "-BUD Sp. z o.o.");
+					break;
+				case SUBCONTRACTOR_ROOM_ADAPTATION:
+					company.setName(LoremIpsum.getInstance().getTitle(1) + "-BUD Sp. z o.o.");
+					break;
+				case SUPPLIER:
+					company.setName(LoremIpsum.getInstance().getTitle(1) + "-Trans. S.A.");
+					break;
+				case USER:
+					company.setName(LoremIpsum.getInstance().getTitle(1) + "-Med. Ltd.");
+					break;
+				default:
+					company.setName(LoremIpsum.getInstance().getTitle(1) + " LLC");
+					break;
+				}
+				
 				companyService.saveAndReturn(company);
 			}
 		}

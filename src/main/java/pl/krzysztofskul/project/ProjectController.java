@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.krzysztofskul.attachment.Attachment;
@@ -149,10 +151,11 @@ public class ProjectController {
     ) throws IOException {
 
         if (result.hasErrors()) {
+        	
             return "/projects/new";
         }
         
-        if (projectNew.getSubcontractor().getId() == null) {
+        if (projectNew.getSubcontractor().getId() == 0 & projectNew.getSubcontractor().getName() == null) {
         	projectNew.setSubcontractor(null);
         }
         

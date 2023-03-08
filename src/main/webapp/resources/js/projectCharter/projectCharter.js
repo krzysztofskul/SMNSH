@@ -1,27 +1,35 @@
+/**
+ * 
+ */
+
 $(document).ready(function() {
     //alert("test projectCharter.js jquery!"); // ok
 
     let btnEdit = $("#btnEdit");
     let btnEditProjectBackground = $("#btnEditProjectBackground");
+    let btnEditRisks = $("#btnEditRisks");
+    let btnEditGoals = $("#btnEditGoals");
     let btnCancel = $("#btnCancel");
+    let btnCancelProjectBackground = $("#btnCancelProjectBackground");
+    let btnCancelRisks = $("#btnCancelRisks");
+    let btnCancelGoals = $("#btnCancelGoals");
     let btnSave = $("#btnSave");
 
     let projectCharterId = $("#projectCharterId").text();
-    let projectId = $("#projectId").text();
 
-    let inputReasons = $("#reasons");
-    let inputGoals = $("#goals");
-    let inputRisks = $("#risks");
+    let inputProjectBackground = $("#textareaProjectBackground");
+    let inputGoals = $("#textareaGoals");
+    let inputRisks = $("#textareaRisks");
 
     let successWhenPutProjectCharter = function () {
         window.location.reload(true)
     }
 
-    let errorWhenPutProjectCharter = function () {
-        alert("error while put project charter to db!")
+    let errorWhenPutProjectCharter = function (data) {
+        alert("error while put project charter no. "+projectCharterId+" data to db!");
     }
 
-    function ajaxFunction(url, method, data, dataType, contentType, success, error) {
+    function ajaxFunction(url, method, data, dataType, contentType, success, errorMyFunction) {
         $.ajax({
             url: url,
             method: method,
@@ -31,7 +39,19 @@ $(document).ready(function() {
         }).done(function () {
             success();
         }).fail(function (){
-            error();
+            errorMyFunction();
+        });
+    }
+
+    function ajaxFunction2(url, method, data, success, errorMyFunction) {
+        $.ajax({
+            url: url,
+            method: method,
+            data: data,
+        }).done(function () {
+            success();
+        }).fail(function (){
+            errorMyFunction();
         });
     }
 
@@ -43,31 +63,35 @@ $(document).ready(function() {
         btnCancel.on("click", function () {
             window.location.reload(true);
         });
+        btnCancelProjectBackground.on("click", function () {
+            window.location.reload(true);
+        });
+        btnCancelRisks.on("click", function () {
+            window.location.reload(true);
+        });
+        btnCancelGoals.on("click", function () {
+            window.location.reload(true);
+        });
 
     }
 
     function setButtonSaveFunctionality() {
-        btnSave.on("click", function () {
 
+			alert("test save!");
             let data = {
-                "id": projectCharterId,
-                "project": projectId,
-                "reasons": inputReasons.val(),
-                "goals":  inputGoals.val(),
-                "risks": inputRisks.val()
+                'reasons': inputProjectBackground.val(),
+                'goals':  inputGoals.val(),
+                'risks': inputRisks.val()
             }
 
-            ajaxFunction(
+            ajaxFunction2(
                 "/rest/project-charter/"+projectCharterId,
-                "PUT",
-                JSON.stringify(data),
-                "json",
-                "application/json",
+                "POST",
+                data,
                 successWhenPutProjectCharter,
                 errorWhenPutProjectCharter
             );
 
-        });
 
     }
 
@@ -76,8 +100,8 @@ $(document).ready(function() {
             //test
             //$("textarea").css("border", "1px solid red");
 
-            $("textarea").removeAttr("disabled");
-            btnCancel.removeAttr("disabled");
+            $(this).parent().parent().$("textarea").removeAttr("disabled");
+            $(this).parent().$(button.btnCancel).removeAttr("disabled");
             btnSave.removeAttr("disabled");
             $(this).attr("disabled", "true");
 
@@ -89,13 +113,15 @@ $(document).ready(function() {
         	button.removeClass("btn-outline-primary");
         	button.addClass("btn-outline-success");
         	button.children().first().text("ZAPISZ").next().text("SAVE");
+			
         	
         	button.on("click", function() {
-        		alert("//TODO... save to database function");
+				
+				setButtonSaveFunctionality();
 				changeSaveButtonToEditButton(button);
 				let cancelButton = $("#btnCancelProjectBackground").children().first();
 				hideCancelButton(cancelButton);
-				let inputTag = $("#textareatProjectBackground");
+				let inputTag = $("#textareaProjectBackground");
 				disableInputTag(inputTag);
         	});
 
@@ -132,7 +158,7 @@ $(document).ready(function() {
     		let buttonSaveEdit = $("#btnEditProjectBackground");
     		changeSaveButtonToEditButton(buttonSaveEdit);
     		
-    		let inputTag = $("#textareatProjectBackground");
+    		let inputTag = $("#textareaProjectBackground");
     		disableInputTag(inputTag);
     	});
     	
@@ -144,10 +170,36 @@ $(document).ready(function() {
         	let button = $(this);
         	changeButtonToSaveButton(button);
         	
-        	let inputTag = $("#textareatProjectBackground");
+        	let inputTag = $("#textareaProjectBackground");
         	enableInputTagToEdit(inputTag);
         	
         	let cancelButton = $("#btnCancelProjectBackground").children().first();
+        	showCancelButton(cancelButton);     	
+        });
+    }
+    function setButtonEditRisksFunctionality() {
+        btnEditRisks.on("click", function (){
+        	//alert("test button edit project background!");
+        	let button = $(this);
+        	changeButtonToSaveButton(button);
+        	
+        	let inputTag = $("#textareaRisks");
+        	enableInputTagToEdit(inputTag);
+        	
+        	let cancelButton = $("#btnCancelRisks").children().first();
+        	showCancelButton(cancelButton);     	
+        });
+    }
+    function setButtonEditGoalsFunctionality() {
+        btnEditGoals.on("click", function (){
+        	//alert("test button edit project background!");
+        	let button = $(this);
+        	changeButtonToSaveButton(button);
+        	
+        	let inputTag = $("#textareaGoals");
+        	enableInputTagToEdit(inputTag);
+        	
+        	let cancelButton = $("#btnCancelGoals").children().first();
         	showCancelButton(cancelButton);     	
         });
     }
@@ -184,8 +236,10 @@ $(document).ready(function() {
         hideTestDivs();
         setButtonEditFunctionality();
         setButtonEditProjectBackgroundFunctionality();
+		setButtonEditRisksFunctionality();
+		setButtonEditGoalsFunctionality();
         setButtonCancelFunctionality();
-        setButtonSaveFunctionality();
+        
     }
 
     init();
