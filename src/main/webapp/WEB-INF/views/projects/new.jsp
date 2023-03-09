@@ -10,6 +10,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
+    <!--jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <!--JS files-->
+    <script src="<c:url value="/resources/js/projects/new.js"/>" type="text/javascript"></script>
 </head>
 <body>
 
@@ -226,7 +230,10 @@
                     <hr>
 
                     <div class="row mb-1">
-                        <div class="col-4 text-right">
+                    	<div class="col-1">
+                    		<button type="button" class="btn btn-sm" id="btn-search-devices" style="font-size: 4em">&#9783;</button>
+                    	</div>
+                        <div class="col-3 text-right">
                             <p class="langPL">LISTA URZĄDZEŃ:</p>
                             <p class="langEN">DEVICE LIST:</p>
                         </div>

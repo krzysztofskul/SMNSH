@@ -643,7 +643,8 @@ public class HomePageService {
 
 	public void savePrototypeToDbIfNotExist(String importedDeviceModelName) {
 		if (null == prototypeService.loadByModelName(importedDeviceModelName)) {
-			prototypeService.save(new Prototype("Smnsh", importedDeviceModelName));
+			Prototype newPrototype = new Prototype("Smnsh", importedDeviceModelName);
+			prototypeService.save(newPrototype);
 		}
 		
 	}
