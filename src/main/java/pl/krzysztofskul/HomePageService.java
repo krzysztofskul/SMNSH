@@ -15,6 +15,7 @@ import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
 import pl.krzysztofskul.device.category.DeviceCategory;
 import pl.krzysztofskul.device.category.DeviceCategoryService;
+import pl.krzysztofskul.device.modality.ModalityService;
 import pl.krzysztofskul.device.part.Part;
 import pl.krzysztofskul.device.part.PartDemoGenerator;
 import pl.krzysztofskul.device.part.PartService;
@@ -110,6 +111,7 @@ public class HomePageService {
     private SubcontractorDemoGenerator subcontractorDemoGenerator;
     private CompanyCategoryService companyCategoryService;
     private CompanyService companyService;
+    private ModalityService modalityService;
 
     /** constr.
      *
@@ -141,7 +143,8 @@ public class HomePageService {
             AttachmentCategoryService attachmentCategoryService,
             SubcontractorDemoGenerator subcontractorDemoGenerator,
             CompanyCategoryService companyCategoryService,
-            CompanyService companyService
+            CompanyService companyService,
+            ModalityService modalityService
     		) {
         this.userService = userService;
         this.deviceCategoryService = deviceCategoryService;
@@ -172,6 +175,7 @@ public class HomePageService {
         this.subcontractorDemoGenerator = subcontractorDemoGenerator;
         this.companyCategoryService = companyCategoryService;
         this.companyService = companyService;
+        this.modalityService = modalityService;
     }
 
     /** methods
@@ -644,6 +648,15 @@ public class HomePageService {
 	public void savePrototypeToDbIfNotExist(String importedDeviceModelName) {
 		if (null == prototypeService.loadByModelName(importedDeviceModelName)) {
 			Prototype newPrototype = new Prototype("Smnsh", importedDeviceModelName);
+			if (newPrototype.getModelName().contains("Magnet")) {
+				newPrototype.setModality(modalityService.loadByCode("MR"));
+			}
+			if (newPrototype.getModelName().contains("Som")) {
+				newPrototype.setModality(modalityService.loadByCode("CT"));
+			}
+			if (newPrototype.getModelName().contains("Art")) {
+				newPrototype.setModality(modalityService.loadByCode("AT"));
+			}
 			prototypeService.save(newPrototype);
 		}
 		
@@ -654,6 +667,15 @@ public class HomePageService {
 		
 		for (String deviceName : initDeviceNames) {
 			Prototype prototype = new Prototype("SMNSH", deviceName);
+			if (prototype.getModelName().contains("Magnet")) {
+				prototype.setModality(modalityService.loadByCode("MR"));
+			}
+			if (prototype.getModelName().contains("Som")) {
+				prototype.setModality(modalityService.loadByCode("CT"));
+			}
+			if (prototype.getModelName().contains("Art")) {
+				prototype.setModality(modalityService.loadByCode("AT"));
+			}
 			prototypeService.save(prototype);
 		}
 		

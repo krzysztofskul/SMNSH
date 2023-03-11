@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ModalityRepo extends JpaRepository<Modality, Long>{
 
+	Modality findByCode(String code);
+	
 }

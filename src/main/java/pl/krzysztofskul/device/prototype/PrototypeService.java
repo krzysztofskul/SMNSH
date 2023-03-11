@@ -9,17 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pl.krzysztofskul.device.Device;
+import pl.krzysztofskul.device.modality.Modality;
+import pl.krzysztofskul.device.modality.ModalityService;
 
 @Service
 @Transactional
 public class PrototypeService {
 
 	private PrototypeRepo prototypeRepo;
+	private ModalityService modalityService;
 
 	@Autowired
-	public PrototypeService(PrototypeRepo prototypeRepo) {
+	public PrototypeService(
+			PrototypeRepo prototypeRepo,
+			ModalityService modalityService) {
 		super();
 		this.prototypeRepo = prototypeRepo;
+		this.modalityService = modalityService;
 	}
 	
 	public List<Prototype> loadAll() {
@@ -43,6 +49,14 @@ public class PrototypeService {
         Prototype prototype = this.loadById(id);
 		Hibernate.initialize(prototype.getConfigurationList());
 		return prototype;
+	}
+	
+	public List<Prototype> loadAllByModalityCode(String modalityCode) {
+		Modality modality = modalityService.loadByCode(modalityCode);
+		List<Prototype> prototypeList = prototypeRepo.findAllByModality(modality);
+		
+		return prototypeList;
+		
 	}
 	
 }

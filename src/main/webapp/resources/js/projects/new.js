@@ -7,10 +7,14 @@ $(document).ready(function() {
 
 	var btnSearchDevices = $("#btn-search-devices");
 	var modalityList = [];
+	var prototypeList = [];
+	xPosition = 25;
+	yPosition = 25;
 	
 	btnSearchDevices.on("click", function(event) {
 		//alert("test button"); //ok
-		showWindow("MODALITY LIST / MODALNOŚCI SPRZĘTOWE", getModalityList(), 25, 25);
+		showWindow("windowModalityList", "MODALITY LIST / MODALNOŚCI SPRZĘTOWE", () => getModalityList(), xPosition, yPosition);
+		console.log("btnSearchDevices clicked");
 	});
 
 	function ajax(url, data, type, dataType, successFunc, errorFunc) {
@@ -26,11 +30,11 @@ $(document).ready(function() {
 			});
 	}
 
-	function showWindow(windowTitle, content, xPos, yPos) {
+	function showWindow(windowId, windowTitle, content, xPos, yPos) {
 		//alert("show window with modality!");//ok
-		$(".container").append(
+		$("body").append(
 			
-			"<div class='fixed-top border card floating-window' style='top:"+yPos+"px; left:"+xPos+"px; width:350px; min-height:400px'>"+
+			"<div class='fixed-top border card floating-window' id="+windowId+" style='top:"+yPos+"px; left:"+xPos+"px; width:350px; min-height:400px'>"+
 				"<div class='card-header'>"+
 					"<div class='row'>"+
 						
@@ -49,7 +53,7 @@ $(document).ready(function() {
 						
 					"</div>"+
 				"</div>"+
-				"<div class='card-body' id='card-body'>"+
+				"<div class='card-body'>"+
 				"</div>"+
 			"</div>"
 		);
@@ -60,14 +64,49 @@ $(document).ready(function() {
 			$(this).css("cursor", "pointer");
 		});
 
-		content;
+		content();
+		xPosition+=10;
+		yPosition+=5;
 	}
 
 	function showRowsWithModality(data) {
 		data.forEach(function (modality) {
-			$("#card-body").append("<div class='row'>" + modality.code + " " + modality.name+"</div>");
+			$("#windowModalityList > .card-body").append(
+			
+			
+				"<div class='row'>" + 
+				
+					"<div class='col-2'>"+modality.code+"</div>"+
+					"<div class='col-10'>"+modality.name+"</div>"+
+				
+				"</div>"
+			
+			
+			);
 		});
-		setRowFunctionality();
+		setModalityRowFunctionality();
+	}
+
+	function showRowsWithDevicesPrototypes(rows) {
+		$("#windowPrototypeList > .card-body").children().remove();
+		rows.forEach(function (elementPrototype) {
+			$("#windowPrototypeList > .card-body").append("<div class='row'>" + elementPrototype.modelName+"</div>");
+		});
+		var prototypeRows = $("#windowPrototypeList > .card-body .row");
+		console.log(prototypeRows);
+		prototypeRows.each(function() {
+			$(this).on('click', function(e) {
+				//console.log("click "+$(this)[0].innerText);
+				var rowJqueryObject = $(this);
+				setPrototypeRowFunctionality(rowJqueryObject);
+			});	
+	
+		});
+	}
+
+	function setPrototypeRowFunctionality(rowJqueryObject) {
+		console.log("row functionality for: "+rowJqueryObject[0].innerText);
+		clickOnPrototypeRow(rowJqueryObject);
 	}
 
 	function doSuccesWhenLoadModalityList(data) {
@@ -100,23 +139,70 @@ $(document).ready(function() {
 		)
 	}
 
-	function setRowFunctionality() {
-		var rows = $(".floating-window > #card-body .row");
-		rows.each(function() {
-			//console.log($(this)[0]);
-			$(this).on("click", function() {
-				//alert("click " + $(this)[0].textContent);
-				showWindow("test", console.log("2nd test widnow"), 300, 25);
+	function getPrototypeListByModalityCode(modalityCode) {
+		ajax(
+			"/smnsh/devicesprototypes/all/"+modalityCode,
+			{},
+			"GET",
+			"json",
+			doSuccesWhenLoadPrototypeList,
+			null
+		)
+	}
+
+	function doSuccesWhenLoadPrototypeList(data) {
+		prototypeList = data;
+		showRowsWithDevicesPrototypes(prototypeList);
+	}
+
+	function clickOnModalityRow(jqueryObject) {
+			jqueryObject.on("click", function(e) {
+				console.log("click modality row: " + jqueryObject[0].innerText);
+				var modalityCode = jqueryObject[0].firstChild.innerText;
+				showWindow("windowPrototypeList", "DEVICES LIST / WYKAZ URZĄDZEŃ", () => getPrototypeListByModalityCode(modalityCode), xPosition+350, yPosition);
 			});
+			
 			var bgColor;
-			$(this).on("mouseover", function() {
-				bgColor = $(this).css("background-color");
-				$(this).css("cursor", "pointer");
-				$(this).css("background-color", "yellow");
+			jqueryObject.on("mouseenter", function() {
+				bgColor = jqueryObject.css("background-color");
+			})
+			
+			jqueryObject.on("mouseover", function() {
+				jqueryObject.css("cursor", "pointer");
+				jqueryObject.css("background-color", "darkgrey");
 			});
-			$(this).on("mouseleave", function() {
-				$(this).css("background-color", bgColor);
+			
+			jqueryObject.on("mouseleave", function() {
+				jqueryObject.css("background-color", bgColor);
 			});
+	}
+
+	function clickOnPrototypeRow(jqueryObject) {
+			jqueryObject.on("click", function() {
+				console.log("click prototype row: jqueryObject " + jqueryObject);
+				console.log("click prototype row: jqueryObject[0] " + jqueryObject[0].innerText);
+			});
+			
+			var bgColor;
+			jqueryObject.on("mouseenter", function() {
+				bgColor = jqueryObject.css("background-color");
+			})
+			
+			jqueryObject.on("mouseover", function() {
+				jqueryObject.css("cursor", "pointer");
+				jqueryObject.css("background-color", "green");
+			});
+			
+			jqueryObject.on("mouseleave", function() {
+				jqueryObject.css("background-color", bgColor);
+			});
+	};
+
+	function setModalityRowFunctionality() {
+		var rows = $("#windowModalityList > .card-body .row");
+		rows.each(function() {
+			
+			clickOnModalityRow($(this)); //ok
 			
 		});
 				

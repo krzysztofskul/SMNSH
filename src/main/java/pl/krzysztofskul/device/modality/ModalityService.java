@@ -22,4 +22,7 @@ public class ModalityService {
 		return modalityRepo.findAll();
 	}
 	
+	public Modality loadByCode(String code) {
+		return modalityRepo.findByCode(code);
+	}
 }

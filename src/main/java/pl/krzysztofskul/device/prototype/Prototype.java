@@ -12,7 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import pl.krzysztofskul.device.modality.Modality;
 import pl.krzysztofskul.order.concept.Concept;
@@ -26,8 +29,11 @@ public class Prototype {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	//private Modality modality;
-	private String modality;
+	@ManyToOne
+	@JoinColumn(name = "modality_id", referencedColumnName = "id")
+	@JsonIgnore
+	private Modality modality;
+	//private String modality;
 	
 	private String manufacturer;
 	
@@ -36,12 +42,15 @@ public class Prototype {
 	private Long cpqNo;
 
     @ManyToMany(mappedBy = "prototypeList")
+    @JsonIgnore
 	private List<Project> projectList = new ArrayList<>();
 	
     @OneToMany(mappedBy = "prototype", cascade = CascadeType.REMOVE)
+    @JsonIgnore
     private List<Concept> conceptList = new ArrayList<>();
     
     @OneToMany(mappedBy = "prototype", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Configuration> configurationList = new ArrayList<>();
     
 	public Prototype() {
@@ -62,21 +71,21 @@ public class Prototype {
 		this.id = id;
 	}
 
-//	public Modality getModality() {
-//		return modality;
-//	}
-//
-//	public void setModality(Modality modality) {
-//		this.modality = modality;
-//	}
-
-	public String getModality() {
+	public Modality getModality() {
 		return modality;
 	}
 
-	public void setModality(String modality) {
+	public void setModality(Modality modality) {
 		this.modality = modality;
 	}
+
+//	public String getModality() {
+//		return modality;
+//	}
+//
+//	public void setModality(String modality) {
+//		this.modality = modality;
+//	}
 
 	public String getManufacturer() {
 		return manufacturer;
