@@ -10,11 +10,12 @@ $(document).ready(function() {
 	var prototypeList = [];
 	xPosition = 25;
 	yPosition = 25;
+	var formSelect = $("#prototypeListSelect");
 	
 	btnSearchDevices.on("click", function(event) {
 		//alert("test button"); //ok
 		showWindow("windowModalityList", "MODALITY LIST / MODALNOŚCI SPRZĘTOWE", () => getModalityList(), xPosition, yPosition);
-		console.log("btnSearchDevices clicked");
+		btnSearchDevices.prop("disabled", true);
 	});
 
 	function ajax(url, data, type, dataType, successFunc, errorFunc) {
@@ -90,23 +91,42 @@ $(document).ready(function() {
 	function showRowsWithDevicesPrototypes(rows) {
 		$("#windowPrototypeList > .card-body").children().remove();
 		rows.forEach(function (elementPrototype) {
-			$("#windowPrototypeList > .card-body").append("<div class='row'>" + elementPrototype.modelName+"</div>");
+			$("#windowPrototypeList > .card-body").append("<div class='row' id='devPrototypeId-"+elementPrototype.id+"'>" + elementPrototype.modelName+"</div>");
 		});
 		var prototypeRows = $("#windowPrototypeList > .card-body .row");
 		console.log(prototypeRows);
 		prototypeRows.each(function() {
 			$(this).on('click', function(e) {
-				//console.log("click "+$(this)[0].innerText);
-				var rowJqueryObject = $(this);
-				setPrototypeRowFunctionality(rowJqueryObject);
+				setPrototypeRowFunctionality($(this));
 			});	
+			var bgColor;
+			$(this).on("mouseenter", function() {
+				bgColor = $(this).css("background-color");
+			})
+			
+			$(this).on("mouseover", function() {
+				$(this).css("cursor", "pointer");
+				$(this).css("background-color", "green");
+			});
+			
+			$(this).on("mouseleave", function() {
+				$(this).css("background-color", bgColor);
+			});
 	
 		});
 	}
 
 	function setPrototypeRowFunctionality(rowJqueryObject) {
-		console.log("row functionality for: "+rowJqueryObject[0].innerText);
-		clickOnPrototypeRow(rowJqueryObject);
+			var idString = rowJqueryObject.attr('id');
+			var id = idString.substring(idString.indexOf("-")+1);
+			console.log("prototype device chosen... id: "+id+" | model name: "+rowJqueryObject[0].innerText);
+			var formOptions = formSelect.find("option");
+			
+			formOptions.each(function() {
+				if ($(this).attr("value") == id) {
+					$(this).attr("selected", true);
+				}
+			});
 	}
 
 	function doSuccesWhenLoadModalityList(data) {
@@ -176,27 +196,6 @@ $(document).ready(function() {
 				jqueryObject.css("background-color", bgColor);
 			});
 	}
-
-	function clickOnPrototypeRow(jqueryObject) {
-			jqueryObject.on("click", function() {
-				console.log("click prototype row: jqueryObject " + jqueryObject);
-				console.log("click prototype row: jqueryObject[0] " + jqueryObject[0].innerText);
-			});
-			
-			var bgColor;
-			jqueryObject.on("mouseenter", function() {
-				bgColor = jqueryObject.css("background-color");
-			})
-			
-			jqueryObject.on("mouseover", function() {
-				jqueryObject.css("cursor", "pointer");
-				jqueryObject.css("background-color", "green");
-			});
-			
-			jqueryObject.on("mouseleave", function() {
-				jqueryObject.css("background-color", bgColor);
-			});
-	};
 
 	function setModalityRowFunctionality() {
 		var rows = $("#windowModalityList > .card-body .row");

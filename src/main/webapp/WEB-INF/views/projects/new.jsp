@@ -242,7 +242,7 @@
                             <p class="langEN">DEVICE LIST:</p>
                         </div>
                         <div class="col-8">
-                            <form:select path="prototypeList" cssClass="w-100" multiple="true">
+                            <form:select path="prototypeList" id="prototypeListSelect" cssClass="w-100" multiple="true">
                                 <%-- <c:forEach items="${allDeviceList}" var="device"> --%>
                                 <c:forEach items="${allProtopyteDeviceList}" var="device">
                                     <%-- <form:option label="${device.deviceCategory.name} ${device.model}" value="${device.id}"/> --%>
