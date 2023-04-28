@@ -106,9 +106,11 @@ public class ProjectController {
         return Arrays.asList(StatusProject.values());
     }
 
-    @ModelAttribute("allInvestorList")
+    //@ModelAttribute("allInvestorList")
+    @ModelAttribute("investors")
     public List<Investor> getAllInvestorList() {
         return investorService.loadAll();
+    	//return companyService.loadAllByCompanyCategoryEnum(CompanyCategoryEnum.INVESTOR);
     }
 
     @ModelAttribute("allSubcontractorList")

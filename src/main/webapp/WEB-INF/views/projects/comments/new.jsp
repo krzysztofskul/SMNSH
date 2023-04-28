@@ -13,11 +13,11 @@
 </head>
 <body>
 
-    <div class="container">
+    <jsp:include page="../../header.jsp"/>
 
-        <jsp:include page="../../header.jsp"/>
-
-        <div id="content-main">
+    <div class="container-fluid">
+    
+        <div class="mx-auto w-75" id="content-main">
             <form:form method="post" modelAttribute="comment">
                 <form:hidden path="id" value="${comment.id}"/>
                 <form:hidden path="author.id" value="${comment.author.id}"/>
@@ -42,9 +42,9 @@
             </form:form>
         </div>
 
-        <jsp:include page="../../footer.jsp"/>
-
     </div>
+    
+    <jsp:include page="../../footer.jsp"/>
 
 </body>
 </html>

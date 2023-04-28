@@ -13,15 +13,15 @@
 </head>
 <body>
 
-    <div class="container">
+    <jsp:include page="../../header.jsp"/>
 
-        <jsp:include page="../../header.jsp"/>
+    <div class="container-fluid">
 
         <div id="projectShortDetailsDiv">
 
         </div>
 
-        <div class="card" id="commentsDiv">
+        <div class="card w-75 mx-auto" id="commentsDiv">
             <div class="card-header">
                 <div class="text-center">
                     <p class="langPL">KOMENTARZE</p>
@@ -56,9 +56,11 @@
             </div>
         </div>
 
-        <jsp:include page="../../footer.jsp"/>
+
 
     </div>
+
+    <jsp:include page="../../footer.jsp"/>
 
 </body>
 </html>

@@ -90,8 +90,12 @@
                         </div>
                         <div class="col-8">
                             <form:select path="investor.id" cssClass="w-100">
-                                <c:forEach items="${allInvestorList}" var="investor">
+                                 <%-- <c:forEach items="${allInvestorList}" var="investor">
                                     <form:option value="${investor.id}" label="${investor.name} ${investor.companyType.name}"/>
+                                </c:forEach>  --%>
+                            	<form:option value="0">---</form:option> 
+                                <c:forEach items="${investors}" var="investor">
+                                        <form:option value="${investor.id}" label="${investor.name}"/>
                                 </c:forEach>
                             </form:select>
                             <form:errors path="investor" cssClass="error"/>

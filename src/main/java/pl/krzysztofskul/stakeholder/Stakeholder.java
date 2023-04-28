@@ -43,6 +43,7 @@ public class Stakeholder {
 	private List<StakeholderInProjectDetails> stakeholderInProjectDetailsList = new ArrayList<>();
 
 	private String email;
+	private String phoneNo;
 
 	/*
 	 * constructors
@@ -178,6 +179,14 @@ public class Stakeholder {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+	
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
 	}
 
 	//TODO: add methods addProjectCharter and removeProjectCahrer
