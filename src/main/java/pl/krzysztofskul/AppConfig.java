@@ -116,7 +116,7 @@ public class AppConfig implements WebMvcConfigurer {
 
         /* remote DB on RAILWAY*/
         dataSource.setUrl("jdbc:mysql://${PROD_DB_HOST}:${PROD_DB_PORT}/${PROD_DB_NAME}");
-        dataSource.setUsername("${PROD_DB_USERNAME");
+        dataSource.setUsername("${PROD_DB_USERNAME}");
         dataSource.setPassword("${PROD_DB_PASSWORD}");
 
         return dataSource;
