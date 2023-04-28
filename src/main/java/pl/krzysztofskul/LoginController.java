@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import pl.krzysztofskul.email.EmailCredentials;
+//import pl.krzysztofskul.email.EmailCredentials;
 import pl.krzysztofskul.email.EmailSMNSH;
 import pl.krzysztofskul.email.EmailSMNSHService;
 import pl.krzysztofskul.email.EmailServiceImpl;
@@ -41,21 +41,21 @@ public class LoginController {
     private EmailSMNSHService emailSMNSHService;
     private AvatarService avatarService;
     private LoggerUserService<Object> loggerUserService;
-    private EmailCredentials emailCredentials;
+//    private EmailCredentials emailCredentials;
 
     /**
      * constr.
      */
     @Autowired
     public LoginController(
-    		EmailCredentials emailCredentials,
+//    		EmailCredentials emailCredentials,
             UserService userService,
             EmailServiceImpl emailService,
             EmailSMNSHService emailSMNSHService,
             AvatarService avatarService,
             LoggerUserService<Object> loggerUserService
     ) {    	
-    	this.emailCredentials = emailCredentials;
+//    	this.emailCredentials = emailCredentials;
         this.userService = userService;
         this.emailService = emailService;
         this.emailSMNSHService = emailSMNSHService;
@@ -261,26 +261,26 @@ public class LoginController {
         return "permissionDenied";
     }
 
-    @GetMapping("/admin/controlpanel")
-    public String adminControlPanel(
-            Model model
-    ) {
-        if (emailCredentials.getPassPlain() == null) {
-            EmailSMNSH emailSMNSH = new EmailSMNSH();
-            emailSMNSH.setEmail(emailCredentials.getLogin());
-            model.addAttribute("listEmailSMNSH", emailSMNSHService.getAllEmailSMNSHEntity());
-            model.addAttribute("emailSMNSH", emailSMNSH);
-            return "admin/controlpanel";
-        } else {
-            return "redirect:/permissionDenied";
-        }
-    }
+//    @GetMapping("/admin/controlpanel")
+//    public String adminControlPanel(
+//            Model model
+//    ) {
+//        if (emailCredentials.getPassPlain() == null) {
+//            EmailSMNSH emailSMNSH = new EmailSMNSH();
+////            emailSMNSH.setEmail(emailCredentials.getLogin());
+//            model.addAttribute("listEmailSMNSH", emailSMNSHService.getAllEmailSMNSHEntity());
+//            model.addAttribute("emailSMNSH", emailSMNSH);
+//            return "admin/controlpanel";
+//        } else {
+//            return "redirect:/permissionDenied";
+//        }
+//    }
     @PostMapping("/admin/controlpanel")
     public String adminControlPanel(
             @ModelAttribute("emailSMNSH") EmailSMNSH emailSMNSH,
             HttpSession httpSession
     ) {
-        emailCredentials.setPassPlain(emailSMNSH.getPassword());
+//        emailCredentials.setPassPlain(emailSMNSH.getPassword());
         String passBcrypted = BCrypt.hashpw(emailSMNSH.getPassword(), BCrypt.gensalt());
         emailSMNSH.setPassword(passBcrypted);
         emailSMNSHService.save(emailSMNSH);

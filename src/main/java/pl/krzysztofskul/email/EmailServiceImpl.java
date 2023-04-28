@@ -20,13 +20,13 @@ public class EmailServiceImpl implements EmailService {
     public JavaMailSender emailSender;
     @Autowired
     private ApplicationContext context;
-    @Autowired
-    private EmailCredentials emailCredentials;
+//    @Autowired
+//    private EmailCredentials emailCredentials;
 
     public void sendHtmlMessage(String to, String subject, String text) {
 
             JavaMailSenderImpl sender = new JavaMailSenderImpl();
-            context.getBean(JavaMailSenderImpl.class).setPassword(emailCredentials.getPassPlain());
+//            context.getBean(JavaMailSenderImpl.class).setPassword(emailCredentials.getPassPlain());
 
             MimeMessage message = sender.createMimeMessage();
 
@@ -55,7 +55,7 @@ public class EmailServiceImpl implements EmailService {
     public void sendHtmlMessageWithAttachment(String to, String subject, String text, String attachmentFileName, File file) {
 
         JavaMailSenderImpl sender = new JavaMailSenderImpl();
-        context.getBean(JavaMailSenderImpl.class).setPassword(emailCredentials.getPassPlain());
+//        context.getBean(JavaMailSenderImpl.class).setPassword(emailCredentials.getPassPlain());
 
         MimeMessage message = sender.createMimeMessage();
 
