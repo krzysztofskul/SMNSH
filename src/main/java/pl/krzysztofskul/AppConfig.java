@@ -27,7 +27,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import pl.krzysztofskul.device.DeviceConverter;
 import pl.krzysztofskul.device.prototype.PrototypeConverter;
-import pl.krzysztofskul.email.EmailCredentials;
+//import pl.krzysztofskul.email.EmailCredentials;
 import pl.krzysztofskul.localDateTime.LocalDateTimeConverter;
 import pl.krzysztofskul.localDateTime.LocalDateTimeConverterToString;
 import pl.krzysztofskul.project.configuration.ConfigurationConverter;
@@ -44,8 +44,8 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class AppConfig implements WebMvcConfigurer {
 
-	@Autowired
-	EmailCredentials credentials;
+//	@Autowired
+//	EmailCredentials credentials;
 	
     @Bean
     public ViewResolver internalResourceViewResolver() {
@@ -165,11 +165,11 @@ public class AppConfig implements WebMvcConfigurer {
 
         mailSender.setHost("127.0.0.1");
         mailSender.setPort(1025);
-        mailSender.setUsername(credentials.getLogin());
-        mailSender.setPassword(credentials.getPass());
+//        mailSender.setUsername(credentials.getLogin());
+//        mailSender.setPassword(credentials.getPass());
 
         Properties javaMailProperties = new Properties();
-        javaMailProperties.put("mail.smtp.from", credentials.getLogin());
+//        javaMailProperties.put("mail.smtp.from", credentials.getLogin());
         javaMailProperties.put("mail.smtp.starttls.enable", "true");
         javaMailProperties.put("mail.smtp.auth", "true");
         javaMailProperties.put("mail.transport.protocol", "smtp");
