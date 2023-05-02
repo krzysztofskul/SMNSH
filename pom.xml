@@ -31,7 +31,7 @@
                 <configuration>  
                     <archive>  
                         <manifest>  
-                            <mainClass>pl.krzysztofskul.AppConfig</mainClass>  
+                            <mainClass>pl.krzysztofskul.AppInitializer</mainClass>  
                         </manifest>  
                     </archive>  
                 </configuration>  
