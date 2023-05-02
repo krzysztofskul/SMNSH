@@ -31,7 +31,7 @@
                 <configuration>  
                     <archive>  
                         <manifest>  
-                            <mainClass>pl.krzysztofskul.SpringApp</mainClass>  
+                            <mainClass>pl.krzysztofskul.AppInitializer</mainClass>  
                         </manifest>  
                     </archive>  
                 </configuration>  
