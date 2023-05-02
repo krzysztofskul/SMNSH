@@ -111,15 +111,6 @@
 	        					<form:input path="email"/>
 	        				</div>
 	        			</div>
-	        			<div class="row">
-	        				<div class="col text-right">
-	       						<p class="langPL">Nr  tel.:</p>
-	        					<p class="langEN">Phone no.:</p>
-	        				</div>
-	        				<div class="col">
-	        					<form:input path="phoneNo"/>
-	        				</div>
-	        			</div>
 	        			
 	        		</div>
 	        		

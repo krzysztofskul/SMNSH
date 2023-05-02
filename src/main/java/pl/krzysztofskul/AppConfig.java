@@ -27,7 +27,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import pl.krzysztofskul.device.DeviceConverter;
 import pl.krzysztofskul.device.prototype.PrototypeConverter;
-//import pl.krzysztofskul.email.EmailCredentials;
+import pl.krzysztofskul.email.EmailCredentials;
 import pl.krzysztofskul.localDateTime.LocalDateTimeConverter;
 import pl.krzysztofskul.localDateTime.LocalDateTimeConverterToString;
 import pl.krzysztofskul.project.configuration.ConfigurationConverter;
@@ -44,8 +44,8 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class AppConfig implements WebMvcConfigurer {
 
-//	@Autowired
-//	EmailCredentials credentials;
+	@Autowired
+	EmailCredentials credentials;
 	
     @Bean
     public ViewResolver internalResourceViewResolver() {
@@ -104,20 +104,16 @@ public class AppConfig implements WebMvcConfigurer {
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 
         /* local DB*/
-//        //dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?useSSL=false");
-//        dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?allowPublicKeyRetrieval=true&useSSL=false");
-//        dataSource.setUsername("root");
-//        dataSource.setPassword("@xDpo9Ec16N7&OP0"); // randomly generated password for tests at localhost
+        //dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?useSSL=false");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?allowPublicKeyRetrieval=true&useSSL=false");
+        dataSource.setUsername("root");
+        dataSource.setPassword("@xDpo9Ec16N7&OP0"); // randomly generated password for tests at localhost
 
         /* remote DB */
 //        dataSource.setUrl("");
 //        dataSource.setUsername(System.getProperty("RDS_USERNAME"));
 //        dataSource.setPassword(System.getProperty("RDS_PASSWORD"));
 
-        /* remote DB on RAILWAY*/
-        dataSource.setUrl("jdbc:mysql://${PROD_DB_HOST}:${PROD_DB_PORT}/${PROD_DB_NAME}");
-        dataSource.setUsername("${PROD_DB_USERNAME}");
-        dataSource.setPassword("${PROD_DB_PASSWORD}");
 
         return dataSource;
     }
@@ -165,11 +161,11 @@ public class AppConfig implements WebMvcConfigurer {
 
         mailSender.setHost("127.0.0.1");
         mailSender.setPort(1025);
-//        mailSender.setUsername(credentials.getLogin());
-//        mailSender.setPassword(credentials.getPass());
+        mailSender.setUsername(credentials.getLogin());
+        mailSender.setPassword(credentials.getPass());
 
         Properties javaMailProperties = new Properties();
-//        javaMailProperties.put("mail.smtp.from", credentials.getLogin());
+        javaMailProperties.put("mail.smtp.from", credentials.getLogin());
         javaMailProperties.put("mail.smtp.starttls.enable", "true");
         javaMailProperties.put("mail.smtp.auth", "true");
         javaMailProperties.put("mail.transport.protocol", "smtp");

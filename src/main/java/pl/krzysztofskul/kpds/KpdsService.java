@@ -33,7 +33,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.prototype.Prototype;
-//import pl.krzysztofskul.email.EmailCredentials;
+import pl.krzysztofskul.email.EmailCredentials;
 import pl.krzysztofskul.email.EmailServiceImpl;
 import pl.krzysztofskul.importdata.ImportData;
 import pl.krzysztofskul.logger.loggerProject.LoggerProject;
@@ -49,7 +49,7 @@ public class KpdsService {
 	//private String kpdsEmailSendTo = EmailCredentials.getKpdsEmailSendTo();
 	private String kpdsEmailSendTo;
 	
-//	private EmailCredentials emailCredentials;
+	private EmailCredentials emailCredentials;
 	private ProjectService projectService;
 	private KpdsRepo kpdsRepo;
 	private LoggerProjectService loggerProjectService;
@@ -57,19 +57,19 @@ public class KpdsService {
 	
 	@Autowired
 	public KpdsService(
-//			EmailCredentials emailCredentials,
+			EmailCredentials emailCredentials,
 			ProjectService projectService, 
 			KpdsRepo kpdsRepo, 
 			LoggerProjectService loggerProjectService,
 			EmailServiceImpl emailServiceImpl
 			) {
 		super();		
-//		this.emailCredentials = emailCredentials;
+		this.emailCredentials = emailCredentials;
 		this.projectService = projectService;
 		this.kpdsRepo = kpdsRepo;
 		this.loggerProjectService = loggerProjectService;
 		this.emailServiceImpl = emailServiceImpl;
-//		this.kpdsEmailSendTo = emailCredentials.getKpdsEmailSendTo();
+		this.kpdsEmailSendTo = emailCredentials.getKpdsEmailSendTo();
 	}
 
 	public void generateKpds(Long projectId) {

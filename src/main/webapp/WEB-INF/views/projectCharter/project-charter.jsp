@@ -120,8 +120,9 @@
 	        						</button>
 	        					</div>
 	        				</div>
-	        				<div class="card-body float-left text-left">
-	        					<textarea cols=60 rows=5 disabled class="form-control" id="textareaProjectBackground">${projectCharter.reasons }
+	        				<div class="card-body">
+	        					<textarea cols=60 rows=5 disabled class="form-control" id="textareaProjectBackground">
+	        						${projectCharter.reasons }
 	        					</textarea>
 	        				</div>
 	        			</div>
@@ -148,7 +149,8 @@
 	        					</div>
 	        				</div>
 	        				<div class="card-body">
-	        					<textarea cols=60 rows=5 disabled class="form-control" id="textareaRisks">${projectCharter.risks }
+	        					<textarea cols=60 rows=5 disabled class="form-control" id="textareaRisks">
+	        						${projectCharter.risks }
 	        					</textarea>
 	        				</div>
 	        			</div>
@@ -175,7 +177,8 @@
 	        					</div>
 	        				</div>
 	        				<div class="card-body">
-	        					<textarea cols=60 rows=5 disabled class="form-control" id="textareaGoals">${projectCharter.goals }
+	        					<textarea cols=60 rows=5 disabled class="form-control" id="textareaGoals">
+	        						${projectCharter.goals }
 	        					</textarea>
 	        				</div>
 	        			</div>

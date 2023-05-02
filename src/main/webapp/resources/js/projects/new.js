@@ -38,21 +38,17 @@ $(document).ready(function() {
 			"<div class='fixed-top border card floating-window' id="+windowId+" style='top:"+yPos+"px; left:"+xPos+"px; width:350px; min-height:400px'>"+
 				"<div class='card-header'>"+
 					"<div class='row'>"+
-
-						"<div class='col-2 btn-close'>"+
-							"<span class='text-danger text-center border p-1 d-inline-block btn-delete-window' style='width: 40px'>X</span>"+
-						"</div>"+
-						
-						"<div class='col-6 window-title'>"+
-							windowTitle+
-						"</div>"+
 						
 						"<div class='col-2 btn-menu'>"+
 							"<span class='text-primary text-center border p-1 d-inline-block btn-menu-window' style='width: 40px'>M</span>"+
 						"</div>"+						
+						
+						"<div class='col-8 window-title'>"+
+							windowTitle+
+						"</div>"+
 
-						"<div class='col-2 btn-ok'>"+
-							"<span class='text-success text-center border p-1 d-inline-block btn-delete-window' style='width: 40px'>></span>"+
+						"<div class='col-2 btn-close'>"+
+							"<span class='text-danger text-center border p-1 d-inline-block btn-delete-window' style='width: 40px'>X</span>"+
 						"</div>"+						
 						
 						

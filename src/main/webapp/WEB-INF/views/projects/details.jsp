@@ -313,33 +313,6 @@
 	       				</div>
 	       			</div>
 	       			<div class="card">
-	       				<div class="card-header">UWAGI</div>
-	       				<div class="card-body" style="height: 150px">${project.remarks }</div>
-	       			</div>
-
-	       			<%-- <div class="card">
-	       				<div class="card-header">ZAŁĄCZNIKI</div>
- 					    <div class="card-body" style="height: 150px">
-		       				<c:forEach items="${allAttachemnts}" var="attachment">
-		       					<c:if test="${attachment.getProject().getId() eq project.getId()}">
-	       							<a href="/attachments/download/${attachment.getId()}">
-	       							<div class="btn btn-outline-info" style="width:100px;height: 100px">
-	       									${attachment.fileName}
-       								</div>
-       								</a>
-		       					</c:if>
-		       				</c:forEach>
-		       				<c:if test="${edit eq true}">
-			       				<div class="row float-right border-top pt-1">
-			       					<input type="file" name="fileUpload" multiple="multiple"/>
-			       				</div>
-		       				</c:if>
-	       				</div>
-		       			
-	       			</div> --%>	       			
-	       		</div>
-				<div class="col">
-	       			<div class="card">
 	       				<div class="card-header">URZĄDZENIA DO INSTALACJI</div>
 	       				<div class="card-body" style="min-height: 150px">
                         <c:if test="${edit eq true}">
@@ -379,8 +352,38 @@
 							</c:forEach>
 						</c:if>
 	       				</div>
+	       			</div>	       			
+	       			<div class="card">
+	       				<div class="card-header">ZAŁĄCZNIKI</div>
+ 					    <div class="card-body" style="height: 150px">
+		       				<c:forEach items="${allAttachemnts}" var="attachment">
+		       					<c:if test="${attachment.getProject().getId() eq project.getId()}">
+	       							<a href="/attachments/download/${attachment.getId()}">
+	       							<div class="btn btn-outline-info" style="width:100px;height: 100px">
+	       									${attachment.fileName}
+       								</div>
+       								</a>
+		       					</c:if>
+		       				</c:forEach>
+		       				<c:if test="${edit eq true}">
+			       				<div class="row float-right border-top pt-1">
+			       					<input type="file" name="fileUpload" multiple="multiple"/>
+			       				</div>
+		       				</c:if>
+	       				</div>
+		       			
+	       			</div>	       			
+	       		</div>
+	       		<div class="col">
+	       			<div class="card">
+	       				<div class="card-header">UWAGI</div>
+	       				<div class="card-body" style="height: 150px">lorem ipsum</div>
 	       			</div>
-				</div>
+	       			<div class="card">
+	       				<div class="card-header">KOMENTARZE</div>
+	       				<div class="card-body" style="height: 150px">lorem ipsum</div>
+	       			</div>
+	       		</div>
 	       		<div class="col">
 	       			<div class="card">
 	       				<div class="card-header">
