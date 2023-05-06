@@ -208,4 +208,3 @@ fabric.properties
 
 # End of https://www.gitignore.io/api/intellij
 /src/main/java/pl/krzysztofskul/email/EmailCredentials.java
-/target/
