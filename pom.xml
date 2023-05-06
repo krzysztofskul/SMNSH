@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>pl.krzysztofskul</groupId>
   <artifactId>smnsh</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <version>4.0-SNAPSHOT</version>
   <name>smnsh Maven Webapp</name>
   <url>http://maven.apache.org</url>
@@ -28,13 +28,6 @@
                 <groupId>org.apache.maven.plugins</groupId>  
                 <artifactId>maven-jar-plugin</artifactId>  
                 <version>3.1.0</version>  
-                <configuration>  
-                    <archive>  
-                        <manifest>  
-                            <mainClass>pl.krzysztofskul.AppInitializer</mainClass>  
-                        </manifest>  
-                    </archive>  
-                </configuration>  
             </plugin>  
         </plugins>  
     </build>  
