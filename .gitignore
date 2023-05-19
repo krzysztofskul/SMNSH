@@ -37,7 +37,7 @@ local.properties
 .buildpath
 
 # sbteclipse plugin
-.target
+
 
 # Tern plugin
 .tern-project
@@ -98,7 +98,7 @@ hs_err_pid*
 
 ### Java-Web ###
 ## ignoring target file
-target/
+
 
 ### Maven ###
 pom.xml.tag
@@ -208,3 +208,4 @@ fabric.properties
 
 # End of https://www.gitignore.io/api/intellij
 /src/main/java/pl/krzysztofskul/email/EmailCredentials.java
+/target/
