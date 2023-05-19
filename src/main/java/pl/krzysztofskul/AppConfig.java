@@ -104,15 +104,20 @@ public class AppConfig implements WebMvcConfigurer {
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 
         /* local DB*/
-        //dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?useSSL=false");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?allowPublicKeyRetrieval=true&useSSL=false");
-        dataSource.setUsername("root");
-        dataSource.setPassword("@xDpo9Ec16N7&OP0"); // randomly generated password for tests at localhost
+//        //dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?useSSL=false");
+//        dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?allowPublicKeyRetrieval=true&useSSL=false");
+//        dataSource.setUsername("root");
+//        dataSource.setPassword("@xDpo9Ec16N7&OP0"); // randomly generated password for tests at localhost
 
-        /* remote DB */
-//        dataSource.setUrl("");
+        /* remote Amazon AWS DB */
+//        dataSource.setUrl("jdbc:mysql://amazon-aws-db-20230518.cfob4ebvoz1o.eu-north-1.rds.amazonaws.com/smnsh?useSSL=false");
 //        dataSource.setUsername(System.getProperty("RDS_USERNAME"));
 //        dataSource.setPassword(System.getProperty("RDS_PASSWORD"));
+
+        /* remote railway.app DB */
+      dataSource.setUrl("jdbc:mysql://${PROD_DB_HOST}:${PROD_DB_PORT}/${PROD_DB_NAME}");
+      dataSource.setUsername(System.getProperty("${PROD_DB_USERNAME}"));
+      dataSource.setPassword(System.getProperty("${PROD_DB_PASSWORD}"));
 
 
         return dataSource;
