@@ -113,6 +113,11 @@ public class AppConfig implements WebMvcConfigurer {
 //        dataSource.setUrl("");
 //        dataSource.setUsername(System.getProperty("RDS_USERNAME"));
 //        dataSource.setPassword(System.getProperty("RDS_PASSWORD"));
+        
+        /* remote railway DB */
+      dataSource.setUrl("jdbc:mysql://${PROD_DB_HOST}:${PROD_DB_PORT}/${PROD_DB_NAME}");
+      dataSource.setUsername(System.getProperty("${PROD_DB_USERNAME}"));
+      dataSource.setPassword(System.getProperty("${PROD_DB_PASSWORD}"));
 
 
         return dataSource;
