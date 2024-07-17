@@ -52,7 +52,7 @@ public class KpdsController {
 			/*
 			 * create and save a pdf using iText
 			 */
-			PdfWriter.getInstance(document, new FileOutputStream("D://SMNSH/karta_projektu/kpds.pdf"));
+			PdfWriter.getInstance(document, new FileOutputStream("D://smnsh2/karta_projektu/kpds.pdf"));
 			
 			document.open();
 			Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
@@ -76,7 +76,7 @@ public class KpdsController {
 			contentStream.endText();
 			contentStream.close();
 
-			documentPdfBox.save("D://SMNSH/karta_projektu/kpds_byPdfBox.pdf");
+			documentPdfBox.save("D://smnsh2/karta_projektu/kpds_byPdfBox.pdf");
 			documentPdfBox.close();
 			
 			

@@ -100,4 +100,9 @@ public class HomePageController {
 		return "redirect:/home";
 	}
 	
+	@GetMapping("/inprogress")
+	public String inProgress() {
+		return "inProgress";
+	}
+	
 }

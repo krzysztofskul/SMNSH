@@ -125,6 +125,10 @@ public class ProjectController {
 	public List<Company> getAllSubcontractorsForRoomAdaptations() {
 		return companyService.loadAllByCompanyCategoryEnum(CompanyCategoryEnum.SUBCONTRACTOR_ROOM_ADAPTATION);
 	}
+	@ModelAttribute("investors")
+	public List<Company> getAllInvestors() {
+		return companyService.loadAllByCompanyCategoryEnum(CompanyCategoryEnum.INVESTOR);
+	}
 
     @GetMapping("/new")
     public String projectNew(

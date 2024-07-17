@@ -85,10 +85,12 @@
 						                <c:set var="forwardClr" value="btn-success"/>
 						            </c:if>
 						    	<div class="col-sm-4">
-						            <a href="${backTo}" class="btn btn-outline-warning float-left mr-2">
-						                <p class="langPL">WSTECZ</p>
-						                <p class="langEN">BACK</p>
-						            </a>
+						    		<c:if test="${edit eq true}">
+							            <a href="${backTo}" class="btn btn-outline-warning float-left mr-2">
+							                <p class="langPL">ANULUJ</p>
+							                <p class="langEN">CANCEL</p>
+							            </a>
+						            </c:if>
 					            </div>
 						        <div class="col-sm-8">
 
@@ -106,10 +108,10 @@
 						                    <p class="langEN">${forwardBtnEN}</p>
 						                </form:button>
 						            </c:if>
-						            <a href="/logs/project/${project.id}" class="btn btn-outline-dark float-right mr-2">
+						            <%-- <a href="/logs/project/${project.id}" class="btn btn-outline-dark float-right mr-2">
 						                <p class="langPL">HISTORIA</p>
 						                <p class="langEN">HISTORY</p>
-						            </a>
+						            </a> --%>
 						            <a href="/projects/details/${project.id}/comments" class="btn btn-outline-dark float-right mr-2">
 						                <p class="langPL">KOMENTARZE</p>
 						                <p class="langEN">COMMENTS</p>
@@ -182,14 +184,14 @@
 							            <c:choose>
 							                <c:when test="${edit eq true}">
 							                    <form:select path="investor.id" cssClass="w-100">
-							                        <c:forEach items="${allInvestorList}" var="investor">
-							                            <form:option value="${investor.id}" label="${investor.name} ${investor.companyType.name}"/>
+							                        <c:forEach items="${investors}" var="investor">
+							                            <form:option value="${investor.id}" label="${investor.name}"/>
 							                        </c:forEach>
 							                    </form:select>
 							                    <form:errors path="investor" cssClass="error"/>
 							                </c:when>
 							                <c:otherwise>
-							                    ${project.investor.name} ${project.investor.companyType.name}
+							                    ${project.investor.name}
 							                </c:otherwise>
 							            </c:choose>
 							        </div>
@@ -312,26 +314,63 @@
 							
 	       				</div>
 	       			</div>
+	  
+	       			     			
+	       			<%-- <div class="card">
+	       				<div class="card-header">ZAŁĄCZNIKI</div>
+ 					    <div class="card-body" style="height: 150px">
+		       				<c:forEach items="${allAttachemnts}" var="attachment">
+		       					<c:if test="${attachment.getProject().getId() eq project.getId()}">
+	       							<a href="/attachments/download/${attachment.getId()}">
+	       							<div class="btn btn-outline-info" style="width:100px;height: 100px">
+	       									${attachment.fileName}
+       								</div>
+       								</a>
+		       					</c:if>
+		       				</c:forEach>
+		       				<c:if test="${edit eq true}">
+			       				<div class="row float-right border-top pt-1">
+			       					<input type="file" name="fileUpload" multiple="multiple"/>
+			       				</div>
+		       				</c:if>
+	       				</div>
+		       			
+	       			</div> --%>	
+	       			       			
+	       		</div>
+	       		<div class="col">
+
 	       			<div class="card">
 	       				<div class="card-header">URZĄDZENIA DO INSTALACJI</div>
-	       				<div class="card-body" style="min-height: 150px">
+	       				<div class="card-body" style="height: 250px">
                         <c:if test="${edit eq true}">
                         
-                            <form:select path="prototypeList" multiple="true" cssClass="w-100">
-                                <c:forEach items="${allProtopyteDeviceList}" var="device">
-                                    <c:set var="marked" value="false"/>
-                                    <c:forEach items="${project.prototypeList}" var="deviceInProject">
-                                        <c:if test="${device.id.toString() eq deviceInProject.id.toString()}">
-                                            <form:option value="${device.id}" label="${device.modelName}" selected="true"/>
-                                            <c:set var="marked" value="true"/>
-                                        </c:if>
-                                        <c:if test="${device.id.toString() ne deviceInProject.id.toString() && marked eq false}">
+                            <form:select path="prototypeList" multiple="true" cssClass="w-100" style="height: 200px">
+                                
+                                <c:if test="${project.prototypeList.size() == 0}">
+                                    <c:forEach items="${allProtopyteDeviceList}" var="device">                                      
                                             <form:option value="${device.id}" label="${device.modelName}"/>
-                                            <c:set var="marked" value="true"/>
-                                        </c:if>
                                     </c:forEach>
-                                </c:forEach>
+                                </c:if>
+                                
+                                <c:if test="${project.prototypeList.size() > 0}">
+	                                <c:forEach items="${allProtopyteDeviceList}" var="device">
+	                                    <c:set var="marked" value="false"/>
+	                                    <c:forEach items="${project.prototypeList}" var="deviceInProject">
+	                                        <c:if test="${device.id.toString() eq deviceInProject.id.toString()}">
+	                                            <form:option value="${device.id}" label="${device.modelName}" selected="true"/>
+	                                            <c:set var="marked" value="true"/>
+	                                        </c:if>
+	                                        <c:if test="${device.id.toString() ne deviceInProject.id.toString() && marked eq false}">
+	                                            <form:option value="${device.id}" label="${device.modelName}"/>
+	                                            <c:set var="marked" value="true"/>
+	                                        </c:if>
+	                                    </c:forEach>
+	                                </c:forEach>
+                                </c:if>
+                           
                             </form:select>
+                            
                             <form:errors path="prototypeList" cssClass="error"/>
 
                         </c:if>
@@ -352,38 +391,30 @@
 							</c:forEach>
 						</c:if>
 	       				</div>
-	       			</div>	       			
-	       			<div class="card">
-	       				<div class="card-header">ZAŁĄCZNIKI</div>
- 					    <div class="card-body" style="height: 150px">
-		       				<c:forEach items="${allAttachemnts}" var="attachment">
-		       					<c:if test="${attachment.getProject().getId() eq project.getId()}">
-	       							<a href="/attachments/download/${attachment.getId()}">
-	       							<div class="btn btn-outline-info" style="width:100px;height: 100px">
-	       									${attachment.fileName}
-       								</div>
-       								</a>
-		       					</c:if>
-		       				</c:forEach>
-		       				<c:if test="${edit eq true}">
-			       				<div class="row float-right border-top pt-1">
-			       					<input type="file" name="fileUpload" multiple="multiple"/>
-			       				</div>
-		       				</c:if>
-	       				</div>
-		       			
-	       			</div>	       			
+	       			</div>
 	       		</div>
 	       		<div class="col">
 	       			<div class="card">
 	       				<div class="card-header">UWAGI</div>
-	       				<div class="card-body" style="height: 150px">lorem ipsum</div>
+	       				<c:if test="${edit ne true}">
+	       					<div class="card-body" style="min-height: 350px">
+	       						<form:textarea path="remarks" disabled="true" class="form-control" style="min-height: 300px"/>
+	       					</div>
+	       				</c:if>
+	       				<c:if test="${edit eq true}">
+	       					<div class="card-body" style="min-height: 350px">
+	       						<form:textarea path="remarks" disabled="false" class="form-control" style="min-height: 300px"/>
+	       					</div>
+	       				</c:if>
 	       			</div>
+	       			<!-- 
 	       			<div class="card">
 	       				<div class="card-header">KOMENTARZE</div>
 	       				<div class="card-body" style="height: 150px">lorem ipsum</div>
-	       			</div>
+	       			</div> 
+	       			-->
 	       		</div>
+	       		<%-- 
 	       		<div class="col">
 	       			<div class="card">
 	       				<div class="card-header">
@@ -407,7 +438,8 @@
 	       					</c:forEach>
 	       				</div>
 	       			</div>
-	       		</div>
+	       		</div> 
+	       		--%>
         	</div>
       
 

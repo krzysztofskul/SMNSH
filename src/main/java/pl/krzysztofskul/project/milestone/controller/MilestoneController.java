@@ -56,12 +56,12 @@ public class MilestoneController {
 	@PostMapping("/instances/new")
 	public String newinstanceSave(
 			@RequestParam String namePL,
-			@RequestParam String nameEN,
+			@RequestParam (required = false) String nameEN,
 			@RequestParam String description,
-			@RequestParam String dateStartPlanned,
+			@RequestParam (required = false) String dateStartPlanned,
 			@RequestParam String dateFinishPlanned,
-			@RequestParam String dateStarted,
-			@RequestParam String dateFinished,
+			@RequestParam (required = false) String dateStarted,
+			@RequestParam (required = false) String dateFinished,
 			@RequestParam Long projectCharterId,
 			@RequestParam String backToPage
 	) {

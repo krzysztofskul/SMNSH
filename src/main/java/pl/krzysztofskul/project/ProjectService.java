@@ -263,7 +263,7 @@ public class ProjectService {
 			String investorSapNo = project.getDetailsSls().getImportedCustomer();
 			if (null != investorService.loadBySapNo(investorSapNo)) {
 				Investor investor = investorService.loadBySapNo(investorSapNo);	
-				project.setInvestor(investor);
+				//project.setInvestor(investor);
 			} else {
 				// TODO 2022-11-18 try to add new investor to db if not found and try to convert again
 					// save path to Xls file in DetailsSls while importing ne project first ...
@@ -275,7 +275,7 @@ public class ProjectService {
 					
 					investor = investorService.saveAndReturn(investor);
 					
-					project.setInvestor(investor);
+					//project.setInvestor(investor);
 					
 					counter++;
 				}

@@ -262,7 +262,7 @@ public class HomePageService {
 //        }
 
         /* ok */
-        /*Path path = Paths.get("/home/krzysztofskul/workspace/IdeaProjects/SMNSH/src/main/webapp/resources/img/avatars/img_avatar_businesswoman.png");
+        /*Path path = Paths.get("/home/krzysztofskul/workspace/IdeaProjects/smnsh2/src/main/webapp/resources/img/avatars/img_avatar_businesswoman.png");
         Avatar avatar = new Avatar();
         avatar.setFileType("image/png");
         avatar.setFileName(path.toFile().getName());
@@ -585,7 +585,7 @@ public class HomePageService {
 					project.setSls(userSls);
 					project.setProjectManager(userPm);
 					project.setStatus(projectStatus);
-					project.setInvestor(investorService.loadById((long) new Random().nextInt(investorService.loadAll().size())+1));
+					//project.setInvestor(investorService.loadById((long) new Random().nextInt(investorService.loadAll().size())+1));
 					//project.setSubcontractor(subcontractorService.loadById((long) new Random().nextInt(subcontractorService.loadAll().size())+1));
 					for(int i = 0; i <= new Random().nextInt(3); i++) {
 						project.addDevice(deviceService.loadById((long) new Random().nextInt(deviceService.loadAll().size())+1));					

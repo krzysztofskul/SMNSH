@@ -164,7 +164,7 @@ public class Investor {
 
     public void addProject(Project project) {
         this.projectList.add(project);
-        project.setInvestor(this);
+        //project.setInvestor(this);
     }
 
     public void removeProject(Project project) {

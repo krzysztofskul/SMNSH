@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <div class="container">
+    <div class="container-fluid">
 
         <jsp:include page="../../header.jsp"/>
 
@@ -21,7 +21,7 @@
 
         </div>
 
-        <div class="card" id="commentsDiv">
+        <div class="card smnshCard w-50" id="commentsDiv">
             <div class="card-header">
                 <div class="text-center">
                     <p class="langPL">KOMENTARZE</p>

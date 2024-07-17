@@ -51,7 +51,8 @@
                 </a>
             </li>
             <li class="nav-item  ml-auto mr-auto text-center">
-                <a class="nav-link btn btn-light" href="/generate-kpds/${projectId}">
+                <%-- <a class="nav-link btn btn-light" href="/generate-kpds/${projectId}"> --%>
+                <a class="nav-link btn btn-light" href="/inprogress">                
                     <p class="langPL">GENERUJ I WYŚLIJ KPDS</p>
                     <p class="langEN">GENERATE AND SEND KPDS</p>
                 </a>

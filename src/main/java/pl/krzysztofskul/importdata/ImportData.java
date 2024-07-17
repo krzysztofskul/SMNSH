@@ -530,10 +530,20 @@ public class ImportData {
 	}
 	
 	public List<String> importInitDevicesNames() {
-		String initDevicesNames = null;
-		initDevicesNames = this.getCellsValuesInRow(pathInitDataDevices, this.cellsToImportFromDeviceTestPortfolio.get("deviceListStart"));
+		//import from xls file
+//		String initDevicesNames = null;
+//		initDevicesNames = this.getCellsValuesInRow(pathInitDataDevices, this.cellsToImportFromDeviceTestPortfolio.get("deviceListStart"));
+//		List<String> listOfInitDeviceNames = Arrays.asList(initDevicesNames.split(";"));
 		
-		List<String> listOfInitDeviceNames = Arrays.asList(initDevicesNames.split(";"));
+		//import from in app
+		List<String> listOfInitDeviceNames = new ArrayList<String>();
+		listOfInitDeviceNames.add("Arteez O");
+		listOfInitDeviceNames.add("Arteez Z");
+		listOfInitDeviceNames.add("Magnetto S");
+		listOfInitDeviceNames.add("Magnetto A");
+		listOfInitDeviceNames.add("Somograph F");
+		listOfInitDeviceNames.add("Somograph D");
+		
 		
 		return listOfInitDeviceNames;
 	}

@@ -62,7 +62,7 @@
 	        					<p class="langEN">MILESTONE NAME (EN):</p>
 	        				</div>
 	        				<div class="col">
-	        					<input type="text" name="nameEN"/>
+	        					<input type="text" name="nameEN" disabled="disabled" value=""/>
 	        				</div>
 	        			</div>
 
@@ -84,7 +84,7 @@
 	        					<p class="langEN">DATE START PLANNED:</p>
 	        				</div>
 	        				<div class="col">
-	        					<input type="date" name="dateStartPlanned"/>
+	        					<input type="date" name="dateStartPlanned" disabled="disabled"/>
 	        				</div>
 	        			</div>
 	        			<div class="row">
@@ -102,7 +102,7 @@
 	        					<p class="langEN">DATE STARTED:</p>
 	        				</div>
 	        				<div class="col">
-	        					<input type="date" name="dateStarted"/>
+	        					<input type="date" name="dateStarted" disabled="disabled"/>
 	        				</div>
 	        			</div>
 	        			<div class="row">
@@ -111,7 +111,7 @@
 	        					<p class="langEN">DATE FINISHED:</p>
 	        				</div>
 	        				<div class="col">
-	        					<input type="date" name="dateFinished"/>
+	        					<input type="date" name="dateFinished" disabled="disabled"/>
 	        				</div>
 	        			</div>
 	        			

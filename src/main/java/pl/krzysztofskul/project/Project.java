@@ -43,7 +43,7 @@ public class Project {
 
 //    @NotBlank
     @ManyToOne
-    private Investor investor;
+    private Company investor;
 
     //@NotBlank
     private String recipient;
@@ -175,11 +175,11 @@ public class Project {
         this.id = id;
     }
 
-    public Investor getInvestor() {
+    public Company getInvestor() {
         return investor;
     }
 
-    public void setInvestor(Investor investor) {
+    public void setInvestor(Company investor) {
         this.investor = investor;
     }
 

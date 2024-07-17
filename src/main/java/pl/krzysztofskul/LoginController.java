@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import java.net.http.HttpRequest;
+//import java.net.http.HttpRequest;
 import java.time.LocalDateTime;
 
 @Controller
@@ -90,6 +90,10 @@ public class LoginController {
                     user = userService.loadByEmail("piotr.w@test.test");
                     break;
                 }
+                case "admin-pw": {
+                    user = userService.loadByEmail("piotr.w@test.test");
+                    break;
+                }
                 case "admin-ms": {
                 	user = userService.loadByEmail("magdalena.s@test.test");
                 	break;
@@ -122,7 +126,7 @@ public class LoginController {
                 	user = userService.loadByEmail("sebastian.r@test.test");
                 	break;
                 }
-                case "projectManager-sS": {
+                case "projectManager-ss": {
                 	user = userService.loadByEmail("sebastian.s@test.test");
                 	break;
                 }

@@ -161,7 +161,7 @@ $(document).ready(function() {
 
 	function getPrototypeListByModalityCode(modalityCode) {
 		ajax(
-			"/smnsh/devicesprototypes/all/"+modalityCode,
+			"/smnsh2/devicesprototypes/all/"+modalityCode,
 			{},
 			"GET",
 			"json",

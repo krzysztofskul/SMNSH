@@ -1,16 +1,26 @@
-
 # SMNSH APP.
 
 **INTRODUCTION**
 
-The \#4.0.APRILS VERSION version has been created after first acceptance by the manager of the project management department. The main goal is to prepare representative and stable version of the application with main assumptions and to have a material for discussion about development in the interdisciplinary team
+ #4.0.JULIAN version has been created for first deployment for testing in July 2024. The main goal is to prepare representative and stable version of the application with main assumptions and to have a material for discussion about development in the interdisciplinary team.
 
 **ASSUMPTIONS AND GOALS**
 
+* IN PROGRESS OPTIONS:
+	* import project from xls  
+	* import company from xls  
+	* import clients from xls
+	* add new company / client / subcontractor  
+	* export data to kpds  
+	* delete project  
+
+
+* PL charset unicode problem when save to MySQL
+
 * new orderly classes/methods and interfaces
+
 * main functionality:
     * import projects' data
     * import attachments
     * edit project charter data
     * generate and send KPDS
-
