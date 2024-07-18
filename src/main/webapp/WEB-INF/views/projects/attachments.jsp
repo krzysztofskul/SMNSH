@@ -21,8 +21,46 @@
 	<div class="content container-fluid">
 		<div class="test">
 			<div class="row cards-in-columns">
-				<div class="col">
 				
+				<div class="col">
+				</div>				
+				<div class="col">
+					<div class="card">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-6">
+									<p class="langPL">ZAŁĄCZNIKI</p>
+									<p class="langEN">ATTACHMENTS</p>
+								</div>
+								<div class="col-6">
+									<button class="btn-sm btn-success disabled float-right">+</button>
+								</div>
+							</div>
+						</div>
+						<div class="card-body">
+							<c:forEach items="${project.attachmentList}" var="attachment">
+								<div class="row mt-2 border-top">
+									<div class="col-6">
+										<p>${attachment.fileName}</p>
+									</div>
+									<div class="col-3">
+										<button class="btn-sm btn-primary disabled float-right">DOWNLOAD</button>
+									</div>
+									<div class="col-3">
+										<button class="btn-sm btn-danger disabled float-right">DEL</button>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+				</div>
+				
+				<!--  
+				<div class="col">
+					
+ 
 					<div class="card">
 						<div class="card-header">
 							<p class="langPL">
@@ -62,6 +100,7 @@
 						</div>
 					</div>
 				</div>
+				-->
 			</div>	
 			
 			
