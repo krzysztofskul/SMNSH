@@ -178,7 +178,7 @@ public class ProjectController {
         	for (MultipartFile fileUpload: filesUpload) {
 	        	if (fileUpload.getOriginalFilename() != "") {
 	            	System.out.println("Attachment to upload... "+fileUpload.getOriginalFilename());
-	                attachmentService.saveToProject(fileUpload, projectNew);
+	                attachmentService.saveToProject(fileUpload, projectNew, null);
 	                loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Attachement added.", "Dodano załącznik", httpSession.getAttribute("userLoggedIn"));        		
 	        	}
         	}
@@ -376,7 +376,7 @@ public class ProjectController {
 				
 	        	if (fileUpload.getOriginalFilename() != "") {
 	            	System.out.println("Attachment to upload... "+fileUpload.getOriginalFilename());
-	                attachmentService.saveToProject(fileUpload, project);
+	                attachmentService.saveToProject(fileUpload, project, null);
 	                loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Attachement added.", "Dodano załącznik", httpSession.getAttribute("userLoggedIn"));        		
 	        	}
         	}

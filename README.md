@@ -13,11 +13,8 @@
 	* add new company / client / subcontractor  
 	* export data to kpds  
 	* delete project  
-
-
-* PL charset unicode problem when save to MySQL
-
-* new orderly classes/methods and interfaces
+	* PL charset unicode problem when save to MySQL  
+	
 
 * main functionality:
     * import projects' data

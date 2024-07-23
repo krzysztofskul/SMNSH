@@ -43,14 +43,15 @@ public class AttachmentService {
         attachmentRepo.save(attachment);
     }
 
-    public void saveToProject(MultipartFile multipartFile, Project project) throws IOException {
+    public void saveToProject(MultipartFile multipartFile, Project project, String description) throws IOException {
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 
         Attachment attachment = new Attachment();
         attachment.setFileName(fileName);
         attachment.setFileType(multipartFile.getContentType());
         attachment.setData(multipartFile.getBytes());
-
+        attachment.setDescription(description);
+        
         attachment.setProject(project);
 
         if (attachment.getAttachmentCategory() == null) {
@@ -87,7 +88,7 @@ public class AttachmentService {
         }
         
         project.addAttachment(attachment);
-        
+        fis.close();
         return project;
 
     }
@@ -99,4 +100,5 @@ public class AttachmentService {
     public List<Attachment> loadAll() {
     	return attachmentRepo.findAll();
     }
+
 }

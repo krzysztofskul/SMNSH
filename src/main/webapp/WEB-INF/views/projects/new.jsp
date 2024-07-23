@@ -285,10 +285,13 @@
                         </div>
                     </div>
 
+					<!--  
+					<hr>
+
                     <div class="row mb-1">
                         <div class="col-4 text-right">
-                            <p class="langPL">ZAŁĄCZNIK:</p>
-                            <p class="langEN">ATTACHMENT:</p>
+                            <p class="langPL">ZAŁĄCZNIKI:</p>
+                            <p class="langEN">ATTACHMENTS:</p>
                         </div>
                         <div class="col-8">
                             <input type="file" name="fileUpload" multiple="multiple"/>
@@ -298,6 +301,7 @@
                     </div>
 
                 </div>
+                -->
 
                 <div class="card-footer">
                     <c:if test="${backToPage ne null}">

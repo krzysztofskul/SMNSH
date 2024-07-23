@@ -33,7 +33,7 @@
 									<p class="langEN">ATTACHMENTS</p>
 								</div>
 								<div class="col-6">
-									<button class="btn-sm btn-success disabled float-right">+</button>
+									<a href="/attachments/new?projectId=${project.id}" class="btn-sm btn-success disabled float-right">+</a>
 								</div>
 							</div>
 						</div>
@@ -41,13 +41,21 @@
 							<c:forEach items="${project.attachmentList}" var="attachment">
 								<div class="row mt-2 border-top">
 									<div class="col-6">
-										<p>${attachment.fileName}</p>
+										<p style="font-weight: bold">${attachment.fileName}</p>
 									</div>
 									<div class="col-3">
-										<button class="btn-sm btn-primary disabled float-right">DOWNLOAD</button>
+										<a href="/attachments/download/${attachment.id}" class="btn btn-outline-primary float-right">DOWNLOAD</a>
 									</div>
 									<div class="col-3">
-										<button class="btn-sm btn-danger disabled float-right">DEL</button>
+										<a href="/inprogress" class="btn btn-outline-danger float-right">DEL</a>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-8">
+										<p style="font-style: italic">${attachment.description}</p>
+									</div>
+									<div class="col-4">
+										<a href="/inprogress" class="btn btn-outline-primary float-right">EDIT</a>
 									</div>
 								</div>
 							</c:forEach>
