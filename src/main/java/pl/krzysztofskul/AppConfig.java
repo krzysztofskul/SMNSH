@@ -106,7 +106,7 @@ public class AppConfig implements WebMvcConfigurer {
 
         /* local DB*/
         //dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?useSSL=false");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Europe/Warsaw");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Europe/Warsaw&useUnicode=true&characterEncoding=UTF-8");
         dataSource.setUsername("root");
         dataSource.setPassword("OfreL73#&"); // randomly generated password for tests at localhost
 
