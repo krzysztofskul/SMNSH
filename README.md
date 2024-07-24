@@ -4,7 +4,7 @@
 
  #4.0.AUGUST version has been created for a next deployment for testing in August 2024. The main goal is to prepare representative and stable version of the application for discussion about development with a team.
 
-**GOALS IN MAIN FUNCTIONALITY:**
+**TODO GOALS IN MAIN FUNCTIONALITY:**
 
 * import from xls  
 	* project from xls  
@@ -16,7 +16,12 @@
 * export data to kpds  
 	* generate kpds to a pdf file and prepare for download  
 
-* add assistant project manager to project  
+* project updates  
+	* add assistant project manager to project  
+	* 3rd party devices as a list
+		* add to the project charter page
+	* training as a list
+		* add to the project charter page
 
 * add default milestones to new project  
 
