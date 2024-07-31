@@ -14,6 +14,7 @@ import pl.krzysztofskul.attachment.AttachmentRepo;
 import pl.krzysztofskul.attachment.AttachmentService;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
+import pl.krzysztofskul.device.device3rd.Device3rdForm;
 import pl.krzysztofskul.device.part.PartService;
 import pl.krzysztofskul.device.prototype.Prototype;
 import pl.krzysztofskul.device.prototype.PrototypeService;
@@ -151,6 +152,7 @@ public class ProjectController {
             @RequestParam(name = "backToPage", required = false) String backToPage,
             @RequestParam(name = "userId", required = false) String userId,
             @RequestParam(name = "view", required = false) String view,
+            Model model,
             HttpSession httpSession
     ) throws IOException {
 
@@ -184,11 +186,14 @@ public class ProjectController {
         	}
         }
         
-        if (backToPage != null) {
-            return "redirect:"+backToPage+"&view=list";
-        }
+//        if (backToPage != null) {
+//            return "redirect:"+backToPage+"&view=list";
+//        }
         
-        return "redirect:/projects/all?view=list";
+        //return "redirect:/projects/all?view=list";
+        model.addAttribute("projectId", projectNew.getId());
+        //model.addAttribute(Device3rdForm, "device3rdForm");
+        return "projects/new-device3rd";
     }
 
     @GetMapping("/all")

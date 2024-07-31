@@ -253,16 +253,6 @@
                         </div>
                     </div>
 
-                    <div class="row mb-1">
-                        <div class="col-4 text-right">
-                            <p class="langPL">LISTA URZĄDZEŃ OBCYCH:</p>
-                            <p class="langEN">3rd PARTY DEVICES:</p>
-                        </div>
-                        <div class="col-8">
-                            <form:input path="othersDeviceList" cssClass="w-100" value="Aparat anestezjologiczny; Wstrzykiwacz;"/>
-                        </div>
-                    </div>
-
                     <hr>
 
                     <div class="row mb-1">
