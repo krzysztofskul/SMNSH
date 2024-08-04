@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
+import pl.krzysztofskul.device.device3rd.Device3rd;
 import pl.krzysztofskul.device.part.PartService;
 import pl.krzysztofskul.device.prototype.Prototype;
 import pl.krzysztofskul.importdata.ImportData;
@@ -195,6 +196,7 @@ public class ProjectService {
             }
         }
         Hibernate.initialize(project.getConceptList());
+        Hibernate.initialize(project.getDevice3rdList());
         return project;
     }
 

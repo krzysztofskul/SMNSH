@@ -14,7 +14,8 @@ import pl.krzysztofskul.attachment.AttachmentRepo;
 import pl.krzysztofskul.attachment.AttachmentService;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
-import pl.krzysztofskul.device.device3rd.Device3rdForm;
+import pl.krzysztofskul.device.device3rd.Device3rd;
+import pl.krzysztofskul.device.device3rd.Device3rdService;
 import pl.krzysztofskul.device.part.PartService;
 import pl.krzysztofskul.device.prototype.Prototype;
 import pl.krzysztofskul.device.prototype.PrototypeService;
@@ -58,6 +59,7 @@ public class ProjectController {
     private PartService partService;
     private PrototypeService prototypeService;
     private CompanyService companyService;
+    private Device3rdService device3rdService;
 
     @Autowired
     public ProjectController(ProjectService projectService, InvestorService investorService,
@@ -65,7 +67,8 @@ public class ProjectController {
 			AttachmentService attachmentService, LoggerUserService<Object> loggerUserService,
 			LoggerProjectService<Object> loggerProjectService, CommentService commentService, PartService partService,
 			PrototypeService prototypeService,
-			CompanyService companyService
+			CompanyService companyService,
+			Device3rdService device3rdService
 			) {
 		super();
 		this.projectService = projectService;
@@ -80,6 +83,7 @@ public class ProjectController {
 		this.partService = partService;
 		this.prototypeService = prototypeService;
 		this.companyService = companyService;
+		this.device3rdService = device3rdService;
 	}
 
     @ModelAttribute("allDeviceList")
@@ -191,11 +195,11 @@ public class ProjectController {
 //        }
         
         //return "redirect:/projects/all?view=list";
-        model.addAttribute("projectId", projectNew.getId());
+        //model.addAttribute("projectId", projectNew.getId());
         //model.addAttribute(Device3rdForm, "device3rdForm");
-        return "projects/new-device3rd";
-    }
-
+        return "redirect:/device3rd/new?projectId="+projectNew.getId();
+    }   
+    
     @GetMapping("/all")
     public String projectsAll(
             @RequestParam(name = "status", required = false) String status,
@@ -437,7 +441,5 @@ public class ProjectController {
     	model.addAttribute("project", project);
     	return "projects/attachments";
     }
-    
-    
-    
+       
 }

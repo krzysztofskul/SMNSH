@@ -124,7 +124,7 @@ public class Project {
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     private DetailsSls detailsSls;
     
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.PERSIST)
     private List<Device3rd> device3rdList = new ArrayList<Device3rd>();
     
     /** constructors */

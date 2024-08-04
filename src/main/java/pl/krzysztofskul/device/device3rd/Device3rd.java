@@ -19,6 +19,10 @@ public class Device3rd {
 	
 	private String modelName;
 	
+	private String serialNo;
+	
+	private String warranty;
+	
 	private String description;
 	
 	@ManyToOne
@@ -29,6 +33,14 @@ public class Device3rd {
 	 */
 	public Device3rd() {
 		super();
+	}
+
+	/**
+	 * @param project
+	 */
+	public Device3rd(Project project) {
+		super();
+		this.project = project;
 	}
 
 	/**
@@ -66,6 +78,22 @@ public class Device3rd {
 
 	public void setModelName(String modelName) {
 		this.modelName = modelName;
+	}
+
+	public String getSerialNo() {
+		return serialNo;
+	}
+
+	public void setSerialNo(String serialNo) {
+		this.serialNo = serialNo;
+	}
+
+	public String getWarranty() {
+		return warranty;
+	}
+
+	public void setWarranty(String warranty) {
+		this.warranty = warranty;
 	}
 
 	public String getDescription() {

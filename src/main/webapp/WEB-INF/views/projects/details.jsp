@@ -341,7 +341,10 @@
 	       		<div class="col">
 
 	       			<div class="card">
-	       				<div class="card-header">URZĄDZENIA DO INSTALACJI</div>
+	       				<div class="card-header">
+	       					<p class="langPL">URZĄDZENIA DO INSTALACJI</p>
+	       					<p class="langEN">DEVICES</p>
+       					</div>
 	       				<div class="card-body" style="height: 250px">
                         <c:if test="${edit eq true}">
                         
@@ -391,6 +394,26 @@
 							</c:forEach>
 						</c:if>
 	       				</div>
+	       			</div>
+	       			<div class="card">
+	       				<div class="card-header">
+	       					<p class="langPL">URZĄDZENIA OBCE</p>
+	       					<p class="langen">3RD PARTY DEVICES</p>
+	       				</div>
+		       			<div class="card-body">
+		       				<c:forEach items="${project.device3rdList}" var="device3rd">
+		       					<div class="row first-row">
+		       						<div class="col-3 font-weight-bold">${device3rd.manufacturerName}</div>
+		       						<div class="col-3 font-weight-bold">${device3rd.modelName}</div>
+		       						<div class="col-2 font-weight-bold">SN: ${device3rd.serialNo}</div>
+		       						<div class="col-2 font-weight-bold">${device3rd.warranty}</div>
+		       						<div class="col-2"><a href="/inprogress" class="btn btn-outline-danger float-right">-</a></div>
+	       						</div>
+		       				</c:forEach>
+		       			</div>
+		       			<div class="card-footer">
+		       				<a href="/device3rd/new?projectId=${project.id}" class="btn btn-outline-success float-right">+</a>
+		       			</div>
 	       			</div>
 	       		</div>
 	       		<div class="col">
