@@ -195,9 +195,10 @@ public class ProjectController {
 //        }
         
         //return "redirect:/projects/all?view=list";
-        //model.addAttribute("projectId", projectNew.getId());
+        model.addAttribute("projectId", projectNew.getId());
         //model.addAttribute(Device3rdForm, "device3rdForm");
-        return "redirect:/device3rd/new?projectId="+projectNew.getId();
+        //return "redirect:/device3rd/new?projectId="+projectNew.getId();
+        return "devices/device3rd/question";
     }   
     
     @GetMapping("/all")

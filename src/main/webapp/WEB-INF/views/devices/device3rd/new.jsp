@@ -23,23 +23,23 @@
                     <p class="langPL">FORMULARZ DODAWANIA URZĄDZENIA OBCEGO DO PROJEKTU</p>
                     <p class="langEN">3RD PARTY DEVICES ADDING TO THE PROJECT FORM</p>
                 </div>
-				
-                    <div class="row mb-1">
+				<div class="card-body">
+                    <div class="row mb-1 invisible">
                         <div class="col-4 text-right">
                             <p class="langPL">ID:</p>
                             <p class="langEN">ID:</p>
                         </div>
                         <div class="col-8">
-                            <form:input path="id" class="w-100"/>
+                            <form:hidden path="id" class="w-100" readonly="true"/>
                         </div>
                     </div>
-                    <div class="row mb-1">
+                    <div class="row mb-1 invisible">
                         <div class="col-4 text-right">
                             <p class="langPL">ID PROJEKTU:</p>
                             <p class="langEN">PROJECT ID:</p>
                         </div>
                         <div class="col-8">
-                            <form:input path="project.id" class="w-100"/>
+                            <form:hidden path="project.id" class="w-100"/>
                         </div>
                     </div>
                     <div class="row mb-1">
@@ -87,6 +87,7 @@
                             <form:input path="warranty" class="w-100"/>
                         </div>
                     </div>
+                    <!--  
            	        <div class="row mb-1">
                         <div class="col-12">
                    			<button type="submit" class="btn btn-danger float-right disabled">-</button>
@@ -98,7 +99,9 @@
                    			<button type="button" class="btn btn-danger float-right disabled">+</button>
                         </div>
            	        </div>
-		
+           	        -->
+				</div>
+				
                 <div class="card-footer">
                     <c:if test="${backToPage ne null}">
                         <input type="hidden" name="backToPage" value="${backToPage}">

@@ -18,13 +18,9 @@
 
 * project updates  
 	* add assistant project manager to project  
-	* **3rd party devices as a list:**   
-		* **repo, service, relationship DONE**  
-		* **controller updates TODO**   
-		* **front-end updates: remove from new project page..DONE create second new project page to fill in 3rd devices DONE**
-		* **save 3rd party devices functionality**   
-		* **"Multiple Row Form Submit using Device3rdForm" TODO**   
-		* **add 3rd party devices to the project charter page TODO**  
+	* **3rd party functionality:**   
+		* **front-end improvements TODO**  
+		* **remove 3rd party device functionality TODO**        
 	* training as a list
 		* add to the project charter page
 
