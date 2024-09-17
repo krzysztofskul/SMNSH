@@ -401,14 +401,21 @@
 	       					<p class="langen">3RD PARTY DEVICES</p>
 	       				</div>
 		       			<div class="card-body">
-		       				<c:forEach items="${project.device3rdList}" var="device3rd">
-		       					<div class="row first-row">
-		       						<div class="col-3 font-weight-bold">${device3rd.manufacturerName}</div>
-		       						<div class="col-3 font-weight-bold">${device3rd.modelName}</div>
-		       						<div class="col-2 font-weight-bold">SN: ${device3rd.serialNo}</div>
-		       						<div class="col-2 font-weight-bold">${device3rd.warranty}</div>
-		       						<div class="col-2"><a href="/device3rd/delete/${device3rd.id}?projectId=${project.id}&backToPage=/projects/details/${project.id}" class="btn btn-outline-danger float-right">X</a></div>
-	       						</div>
+       						<div class="row first-row">
+	       						<div class="col-3 font-weight-bold">PRODUCENT</div>
+	       						<div class="col-3 font-weight-bold">MODEL</div>
+	       						<div class="col-2 font-weight-bold">S/N</div>
+	       						<div class="col-2 font-weight-bold text-right">GWAR.<BR> [m-ce]</div>
+	       						<div class="col-2"></div>
+       						</div>
+		       				<c:forEach items="${project.device3rdList}" var="device3rd">	
+	       					<div class="row mb-1">
+	       						<div class="col-3">${device3rd.manufacturerName}</div>
+	       						<div class="col-3">${device3rd.modelName}</div>
+	       						<div class="col-2">${device3rd.serialNo}</div>
+	       						<div class="col-2 text-right">${device3rd.warranty}</div>
+	       						<div class="col-2"><a href="/device3rd/delete/${device3rd.id}?projectId=${project.id}&backToPage=/projects/details/${project.id}" class="btn btn-sm btn-outline-danger float-right">X</a></div>
+       						</div>
 		       				</c:forEach>
 		       			</div>
 		       			<div class="card-footer">

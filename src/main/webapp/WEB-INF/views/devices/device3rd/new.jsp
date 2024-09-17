@@ -66,7 +66,7 @@
                             <p class="langEN">DESCRIPTION:</p>
                         </div>
                         <div class="col-8">
-                            <form:input path="description" class="w-100"/>
+                            <form:textarea path="description" class="w-100" rows="5"/>
                         </div>
                     </div>
                     <div class="row mb-1">
@@ -80,11 +80,11 @@
                     </div>
                     <div class="row mb-1">
                         <div class="col-4 text-right">
-                            <p class="langPL">GWARANCJA:</p>
-                            <p class="langEN">WARRANTY:</p>
+                            <p class="langPL">GWARANCJA [m-cy]:</p>
+                            <p class="langEN">WARRANTY [months]:</p>
                         </div>
                         <div class="col-8">
-                            <form:input path="warranty" class="w-100"/>
+                            <form:input path="warranty" class="w-25"/>
                         </div>
                     </div>
                     <!--  

@@ -19,8 +19,8 @@
 * project updates  
 	* add assistant project manager to project  
 	* **3rd party functionality:**   
-		* **front-end improvements TODO**  
-		* **remove 3rd party device functionality TODO**        
+		* **front-end updates for new 3rd device and project details DONE**  
+		* **remove 3rd party device functionality DONE**        
 	* training as a list
 		* add to the project charter page
 
