@@ -19,5 +19,9 @@ public class Device3rdService {
 	public Device3rd saveAndReturn(Device3rd device3rd) {
 		return device3rdRepo.save(device3rd);
 	}
+
+	public void delete(Long device3rdId) {
+		device3rdRepo.deleteById(device3rdId);
+	}
 	
 }

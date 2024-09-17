@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -55,6 +56,16 @@ public class Device3rdController {
 			return "redirect:/projects/details/"+device3rd.getProject().getId();
 		}
 		
+	}
+	
+	@GetMapping("/device3rd/delete/{device3rdId}")
+	public String getNewDevice3rd(
+				@PathVariable(name = "device3rdId") Long device3rdId,
+				@RequestParam(name = "projectId") Long projectId,
+				@RequestParam(name = "backToPage") String backToPage
+			) {
+		device3rdService.delete(device3rdId);
+		return "redirect:"+backToPage;
 	}
 	
 }

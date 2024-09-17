@@ -407,7 +407,7 @@
 		       						<div class="col-3 font-weight-bold">${device3rd.modelName}</div>
 		       						<div class="col-2 font-weight-bold">SN: ${device3rd.serialNo}</div>
 		       						<div class="col-2 font-weight-bold">${device3rd.warranty}</div>
-		       						<div class="col-2"><a href="/inprogress" class="btn btn-outline-danger float-right">-</a></div>
+		       						<div class="col-2"><a href="/device3rd/delete/${device3rd.id}?projectId=${project.id}&backToPage=/projects/details/${project.id}" class="btn btn-outline-danger float-right">X</a></div>
 	       						</div>
 		       				</c:forEach>
 		       			</div>
