@@ -25,6 +25,9 @@ import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 import pl.krzysztofskul.logger.loggerUser.LoggerUserService;
 import pl.krzysztofskul.project.comment.Comment;
 import pl.krzysztofskul.project.comment.CommentService;
+import pl.krzysztofskul.project.milestone.MilestoneTemplate;
+import pl.krzysztofskul.project.milestone.service.MilestoneService;
+import pl.krzysztofskul.projectCharter.ProjectCharterService;
 import pl.krzysztofskul.smnsh4.Company.Company;
 import pl.krzysztofskul.smnsh4.Company.CompanyService;
 import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategoryEnum;
@@ -60,6 +63,8 @@ public class ProjectController {
     private PrototypeService prototypeService;
     private CompanyService companyService;
     private Device3rdService device3rdService;
+    private MilestoneService milestoneService;
+    private ProjectCharterService projectCharterService;
 
     @Autowired
     public ProjectController(ProjectService projectService, InvestorService investorService,
@@ -68,7 +73,9 @@ public class ProjectController {
 			LoggerProjectService<Object> loggerProjectService, CommentService commentService, PartService partService,
 			PrototypeService prototypeService,
 			CompanyService companyService,
-			Device3rdService device3rdService
+			Device3rdService device3rdService,
+			MilestoneService milestoneService,
+			ProjectCharterService projectCharterService
 			) {
 		super();
 		this.projectService = projectService;
@@ -84,6 +91,8 @@ public class ProjectController {
 		this.prototypeService = prototypeService;
 		this.companyService = companyService;
 		this.device3rdService = device3rdService;
+		this.milestoneService = milestoneService;
+		this.projectCharterService = projectCharterService;
 	}
 
     @ModelAttribute("allDeviceList")
@@ -144,6 +153,7 @@ public class ProjectController {
     	if (userId != null) {
     		project.setProjectManager(userService.loadById(userId));
     	}
+    	
     	model.addAttribute("projectNew", project);
 
         return "projects/new";
@@ -193,6 +203,14 @@ public class ProjectController {
 //        if (backToPage != null) {
 //            return "redirect:"+backToPage+"&view=list";
 //        }
+        
+        /*
+         * add default milestones (from template) to the project
+         */
+        List<MilestoneTemplate> milestoneTemplateList = milestoneService.loadAllMilestoneTemplateList();
+        for (MilestoneTemplate milestoneTemplate : milestoneTemplateList) {
+			projectCharterService.addMilestoneInstanceFromTemplates(projectNew.getId(), milestoneTemplate.getId());
+		}
         
         //return "redirect:/projects/all?view=list";
         model.addAttribute("projectId", projectNew.getId());
