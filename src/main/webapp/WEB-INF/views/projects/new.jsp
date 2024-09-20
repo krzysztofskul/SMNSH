@@ -26,7 +26,7 @@
     <div class="container">
 
         <form:form id="formNewProject" method="post" modelAttribute="projectNew" enctype="multipart/form-data">
-            <div class="card">
+            <div class="card smnshCard">
 
                 <div class="card-header text-center">
                     <p class="langPL">FORMULARZ NOWEJ KARTY PROJEKTU</p>
@@ -200,6 +200,23 @@
                         </div>
                         <form:errors path="projectManager" cssClass="error"/>
                     </div>
+                    
+                    <div class="row mb-1">
+                        <div class="col-4 text-right">
+                            <p class="langPL">ZASTĘPCA KIEROWNIKA PROJEKTU:</p>
+                            <p class="langEN">V-CE PROJECT MANAGER:</p>
+                        </div>
+                        <div class="col-8">
+                            <form:select path="projectManager.id" cssClass="w-100" disabled="true">
+                                <c:forEach items="${allProjectManagerList}" var="projectManager">
+                                    <form:option value="${projectManager.id}" label="${projectManager.nameFirst} ${projectManager.nameLast}"/>
+                                </c:forEach>
+                            </form:select>
+                        </div>
+                        <form:errors path="projectManager" cssClass="error"/>
+                    </div>
+
+					<hr>
 
                     <div class="row mb-1">
                         <div class="col-4 text-right">
@@ -261,7 +278,7 @@
                             <p class="langEN">TRAININGS:</p>
                         </div>
                         <div class="col-8">
-                            <form:input path="trainings" cssClass="w-100"/>
+                            <form:input path="trainings" cssClass="w-100" disabled="true"/>
                         </div>
                     </div>
 
@@ -275,38 +292,21 @@
                         </div>
                     </div>
 
-					<!--  
-					<hr>
+	                <div class="card-footer">
+	                    <c:if test="${backToPage ne null}">
+	                        <input type="hidden" name="backToPage" value="${backToPage}">
+	                    </c:if>
+	                    <a href="/projects/all" class="btn btn-warning float-left">
+	                        <p class="langPL">ANULUJ</p>
+	                        <p class="langEN">CANCEL</p>
+	                    </a>
+	                    <form:button type="submit" id="projectNewBtnSave" class="btn btn-success float-right">
+	                        <p class="langPL">ZAPISZ</p>
+	                        <p class="langEN">SAVE</p>
+	                    </form:button>
+	                </div>
 
-                    <div class="row mb-1">
-                        <div class="col-4 text-right">
-                            <p class="langPL">ZAŁĄCZNIKI:</p>
-                            <p class="langEN">ATTACHMENTS:</p>
-                        </div>
-                        <div class="col-8">
-                            <input type="file" name="fileUpload" multiple="multiple"/>
-<%--                            <form:input path="attachment.id" type="file"/>--%>
-<%--                            <form:errors path="attachment" cssClass="error"/>--%>
-                        </div>
-                    </div>
-
-                </div>
-                -->
-
-                <div class="card-footer">
-                    <c:if test="${backToPage ne null}">
-                        <input type="hidden" name="backToPage" value="${backToPage}">
-                    </c:if>
-                    <a href="/projects/all" class="btn btn-warning float-left">
-                        <p class="langPL">ANULUJ</p>
-                        <p class="langEN">CANCEL</p>
-                    </a>
-                    <form:button type="submit" id="projectNewBtnSave" class="btn btn-success float-right">
-                        <p class="langPL">ZAPISZ</p>
-                        <p class="langEN">SAVE</p>
-                    </form:button>
-                </div>
-
+	            </div>
             </div>
         </form:form>
 

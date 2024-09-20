@@ -230,6 +230,8 @@
 							                </c:otherwise>
 							            </c:choose>
 							        </div>
+						        </div>
+						        <div class="row middle-row">
 							        <div class="col-3 col-title">
 							            <p class="langPL">KIEROWNIK PROJEKTU:</p>
 							            <p class="langEN">PROJECT MANAGER:</p>
@@ -238,6 +240,30 @@
 							            <c:choose>
 							                <c:when test="${edit eq true}">
 							                    <form:select path="projectManager.id" cssClass="w-100">
+							                        <c:forEach items="${allProjectManagerList}"
+							                                   var="projectManager">
+							                            <form:option
+							                                    value="${projectManager.id}"
+							                                    label="${projectManager.nameFirst} ${projectManager.nameLast}"
+							                            />
+							                        </c:forEach>
+							                    </form:select>
+							                    <form:errors path="projectManager" cssClass="error"/>
+							                </c:when>
+							                <c:otherwise>
+							                    ${project.projectManager.nameFirst} ${project.projectManager.nameLast}
+							                    (<span id="projectManagerId">${project.projectManager.id}</span>)
+							                </c:otherwise>
+							            </c:choose>
+							        </div>
+							        <div class="col-3 col-title">
+							            <p class="langPL">ZASTĘPCA KIER. PROJEKTU:</p>
+							            <p class="langEN">V-CE PROJECT MANAGER:</p>
+							        </div>
+							        <div class="col-3 col-value">
+							            <c:choose>
+							                <c:when test="${edit eq true}">
+							                    <form:select path="projectManager.id" cssClass="w-100" disabled="true">
 							                        <c:forEach items="${allProjectManagerList}"
 							                                   var="projectManager">
 							                            <form:option
