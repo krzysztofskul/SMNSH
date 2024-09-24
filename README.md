@@ -7,7 +7,7 @@
 **TODO GOALS IN MAIN FUNCTIONALITY:**
 
 * add default milestones to new project DONE
-* **add a functionality which allows to change deadline of the milestone easily TODO** 
+* add a functionality which allows to change deadline of the milestone DONE  
 
 * training as a list
 	* add to the project charter page

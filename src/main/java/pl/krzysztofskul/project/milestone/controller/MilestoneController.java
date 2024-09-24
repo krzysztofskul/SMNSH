@@ -1,6 +1,7 @@
 package pl.krzysztofskul.project.milestone.controller;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -83,7 +84,7 @@ public class MilestoneController {
 			//dateFinishPlanned = LocalDate.now().toString();
 		} else {
 			try {
-				milestoneInstance.getMilestoneTimeline().setDateFinishPlanned(LocalDate.parse(dateFinishPlanned));
+				milestoneInstance.getMilestoneTimeline().setDateFinishPlanned(LocalDateTime.parse(dateFinishPlanned));
 			} catch (java.time.format.DateTimeParseException e) {
 				dateFinishPlanned = null;
 			}
