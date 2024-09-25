@@ -62,6 +62,9 @@ public class Project {
 
     @ManyToOne
     private User projectManager;
+    
+    @ManyToOne
+    private User projectManagerAssistant;
 
     @ManyToOne
     private User sls;
@@ -239,7 +242,15 @@ public class Project {
         this.projectManager = projectManager;
     }
 
-    public User getSls() {
+    public User getProjectManagerAssistant() {
+		return projectManagerAssistant;
+	}
+
+	public void setProjectManagerAssistant(User projectManagerAssistant) {
+		this.projectManagerAssistant = projectManagerAssistant;
+	}
+
+	public User getSls() {
         return sls;
     }
 

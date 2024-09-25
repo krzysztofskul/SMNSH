@@ -263,7 +263,7 @@
 							        <div class="col-3 col-value">
 							            <c:choose>
 							                <c:when test="${edit eq true}">
-							                    <form:select path="projectManager.id" cssClass="w-100" disabled="true">
+							                    <form:select path="projectManagerAssistant.id" cssClass="w-100">
 							                        <c:forEach items="${allProjectManagerList}"
 							                                   var="projectManager">
 							                            <form:option
@@ -275,8 +275,8 @@
 							                    <form:errors path="projectManager" cssClass="error"/>
 							                </c:when>
 							                <c:otherwise>
-							                    ${project.projectManager.nameFirst} ${project.projectManager.nameLast}
-							                    (<span id="projectManagerId">${project.projectManager.id}</span>)
+							                    ${project.projectManagerAssistant.nameFirst} ${project.projectManagerAssistant.nameLast}
+							                    (<span id="projectManagerAssistantId">${project.projectManagerAssistant.id}</span>)
 							                </c:otherwise>
 							            </c:choose>
 							        </div>

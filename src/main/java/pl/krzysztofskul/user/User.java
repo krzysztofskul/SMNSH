@@ -67,6 +67,9 @@ public class User {
     @OneToMany(mappedBy = "projectManager", cascade = CascadeType.ALL)
     private List<Project> projectList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "projectManagerAssistant", cascade = CascadeType.ALL)
+    private List<Project> projectListAsAssist = new ArrayList<>();
+
     @OneToMany(mappedBy = "sls", cascade = CascadeType.ALL)
     private List<Project> projectListAsSalesRep = new ArrayList<>();
 
@@ -270,6 +273,18 @@ public class User {
 
 	public void setStakeholder(Stakeholder stakeholder) {
 		Stakeholder = stakeholder;
+	}
+
+
+
+	public List<Project> getProjectListAsAssist() {
+		return projectListAsAssist;
+	}
+
+
+
+	public void setProjectListAsAssist(List<Project> projectListAsAssist) {
+		this.projectListAsAssist = projectListAsAssist;
 	}
 
 

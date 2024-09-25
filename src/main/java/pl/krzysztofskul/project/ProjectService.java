@@ -111,7 +111,9 @@ public class ProjectService {
 			break;
 		}
 		case PROJECT_MANAGER: {
-			projectList = projectRepo.findAllByProjectManager(user);
+			projectList = new ArrayList<Project>();
+			projectList.addAll(projectRepo.findAllByProjectManager(user));
+			projectList.addAll(projectRepo.findAllByProjectManagerAssistant(user));
 			break;
 		}
 		case PLANNER: {
@@ -136,7 +138,9 @@ public class ProjectService {
                 break;
             }
             case "PROJECT_MANAGER": {
-                projectList = projectRepo.findAllByProjectManager(user);
+    			projectList = new ArrayList<Project>();
+    			projectList.addAll(projectRepo.findAllByProjectManager(user));
+    			projectList.addAll(projectRepo.findAllByProjectManagerAssistant(user));
                 break;
             }
             case "PLANNER": {

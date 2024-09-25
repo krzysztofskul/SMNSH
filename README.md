@@ -6,14 +6,9 @@
 
 **TODO GOALS IN MAIN FUNCTIONALITY:**
 
-* add default milestones to new project DONE
-* add a functionality which allows to change deadline of the milestone DONE  
-
 * training as a list
 	* add to the project charter page
-	
-* add assistant project manager to project  
-
+  
 * add new company / client / subcontractor  functionality
 
 * export data to kpds  

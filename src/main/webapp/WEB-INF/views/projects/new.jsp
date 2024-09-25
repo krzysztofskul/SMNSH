@@ -207,7 +207,7 @@
                             <p class="langEN">V-CE PROJECT MANAGER:</p>
                         </div>
                         <div class="col-8">
-                            <form:select path="projectManager.id" cssClass="w-100" disabled="true">
+                            <form:select path="projectManagerAssistant.id" cssClass="w-100">
                                 <c:forEach items="${allProjectManagerList}" var="projectManager">
                                     <form:option value="${projectManager.id}" label="${projectManager.nameFirst} ${projectManager.nameLast}"/>
                                 </c:forEach>
