@@ -8,8 +8,9 @@
 
 * training as a list
 	* add to the project charter page
-  
-* add new company / client / subcontractor  functionality
+
+* create a page where all companies (investors/sub-contractors) are displayed DONE  
+* add new company / client / sub-contractor  functionality ... IN PROGRESS
 
 * export data to kpds  
 	* generate kpds to a pdf file and prepare for download  

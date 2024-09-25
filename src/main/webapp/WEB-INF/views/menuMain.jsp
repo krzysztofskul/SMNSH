@@ -92,13 +92,13 @@
             
 
             <li class="nav-item border-left">
-                <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/investors/allwithprojects">
+                <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/smnsh4/companies/all?category=investor">
                     <p class="langPL">KLIENCI</p>
                     <p class="langEN">CUSTOMERS</p>
                 </a>
             </li>
             <li class="nav-item border-right">
-                <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/#subcontractors/all">
+                <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/smnsh4/companies/all?category=subcontractor">
                     <p class="langPL">PODWYKONAWCY</p>
                     <p class="langEN">SUBCONTRACTORS</p>
                 </a>
