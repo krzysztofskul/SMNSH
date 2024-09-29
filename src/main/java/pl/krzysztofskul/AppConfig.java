@@ -32,6 +32,7 @@ import pl.krzysztofskul.email.EmailCredentials;
 import pl.krzysztofskul.localDateTime.LocalDateTimeConverter;
 import pl.krzysztofskul.localDateTime.LocalDateTimeConverterToString;
 import pl.krzysztofskul.project.configuration.ConfigurationConverter;
+import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategoryConverter;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -155,6 +156,10 @@ public class AppConfig implements WebMvcConfigurer {
     public PrototypeConverter getPrototypeConverter() {
     	return new PrototypeConverter();
     }
+    @Bean
+    public CompanyCategoryConverter getCompanyCategoryConverter() {
+    	return new CompanyCategoryConverter();
+    }
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
@@ -163,6 +168,7 @@ public class AppConfig implements WebMvcConfigurer {
         registry.addConverter(getLocalDateTimeConverterToString());
         registry.addConverter(getConfigurationConverter());
         registry.addConverter(getPrototypeConverter());
+        registry.addConverter(getCompanyCategoryConverter());
     }
 
     @Bean

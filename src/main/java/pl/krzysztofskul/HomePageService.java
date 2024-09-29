@@ -55,6 +55,8 @@ import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategory;
 import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategoryEnum;
 import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategoryRepo;
 import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategoryService;
+import pl.krzysztofskul.smnsh4.ContactDetails.ContactDetails;
+import pl.krzysztofskul.smnsh4.ContactDetails.Address.Address;
 import pl.krzysztofskul.stakeholder.StakeholderService;
 import pl.krzysztofskul.subcontractor.Subcontractor;
 import pl.krzysztofskul.subcontractor.SubcontractorDemoGenerator;
@@ -711,6 +713,18 @@ public class HomePageService {
 			for (int i = 0; i < 5; i++) {
 				
 				Company company = new Company();
+				
+				ContactDetails contactDetails = new ContactDetails();
+				Address address = new Address(
+						LoremIpsum.getInstance().getCountry(), 
+						LoremIpsum.getInstance().getZipCode(), 
+						LoremIpsum.getInstance().getCity(), 
+						LoremIpsum.getInstance().getName(), 
+						String.valueOf(new Random().nextInt(100)+1),
+						String.valueOf(new Random().nextInt(100)+1)
+						);
+				contactDetails.setAddress(address);
+				company.setContactDetails(contactDetails);
 				
 				List<CompanyCategory> ccel = new ArrayList<CompanyCategory>();
 				ccel.add(companyCategoryService.loadByCompanyCategoryEnum(comCatEnum));

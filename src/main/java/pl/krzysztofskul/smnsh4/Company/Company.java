@@ -3,6 +3,7 @@ package pl.krzysztofskul.smnsh4.Company;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,7 +35,7 @@ public class Company {
 	@OneToOne
 	private SapCustomer sapCustomer;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private ContactDetails contactDetails;
 	
 	@ManyToMany
@@ -132,5 +133,11 @@ public class Company {
 	/**
 	 * METHODS
 	 */
+	public void addCompanyCategory(CompanyCategory companyCategory) {
+		this.companyCategoryList.add(companyCategory);
+	}
 	
+	public void removeCompanyCategory(CompanyCategory companyCategory) {
+		this.companyCategoryList.remove(companyCategory);
+	}
 }

@@ -51,7 +51,7 @@
 						<p class="langEN">name</p>
 					</th>
 					<th>
-						<a href="#new" class="btn btn-sm btn-outline-success float-right">
+						<a href="#" class="btn btn-sm btn-outline-success float-right">
 							<p class="langPL">NOWY</p>
 							<p class="langEN">new</p>
 						</a>
@@ -67,7 +67,7 @@
 								<p class="langPL">USUŃ</p>
 								<p class="langEN">delete</p>
 							</button>
-							<button class="btn-sm btn-outline-primary float-right">
+							<a href="/smnsh4/companies/details/${company.id}" class="btn-sm btn-outline-primary float-right">
 								<p class="langPL">SZCZEGÓŁY</p>
 								<p class="langEN">details</p>
 							</button>
@@ -79,7 +79,7 @@
 				<tfoot>
 					<tr>
 						<td>
-							<a href="#new" class="btn btn-sm btn-outline-success float-right">
+							<a href="/smnsh4/companies/new?category=${param.category}&edit=true" class="btn btn-sm btn-outline-success float-right">
 								<p class="langPL">NOWY</p>
 								<p class="langEN">new</p>
 							</a>

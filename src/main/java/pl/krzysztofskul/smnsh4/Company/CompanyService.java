@@ -49,5 +49,11 @@ public class CompanyService {
 	public List<Company> loadAll() {
 		return companyRepo.findAll();
 	}
+
+	public Company loadByIdWithCompanyCategoryList(Long companyId) {
+		Company company = companyRepo.findById(companyId).get();
+		Hibernate.initialize(company.getCompanyCategoryList());
+		return company;
+	}
 	
 }
