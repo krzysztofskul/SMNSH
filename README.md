@@ -9,8 +9,8 @@
 * training as a list
 	* add to the project charter page
 
-* create a page where company details can be displayed and edited DONE
-* create a page where new company can be created  DONE
+* create a quality rate for a company
+* create contact details edit functionality
 
 * export data to kpds  
 	* generate kpds to a pdf file and prepare for download  
