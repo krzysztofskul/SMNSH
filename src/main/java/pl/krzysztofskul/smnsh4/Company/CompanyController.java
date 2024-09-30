@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategory;
 import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategoryEnum;
 import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategoryService;
+import pl.krzysztofskul.smnsh4.Company.qualityrate.QualityrateEnum;
+import pl.krzysztofskul.smnsh4.Company.qualityrate.QualityrateService;
 
 @Controller
 @RequestMapping("/smnsh4/companies")
@@ -26,6 +28,7 @@ public class CompanyController {
 
 	CompanyService companyService;
 	CompanyCategoryService companyCategoryService;
+	QualityrateService qualityrateService;
 	
 	/**
 	 * Constructor
@@ -33,10 +36,12 @@ public class CompanyController {
 	@Autowired
 	public CompanyController(
 			CompanyService companyService,
-			CompanyCategoryService companyCategoryService
+			CompanyCategoryService companyCategoryService,
+			QualityrateService qualityrateService
 			) {
 		this.companyService = companyService;
 		this.companyCategoryService = companyCategoryService;
+		this.qualityrateService = qualityrateService;
 	}
 
 	@ModelAttribute("subcontractorsForRoomAdaptation")
@@ -80,6 +85,7 @@ public class CompanyController {
 			) {
 
 		Company company = new Company();
+		company.setQualityrate(qualityrateService.loadByQualityrateEnum(QualityrateEnum.WHITE));
 
 		switch (category) {
 			case "investor": {

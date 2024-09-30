@@ -7,6 +7,7 @@ import pl.krzysztofskul.company.type.CompanyTypeService;
 import pl.krzysztofskul.device.modality.ModalityGenerator;
 import pl.krzysztofskul.initDB.InitDB;
 import pl.krzysztofskul.investor.InvestorService;
+import pl.krzysztofskul.smnsh4.Company.qualityrate.QualityrateService;
 import pl.krzysztofskul.stakeholder.StakeholderService;
 import pl.krzysztofskul.subcontractor.SubcontractorService;
 import pl.krzysztofskul.user.UserService;
@@ -24,6 +25,7 @@ public class HomePageController {
 	private InvestorService investorService;
 	private StakeholderService stakeholderService; 
 	private ModalityGenerator modalityGenerator;
+	private QualityrateService qualityrateService;
 
 	/** constr. */
 	@Autowired
@@ -34,7 +36,8 @@ public class HomePageController {
 			SubcontractorService subcontractorService,
 			InvestorService investorService,
 			StakeholderService stakeholderService,
-			ModalityGenerator modalityGenerator
+			ModalityGenerator modalityGenerator,
+			QualityrateService qualityrateService
 	) {
 		this.homePageService = homePageService;
 		this.userService = userService;
@@ -43,6 +46,7 @@ public class HomePageController {
 		this.investorService = investorService;
 		this.stakeholderService = stakeholderService;
 		this.modalityGenerator = modalityGenerator;
+		this.qualityrateService = qualityrateService;
 	}
 
 	/** methods */
@@ -56,6 +60,7 @@ public class HomePageController {
 	public String initEssentialDB() {
 		if (initEssentialDBCounter == 0) {
 			
+			qualityrateService.createAndSaveQualityrates();
 			userService.createRealTestUsersAndSaveToDb();
 			homePageService.createAndSaveCompanyCategoriesToDb();
 			homePageService.createAttachmentCategories();

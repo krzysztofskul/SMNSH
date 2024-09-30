@@ -33,16 +33,16 @@
 							<p class="langPL">ID</p>
 							<p class="langEN">id</p>
 						</th>
-						<td colspan="3">
+						<th colspan="4">
 							<c:choose>
 								<c:when test="${param.edit=='true'}">
-									<form:input path="id" readonly="true"/>
+									<form:hidden path="id" readonly="true"/>
 								</c:when>
 								<c:otherwise>
 									<span>${company.id}</span>
 								</c:otherwise>
 							</c:choose>
-						</td>
+						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -151,6 +151,38 @@
 
 							</a> 
 							-->
+						</td>
+					</tr>
+					<!-- QUALITY RATE PARAM. -->
+					<tr>
+						<th>
+							<p class="langPL">WIARYGODNOŚĆ</p>
+							<p class="langEN">quality rate</p>
+						</th>
+						<td>
+							<c:choose>
+								<c:when test="${param.edit=='true'}">
+									<p class="langPL">W OPRACOWANIU...</p>
+									<p class="langEN">in progress...</p>
+									<form:hidden path="qualityrate.id"/>
+								</c:when>
+								<c:otherwise>
+									<c:choose>
+										<c:when test="${company.qualityrate.qualityrateEnum.nameEN.equals('WHITE')}">
+											<p class="qualityrate d-inline-block" style="width:20px; height:40px; border:1px solid gray; background-color:white; color: white; margin-top: 0px">X</p>
+											<p class="qualityrate d-inline-block" style="width:20px; height:40px; border:1px solid gray; background-color:green; color: green; margin-top: 0px">G</p>
+											<p class="qualityrate d-inline-block" style="width:20px; height:40px; border:1px solid gray; background-color:yellow; color: yellow; margin-top: 0px">Y</p>
+											<p class="qualityrate d-inline-block" style="width:20px; height:40px; border:1px solid gray; background-color:red; color: red; margin-top: 0px">R</p>
+											<p class="qualityrate d-inline-block" style="width:20px; height:40px; border:1px solid gray; background-color:black; color: black; margin-top: 0px">B</p>
+											<div class="qualityrateName d-none">
+												<p class="langPL">${company.qualityrate.qualityrateEnum.namePL}</p>
+												<p class="langEN">${company.qualityrate.qualityrateEnum.nameEN}</p>
+											</div>
+										</c:when>
+									</c:choose>
+
+								</c:otherwise>
+							</c:choose>
 						</td>
 					</tr>
 					<tfoot>

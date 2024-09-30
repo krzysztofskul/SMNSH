@@ -55,6 +55,8 @@ import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategory;
 import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategoryEnum;
 import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategoryRepo;
 import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategoryService;
+import pl.krzysztofskul.smnsh4.Company.qualityrate.QualityrateEnum;
+import pl.krzysztofskul.smnsh4.Company.qualityrate.QualityrateService;
 import pl.krzysztofskul.smnsh4.ContactDetails.ContactDetails;
 import pl.krzysztofskul.smnsh4.ContactDetails.Address.Address;
 import pl.krzysztofskul.stakeholder.StakeholderService;
@@ -114,6 +116,7 @@ public class HomePageService {
     private CompanyCategoryService companyCategoryService;
     private CompanyService companyService;
     private ModalityService modalityService;
+    private QualityrateService qualityrateService;
 
     /** constr.
      *
@@ -146,7 +149,8 @@ public class HomePageService {
             SubcontractorDemoGenerator subcontractorDemoGenerator,
             CompanyCategoryService companyCategoryService,
             CompanyService companyService,
-            ModalityService modalityService
+            ModalityService modalityService,
+            QualityrateService qualityrateService
     		) {
         this.userService = userService;
         this.deviceCategoryService = deviceCategoryService;
@@ -178,6 +182,7 @@ public class HomePageService {
         this.companyCategoryService = companyCategoryService;
         this.companyService = companyService;
         this.modalityService = modalityService;
+        this.qualityrateService = qualityrateService;
     }
 
     /** methods
@@ -713,6 +718,7 @@ public class HomePageService {
 			for (int i = 0; i < 5; i++) {
 				
 				Company company = new Company();
+				company.setQualityrate(qualityrateService.loadByQualityrateEnum(QualityrateEnum.WHITE));
 				
 				ContactDetails contactDetails = new ContactDetails();
 				Address address = new Address(
