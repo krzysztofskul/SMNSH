@@ -1,6 +1,7 @@
 package pl.krzysztofskul.smnsh4.Company;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.Hibernate;
@@ -43,6 +44,16 @@ public class CompanyService {
 			}
 		}
 		return companiesFiltered;
+	}
+
+	public List<Company> loadAll() {
+		return companyRepo.findAll();
+	}
+
+	public Company loadByIdWithCompanyCategoryList(Long companyId) {
+		Company company = companyRepo.findById(companyId).get();
+		Hibernate.initialize(company.getCompanyCategoryList());
+		return company;
 	}
 	
 }

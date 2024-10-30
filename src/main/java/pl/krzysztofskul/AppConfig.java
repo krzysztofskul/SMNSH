@@ -16,6 +16,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.LocaleContextResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -31,6 +32,7 @@ import pl.krzysztofskul.email.EmailCredentials;
 import pl.krzysztofskul.localDateTime.LocalDateTimeConverter;
 import pl.krzysztofskul.localDateTime.LocalDateTimeConverterToString;
 import pl.krzysztofskul.project.configuration.ConfigurationConverter;
+import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategoryConverter;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -104,10 +106,10 @@ public class AppConfig implements WebMvcConfigurer {
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 
         /* local DB*/
-//        //dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?useSSL=false");
-//        dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?allowPublicKeyRetrieval=true&useSSL=false");
-//        dataSource.setUsername("root");
-//        dataSource.setPassword("@xDpo9Ec16N7&OP0"); // randomly generated password for tests at localhost
+        //dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?useSSL=false");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Europe/Warsaw&useUnicode=true&characterEncoding=UTF-8");
+        dataSource.setUsername("root");
+        dataSource.setPassword("OfreL73#&"); // randomly generated password for tests at localhost
 
         /* remote Amazon AWS DB */
 //        dataSource.setUrl("jdbc:mysql://amazon-aws-db-20230518.cfob4ebvoz1o.eu-north-1.rds.amazonaws.com/smnsh?useSSL=false");
@@ -115,14 +117,14 @@ public class AppConfig implements WebMvcConfigurer {
 //        dataSource.setPassword(System.getProperty("RDS_PASSWORD"));
         
         /* remote railway DB */
-      dataSource.setUrl("jdbc:mysql://${PROD_DB_HOST}:${PROD_DB_PORT}/${PROD_DB_NAME}");
-      dataSource.setUsername(System.getProperty("${PROD_DB_USERNAME}"));
-      dataSource.setPassword(System.getProperty("${PROD_DB_PASSWORD}"));
+//      dataSource.setUrl("jdbc:mysql://${PROD_DB_HOST}:${PROD_DB_PORT}/${PROD_DB_NAME}");
+//      dataSource.setUsername(System.getProperty("${PROD_DB_USERNAME}"));
+//      dataSource.setPassword(System.getProperty("${PROD_DB_PASSWORD}"));
 
         /* remote railway.app DB */
-      dataSource.setUrl("jdbc:mysql://${PROD_DB_HOST}:${PROD_DB_PORT}/${PROD_DB_NAME}");
-      dataSource.setUsername(System.getProperty("${PROD_DB_USERNAME}"));
-      dataSource.setPassword(System.getProperty("${PROD_DB_PASSWORD}"));
+//      dataSource.setUrl("jdbc:mysql://${PROD_DB_HOST}:${PROD_DB_PORT}/${PROD_DB_NAME}");
+//      dataSource.setUsername(System.getProperty("${PROD_DB_USERNAME}"));
+//      dataSource.setPassword(System.getProperty("${PROD_DB_PASSWORD}"));
 
 
         return dataSource;
@@ -154,6 +156,10 @@ public class AppConfig implements WebMvcConfigurer {
     public PrototypeConverter getPrototypeConverter() {
     	return new PrototypeConverter();
     }
+    @Bean
+    public CompanyCategoryConverter getCompanyCategoryConverter() {
+    	return new CompanyCategoryConverter();
+    }
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
@@ -162,6 +168,7 @@ public class AppConfig implements WebMvcConfigurer {
         registry.addConverter(getLocalDateTimeConverterToString());
         registry.addConverter(getConfigurationConverter());
         registry.addConverter(getPrototypeConverter());
+        registry.addConverter(getCompanyCategoryConverter());
     }
 
     @Bean
@@ -186,9 +193,14 @@ public class AppConfig implements WebMvcConfigurer {
         return mailSender;
     }
 
-    @Bean
-    public StandardServletMultipartResolver multipartResolver() {
-        return new StandardServletMultipartResolver();
+//    @Bean
+//    public StandardServletMultipartResolver multipartResolver() {
+//        return new StandardServletMultipartResolver();
+//    }
+    @Bean(name = "multipartResolver")
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        return multipartResolver;
     }
 
 }

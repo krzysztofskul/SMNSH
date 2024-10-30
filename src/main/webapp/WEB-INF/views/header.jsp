@@ -98,6 +98,10 @@
                             		    "<p class='langEN'>SALES REP. RYSZARD G.</p>"+
                     		  	"</a>"+
                     		  	"<div class='dropdown-divider'></div>"+
+                    		  	"<a class='dropdown-item' href='/login?guest=admin-pw'>"+
+	                    		    "<p class='langPL'>KIEROWNIK PROJEKTU PIOTR W.</p>"+
+	                    		    "<p class='langEN'>PROJECT MANAGER PIOTR W.</p>"+
+            		  			"</a>"+
 								"<a class='dropdown-item' href='/login?guest=projectManager-ewm'>"+
                             		    "<p class='langPL'>KIEROWNIK PROJEKTU EWA W-M.</p>"+
                             		    "<p class='langEN'>PROJECT MANAGER EWA W-M.</p>"+
@@ -130,10 +134,6 @@
                     		  	"<a class='dropdown-item' href='/login?guest=projectManager-ao'>"+
                             		    "<p class='langPL'>KIEROWNIK PROJEKTU ARKADIUSZ O.</p>"+
                             		    "<p class='langEN'>PROJECT MANAGER ARKADIUSZ O.</p>"+
-                    		  	"</a>"+
-                    		  	"<a class='dropdown-item' href='/login?guest=projectManager-ps'>"+
-                            		    "<p class='langPL'>KIEROWNIK PROJEKTU PIOTR S.</p>"+
-                            		    "<p class='langEN'>PROJECT MANAGER PIOTR S.</p>"+
                     		  	"</a>"+
                     		  	"<a class='dropdown-item' href='/login?guest=projectManager-ks2'>"+
                             		    "<p class='langPL'>KIEROWNIK PROJEKTU KRZYSZTOF S.</p>"+

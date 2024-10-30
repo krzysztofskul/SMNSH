@@ -24,6 +24,11 @@ public class Attachment {
     @ManyToOne
     private Project project;
 
+    private String description;
+    
+    /**
+     * Constructor    
+     */
     public Attachment() {
     }
 
@@ -73,6 +78,14 @@ public class Attachment {
 
 	public void setAttachmentCategory(AttachmentCategory attachmentCategory) {
 		this.attachmentCategory = attachmentCategory;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
     
     

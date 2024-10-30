@@ -45,7 +45,7 @@ import pl.krzysztofskul.project.ProjectService;
 @Transactional
 public class KpdsService {
 	
-	private static String path_kpds_generated = "D://SMNSH/karta_projektu//kpds_generated";
+	private static String path_kpds_generated = "D://smnsh2/karta_projektu//kpds_generated";
 	//private String kpdsEmailSendTo = EmailCredentials.getKpdsEmailSendTo();
 	private String kpdsEmailSendTo;
 	
@@ -102,7 +102,7 @@ public class KpdsService {
 			PDType0Font fontBold = PDType0Font.load(document, new File("c:/windows/fonts/SiemensSans_Prof_Bold.ttf"));
 			PDType0Font fontBoldItalic = PDType0Font.load(document, new File("c:/windows/fonts/SiemensSans_Prof_BoldItalic.ttf"));
 
-			PDImageXObject logo = PDImageXObject.createFromFile("D://SMNSH/karta_projektu//AppData//logo//logo_smnsh.png", document);
+			PDImageXObject logo = PDImageXObject.createFromFile("D://smnsh2/karta_projektu//AppData//logo//logo_smnsh.png", document);
 			contentStream.drawImage(logo, 475, 750);
 			
 			writeText(contentStream, fontBold, 24, 125, 750, "Karta przekazania do Serwisu");			
@@ -145,7 +145,7 @@ public class KpdsService {
 			this.writeText(contentStream, font, 10, 435, 660, kpds.getProject().getDetailsSls().getImportedProjectManager());
 			
 			this.writeText(contentStream, fontBold, 10, 325, 640, "SAP: ");
-			this.writeText(contentStream, font, 10, 435, 640, kpds.getProject().getInvestor().getSapInfo().getSapNo());
+			//this.writeText(contentStream, font, 10, 435, 640, kpds.getProject().getInvestor().getSapInfo().getSapNo());
 			
 			this.writeText(contentStream, fontBold, 10, 325, 620, "Gwarancja: ");
 			this.writeText(contentStream, font, 10, 435, 620, "b.d.");

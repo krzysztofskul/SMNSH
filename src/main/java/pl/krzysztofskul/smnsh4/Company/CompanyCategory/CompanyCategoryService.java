@@ -34,5 +34,9 @@ public class CompanyCategoryService {
 		CompanyCategory companyCategory = companyCategoryRepo.findByCompanyCategoryEnum(comCatEnum);
 		return companyCategory;
 	}
+
+	public CompanyCategory loadById(Long id) {		
+		return companyCategoryRepo.findById(id).get();
+	}
 	
 }

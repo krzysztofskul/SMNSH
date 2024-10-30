@@ -90,7 +90,21 @@
                 </a>
             </li>
             
+
+            <li class="nav-item border-left">
+                <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/smnsh4/companies/all?category=investor">
+                    <p class="langPL">KLIENCI</p>
+                    <p class="langEN">CUSTOMERS</p>
+                </a>
+            </li>
+            <li class="nav-item border-right">
+                <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/smnsh4/companies/all?category=subcontractor">
+                    <p class="langPL">PODWYKONAWCY</p>
+                    <p class="langEN">SUBCONTRACTORS</p>
+                </a>
+            </li>
             
+            <%-- 
             <li class="nav-item dropdown border-left">
                 <a class="nav-link dropdown-toggle btn-light ml-1" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <svg class="bi bi-arrow-down-square-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -150,14 +164,7 @@
                     </a>
                 </div>
             </li>
-            
-            
-            <li class="nav-item">
-                <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/investors/allwithprojects">
-                    <p class="langPL">KLIENCI</p>
-                    <p class="langEN">CUSTOMERS</p>
-                </a>
-            </li>
+            --%>
             
             <li class="nav-item">
                 <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/projects/all?view=list">
@@ -165,9 +172,9 @@
                     <p class="langEN">PROJECTS IN THE COMPANY</p>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-itemy">
                 <c:set var="user" value="?userId=${sessionScope.userLoggedIn.id}"/>
-                <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1" href="/projects/all${user}&view=list">
+                <a id="projectsBtn" class="nav-link btn-light ml-1 mr-1 border border-primary" href="/projects/all${user}&view=list">
                     <p class="langPL">MOJE PROJEKTY</p>
                     <p class="langEN">MY PROJECTS</p>
                 </a>

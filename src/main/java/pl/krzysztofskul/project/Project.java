@@ -2,6 +2,7 @@ package pl.krzysztofskul.project;
 
 import pl.krzysztofskul.attachment.Attachment;
 import pl.krzysztofskul.device.Device;
+import pl.krzysztofskul.device.device3rd.Device3rd;
 import pl.krzysztofskul.device.prototype.Prototype;
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.kpds.Kpds;
@@ -43,7 +44,7 @@ public class Project {
 
 //    @NotBlank
     @ManyToOne
-    private Investor investor;
+    private Company investor;
 
     //@NotBlank
     private String recipient;
@@ -61,6 +62,9 @@ public class Project {
 
     @ManyToOne
     private User projectManager;
+    
+    @ManyToOne
+    private User projectManagerAssistant;
 
     @ManyToOne
     private User sls;
@@ -123,6 +127,9 @@ public class Project {
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     private DetailsSls detailsSls;
     
+    @OneToMany(mappedBy = "project", cascade = CascadeType.PERSIST)
+    private List<Device3rd> device3rdList = new ArrayList<Device3rd>();
+    
     /** constructors */
 
     public Project() {
@@ -157,7 +164,10 @@ public class Project {
 		this.detailsSls = detailsSls;
 	}
 
-	/** getters and setters */
+	/*
+	 * GETTERS AND SETTERS
+	 *  
+	 *  */
 
     public ProjectCharter getProjectCharter() {
         return projectCharter;
@@ -175,11 +185,11 @@ public class Project {
         this.id = id;
     }
 
-    public Investor getInvestor() {
+    public Company getInvestor() {
         return investor;
     }
 
-    public void setInvestor(Investor investor) {
+    public void setInvestor(Company investor) {
         this.investor = investor;
     }
 
@@ -232,7 +242,15 @@ public class Project {
         this.projectManager = projectManager;
     }
 
-    public User getSls() {
+    public User getProjectManagerAssistant() {
+		return projectManagerAssistant;
+	}
+
+	public void setProjectManagerAssistant(User projectManagerAssistant) {
+		this.projectManagerAssistant = projectManagerAssistant;
+	}
+
+	public User getSls() {
         return sls;
     }
 
@@ -384,7 +402,18 @@ public class Project {
 		this.detailsSls = detailsSls;
 	}
 	
-	/** methods */
+	public List<Device3rd> getDevice3rdList() {
+		return device3rdList;
+	}
+
+	public void setDevice3rdList(List<Device3rd> device3rdList) {
+		this.device3rdList = device3rdList;
+	}
+
+	/*
+	 *  METHODS
+	 *  
+	 *  */
 
     public void addConcept(Concept concept) {
         this.conceptList.add(concept);

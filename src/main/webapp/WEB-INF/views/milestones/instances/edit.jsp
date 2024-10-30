@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 
 </head>
 <body>
@@ -28,37 +28,15 @@
 	        	<div class="card">
 	        	
 	        		<div class="card-header text-center">
-	        			<p class="langPL">FOMRULARZ EDYCJI NOWEGO KAMIENIA MILOWEGO</p>
+	        			<p class="langPL">FOMRULARZ EDYCJI KAMIENIA MILOWEGO</p>
 	        			<p class="langEN">EDIT MILESTONE FORM</p>
 	        		</div>
 	        		
 
 	        		<div class="card-body">
 	        			
-	        			<%-- <form:input path="codeName"/>
-		        		<form:input path="namePL"/>
-		        		<form:input path="nameEN"/>
-		        		<form:input path="Description"/> 
-		        		--%>
-	        			
-	        			<div class="row">
-	        				<div class="col text-right">
-	       						<p class="langPL">-:</p>
-	        					<p class="langEN">CODE NAME:</p>
-	        				</div>
-	        				<div class="col">
-	        					<form:input path="id"/>
-	        				</div>
-	        			</div>
-	        			<div class="row">
-	        				<div class="col text-right">
-	       						<p class="langPL">-:</p>
-	        					<p class="langEN">CODE NAME:</p>
-	        				</div>
-	        				<div class="col">
-	        					<form:input path="codeName"/>
-	        				</div>
-	        			</div>
+	        			<form:hidden path="codeName"/>
+	        			<form:hidden path="id"/>
 	        			
 	        			<div class="row">
 	        				<div class="col text-right">
@@ -66,11 +44,11 @@
 	        					<p class="langEN">MILESTONE NAME (PL):</p>
 	        				</div>
 	        				<div class="col">
-	        					<form:input path="namePL"/>
+	        					<form:input path="namePL" class="w-100"/>
 	        				</div>
 	        			</div>
 
-	        			<div class="row">
+	        			<div class="row invisible">
 	        				<div class="col text-right">
 	       						<p class="langPL">NAZWA KAMIENIA MILOWEGO (EN):</p>
 	        					<p class="langEN">MILESTONE NAME (EN):</p>
@@ -93,9 +71,9 @@
 						<hr>
 						
 						
-	        			<div class="row">
+	        			<div class="row invisible">
 	        				<div class="col text-right">
-	       						<p class="langPL">PLANOWANA DATA ROZPOCZĘCIA:</p>
+	       						<p class="langPL">PLANOWANA DATA ROZPOCZÄCIA:</p>
 	        					<p class="langEN">DATE START PLANNED:</p>
 	        				</div>
 	        				<div class="col">
@@ -110,14 +88,14 @@
 	        					<p class="langEN">DATE FINISH PLANNED:</p>
 	        				</div>
 	        				<div class="col">
-	        					<form:input path="milestoneTimeline.dateFinishPlanned"/>
+	        					<form:input type="date" path="milestoneTimeline.dateFinishPlanned"/>
 	        				</div>
 	        			</div>
 	        			
 	        			
-	        			<div class="row">
+	        			<div class="row invisible">
 	        				<div class="col text-right">
-	       						<p class="langPL">DATA ROZPOCZĘCIA:</p>
+	       						<p class="langPL">DATA ROZPOCZÄCIA:</p>
 	        					<p class="langEN">DATE STARTED:</p>
 	        				</div>
 	        				<div class="col">
@@ -127,7 +105,7 @@
 	        			
 	        			
 	        			
-	        			<div class="row">
+	        			<div class="row invisible">
 	        				<div class="col text-right">
 	       						<p class="langPL">DATA ZAKOŃCZENIA:</p>
 	        					<p class="langEN">DATE FINISHED:</p>

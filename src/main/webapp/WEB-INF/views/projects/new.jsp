@@ -26,7 +26,7 @@
     <div class="container">
 
         <form:form id="formNewProject" method="post" modelAttribute="projectNew" enctype="multipart/form-data">
-            <div class="card">
+            <div class="card smnshCard">
 
                 <div class="card-header text-center">
                     <p class="langPL">FORMULARZ NOWEJ KARTY PROJEKTU</p>
@@ -90,8 +90,8 @@
                         </div>
                         <div class="col-8">
                             <form:select path="investor.id" cssClass="w-100">
-                                <c:forEach items="${allInvestorList}" var="investor">
-                                    <form:option value="${investor.id}" label="${investor.name} ${investor.companyType.name}"/>
+                                <c:forEach items="${investors}" var="investor">
+                                    <form:option value="${investor.id}" label="${investor.name}"/>
                                 </c:forEach>
                             </form:select>
                             <form:errors path="investor" cssClass="error"/>
@@ -200,6 +200,23 @@
                         </div>
                         <form:errors path="projectManager" cssClass="error"/>
                     </div>
+                    
+                    <div class="row mb-1">
+                        <div class="col-4 text-right">
+                            <p class="langPL">ZASTĘPCA KIEROWNIKA PROJEKTU:</p>
+                            <p class="langEN">V-CE PROJECT MANAGER:</p>
+                        </div>
+                        <div class="col-8">
+                            <form:select path="projectManagerAssistant.id" cssClass="w-100">
+                                <c:forEach items="${allProjectManagerList}" var="projectManager">
+                                    <form:option value="${projectManager.id}" label="${projectManager.nameFirst} ${projectManager.nameLast}"/>
+                                </c:forEach>
+                            </form:select>
+                        </div>
+                        <form:errors path="projectManager" cssClass="error"/>
+                    </div>
+
+					<hr>
 
                     <div class="row mb-1">
                         <div class="col-4 text-right">
@@ -253,16 +270,6 @@
                         </div>
                     </div>
 
-                    <div class="row mb-1">
-                        <div class="col-4 text-right">
-                            <p class="langPL">LISTA URZĄDZEŃ OBCYCH:</p>
-                            <p class="langEN">3rd PARTY DEVICES:</p>
-                        </div>
-                        <div class="col-8">
-                            <form:input path="othersDeviceList" cssClass="w-100" value="Aparat anestezjologiczny; Wstrzykiwacz;"/>
-                        </div>
-                    </div>
-
                     <hr>
 
                     <div class="row mb-1">
@@ -271,7 +278,7 @@
                             <p class="langEN">TRAININGS:</p>
                         </div>
                         <div class="col-8">
-                            <form:input path="trainings" cssClass="w-100"/>
+                            <form:input path="trainings" cssClass="w-100" disabled="true"/>
                         </div>
                     </div>
 
@@ -285,34 +292,21 @@
                         </div>
                     </div>
 
-                    <div class="row mb-1">
-                        <div class="col-4 text-right">
-                            <p class="langPL">ZAŁĄCZNIK:</p>
-                            <p class="langEN">ATTACHMENT:</p>
-                        </div>
-                        <div class="col-8">
-                            <input type="file" name="fileUpload" multiple="multiple"/>
-<%--                            <form:input path="attachment.id" type="file"/>--%>
-<%--                            <form:errors path="attachment" cssClass="error"/>--%>
-                        </div>
-                    </div>
+	                <div class="card-footer">
+	                    <c:if test="${backToPage ne null}">
+	                        <input type="hidden" name="backToPage" value="${backToPage}">
+	                    </c:if>
+	                    <a href="/projects/all" class="btn btn-warning float-left">
+	                        <p class="langPL">ANULUJ</p>
+	                        <p class="langEN">CANCEL</p>
+	                    </a>
+	                    <form:button type="submit" id="projectNewBtnSave" class="btn btn-success float-right">
+	                        <p class="langPL">ZAPISZ</p>
+	                        <p class="langEN">SAVE</p>
+	                    </form:button>
+	                </div>
 
-                </div>
-
-                <div class="card-footer">
-                    <c:if test="${backToPage ne null}">
-                        <input type="hidden" name="backToPage" value="${backToPage}">
-                    </c:if>
-                    <a href="/projects/all" class="btn btn-warning float-left">
-                        <p class="langPL">ANULUJ</p>
-                        <p class="langEN">CANCEL</p>
-                    </a>
-                    <form:button type="submit" id="projectNewBtnSave" class="btn btn-success float-right">
-                        <p class="langPL">ZAPISZ</p>
-                        <p class="langEN">SAVE</p>
-                    </form:button>
-                </div>
-
+	            </div>
             </div>
         </form:form>
 

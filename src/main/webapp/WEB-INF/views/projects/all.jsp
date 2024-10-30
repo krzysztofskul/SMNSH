@@ -221,7 +221,7 @@
 												<div class="col-md-2 text-left">
 													<div class="card-body">
 														<div class="row font-weight-bold">
-																${project.investor.name} ${project.investor.companyType.name}
+																${project.investor.name}
 														</div>
 														<div class="row">
 																${project.recipient}

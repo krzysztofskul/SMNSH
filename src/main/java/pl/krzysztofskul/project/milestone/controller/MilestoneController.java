@@ -1,6 +1,7 @@
 package pl.krzysztofskul.project.milestone.controller;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -56,12 +57,12 @@ public class MilestoneController {
 	@PostMapping("/instances/new")
 	public String newinstanceSave(
 			@RequestParam String namePL,
-			@RequestParam String nameEN,
+			@RequestParam (required = false) String nameEN,
 			@RequestParam String description,
-			@RequestParam String dateStartPlanned,
+			@RequestParam (required = false) String dateStartPlanned,
 			@RequestParam String dateFinishPlanned,
-			@RequestParam String dateStarted,
-			@RequestParam String dateFinished,
+			@RequestParam (required = false) String dateStarted,
+			@RequestParam (required = false) String dateFinished,
 			@RequestParam Long projectCharterId,
 			@RequestParam String backToPage
 	) {
@@ -83,7 +84,7 @@ public class MilestoneController {
 			//dateFinishPlanned = LocalDate.now().toString();
 		} else {
 			try {
-				milestoneInstance.getMilestoneTimeline().setDateFinishPlanned(LocalDate.parse(dateFinishPlanned));
+				milestoneInstance.getMilestoneTimeline().setDateFinishPlanned(LocalDateTime.parse(dateFinishPlanned));
 			} catch (java.time.format.DateTimeParseException e) {
 				dateFinishPlanned = null;
 			}

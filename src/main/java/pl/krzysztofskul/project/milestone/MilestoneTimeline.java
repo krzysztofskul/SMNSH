@@ -1,6 +1,7 @@
 package pl.krzysztofskul.project.milestone;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
@@ -17,7 +18,7 @@ public class MilestoneTimeline {
 	private Long id;
 	
 	private LocalDate dateStartPlanned;
-	private LocalDate dateFinishPlanned;
+	private LocalDateTime dateFinishPlanned;
 	private LocalDate dateStarted;
 	private LocalDate dateFinished;
 	
@@ -38,7 +39,7 @@ public class MilestoneTimeline {
 	public MilestoneTimeline(String demoType) {
 		if (demoType.equals("demo-init")) {
 			int x = LocalTime.now().getSecond() + LocalTime.now().getNano()/1000000;
-			this.setDateFinishPlanned(LocalDate.now().plusDays(x));	
+			this.setDateFinishPlanned(LocalDateTime.now().plusDays(x));	
 		}
 
 	}
@@ -59,11 +60,11 @@ public class MilestoneTimeline {
 		this.dateStartPlanned = dateStartPlanned;
 	}
 
-	public LocalDate getDateFinishPlanned() {
+	public LocalDateTime getDateFinishPlanned() {
 		return dateFinishPlanned;
 	}
 
-	public void setDateFinishPlanned(LocalDate dateFinishPlanned) {
+	public void setDateFinishPlanned(LocalDateTime dateFinishPlanned) {
 		this.dateFinishPlanned = dateFinishPlanned;
 	}
 

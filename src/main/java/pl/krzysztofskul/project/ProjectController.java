@@ -14,6 +14,8 @@ import pl.krzysztofskul.attachment.AttachmentRepo;
 import pl.krzysztofskul.attachment.AttachmentService;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
+import pl.krzysztofskul.device.device3rd.Device3rd;
+import pl.krzysztofskul.device.device3rd.Device3rdService;
 import pl.krzysztofskul.device.part.PartService;
 import pl.krzysztofskul.device.prototype.Prototype;
 import pl.krzysztofskul.device.prototype.PrototypeService;
@@ -23,6 +25,9 @@ import pl.krzysztofskul.logger.loggerProject.LoggerProjectService;
 import pl.krzysztofskul.logger.loggerUser.LoggerUserService;
 import pl.krzysztofskul.project.comment.Comment;
 import pl.krzysztofskul.project.comment.CommentService;
+import pl.krzysztofskul.project.milestone.MilestoneTemplate;
+import pl.krzysztofskul.project.milestone.service.MilestoneService;
+import pl.krzysztofskul.projectCharter.ProjectCharterService;
 import pl.krzysztofskul.smnsh4.Company.Company;
 import pl.krzysztofskul.smnsh4.Company.CompanyService;
 import pl.krzysztofskul.smnsh4.Company.CompanyCategory.CompanyCategoryEnum;
@@ -57,6 +62,9 @@ public class ProjectController {
     private PartService partService;
     private PrototypeService prototypeService;
     private CompanyService companyService;
+    private Device3rdService device3rdService;
+    private MilestoneService milestoneService;
+    private ProjectCharterService projectCharterService;
 
     @Autowired
     public ProjectController(ProjectService projectService, InvestorService investorService,
@@ -64,7 +72,10 @@ public class ProjectController {
 			AttachmentService attachmentService, LoggerUserService<Object> loggerUserService,
 			LoggerProjectService<Object> loggerProjectService, CommentService commentService, PartService partService,
 			PrototypeService prototypeService,
-			CompanyService companyService
+			CompanyService companyService,
+			Device3rdService device3rdService,
+			MilestoneService milestoneService,
+			ProjectCharterService projectCharterService
 			) {
 		super();
 		this.projectService = projectService;
@@ -79,6 +90,9 @@ public class ProjectController {
 		this.partService = partService;
 		this.prototypeService = prototypeService;
 		this.companyService = companyService;
+		this.device3rdService = device3rdService;
+		this.milestoneService = milestoneService;
+		this.projectCharterService = projectCharterService;
 	}
 
     @ModelAttribute("allDeviceList")
@@ -125,6 +139,10 @@ public class ProjectController {
 	public List<Company> getAllSubcontractorsForRoomAdaptations() {
 		return companyService.loadAllByCompanyCategoryEnum(CompanyCategoryEnum.SUBCONTRACTOR_ROOM_ADAPTATION);
 	}
+	@ModelAttribute("investors")
+	public List<Company> getAllInvestors() {
+		return companyService.loadAllByCompanyCategoryEnum(CompanyCategoryEnum.INVESTOR);
+	}
 
     @GetMapping("/new")
     public String projectNew(
@@ -135,6 +153,7 @@ public class ProjectController {
     	if (userId != null) {
     		project.setProjectManager(userService.loadById(userId));
     	}
+    	
     	model.addAttribute("projectNew", project);
 
         return "projects/new";
@@ -147,6 +166,7 @@ public class ProjectController {
             @RequestParam(name = "backToPage", required = false) String backToPage,
             @RequestParam(name = "userId", required = false) String userId,
             @RequestParam(name = "view", required = false) String view,
+            Model model,
             HttpSession httpSession
     ) throws IOException {
 
@@ -174,19 +194,31 @@ public class ProjectController {
         	for (MultipartFile fileUpload: filesUpload) {
 	        	if (fileUpload.getOriginalFilename() != "") {
 	            	System.out.println("Attachment to upload... "+fileUpload.getOriginalFilename());
-	                attachmentService.saveToProject(fileUpload, projectNew);
+	                attachmentService.saveToProject(fileUpload, projectNew, null);
 	                loggerProjectService.log(projectNew, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Attachement added.", "Dodano załącznik", httpSession.getAttribute("userLoggedIn"));        		
 	        	}
         	}
         }
         
-        if (backToPage != null) {
-            return "redirect:"+backToPage+"&view=list";
-        }
+//        if (backToPage != null) {
+//            return "redirect:"+backToPage+"&view=list";
+//        }
         
-        return "redirect:/projects/all?view=list";
-    }
-
+        /*
+         * add default milestones (from template) to the project
+         */
+        List<MilestoneTemplate> milestoneTemplateList = milestoneService.loadAllMilestoneTemplateList();
+        for (MilestoneTemplate milestoneTemplate : milestoneTemplateList) {
+			projectCharterService.addMilestoneInstanceFromTemplates(projectNew.getId(), milestoneTemplate.getId());
+		}
+        
+        //return "redirect:/projects/all?view=list";
+        model.addAttribute("projectId", projectNew.getId());
+        //model.addAttribute(Device3rdForm, "device3rdForm");
+        //return "redirect:/device3rd/new?projectId="+projectNew.getId();
+        return "devices/device3rd/question";
+    }   
+    
     @GetMapping("/all")
     public String projectsAll(
             @RequestParam(name = "status", required = false) String status,
@@ -372,7 +404,7 @@ public class ProjectController {
 				
 	        	if (fileUpload.getOriginalFilename() != "") {
 	            	System.out.println("Attachment to upload... "+fileUpload.getOriginalFilename());
-	                attachmentService.saveToProject(fileUpload, project);
+	                attachmentService.saveToProject(fileUpload, project, null);
 	                loggerProjectService.log(project, ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).toLocalDateTime(), "Attachement added.", "Dodano załącznik", httpSession.getAttribute("userLoggedIn"));        		
 	        	}
         	}
@@ -428,7 +460,5 @@ public class ProjectController {
     	model.addAttribute("project", project);
     	return "projects/attachments";
     }
-    
-    
-    
+       
 }

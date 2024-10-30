@@ -14,8 +14,8 @@
     <jsp:include page="header.jsp"/>
 
     <div class="container text-center">
-        <h1>BRAK DOSTĘPU</h1>
-        <h2>PERMISIION DENIED</h2>
+        <h1>W OPRACOWANIU ...</h1>
+        <h2>IN PROGRESS ...</h2>
     </div>
 
     <jsp:include page="footer.jsp"/>

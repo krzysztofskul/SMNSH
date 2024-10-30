@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.device.Device;
 import pl.krzysztofskul.device.DeviceService;
+import pl.krzysztofskul.device.device3rd.Device3rd;
 import pl.krzysztofskul.device.part.PartService;
 import pl.krzysztofskul.device.prototype.Prototype;
 import pl.krzysztofskul.importdata.ImportData;
@@ -110,7 +111,9 @@ public class ProjectService {
 			break;
 		}
 		case PROJECT_MANAGER: {
-			projectList = projectRepo.findAllByProjectManager(user);
+			projectList = new ArrayList<Project>();
+			projectList.addAll(projectRepo.findAllByProjectManager(user));
+			projectList.addAll(projectRepo.findAllByProjectManagerAssistant(user));
 			break;
 		}
 		case PLANNER: {
@@ -135,7 +138,9 @@ public class ProjectService {
                 break;
             }
             case "PROJECT_MANAGER": {
-                projectList = projectRepo.findAllByProjectManager(user);
+    			projectList = new ArrayList<Project>();
+    			projectList.addAll(projectRepo.findAllByProjectManager(user));
+    			projectList.addAll(projectRepo.findAllByProjectManagerAssistant(user));
                 break;
             }
             case "PLANNER": {
@@ -195,6 +200,7 @@ public class ProjectService {
             }
         }
         Hibernate.initialize(project.getConceptList());
+        Hibernate.initialize(project.getDevice3rdList());
         return project;
     }
 
@@ -263,7 +269,7 @@ public class ProjectService {
 			String investorSapNo = project.getDetailsSls().getImportedCustomer();
 			if (null != investorService.loadBySapNo(investorSapNo)) {
 				Investor investor = investorService.loadBySapNo(investorSapNo);	
-				project.setInvestor(investor);
+				//project.setInvestor(investor);
 			} else {
 				// TODO 2022-11-18 try to add new investor to db if not found and try to convert again
 					// save path to Xls file in DetailsSls while importing ne project first ...
@@ -275,7 +281,7 @@ public class ProjectService {
 					
 					investor = investorService.saveAndReturn(investor);
 					
-					project.setInvestor(investor);
+					//project.setInvestor(investor);
 					
 					counter++;
 				}

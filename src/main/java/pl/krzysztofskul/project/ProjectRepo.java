@@ -13,6 +13,8 @@ public interface ProjectRepo extends JpaRepository<Project, Long> {
     Project findByProjectName(String projectName);
 
     List<Project> findAllByProjectManager(User user);
+
+    List<Project> findAllByProjectManagerAssistant(User user);
     
     List<Project> findAllById(Long userId);
 

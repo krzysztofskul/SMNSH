@@ -121,9 +121,7 @@
 	        					</div>
 	        				</div>
 	        				<div class="card-body">
-	        					<textarea cols=60 rows=5 disabled class="form-control" id="textareaProjectBackground">
-	        						${projectCharter.reasons }
-	        					</textarea>
+	        					<textarea cols=60 rows=5 disabled class="form-control" id="textareaProjectBackground">${projectCharter.reasons }</textarea>
 	        				</div>
 	        			</div>
   
@@ -149,9 +147,7 @@
 	        					</div>
 	        				</div>
 	        				<div class="card-body">
-	        					<textarea cols=60 rows=5 disabled class="form-control" id="textareaRisks">
-	        						${projectCharter.risks }
-	        					</textarea>
+	        					<textarea cols=60 rows=5 disabled class="form-control" id="textareaRisks">${projectCharter.risks }</textarea>
 	        				</div>
 	        			</div>
 
@@ -177,9 +173,7 @@
 	        					</div>
 	        				</div>
 	        				<div class="card-body">
-	        					<textarea cols=60 rows=5 disabled class="form-control" id="textareaGoals">
-	        						${projectCharter.goals }
-	        					</textarea>
+	        					<textarea cols=60 rows=5 disabled class="form-control" id="textareaGoals">${projectCharter.goals }</textarea>
 	        				</div>
 	        			</div>
 		        	
@@ -313,14 +307,16 @@
 				        									<p class="langPL text-primary">EDYTUJ</p>
 				        									<p class="langEN text-primary">EDIT</p>
 													    </a>
-													    <a class="dropdown-item" href="#">
+													    <!--  
+													    <a class="dropdown-item" href="#" disabled="true">
 				        									<p class="langPL text-success">USTAW JAKO WYKONANY</p>
 				        									<p class="langEN text-success">SET AS DONE</p>
 													    </a>
-													    <a class="dropdown-item" href="#">
+													    <a class="dropdown-item" href="#" disabled="true">
 				        									<p class="langPL text-warning">USTAW JAKO NIEWYKONANY</p>
 				        									<p class="langEN text-warning">SET AS TODO</p>
 													    </a>
+													    -->
 													    <div class="dropdown-divider"></div>
 													    <a href="/milestones/instances/delete/${projectCharter.id}/${milestoneInstance.id}?backToPage=project-charter/${projectCharter.id}" class="text-center">
 				        									<p class="langPL text-danger">USUŃ</p>
@@ -336,7 +332,7 @@
 		        									<p class="langEN text-black-50">PLANNED AT:</p>
 		        								</div>
 			        							<div class="col-4">
-			        									${milestoneInstance.milestoneTimeline.dateFinishPlanned }
+			        									${milestoneInstance.milestoneTimeline.dateFinishPlanned.toLocalDate() }
 			        							</div>
 		        							</div>
 		        							<div class="row border-bottom">
