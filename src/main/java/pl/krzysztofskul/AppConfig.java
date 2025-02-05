@@ -107,9 +107,9 @@ public class AppConfig implements WebMvcConfigurer {
 
         /* local DB*/
         //dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?useSSL=false");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Europe/Warsaw&useUnicode=true&characterEncoding=UTF-8");
-        dataSource.setUsername("root");
-        dataSource.setPassword("OfreL73#&"); // randomly generated password for tests at localhost
+//        dataSource.setUrl("jdbc:mysql://localhost:3306/smnsh?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Europe/Warsaw&useUnicode=true&characterEncoding=UTF-8");
+//        dataSource.setUsername("root");
+//        dataSource.setPassword("OfreL73#&"); // randomly generated password for tests at localhost
 
         /* remote Amazon AWS DB */
 //        dataSource.setUrl("jdbc:mysql://amazon-aws-db-20230518.cfob4ebvoz1o.eu-north-1.rds.amazonaws.com/smnsh?useSSL=false");
@@ -117,9 +117,9 @@ public class AppConfig implements WebMvcConfigurer {
 //        dataSource.setPassword(System.getProperty("RDS_PASSWORD"));
         
         /* remote railway DB */
-//      dataSource.setUrl("jdbc:mysql://${PROD_DB_HOST}:${PROD_DB_PORT}/${PROD_DB_NAME}");
-//      dataSource.setUsername(System.getProperty("${PROD_DB_USERNAME}"));
-//      dataSource.setPassword(System.getProperty("${PROD_DB_PASSWORD}"));
+      dataSource.setUrl("jdbc:mysql://${PROD_DB_HOST}:${PROD_DB_PORT}/${PROD_DB_NAME}");
+      dataSource.setUsername(System.getProperty("${PROD_DB_USERNAME}"));
+      dataSource.setPassword(System.getProperty("${PROD_DB_PASSWORD}"));
 
         /* remote railway.app DB */
 //      dataSource.setUrl("jdbc:mysql://${PROD_DB_HOST}:${PROD_DB_PORT}/${PROD_DB_NAME}");
