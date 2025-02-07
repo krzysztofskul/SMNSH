@@ -1,10 +1,45 @@
-# SMNSH APP.
+#### INTRODUCTION
 
-**INTRODUCTION**
+SMNSH is a code name of the application which was inspired by real life project management challenges in the Hospital Technology industry. The main goal of the app is to accelerate procedures inside a team of project managers and designers. Additionally, the intention is to gather all information in one place and simplify the process of sharing data between departments. 
 
- #4.0.OCTOBER version has been created for a next deployment for testing in October 2024. The main goal is to prepare representative and stable version of the application for discussion about development with a team.
+The primary functionality is:
+- user login,
+- create projects connected with investor, customer and installation place,
+- set a project manager and assistant of the project manager,
+- set and manage milestones of the project,
+- set and manage stakeholders of the project,
+- collect important attachments,
+- create automatic pdf files needed by other departments,
+- edit data.
 
-**TODO GOALS IN MAIN FUNCTIONALITY:**
+#### LATEST VERSION DESCRIPTION  
+
+ #4.0.JANUARY version has been created to test and deploy in January 2025.
+
+#### TECHNOLOGY
+
+* Java/Spring  
+* Hibernate/MySQL  
+* JavaScript/jQuery/Ajax  
+* HTML/CSS/Bootstrap  
+
+#### SCREENSHOTS
+
+<!--![img](src/main/webapp/resources/img/readme/screenshots/homepage01.jpg)-->
+
+**HOME PAGE**  
+<img src="src/main/webapp/resources/img/readme/screenshots/homepage01.jpg" alt="drawing" style="width:720px"/><br>  
+**PROJECT DETAILS PAGE**  
+<img src="src/main/webapp/resources/img/readme/screenshots/projectdetails01.jpg" alt="drawing" style="width:720px"/><br>  
+**PROJECT CHATER PAGE**  
+<img src="src/main/webapp/resources/img/readme/screenshots/projectcharter01.jpg" alt="drawing" style="width:720px"/><br>  
+
+
+#### STATUS AND TODO LIST
+
+**STATUS:** *in progress*
+
+**TODO LIST:**  
 
 * encryption functionality
 
@@ -42,3 +77,7 @@
     * import clients from xls 
 
 * PL charset unicode problem when save to MySQL  
+
+#### CONTACT
+
+*krzysztofskul@protonmail.com*
